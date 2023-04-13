@@ -6,7 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>헤더</title>
     <link rel="stylesheet" href="/static/css/common.css">
+    <style>
+        .header-section {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .header-box {
+            border-radius: 0;
+            width: 100%;
+            height: auto;
+            background-color: #FFFFFF;
+            border-color: #E5E5E5;
+            z-index: 101;
+            top: 0;
+            left: 0;
+            position: sticky;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
+    <section class="header-section">
+       <header class="header-box">
+            <div class="header">
+                <h2>안녕</h2>
+            </div>
+       </header> 
+    </section>
 </body>
 </html>
