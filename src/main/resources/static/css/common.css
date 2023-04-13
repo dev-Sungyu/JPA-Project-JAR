@@ -13,16 +13,16 @@
 
 body {
     font-family: cereal;
-    font-size: 14px;
-    line-height: 1.43;
-    color: #222;
-    background-color: #fff;
-    margin: 0;
-    -webkit-font-smoothing: antialiased;
-}
-
-body {
-    line-break: strict;
+    background: #f8f8f9;
+    position: relative;
+    text-align: left;
+    text-transform: none;
+    line-height: 1;
+    letter-spacing: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    vertical-align: baseline;
 }
 
 *, *:before, *:after {
