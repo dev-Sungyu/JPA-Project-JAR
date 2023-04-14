@@ -11,7 +11,6 @@
 
 body {
     font-family: "Pretendard JP Variable", "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Hiragino Sans", "Apple SD Gothic Neo", Meiryo, "Noto Sans JP", "Noto Sans KR", "Malgun Gothic", Osaka, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-    background: #f8f8f9;
     position: relative;
     text-align: left;
     text-transform: none;
@@ -19,6 +18,7 @@ body {
     letter-spacing: 0;
     padding: 0;
     border: 0;
+    background-color: rgb(255, 255, 255);
     font-size: 100%;
     vertical-align: baseline;
 }
