@@ -78,6 +78,12 @@
     flex-direction: row;
 }
 
+.header-search-box {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
 .cate {
     border-width: 0;
     color: #1A1A1A;
@@ -588,4 +594,34 @@ input {
 
 .header-arrow-off {
     display: none;
+}
+
+@media (max-width : 1023px) {
+    .header-category-box {
+        display: none;
+    }
+
+    .header-menu-box {
+        display: none;
+    }
+
+    .search-box {
+        display: flex;
+    }
+
+    .header-content-box {
+        margin-right: 0;
+    }
+
+    .header-height {
+        height: 56px;
+    }
+
+    .logo {
+        height: 20px;
+    }
+
+    .none-div {
+        width: 20px;
+    }
 }
