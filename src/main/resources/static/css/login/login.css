@@ -159,3 +159,58 @@ input[name="password"]{
     margin-top: 16px;
     margin-bottom: 16px;
 }
+.kakao_btn{
+    color: rgb(12, 12, 12);
+    --system-on-color: #0c0c0c;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 0;
+    background-color: #0000000d;
+    border-width: 0;
+    border-radius: 2px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    position: relative;
+}
+.kakao_btn_svg{
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: var(--system-on-color);
+}
+.kakao_btn_svg_path{
+    fill: #FEE500;
+}
+.wid_hei_second{
+    width: 2px;
+    display: flex;
+}
+.wid_hei_four{
+    width: 4px;
+    display: flex;
+}
+.kakao_text{
+    line-height: 1.25rem;
+    font-size: 1rem;
+    border-width: 0;
+    color: var(--system-on-color);
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+}
+.kakao_text_p{
+    border-width: 0;
+    color: var(--system-on-color);
+    margin: 0;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+}
