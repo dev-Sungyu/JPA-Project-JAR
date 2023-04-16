@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,11 +9,78 @@
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
 </head>
+
 <body>
-    <header id="header"></header>
     <div class="whole_wrapper">
+        <header id="header"></header>
         <nav class="sidebar"></nav>
-        section.content_form>
+        <section class="content_form">
+            <header class="content_header"></header>
+            <div class="content_wrapper">
+                <header class="searchbar"></header>
+                <div class="delete_button"></div>
+                <article class="content_main">
+                    <table class="content_list_wrapper">
+                        <th class="table_head-checkbox">
+                            <input type="checkbox" name="check_member_all" id="">
+                        </th>
+                        <th class="table_head-id"></th>
+                        <th class="table_head-type"></th>
+                        <th class="table_head-name"></th>
+                        <th class="table_head-phone"></th>
+                        <th class="table_head-email"></th>
+                        <th class="table_head-register"></th>
+                        <tr class="table_content_wrapper">
+                            <td class="table_content-checkbox">
+                                <input type="checkbox" name="check_member" id="">
+                            </td>
+                            <td class="table_content-id">
+                                1
+                            </td>
+                            <td class="table_content-type">
+                                일반회원
+                            </td>
+                            <td class="table_content-name">
+                                이준상
+                            </td>
+                            <td class="table_content-phone">
+                                010-1234-1234
+                            </td>
+                            <td class="table_content-email">
+                                ljs1234@gmail.com
+                            </td>
+                            <td class="table_content-register">
+                                2023-01-01
+                            </td>
+                        </tr>
+                        <tr class="table_content_wrapper">
+                            <td class="table_content-checkbox">
+                                <input type="checkbox" name="check_member" id="">
+                            </td>
+                            <td class="table_content-id">
+                                1
+                            </td>
+                            <td class="table_content-type">
+                                일반회원
+                            </td>
+                            <td class="table_content-name">
+                                이준상
+                            </td>
+                            <td class="table_content-phone">
+                                010-1234-1234
+                            </td>
+                            <td class="table_content-email">
+                                ljs1234@gmail.com
+                            </td>
+                            <td class="table_content-register">
+                                2023-01-01
+                            </td>
+                        </tr>
+                    </table>
+                </article>
+            </div>
+        </section>
     </div>
 </body>
+
 </html>
