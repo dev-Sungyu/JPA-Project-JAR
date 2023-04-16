@@ -1,0 +1,585 @@
+
+#next {
+    position: relative;
+    z-index: 0;
+}
+
+.wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.header-wrap{
+    border-radius: 0px;
+    width: 100%;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 1002;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+}
+
+.header-warp-box{
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.header-tag{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+@media screen and (min-width: 640px){
+.header-tag{
+    padding-left: 24px;
+    padding-right: 24px;
+}}
+
+.header-line{
+    flex: none;
+    background-color: #E5E5E5;
+    width: 100%;
+    height: 1px;
+}
+
+.header-tag-box{
+    margin-right: 16px;
+    -webkit-box-align: center;
+}
+
+@media screen and (min-width: 1024px) {
+    .header-tag-box {
+    display: none;
+}}
+
+.haeder-tag-box-button{
+    cursor: pointer;
+    border-width: 0px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: inline-flex;
+    background-color: inherit;
+}
+
+.haeder-tag-box-button-span{
+    display: block;
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (min-width: 640px){
+.haeder-tag-box-button-span{
+    width: 24px;
+    height: 24px;
+}}
+
+
+@media screen and (min-width: 1024px){
+.haeder-tag-box-button-span {
+    width: 24px;
+    height: 24px;
+}}
+
+@media screen and (min-width: 1312px){
+.haeder-tag-box-button-span {
+    width: 24px;
+    height: 24px;
+}}
+
+
+.header-wrap{
+    border-radius: 0px;
+    width: 100%;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    border-color: rgb(229, 229, 229);
+    z-index: 101;
+    top: 0px;
+    left: 0px;
+    position: sticky;
+}
+
+.header-wrap-box{
+    display: flex;
+    align-items: center;
+}
+
+.header-box{
+    display: flex;
+    height: 56px;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+    position: relative;
+}
+
+@media screen and (min-width: 640px) {
+.header-box {
+    height: 56px;
+}}
+
+@media screen and (min-width: 1024px){
+.header-box {
+    height: 78px;
+}}
+
+.header-box-a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.header-box-logo{
+
+}
+
+@media screen and (min-width: 640px) {
+.header-box-logo {
+    display: block;
+}}
+
+.header-box-2{
+
+}
+
+@media screen and (min-width: 640px){
+.header-box-2 {
+    display: none;
+}}
+
+.header-box-logo-span{
+    display: block;
+    width: auto;
+    height: 20px;
+}
+
+@media screen and (min-width: 640px){
+.header-box-logo-span {
+    height: 20px;
+}}
+
+@media screen and (min-width: 1024px){
+.header-box-logo-span {
+    height: 24px;
+}}
+
+.header-box-2-span{
+    display: block;
+    width: auto;
+    height: 20px;
+}
+
+.header-box-line{
+    width: 36px;
+    display: flex;
+}
+
+.header-profile{
+    display: flex;
+    margin-left: auto;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+}
+
+.header-profile-box{
+    cursor: pointer;
+}
+
+.profile-wrap{
+    width: 34px;
+    height: 34px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    justify-content: flex-start;
+}
+
+.profile-box{
+    background-color: rgb(248, 248, 248);
+    border-radius: 50%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.profile-picture{
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative; 
+}
+
+.profile-img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.profile-img::after {
+    content: "";
+}
+
+.body-wrap{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: row;
+}
+
+.body-wrap-box{
+    display: flex;
+    width: 100%;
+    padding-left: 0px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 640px) {
+.body-wrap-box {
+    padding-left: 0px;
+}}
+
+@media screen and (min-width: 1024px){
+.body-wrap-box {
+    padding-left: 280px;
+}}
+
+.body-main{
+    display: flex;
+    padding-left: 20px;
+    padding-right: 20px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.body-main-box{
+    display: flex;
+    padding-top: 32px;
+    width: 100%;
+    max-width: 1232px;
+    margin-left: auto;
+    margin-right: auto;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.body-mian-box-in{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.body-mian-box-in-box{
+    display: flex;
+    margin-top: 24px;
+    overflow: auto;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+}
+
+@media screen and (min-width: 640px){
+.body-mian-box-in-box {
+    flex-direction: column;
+}}
+
+@media screen and (min-width: 1024px){
+.body-mian-box-in-box {
+    flex-direction: row;
+}}
+
+.body-mian-box-in-box-in{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+@media screen and (min-width: 640px){
+.body-mian-box-in-box-in {
+    width: 100%;
+}}
+
+@media screen and (min-width: 1024px){
+.body-mian-box-in-box-in {
+    width: 792px;
+}}
+
+.body-main-box-in-box-2{
+    width: 0px;
+    height: 20px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+@media screen and (min-width: 640px){
+.body-main-box-in-box-2 {
+    width: 0px;
+    height: 20px;
+}}
+
+@media screen and (min-width: 1024px){
+.body-main-box-in-box-2 {
+    width: 20px;
+    height: 0px;
+}}
+
+.real-wrap{
+    display: flex;
+    width: 100%;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    z-index: 0;
+    position: relative;
+}
+
+.real-wrap-box{
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-box-pack: start;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+}
+
+.real-wrap-box-box{
+    display: flex;
+    align-content: stretch;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    border-color: rgba(0, 0, 0, 0.15);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 12px;
+}
+
+.box-header{
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    padding-top: 26px;
+    padding-left: 24px;
+    -webkit-box-pack: start;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+}
+
+.box-header h3{
+    text-align: left;
+    color: rgb(12, 12, 12);
+    -webkit-text-fill-color: rgb(12, 12, 12);
+    font-size: 1.25rem;
+    line-height: 1.625rem;
+    font-weight: 700;
+}
+
+.box-main-wrap{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.box-main-wrap form{
+    width: auto;
+    height: auto;
+}
+
+.box-main-wrpa-list{
+    display: flex;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+.box-main-wrpa-list p {
+    border-width: 0px;
+    color: rgb(102, 102, 102);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}
+
+.box-line{
+    width: 0px;
+    height: 20px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+
+.box-main-body{
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    -webkit-box-pack: start;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+}
+
+.box-main-body span{
+    display: flex;
+    align-content: stretch;
+    flex-shrink: 0;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    width: 0px;
+    height: 12px;
+}
+
+.editor-wrap{
+    height: 300px;
+}
+
+.etitor-wrap-box{
+    position: relative;
+    border: 1px solid #dadde6;
+    height: 100%;
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,나눔바른고딕,Nanum Barun Gothic,맑은고딕,Malgun Gothic,sans-serif;
+    border-radius: 4px;
+}
+
+:not(.auto-height)>.etitor-wrap-box{
+    display: flex;
+    flex-direction: column;
+}
+
+.etitor-toolbar{
+    height: 46px;
+    box-sizing: border-box;
+}
+
+.editor-toolbar-1{
+    float: left;
+    height: 45px;
+    font-size: 13px;
+    background: #f7f9fc;
+    border-bottom: 1px solid #ebedf2;
+    border-top-left-radius: 3px;
+    display: none;
+}
+
+.editor-toolbar-2{
+    display: flex;
+    padding: 0 25px;
+    height: 45px;
+    background-color: #f7f9fc;
+    border-bottom: 1px solid #ebedf2;
+    border-radius: 3px 3px 0 0;
+    border-top-left-radius: 0px;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio:2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx){
+.editor-toolbar-2-icons{
+    background: url(/static/image/board/button.png)no-repeat;
+    background-size: 466px 146px;
+}}
+
+.editor-toolbar-2 button{
+box-sizing: border-box;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 3px;
+    margin: 7px 5px;
+    border: 1px solid #f7f9fc;
+}
+
+.editor-toolbar-2-group{
+    display: flex;
+}
+
+.editor-toolbar-2-icons{
+    background-position-y: 3px;
+}
+
+
+.heading{
+    background-position-x: 3px;
+}
+
+.bold{
+    background-position-x: -23px;
+}
+
+.hrline{
+    background-position-x: -101px;
+}
+
+.quote{
+    background-position-x: -127px;
+}
+
+.editor-toolbar-divider{
+    display: inline-block;
+    width: 1px;
+    height: 18px;
+    background-color: #e1e3e9;
+    margin: 14px 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.body-line{
+    width: 0;
+    height: 72px;
+    -webkit-box-flex: 0;
+    flex-grow: 0;
+    flex-shrink: 0; 
+}
