@@ -217,3 +217,26 @@ input[name="password"]{
 .naver_path{
     fill: rgb(0, 199, 60);
 }
+.media_sign{
+    margin-top: 76px;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    flex-direction: column;
+}
+@media screen and (min-width: 1024px){
+.media_sign {
+    display: flex;
+}}
+.sign_in_a_div_login{
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    flex-direction: row;
+}
+.sign_in_login{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+}
