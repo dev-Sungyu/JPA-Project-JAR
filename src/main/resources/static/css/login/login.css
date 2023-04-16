@@ -214,3 +214,6 @@ input[name="password"]{
     font-weight: 700;
     line-height: 1.25rem;
 }
+.naver_path{
+    fill: rgb(0, 199, 60);
+}
