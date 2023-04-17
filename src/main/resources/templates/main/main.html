@@ -29,16 +29,8 @@
                                             <div class="banner-image-box-layout">
                                                 <div class="banner-image-container">
                                                     <div class="banner-image-wrap">
-                                                        <!-- 이미지 추가 부분 -->
-                                                        <!-- <div class="banner-slide-box">
-                                                            <div class="banner-none-area">
-                                                                <div class="banner-slide-image-box">
-                                                                    <picture class="banner-slide-image">
-                                                                        <img src="https://cdn.class101.net/images/69ac96c1-9d60-4316-9f1b-79311e667b78/750xauto.webp">
-                                                                    </picture>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
+                                                        <div class="banner-mobileChecking" style="display:none"></div>
+                                                        <!--  배너 넣는 곳 slide.js 참고-->
                                                     </div>
                                                 </div>
                                             </div>
@@ -86,26 +78,26 @@
                                     <!-- 해당 게시판 링크 -->
                                     <a href="javascript:void(0)">
                                         <div class="main-content-title-layout">
-                                            <h2 class="main-content-title">진행중인 인기 이벤트</h2>
+                                            <h2 class="main-content-title">진행중인 그룹 챌린지</h2>
                                         </div>
                                     </a>
                                     <span class="go-to-list-box">
                                         <a href="javascript:void(0)" class="list-a">
-                                            <span class="auto-flex">전체 이벤트 보기</span>
+                                            <span class="auto-flex">전체 그룹 챌린지 보기</span>
                                         </a>
                                     </span>
                                 </div>
                                 <div class="content-slide-box">
                                     <div style="position: relative;">
-                                        <button type="button" class="content-arrow-button">
+                                        <button type="button" class="content-arrow-button" id="content-prev">
                                             <span class="auto-flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
                                             </span>
                                         </button>
                                         <div class="content-wrap">
-                                            <div class="content-slide-box-container">
+                                            <div class="content-slide-box-container first-content-slide">
                                                 <!-- 자료 뿌려 줄 곳 -->
-                                                <div class="content-image-box">
+                                                <div class="content-image-box first-content-box">
                                                     <a href="javascript:void(0)">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
@@ -126,7 +118,7 @@
                                                     </a>
                                                 </div>
                                                 <!-- 자료 뿌려 줄 곳 -->
-                                                <div class="content-image-box">
+                                                <div class="content-image-box first-content-box">
                                                     <a href="javascript:void(0)">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
@@ -147,7 +139,7 @@
                                                     </a>
                                                 </div>
                                                 <!-- 자료 뿌려 줄 곳 -->
-                                                <div class="content-image-box">
+                                                <div class="content-image-box first-content-box">
                                                     <a href="javascript:void(0)">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
@@ -168,7 +160,7 @@
                                                     </a>
                                                 </div>
                                                 <!-- 자료 뿌려 줄 곳 -->
-                                                <div class="content-image-box">
+                                                <div class="content-image-box first-content-box">
                                                     <a href="javascript:void(0)">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
@@ -189,7 +181,7 @@
                                                     </a>
                                                 </div>
                                                 <!-- 자료 뿌려 줄 곳 -->
-                                                <div class="content-image-box">
+                                                <div class="content-image-box first-content-box">
                                                     <a href="javascript:void(0)">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
@@ -211,7 +203,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="button" class="content-next-arrow-button">
+                                        <button type="button" class="content-next-arrow-button" id="content-next">
                                             <span class="auto-flex">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
                                             </span>
@@ -226,18 +218,18 @@
                                     <!-- 해당 게시판 링크 -->
                                     <a href="javascript:void(0)">
                                         <div class="main-content-title-layout">
-                                            <h2 class="main-content-title">실시간 TOP10 클래스</h2>
+                                            <h2 class="main-content-title">실시간 TOP10 챌린지</h2>
                                         </div>
                                     </a>
                                 </div>
                                 <div style="position: relative;">
-                                    <button type="button" class="content-arrow-button">
+                                    <button type="button" class="content-arrow-button" id="second-prev" style="top: calc((100% - 84px)/2);">
                                         <span class="auto-flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
                                         </span>
                                     </button>
                                     <div class="content-wrap content-padding">
-                                        <div class="content-slide-box-container">
+                                        <div class="content-slide-box-container second-content-slide">
                                              <!-- 자료 뿌려 줄 곳 -->
                                              <div class="content-image-box content-image-box2">
                                                 <a href="javascript:void(0)">
@@ -249,10 +241,10 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -297,10 +289,10 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -345,10 +337,10 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -393,10 +385,10 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -441,10 +433,10 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -489,10 +481,58 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                             <!-- 자료 뿌려 줄 곳 -->
+                                             <div class="content-image-box content-image-box2">
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -528,7 +568,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="button" class="content-next-arrow-button">
+                                    <button type="button" class="content-next-arrow-button" id="second-next" style="top: calc((100% - 84px)/2);">
                                         <span class="auto-flex">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
                                         </span>
@@ -565,10 +605,394 @@
                                                             </picture>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout">
-                                                                    <span class="auto-flex">
+                                                                    <span class="auto-flex no-heart">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
                                                                     </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
+                                                                    </span>
+                                                                </button>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+                                                    <!-- 제목 -->
+                                                    <div class="content-title">
+                                                        게임업계에 관심 있다면?
+                                                    </div>
+                                                    <!-- 내용 -->
+                                                    <div class="content2">
+                                                        상시 이벤트
+                                                    </div>
+                                                    <!-- 좋아요, 댓글 -->
+                                                    <div class="liked-box">
+                                                        <div class="flex">
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="like-count">5771</p> 
+                                                            </div>
+                                                            <div class="liked-layout">
+                                                                <div class="icon-box">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
+                                                                </div>
+                                                                <p class="reply-count">97</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- 하나의 묶음 -->
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <!-- 이미지 -->
+                                                    <div class="content-image">
+                                                        <span class="content-image-span2">
+                                                            <picture class="picture-position">
+                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
+                                                            </picture>
+                                                            <div class="heart-box">
+                                                                <button class="heart-layout">
+                                                                    <span class="auto-flex no-heart">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
+                                                                    </span>
+                                                                    <span class="auto-flex heart-active heart-up" style="display: none;">
                                                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
                                                                     </span>
                                                                 </button>
@@ -603,335 +1027,6 @@
                                                 </a>
                                             </li>
 
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="javascript:void(0)">
-                                                    <!-- 이미지 -->
-                                                    <div class="content-image">
-                                                        <span class="content-image-span2">
-                                                            <picture class="picture-position">
-                                                                <img src="https://cdn.class101.net/images/6af8c670-27e7-4a45-88b0-d133791b5242/375xauto.webp">
-                                                            </picture>
-                                                            <div class="heart-box">
-                                                                <button class="heart-layout">
-                                                                    <span class="auto-flex">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#FFF"></path></svg>
-                                                                    </span>
-                                                                    <span class="auto-flex heart-active" style="display: none;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#fd3049"></path></svg>
-                                                                    </span>
-                                                                </button>
-                                                            </div>
-                                                        </span>
-                                                    </div>
-                                                    <!-- 제목 -->
-                                                    <div class="content-title">
-                                                        게임업계에 관심 있다면?
-                                                    </div>
-                                                    <!-- 내용 -->
-                                                    <div class="content2">
-                                                        상시 이벤트
-                                                    </div>
-                                                    <!-- 좋아요, 댓글 -->
-                                                    <div class="liked-box">
-                                                        <div class="flex">
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="like-count">5771</p> 
-                                                            </div>
-                                                            <div class="liked-layout">
-                                                                <div class="icon-box">
-                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z" fill="#d7d7d7"></path></svg>
-                                                                </div>
-                                                                <p class="reply-count">97</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -953,4 +1048,5 @@
     });
 </script>
 <script src="/static/js/main/slide.js"></script>
+<script src="/static/js/main/main.js"></script>
 </html>
