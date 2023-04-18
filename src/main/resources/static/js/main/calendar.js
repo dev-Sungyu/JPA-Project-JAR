@@ -65,7 +65,10 @@ calendars: [
 ],
 };
 
-const calendar = new Calendar(container, options);
+const calendar = new Calendar(container, options);4
+const month = calendar.getDate().getMonth() + 1;
+const year = calendar.getDate().getFullYear();
+
 calendar.clearGridSelections();
 
 let datas = [
@@ -176,5 +179,8 @@ $("#calender-next").click(() => {
 })
 
 $("#today").click(() => {
+  $(".year").text(year+ "년");
+  $(".month").text(month + "월");
+
   calendar.today();
 });
