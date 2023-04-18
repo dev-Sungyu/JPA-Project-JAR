@@ -86,7 +86,7 @@
                                                                             <p>챌린지 게시물에 대한 내용을 작성해주세요.</p> 
                                                                             <div class="box-line"></div>
                                                                             <div class="box-main-body">
-                                                                                <span></span>
+                                                                                <span class="box-main-body-span"></span>
                                                                                 <div class="editor-wrap">
                                                                                     <div class="etitor-wrap-box">
                                                                                         <div class="etitor-toolbar">
@@ -121,8 +121,64 @@
                                                                                                     <span class="text">Unordered list</span>
                                                                                                 </div>
                                                                                             </div>
-                                                                                            <div class="editor-toolbar-3">
-                                                                                                <div class="editor-toolbar-3-popup"></div>
+                                                                                            <div class="editor-toolbar-3 popup" aria-role="dialog">
+                                                                                                <div class="editor-toolbar-3-popup">
+                                                                                                    <div>
+                                                                                                        <div class="editor-toolbar-3-popup-contianer" aria-label="이미지 삽입">
+                                                                                                            <div class="popup-container-1">
+                                                                                                                <div class="popup-container-1-file active-1" aria-role="tab" aria-label="파일" tabindex="0" aria-selected="true">파일</div>
+                                                                                                                <div class="popup-container-1-adress" aria-role="tab" aria-label="주소" tabindex="-1" aria-selected="false">주소</div>
+                                                                                                            </div>                                                          
+                                                                                                            <div class="popup-container-2">
+                                                                                                                <label for="ImageUrlInput">이미지 주소</label>
+                                                                                                                <input type="text" id="ImageUrlInput">
+                                                                                                            </div>                                                          
+                                                                                                            <div class="popup-container-3 active-3">
+                                                                                                                <label for="ImageFileInput">이미지 파일을 선택하세요.</label>
+                                                                                                                <span>선택된 파일 없음</span>
+                                                                                                                <input type="file" accept="image/*">
+                                                                                                                <button class="popup-container-3-button">파일 선택</button>
+                                                                                                            </div>      
+                                                                                                            <label for="AltTextInput" class="popup-container-label">설명</label>                                                    
+                                                                                                            <input type="text" id="AltTextInput">
+                                                                                                            <div class="popup-container-buttons">
+                                                                                                                <button class="popup-container-button-cancel">취소</button>
+                                                                                                                <button class="popup-container-button-confirm">확인</button>
+                                                                                                            </div>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="editor-toolbar-4 link-4" aria-role="dialog">
+                                                                                                <div class="editor-toolbar-4-link">
+                                                                                                    <div aria-label="Insert link">
+                                                                                                        <label for="LinkUrlInput">URL</label>
+                                                                                                        <input type="text" name="" id="LinkUrlInput">
+                                                                                                        <label for="LinkTextInput">Link Text</label>
+                                                                                                        <input type="text">
+                                                                                                        <div class="link-container-buttons">
+                                                                                                            <button class="link-container-button-cancel">Cancel</button>
+                                                                                                            <button class="link-container-button-confirm">Ok</button>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="editor-toolbar-5 heading-5" aria-role="dialog">
+                                                                                                <div class="editor-toolbar-5-heading">
+                                                                                                    <div>
+                                                                                                        <ul aria-role="menu" aria-label="Headins">
+                                                                                                            <li aria-role="menuitem" data-type="Heading" data-level="2">
+                                                                                                                <h2>제목 2</h2>
+                                                                                                            </li>
+                                                                                                            <li aria-role="menuitem" data-type="Heading" data-level="3">
+                                                                                                                <h3>제목 3</h3>
+                                                                                                            </li>
+                                                                                                            <li aria-role="menuitem" data-type="Paragraph">
+                                                                                                                <div>본문</div>
+                                                                                                            </li>
+                                                                                                        </ul>
+                                                                                                    </div>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="editor-main">
@@ -143,7 +199,7 @@
                                                                                                 </div>
                                                                                                 <div class="editor-main-container-2">
                                                                                                     <div class="editor-main-container-2-box">
-                                                                                                        <div class="editor-main-container-2-contents ProseMorror" contenteditable="true" translate="no">
+                                                                                                        <div class="editor-main-container-2-contents ProseMirror" contenteditable="true" translate="no">
                                                                                                             <p>
                                                                                                                 <br>
                                                                                                             </p>
@@ -160,14 +216,14 @@
                                                                             <div class="editor-button-line">
                                                                                 <button type="button" class="cancel-button">
                                                                                     <div class="cancel-bitton-box">
-                                                                                        <span class="cancel-button-box-span">취소하기</span>
+                                                                                        <span class="cancel-button-span">취소하기</span>
                                                                                     </div>
                                                                                 </button>
                                                                                 <div class="button-line"></div>
                                                                                 <button type="submit" class="save-button">
                                                                                     <div class="save-button-box">
                                                                                         <div class="save-button-box-div"></div>
-                                                                                        <span class="save-button-box-span">저장하기</span>
+                                                                                        <span class="save-button-span">저장하기</span>
                                                                                         <div class="save-button-box-div"></div>
                                                                                     </div>
                                                                                 </button>

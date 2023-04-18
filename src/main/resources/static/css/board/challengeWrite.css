@@ -536,7 +536,7 @@
     align-items: stretch;
 }
 
-.box-main-body span{
+.box-main-body-span{
     display: flex;
     align-content: stretch;
     flex-shrink: 0;
@@ -716,13 +716,281 @@ box-sizing: border-box;
     border-radius: 2px;
     box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
     border: 1px solid #dadde6;
+}
+
+.popup{
     display: none;
+    left: 332px;
+    top: 39px;
+}
+
+.link-4{
+    display: none;
+    left: 320px;
+    top: 39px;
 }
 
 .editor-toolbar-3-popup{
     padding: 15px;
     font-size: 12px;
 }
+
+.editor-toolbar-3-popup-contianer{
+    margin-top: -15px;
+    padding: 0px 5px 5px;
+}
+
+.popup-container-1{
+    margin: 5px 0px 10px;
+}
+
+.popup-container-1-file{
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid rgb(218, 221, 230);
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.active-1{
+    border-bottom: 2px solid rgb(0, 169, 255);
+    color: rgb(0, 169, 255);
+}
+
+.popup-container-1-adress{
+    display: inline-block;
+    width: 60px;
+    height: 40px;
+    line-height: 40px;
+    border-bottom: 1px solid rgb(218, 221, 230);
+    color: rgb(51, 51, 51);
+    font-size: 13px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.popup-container-2{
+    padding-bottom: 2px;
+    display: none;
+}
+
+.popup-container-2 label{
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin: 20px 0 5px;
+}
+
+.ImageUrlInput{
+    width: calc(100% - 26px);
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 2px;
+    border: 1px solid #e1e3e9;
+    color: #333;
+}
+
+
+.popup-container-3{
+    display: none;
+}
+
+.active-3{
+    display: block;
+}
+
+.popup-container-3 label{
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin: 20px 0 5px;
+}
+
+.popup-container-3 span{
+    width: 58%;
+    display: inline-block;
+    border-radius: 2px;
+    border: 1px solid rgb(225, 227, 233);
+    color: rgb(218, 221, 230);
+    height: 30px;
+    line-height: 30px;
+    padding: 0px 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+
+}
+
+.popup-container-3 input[type=file]{
+    opacity: 0;
+    border: none;
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.popup-container-3-button{
+    width: 33%;
+    margin-left: 5px;
+    height: 32px;
+    border-radius: 2px;
+    border: 1px solid rgb(218, 221, 230);
+    background-color: rgb(247, 249, 252);
+    vertical-align: top;
+}
+
+.popup-container-label{
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin: 20px 0 5px;
+}
+
+#AltTextInput{
+    width: calc(100% - 26px);
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 2px;
+    border: 1px solid #e1e3e9;
+    color: #333;
+}
+
+.popup-container-buttons{
+    text-align: right;
+    margin-top: 20px;
+}
+
+.popup-container-button-cancel{
+    min-width: 63px;
+    height: 32px;
+    background-color: #f7f9fc;
+    border: 1px solid #dadde6;
+    margin-right: 5px;
+    outline-color: #cbcfdb;
+}
+
+.popup-container-button-confirm{
+    min-width: 63px;
+    height: 32px;
+    background-color: #00a9ff;
+    color: #fff;
+    outline-color: #009bf2;
+}
+
+.editor-toolbar-4{
+    width: 400px;
+    margin-right: auto;
+    background: #fff;
+    z-index: 30;
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+    border: 1px solid #dadde6;
+}
+
+.link{
+    display: block;
+    left: 320px;
+    top: 39px;
+}
+
+.editor-toolbar-4-link{
+    padding: 0 20px 20px;
+    font-size: 12px;
+}
+
+.editor-toolbar-4-link label{
+    font-weight: 600;
+    color: #555;
+    display: block;
+    margin: 20px 0 5px;
+}
+
+.editor-toolbar-4-link input[type=text]{
+    width: calc(100% - 26px);
+    height: 30px;
+    padding: 0 12px;
+    border-radius: 2px;
+    border: 1px solid #e1e3e9;
+    color: #333;
+}
+
+.link-container-buttons{
+    text-align: right;
+    margin-top: 20px;
+}
+
+.link-container-button-cancel{
+    min-width: 63px;
+    height: 32px;
+    background-color: #f7f9fc;
+    border: 1px solid #dadde6;
+    margin-right: 5px;
+    outline-color: #cbcfdb;
+}
+
+.link-container-button-confirm{
+    min-width: 63px;
+    height: 32px;
+    background-color: #00a9ff;
+    color: #fff;
+    outline-color: #009bf2;
+}
+
+.editor-toolbar-5{
+    margin-right: auto;
+    background: #fff;
+    z-index: 30;
+    position: absolute;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,.08);
+    border: 1px solid #dadde6;
+}
+
+.heading-5{
+    display: none;
+    width: auto;
+    left: 30px;
+    top: 39px;
+}
+
+.editor-toolbar-5-heading{
+    padding: 15px;
+    font-size: 12px;
+}
+
+.editor-toolbar-5-heading ul {
+    margin: -15px;
+    padding: 5px 0px;
+    list-style: none;
+}
+
+.editor-toolbar-5-heading li{
+    cursor: pointer;
+    padding: 4px 12px;
+}
+
+.editor-toolbar-5-heading ul > li > h2 {
+    font-size: 22px;
+}
+
+
+.editor-toolbar-5-heading ul > li > h3 {
+    font-size: 20px;
+}
+
+
 
 .body-line{
     width: 0px;
@@ -931,7 +1199,7 @@ box-sizing: border-box;
     flex-direction: row;
 }
 
-.cancel-button-box-span{
+.cancel-button-span{
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
@@ -939,48 +1207,48 @@ box-sizing: border-box;
 }
 
 @media screen and (min-width: 640px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-size: 0.875rem;
 }}
 
 @media screen and (min-width: 10240px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-size: 0.875rem;
 }}
 
 @media screen and (min-width: 1312px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-size: 0.875rem;
 }}
     
 @media screen and (min-width: 640px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-weight: 500;
 }}  
 
 @media screen and (min-width: 1024px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-weight: 500;
 }}  
     
 
 @media screen and (min-width: 1312px){
-.cancel-button-box-span {
+.cancel-button-span {
     font-weight: 500;
 }}  
         
 @media screen and (min-width: 640px){
-.cancel-button-box-span {
+.cancel-button-span {
     line-height: 1.125rem;
 }}
 
 @media screen and (min-width: 1024px){
-.cancel-button-box-span {
+.cancel-button-span {
     line-height: 1.125rem;
 }}
 
 @media screen and (min-width: 1312px){
-.cancel-button-box-span {
+.cancel-button-span {
     line-height: 1.125rem;
 }}
 
@@ -1056,7 +1324,7 @@ box-sizing: border-box;
     vertical-align: baseline;
 }
 
-.save-button-box-span{
+.save-button-span{
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
@@ -1065,17 +1333,17 @@ box-sizing: border-box;
 }
 
 @media screen and (min-width: 640px){
-.save-button-box-span {
+.save-button-span {
     font-size: 0.875rem;
 }}
 
 @media screen and (min-width: 10240px){
-.save-button-box-span {
+.save-button-span {
     font-size: 0.875rem;
 }}
 
 @media screen and (min-width: 1312px){
-.save-button-box-span {
+.save-button-span {
     font-size: 0.875rem;
 }}
     
@@ -1083,17 +1351,17 @@ box-sizing: border-box;
 
 
 @media screen and (min-width: 640px){
-.save-button-box-span {
+.save-button-span {
     line-height: 1.125rem;
 }}
 
 @media screen and (min-width: 1024px){
-.save-button-box-span {
+.save-button-span {
     line-height: 1.125rem;
 }}
 
 @media screen and (min-width: 1312px){
-.save-button-box-span {
+.save-button-span {
     line-height: 1.125rem;
 }}
 
