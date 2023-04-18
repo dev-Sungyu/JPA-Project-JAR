@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원정보 수정</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <style>
+
+        button {
+            cursor: pointer;
+        }
+
+        textarea {
+            font-family: "Pretendard JP Variable", "Pretendard JP", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Hiragino Sans", "Apple SD Gothic Neo", Meiryo, "Noto Sans JP", "Noto Sans KR", "Malgun Gothic", Osaka, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+            resize: none;
+        }
+
+        .mypage-wrap {
+            position: relative;
+            max-width: 640px;
+            margin: 0px auto;
+        }
+
+        .modify-wrap {
+            background-color: rgb(255, 255, 255);
+            position: relative;
+            padding: 24px;
+        }
+        
+        .image-modify-box {
+            display: flex;
+            justify-content: center;
+            margin: 24px 0px;
+        }
+
+        .image-modify-layout {
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .image-profile-box {
+            position: relative;
+            width: 88px;
+            height: 88px;
+        }
+
+        .image-size {
+            position: relative;
+            width: 88px;
+            height: 88px;
+        }
+
+        .image-span {
+            width: 100%;
+            height: 100%;
+            border: 1px solid rgb(248, 248, 248);
+            border-radius: 100%;
+            line-height: 0;
+            transform: rotate(0deg);
+        }
+
+        .image-picture {
+            top: 0px;
+            left: 0px;
+            position: relative;
+        }
+
+        .image-picture img {
+            transition: opacity 0.1s linear 0s;
+            object-fit: cover;
+            opacity: 1;  
+            width: 100%;
+            height: 100%;
+        }
+
+        .image-pen {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 28px;
+            height: 28px;
+            padding: 4px;
+            border-radius: 14px;
+            background-color: rgb(26, 26, 26);
+            display: flex;
+            align-items: center;
+        }
+
+        .form-layout {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 16px;
+        }
+
+        .form-box {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 0px 16px;
+        }
+
+        .form-title {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px 0px 4px;
+            color: rgb(26, 26, 26);
+        }
+
+        .modify-input {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px;
+            border: 1px solid rgb(239, 239, 239);
+            background-color: white;
+            height: 48px;
+            flex: 1 1 auto;
+            width: 100%;
+            color: rgb(26, 26, 26);
+            box-sizing: border-box;
+            padding: 0px 16px;
+            border-radius: 3px;
+        }
+
+        .modify-input:hover {
+            border :1px solid rgb(215, 215, 215);
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .common-button {
+            border: 0px;
+            outline: none;
+            margin: 0px;
+            padding: 0px;
+            flex: initial;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .change-phone-button {
+            width: auto;
+            display: inline-flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(26, 26, 26);
+            background-color: rgb(248, 248, 248);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 16px;
+            height: 40px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+
+
+        .phone-modify-button:hover {
+           background-color:  rgb(215, 215, 215);
+           border: none;
+        }
+
+        .auto-flex {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modify-submit-button {
+            width: 100%;
+            display: flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 86, 0);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 16px;
+            height: 40px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+
+        .modify-submit-button:disabled{
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 242, 233);
+            cursor: not-allowed;
+        }
+
+        button.phone-modify-button {
+            height: 48px;
+            border : 1px solid rgb(239, 239, 239);
+            border-image: initial;
+            border-left: none;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+
+        hr {
+            box-shadow: rgb(248, 248, 248) 0px -1px 0px inset;
+            border: none;
+            height: 1px;
+            margin: 0px !important;
+        }
+
+        .message-accept {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .toggle-box {
+            display: flex;
+            position: relative;
+            padding: 2px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border-radius: 23px;
+            transition: background-color 0.15s ease-out 0.08s;
+            width: 36px;
+            height: 22px;
+            background-color: rgb(229, 229, 229);
+        }
+
+        .toggle-box::after {
+            content: "";
+            box-sizing: border-box;
+            border-radius: 50%;
+            background: white;
+            transform: translate(0px, 0px);
+            transition: transform 0.15s ease-out 0.08s;
+            box-shadow: rgba(41, 42, 43, 0.1) 0px 1px 3px, rgba(0, 0, 0, 0.04) 0px 0px 0.5px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .message-span {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px 9px 0px 0px;
+            color: rgb(26, 26, 26);
+            flex: 1 1 auto;
+        }
+
+        .withdraw-button {
+            width: 100%;
+            display: flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(26, 26, 26);
+            background-color: rgb(248, 248, 248);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 16px;
+            height: 40px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+
+        .none-cell {
+            background-color: rgb(248, 248, 248);
+            width: 100%;
+            height: 8px;
+        }
+
+        .toggle-active {
+            display: flex;
+            position: relative;
+            padding: 2px;
+            box-sizing: border-box;
+            cursor: pointer;
+            border-radius: 23px;
+            transition: background-color 0.15s ease-out 0.08s;
+            width: 36px;
+            height: 22px;
+            background-color: rgb(255, 86, 0);
+        }
+
+        .toggle-active::after {
+            transform: translate(14px, 0px);
+        }
+
+        .phone-number-modal {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            inset: 0px;
+            overflow: hidden;
+            background-color: rgba(0, 0, 0, 0.72);
+            opacity: 1;
+            visibility: visible;
+            overscroll-behavior: contain;
+            position: fixed ;
+            z-index: 5000;
+        }
+
+        .phone-modal-display {
+            display: none;
+        }
+
+        .phone-modal-box {
+            display: flex;
+            flex-direction: column;
+            padding: 32px;
+            width: 480px;
+            max-height: 800px;
+            border-radius: 8px;
+            background-color: rgb(255, 255, 255);
+            box-sizing: border-box;
+            box-shadow: rgba(0, 0, 0, 0.02) 0px 0px 5px, rgba(0, 0, 0, 0.02) 0px 6px 4px, rgba(0, 0, 0, 0.03) 0px 9px 6px, rgba(0, 0, 0, 0.03) 0px 16px 12px, rgba(0, 0, 0, 0.08) 0px 24px 24px;
+        }
+
+        .phone-modal-title-box {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 8px;
+            justify-content: space-between;
+            flex: 1 1 auto;
+            white-space: pre-line;
+        }
+
+        .phone-modal-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(26, 26, 26);
+            line-height: 34px;
+            letter-spacing: -0.4px;
+            margin: 0px;
+        }
+
+        .modal-exit {
+            display: inline-flex;
+            flex: 0 0 auto;
+            vertical-align: middle;
+            padding: 0px;
+            border-radius: 3px;
+            color: rgb(26, 26, 26);
+            background-color: transparent;
+            width: 32px;
+            height: 32px;
+            transition: background-color 0.1s ease 0s;
+        }
+
+        .phone-modal-sub-title {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px;
+            flex: 0 0 auto;
+            margin-bottom: 16px;
+            color: rgb(162, 162, 162);
+        }
+
+        .phone-modal-input-box {
+            flex: 1 1 auto;
+        }
+
+        .phone-modal-input-box-layout {
+            display: flex;
+            flex-direction: column;
+            margin: 0px 0px 16px;
+            margin-bottom: 8px;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .phone-input-box {
+            display: flex;
+            flex: 1 1 0%;
+        }
+
+        .phone-input-box input {
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+
+        .phone-modify-button:disabled {
+            cursor: not-allowed;
+            color: rgb(239, 239, 239);
+            background-color: rgb(248, 248, 248);
+        }
+
+        .phone-modal-button-box {
+            flex: 0 0 auto;
+            display: flex;
+            margin: 0px -8px;
+            flex-direction: row;
+        }
+
+        .phone-modal-button-box button {
+            flex: 1 0 auto;
+            margin: 16px 8px 0px;
+            cursor: pointer;
+        }
+
+        .cancel-button:hover {
+            background-color:  rgb(215, 215, 215);
+        }
+
+        .phone-number-confirm-button {
+            display: flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 86, 0);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 16px;
+            height: 40px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+
+        .phone-number-confirm-button:disabled {
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 242, 233);
+            cursor: not-allowed;
+        }
+
+        .withdraw-modal {
+            position: absolute;
+            inset: 0px;
+            z-index: 10000;
+        }
+
+        .modal-back {
+            background-color: rgba(0, 0, 0, 0.8);
+            position: fixed;
+            inset: 0px;
+            display: block;
+            z-index: 5000;
+            animation: 0.25s ease 0s 1 normal none running openOverlay;
+            opacity: 1.1;
+        }
+
+        .withdraw-modal-box {
+            padding: 24px;
+            position: fixed;
+            overflow-y: auto;
+            z-index: 5001;
+            background: rgb(255, 255, 255);
+            box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;
+        }
+
+        .withdraw-sub-title {
+            font-size: 14px;
+            font-weight: bold;
+            color: rgb(102, 102, 102);
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px;
+            margin-bottom: 4px;
+        }
+
+        .withdraw-sub-content {
+            font-size: 14px;
+            font-weight: normal;
+            color: rgb(102, 102, 102);
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px;
+            margin-bottom: 4px;
+        }
+
+        .withdraw-reson-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(26, 26, 26);
+            line-height: 28px;
+            margin: 0px;
+        }
+
+        .withdraw-reson-sub-title {
+            font-size: 14px;
+            font-weight: normal;
+            color: rgb(26, 26, 26);
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 8px 0px 4px;
+        }
+
+        .reson-textarea {
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 20px;
+            letter-spacing: -0.15px;
+            margin: 0px;
+            color: rgb(26, 26, 26);
+            border-radius: 1px;
+            background-color: white;
+            border: 1px solid rgb(229, 229, 229);
+            width: 100%;
+            height: 104px;
+            padding: 12px 16px;
+            box-sizing: border-box;
+            border-radius: 3px;
+            margin-top: 4px;
+            height: 153px;
+        }
+
+        .withdraw-main-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: rgb(26, 26, 26);
+            line-height: 34px;
+            letter-spacing: -0.4px;
+            display: flex;
+            margin: 0px 0px 8px;
+        }
+
+        .exit-icon {
+            flex: 0 0 auto;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+        }
+
+        .check-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: rgb(26, 26, 26);
+            line-height: 24px;
+            letter-spacing: -0.3px;
+            margin: 0px;
+        }
+
+        .withdraw-display {
+            display: none;
+        }
+
+        .error-msg {
+            margin-top: 4px;
+            font-size: 14px;
+            color: red
+        }
+
+        .auth-box {
+            display: none;
+        }
+
+        .auth-msg {
+            margin-top: 4px;
+            font-size: 14px;
+            color : #36f;
+        }
+
+        @media (min-width: 960px) {
+            .withdraw-modal-box {
+                top: 50%;
+                left: 50%;
+                width: 480px;
+                transform: translate(-50%, -50%);
+                animation: 0.25s ease 0s 1 normal none running openModal;
+                max-height: 95%;
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="mypage-wrap">
+        <div id="header"></div>
+        <div class="modify-wrap">
+            <div class="image-modify-box">
+                <label class="image-modify-layout"> 
+                    <input type="file" style="display:none;">
+                    <div class="image-profile-box">
+                        <div class="image-size">
+                            <span class="image-span">
+                                <picture class="image-picture">
+                                    <img src="https://cdn.class101.net/images/cba86b3c-f6a4-42b3-9bbd-bf6c09e49d27/1920xauto.webp">
+                                </picture>
+                            </span>
+                        </div>
+                        <div class="image-pen">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 21a1 1 0 01-1-1v-4a1 1 0 01.293-.707l11-11a3.83 3.83 0 015.414 0 3.83 3.83 0 010 5.414l-11 11A1 1 0 018 21H4zm1-2h2.586l.707-.707-2.586-2.586-.707.707V19z" fill="#FFF"></path></svg>
+                        </div>
+                    </div>
+                </label>
+            </div>
+            <form action="">
+                <div class="form-layout">
+                    <div class="form-box">
+                        <label class="form-title">이름</label>
+                        <div>
+                            <input type="text" class="modify-input" name="name" placeholder="본인 이름 넣기">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-layout">
+                    <div class="form-box">
+                        <label class="form-title">닉네임</label>
+                        <div>
+                            <input type="text" class="modify-input" name="nickName" placeholder="본인 닉네임 넣기">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-layout">
+                    <div class="form-box">
+                        <label class="form-title">휴대폰 번호</label>
+                        <div class="flex">
+                            <div style="flex-grow: 1;">
+                                <input type="text" class="modify-input" placeholder="-을 제외한 휴대폰 번호를 입력해주세요." value="본인 핸드폰 번호 넣기" disabled>
+                            </div>
+                            <button type="button" class="common-button change-phone-button phone-modify-button phone-number-modify-button">
+                                수정
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-layout">
+                    <hr>
+                    <label class="message-accept" style="margin-bottom: 20px;">
+                        <span class="message-span">
+                            <span>이벤트 정보 수신 동의</span>
+                        </span>
+                        <input type="checkbox" class="accept" style="display:none;">
+                        <div class="toggle-box"></div>
+                    </label>
+                    <hr>
+                </div>
+                <div class="form-layout">
+                    <button class="common-button modify-submit-button modify-button" disabled>
+                        <span class="auto-flex">수정하기</span>
+                    </button>
+                </div>
+            </form>
+            <button class="common-button withdraw-button withdraw-open">
+                <span class="auto-flex">회원탈퇴</span>
+            </button>
+        </div>
+        <div class="none-cell"></div>
+        <div id="footer"></div>
+    </div>
+    
+    <!-- 휴대폰 번호 모달 -->
+    <div class="phone-modal-display">
+        <div class="phone-number-modal">   
+            <div class="phone-modal-box">
+                <div class="phone-modal-title-box">
+                    <h3 class="phone-modal-title">휴대폰 인증하기</h3>
+                    <button class="common-button modal-exit exit">
+                        <span class="auto-flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#1a1a1a"></path></svg>
+                        </span>
+                    </button>
+                </div>
+                <div class="phone-modal-sub-title">정보 수정을 위해 본인의 휴대폰 번호를 인증해 주세요.</div>
+                <div class="phone-modal-input-box">
+                    <div class="phone-modal-input-box-layout">
+                        <label class="form-title">휴대폰 번호</label>
+                        <div class="flex-row">
+                            <div class="phone-input-box">
+                                <div style="flex-grow: 1;">
+                                    <input class="modify-input" type="text" placeholder="-을 제외한 휴대폰 번호를 입력해주세요." name="phoneNumber">
+                                </div>
+                                <button type="button" class="common-button change-phone-button phone-modify-button send-auth-button" disabled>
+                                    <span class="auto-flex">인증 번호 받기</span>
+                                </button>
+                            </div>
+                        </div>
+                        <p class="error-msg phone-number-error"></p>
+                    </div>
+                    <div class="flex-row auth-box">
+                        <div class="phone-input-box">
+                            <div style="flex-grow: 1;">
+                                <input class="modify-input" type="text" name="code" placeholder="문자메시지로 받은 번호를 입력해주세요.">
+                            </div>
+                            <button type="button" class="common-button phone-number-confirm-button phone-modify-button auth-check-button" disabled>
+                                <span class="auto-flex">확인</span>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="auth-msg"></p>
+                </div>
+                <div class="phone-modal-button-box">
+                    <button type="button" class="common-button change-phone-button cancel-button exit">
+                        <span class="auto-flex">취소</span>
+                    </button>
+                    <button type="button" class="common-button phone-number-confirm-button phone-number-change-button" disabled >
+                        <span class="auto-flex">확인</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 회원탈퇴 모달 -->
+    <div class="withdraw-display">
+        <div class="withdraw-modal">
+            <div class="modal-back"></div>
+            <div class="withdraw-modal-box">
+                <h1 class="withdraw-main-title">
+                    <div style="flex-grow: 1;">정말 JAR를 떠나실 건가요?</div>
+                    <div class="exit-icon exit-withdraw">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#cacaca"></path></svg>
+                    </div>
+                </h1>
+                <form action="#">
+                    <div class="withdraw-sub-title">회원탈퇴 신청 전 아래 사항을 확인 부탁드립니다 😊</div>
+                    <div class="withdraw-sub-content">1. 신청일부터 5일 후 회원탈퇴가 처리되며, 회원탈퇴 처리 전까지 고객센터에서 그 신청을 철회할 수 있습니다.</div>
+                    <div class="withdraw-sub-content">2. 회원탈퇴 후 기존 계정으로 회원가입을 신청할 수 없습니다.</div>
+                    <div class="withdraw-sub-content">3. 배송/교환/반품 중인 상품이 있는 경우 신청할 수 없습니다.</div>
+                    <div class="withdraw-sub-content">4. 회원탈퇴 시 수강권, 코칭권, 포인트, 캐시, 쿠폰 등 회원이 가진 권리는 모두 소멸합니다. 회원탈퇴 후 수강권, 코칭권, 캐시 등의 환불이 불가하므로 필요한 경우 탈퇴 전에 환불을 신청해주세요.</div>
+                    <div class="withdraw-sub-content">5. 회원탈퇴 시 회사가 보관하고 있는 회원 데이터는 모두 영구적으로 삭제됩니다. 다만, 관련 법령에 따라 회사가 보관할 의무가 있는 정보 또는 자료는 일정기간 동안 보관됩니다.</div>
+                    <div class="withdraw-sub-content">6. 회원탈퇴 후 클래스101에 게시한 게시물을 편집하거나 삭제할 수 없습니다. 필요한 경우 신청 전 게시물을 편집하거나 삭제해주세요.</div>
+                    <div style="margin-top:40px;">
+                        <h4 class="withdraw-reson-title">떠나시기 전에</h4>
+                        <div class="withdraw-reson-sub-title">이유를 알려주세요</div>
+                        <div>
+                            <textarea class="reson-textarea" placeholder="탈퇴하시려는 이유를 알려주세요. 소중한 의견을 반영하여 더 나은 서비스를 만들도록 노력하겠습니다"></textarea>
+                        </div>
+                    </div>
+                    <div style="margin-top: 63px;">
+                        <div class="check-title">계정을 삭제하시겠어요?</div>
+                        <button class="common-button withdraw-button exit-withdraw" type="button">
+                            <span class="auto-flex">JAR 계속 사용하기</span>
+                        </button>
+                        <button class="common-button  modify-submit-button" style="margin-top: 10px;" type="submit">
+                            <span class="auto-flex">계정 삭제하기</span>
+                        </button> 
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(()=>{
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+    });
+
+    const $withdrawModal = $(".withdraw-open");
+    $withdrawModal.click(() => {
+        $(".withdraw-display").show();
+    });
+
+    $(".exit-withdraw").each((i, e) => {
+        $(e).click(() => {
+            $(".withdraw-display").hide(); 
+            $(".reson-textarea").val("");
+        });
+    });
+</script>
+<script src="/static/js/mypage/modify.js"></script>
+</html>
