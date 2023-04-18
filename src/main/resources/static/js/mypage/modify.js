@@ -90,12 +90,12 @@ let code;
 $codeInput.blur(() => {
 
     if(!$codeInput.val()){
-        $codeInput.attr("disabled", true);
         $codeCheckButton.attr("disabled", true);
         $(".auth-msg").css("color","red");
         $(".auth-msg").text("인증번호를 입력해주세요.");
     }else {
         $(".auth-msg").text("");
+        $(".auth-msg").css("color","#36f");
         $codeInput.attr("disabled", false);
         $codeCheckButton.attr("disabled", false);
     }
