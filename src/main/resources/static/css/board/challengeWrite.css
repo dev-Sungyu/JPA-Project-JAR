@@ -275,6 +275,7 @@
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
+    padding-left: 30px;
 }
 
 .board-name-line{
@@ -469,6 +470,19 @@
     font-size: 1.25rem;
     line-height: 1.625rem;
     font-weight: 700;
+}
+
+.box-main{
+    display: flex;
+    place-content: stretch flex-start;
+    flex-shrink: 1;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: relative;
+    padding: 24px;
+    -webkit-box-pack: start;
+    -webkit-box-align: stretch;
+    align-items: stretch;
 }
 
 .box-main-wrap{
