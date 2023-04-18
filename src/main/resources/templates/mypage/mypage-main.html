@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-메인</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <style>
+        .mypage-all-wrap {
+            margin-left: 24px;
+            margin-right: 24px
+        }
+
+        .mypage-content-wrap {
+            display: flex;
+            padding-bottom: 64px;
+        }
+
+        .mypage-content-container {
+            flex: 1 1 0%;
+            min-width: 0px;
+        }
+
+        .mypage-content-box {
+            display: flex;
+            padding-top: 24px;
+            align-items: stretch;
+            flex-direction: column;
+        }
+
+        .content-title-box {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .flex-center {
+            display: flex;
+            align-items: center;
+        }
+
+        .content-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: rgb(26, 26, 26);
+            line-height: 28px;
+            margin: 0px;
+        }
+
+        .no-content-box {
+            border-radius: 0px;
+            width: 100%;
+            height: 150px;
+        }
+
+        .no-content-layout {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            flex-direction: column;
+        }
+
+        .no-content-box-layout p {
+            border-width: 0px;
+            color: #0c0c0c;
+            margin: 0px;
+            padding: 0px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            line-height: 1.125rem;
+        }
+
+        .diary-list-box {
+            border-top: 1px solid #e1e1e1;
+            border-bottom: 1px solid #e1e1e1;
+        }
+
+        .diary-list-layout {
+            margin: 30px 0px;
+            padding: 0px 16px;
+        }
+
+        .diary-title-box {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .delete-modify-button-box {
+            display: flex;
+            justify-content: end;
+            margin-bottom: 10px;
+        }
+
+        .delete-modify-button-box button:last-child {
+            margin-left : 5px;
+        }
+
+        .diary-content-box {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .diary-content {
+            white-space: break-spaces;
+            word-break: break-all;
+            overflow: hidden;
+        }
+        @media (min-width:1024px) {
+            .mypage-all-wrap {
+                max-width: 1176px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .content-title {
+                font-size: 18px;
+                font-weight: bold;
+                color: rgb(26, 26, 26);
+                line-height: 24px;
+                letter-spacing: -0.45px;
+                margin: 0px;
+            }
+            
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu"></div>
+                    
+                    <div class="mypage-content-container">
+                        <div class="mypage-content-box">
+                            <section>
+                                <div class="content-title-box">
+                                    <div class="flex-center">
+                                        <h3 class="content-title">내가 작성한 일기</h3>
+                                    </div>
+                                </div>
+                                <!-- <div class="no-content-box">
+                                    <div class="no-content-layout">
+                                        <p>아직 작성하신 일기가 없으세요.</p>
+                                    </div>
+                                </div> -->
+                                <div class="diary-list-box">
+                                    <div class="diary-list-layout">
+                                        <div>
+                                            <div>
+                                                <div class="diary-title-box">
+                                                    <h3>쓰레기 3개 줍기 완료</h3>
+                                                    <div>
+                                                        <button type="button">
+                                                            <span>수정</span>
+                                                        </button>
+                                                        <button type="button">
+                                                            <span>삭제</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <a href="">
+                                                <div class="diary-content-box">
+                                                    <div>
+                                                        <p class="diary-content">쓰레기 3개 줍는 챌린지 성공해서 너무 기분이 좋다.</ㅔ>
+                                                    </div>
+                                                    <div>
+                                                        <h4>2023.04.18</h4>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        <!-- main/footer.html -->
+        <div id="footer"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(()=>{
+        $("#header").load("../main/header.html");
+        $("#footer").load("../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
+</script>
+</html>
