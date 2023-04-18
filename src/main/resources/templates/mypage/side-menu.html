@@ -7,43 +7,40 @@
     <title>마이페이지-사이드</title>
     <link rel="stylesheet" href="/static/css/common.css">
     <style>
-        .mypage-header {
-            padding: 72px 0px 48px;
+        .side-menu-wrap {
+            min-width: 320px;
+            margin-right: 78px;
         }
 
-        .mypage-header-layout {
-            display: flex;
-            place-content: stretch flex-start;
-            flex-shrink: 1;
-            flex-direction: row;
-            box-sizing: border-box;
-            position: relative;
-            align-items: center;
+        .side-menu-box {
+            margin-bottom: 48px;
         }
 
-        .mypage-header-profile-box {
-            display: flex;
-            place-content: stretch flex-start;
-            flex-shrink: 0;
-            flex-direction: column;
-            box-sizing: border-box;
-            position: relative;
-            width: 100%;
-            margin-right: 0px;
-            align-items: stretch;
-        }
-
-        .profile-name {
-            display: flex;
-            align-items: center;
-            font-size: 30px;
-            line-height: 40px;
-            font-weight: 700;
+        .normal-title {
+            font-size: 18px;
+            font-weight: normal;
             color: rgb(26, 26, 26);
-            margin-bottom: 0px;
+            line-height: 24px;
+            letter-spacing: -0.45px;
+            margin: 0px;
         }
 
-        .normal-font {
+        .side-menu-title {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 16px;
+        }
+
+        .side-menu-sub-title-box {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0px;
+        }
+
+        .side-menu-sub-title {
             font-size: 14px;
             font-weight: normal;
             color: rgb(26, 26, 26);
@@ -51,82 +48,43 @@
             letter-spacing: -0.15px;
             margin: 0px;
         }
-
-        .memberEmail-box {
-            color: rgb(162, 162, 162);
-            display: flex;
-            align-items: center;
-        }
-
-        .header-banner-box {
-            display: none;
-            flex-direction: column;
-            position: relative;
-            width: 100%;
-            justify-content: flex-start;
-            align-items: stretch;
-        }
-
-        .header-image-box {
-            border-radius: 0px;
-            width: 100%;
-            height: 80px;
-            background-color: rgb(0, 0, 0);
-            border-color: rgb(229, 229, 229);
-        }
-
-        .header-flex-box {
-            display: flex;
-            place-content: stretch flex-start;
-            flex-shrink: 1;
-            flex-direction: column;
-            box-sizing: border-box;
-            position: relative;
-            height: 100%;
-            align-items: stretch;
-        }
-
-        @media (min-width: 1024px){
-            .mypage-header-layout {
-                width: 320px;
-                margin-right: 78px;
-            }
-
-            .header-banner-box {
-                display: flex;
-                align-content: stretch;
-                flex-shrink: 1;
-            }
-        }
-        
     </style>
 </head>
 <body>
-    <header class="mypage-header">
-        <div class="mypage-header-layout">
-            <div class="mypage-header-profile-box">
-                <a href="javascript:void(0)">
-                    <h2 class="profile-name">
-                        NickNAME
-                    </h2>
-                    <div class="memberEmail-box normal-font">
-                        <span>hds1234@naver.com</span>      
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#a2a2a2"></path></svg>
-                    </div>
-                </a>
-            </div>
-            <div class="header-banner-box">
-                <a href="javascript:void(0)">
-                    <div class="header-image-box">
-                        <div class="header-flex-box">
-                            <div></div>
-                            <div></div>
-                            <div></div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </header>
+    <aside class="side-menu-wrap">
+        <section class="side-menu-box">
+            <h4 class="normal-title side-menu-title">내 정보</h4>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">내 캐시</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">내 쿠폰</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">내 응원</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">주문 내역</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">내 후기</div>
+            </a>
+        </section>
+        <section class="side-menu-box">
+            <h4 class="normal-title side-menu-title">메뉴</h4>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">친구 초대하고 30,000원 쿠폰 받기</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">클래스101 앱 설치하기</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">크리에이터 지원하기</div>
+            </a>
+            <a href="javascript:void(0)" class="side-menu-sub-title-box">
+                <div class="side-menu-sub-title">로그 아웃</div>
+            </a>
+        </section>
+    </aside>
 </body>
 </html>
