@@ -4,9 +4,55 @@ section.content_form {
     width: 100vw;
     height: 92vh;
     border-bottom: 1px dotted;
+    background-color: rgb(226, 226, 226);
+}
+
+section.content_form>* {
+    margin-left: 50px;
+    margin-top: 30px;
+    border-top: 1px beige;
 }
 
 header.content_header {
-    height: 120px;
     width: 100%;
+}
+
+header.content_header>* {
+    padding: 3vh 0;
+}
+
+div.content_wrapper {
+    background-color: rgb(255, 255, 255);
+}
+
+header.content_inner_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+header.content_inner_header>* {
+    display: inline-block;
+}
+
+div.searchbar {
+    padding: 12px 0;
+}
+
+div.searchbar>* {
+    display: inline-block;
+}
+
+div.searchImg_wrapper>img {
+    height: 32px;
+}
+
+div.searchbar input {
+    height: 32px;
+    background-color: aliceblue;
+}
+
+div.delete_box {
+    width: 32px;
+    height: 16px;
 }
