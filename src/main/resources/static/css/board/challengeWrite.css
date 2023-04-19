@@ -102,6 +102,13 @@
     height: 24px;
 }}
 
+.haeder-tag-box-button-span-svg{
+    display: block;
+    width: auto;
+    height: 100%;
+    fill: #0c0c0c;
+}
+
 
 .header-wrap{
     border-radius: 0px;
@@ -319,6 +326,7 @@
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 2.5rem;
+    margin-left: 197px;
 }
 
 .board_name-box h2{
