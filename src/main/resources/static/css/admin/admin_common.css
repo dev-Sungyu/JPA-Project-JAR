@@ -1,0 +1,13 @@
+header#header {
+    min-height: 30px;
+}
+
+nav.sidebar {
+    display: inline-block;
+    width: 120px;
+    height: 100vh;
+}
+
+section.content_form {
+    display: inline-block;
+}
