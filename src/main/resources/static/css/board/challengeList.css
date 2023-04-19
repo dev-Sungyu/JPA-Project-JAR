@@ -499,7 +499,7 @@ svg:not(:root) {
 
 }
 
-.pasing-one{
+.pasing-select{
     width: auto;
     display: inline-flex;
     vertical-align: middle;
@@ -519,6 +519,18 @@ svg:not(:root) {
     cursor: pointer;
 }
 
-.pasing-one-1{
-    margin: 5px;
+.pasing-no-select{
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(58, 58, 58);
+    background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 12px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
 }
