@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="/static/css/admin/admin_fragment.css">
 </head>
 <body>
-    <div class="header_whole_wrapper is-fixed">
+    <div class="header_whole_wrapper is-fixed" th:fragment="header">
         <header id="header">
             <div class="header_wrapper is-relative">
                 <div class="gap_left"></div>
