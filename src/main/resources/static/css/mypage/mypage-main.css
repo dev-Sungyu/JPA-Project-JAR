@@ -280,23 +280,68 @@
         }
 
         .attachment-layout {
+            display: flex;
             width:100%; 
             margin-bottom : 10px;
+            padding: 0 20px;
         }
 
         .attachment-layout li {
-            width: 25%;
+            margin-right : 5px;
+        }
+
+        .attachment-layout li:last-child {
+            margin-right : 0;
         }
 
         .attachment-layout img {
             width: 100%;
-            margin-right : 5px;
         }
 
         .attachment-layout img:last-child {
             margin-right : 0px;
         }
 
+        .diary-detail-display {
+            display: none;
+        }
+
+        .diary-detail-title-box {
+            margin-top: 30px;
+        }
+
+        .diary-detail-modify-box {
+            display: flex;
+        }
+
+        .diary-detail-modify-box p {
+            font-size : 15px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .diary-detail-modify-box p:first-child {
+            margin-right: 10px;
+        }
+
+        .space-between {
+            justify-content: space-between;
+        }
+
+        .diary-detail-date-box {
+            margin-top: 20px;
+        }
+
+        .diary-detail-content {
+            padding-bottom:5px; 
+            font-weight:500; 
+            font-size:18px;
+            margin-top: 5px;
+        }
+
+        .diary-detail-content:first-child {
+            margin-top: 0;
+        }
 
         @media (min-width:1024px) {
             .mypage-all-wrap {
@@ -321,12 +366,13 @@
             .diary-modal-box {
                 top: 50%;
                 left: 50%;
-                width: 1000px;
+                width: 500px;
                 transform: translate(-50%, -50%);
                 animation: 0.25s ease 0s 1 normal none running openModal;
                 max-height: 95%;
                 padding: 32px 24px;
             }
+
 
             .alert-modal-box { 
                 top: 50%;
@@ -340,3 +386,25 @@
         .diary-modal-display {
             display: none;
         }
+        
+        .toastui-calendar-icon.toastui-calendar-ic-handle-y {
+            display: none;
+        }
+
+        .toastui-calendar-content span {
+            color: #0c0c0c;
+            font-weight: bold;
+        }
+
+        .toastui-calendar-template-time strong {
+            display: none;
+        }
+
+        .image-cancel-box {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+            text-align: center;
+            color:#fff;
+        }
+        

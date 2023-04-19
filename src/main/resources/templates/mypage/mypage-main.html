@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -35,14 +36,9 @@
                             <section>
                                 <div class="content-title-box">
                                     <div class="flex-center">
-                                        <h3 class="content-title">내가 작성한 일기</h3>
+                                        <h3 class="content-title">나의 다이어리</h3>
                                     </div>
                                 </div>
-                                <!-- <div class="no-content-box">
-                                    <div class="no-content-layout">
-                                        <p>아직 작성하신 일기가 없으세요.</p>
-                                    </div>
-                                </div> -->
                                 <div class="diary-list-box">
                                     <div class="calendar-box">
                                         <div style="display:flex;">
@@ -140,16 +136,36 @@
                         <div class="attachment-box">
                             <ul class="attachment-layout">
                                 <li>
-                                    <img src="/static/image/mypage/test.jpg" alt="" style="width:25%">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box">
+                                            <p>❌</p>
+                                        </div>
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
                                 </li>
                                 <li>
-                                    <img src="/static/image/mypage/test.jpg" alt="" style="width:25%">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box">
+                                            <p>❌</p>
+                                        </div>
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
                                 </li>
                                 <li>
-                                    <img src="/static/image/mypage/test.jpg" alt="" style="width:25%">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box">
+                                            <p>❌</p>
+                                        </div>
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
                                 </li>
                                 <li>
-                                    <img src="/static/image/mypage/test.jpg" alt="" style="width:25%">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box">
+                                            <p>❌</p>
+                                        </div>
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
                                 </li>
                             </ul>
                         </div>
@@ -159,12 +175,75 @@
         </div>
     </div>
 
+    <!-- 잠깐 나왓다 사라지는 알람창 -->
     <div class="alert-modal-display">
         <div class="diary-modal">
             <div class="alert-modal-box" style="width: 500px;">
                 <div style="text-align: center;">
                     <div style="margin-top: 12px;">
-                        <span>오늘 날짜의 일기만 작성이 가능합니다.</span>
+                        <span class="alert"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 다이어리 상세보기 모달 -->
+    <div class="diary-detail-display">
+        <div class="diary-modal">
+            <div class="modal-back"></div>
+            <div class="diary-modal-box">
+                <h2 class="diary-main-title">
+                    <div style="flex-grow: 1;">📖 다이어리</div>
+                    <div class="exit-icon exit-withdraw">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path
+                                d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                fill="#cacaca"></path>
+                        </svg>
+                    </div>
+                </h2>
+                <div class="diary-detail-title-box">
+                    <h2 class="diary-main-title space-between">
+                        <div style="flex-grow: 1;">다이어리 제목</div>
+                        <div class="diary-detail-modify-box">
+                            <p>수정</p>
+                            <p>삭제</p>
+                        </div>
+                    </h2>
+                    <div class="diary-detail-date-box">
+                        <h4 class="diary-detail-date"></h4>
+                    </div>
+                    <div class="flex">
+                        <div>
+                            <ul class="attachment-layout" style="padding: 0; margin-top: 30px;">
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/static/image/mypage/test.jpg">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="diary-detail-content-box">
+                        <ul class="diary-detail-ul">
+                            <!-- 상세보기 내용 들어가는 부분 -->
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -187,13 +266,11 @@
     });
 </script>
 <script>
+    // 여기는 신경 안써도 됨
     const Calendar = tui.Calendar;
     const container = document.getElementById('calendar');
     const options = {
         defaultView: 'month',
-        hourStart: 0,
-        hourEnd: 0,
-
         month: {
             dayNames: ['Sun', 'Mon', 'Tus', 'Wen', 'Thr', 'Fri', 'Sat'],
             isAlways6Weeks: false,
@@ -227,41 +304,44 @@
         },
         calendars: [
             {
-                id: 'cal1',
+                id: '1',
                 name: '개인',
                 backgroundColor: '#03bd9e',
+            },
+            {
+                id: '2',
+                name: '개인',
+                backgroundColor: '#36f',
+            },
+            {
+                id: '3',
+                name: '개인',
+                backgroundColor: 'rgb(255, 64, 64)',
+            }
+            , {
+                id: '4',
+                name: '개인',
+                backgroundColor: 'rgb(255, 85, 131)',
             }
         ],
     };
 
     const calendar = new Calendar(container, options);
-    const month = calendar.getDate().getMonth() + 1;
-    const year = calendar.getDate().getFullYear();
-    const day = calendar.getDate().getDate();
-
     // datas.forEach((e, i) => {
     //   calendar.createEvents([
     //     e
     //   ]);
     // });
 
-
-
-    // 추가 이벤트
-    calendar.on('beforeCreateEvent', (eventObj) => {
-        calendar.createEvents([
-            {
-                ...eventObj,
-            },
-        ]);
-    });
-
-
     // ==================================================== 캘린더 버튼
+    const month = calendar.getDate().getMonth() + 1;
+    const year = calendar.getDate().getFullYear();
+    const day = calendar.getDate().getDate();
 
     $(".year").text(year + "년");
     $(".month").text(month + "월");
 
+    // prev button
     $("#calender-prev").click(() => {
         currentDate = calendar.getDate();
 
@@ -275,6 +355,7 @@
         calendar.prev();
     });
 
+    // next button
     $("#calender-next").click(() => {
         currentDate = calendar.getDate();
 
@@ -288,6 +369,7 @@
         calendar.next();
     })
 
+    // today button
     $("#today").click(() => {
         $(".year").text(year + "년");
         $(".month").text(month + "월");
@@ -297,6 +379,7 @@
 
 
     $(document).ready(() => {
+        // 각 day박스
         $(".toastui-calendar-daygrid-cell").each((i, e) => {
             $(e).click(() => {
                 currentDate = calendar.getDate();
@@ -305,13 +388,16 @@
                 let calendarMonth = currentDate.getMonth() + 1;
                 calendarMonth = calendarMonth < 10 ? "0" + calendarMonth : calendarMonth;
 
-                let calendarDay = $($(".toastui-calendar-weekday-grid-date")[i]).text();
+                let calendarDay = $($(".toastui-calendar-daygrid-cell")[i]).text();
                 calendarDay = calendarDay < 10 ? "0" + calendarDay : calendarDay;
 
                 var date = calendarYear + "-" + calendarMonth + "-" + calendarDay;
 
-                if (calendarMonth != month || calendarDay != day) {
+                console.log(calendarDay);
+                console.log(day);
 
+                if (calendarMonth != month || calendarDay != day) {
+                    $(".alert").text("오늘 날짜의 일기만 작성이 가능합니다.");
                     $(".alert-modal-display").fadeIn();
                     setTimeout(function () {
                         $(".alert-modal-display").fadeOut();
@@ -320,6 +406,7 @@
                     return false;
                 }
 
+                $(".insert-button").attr("id", i);
                 $(".diary-modal-display").show();
                 $(".date").text(date);
             });
@@ -328,30 +415,98 @@
     });
 
 
+    // 다이어리 나가기 버튼
     $(".exit-icon").click(() => {
         $(".diary-modal-display").hide();
+        $(".diary-detail-display").hide();
     });
 
+    // 다이어리 나가기 버튼
     $(".modal-back").click(() => {
         $(".diary-modal-display").hide();
     });
 
-
-    $(".insert-button").click(() => {
+    $(".insert-button").click((e) => {
         let title = $(".diary-title").val();
         let content = $(".diary-content").val();
         let date = $(".date").text();
-        console.log(title);
-        console.log(content);
-        console.log(date);
+        let index = $(e.target).attr("id");
+
+        /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
+        /* ID값만 리턴 받아서  */
+        let datas = [
+            {
+                id: '1',// 다이어리의 번호 값 넣어주기
+                calendarId: Math.floor(Math.random() * 4) + 1 + "",
+                title: title,
+                start: date,
+                end: date,
+                
+            }
+        ]
+        // 데이터를 담아서 화면에 뿌려줌
+        calendar.createEvents(datas)
+
+        diaryModal(index);
+        $(".alert").text("저장 완료");
+        $(".alert-modal-display").fadeIn();
+        setTimeout(function () {
+            $(".alert-modal-display").fadeOut();
+        }, 1500);
     });
 
-    function diaryModal(){
+    // 제목 클릭 시 발생하는 이벤트
+    calendar.on("clickEvent", function (e) {
+        // id 값으로 다이어리 상세조회 ajax써야함 모델 객체가 아닌 rest
+        // 해당 id값의 정보를 가져와서 상세보기쪽에 뿌려야함 가져와야할 정보 이미지 정보, 제목, 내용
+        let id = e.event.id;
+        let date = new Date(e.event.start);
+
+        // 예시 내용 \n은 애초에 신경 안써도 textarea에서 작성하면 알아서 들어가는 거임 신경 ㄴㄴ
+        let content = "오늘의 도전\n 너무너무 재미가 있었어서\n내 마음이 너무나도 편안해 지고\n나의 마음이 좀더 강해지고 있어서\n우울증이 점점 극복된다.";
+        date = dateFomat(date);
+
+        // 날짜 담아주기
+        $(".diary-detail-date").text(date);
+        contentPrint(content);
+        $(".diary-detail-display").show();
+    });
+
+    // =========================================================================
+    function diaryModal(index) {
         $(".diary-title").val("");
         $(".diary-content").val("");
         $(".date").text("");
+        $(".diary-modal-display").hide();
+        $($(".toastui-calendar-daygrid-cell")[index]).css("pointer-events", "none");
     }
 
+    function dateFomat(date){
+
+        let year = date.getFullYear();
+        let month = date.getMonth() + 1;
+        month = month < 10 ? "0" + month : month; 
+        let day = date.getDate();
+        day = day < 10 ? "0" + day : day;
+
+        return year + "년 " + month + "월 " + day + "일"
+    }
+
+    function contentPrint(content) {
+        let test = content.replaceAll("\n","<br/>").split("<br/>");
+        let text = "";
+        let $ul = $(".diary-detail-ul");
+
+        test.forEach((e, i) => {
+            
+            text += `
+                        <li class="diary-detail-content">
+                                ${e}
+                        </li>
+            `;
+        });
+        $ul.html(text);
+    }
 
 </script>
 
