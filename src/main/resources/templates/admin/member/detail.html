@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/admin_fragment.css">
     <link rel="stylesheet" href="/static/css/admin/admin_member.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_member_detail.css">
 </head>
-
 <body>
     <div class="whole_wrapper">
         <!-- header -->
@@ -33,7 +33,7 @@
             <nav class="is-relative" id="sidebar">
                 <header id="logo" class="is-block">
                     <div class="is-flex is-align-center">
-                        <img class="logo_image is-inline-block" src="/static/image/admin/log_jar.png" alt="">
+                        <img class="logo_image is-inline-block" src="/static/image/logo/logo.png" alt="">
                         <h2 class="is-inline-block">오코다코</h2>
                     </div>
                 </header>
@@ -83,187 +83,15 @@
         <section class="content_form">
             <div class="content_whole_wrapper">
                 <header class="content_header is-block">
-                    <h2>회원 관리</h2>
+                    <h2>회원 정보</h2>
                 </header>
                 <div class="content_wrapper">
-                    <header class="content_inner_header is-flex">
-                        <div class="searchbar">
-                            <label for="" class="searchBox_input_label">
-                                <input type="text" name="" id="">
-                            </label>
-                            <label for="" class="searchBox_img_label">
-                                <div class="searchImg_wrapper">
-                                    <img src="/static/image/admin/search.png" alt="">
-                                </div>
-                                <button class="is-hidden" type="button"></button>
-                            </label>
-                        </div>
-                        <div class="delete_button">
-                            <label for="">
-                                <div class="delete_box">
-                                    <div>삭제 처리</div>
-                                    <button type="button" class="is-hidden"></button>
-                                </div>
-                            </label>
-                        </div>
-                    </header>
                     <article class="content_main">
-                        <table class="content_list_wrapper">
-                            <tr class="table_head">
-                                <th class="table_head-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member_all" id="">
-                                </th>
-                                <th class="table_head-id table_id">회원번호</th>
-                                <th class="table_head-type table_type">회원상태</th>
-                                <th class="table_head-name table_name">이름</th>
-                                <th class="table_head-phone table_phone">연락처</th>
-                                <th class="table_head-email table_email">이메일</th>
-                                <th class="table_head-register table_register">가입일</th>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                            <tr class="table_content_wrapper">
-                                <td class="table_content-checkbox table_checkbox">
-                                    <input type="checkbox" name="check_member" id="">
-                                </td>
-                                <td class="table_content-id table_id">
-                                    1
-                                </td>
-                                <td class="table_content-type table_type">
-                                    일반회원
-                                </td>
-                                <td class="table_content-name table_name">
-                                    이준상
-                                </td>
-                                <td class="table_content-phone table_phone">
-                                    010-1234-1234
-                                </td>
-                                <td class="table_content-email table_email">
-                                    ljs1234@gmail.com
-                                </td>
-                                <td class="table_content-register table_register">
-                                    2023-01-01
-                                </td>
-                            </tr>
-                        </table>
+
                     </article>
                 </div>
             </div>
         </section>
     </div>
 </body>
-
 </html>
