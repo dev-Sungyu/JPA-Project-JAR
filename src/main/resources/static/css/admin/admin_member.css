@@ -1,0 +1,128 @@
+section.content_form {
+    padding-left: 250px;
+    padding-top: 64px;
+    width: 100vw;
+    height: 92vh;
+    border-bottom: 1px dotted;
+    background-color: rgb(226, 226, 226);
+}
+
+section.content_form>* {
+    margin-left: 50px;
+    margin-top: 30px;
+    border-top: 1px beige;
+}
+
+header.content_header {
+    width: 100%;
+}
+
+header.content_header>* {
+    padding: 3vh 0;
+}
+
+div.content_wrapper {
+    background-color: rgb(255, 255, 255);
+}
+
+header.content_inner_header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    /* position: relative; */
+}
+
+header.content_inner_header>* {
+    display: inline-block;
+    /* position: absolute; */
+}
+
+div.searchbar {
+    width: 300px;
+    padding: 12px 0;
+    position: relative;
+}
+
+div.searchbar>* {
+    display: inline-block;
+    position: absolute;
+}
+
+label.searchBox_input_label {
+    left: 0;
+}
+label.searchBox_img_label {
+    right: 0;
+}
+
+
+div.searchImg_wrapper>img {
+    height: 32px;
+}
+
+div.searchbar input {
+    height: 32px;
+    background-color: aliceblue;
+    margin-left: 16px;
+}
+
+div.searchbar>label.searchBox_img_label {
+    cursor: pointer;
+}
+
+div.delete_button>label {
+    cursor: pointer;
+}
+
+div.delete_box {
+    width: 80px;
+    height: 32px;
+    padding: 9px 10px;
+    background-color: brown;
+    color: white;
+    border-radius: 16px;
+    margin-top: 8px;
+    margin-right: 32px;
+}
+
+div.content_whole_wrapper {
+    min-width: 1280px;
+    width: 70vw;
+}
+
+div.content_wrapper {
+    width: 55vw;
+}
+
+article.content_main {
+    margin-top: 32px;
+}
+
+table.content_list_wrapper>tbody {
+    width: 80vw;
+}
+
+tbody>tr.table_content_wrapper {
+}
+
+tbody>tr>* {
+    padding-right: 24px;
+    padding-bottom: 12px;
+    text-align: center;
+}
+
+tbody>tr>*.table_checkbox {
+    width: 3vw;
+}
+
+tbody>tr>*.table_id,
+tbody>tr>*.table_type,
+tbody>tr>*.table_name {
+    width: 5vw;
+}
+
+tbody>tr>*.table_phone,
+tbody>tr>*.table_email,
+tbody>tr>*.table_register {
+    width: 12vw;
+}
