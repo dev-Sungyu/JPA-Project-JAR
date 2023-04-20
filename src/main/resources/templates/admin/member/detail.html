@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 - 회원 관리</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_fragment.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_member.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_member_detail.css">
+</head>
+<body>
+    <div class="whole_wrapper">
+        <!-- header -->
+        <div class="header_whole_wrapper is-fixed" th:fragment="header">
+            <header id="header">
+                <div class="header_wrapper is-relative">
+                    <div class="gap_left"></div>
+                    <div class="page_title">
+                        <h2 class="title_content is-inline-block">
+                            관리자 페이지
+                        </h2>
+                    </div>
+                </div>
+            </header>
+        </div>
+
+        <!-- sidebar -->
+        <div class="is-absolute" id="sidebar_wrapper">
+            <nav class="is-relative" id="sidebar">
+                <header id="logo" class="is-block">
+                    <div class="is-flex is-align-center">
+                        <img class="logo_image is-inline-block" src="/static/image/logo/logo.png" alt="">
+                        <h2 class="is-inline-block">오코다코</h2>
+                    </div>
+                </header>
+                <div class="list_whole_wrapper is-block">
+                    <ul class="list_wrapper">
+                        <li class="list_content">
+                            <label for="" class="list_label label_member">
+                                <a href="" name="link_member">회원 관리</a>
+                            </label>
+                        </li>
+                        <li class="list_content">
+                            <label for="" class="list_label label_proposal">
+                                <a href="" name="link_proposal">제안 게시판 관리</a>
+                            </label>
+                        </li>
+                        <li class="list_content">
+                            <label for="" class="list_label label_challenge">
+                                <a href="" name="link_challenge">챌린지 게시판 관리</a>
+                            </label>
+                        </li>
+                        <li class="list_content">
+                            <label for="" class="list_label label_inquiry">
+                                <a href="" name="link_inquiry">문의글 관리</a>
+                            </label>
+                        </li>
+                        <li class="list_content">
+                            <label for="" class="list_label label_notice">
+                                <a href="" name="link_notice">공지사항 관리</a>
+                            </label>
+                        </li>
+                        <li class="list_content">
+                            <label for="" class="list_label label_banner">
+                                <a href="" name="link_banner">배너 관리</a>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                <footer class="footer_whole_wrapper is-absolute">
+                    <div class="footer_wrapper is-relative">
+                        <h2 class="footer_logo is-absolute is-block">Project:Jar</h2>
+                    </div>
+                </footer>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <section class="content_form">
+            <div class="content_whole_wrapper">
+                <header class="content_header is-block">
+                    <h2>회원 정보</h2>
+                </header>
+                <div class="content_wrapper">
+                    <article class="content_main">
+
+                    </article>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

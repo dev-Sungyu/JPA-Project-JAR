@@ -11,6 +11,7 @@ section.content_form>* {
     margin-left: 50px;
     margin-top: 30px;
     border-top: 1px beige;
+    margin-right: 50px;
 }
 
 header.content_header {
@@ -75,7 +76,7 @@ div.delete_button>label {
 }
 
 div.delete_box {
-    width: 80px;
+    width: 60px;
     height: 32px;
     padding: 9px 10px;
     background-color: brown;
@@ -83,42 +84,50 @@ div.delete_box {
     border-radius: 16px;
     margin-top: 8px;
     margin-right: 32px;
+    text-align: center;
 }
 
-div.content_whole_wrapper {
+/* div.content_whole_wrapper {
     min-width: 1280px;
     width: 70vw;
-}
+} */
 
 div.content_wrapper {
-    width: 55vw;
+    width: 100%;
 }
 
 article.content_main {
     margin-top: 32px;
 }
 
+table.content_list_wrapper {
+    width: 100%;
+    margin-left: 20px;
+}
+
 table.content_list_wrapper>tbody {
     width: 80vw;
 }
 
-tbody>tr.table_content_wrapper {
-}
+/* tbody>tr.table_content_wrapper {
+} */
 
 tbody>tr>* {
     padding-right: 24px;
-    padding-bottom: 12px;
+    padding-bottom: 24px;
     text-align: center;
 }
 
 tbody>tr>*.table_checkbox {
     width: 3vw;
+    margin-left: 8px;
 }
 
 tbody>tr>*.table_id,
 tbody>tr>*.table_type,
 tbody>tr>*.table_name {
-    width: 5vw;
+    width: 7vw;
+    min-width: 30px;
 }
 
 tbody>tr>*.table_phone,
