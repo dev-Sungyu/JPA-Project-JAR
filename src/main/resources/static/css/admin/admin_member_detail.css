@@ -1,0 +1,27 @@
+div.profile_wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+div.profile_img_wrapper {
+    min-width: 256px;
+    min-height: 400px;
+}
+
+article.content_main {
+    padding: 0 25%;
+}
+
+div.profile_info_wrapper {
+    padding: 8px;
+}
+
+li.profile_info_list {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+}
+
+li.info_email.profile_info_list {
+    justify-content: left;
+}
