@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-뱃지</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+    <style>
+        .mypage-all-wrap {
+            margin-left: 24px;
+            margin-right: 24px
+        }
+
+        .mypage-content-wrap {
+            display: flex;
+            padding-bottom: 64px;
+        }
+
+        .badge-wrap {
+            padding-top: 24px;
+        }
+
+        .badge-info-box {
+            border : 1px solid #e1e1e1;
+        }
+
+        .badge-info-layout {
+            padding: 0 20px;
+        }
+
+        .badge-flex {
+            display: flex;
+        }
+        
+        .badge-image-box {
+            width: 100%;
+            margin : 10px;
+        }
+
+        .badge-image-box img {
+            width: 100%;
+        }
+
+        .badge-column {
+            position: relative;
+        }
+
+        .badge-info {
+            position: absolute;
+            bottom: 5%;
+            left: 40px;
+        }
+
+        .badge-info span {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .content-title-box {
+            margin-bottom: 20px;
+        }
+
+        .badge-section {
+            margin-bottom: 20px;
+        }
+
+        .mypage-status-box {
+            display:flex; 
+            height: 200px; 
+            width: 100%;
+        }
+
+        .mypage-diary-day-box {
+            border-right : 1px solid #e1e1e1; 
+            width:50%;
+        }
+
+        .mypage-diary-day-layout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .mypage-diary-day {
+            font-weight: 700;
+            font-size: 30px;
+        }
+
+        .my-badge-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .my-badge-image img {
+            width: 190px;
+        }
+
+        @media (min-width:1024px) {
+            .mypage-all-wrap {
+                max-width: 1176px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }    
+    </style>
+</head>
+
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu"></div>
+                    <div class="badge-wrap">
+                        <section class="badge-section">
+                            <div class="content-title-box">
+                                <div class="flex-center">
+                                    <h2 class="content-title">뱃지 목표</h2>
+                                </div>
+                            </div>
+                            <div class="badge-info-box">
+                                <div class="badge-info-layout">
+                                    <div class="badge-flex">
+                                        <div class="badge-image-box">
+                                            <div class="badge-column">
+                                                <img src="/static/image/mypage/trophy_1.png">
+                                                <div class="badge-info">
+                                                    <span>10일 연속 일기작성</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="badge-image-box">
+                                            <div class="badge-column">
+                                                <img src="/static/image/mypage/trophy_2.png">
+                                                <div class="badge-info">
+                                                    <span>20일 연속 일기작성</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="badge-image-box">
+                                            <div class="badge-column">
+                                                <img src="/static/image/mypage/trophy_3.png">
+                                                <div class="badge-info">
+                                                    <span>30일 연속 일기작성</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="badge-section">
+                            <div class="content-title-box">
+                                <div class="flex-center">
+                                    <h2 class="content-title">나의 갓생 일차</h2>
+                                </div>
+                            </div>
+                            <div class="badge-info-box" style="width:70%">
+                                <div class="mypage-status-box">
+                                    <div class="mypage-diary-day-box">
+                                        <div class= "mypage-diary-day-layout" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                            <div class="mypage-diary-day">1일차</div>
+                                        </div>
+                                    </div>
+                                    <div class="badge-image-box">
+                                        <div class="my-badge-image">
+                                            <img src="/static/image/mypage/trophy_1_5.png">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- main/footer.html -->
+        <div id="footer"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../main/header.html");
+        $("#footer").load("../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
+</script>
+
+</html>
