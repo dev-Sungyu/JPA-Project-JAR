@@ -11,7 +11,8 @@
 
 </head>
 <body>
-    <!-- 헤더부분 -->
+       <!-- 헤더 -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
     <div class="wrap">
         <div class="other-wrap">
             <div class="bundle-of-terms">
@@ -197,5 +198,13 @@
             </div>
         </div>
     </div>
+    <div id="footer"></div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(()=>{
+        $("#header").load("/templates/main/header.html");
+        $("#footer").load("/templates/main/footer.html");
+    });
+</script>
 </html>
