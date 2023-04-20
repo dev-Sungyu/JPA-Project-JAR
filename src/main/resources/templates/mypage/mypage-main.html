@@ -187,7 +187,7 @@
                     </div>
                     <div class="flex">
                         <div>
-                            <ul class="attachment-layout" style="padding: 0; margin-top: 30px;">
+                            <ul class="sumnail-layout" style="padding: 0; margin-top: 30px;">
                                 <li>
                                     <div style="position:relative;">
                                         <img src="/static/image/mypage/test.jpg">
@@ -429,7 +429,6 @@
                 }
 
                 $(".title").text("다이어리 작성하기");
-                $(".insert-button").attr("id", i);
                 $(".diary-modal-display").show();
                 $(".date").text(date);
             });
@@ -444,6 +443,23 @@
         let date = $(".date").text();
         let index = $(e.target).attr("id");
         let calendarId = Math.floor(Math.random() * 4) + 1 + "";
+
+        let errorMsg = "";
+
+        if(!$(".diary-title").val() && !$(".diary-content").val()){
+            errorMsg = "내용을 입력해주세요.";
+            alertModal(errorMsg);
+            return;
+        }else if(!$(".diary-title").val()){
+            errorMsg = "제목을 입력해주세요.";
+            alertModal(errorMsg);
+            return;
+        }else if(!$(".diary-content").val()) {
+            errorMsg = "내용을 입력해주세요.";
+            alertModal(errorMsg);      4
+            return;    
+        }
+
 
         /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
         /* ID값만 리턴 받아서  */
