@@ -274,22 +274,46 @@
             width:100%; 
             margin-bottom : 10px;
             padding: 0 20px;
+            flex-wrap: wrap;
+        }
+
+        .sumnail-layout {
+            display: flex;
+            width:100%; 
+            margin-bottom : 10px;
+            padding: 0 20px;
         }
 
         .attachment-layout li {
             margin-right : 5px;
         }
 
+        .sumnail-layout li {
+            margin-right : 5px;          
+        }
+
         .attachment-layout li:last-child {
             margin-right : 0;
+        }
+
+        .sumnail-layout li:last-child  {
+            margin-right : 0;      
         }
 
         .attachment-layout img {
             width: 100%;
         }
 
+        .sumnail-layout img {
+            width: 100%;
+        }
+
         .attachment-layout img:last-child {
             margin-right : 0px;
+        }
+
+        .sumnail-layout img:last-child {
+            margin-right: 0px;
         }
 
         .diary-detail-display {
@@ -392,10 +416,11 @@
         }
 
         .sumnail-box li {
-            width: 25%;
+            width: 24%;
         }
         .sumnail-box img {
-            height: 95px;
+            height: 100px;
+            object-fit: contain;
         }
         
 
