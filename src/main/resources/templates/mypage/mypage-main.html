@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://uicdn.toast.com/tui-grid/latest/tui-grid.css" />
     <link rel="stylesheet" href="/static/css/mypage/mypage-main.css">
     <link rel="icon" href="/static/image/logo/logo.png">
+    <link rel="stylesheet" href="/static/css/mypage/alert.css">
 </head>
 
 <body>
@@ -97,7 +98,7 @@
             <div class="modal-back"></div>
             <div class="diary-modal-box">
                 <h1 class="diary-main-title">
-                    <div style="flex-grow: 1;">다이어리 작성하기</div>
+                    <div style="flex-grow: 1;" class="title">다이어리 작성하기</div>
                     <div class="exit-icon exit-withdraw">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                             <path
@@ -112,7 +113,7 @@
                         <div class="flex-box">
                             <div>
                                 <label>
-                                    <input type="file" style="display:none;" multiple>
+                                    <input type="file" style="display:none;" class="file" multiple>
                                     <div class="file-image-box">
                                         <img src="/static/image/mypage/instagram_icon.png">
                                         <p>사진 첨부</p>
@@ -134,39 +135,8 @@
                             </div>
                         </div>
                         <div class="attachment-box">
-                            <ul class="attachment-layout">
-                                <li>
-                                    <div style="position:relative;">
-                                        <div class="image-cancel-box">
-                                            <p>❌</p>
-                                        </div>
-                                        <img src="/static/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <div class="image-cancel-box">
-                                            <p>❌</p>
-                                        </div>
-                                        <img src="/static/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <div class="image-cancel-box">
-                                            <p>❌</p>
-                                        </div>
-                                        <img src="/static/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <div class="image-cancel-box">
-                                            <p>❌</p>
-                                        </div>
-                                        <img src="/static/image/mypage/test.jpg">
-                                    </div>
-                                </li>
+                            <ul class="attachment-layout sumnail-box">
+                                <!-- 썸네일 들어가는 부분 -->
                             </ul>
                         </div>
                     </div>
@@ -174,6 +144,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- 잠깐 나왓다 사라지는 알람창 -->
     <div class="alert-modal-display">
@@ -205,10 +176,10 @@
                 </h2>
                 <div class="diary-detail-title-box">
                     <h2 class="diary-main-title space-between">
-                        <div style="flex-grow: 1;">다이어리 제목</div>
+                        <div style="flex-grow: 1;" class="diary-content-title">다이어리 제목</div>
                         <div class="diary-detail-modify-box">
-                            <p>수정</p>
-                            <p>삭제</p>
+                            <p class="modify-button">수정</p>
+                            <p class="delete-button">삭제</p>
                         </div>
                     </h2>
                     <div class="diary-detail-date-box">
@@ -263,6 +234,52 @@
         $("#footer").load("../main/footer.html");
         $("#mypage-header").load("user-header.html");
         $("#side-menu").load("side-menu.html");
+    });
+
+    const $alertModal = $(".alert-modal-display");
+
+    // 이미지 파일
+    let inputFiles = [];
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                let text = `
+                            <li id="${index}">
+                                <div style="position:relative;">
+                                    <div class="image-cancel-box">
+                                        <p>❌</p>
+                                    </div>
+                           `
+                text += "<img src=\"" + e.target.result + "\" />";
+                text += `</div>
+                            </li>
+                `;
+                $(".attachment-layout").append(text);
+                index++;
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // 이미지 제거
+    $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
+        let index = $(e.target).closest("li").attr("id");
+        deleteImage(index);
     });
 </script>
 <script>
@@ -327,11 +344,21 @@
     };
 
     const calendar = new Calendar(container, options);
-    // datas.forEach((e, i) => {
-    //   calendar.createEvents([
-    //     e
-    //   ]);
-    // });
+
+    let datas = [
+        {
+            id: '1',// 다이어리의 번호 값 넣어주기
+            calendarId: 2,
+            title: "안녕",
+            start: "2023-04-19",
+            end: "2023-04-19",
+        }
+    ]
+    datas.forEach((e, i) => {
+        calendar.createEvents([
+            e
+        ]);
+    });
 
     // ==================================================== 캘린더 버튼
     const month = calendar.getDate().getMonth() + 1;
@@ -381,6 +408,8 @@
     $(document).ready(() => {
         // 각 day박스
         $(".toastui-calendar-daygrid-cell").each((i, e) => {
+            let errorMsg = "오늘 날짜의 일기만 작성이 가능합니다.";
+
             $(e).click(() => {
                 currentDate = calendar.getDate();
                 let calendarYear = currentDate.getFullYear();
@@ -393,19 +422,13 @@
 
                 var date = calendarYear + "-" + calendarMonth + "-" + calendarDay;
 
-                console.log(calendarDay);
-                console.log(day);
-
                 if (calendarMonth != month || calendarDay != day) {
-                    $(".alert").text("오늘 날짜의 일기만 작성이 가능합니다.");
-                    $(".alert-modal-display").fadeIn();
-                    setTimeout(function () {
-                        $(".alert-modal-display").fadeOut();
-                    }, 2000);
+                    alertModal(errorMsg);
 
                     return false;
                 }
 
+                $(".title").text("다이어리 작성하기");
                 $(".insert-button").attr("id", i);
                 $(".diary-modal-display").show();
                 $(".date").text(date);
@@ -414,46 +437,32 @@
 
     });
 
-
-    // 다이어리 나가기 버튼
-    $(".exit-icon").click(() => {
-        $(".diary-modal-display").hide();
-        $(".diary-detail-display").hide();
-    });
-
-    // 다이어리 나가기 버튼
-    $(".modal-back").click(() => {
-        $(".diary-modal-display").hide();
-    });
-
     $(".insert-button").click((e) => {
+        let alertMsg = "저장 완료";
         let title = $(".diary-title").val();
         let content = $(".diary-content").val();
         let date = $(".date").text();
         let index = $(e.target).attr("id");
+        let calendarId = Math.floor(Math.random() * 4) + 1 + "";
 
         /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
         /* ID값만 리턴 받아서  */
         let datas = [
             {
                 id: '1',// 다이어리의 번호 값 넣어주기
-                calendarId: Math.floor(Math.random() * 4) + 1 + "",
+                calendarId: calendarId,
                 title: title,
                 start: date,
                 end: date,
-                
             }
         ]
         // 데이터를 담아서 화면에 뿌려줌
         calendar.createEvents(datas)
 
         diaryModal(index);
-        $(".alert").text("저장 완료");
-        $(".alert-modal-display").fadeIn();
-        setTimeout(function () {
-            $(".alert-modal-display").fadeOut();
-        }, 1500);
+        alertModal(alertMsg);
     });
+
 
     // 제목 클릭 시 발생하는 이벤트
     calendar.on("clickEvent", function (e) {
@@ -473,6 +482,8 @@
     });
 
     // =========================================================================
+    // function  
+
     function diaryModal(index) {
         $(".diary-title").val("");
         $(".diary-content").val("");
@@ -481,11 +492,11 @@
         $($(".toastui-calendar-daygrid-cell")[index]).css("pointer-events", "none");
     }
 
-    function dateFomat(date){
+    function dateFomat(date) {
 
         let year = date.getFullYear();
         let month = date.getMonth() + 1;
-        month = month < 10 ? "0" + month : month; 
+        month = month < 10 ? "0" + month : month;
         let day = date.getDate();
         day = day < 10 ? "0" + day : day;
 
@@ -493,21 +504,73 @@
     }
 
     function contentPrint(content) {
-        let test = content.replaceAll("\n","<br/>").split("<br/>");
+        let test = content.replaceAll("\n", "<br/>").split("<br/>");
         let text = "";
         let $ul = $(".diary-detail-ul");
 
         test.forEach((e, i) => {
-            
+
             text += `
-                        <li class="diary-detail-content">
-                                ${e}
-                        </li>
+                        <li class="diary-detail-content">${e}</li>
             `;
         });
         $ul.html(text);
     }
 
+    function content() {
+        let text = "";
+        $(".diary-detail-content").each((i, e) => {
+            text += $(e).text() + "\n";
+        });
+        return text;
+    }
+
+    function alertModal(errorMsg) {
+
+        $(".alert").text(errorMsg);
+        $alertModal.fadeIn();
+        setTimeout(function () {
+            $alertModal.fadeOut();
+        }, 2000);
+
+    }
+
+    function deleteImage(index){ 
+        inputFiles.splice(index, 1);
+
+        var imageId = "#" + index;
+        $(imageId).remove();
+    }
+
+
+    // =================================================
+    // 모달
+
+    // 다이어리 나가기 버튼
+    $(".exit-icon").click(() => {
+        $(".diary-modal-display").hide();
+        $(".diary-detail-display").hide();
+        $(".diary-title").val("");
+        $(".diary-content").val("");
+    });
+
+    // 다이어리 나가기 버튼
+    $(".modal-back").click(() => {
+        $(".diary-modal-display").hide();
+    });
+
+    $(".modify-button").click(() => {
+        $(".title").text("다이어리 수정하기");
+        $(".date").text($(".diary-detail-date").text());
+
+        $(".diary-content").val(content());
+        $(".diary-title").val($(".diary-content-title").text());
+
+        $(".diary-modal-display").show();
+        $(".diary-detail-display").hide();
+    });
+
+// ================================================
 </script>
 
 </html>
