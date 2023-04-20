@@ -137,14 +137,6 @@
             box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;
         }
 
-        .alert-modal-box {
-            height: 40px;
-            position: fixed;
-            z-index: 5001;
-            background: #043A44;
-            color : #fff;
-        }
-
         .diary-main-title {
             display: flex;
         }
@@ -229,10 +221,6 @@
             justify-content: space-between;
         }
 
-        .alert-modal-display {
-            display: none;
-            z-index: 100000;
-        }
 
         .box {
             display: flex;
@@ -247,10 +235,11 @@
 
         .insert-button {
             border-radius: 8px;
-            background-color: #A9A0FC;
-            width: 100px;
-            height: 40px;
-            color: #fff;
+            background-color: #def5fe;
+            width: 80px;
+            height: 30px;
+            font-size: 12px;
+            color: #0c0c0c;
             font-weight: bold;
         }
 
@@ -260,14 +249,15 @@
             margin-right: 10px;
             border-radius: 8px;
             background-color: #BEEBFD;
-            width: 100px;
-            height: 40px;
-            padding : 0 7px;
+            width: 80px;
+            height: 30px;
+            padding: 0 7px;
             font-weight: bold;
+            font-size: 12px;
         }
 
         .file-image-box img {
-            width: 20px;
+            width: 14px;
             margin-right: 7px;
         }
 
@@ -366,21 +356,13 @@
             .diary-modal-box {
                 top: 50%;
                 left: 50%;
-                width: 500px;
+                width: 700px;
                 transform: translate(-50%, -50%);
                 animation: 0.25s ease 0s 1 normal none running openModal;
                 max-height: 95%;
                 padding: 32px 24px;
             }
 
-
-            .alert-modal-box { 
-                top: 50%;
-                left: 50%;
-                width: 400px;
-                transform: translate(-50%, -50%);
-                animation: 0.25s ease 0s 1 normal none running openModal;
-            }
         }
 
         .diary-modal-display {
@@ -406,5 +388,17 @@
             right: 5px;
             text-align: center;
             color:#fff;
+            cursor: pointer;
+        }
+
+        .sumnail-box li {
+            width: 25%;
+        }
+        .sumnail-box img {
+            height: 95px;
         }
         
+
+        .toastui-calendar-daygrid-cell:hover {
+            background-color: #f1f1f1!important;
+        }

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,24 +9,32 @@
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/mypage/modify.css">
     <link rel="icon" href="/static/image/logo/logo.png">
+    <link rel="stylesheet" href="/static/css/mypage/alert.css">
 </head>
+
 <body>
     <div class="mypage-wrap">
         <div id="header"></div>
         <div class="modify-wrap">
             <div class="image-modify-box">
-                <label class="image-modify-layout"> 
+                <label class="image-modify-layout">
                     <input type="file" style="display:none;">
                     <div class="image-profile-box">
                         <div class="image-size">
                             <span class="image-span">
                                 <picture class="image-picture">
-                                    <img src="https://cdn.class101.net/images/cba86b3c-f6a4-42b3-9bbd-bf6c09e49d27/1920xauto.webp">
+                                    <img
+                                        src="https://cdn.class101.net/images/cba86b3c-f6a4-42b3-9bbd-bf6c09e49d27/1920xauto.webp">
                                 </picture>
                             </span>
                         </div>
                         <div class="image-pen">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M4 21a1 1 0 01-1-1v-4a1 1 0 01.293-.707l11-11a3.83 3.83 0 015.414 0 3.83 3.83 0 010 5.414l-11 11A1 1 0 018 21H4zm1-2h2.586l.707-.707-2.586-2.586-.707.707V19z" fill="#FFF"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M4 21a1 1 0 01-1-1v-4a1 1 0 01.293-.707l11-11a3.83 3.83 0 015.414 0 3.83 3.83 0 010 5.414l-11 11A1 1 0 018 21H4zm1-2h2.586l.707-.707-2.586-2.586-.707.707V19z"
+                                    fill="#FFF"></path>
+                            </svg>
                         </div>
                     </div>
                 </label>
@@ -52,9 +61,11 @@
                         <label class="form-title">휴대폰 번호</label>
                         <div class="flex">
                             <div style="flex-grow: 1;">
-                                <input type="text" class="modify-input" placeholder="-을 제외한 휴대폰 번호를 입력해주세요." value="본인 핸드폰 번호 넣기" disabled>
+                                <input type="text" class="modify-input" placeholder="-을 제외한 휴대폰 번호를 입력해주세요."
+                                    value="본인 핸드폰 번호 넣기" disabled>
                             </div>
-                            <button type="button" class="common-button change-phone-button phone-modify-button phone-number-modify-button">
+                            <button type="button"
+                                class="common-button change-phone-button phone-modify-button phone-number-modify-button">
                                 수정
                             </button>
                         </div>
@@ -84,16 +95,21 @@
         <div class="none-cell"></div>
         <div id="footer"></div>
     </div>
-    
+
     <!-- 휴대폰 번호 모달 -->
     <div class="phone-modal-display">
-        <div class="phone-number-modal">   
+        <div class="phone-number-modal">
             <div class="phone-modal-box">
                 <div class="phone-modal-title-box">
                     <h3 class="phone-modal-title">휴대폰 인증하기</h3>
                     <button class="common-button modal-exit exit">
                         <span class="auto-flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#1a1a1a"></path></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                viewBox="0 0 24 24">
+                                <path
+                                    d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                    fill="#1a1a1a"></path>
+                            </svg>
                         </span>
                     </button>
                 </div>
@@ -104,9 +120,12 @@
                         <div class="flex-row">
                             <div class="phone-input-box">
                                 <div style="flex-grow: 1;">
-                                    <input class="modify-input" type="text" placeholder="-을 제외한 휴대폰 번호를 입력해주세요." name="phoneNumber">
+                                    <input class="modify-input" type="text" placeholder="-을 제외한 휴대폰 번호를 입력해주세요."
+                                        name="phoneNumber">
                                 </div>
-                                <button type="button" class="common-button change-phone-button phone-modify-button send-auth-button" disabled>
+                                <button type="button"
+                                    class="common-button change-phone-button phone-modify-button send-auth-button"
+                                    disabled>
                                     <span class="auto-flex">인증 번호 받기</span>
                                 </button>
                             </div>
@@ -118,7 +137,9 @@
                             <div style="flex-grow: 1;">
                                 <input class="modify-input" type="text" name="code" placeholder="문자메시지로 받은 번호를 입력해주세요.">
                             </div>
-                            <button type="button" class="common-button phone-number-confirm-button phone-modify-button auth-check-button" disabled>
+                            <button type="button"
+                                class="common-button phone-number-confirm-button phone-modify-button auth-check-button"
+                                disabled>
                                 <span class="auto-flex">확인</span>
                             </button>
                         </div>
@@ -129,7 +150,8 @@
                     <button type="button" class="common-button change-phone-button cancel-button exit">
                         <span class="auto-flex">취소</span>
                     </button>
-                    <button type="button" class="common-button phone-number-confirm-button phone-number-change-button" disabled >
+                    <button type="button" class="common-button phone-number-confirm-button phone-number-change-button"
+                        disabled>
                         <span class="auto-flex">확인</span>
                     </button>
                 </div>
@@ -146,22 +168,31 @@
                 <h1 class="withdraw-main-title">
                     <div style="flex-grow: 1;">정말 JAR를 떠나실 건가요?</div>
                     <div class="exit-icon exit-withdraw">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#cacaca"></path></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <path
+                                d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                fill="#cacaca"></path>
+                        </svg>
                     </div>
                 </h1>
                 <form action="#">
                     <div class="withdraw-sub-title">회원탈퇴 신청 전 아래 사항을 확인 부탁드립니다 😊</div>
-                    <div class="withdraw-sub-content">1. 신청일부터 5일 후 회원탈퇴가 처리되며, 회원탈퇴 처리 전까지 고객센터에서 그 신청을 철회할 수 있습니다.</div>
+                    <div class="withdraw-sub-content">1. 신청일부터 5일 후 회원탈퇴가 처리되며, 회원탈퇴 처리 전까지 고객센터에서 그 신청을 철회할 수 있습니다.
+                    </div>
                     <div class="withdraw-sub-content">2. 회원탈퇴 후 기존 계정으로 회원가입을 신청할 수 없습니다.</div>
                     <div class="withdraw-sub-content">3. 배송/교환/반품 중인 상품이 있는 경우 신청할 수 없습니다.</div>
-                    <div class="withdraw-sub-content">4. 회원탈퇴 시 수강권, 코칭권, 포인트, 캐시, 쿠폰 등 회원이 가진 권리는 모두 소멸합니다. 회원탈퇴 후 수강권, 코칭권, 캐시 등의 환불이 불가하므로 필요한 경우 탈퇴 전에 환불을 신청해주세요.</div>
-                    <div class="withdraw-sub-content">5. 회원탈퇴 시 회사가 보관하고 있는 회원 데이터는 모두 영구적으로 삭제됩니다. 다만, 관련 법령에 따라 회사가 보관할 의무가 있는 정보 또는 자료는 일정기간 동안 보관됩니다.</div>
-                    <div class="withdraw-sub-content">6. 회원탈퇴 후 클래스101에 게시한 게시물을 편집하거나 삭제할 수 없습니다. 필요한 경우 신청 전 게시물을 편집하거나 삭제해주세요.</div>
+                    <div class="withdraw-sub-content">4. 회원탈퇴 시 수강권, 코칭권, 포인트, 캐시, 쿠폰 등 회원이 가진 권리는 모두 소멸합니다. 회원탈퇴 후 수강권,
+                        코칭권, 캐시 등의 환불이 불가하므로 필요한 경우 탈퇴 전에 환불을 신청해주세요.</div>
+                    <div class="withdraw-sub-content">5. 회원탈퇴 시 회사가 보관하고 있는 회원 데이터는 모두 영구적으로 삭제됩니다. 다만, 관련 법령에 따라 회사가
+                        보관할 의무가 있는 정보 또는 자료는 일정기간 동안 보관됩니다.</div>
+                    <div class="withdraw-sub-content">6. 회원탈퇴 후 클래스101에 게시한 게시물을 편집하거나 삭제할 수 없습니다. 필요한 경우 신청 전 게시물을
+                        편집하거나 삭제해주세요.</div>
                     <div style="margin-top:40px;">
                         <h4 class="withdraw-reson-title">떠나시기 전에</h4>
                         <div class="withdraw-reson-sub-title">이유를 알려주세요</div>
                         <div>
-                            <textarea class="reson-textarea" placeholder="탈퇴하시려는 이유를 알려주세요. 소중한 의견을 반영하여 더 나은 서비스를 만들도록 노력하겠습니다"></textarea>
+                            <textarea class="reson-textarea"
+                                placeholder="탈퇴하시려는 이유를 알려주세요. 소중한 의견을 반영하여 더 나은 서비스를 만들도록 노력하겠습니다"></textarea>
                         </div>
                     </div>
                     <div style="margin-top: 63px;">
@@ -171,16 +202,29 @@
                         </button>
                         <button class="common-button  modify-submit-button" style="margin-top: 10px;" type="submit">
                             <span class="auto-flex">계정 삭제하기</span>
-                        </button> 
+                        </button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- 잠깐 나왓다 사라지는 알람창 -->
+    <div class="alert-modal-display">
+        <div class="diary-modal">
+            <div class="alert-modal-box" style="width: 500px;">
+                <div style="text-align: center;">
+                    <div style="margin-top: 12px;">
+                        <span class="alert"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-    $(document).ready(()=>{
+    $(document).ready(() => {
         $("#header").load("header.html");
         $("#footer").load("footer.html");
     });
