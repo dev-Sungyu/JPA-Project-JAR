@@ -20,6 +20,17 @@
                 </picture>
             </div>
         </div> -->
+        <div class="alert-modal-display">
+            <div class="diary-modal">
+                <div class="alert-modal-box" style="width: 500px;">
+                    <div style="text-align: center;">
+                        <div style="margin-top: 12px;">
+                            <span class="alert"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="all_wrap">
             <div class="all_wrap_div">
                 <header class="header">
@@ -85,7 +96,7 @@
                                                     <p class="forget_pw_text">비밀번호를 잊으셨나요?</p>
                                                 </a>
                                             </div>
-                                            <button class="login_btn">
+                                            <button type="button" class="login_btn">
                                                 <div class="login_btn_div">
                                                     <div class="wid_flex_four"></div>
                                                     <span class="two_span">로그인</span>
@@ -154,5 +165,26 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script src="/js/login/login.js"></script>
+<script>
+const $alertModal = $(".alert-modal-display");
+let login_btn = document.getElementsByClassName('login_btn')[0];
+let errorMsg = "아이디 또는 비밀번호를 다시 확인하세요.";
+let emailInput = document.querySelector('input[name=email]');
+
+
+login_btn.addEventListener("click", function () {
+    alertModal(errorMsg);
+});
+
+function alertModal(errorMsg) {
+    $(".alert").text(errorMsg);
+    $alertModal.show();
+    setTimeout(function () {
+        $alertModal.hide();
+    }, 2000);
+}
+
+</script>
+
+
 </html>
