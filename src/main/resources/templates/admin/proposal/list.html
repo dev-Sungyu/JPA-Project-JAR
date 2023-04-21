@@ -5,26 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 - 회원 목록</title>
+    <title>관리자 - 제안 게시판 목록</title>
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/admin_fragment.css">
     <!-- <link rel="stylesheet" href="/static/css/admin/admin_member.css"> -->
     <link rel="stylesheet" href="/static/css/admin/admin_list.css">
-    <link rel="stylesheet" href="/static/css/admin/admin_member_list.css">
-
 </head>
+
 <body>
     <div class="whole_wrapper">
         <!-- header -->
         <div class="header_whole_wrapper is-fixed" th:fragment="header">
             <header id="header">
                 <div class="header_wrapper is-relative">
-                    <div class="gap_left"></div>
-                    <div class="page_title">
+                    <div class="is-flex is-align-center">
+                        <img class="logo_image is-inline-block" src="/static/image/logo/logo.png" alt="">
+                        <h2 class="is-inline-block">Jar</h2>
                         <h2 class="title_content is-inline-block">
                             관리자 페이지
                         </h2>
+                    </div>
+                    <div class="page_title">
+
                     </div>
                 </div>
             </header>
@@ -33,7 +36,7 @@
         <!-- sidebar -->
         <div class="is-absolute" id="sidebar_wrapper">
             <nav class="is-relative" id="sidebar">
-                <header id="logo" class="is-block">
+                <header id="logo" class="is-block is-hidden">
                     <div class="is-flex is-align-center">
                         <img class="logo_image is-inline-block" src="/static/image/logo/logo.png" alt="">
                         <h2 class="is-inline-block">Jar</h2>
@@ -115,12 +118,12 @@
                                 <th class="table_head-checkbox table_checkbox">
                                     <input type="checkbox" name="check_member_all" id="">
                                 </th>
-                                <th class="table_head-id table_id">게시글번호</th>
-                                <th class="table_head-type table_type">게시상태</th>
-                                <th class="table_head-name table_name">작성자</th>
-                                <th class="table_head-phone table_title">제목</th>
-                                <th class="table_head-email table_content">내용</th>
-                                <th class="table_head-register table_register">작성일</th>
+                                <th class="table_head-id table_id">회원번호</th>
+                                <th class="table_head-type table_type">회원상태</th>
+                                <th class="table_head-name table_name">이름</th>
+                                <th class="table_head-phone table_phone">연락처</th>
+                                <th class="table_head-email table_email">이메일</th>
+                                <th class="table_head-register table_register">가입일</th>
                             </tr>
                             <tr class="table_content_wrapper">
                                 <td class="table_content-checkbox table_checkbox">
@@ -130,7 +133,7 @@
                                     1
                                 </td>
                                 <td class="table_content-type table_type">
-                                    공개
+                                    일반회원
                                 </td>
                                 <td class="table_content-name table_name">
                                     이준상
