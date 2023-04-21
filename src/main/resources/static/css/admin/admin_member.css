@@ -113,8 +113,8 @@ table.content_list_wrapper>tbody {
 } */
 
 tbody>tr>* {
-    padding-right: 24px;
-    padding-bottom: 24px;
+    padding: 12px 0;
+    padding-right: 20px;
     text-align: center;
 }
 
@@ -134,4 +134,9 @@ tbody>tr>*.table_phone,
 tbody>tr>*.table_email,
 tbody>tr>*.table_register {
     width: 12vw;
+}
+
+tr.table_head>th {
+    padding-top: 12px;
+    padding-bottom: 12px;
 }
