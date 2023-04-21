@@ -1,0 +1,152 @@
+@charset "utf-8";
+
+
+.mypage-all-wrap {
+    margin-left: 24px;
+    margin-right: 24px
+}
+
+.mypage-content-wrap {
+    display: flex;
+    padding-bottom: 64px;
+}
+
+.content-wrap {
+    width: 100%;
+    padding-top: 20px;
+}
+
+.list-wrap {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.list-box {
+    border-top: 1px solid #e1e1e1;
+}
+
+.list-layout {
+    border-top: 1px solid #e1e1e1;
+    padding: 20px 10px
+}
+
+.list-layout:first-child {
+    border: none;
+}
+
+.list-layout:last-child {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.date {
+    font-size: 13px;
+    color: #877b7b;
+    margin-bottom: 10px;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.modify-btn {
+    margin-right: 5px;
+}
+
+.list-content-title-box {
+    margin-top : 5px;
+}
+
+.pasing-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 32px;
+}
+
+.pasing-button-1 {
+    border: 0px;
+    outline: none;
+    margin: 0px;
+    padding: 0px;
+    flex: initial;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.pasing-button-2 {
+    display: inline-flex;
+    flex: 0 0 auto;
+    vertical-align: middle;
+    padding: 0px;
+    border-radius: 3px;
+    color: rgb(26, 26, 26);
+    width: 32px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+}
+
+.pasing-button-3 {
+    margin: 5px;
+}
+
+.pasing-select {
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 12px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+.pasing-button-1:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+
+.pasing-button-span {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pasing-no-select {
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(58, 58, 58);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 12px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+
+@media (min-width:1024px) {
+    .mypage-all-wrap {
+        max-width: 1176px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}    

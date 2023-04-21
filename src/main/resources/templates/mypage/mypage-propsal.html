@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-제안</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+    <link rel="stylesheet" href="/static/css/mypage/list.css">
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu"></div>
+                    <div class="content-wrap">
+                        <section>
+                            <div class="content-title-box">
+                                <div class="flex-center">
+                                    <h3 class="content-title">나의 공유 일기</h3>
+                                </div>
+                            </div>
+                            <div class="list-wrap">
+                                <div class="list-container">
+                                    <div class="list-box">
+                                        <!-- 여기서 부터 -->
+                                        <div class="list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <a href="javascript:void(0)">
+                                                <div class="list-content-title-box">
+                                                    <h3>테스트 제목</h3>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="pasing-wrapper">
+                            <div>
+                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef"></path></svg>
+                                    </span>
+                                </button>
+                                <button icon-position="0" class="pasing-button-1 pasing-select pasing-button-3" color="orange" fill="false">
+                                    <span class="pasing-button-span">1</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">2</span>
+                                </button>
+                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>    
+                </div>
+            </div>
+        </div>
+        
+        <!-- main/footer.html -->
+        <div id="footer"></div>
+    </div>               
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../main/header.html");
+        $("#footer").load("../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
+</script>
+</html>

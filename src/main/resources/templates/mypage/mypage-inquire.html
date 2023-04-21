@@ -31,6 +31,7 @@
         .inquire-title-box {
             display: flex;
             justify-content: space-between;
+            margin-top: 7px;
         }
 
         .inquire-list-box {
@@ -60,10 +61,12 @@
         }
 
         .answer-status {
+            font-weight: 500;
             color: rgb(255, 86, 0);
         }
-
+        
         .answer {
+            font-weight: 500;
             color: #36f;
         }
 
@@ -95,7 +98,6 @@
             padding: 0px;
             border-radius: 3px;
             color: rgb(26, 26, 26);
-            background-color: rgb(248, 248, 248);
             width: 32px;
             height: 32px;
             transition: background-color 0.1s ease 0s;
@@ -138,7 +140,6 @@
             vertical-align: middle;
             border-radius: 3px;
             color: rgb(58, 58, 58);
-            background-color: rgb(255, 255, 255);
             font-weight: 500;
             font-size: 14px;
             letter-spacing: -0.2px;
@@ -147,6 +148,21 @@
             transition: background-color 0.1s ease 0s;
             text-decoration-line: none;
         }
+        
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .modify-btn {
+            margin-right: 5px;
+        }
+        
 
         @media (min-width:1024px) {
             .mypage-all-wrap {
@@ -177,7 +193,7 @@
                         <section class="inquire-section">
                             <div class="content-title-box">
                                 <div class="flex-center">
-                                    <h2 class="content-title">내 문의 글</h2>
+                                    <h3 class="content-title">내 문의 글</h3>
                                 </div>
                             </div>
                             <div class="inquire-list-wrap">
@@ -185,11 +201,17 @@
                                     <div class="inquire-list-box">
                                         <!-- 여기부터 -->
                                         <div class="inquire-list-layout">
-                                            <div>
+                                            <div class="flex-between">
                                                 <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
                                             </div>
                                             <div class="inquire-title-box">
-                                                <h2>순철이 발 몇cm?</h2>
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
                                                 <div class="inquire-answer-status-box">
                                                     <div class="inquire-answer-status-layout">
                                                         <!-- <div class="inquire-answer-border">
@@ -205,15 +227,21 @@
                                         <!--  -->
                                         <!-- 여기부터 -->
                                         <div class="inquire-list-layout">
-                                            <div>
+                                            <div class="flex-between">
                                                 <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
                                             </div>
                                             <div class="inquire-title-box">
-                                                <h2>순철이 발 몇cm?</h2>
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
                                                 <div class="inquire-answer-status-box">
                                                     <div class="inquire-answer-status-layout">
                                                         <div class="inquire-answer-border">
-                                                            <p class="answer-status">미답변</p>
+                                                            <p class="answer">답변 완료</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -222,45 +250,17 @@
                                         <!--  -->
                                         <!-- 여기부터 -->
                                         <div class="inquire-list-layout">
-                                            <div>
+                                            <div class="flex-between">
                                                 <p class="date">2022.02.01</p>
-                                            </div>
-                                            <div class="inquire-title-box">
-                                                <h2>순철이 발 몇cm?</h2>
-                                                <div class="inquire-answer-status-box">
-                                                    <div class="inquire-answer-status-layout">
-                                                        <div class="inquire-answer-border">
-                                                            <p class="answer-status">미답변</p>
-                                                        </div>
-                                                    </div>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <!--  -->
-                                        <!-- 여기부터 -->
-                                        <div class="inquire-list-layout">
-                                            <div>
-                                                <p class="date">2022.02.01</p>
-                                            </div>
                                             <div class="inquire-title-box">
-                                                <h2>순철이 발 몇cm?</h2>
-                                                <div class="inquire-answer-status-box">
-                                                    <div class="inquire-answer-status-layout">
-                                                        <div class="inquire-answer-border">
-                                                            <p class="answer-status">미답변</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!--  -->
-                                        <!-- 여기부터 -->
-                                        <div class="inquire-list-layout">
-                                            <div>
-                                                <p class="date">2022.02.01</p>
-                                            </div>
-                                            <div class="inquire-title-box">
-                                                <h2>순철이 발 몇cm?</h2>
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
                                                 <div class="inquire-answer-status-box">
                                                     <div class="inquire-answer-status-layout">
                                                         <div class="inquire-answer-border">
