@@ -62,6 +62,10 @@
                                                         <div class="email_pw_gap"></div>
                                                         <div class="login">
                                                             <input name="email" type="email" placeholder="example@naver.com">
+                                                            <div style="height: 4px;"></div>
+                                                            <div class="login">
+                                                                <p id="red_email" class="waring_email">이메일을 입력해주세요.</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </label>
@@ -74,12 +78,15 @@
                                                             <div class="password_box">
                                                                 <input placeholder="********" name="password" type="password">
                                                                 <div class="eye_wrap">
-                                                                    <span style="display: block; width: 18px; height: 18px;">
-                                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="eye_svg">
-                                                                            <path d="m21.963 3.5-1.4-1.4c-.1-.1-.25-.1-.35 0l-2.15 2.15c-1.75-1.1-3.8-1.7-6-1.7-6 0-10.85 4.55-11 10.25 0 .15.1.25.25.25h2c.15 0 .25-.1.25-.25.15-4.3 3.9-7.75 8.5-7.75 1.5 0 2.95.4 4.2 1.05l-2.65 2.65c-.35-.1-.75-.15-1.15-.2h-.6c-.2 0-.4 0-.6.05-.4.05-.8.15-1.2.3-.55.2-1.1.45-1.55.8-.45.35-.9.75-1.25 1.2-.15.2-.3.45-.45.7-.2.3-.35.65-.45 1-.1.25-.15.55-.2.8 0 .05-.05.15-.05.2-.1.55-.1 1.15 0 1.75.05.3.1.5.2.7l-4.15 4.15c-.1.1-.1.25 0 .35l1.4 1.4c.1.1.25.1.35 0l18.1-18.1c0-.1 0-.25-.05-.35ZM15.163 16c-.4.85-1.15 1.55-2.05 1.8-.65.2-1.25.25-1.8.1l-1.95 1.95c.85.4 1.85.65 2.9.6 3.1-.15 5.6-2.7 5.7-5.8.05-1-.2-2-.6-2.85l-1.95 1.95c.15.75.1 1.5-.25 2.25ZM20.513 12.75c0 .15.1.25.25.25h2c.15 0 .25-.1.25-.25-.05-1.8-.6-3.5-1.5-5l-1.85 1.85c.5.95.8 2 .85 3.15Z" class="eye_path"></path>
-                                                                        </svg>
+                                                                    <span class="hide span_div">
+                                                                        <img id="eye_close" class="eye" src="/static/image/login/eyes-close.png">
+                                                                        <img id="eye_open" style="display: none;" class="eye" src="/static/image/login/eyes_open.png">
                                                                     </span>
                                                                 </div>
+                                                            </div>
+                                                            <div style="height: 4px;"></div>
+                                                            <div class="login">
+                                                                <p id="red_password" class="waring_email">비밀번호를 입력해주세요.</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -165,7 +172,7 @@ let login_btn = document.getElementsByClassName('login_btn')[0];
 let errorMsg = "아이디 또는 비밀번호를 다시 확인하세요.";
 let emailInput = document.querySelector('input[name=email]');
 
-
+// 로그인 실패시 나오는 모달창
 login_btn.addEventListener("click", function () {
     alertModal(errorMsg);
 });
@@ -177,6 +184,53 @@ function alertModal(errorMsg) {
         $alertModal.hide();
     }, 2000);
 }
+// 로그인 실패시 나오는 빨간줄
+    $(".login_btn").click(function() {
+        $("#red_email").css('display', 'block');
+        $("input[name='email']").css('border-color', 'rgb(243, 33, 59)');
+        $("#red_password").css('display', 'block');
+        $("input[name='password']").css('border-color', 'rgb(243, 33, 59)');
+    });
+
+    $("input[name='email']").on("input", function() {
+    var inputText = $(this).val(); // input 태그의 값
+        if (inputText.length >= 1) { // 값이 1개 이상일 때
+            $("#red_email").css('display', 'none');
+            $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+        } else {
+            $("#red_email").css('display', 'block');
+            $("input[name='email']").css('border-color', 'rgb(243, 33, 59)');
+        }
+    });
+
+    $("input[name='password']").keyup(function() {
+        $("#red_password").css('display', 'none');
+        $("input[name='password']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    });
+
+
+// 비밀번호 눈표시 JS
+
+let userPassword = $("input[name=password]");
+
+$(".hide").click(function(){
+    if(userPassword.attr("type") == "password"){
+        $("#eye_close").css('display', 'none');
+        $("#eye_open").css('display', 'block');
+        userPassword.attr("type","text");
+    }else if(userPassword.attr("type") == "text"){
+        $("#eye_close").css('display', 'block');
+        $("#eye_open").css('display', 'none');
+        userPassword.attr("type","password");
+    }
+});
+
+
+
+
+
+
+
 
 </script>
 
