@@ -192,17 +192,10 @@ function alertModal(errorMsg) {
         $("input[name='password']").css('border-color', 'rgb(243, 33, 59)');
     });
 
-    $("input[name='email']").on("input", function() {
-    var inputText = $(this).val(); // input 태그의 값
-        if (inputText.length >= 1) { // 값이 1개 이상일 때
-            $("#red_email").css('display', 'none');
-            $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-        } else {
-            $("#red_email").css('display', 'block');
-            $("input[name='email']").css('border-color', 'rgb(243, 33, 59)');
-        }
+    $("input[name='email']").keyup(function() {
+        $("#red_email").css('display', 'none');
+        $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     });
-
     $("input[name='password']").keyup(function() {
         $("#red_password").css('display', 'none');
         $("input[name='password']").css('border-color', 'rgba(0, 0, 0, 0.15)');

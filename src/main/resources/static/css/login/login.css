@@ -274,6 +274,7 @@ input[name="password"]{
         animation: 0.25s ease 0s 1 normal none running openModal;
     }
 }
+
 .span_div{
     width: 18px;
     height: 18px;
