@@ -4,6 +4,17 @@
     padding: 72px 0px 48px;
 }
 
+.my-badge-image-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+}
+
+img.my-badge {
+    width: 45px;
+}
+
 .mypage-header-layout {
     display: flex;
     place-content: stretch flex-start;

@@ -122,6 +122,7 @@ input[name="password"]{
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1.125rem;
+    cursor: pointer;
 }
 .login_btn{
     color: rgb(255, 255, 255);
@@ -137,9 +138,7 @@ input[name="password"]{
     background-color: rgb(255, 93, 0);
     border-width: 0px;
     border-radius: 2px;
-    -webkit-box-align: center;
     align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
     display: inline-flex;
     position: relative;
@@ -232,6 +231,7 @@ input[name="password"]{
     -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
+    cursor: pointer;
 }
 .sign_in_login{
     display: flex;
@@ -239,4 +239,66 @@ input[name="password"]{
     justify-content: center;
     -webkit-box-align: center;
     align-items: center;
+}
+
+
+
+
+/* alert css */
+
+.alert-modal-display {
+    display: none;
+    z-index: 100000;
+}
+
+.alert-modal-box {
+    height: 40px;
+    position: fixed;
+    z-index: 5001;
+    background: #043A44;
+    color : #fff;
+}
+
+.diary-modal {
+    position: absolute;
+    inset: 0px;
+    z-index: 10000;
+}
+
+@media (min-width: 960px) {
+    .alert-modal-box { 
+        top: 50%;
+        left: 50%;
+        width: 400px;
+        transform: translate(-50%, -50%);
+        animation: 0.25s ease 0s 1 normal none running openModal;
+    }
+}
+
+.span_div{
+    width: 18px;
+    height: 18px;
+    display: block;
+}
+.eye{
+    position: absolute;
+    width: 40px;
+    top: 3px;
+    right: -1px;
+}
+.eyes_open {
+    background-image: url('/static/image/login/eyes_open.png');
+}
+.eyes_close {
+    background-image: url('/static/image/login/eyes-close.png');
+}
+.waring_email{
+    border-width: 0px;
+    color: rgb(243, 33, 59);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.75rem;
+    font-weight: 400;
+    line-height: 1rem;
+    display: none;
 }

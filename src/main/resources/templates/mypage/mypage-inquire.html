@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-문의</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+    <style>
+        .mypage-all-wrap {
+            margin-left: 24px;
+            margin-right: 24px
+        }
+
+        .mypage-content-wrap {
+            display: flex;
+            padding-bottom: 64px;
+        }
+
+        .inquire-wrap {
+            width: 100%;
+            padding-top: 20px;
+        }
+
+        .inquire-list-wrap {
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .inquire-title-box {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 7px;
+        }
+
+        .inquire-list-box {
+            border-top : 1px solid #e1e1e1;
+        }
+
+        .inquire-list-layout {
+            padding : 20px 10px;
+        }
+
+        .date {
+            font-size: 13px;
+            color :#877b7b;
+            margin-bottom: 10px;
+        }
+
+        .inquire-list-layout:first-child {
+            border : none;
+        }
+
+        .inquire-list-layout {
+            border-top : 1px solid #e1e1e1;
+        }
+
+        .inquire-list-layout:last-child {
+            border-bottom : 1px solid #e1e1e1;
+        }
+
+        .answer-status {
+            font-weight: 500;
+            color: rgb(255, 86, 0);
+        }
+        
+        .answer {
+            font-weight: 500;
+            color: #36f;
+        }
+
+        .pasing-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            margin-top: 32px;
+        }
+
+        .pasing-button-1 {
+            border: 0px;
+            outline: none;
+            margin: 0px;
+            padding: 0px;
+            flex: initial;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+        }
+
+        .pasing-button-2 {
+            display: inline-flex;
+            flex: 0 0 auto;
+            vertical-align: middle;
+            padding: 0px;
+            border-radius: 3px;
+            color: rgb(26, 26, 26);
+            width: 32px;
+            height: 32px;
+            transition: background-color 0.1s ease 0s;
+        }
+
+        .pasing-button-3 {
+            margin: 5px;
+        }
+
+        .pasing-select {
+            width: auto;
+            display: inline-flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(255, 86, 0);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 12px;
+            height: 32px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+
+        .pasing-button-1:not(:disabled):not(.disabled) {
+            cursor: pointer;
+        }
+
+        .pasing-button-span {
+            flex: 0 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pasing-no-select {
+            width: auto;
+            display: inline-flex;
+            vertical-align: middle;
+            border-radius: 3px;
+            color: rgb(58, 58, 58);
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: -0.2px;
+            padding: 0px 12px;
+            height: 32px;
+            transition: background-color 0.1s ease 0s;
+            text-decoration-line: none;
+        }
+        
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .modify-btn {
+            margin-right: 5px;
+        }
+        
+
+        @media (min-width:1024px) {
+            .mypage-all-wrap {
+                max-width: 1176px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }    
+    </style>
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu"></div>
+
+                    <div class="inquire-wrap">
+                        <section class="inquire-section">
+                            <div class="content-title-box">
+                                <div class="flex-center">
+                                    <h3 class="content-title">내 문의 글</h3>
+                                </div>
+                            </div>
+                            <div class="inquire-list-wrap">
+                                <div class="inquire-list-container">
+                                    <div class="inquire-list-box">
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <!-- <div class="inquire-answer-border">
+                                                            <p class="answer-status">미답변</p>
+                                                        </div> -->
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer">답변 완료</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer">답변 완료</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer-status">미답변</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>    
+                        <section class="pasing-wrapper">
+                            <div>
+                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef"></path></svg>
+                                    </span>
+                                </button>
+                                <button icon-position="0" class="pasing-button-1 pasing-select pasing-button-3" color="orange" fill="false">
+                                    <span class="pasing-button-span">1</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">2</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">3</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">4</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">5</span>
+                                </button>
+                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- main/footer.html -->
+        <div id="footer"></div>
+    </div>               
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../main/header.html");
+        $("#footer").load("../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
+</script>
+</html>
