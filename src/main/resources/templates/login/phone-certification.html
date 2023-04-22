@@ -44,14 +44,14 @@
                                         <label>
                                             <div class="login">
                                                 <div class="login">
-                                                    <input type="tel" name="phoneNumber" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
+                                                    <input type="tel" name="phone_number" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
                                                 </div>
                                             </div>
                                         </label>
                                     </div>
                                 </div>
                                 <div style="height: 24px; display: flex;"></div>
-                                <button class="confirm_number">
+                                <button type="button" class="confirm_number">
                                     <div class="flex_visi">
                                         <div class="hei_4"></div>
                                         <span class="confirm_number_span">
@@ -64,41 +64,76 @@
                         </form>
                         <div style="height: 48px; display: flex;"></div>
                         <!-- 이 아래가 인증번호 누를시 나오는 곳 -->
-                        <p class="message_p">문자로 전송된 인증번호를 입력해 주세요.</p>
-                        <div style="height: 20px; display: flex;"></div>
-                        <form style="width: auto; height: auto;">
-                            <label>
-                                <div class="login">
+                        <div class="semi_modal">
+                            <p class="message_p">문자로 전송된 인증번호를 입력해 주세요.</p>
+                            <div style="height: 20px; display: flex;"></div>
+                            <form style="width: auto; height: auto;">
+                                <label>
                                     <div class="login">
-                                        <div class="confirm_box">
-                                            <input type="tel" name="phoneNumberConfirm" placeholder="인증번호 6자리">
-                                        <!--  <div> 인증번호 옆에 타이머 부분
-                                                <div>
+                                        <div class="login">
+                                            <div class="confirm_box">
+                                                <input type="tel" name="phone_number_confirm" placeholder="인증번호 6자리">
+                                            <!--  <div> 인증번호 옆에 타이머 부분
                                                     <div>
-                                                        <p></p>
+                                                        <div>
+                                                            <p></p>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </div> -->
+                                                </div> -->
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </label>
-                            <div style="height: 16px; display: flex;"></div>
-                            <button class="down_confirm">
-                                <div class="flex_visi">
-                                    <div style="width: 4px; display: flex;"></div>
-                                    <span class="confirm_number_span">
-                                        <p class="certification">인증번호 확인</p>
-                                    </span>
-                                    <div style="width: 4px; display: flex;"></div>
-                                </div>
-                            </button>
-                        </form>
-                        <div></div>
+                                </label>
+                                <div style="height: 16px; display: flex;"></div>
+                                <button class="down_confirm">
+                                    <div class="flex_visi">
+                                        <div style="width: 4px; display: flex;"></div>
+                                        <span class="confirm_number_span">
+                                            <p class="certification">인증번호 확인</p>
+                                        </span>
+                                        <div style="width: 4px; display: flex;"></div>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    
+$(".confirm_number").click(function(){
+    $(".semi_modal").css('display', 'block');
+    $(".confirm_number_span_p").text("인증번호 다시 받기");
+});
+
+const inputDown = document.querySelector('input[name="phone_number_confirm"]');
+const buttonDown = document.querySelector('.down_confirm');
+
+inputDown.addEventListener('input', function() {
+  if (inputDown.value) {
+    buttonDown.style.backgroundColor = "rgb(255, 93, 0)";
+  } 
+  else {
+    buttonDown.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+  }
+});
+
+const inputUp = document.querySelector('input[name="phone_number"]');
+const buttonUp = document.querySelector('.confirm_number');
+
+inputUp.addEventListener('input', function() {
+  if (inputUp.value) {
+    buttonUp.style.backgroundColor = "rgb(255, 93, 0)";
+  } 
+  else {
+    buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+  }
+});
+
+
+</script>
 </html>
