@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 챌린지 게시판 상세보기</title>
+    <title>관리자 페이지- 제안 게시판 수정</title>
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="/static/css/admin/admin_board_challenge_detail.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
 </head>
 
 <body>
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>챌린지 게시판 관리</span>
+                    <span>제안 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -127,61 +127,45 @@
             <!-- 사이드 바 끝-->
 
             <div class="container">
-                <div class="container-margin">
-                    <!-- 헤더 -->
-                    <div class="prev-button-layout">
-                        <div>
-                            <a href="">
-                                <img src="/static/image/admin/prev_icon.png" class="prev-icon">
-                                <span class="prev-title">리스트로 돌아가기</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- 내용 섹션 -->
-                    <section class="board-info-box-layout">
-                        <div class="board-info-box">
-                            <div class="board-info-title-box">
-                                <span>챌린지 상세보기</span>
-                            </div>
-                            <hr>
-                            <div class="info-table">
-                                <div class="board_title">
-                                    <span class="span-bold">제목 :</span>
-                                    <!-- 제목  -->
-                                    <span>제목</span>
-                                </div>
-                                <div class="board_info board_writer">
-                                    <span class="span-bold">카테고리 :</span>
-                                    <!-- 작성자 명  -->
-                                    <span>그룹 챌린지</span>
-                                </div>
-                                <!-- <div class="info-member">
-									<span class="span-bold">좋아요 :</span>
-									<span>3</span>
-								</div> -->
-                                <div class="board_info board_reigster_date">
-                                    <span class="span-bold">작성 날짜 :</span>
-                                    <!-- 작성 날짜  -->
-                                    <span>2023.04.23 11:01</span>
-                                </div>
-                                <hr>
-                                <div class="board_content">
-                                    <!-- 게시판 내용 -->
-                                    게시판 내용
-                                    <br>
-                                    게시판 내용
-                                    <br>
-                                    게시판 내용
-                                </div>
-                                <div>
-                                    <button>수정</button>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </div>
+				<div class="container-margin">
+					<!-- 헤더 -->
+					<div class="prev-button-layout">
+						<div>
+							<a href="">
+								<img src="/static/image/admin/prev_icon.png" class="prev-icon">
+								<span class="prev-title">리스트로 돌아가기</span>
+							</a>
+						</div>
+					</div>
+					
+					<!-- 내용 섹션 -->
+					<section class="board-info-box-layout">
+						<div class="board-info-box">
+							<div class="board-info-title-box">
+								<span>게시글 수정하기</span>
+							</div>
+							<hr>
+							<div class="info-table">
+							<form action="">
+								<input type="hidden" name="boardId" value="">
+								<input type="hidden" name="page" value="">
+								<div>
+									<input type="text" class="board-title" name="boardTitle" placeholder="이전 제목" autocomplete="off" value="이전 제목">
+								</div>
+								<hr>
+								<div>
+									<textarea class="board-content" name="boardContent" placeholder="이전 내용">이전 내용</textarea>
+								</div>
+								<hr>
+								<div>
+									<button>등록</button>
+								</div>
+							</form>	
+							</div>
+						</div>
+					</section>
+				</div>
+			</div>
         </div>
     </div>
 </body>
