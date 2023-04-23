@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 문의 게시판 수정</title>
+    <title>관리자 페이지- 제안 게시판 수정</title>
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
 </head>
@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>문의 게시판 관리</span>
+                    <span>공지사항 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -127,47 +127,62 @@
             <!-- 사이드 바 끝-->
 
             <div class="container">
-				<div class="container-margin">
-					<!-- 헤더 -->
-					<div class="prev-button-layout">
-						<div>
-							<a href="">
-								<img src="/static/image/admin/prev_icon.png" class="prev-icon">
-								<span class="prev-title">리스트로 돌아가기</span>
-							</a>
-						</div>
-					</div>
-					
-					<!-- 내용 섹션 -->
-					<section class="board-info-box-layout">
-						<div class="board-info-box">
-							<div class="board-info-title-box">
-								<span>게시글 수정하기</span>
-							</div>
-							<hr>
-							<div class="info-table">
-							<form action="">
-								<input type="hidden" name="boardId" value="">
-								<input type="hidden" name="page" value="">
-								<div>
-									<input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요." autocomplete="off" value="이전 제목">
-								</div>
-								<hr>
-								<div>
-									<textarea class="board-content" name="boardContent" placeholder="내용을 입력해주세요.">이전 내용</textarea>
-								</div>
-								<hr>
-								<div>
-									<button class="btn_done">수정 완료</button>
-								</div>
-							</form>	
-							</div>
-						</div>
-					</section>
-				</div>
-			</div>
+                <div class="container-margin">
+                    <!-- 헤더 -->
+                    <div class="prev-button-layout">
+                        <div>
+                            <a href="">
+                                <img src="/static/image/admin/prev_icon.png" class="prev-icon">
+                                <span class="prev-title">리스트로 돌아가기</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- 내용 섹션 -->
+                    <section class="board-info-box-layout">
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>공지사항 수정하기</span>
+                            </div>
+                            <hr>
+                            <div class="info-table">
+                                <form action="">
+                                    <input type="hidden" name="boardId" value="">
+                                    <!-- <input type="hidden" name="page" value=""> -->
+                                    <div>
+                                        <input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요."
+                                            autocomplete="off" value="수정 전 제목">
+                                    </div>
+                                    <label for="">
+                                        <div class="type_wrapper" style="cursor: pointer; display: flex;">
+                                            <span>개인</span>
+                                            <button type="button" style="display: none;"></button>
+                                        </div>
+                                    </label>
+                                    <hr>
+                                    <div>
+                                        <textarea class="board-content" name="boardContent"
+                                            placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
+                                    </div>
+                                    <hr>
+                                    <div>
+                                        <button class="btn_done">수정 완료</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/static/js/admin/challenge_type.js">
+    let btn_type = $($('button.select_challenge_type')[0]);
+    btn_type.on('click', e => {
+        
+    });
+</script>
+
 </html>

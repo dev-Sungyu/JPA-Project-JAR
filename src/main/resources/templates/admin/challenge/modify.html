@@ -23,7 +23,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>제안 게시판 관리</span>
+                    <span>챌린지 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -150,18 +150,19 @@
                                     <input type="hidden" name="boardId" value="">
                                     <!-- <input type="hidden" name="page" value=""> -->
                                     <div>
-                                        <input type="text" class="board-title" name="boardTitle" placeholder="이전 제목"
-                                            autocomplete="off" value="">
+                                        <input type="text" class="board-title" name="boardTitle"
+                                            placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
                                     </div>
-                                    <div class="select_wrapper">
-                                        <label for="">
-                                            <button type="button" class="select_challenge_type" value="personal">개인</button>
-                                        </label>
-                                    </div>
+                                    <label for="">
+                                        <div class="type_wrapper" style="cursor: pointer; display: flex;">
+                                            <span>개인</span>
+                                            <button type="button" style="display: none;"></button>
+                                        </div>
+                                    </label>
                                     <hr>
                                     <div>
-                                        <textarea class="board-content" name="boardContent"
-                                            placeholder="이전 내용"></textarea>
+                                        <textarea class="board-content" name="boardContent" placeholder="내용을 입력해주세요.">수정 전 내용
+                                        </textarea>
                                     </div>
                                     <hr>
                                     <div>
@@ -179,9 +180,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/static/js/admin/challenge_type.js">
     let btn_type = $($('button.select_challenge_type')[0]);
-    console.log("콘솔");
     btn_type.on('click', e => {
-        console.log(e.target);
+
     });
 </script>
 
