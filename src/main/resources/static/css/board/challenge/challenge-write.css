@@ -318,7 +318,7 @@
     justify-content: space-between;
 }}
             
-.board_name-box h2 {
+.board_name-box a> h2 {
     border-width: 0px;
     color: var(--system-on-color);
     margin: 0px;
@@ -326,7 +326,6 @@
     font-size: 1.75rem;
     font-weight: 700;
     line-height: 2.5rem;
-    margin-left: 197px;
 }
 
 .board_name-box h2{
