@@ -1,15 +1,15 @@
 @charset "UTF-8";
 
 @font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 * {
-		margin: 0;
-		padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
 a {
@@ -61,7 +61,8 @@ button {
 .menus .select-menu {
 	font-size: 11px;
 	color: #fff;
-	margin-left: 67px;;
+	margin-left: 67px;
+	;
 }
 
 .menus .select-menu span {
@@ -71,18 +72,17 @@ button {
 
 .menu-title {
 	display: flex;
-    justify-content: flex-start;
-    position: relative;
-    font-size: 21px;
-    color: #fff;
-    height: 32px;
+	justify-content: flex-start;
+	position: relative;
+	font-size: 21px;
+	color: #fff;
+	height: 32px;
 }
 
 .icon {
 	padding-top: 2px;
-    width: 16px;
-	filter: invert(71%) sepia(59%) saturate(0%) hue-rotate(176deg)
-		brightness(91%) contrast(94%);
+	width: 16px;
+	filter: invert(71%) sepia(59%) saturate(0%) hue-rotate(176deg) brightness(91%) contrast(94%);
 }
 
 .triangle {
@@ -108,12 +108,13 @@ button {
 	margin: 8px 18px 0px 44px;
 }
 
-.menus2, .menu1 {
+.menus2,
+.menu1 {
 	display: none;
 }
 
 .menu-name {
-	color:#fff;
+	color: #fff;
 	font-size: 20px;
 	margin-top: 6px;
 	font-weight: bold;
@@ -121,6 +122,27 @@ button {
 
 .info-margin-bottom {
 	margin-bottom: 10px;
-	
+
 }
 
+
+.logo-box img {
+	/* filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%); */
+	width: 40px;
+}
+
+.logo-box {
+	padding: 4px 10px 0px 25px;
+}
+
+.logo-box-layout {
+	display: flex;
+	width: 250px;
+}
+
+.logo-title {
+	color: #060024;
+	padding-top: 10px;
+	font-size: 26px;
+	font-weight: 700;
+}

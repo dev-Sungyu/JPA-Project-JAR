@@ -64,27 +64,6 @@ table {
 	font-weight: bold;
 }
 
-.logo-box img {
-	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
-	width: 80px;
-}
-
-.logo-box {
-	padding: 4px 10px 0px 25px;
-}
-
-.logo-box-layout {
-	display: flex;
-	width: 250px;	
-}
-
-.logo-title {
-	color: #EAE847;
-	padding-top: 10px;
-    font-size: 26px;
-    font-weight: 700;
-}
-
 .select-name {
 	padding-top : 20px;
 	padding-left: 5px;
@@ -191,4 +170,25 @@ table {
 	margin-right: 10px;
 	width: 15px;	
 	cursor: pointer;
+}
+
+a.paging {
+    display: inline-block;
+    width: 30px;
+    text-align: center;
+    border-radius: 3px;
+    margin-right: 15px;
+    color: #7d7d7d;
+    font-size: 15px;
+}
+
+.paging-border-blue {
+	color: #0206af;
+    border: 1px solid #0206af;
+}
+
+div#paging-wrap {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
 }

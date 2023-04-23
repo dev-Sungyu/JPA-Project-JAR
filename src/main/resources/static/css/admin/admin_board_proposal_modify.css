@@ -32,33 +32,13 @@
 }
 
 .board-info-title-box {
+	background-color: #fafafa;
 	padding: 20px 27px 15px;
 }
 
 .board-info-title-box {
 	font-size: 15px;
 	font-weight: bold;
-}
-
-.logo-box img {
-	filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%);
-	width: 80px;
-}
-
-.logo-box {
-	padding: 4px 10px 0px 25px;
-}
-
-.logo-box-layout {
-	display: flex;
-	width: 250px;	
-}
-
-.logo-title {
-	color: #EAE847;
-	padding-top: 10px;
-    font-size: 26px;
-    font-weight: 700;
 }
 
 .select-name {
@@ -95,10 +75,41 @@ hr {
 	border: 0;
 }
 
-.span-bold {
-	font-weight: bold;
+input[type=text] {
+	outline: none;
+	border: none;
+	width: 100%;
+	font-size: 16px;
+	font-family: 'GmarketSansMedium';
 }
 
-.info-member span {
-	font-size: 13px;
+textarea {
+	font-family: 'GmarketSansMedium';
+	overflow: hidden;
+	width: 100%;
+	border: none;
+	outline: none;
+	height: 200px;	
+	font-size: 16px;
+	resize: none;
+}
+
+
+.info-table div {
+	margin: 15px 0px;
+}
+
+.info-table button {
+	font-family: 'GmarketSansMedium';
+	width: 100px;
+	height: 30px;
+	background-color: #4F6DF5;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	border: none; 
+}
+
+a.back-page {
+	margin-left: 30px;
 }
