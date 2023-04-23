@@ -135,7 +135,7 @@ div.margin span {
 }
 
 div.info-table>div.board_info {
-    display: inline-block;
+    /* display: inline-block; */
     margin-right: 12px;
 }
 
@@ -160,4 +160,16 @@ div.board_content {
 
 .board-info-box {
     width: 100%;
+}
+
+.board_register_date {
+	border-bottom: 1px solid black;
+	padding-bottom: 8px;
+	margin: 0 !important;
+}
+
+.modify_button_wrapper {
+	margin: 0;
+	padding-top: 16px;
+	border-top: 1px solid black;
 }
