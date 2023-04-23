@@ -51,11 +51,10 @@
 }
 
 .container-margin {
-	margin: 40px 250px 0px;
+	margin: 40px 305px 0px;
 }
 
 .board-info-box-layout {
-	width: 48%;
 	margin-top: 30px;	
 }
 
@@ -96,7 +95,7 @@ hr {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	background-image: url('../../image/admin/nomal_person_icon.png');
+	background-image: url('../../img/admin/nomal_person_icon.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
@@ -112,7 +111,7 @@ hr {
 }
 
 .member-info-box {
-	margin: 32px;
+	margin : 50px;
 }
 
 .member-info-tag-box {
@@ -124,48 +123,40 @@ hr {
 	color: #c1c1c1;
 }
 
-.info span {
-	font-size: 13px;
-	font-weight: bold;
+div.info-name {
+	margin-top: 0px;
+}
+
+.info {
+	margin-top : 10px;
 }
 
 .member-info {
-	margin: 28px;
+	margin : 20px;	
 }
 
-div.margin {
-	margin-top : 50px;	
+input {
+	font-family: 'GmarketSansMedium';
+	outline: none;
+	border: none;
+	width: 50%;
+	border-bottom: 1px solid #c1c1c1;
+	height: 20px;
+	font-size: 15px;
 }
 
-div.margin span {
-	font-size: 14px;
+button {
+	font-family: 'GmarketSansMedium';
+	width: 100px;
+	height: 30px;
+	background-color: #4F6DF5;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	border: none; 
 }
 
-.write-count-box {
-	display: flex;
-	justify-content: flex-start;
-}
-
-.count {
-	padding-left : 15px;
-}
-
-.board-info-box-layout2 {
-	height: 300px;
-}
-
-.board-info-box-flex {
-	display: flex;
-	justify-content: space-between;
-}
-
-.modify-button-box {
-	padding: 20px 27px 15px;
-	font-size: 12px;
-    font-weight: 400;
-	position: relative;
-}
-
-.gear-icon {
-	width: 10px;	
+.button-box {
+	text-align: right;
+	margin-top: 10px;
 }
