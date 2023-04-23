@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 회원 정보 목록</title>
+    <title>관리자 페이지- 회원 정보 수정</title>
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
-    <link rel="stylesheet" href="/static/css/admin/admin_member_list.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_member_modify.css">
 </head>
 
 <body>
@@ -61,14 +61,12 @@
                                         </a>
                                     </li> -->
                                     <li class="select-menu">
-                                        <a
-                                            href="">
+                                        <a href="">
                                             <span>자유 게시판</span>
                                         </a>
                                     </li>
                                     <li class="select-menu">
-                                        <a
-                                            href="">
+                                        <a href="">
                                             <span>저축 게시판</span>
                                         </a>
                                     </li>
@@ -90,14 +88,12 @@
                                 </div>
                                 <ul class="menus2 menus" style="display:none;">
                                     <li class="select-menu">
-                                        <a
-                                            href="">
+                                        <a href="">
                                             <span>공지사항 목록</span>
                                         </a>
                                     </li>
                                     <li class="select-menu">
-                                        <a
-                                            href="">
+                                        <a href="">
                                             <span>공지사항 작성</span>
                                         </a>
                                     </li>
@@ -119,8 +115,7 @@
                                     <div>
                                         <img src="/static/image/admin/banner_icon.png" class="icon">
                                     </div>
-                                    <a
-                                        href="">
+                                    <a href="">
                                         <span>배너 관리</span>
                                     </a>
                                 </div>
@@ -132,106 +127,76 @@
             <!-- 사이드 바 끝-->
 
             <div class="container">
-                <div class="container-margin">
-                    <!-- 헤더 -->
-                    <div class="delete-box-layout">
-                        <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
-                        </div>
-                    </div>
-
-                    <!-- 내용 섹션 -->
-                    <section class="board-info-box-layout">
-
-                        <div class="board-info-box">
-                            <div class="board-info-title-box">
-                                <span>회원정보 목록</span>
-                            </div>
-
-                            <div class="info-table">
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th class="checkbox-line">
-                                                <input type="checkbox" id="allSelect">
-                                            </th>
-                                            <th>No</th>
-                                            <th>이메일</th>
-                                            <th>닉네임</th>
-                                            <th>핸드폰 번호</th>
-                                            <th>가입 날짜</th>
-                                        </tr>
-                                    </thead>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td>
-                                            1
-                                        </td>
-                                        <td>
-                                            <a href="">
-                                                ljs1234@gmail.com
-                                            </a> <!-- 디테일 컨트롤러 제작하고 연결  -->
-                                        </td>
-                                        <td>ljs1234</td>
-                                        <td>01012341234</td>
-                                        <td>2023.01.01</td>
-                                    </tr>
-                                </table>
-                            </div>
-                        </div>
-                    </section><!-- 폼태그 -->
-
-                    <!-- 페이지 버튼 -->
-                    <div class="page-button-box-layout">
-                        <div class="page-button-box">
-                            <!-- 페이지 번호 -->
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="/static/image/admin/left_icon.png" class="left-button">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="/static/image/admin/right_icon.png" class="right-button">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 페이지 버튼 끝 -->
-                </div>
-            </div>
+				<div class="container-margin">
+					<!-- 헤더 -->
+					<div style="margin: 0 auto;width: 70%;">
+						<div class="prev-button-layout">
+							<div>
+								<a>
+									<img src="/static/image/admin/prev_icon.png" class="prev-icon">
+									<span class="prev-title">회원정보로 돌아가기</span>
+								</a>
+							</div>
+						</div>
+						<!-- 내용 섹션 -->
+						<div class="info-flex">
+							<section class="board-info-box-layout" style="width: 100%;">
+								<div class="board-info-box">
+									<div class="board-info-title-box">
+										<span>회원 정보</span>
+									</div>
+								</div>
+								<hr>
+								<div class="board-info-box">
+									<div class="member-img-box">
+									<div class="member-img"></div>
+										<div class="member-nickname-box">
+											<span>닉네임</span>
+										</div>
+									</div>
+									<div class="member-info-box">
+										<div class="member-info-tag-box">
+											<span class="info-tag">이름</span>
+											<!-- 이름 -->
+											<div class="info info-name">
+												<span>이**</span>
+											</div>
+										</div>	
+										<form action="">
+											<div class="member-info-tag-box">
+												<span class="info-tag">이메일</span>
+												<!-- 이메일 -->
+												<div class="info">
+													<input type="text" class="member-email" name="memberEmail" value="" placeholder="ljs1234@gmail.com">
+												</div>
+											</div>
+											<div class="member-info-tag-box">
+												<span class="info-tag">생년월일</span>
+												<div class="info">
+													<input type="text" class="member-birth" name="memberBirth" value="" placeholder="2000.01.01">
+												</div>
+											</div>
+											<div class="member-info-tag-box">
+												<span class="info-tag">핸드폰 번호</span>
+												<!-- 핸드폰 번호 -->
+												<div class="info">
+													<input type="text" class="member-phone" name="memberPhoneNumber" value="" placeholder="01012341234">
+												</div>
+											</div>
+											<div class="button-box">
+												<button id ="modify-button">변경</button>
+											</div>
+										</form>
+									</div>	
+								</div>
+							</section>
+						</div>
+					</div>
+				</div>
+			</div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/static/js/admin/checkbox.js"></script>
-<script src="/static/js/admin/page.js"></script>
-
+<script src="/static/js/admin/modify-member.js"></script>
 </html>

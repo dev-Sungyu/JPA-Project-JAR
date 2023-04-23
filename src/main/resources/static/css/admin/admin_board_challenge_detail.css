@@ -55,7 +55,6 @@
 }
 
 .board-info-box-layout {
-	width: 48%;
 	margin-top: 30px;	
 }
 
@@ -88,37 +87,6 @@ hr {
 	margin-bottom: 10px;	
 }
 
-.member-img-box {
-	margin-top: 20px;
-}
-
-.member-img {
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	background-image: url('../../image/admin/nomal_person_icon.png');
-	background-repeat: no-repeat;
-	background-size: contain;
-	margin: 0 auto;
-}
-
-.member-nickname-box {
-	margin-top : 10px;
-	text-align: center;	
-}
-
-.member-nickname-box span {
-	font-size: 14px;
-}
-
-.member-info-box {
-	margin: 32px;
-}
-
-.member-info-tag-box {
-	margin-top : 10px;
-}
-
 .info-tag {
 	font-size: 13px;
 	color: #c1c1c1;
@@ -127,10 +95,6 @@ hr {
 .info span {
 	font-size: 13px;
 	font-weight: bold;
-}
-
-.member-info {
-	margin: 28px;
 }
 
 div.margin {
@@ -168,4 +132,32 @@ div.margin span {
 
 .gear-icon {
 	width: 10px;	
+}
+
+div.info-table>div.board_info {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.info-table div {
+    margin: 15px 0;
+}
+
+.info-table button {
+    font-family: 'GmarketSansMedium';
+    width: 100px;
+    height: 30px;
+    background-color: #4F6DF5;
+    font-size: 15px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+}
+
+div.board_content {
+    min-height: 320px;
+}
+
+.board-info-box {
+    width: 100%;
 }
