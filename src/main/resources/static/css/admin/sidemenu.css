@@ -125,24 +125,30 @@ button {
 
 }
 
+.logo-box-layout {
+	/* display: flex; */
+	width: 250px;
+	position: relative;
+	padding: 4px 10px 0px 25px;
+}
+
+.logo-box {
+	/* padding: 4px 10px 0px 25px; */
+	display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 80px;
+}
 
 .logo-box img {
 	/* filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%); */
 	width: 40px;
 }
 
-.logo-box {
-	padding: 4px 10px 0px 25px;
-}
-
-.logo-box-layout {
-	display: flex;
-	width: 250px;
-}
-
 .logo-title {
-	color: #060024;
+	display: none;
+	/* color: #060024;
 	padding-top: 10px;
 	font-size: 26px;
-	font-weight: 700;
+	font-weight: 700; */
 }
