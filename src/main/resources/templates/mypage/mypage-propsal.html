@@ -52,26 +52,31 @@
                                 </div>
                             </div>
                         </section>
-                        <section class="pasing-wrapper">
-                            <div>
-                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
-                                    <span class="pasing-button-span">
-                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef"></path></svg>
-                                    </span>
-                                </button>
-                                <button icon-position="0" class="pasing-button-1 pasing-select pasing-button-3" color="orange" fill="false">
-                                    <span class="pasing-button-span">1</span>
-                                </button>
-                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
-                                    <span class="pasing-button-span">2</span>
-                                </button>
-                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
-                                    <span class="pasing-button-span">
-                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
-                                    </span>
-                                </button>
+                        <div class="paging-box">
+                            <div class="paging-layout">
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="prev">
+                                </a>
+                                <div class="paging-border-none paging-active">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">1</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">2</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">3</span>
+                                    </a>
+                                </div>
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="next">
+                                </a>
                             </div>
-                        </section>
+                        </div>
                     </div>    
                 </div>
             </div>
@@ -89,5 +94,15 @@
         $("#mypage-header").load("user-header.html");
         $("#side-menu").load("side-menu.html");
     });
+</script>
+<script>
+    const $page = $(".paging-border-none");
+
+    $page.each((i, e) => {
+        $(e).click(() => {
+            $page.removeClass("paging-active");
+            $(e).addClass("paging-active");
+        });
+    });    
 </script>
 </html>
