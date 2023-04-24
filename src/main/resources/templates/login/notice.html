@@ -177,7 +177,7 @@
                                                 </button>
                                                 <div style="width: 16px; display: flex;"></div>
                                                 <div class="row">
-                                                    <button class="first_button">
+                                                    <button class="second_button first_button">
                                                         <span class="button_number">1</span>
                                                     </button>
                                                     <div style="width: 2px;"></div>
@@ -219,4 +219,12 @@
         </main>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $('.button_number').on('click', function(e) {
+        e.preventDefault();
+        $('.first_button').removeClass('first_button');
+        $(this).addClass('first_button');
+    });
+</script>
 </html>
