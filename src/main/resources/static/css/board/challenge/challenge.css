@@ -659,7 +659,6 @@
 }
 
 .reply-text-container{
-    margin-top: 16px;
     margin-bottom: 8px;
 }
 
@@ -1145,4 +1144,48 @@ svg:not(:root) {
     right: 0px;
     text-align: right;
     transform: translate(104px, 0px);
+}
+
+
+.trophy-box img {
+    width: 50px
+}
+
+.reply-user-box-image {
+    margin-top: 6px;
+}
+
+.btn {
+    font-size: 15px;
+}
+
+.reply-cancel-button {
+    margin-right: 5px;
+    display: none;
+}
+
+.modify-button {
+    margin-right: 5px;
+}
+
+.modify-content-box {
+    border : 1px solid #e1e1e1;
+    border-radius: 25px;
+    margin: 0px 24px;
+    display: none;
+}
+
+.modify-content-layout {
+    display: flex;
+    justify-content: space-between;
+    padding :10px;
+}
+
+.reply-modify-content {
+    padding: 0 10px;
+    width: 100%;
+}
+
+.confirm-button {
+    width: 35px;
 }

@@ -4,496 +4,475 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>다이어리 상세보기</title>
-    <link rel="icon" href="/static/image/logo/logo.png">
+    <title>챌린지 상세보기</title>
     <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/board/challenge/challenge.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
     <style>
-        .diary-content-wrap {
-            background-color: rgb(255, 255, 255);
+        .trophy-box img {
+            width: 50px
         }
 
-        .diary-content-container {
-            position: static;
-            max-width: none;
-            margin-left: 24px;
-            margin-right: 24px;
-        }
-    
-        .diary-content-wrap-layout {
-            flex-wrap: wrap;
-            place-content: stretch flex-start;
-            margin-right: -12px;
-            margin-left: -12px;
-            display: flex !important;
-        }
-
-        .diary-content-box {
-            position: relative;
-            min-height: 1px;
-            padding-right: 12px;
-            padding-left: 12px;
-        }
-
-        .reply-box {
-            position: relative;
-            min-height: 1px;
-            padding-right: 12px;
-            padding-left: 12px;
-            box-sizing: border-box;
-        }
-
-        .diary-image-box {
-            margin-top: 20px;
-        }
-
-        .diary-image-layout {
-            position: relative;
-            overflow: hidden;
-        }
-
-        picture {
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            width: 100%;
-            height: 100%;
-        }
-
-        picture img {
-            width: 100%;
-            height: 100%;
-            object-fit: cotain;
-        }
-
-        .diary-sub-image-box {
-            width: 100%;
-            margin : 20px 0;
-        }
-
-        .diary-sub-image-layout {
-            max-width: 776px;
-            display: flex;
-        }
-
-        .diary-sub-image {
-            width: 25%;
-            height: 25%;
-            padding: 5px;
-        }
-
-        .diary-sub-image:first-child {
-            padding-left: 0;
-        }
-  
-        .diary-sub-image:last-child {
-            padding-right: 0;
-        }
-
-        .diary-sub-image img {
-            width: 100%;
-            height: 100%;
-        }
-
-        .diary-detail-box {
-            margin-bottom: 20px;
-        }
-
-        .diary-detail-layout {
-            letter-spacing : 1px;
-            word-spacing: normal;
-            line-height: normal;
-        }
-
-        .diary-detail-layout p {
-            font-size: 30px;
-            font-weight: 500;
-        }
-
-        .reply-layout {
-            position: sticky;
-            top: 110px;
-            padding: 28px 32px 32px;
-            border-radius: 3px;
-            box-shadow: rgba(41, 42, 43, 0.16) 0px 2px 6px -2px;
-            border: 1px solid rgb(255, 255, 255);
-            background-color: rgb(255, 255, 255);
-            overflow: hidden;
-            z-index: 9;
-        }
-
-        .reply-box {
-            margin-top: 38px;
-        }
-
-        .reply-title-box {
-            display: flex;
-            justify-content: space-between;
-            margin: 26px 0px 6px;
-            word-break: keep-all;
-        }
-
-        .reply-title-box h3 {
-            font-size: 24px;
-            font-weight: bold;
-            color: rgb(26, 26, 26);
-            line-height: 34px;
-            letter-spacing: -0.4px;
-            margin: 0px;
-        }
-
-        .reply-content-box {
-            margin-top: 10px;
-        }
-
-        .reply-ul {
-            width: 100%;
-        }
-
-        .profile-box {
-            display: flex;
-        }
-        
-        .profile-image-box {
-            margin-right: 5px;;
-        }
-
-        .profile-image-box img {
-            padding-top: 1px;
-            width: 30px;
-        }
-
-        .profile-text {
-            font-size: 13px;
-            font-weight: 500;
+        .reply-user-box-image {
+            margin-top: 6px;
         }
 
         .btn {
-            font-size: 13px;
+            font-size: 15px;
         }
 
-        .reply-detail-box {
-            margin-top: 5px;
+        .reply-cancel-button {
+            margin-right: 5px;
+            display: none;
         }
 
-        .reply-detail-layout {
-            margin-left: 34px;
+        .modify-button {
+            margin-right: 5px;
         }
 
-        .reply {
-            font-size: 14px;
+        .modify-content-box {
+            border : 1px solid #e1e1e1;
+            border-radius: 25px;
+            margin: 0px 24px;
+            display: none;
         }
 
-        .trophy-box {
-            position: relative;
+        .modify-content-layout {
+            display: flex;
+            justify-content: space-between;
+            padding :10px;
         }
 
-        .trophy {
-            top: -10px;
-            position : absolute;
-            width: 50px;
+        .reply-modify-content {
+            padding: 0 10px;
+            width: 100%;
         }
 
-        .reply-li {
-            margin-top: 20px;
-        }
-
-        .reply-li:last-child {
-            margin-bottom: 10px;
-        }
-
-        @media (min-width: 1240px) {
-            .diary-content-container {
-                max-width: 1176px;
-                width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .diary-content-container {
-                padding-top: 32px;
-            }
-
-            .diary-content-box {
-                width : 66.66667%;
-            }
-
-            .reply-box {
-                width: 33.3333%;
-            }
-
-            .diary-image-layout {
-                padding-top: 57.1429%;
-                border-radius: 3px;
-            }
-
-            .reply-title-box {
-                margin-top: 0px;
-                width: auto;
-            }
+        .confirm-button {
+            width: 35px;
         }
 
     </style>
 </head>
 <body>
-    <div>
+    <div class="__next">
+        <div id="wrapper">
+            <div class="wrapper">
         <!-- main/header.html -->
         <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
-        <div style="opacity: 1; transform: none;">
-            <div class="diary-content-wrap">
-                <div class="diary-content-container">
-                    <div class="diary-content-wrap-layout">
-                        <div class="diary-content-box">
-                            <div class="diary-content-title">
-                                <h2>오늘 하루 넘 즐거워</h2>
-                            </div>
-                            <div class="diary-image-box">
-                                <div class="diary-image-layout">
-                                    <picture>
-                                        <img src="https://cdn.class101.net/images/f0e3be89-4881-41a1-970d-4d41f55d5146/2048xauto.webp">
-                                    </picture>
-                                </div>
-                                <div class="diary-sub-image-box">
-                                    <div class="diary-sub-image-layout">
-                                        <div class="diary-sub-image">
-                                            <img src="https://cdn.class101.net/images/f0e3be89-4881-41a1-970d-4d41f55d5146/2048xauto.webp">
-                                        </div>
-                                        <div class="diary-sub-image">
-                                            <img src="https://cdn.class101.net/images/f0e3be89-4881-41a1-970d-4d41f55d5146/2048xauto.webp">
-                                        </div>
-                                        <div class="diary-sub-image">
-                                            <img src="https://cdn.class101.net/images/f0e3be89-4881-41a1-970d-4d41f55d5146/2048xauto.webp">
-                                        </div>
-                                        <div class="diary-sub-image">
-                                            <img src="https://cdn.class101.net/images/f0e3be89-4881-41a1-970d-4d41f55d5146/2048xauto.webp">
+
+                <div class="wrapper-container">
+                    <div>
+                        <div>
+                            <div class="image-container">
+                                <div class="image-container-layout">
+                                    <div class="image-container-layout-box">
+                                        <div class="image-container-wrapper">
+                                            <div class="image-container-wrapper-box" gutter="6">
+                                                <div class="image-main-container" width="58.8" height="519px">
+                                                    <div class="image-main-container-box">
+                                                        <picture class="image-container-picture">
+                                                            <img srcset="https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/375xauto.png 375w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/750xauto.png 750w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/960xauto.png 960w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/1440xauto.png 1440w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/2048xauto.png 2048w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/2880xauto.png 2880w,https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/autoxauto.png 5120w" sizes="(min-width: 1024px) 700px, 100vw" src="https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112">
+                                                        </picture>
+                                                    </div>
+                                                </div>
+                                                <div class="image-sub-container" direction="column" gutter="6">
+                                                    <div class="image-sub-container-wrap-1" height="50%">
+                                                        <div class="image-sub-container-wrap-1-box">
+                                                            <picture class="image-container-picture">
+                                                                <img srcset="https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/375xauto.png 375w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/750xauto.png 750w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/960xauto.png 960w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/1440xauto.png 1440w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/2048xauto.png 2048w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/2880xauto.png 2880w,https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/autoxauto.png 5120w" sizes="(min-width: 1024px) 700px, 100vw" src="https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51">
+                                                            </picture>
+                                                        </div>
+                                                    </div>
+                                                    <div class="image-sub-container-wrap-2" gutter="6">
+                                                        <div class="image-sub-container-wrap-2-box" width="50%">
+                                                            <div class="image-sub-container-wrap-2-box-layout">
+                                                                <div class="image-sub-box">
+                                                                    <picture class="image-container-picture">
+                                                                        <img srcset="https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/375xauto.png 375w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/750xauto.png 750w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/960xauto.png 960w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/1440xauto.png 1440w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/2048xauto.png 2048w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/2880xauto.png 2880w,https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b/autoxauto.png 5120w" sizes="(min-width: 1024px) 700px, 100vw" src="https://cdn.class101.net/images/f0174cd5-20aa-4f44-98e0-11c63e77457b">
+                                                                    </picture>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="image-sub-container-wrap-2-box" width="50%">
+                                                            <div class="image-sub-container-wrap-2-box-layout">
+                                                                <picture class="image-container-picture">
+                                                                    <img srcset="https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/375xauto.png 375w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/750xauto.png 750w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/960xauto.png 960w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/1440xauto.png 1440w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/2048xauto.png 2048w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/2880xauto.png 2880w,https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1/autoxauto.png 5120w" sizes="(min-width: 1024px) 700px, 100vw" src="https://cdn.class101.net/images/427cc92b-0752-4194-9e86-b1fc36082db1">
+                                                                </picture>
+                                                            </div>
+                                                            <div class="sub-image-container-plus" font-weight="700" color="#FFF">+ 1개 <br> 이미지</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="diary-detail-box">
-                                <div class="diary-detail-layout">
-                                    <p>안녕하세요</p>
-                                    <p>제이름은 임종욱입니다.</p>
-                                    <p>쓰레기를 줍는 챌린지를 햇는데</p>
-                                    <p>저의 마음의 쓰레기도 줍는 느낌이엿어서</p>
-                                    <p>너무 너무 좋앗습니다.</p>
-                                    <p>오늘 하루 너무 즐거운 하루네요.</p>
-                                </div>
-                            </div>
                         </div>
-                        <div class="reply-box">
-                            <div class="reply-layout">
-                                <div class="reply-title-box">
-                                    <h3>커뮤니티</h3>
-                                </div>
-                                <div class="reply-content-box">
-                                    <!-- <div>
-                                        댓글이 없습니다.
-                                    </div> -->
-                                    <ul class="reply-ul">
-                                        <!-- 여기서 부터 -->
-                                        <li class="reply-li">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="profile-box">
-                                                    <div class="profile-image-box">
-                                                        <div>
-                                                            <img src="https://class101.net/images/default-user.png">
+                        <div class="main-container">
+                            <div class="main-container-wrapper">
+                                <div class="main-container-wrapper-layout">
+                                    <section class="main-information-box">
+                                        <h2 class="">챌린지 정보</h2>
+                                        <dl class="main-information-box-wrap">
+                                            <dt class="box-information-title">챌린지 분류</dt>
+                                            <dd class="box-information-content">개인 챌린지</dd>
+                                            <dt class="box-information-title">챌린지 기간</dt>
+                                            <dd class="box-information-content">2023-04-23 ~ 2023-04-30</dd>
+                                        </dl>
+                                    </section>
+                                    <div class="container-wrapper">
+                                        <div>
+                                            <div class="container-wrapper-main">
+                                                <div class="container-wrapper-main-box">
+                                                    <div class="user-container-box user">
+                                                        <div class="user-container-box-1">
+                                                            <h3 class="user-box-1 user-1-box box-1-user" md="Headline3" font-weight="nomal">
+                                                                <!-- 챌린지 이름 -->
+                                                                <strong>아침에 일어나서 이불개기 챌린지</strong>
+                                                            </h3>
                                                         </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="profile-nickName">
-                                                            <div>
-                                                                <span class="profile-text">임종욱</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="register-date">
-                                                            <div>
-                                                                <span class="profile-text">2022.06.15</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="trophy-box">
-                                                        <img src="/static/image/mypage/trophy_1.png" class="trophy">
                                                     </div>
                                                 </div>
-                                                <div>
-                                                    <button type="button" class="btn">수정</button>
-                                                    <button type="button" class="btn">삭제</button>
-                                                </div>
-                                            </div>
-                                            <div class="reply-detail-box">
-                                                <div class="reply-detail-layout">
-                                                    <p class="reply">저도 오늘 그 챌린지 했는데 저도 똑같앗어요.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                        <!-- 여기서 부터 -->
-                                        <li class="reply-li">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="profile-box">
-                                                    <div class="profile-image-box">
-                                                        <div>
-                                                            <img src="https://class101.net/images/default-user.png">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="profile-nickName">
-                                                            <div>
-                                                                <span class="profile-text">임종욱</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="register-date">
-                                                            <div>
-                                                                <span class="profile-text">2022.06.15</span>
+                                                <div class="text-container">
+                                                    <div class="text-container-box">
+                                                        <div class="text-container-box-layout" size="384">
+                                                            <div class="text-container-box-layout-box">
+                                                                <div class="text-container-box-layout-box-text">
+                                                                    <p class="diary-content">안녕하세요. 콕스Illust 유튜브 채널을 운영하고 있는 일러스트레이터 콕스입니다. 이 강의는 현재의 내가 그림을 본격적으로 시작하기 전 과거의 나에게 단 하나의 USB에 정보를 담아 전달할 수 있다면. 이라는 생각으로 제작했습니다. 7년간 게임회사에서 일러스트레이터, 캐릭터 원화가의 경력과 약 10년간 미술학원, CG 학원, 대학교에서의 강의 경험을 바탕으로 그림 초보자가 독학을 해서 수익이 나기 위한 방법에 대해서 핵심만 담아 영상을 만들었습니다.</p>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="trophy-box">
-                                                        <img src="/static/image/mypage/trophy_3.png" class="trophy">
-                                                    </div>
                                                 </div>
-                                                <div>
-                                                    <button type="button" class="btn">수정</button>
-                                                    <button type="button" class="btn">삭제</button>
-                                                </div>
+                                                <div class="main-box-line"></div>
                                             </div>
-                                            <div class="reply-detail-box">
-                                                <div class="reply-detail-layout">
-                                                    <p class="reply">저도 오늘 그 챌린지 했는데 저도 똑같앗어요.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                        <!-- 여기서 부터 -->
-                                        <li class="reply-li">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="profile-box">
-                                                    <div class="profile-image-box">
-                                                        <div>
-                                                            <img src="https://class101.net/images/default-user.png">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="profile-nickName">
-                                                            <div>
-                                                                <span class="profile-text">임종욱</span>
+                                        </div>
+                                    </div>
+                                    <!-- 댓글 -->
+                                    <div>
+                                        <div class="reply-container">
+                                            <div class="reply-container-wrap" data-test-id="fold-community-original">
+                                                <div class="reply-container-wrap-box">
+                                                    <br>
+                                                    <div class="reply-container-box">
+                                                        <div class="reply-container-box-layout">
+                                                            <div class="reply-box-container">
+                                                                <!-- 여기부터 -->
+                                                                <div class="reply-text-box">
+                                                                    <div class="reply-text-box-user">
+                                                                        <section class="reply-user-box">
+                                                                            <div class="reply-user-box-image" size="40">
+                                                                                <span class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
+                                                                                    <picture class="reply-user-picture">
+                                                                                        <img src="/static/image/board/default-user.png" sizes="100vw" alt="">
+                                                                                    </picture>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="reply-user-box-info">
+                                                                                <strong class="reply-user-box-info-name">강한친구곽두철</strong>
+                                                                                <div class="reply-user-box-info-date">2023. 04. 21</div>
+                                                                            </div>
+                                                                            <div class="trophy-box">
+                                                                                <img src="/static/image/mypage/trophy_1.png">
+                                                                            </div>
+                                                                        </section>
+                                                                        <div class="modify-button-box">
+                                                                            <button type="button" class="btn reply-cancel-button">취소</button>
+                                                                            <button type="button" class="btn modify-button">수정</button>
+                                                                            <button type="button" class="btn delete-button">삭제</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="reply-text-box-text">
+                                                                        <div class="reply-text-container" top="16" right="0" bottom="8" left="0">
+                                                                            <div class="reply-text-container-box-1 reply-text-container-box" md="Body2">
+                                                                                <div class="reply-text-container-box-layout">
+                                                                                    <div class="reply-text-container-box-layout-text" size="200">
+                                                                                        <div class="real-reply-text-box">
+                                                                                            <p class="reply-content-text">안녕하세요 페이스북 홍보는 아직도 추천하시나요? 자굼 페이스북 이용자가 많이 줄었다고 들어서 궁급합니다 ㅎㅎ</p>
+                                                                                        </div>
+                                                                                        <div class="modify-content-box">
+                                                                                            <div class="modify-content-layout">
+                                                                                                <input type="text" placeholder="댓글을 입력해주세요." class="reply-modify-content">
+                                                                                                <button type="button" class="confirm-button">완료</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--  -->
+                                                                <!-- 여기부터 -->
+                                                                <div class="reply-text-box">
+                                                                    <div class="reply-text-box-user">
+                                                                        <section class="reply-user-box">
+                                                                            <div class="reply-user-box-image" size="40">
+                                                                                <span class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
+                                                                                    <picture class="reply-user-picture">
+                                                                                        <img src="/static/image/board/default-user.png" sizes="100vw" alt="">
+                                                                                    </picture>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="reply-user-box-info">
+                                                                                <strong class="reply-user-box-info-name">강한친구곽두철</strong>
+                                                                                <div class="reply-user-box-info-date">2023. 04. 21</div>
+                                                                            </div>
+                                                                            <div class="trophy-box">
+                                                                                <img src="/static/image/mypage/trophy_2.png">
+                                                                            </div>
+                                                                        </section>
+                                                                        <div class="modify-button-box">
+                                                                            <button type="button" class="btn reply-cancel-button">취소</button>
+                                                                            <button type="button" class="btn modify-button">수정</button>
+                                                                            <button type="button" class="btn delete-button">삭제</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="reply-text-box-text">
+                                                                        <div class="reply-text-container" top="16" right="0" bottom="8" left="0">
+                                                                            <div class="reply-text-container-box-1 reply-text-container-box" md="Body2">
+                                                                                <div class="reply-text-container-box-layout">
+                                                                                    <div class="reply-text-container-box-layout-text" size="200">
+                                                                                        <div class="real-reply-text-box">
+                                                                                            <p class="reply-content-text">안녕하세요</p>
+                                                                                        </div>
+                                                                                        <div class="modify-content-box">
+                                                                                            <div class="modify-content-layout">
+                                                                                                <input type="text" placeholder="댓글을 입력해주세요." class="reply-modify-content">
+                                                                                                <button type="button" class="confirm-button">완료</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--  -->
+                                                                <!-- 여기부터 -->
+                                                                <div class="reply-text-box">
+                                                                    <div class="reply-text-box-user">
+                                                                        <section class="reply-user-box">
+                                                                            <div class="reply-user-box-image" size="40">
+                                                                                <span class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
+                                                                                    <picture class="reply-user-picture">
+                                                                                        <img src="/static/image/board/default-user.png" sizes="100vw" alt="">
+                                                                                    </picture>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="reply-user-box-info">
+                                                                                <strong class="reply-user-box-info-name">강한친구곽두철</strong>
+                                                                                <div class="reply-user-box-info-date">2023. 04. 21</div>
+                                                                            </div>
+                                                                            <div class="trophy-box">
+                                                                                <img src="/static/image/mypage/trophy_3.png">
+                                                                            </div>
+                                                                        </section>
+                                                                        <div class="modify-button-box">
+                                                                            <button type="button" class="btn reply-cancel-button">취소</button>
+                                                                            <button type="button" class="btn modify-button">수정</button>
+                                                                            <button type="button" class="btn delete-button">삭제</button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="reply-text-box-text">
+                                                                        <div class="reply-text-container" top="16" right="0" bottom="8" left="0">
+                                                                            <div class="reply-text-container-box-1 reply-text-container-box" md="Body2">
+                                                                                <div class="reply-text-container-box-layout">
+                                                                                    <div class="reply-text-container-box-layout-text" size="200">
+                                                                                        <div class="real-reply-text-box">
+                                                                                            <p class="reply-content-text">안녕하세요 페이스북 홍보는 아직도 추천하시나요? 자굼 페이스북 이용자가 많이 줄었다고 들어서 궁급합니다 ㅎㅎ</p>
+                                                                                        </div>
+                                                                                        <div class="modify-content-box">
+                                                                                            <div class="modify-content-layout">
+                                                                                                <input type="text" placeholder="댓글을 입력해주세요." class="reply-modify-content">
+                                                                                                <button type="button" class="confirm-button">완료</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--  -->
                                                             </div>
                                                         </div>
-                                                        <div class="register-date">
+                                                        <div class="reply-container-box-layout">
                                                             <div>
-                                                                <span class="profile-text">2022.06.15</span>
+                                                                <form action="" class="reply-form">
+                                                                    <div class="reply-form-container">
+                                                                        <div class="reply-form-container-box">
+                                                                            <textarea name="content" id="" cols="30" rows="1" placeholder="댓글을 입력해주세요." class="reply-content"></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <button class="reply-from-button-1 reply-from-button-2" type="submit" kind="textGray">
+                                                                        <div class="reply-from-button-box">
+                                                                            <span class="reply-from-button-box-span">
+                                                                                <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z" fill="#e5e5e5"></path></svg>
+                                                                            </span>
+                                                                        </div>
+                                                                    </button>
+                                                                </form>
                                                             </div>
                                                         </div>
+                                                        <button class="the-bogi" icon-position="0" color="default" fill="true">
+                                                            <span class="the-bogi-span">더 보기</span>
+                                                        </button>
                                                     </div>
-                                                    <div class="trophy-box">
-                                                        <img src="/static/image/mypage/trophy_1.png" class="trophy">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button type="button" class="btn">수정</button>
-                                                    <button type="button" class="btn">삭제</button>
                                                 </div>
                                             </div>
-                                            <div class="reply-detail-box">
-                                                <div class="reply-detail-layout">
-                                                    <p class="reply">저도 오늘 그 챌린지 했는데 저도 똑같앗어요.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                        <!-- 여기서 부터 -->
-                                        <li class="reply-li">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="profile-box">
-                                                    <div class="profile-image-box">
-                                                        <div>
-                                                            <img src="https://class101.net/images/default-user.png">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="profile-nickName">
-                                                            <div>
-                                                                <span class="profile-text">임종욱</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="register-date">
-                                                            <div>
-                                                                <span class="profile-text">2022.06.15</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="trophy-box">
-                                                        <img src="/static/image/mypage/trophy_1.png" class="trophy">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button type="button" class="btn">수정</button>
-                                                    <button type="button" class="btn">삭제</button>
-                                                </div>
-                                            </div>
-                                            <div class="reply-detail-box">
-                                                <div class="reply-detail-layout">
-                                                    <p class="reply">저도 오늘 그 챌린지 했는데 저도 똑같앗어요.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                        <!-- 여기서 부터 -->
-                                        <li class="reply-li">
-                                            <div style="display: flex; justify-content: space-between;">
-                                                <div class="profile-box">
-                                                    <div class="profile-image-box">
-                                                        <div>
-                                                            <img src="https://class101.net/images/default-user.png">
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="profile-nickName">
-                                                            <div>
-                                                                <span class="profile-text">임종욱</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="register-date">
-                                                            <div>
-                                                                <span class="profile-text">2022.06.15</span>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="trophy-box">
-                                                        <img src="/static/image/mypage/trophy_1_5.png" class="trophy">
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <button type="button" class="btn">수정</button>
-                                                    <button type="button" class="btn">삭제</button>
-                                                </div>
-                                            </div>
-                                            <div class="reply-detail-box">
-                                                <div class="reply-detail-layout">
-                                                    <p class="reply">저도 오늘 그 챌린지 했는데 저도 똑같앗어요.</p>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                    </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <!-- footer -->
+                <div id="footer"></div>
             </div>
         </div>
+    </div>
 
-        <div id="footer"></div>
-    </div>    
+    <!-- 이미지 확대 -->
+    <div class="image-expansion" zindex="3000" overlaycolor="rgba(0, 0, 0, 0.72)">
+        <div class="image-expansion-container">
+            <button icon-position="0" color="white" class="image-expansion-container-cancel cancel-button cancel-button-layout">
+                <div position="0" buttonsize="lg" class="cancel-button-box">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z" fill="#FFF"></path></svg>
+                </div>
+                <span class="cancel-button-span">
+                    <span>닫기</span>
+                </span>
+            </button>
+            <div class="image-expansion-container-wrapper">
+                <div class="image-expansion-count">
+                    <div class="count-first">01</div>
+                    <div class="count-second"></div>
+                    10
+                </div>
+                <div class="image-expansion-wrapper">
+                    <div class="image-expansion-wrapper-main">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide swiper-slide-active" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                    <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
+                                        <img sizes=" 100vw" srcset="https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/375xauto 375w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/750xauto 750w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/960xauto 960w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/1440xauto 1440w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2048xauto 2048w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2880xauto 2880w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/autoxauto 5120w" src="https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff">
+                                    </picture>
+                                </span>
+                            </div>
+                            <div class="swiper-slide swiper-slide-next" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                    <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
+                                        <img sizes=" 100vw" srcset="https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/375xauto 375w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/750xauto 750w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/960xauto 960w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/1440xauto 1440w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2048xauto 2048w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/2880xauto 2880w,https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff/autoxauto 5120w" src="https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff">
+                                    </picture>
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                            <div class="swiper-slide swiper-slide-prev" style="width: 896px;">
+                                <span class="swiper-slide-span" ratio="0.75">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
+                            <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                            <span class="swiper-pagination-bullet"></span>
+                        </div>
+                    </div>
+                    <button class="image-expansion-wrapper-prev" direction="left">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#FFF"></path>
+                        </svg>
+                    </button>
+                    <button class="image-expansion-wrapper-next" direction="right">
+                        <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#FFF"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-    $(document).ready(()=>{
+    $(document).ready(() => {
         $("#header").load("../../main/header.html");
         $("#footer").load("../../main/footer.html");
     });
+</script>
+<script>
+    const $replyModifyButton = $(".modify-button");
+    const $replyModifyInputBox = $(".modify-content-box");
+    const $replyModifyInput = $(".reply-modify-content");
+    const $replyCancelButton = $(".reply-cancel-button");
+    const $replyContentBox = $(".real-reply-text-box");
+
+    const $reply = $(".reply-content-text");
+
+    $replyModifyButton.each((i, e) => {
+        
+        $(e).click(() => {
+            let reply = $($reply[i]).text();
+
+            $($replyModifyInput[i]).val(reply);
+            $($replyCancelButton[i]).show();
+            $(e).hide();
+
+            $($replyContentBox[i]).hide();
+            $($replyModifyInputBox[i]).show();
+        });
+    });
+
+    $replyCancelButton.each((i, e) => {
+        
+        $(e).click(() => {
+            let reply = $($reply[i]).text();
+
+
+            $($replyModifyButton[i]).show();
+            $($replyCancelButton[i]).hide();
+            $($replyContentBox[i]).show();
+            $($replyModifyInputBox[i]).hide();
+        });
+    });
+
 </script>
 </html>
