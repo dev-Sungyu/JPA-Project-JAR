@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다이어리 수정</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/board/diary/diary.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+    <style>
+
+        button {
+            cursor: pointer;
+        }
+
+        label {
+            cursor: pointer;
+        }
+
+
+        .modify-wrap {
+            margin-left: 24px;
+            margin-right: 24px;
+            margin-bottom: 72px;
+        }
+
+
+        .modify-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modify-box {
+            width: 600px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid #e1e1e1;
+            box-shadow: 2px 3px 5px 0px rgba(0, 0, 0, 0.2);
+            ;
+        }
+
+        .modify-layout {
+            padding: 20px;
+        }
+
+        .date-box {
+            margin-top: 20px;
+        }
+
+        @media (min-width: 1240px) {
+            .modify-wrap {
+                max-width: 1176px;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    </style>
+
+</head>
+</head>
+
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+        <div class="modify-wrap">
+            <div class="modify-container">
+                <div>
+                    <div class="title-box">
+                        <h2>다이어리 수정</h2>
+                    </div>
+                    <div style="display:flex; justify-content: space-between;">
+                        <div class="date-box">
+                            <h3 class="date">2022-04-19</h3>
+                        </div>
+                        <div class="flex-box">
+                            <div>
+                                <label>
+                                    <input type="file" style="display:none;" class="file" multiple>
+                                    <div class="file-image-box">
+                                        <img src="/static/image/mypage/instagram_icon.png">
+                                        <p>사진 첨부</p>
+                                    </div>
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="checkbox" style="display:none;">
+                                    <div class="private-check-box check-active">
+                                        <div class="private-check-layout">
+                                            <p>
+                                                공개
+                                            </p>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                            <button type="button" class="insert-button">저장</button>
+                        </div>
+                    </div>
+                    <div class="modify-box">
+                        <div class="modify-layout">
+                            <div class="input-box">
+                                <div class="align-flex">
+                                    <div>
+                                        <input type="text" placeholder="제목을 입력하세요." class="diary-title">
+                                    </div>
+                                </div>
+                                <div class="diary-content-box">
+                                    <div>
+                                        <textarea name="" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
+                                    </div>
+                                </div>
+                                <div class="attachment-box">
+                                    <ul class="attachment-layout sumnail-box">
+                                        <!-- 썸네일 들어가는 부분 -->
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer"></div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+    });   
+</script>
+<script>
+    const $alertModal = $(".alert-modal-display");
+
+    // 이미지 파일
+    let inputFiles = [];
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                let text = `
+                        <li id="${index}">
+                            <div style="position:relative;">
+                                <div class="image-cancel-box">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                                        <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                            fill="#cacaca"></path>
+                                    </svg>
+                                </div>
+                       `
+                text += "<img src=\"" + e.target.result + "\" />";
+                text += `</div>
+                        </li>
+            `;
+                $(".attachment-layout").append(text);
+                index++;
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // 이미지 제거
+    $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
+        let index = $(e.target).closest("li").attr("id");
+        deleteImage(index);
+    });
+
+
+    //input 창
+    let $diaryTitle = $(".diary-title");
+    let $diaryContent = $(".diary-content");
+    let $diaryButton = $(".insert-button");
+
+    $diaryTitle.keyup(() => {
+        inputCheck();
+    });
+
+    $diaryContent.keyup(() => {
+        inputCheck();
+    });
+
+    // 공개 비공개 
+    const $check = $("input[type=checkbox]");
+    const $checkbox = $(".private-check-box");
+    const $checkText = $(".private-check-layout p");
+
+    $checkbox.click(() => {
+        if(!$check.is(":checked")){
+            $checkbox.addClass("check-active");
+            $checkText.text("공개");
+        }else {
+            $checkbox.removeClass("check-active");
+            $checkText.text("비공개");
+        }
+    });
+
+
+
+    function alertModal(errorMsg) {
+
+        $(".alert").text(errorMsg);
+        $alertModal.fadeIn();
+        setTimeout(function () {
+            $alertModal.fadeOut();
+        }, 2000);
+
+    }
+
+    function deleteImage(index) {
+        inputFiles.splice(index, 1);
+
+        var imageId = "#" + index;
+        $(imageId).remove();
+    }
+
+    function inputCheck() {
+        if (!$diaryTitle.val() || !$diaryContent.val()) {
+            $diaryButton.removeClass("save-active");
+        } else {
+            $diaryButton.addClass("save-active");
+        }
+    }
+</script>
+
+</html>
