@@ -7,172 +7,7 @@
     <title>마이페이지-문의</title>
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="icon" href="/static/image/logo/logo.png">
-    <style>
-        .mypage-all-wrap {
-            margin-left: 24px;
-            margin-right: 24px
-        }
-
-        .mypage-content-wrap {
-            display: flex;
-            padding-bottom: 64px;
-        }
-
-        .inquire-wrap {
-            width: 100%;
-            padding-top: 20px;
-        }
-
-        .inquire-list-wrap {
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .inquire-title-box {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 7px;
-        }
-
-        .inquire-list-box {
-            border-top : 1px solid #e1e1e1;
-        }
-
-        .inquire-list-layout {
-            padding : 20px 10px;
-        }
-
-        .date {
-            font-size: 13px;
-            color :#877b7b;
-            margin-bottom: 10px;
-        }
-
-        .inquire-list-layout:first-child {
-            border : none;
-        }
-
-        .inquire-list-layout {
-            border-top : 1px solid #e1e1e1;
-        }
-
-        .inquire-list-layout:last-child {
-            border-bottom : 1px solid #e1e1e1;
-        }
-
-        .answer-status {
-            font-weight: 500;
-            color: rgb(255, 86, 0);
-        }
-        
-        .answer {
-            font-weight: 500;
-            color: #36f;
-        }
-
-        .pasing-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            margin-top: 32px;
-        }
-
-        .pasing-button-1 {
-            border: 0px;
-            outline: none;
-            margin: 0px;
-            padding: 0px;
-            flex: initial;
-            box-sizing: border-box;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: row;
-        }
-
-        .pasing-button-2 {
-            display: inline-flex;
-            flex: 0 0 auto;
-            vertical-align: middle;
-            padding: 0px;
-            border-radius: 3px;
-            color: rgb(26, 26, 26);
-            width: 32px;
-            height: 32px;
-            transition: background-color 0.1s ease 0s;
-        }
-
-        .pasing-button-3 {
-            margin: 5px;
-        }
-
-        .pasing-select {
-            width: auto;
-            display: inline-flex;
-            vertical-align: middle;
-            border-radius: 3px;
-            color: rgb(255, 255, 255);
-            background-color: rgb(255, 86, 0);
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: -0.2px;
-            padding: 0px 12px;
-            height: 32px;
-            transition: background-color 0.1s ease 0s;
-            text-decoration-line: none;
-        }
-
-        .pasing-button-1:not(:disabled):not(.disabled) {
-            cursor: pointer;
-        }
-
-        .pasing-button-span {
-            flex: 0 0 auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .pasing-no-select {
-            width: auto;
-            display: inline-flex;
-            vertical-align: middle;
-            border-radius: 3px;
-            color: rgb(58, 58, 58);
-            font-weight: 500;
-            font-size: 14px;
-            letter-spacing: -0.2px;
-            padding: 0px 12px;
-            height: 32px;
-            transition: background-color 0.1s ease 0s;
-            text-decoration-line: none;
-        }
-        
-        .flex-between {
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .btn {
-            font-size: 13px;
-            font-weight: 500;
-        }
-
-        .modify-btn {
-            margin-right: 5px;
-        }
-        
-
-        @media (min-width:1024px) {
-            .mypage-all-wrap {
-                max-width: 1176px;
-                width: 100%;
-                margin-left: auto;
-                margin-right: auto;
-            }
-        }    
-    </style>
+    <link rel="stylesheet" href="/static/css/mypage/inquire.css">
 </head>
 <body>
     <div>
@@ -275,35 +110,31 @@
                                 </div>
                             </div>
                         </section>    
-                        <section class="pasing-wrapper">
-                            <div>
-                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
-                                    <span class="pasing-button-span">
-                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef"></path></svg>
-                                    </span>
-                                </button>
-                                <button icon-position="0" class="pasing-button-1 pasing-select pasing-button-3" color="orange" fill="false">
-                                    <span class="pasing-button-span">1</span>
-                                </button>
-                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
-                                    <span class="pasing-button-span">2</span>
-                                </button>
-                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
-                                    <span class="pasing-button-span">3</span>
-                                </button>
-                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
-                                    <span class="pasing-button-span">4</span>
-                                </button>
-                                <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
-                                    <span class="pasing-button-span">5</span>
-                                </button>
-                                <button icon-position="2" disabled="" class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev" color="default">
-                                    <span class="pasing-button-span">
-                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
-                                    </span>
-                                </button>
+                        <div class="paging-box">
+                            <div class="paging-layout">
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="prev">
+                                </a>
+                                <div class="paging-border-none paging-active">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">1</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">2</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">3</span>
+                                    </a>
+                                </div>
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="next">
+                                </a>
                             </div>
-                        </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,6 +151,15 @@
         $("#footer").load("../main/footer.html");
         $("#mypage-header").load("user-header.html");
         $("#side-menu").load("side-menu.html");
+    });
+
+    const $page = $(".paging-border-none");
+
+    $page.each((i, e) => {
+        $(e).click(() => {
+            $page.removeClass("paging-active");
+            $(e).addClass("paging-active");
+        });
     });
 </script>
 </html>

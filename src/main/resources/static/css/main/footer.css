@@ -37,6 +37,7 @@
     letter-spacing: -0.15px;
     color: rgb(102, 102, 102);
     margin-top: 20px;
+    padding-left: 4px;
 }
 
 .footer-cate-box {
@@ -205,16 +206,17 @@
 
 
 @media (max-width: 1023px){
+    #calendar {
+        font-size: 10px!important;
+        height: 300px;
+    }
+
     .footer-wrap {
         padding-bottom: 72px;
     }
 
     .footer-container {
         padding: 0px 12px;
-    }
-
-    .footer-logo-box {
-        padding-left: 10px;
     }
 
     .footer-info-msg {
