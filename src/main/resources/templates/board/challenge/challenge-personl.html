@@ -443,13 +443,18 @@
 
     /* 이미지 상세보기 모달 */
     let imageModal = document.querySelector('.image-expansion-display');
-    let mainImage = document.querySelector('.image-conateiner-picture');
+    let mainImage = document.querySelector('.image-container-wrapper-box');
 
     mainImage.onclick = function() {
         console.log("123123");
         imageModal.style.display = 'block';
     };
 
+    let cancelBtn = document.querySelector('.image-expansion-container-cancel');
+
+    cancelBtn.onclick = function(){
+        imageModal.style.display = 'none';
+    }
 
 
 

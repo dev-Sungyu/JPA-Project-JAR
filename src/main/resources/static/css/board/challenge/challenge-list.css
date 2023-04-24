@@ -507,22 +507,6 @@ svg:not(:root) {
     align-items: center;
 }
 
-.pasing-select{
-    width: auto;
-    display: inline-flex;
-    vertical-align: middle;
-    border-radius: 3px;
-    color: rgb(255, 255, 255);
-    background-color: rgb(255, 86, 0);
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.2px;
-    padding: 0px 12px;
-    height: 32px;
-    transition: background-color 0.1s ease 0s;
-    text-decoration-line: none;
-}
-
 .pasing-button-1:not(:disabled):not(.disabled) {
     cursor: pointer;
 }
@@ -534,6 +518,23 @@ svg:not(:root) {
     border-radius: 3px;
     color: rgb(58, 58, 58);
     background-color: rgb(255, 255, 255);
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: -0.2px;
+    padding: 0px 12px;
+    height: 32px;
+    transition: background-color 0.1s ease 0s;
+    text-decoration-line: none;
+}
+
+
+.pasing-select{
+    width: auto;
+    display: inline-flex;
+    vertical-align: middle;
+    border-radius: 3px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(255, 86, 0);
     font-weight: 500;
     font-size: 14px;
     letter-spacing: -0.2px;
