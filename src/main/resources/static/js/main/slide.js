@@ -198,6 +198,3 @@ function indexCheck(count) {
     $bannerIndex.text("0" + index);
     bannerBackgroundColorAndText(index - 1);
 }
-
-function Mobile(){
-	return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);}
