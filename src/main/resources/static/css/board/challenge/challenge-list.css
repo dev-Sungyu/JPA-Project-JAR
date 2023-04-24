@@ -435,7 +435,17 @@ svg:not(:root) {
     display: flex;
 }
 
+.human-icon{
+    height: 10px;
+    margin-right: 2px;
+    filter: invert(96%) sepia(0%) saturate(16%) hue-rotate(152deg) brightness(95%) contrast(83%);
+}
 
+.reply-icon{
+    margin-right: 3px;
+    height: 9px;
+    filter: invert(96%) sepia(0%) saturate(16%) hue-rotate(152deg) brightness(95%) contrast(83%);
+}
 
 .pasing-wrapper{
     display: flex;

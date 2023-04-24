@@ -317,7 +317,7 @@
 
 .user-container-box-2{
     position: relative;
-    width: 64px;
+    width: 80x;
     height: 64px;
 }
 
@@ -337,6 +337,44 @@
     line-height: 0;
     transform: rotate(0deg);
 }
+
+.challenge-button-check{
+    width: 100%;
+     vertical-align: middle;
+     border-radius: 3px;
+     color: rgb(26, 26, 26);
+     font-weight: 500;
+     background-color: rgb( 255, 86, 0);
+     color: rgb(255, 255, 255);
+     font-size: 14px;
+     letter-spacing: -0.2px;
+     padding: 0px 16px;
+     height: 40px;
+     transition: background-color 0.1s ease 0s;
+     text-decoration-line: none;
+     border: 0px;
+     outline: none;
+     margin: 0px;
+     flex: initial;
+     box-sizing: border-box;
+     display: flex;
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+     flex-direction: row;
+ }
+ 
+ .challenge-button-check span{
+ 
+    flex: 0 0 auto;
+     display: flex;
+     -webkit-box-pack: center;
+     justify-content: center;
+     -webkit-box-align: center;
+     align-items: center;
+ }
+
 
 .user-picture{
     top: 0px;
