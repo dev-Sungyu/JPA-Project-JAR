@@ -42,6 +42,7 @@ body {
     letter-spacing: -0.15px;
     color: rgb(102, 102, 102);
     margin-top: 20px;
+    margin-left: 6px;
 }
 
 .footer-cate-box {
@@ -218,10 +219,6 @@ body {
         padding: 0px 12px;
     }
 
-    .footer-logo-box {
-        padding-left: 10px;
-    }
-
     .footer-info-msg {
         display: none;
     }
@@ -247,5 +244,13 @@ body {
         display: inline-flex;
         overflow: hidden;
     }
+
 }
+
+@media (max-width: 1023px) {
+    .footer-logo-layout img{
+        margin-left: 5px;
+    }
+}
+
 
