@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+
 .mypage-all-wrap {
     margin-left: 24px;
     margin-right: 24px
@@ -10,37 +11,56 @@
     padding-bottom: 64px;
 }
 
-.content-wrap {
+.inquire-wrap {
     width: 100%;
     padding-top: 20px;
 }
 
-.list-wrap {
+.inquire-list-wrap {
     width: 100%;
     margin-top: 20px;
 }
 
-.list-box {
+.inquire-title-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+}
+
+.inquire-list-box {
     border-top: 1px solid #e1e1e1;
 }
 
-.list-layout {
-    border-top: 1px solid #e1e1e1;
-    padding: 20px 10px
-}
-
-.list-layout:first-child {
-    border: none;
-}
-
-.list-layout:last-child {
-    border-bottom: 1px solid #e1e1e1;
+.inquire-list-layout {
+    padding: 20px 10px;
 }
 
 .date {
     font-size: 13px;
     color: #877b7b;
     margin-bottom: 10px;
+}
+
+.inquire-list-layout:first-child {
+    border: none;
+}
+
+.inquire-list-layout {
+    border-top: 1px solid #e1e1e1;
+}
+
+.inquire-list-layout:last-child {
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.answer-status {
+    font-weight: 500;
+    color: rgb(255, 86, 0);
+}
+
+.answer {
+    font-weight: 500;
+    color: #36f;
 }
 
 .flex-between {
@@ -57,9 +77,6 @@
     margin-right: 5px;
 }
 
-.list-content-title-box {
-    margin-top : 5px;
-}
 
 .paging-box {
     display: flex;
@@ -116,4 +133,4 @@
         margin-left: auto;
         margin-right: auto;
     }
-}    
+}
