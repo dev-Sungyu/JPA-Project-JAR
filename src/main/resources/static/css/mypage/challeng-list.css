@@ -231,83 +231,27 @@ picture {
     color : #36f;
 }
 
-.pasing-wrapper {
+.paging-border-none {
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100%;
-    margin-top: 32px;
-}
-
-.pasing-button-1 {
-    border: 0px;
-    outline: none;
-    margin: 0px;
-    padding: 0px;
-    flex: initial;
-    box-sizing: border-box;
-    display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: row;
+    width: 24px;
+    height: 24px;
+    margin-right: 5px;
 }
 
-.pasing-button-2 {
-    display: inline-flex;
-    flex: 0 0 auto;
-    vertical-align: middle;
-    padding: 0px;
+.paging-active {
     border-radius: 3px;
-    color: rgb(26, 26, 26);
-    width: 32px;
-    height: 32px;
-    transition: background-color 0.1s ease 0s;
-}
-
-.pasing-button-3 {
-    margin: 5px;
-}
-
-.pasing-select {
-    width: auto;
-    display: inline-flex;
-    vertical-align: middle;
-    border-radius: 3px;
-    color: rgb(255, 255, 255);
     background-color: rgb(255, 86, 0);
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.2px;
-    padding: 0px 12px;
-    height: 32px;
-    transition: background-color 0.1s ease 0s;
-    text-decoration-line: none;
 }
 
-.pasing-button-1:not(:disabled):not(.disabled) {
-    cursor: pointer;
+.paging-active .page {
+    color: #fff;
+    font-weight: 600;
 }
 
-.pasing-button-span {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pasing-no-select {
-    width: auto;
-    display: inline-flex;
-    vertical-align: middle;
-    border-radius: 3px;
-    color: rgb(58, 58, 58);
-    font-weight: 500;
-    font-size: 14px;
-    letter-spacing: -0.2px;
-    padding: 0px 12px;
-    height: 32px;
-    transition: background-color 0.1s ease 0s;
-    text-decoration-line: none;
+.page {
+    color: black;
 }
 
 
