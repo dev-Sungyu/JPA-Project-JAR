@@ -363,6 +363,7 @@
      -webkit-box-align: center;
      align-items: center;
      flex-direction: row;
+     cursor: pointer;
  }
  
  .challenge-button-check span{
@@ -855,8 +856,8 @@
     inset: 0px;
     overflow: hidden;
     background-color: rgba(0, 0, 0, 0.72);
-    opacity: 0;
-    visibility: hidden;
+    opacity: 1;
+    visibility: visible;
     overscroll-behavior: contain;
     position: fixed !important;
     z-index: 3000 !important;
