@@ -97,7 +97,7 @@
                                                             <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef"></path></svg>
                                                         </span>
                                                     </button>
-                                                    <button icon-position="0"  class="pasing-button-1 pasing-select pasing-button-3" color="orange" fill="false">
+                                                    <button icon-position="0"  class="pasing-button-1 pasing-no-select pasing-select pasing-button-3" color="orange" fill="false">
                                                         <span class="pasing-button-span">1</span>
                                                     </button>
                                                     <button icon-position="0" color="white" fill="false" class="pasing-button-1 pasing-button-3 pasing-no-select">
@@ -134,18 +134,12 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
 
+    /* 진행중인 챌린지 / 종료된 챌린지 */
     let currentlyBtn = document.querySelector('.currently-challenge');
     let closingBtn = document.querySelector('.closing-challenge');
 
     const cuurrentValue = currentlyBtn.getAttribute('value');
     const closeValue = closingBtn.getAttribute('value');
-
-    // currentlyBtn.addEventListener("click",function(){
-    //     console.log("들어옴1");
-    //     currentlyBtn.style.backgroundColor ='#d7d7d7';
-    //     console.log("들어옴2");
-    //     closingBtn.style.backgroundColor = 'white';
-    // })
 
     currentlyBtn.onclick = function(){
         console.log("들어옴1");
@@ -161,13 +155,22 @@
         currentlyBtn.style.backgroundColor = 'white';
     }
 
-    // closingBtn.addEventListener("click",function(){
-    //     console.log("들어옴1");
-    //     closingBtn.style.backgroundColor = '#d7d7d7';
-    //     currentlyBtn.style.backgroundColor = 'white';
-    //     console.log("들어옴2");
-    // })
+    /* 페이징 버튼  */
     
+    let pages = document.querySelectorAll('.pasing-no-select')
+    console.log(pages);
+    pages.forEach(page =>{
+        console.log("들어옴")
+        page.addEventListener('click', function(){
+            console.log("11111111")
+            pages.forEach(p => {
+                p.classList.remove('pasing-select');
+                console.log("222222222")
+            })
+            page.classList.add('pasing-select');
+            console.log("3333333333")
+        })
+    })
 
     
 </script>
