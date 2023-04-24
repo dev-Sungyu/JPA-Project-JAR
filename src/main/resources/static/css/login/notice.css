@@ -238,6 +238,22 @@
     height: 100%;
     fill: var(--system-on-color);
 }
+.second_button{
+    color: rgb(12, 12, 12);
+    --system-on-color: #0c0c0c;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    border-radius: 19px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    display: flex;
+}
 .first_button{
     color: rgb(255, 255, 255);
     --system-on-color: #ffffff;
@@ -264,22 +280,7 @@
     font-weight: 700;
     line-height: 1.125rem;
 }
-.second_button{
-    color: rgb(12, 12, 12);
-    --system-on-color: #0c0c0c;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    z-index: 0;
-    border-radius: 19px;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    display: flex;
-}
+
 .right_arrow{
     color: rgb(12, 12, 12);
     --system-on-color: #0c0c0c;

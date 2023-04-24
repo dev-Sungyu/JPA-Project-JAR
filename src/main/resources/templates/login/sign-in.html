@@ -15,7 +15,7 @@
             <div class="header_div">
                 <div class="class101_outside">
                     <div class="class101_inside">
-                        <img style="width: 50px;" src="/static/image/logo/logo.png">
+                        <img style="width: 90px;" src="/static/image/logo/logo.png">
                     </div>
                 </div>
             </div>
@@ -253,6 +253,8 @@ $(".next_btn").click(function() {
     } else {
         emailErrorMsg.hide();
         emailInput.removeClass("error-input");
+        $("#red_email").css('display', 'none');
+        $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     }
     });
 // 비밀번호 정규식
@@ -278,6 +280,8 @@ passwordInput.on("input", function() {
   } else {
     passwordErrorMsg.hide();
     passwordInput.removeClass("error-input");
+    $("#red_password").css('display', 'none');
+    $("input[name='password']").css('border-color', 'rgba(0, 0, 0, 0.15)');
   }
 });
 
