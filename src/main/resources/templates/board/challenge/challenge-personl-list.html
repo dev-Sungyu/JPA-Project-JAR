@@ -22,10 +22,10 @@
                                     <div class="main-top">
                                         <section class="main-top-wrap">
                                             <section class="main-top-wrap-box">
-                                                <button class="currently-challenge challenge challenge-1 challenge-2" icon-position="0" color="default" fill="false">
+                                                <button class="currently-challenge challenge challenge-1 challenge-2" value="0" icon-position="0" color="default" fill="false">
                                                     <span>진행중인 챌린지</span>
                                                 </button>
-                                                <button class="closing-challenge challenge challenge-1 challenge-2" icon-position="0" color="default" fill="false">
+                                                <button class="closing-challenge challenge challenge-1 challenge-2" value="1" icon-position="0" color="default" fill="false">
                                                     <span>종료된 챌린지</span>
                                                 </button>
                                             </section>
@@ -131,4 +131,44 @@
         </div>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+
+    let currentlyBtn = document.querySelector('.currently-challenge');
+    let closingBtn = document.querySelector('.closing-challenge');
+
+    const cuurrentValue = currentlyBtn.getAttribute('value');
+    const closeValue = closingBtn.getAttribute('value');
+
+    // currentlyBtn.addEventListener("click",function(){
+    //     console.log("들어옴1");
+    //     currentlyBtn.style.backgroundColor ='#d7d7d7';
+    //     console.log("들어옴2");
+    //     closingBtn.style.backgroundColor = 'white';
+    // })
+
+    currentlyBtn.onclick = function(){
+        console.log("들어옴1");
+        currentlyBtn.style.backgroundColor ='#d7d7d7';
+        console.log("들어옴2");
+        closingBtn.style.backgroundColor = 'white';
+    }
+
+    closingBtn.onclick = function(){
+        console.log("들어옴1");
+        closingBtn.style.backgroundColor ='#d7d7d7';
+        console.log("들어옴2");
+        currentlyBtn.style.backgroundColor = 'white';
+    }
+
+    // closingBtn.addEventListener("click",function(){
+    //     console.log("들어옴1");
+    //     closingBtn.style.backgroundColor = '#d7d7d7';
+    //     currentlyBtn.style.backgroundColor = 'white';
+    //     console.log("들어옴2");
+    // })
+    
+
+    
+</script>
 </html>
