@@ -15,6 +15,7 @@
     <link rel="icon" href="/static/image/logo/logo.png">
 </head>
 
+
 <body>
     <div class="body_wrapper">
         <div id="header">
@@ -271,23 +272,17 @@
                                                                             <input type="file" style="display:none;"
                                                                                 class="file" multiple>
                                                                             <div class="file-image-box">
-                                                                                <img
-                                                                                    src="/static/image/mypage/instagram_icon.png">
+                                                                                <img src="/static/image/mypage/instagram_icon.png">
                                                                                 <p>사진 첨부</p>
                                                                             </div>
                                                                         </label>
-
-                                                                        <label class="selection_label is-inline-block"
-                                                                            for="">
+                                                                        <label class="selection_label is-inline-block" for="">
                                                                             <div>
-                                                                                <button
-                                                                                    class="selection_button is-hidden"
+                                                                                <button class="selection_button is-hidden"
                                                                                     type="button">
                                                                                 </button>
-                                                                                <div class="selection selected">개인 챌린지
-                                                                                </div>
-                                                                                <div class="selection is-hidden">단체 챌린지
-                                                                                </div>
+                                                                                <div class="selection selected">개인 챌린지</div>
+                                                                                <div class="selection is-hidden">단체 챌린지</div>
                                                                             </div>
                                                                         </label>
                                                                     </div>
@@ -309,12 +304,12 @@
                                                                             <textarea name="" id="" cols="30" rows="10"
                                                                                 class="proposal_content is-no-scroll"
                                                                                 placeholder="내용을 입력해주세요."></textarea>
-                                                                                <section class="img_wrapper_box">
-                                                                                    <div class="img_ul_wrapper">
-                                                                                        <ul class="img_ul">
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </section>
+                                                                            <section class="img_wrapper_box">
+                                                                                <div class="img_ul_wrapper">
+                                                                                    <ul class="img_ul">
+                                                                                    </ul>
+                                                                                </div>
+                                                                            </section>
                                                                             <div class="body-main-box-in-box-2">
                                                                             </div>
                                                                         </div>
@@ -404,7 +399,7 @@
                     return;
                 }
                 let text = `
-                        <li class="img_list" id="li${index}">
+                <li class="img_list" id="li${index}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
                                     <label id="label${index}">
