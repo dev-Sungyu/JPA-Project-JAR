@@ -51,3 +51,7 @@ button {
 .is-flex-align-evenly {
     justify-content:space-evenly !important;
 }
+
+.is-no-scroll::-webkit-scrollbar {
+    display: none;
+}
