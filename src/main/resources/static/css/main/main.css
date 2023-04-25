@@ -698,6 +698,12 @@ div.toastui-calendar-template-monthDayName {
     pointer-events: none;
 }
 
+.human-icon {
+    height: 10px;
+    margin-right: 2px;
+    filter: invert(96%) sepia(0%) saturate(16%) hue-rotate(152deg) brightness(95%) contrast(83%);
+}
+
 @media (min-width: 1240px) {
     .main-content-wrap {
         max-width: 1176px;
