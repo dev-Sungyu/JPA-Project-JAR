@@ -200,3 +200,7 @@ div.file_insert_wrapper {
 div.file-image-box {
     display: flex;
 }
+
+.img_div>img {
+	width: 100px;
+}

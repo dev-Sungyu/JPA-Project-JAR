@@ -141,7 +141,6 @@
 
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
-
                         <div class="board-info-box">
                             <div class="board-info-title-box">
                                 <span>챌린지 작성하기</span>
@@ -157,17 +156,12 @@
                                     </div>
                                     <div>
                                         <label class="file_insert_label">
-                                            <input type="file" style="display:none;"
-                                                class="file" multiple>
+                                            <input type="file" style="display:none;" class="file" multiple>
                                             <div class="file-image-box">
-                                                <img
-                                                    src="/static/image/mypage/instagram_icon.png">
+                                                <img src="/static/image/mypage/instagram_icon.png">
                                                 <p>사진 첨부</p>
                                             </div>
                                         </label>
-                                        <div class="img_whole_wrapper">
-                                            <ul class="img_ul"></ul>
-                                        </div>
                                     </div>
                                     <label for="">
                                         <div class="type_wrapper" style="cursor: pointer; display: flex;">
@@ -186,6 +180,11 @@
                                     </div>
                                 </form>
                             </div>
+                        </div>
+                    </section>
+                    <section class="inserted_img_section">
+                        <div class="img_whole_wrapper">
+                            <ul class="img_ul"></ul>
                         </div>
                     </section>
                 </div>
@@ -226,7 +225,7 @@
 
             var reader = new FileReader();
             reader.onload = (e) => {
-                if(index>=3){
+                if (index >= 3) {
                     return;
                 }
                 let text = `
@@ -268,7 +267,8 @@
     $deleteLabels.on("click", (e) => {
         console.log("x버튼 눌림")
         let index = $(e.target).attr('id');
-        $('#li'+index).remove();
+        $('#li' + index).remove();
     });
 </script>
+
 </html>
