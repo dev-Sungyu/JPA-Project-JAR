@@ -5,12 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제안게시판 - 목록</title>
+    <title>제안게시판 - 작성하기</title>
+    <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/main/header.css">
     <link rel="stylesheet" href="/static/css/main/footer.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/common.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/write.css">
     <link rel="icon" href="/static/image/logo/logo.png">
 </head>
+
 <body>
     <div class="body_wrapper">
         <section class="header-section">
@@ -257,18 +261,307 @@
             </nav>
         </section>
         <section class="list_wrapper">
-            <header class="list_filter">
-                <section class="sort_buttons_wrapper">
-                    <section>
-                        <button></button>
-                        <button></button>
-                    </section>
-                    <button></button>
-                </section>
-            </header>
-            <article class="list_content">
-
-            </article>
+            <div class="body-wrap">
+                <div class="body-wrap-box">
+                    <div class="board-name">
+                        <div class="board-name-line"></div>
+                        <div class="board_name-box">
+                            <a href="" target="_blank">
+                                <h2>챌린지 제안 게시판</h2>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="body-main">
+                        <div class="body-main-box">
+                            <div class="body-mian-box-in">
+                                <div class="body-mian-box-in-box">
+                                    <div class="body-mian-box-in-box-in">
+                                        <div class="real-wrap">
+                                            <div class="real-wrap-box">
+                                                <div class="real-wrap-box-box">
+                                                    <div class="pasing-wrapper">
+                                                        <button icon-position="0" color="white" fill="false"
+                                                            class="pasing-button-1 pasing-no-select">
+                                                            <span class="pasing-button-span"><svg
+                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                    height="24" fill="none" viewBox="0 0 24 24">
+                                                                    <path
+                                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                        fill="#cacaca"></path>
+                                                                </svg></span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="box-header">
+                                                        <h3>챌린지 제안 게시글 작성</h3>
+                                                    </div>
+                                                    <div class="box-main">
+                                                        <div class="box-main-wrap">
+                                                            <form action="">
+                                                                <div class="box-main-wrpa-list" style="width: 39vw;">
+                                                                    <p></p>
+                                                                    <div class="box-line"></div>
+                                                                    <label class="selection_label" for="">
+                                                                        <div>
+                                                                            <button class="selection_button is-hidden"
+                                                                                type="button">
+                                                                            </button>
+                                                                            <div class="selection selected">개인 챌린지</div>
+                                                                            <div class="selection is-hidden">단체 챌린지
+                                                                            </div>
+                                                                        </div>
+                                                                    </label>
+                                                                    <label>
+                                                                        <div class="box-main-title">
+                                                                            <input type="text" name="title"
+                                                                                class="main-title"
+                                                                                placeholder="제목을 입력해주세요.">
+                                                                        </div>
+                                                                    </label>
+                                                                    <div class="box-line"></div>
+                                                                    <form method="post">
+                                                                        <textarea id="summernote"
+                                                                            name="editordata"></textarea>
+                                                                    </form>
+                                                                    <!-- <div class="box-main-body">
+                                                                        <span class="box-main-body-span"></span>
+                                                                        <div class="editor-wrap">
+                                                                            <div class="etitor-wrap-box">
+                                                                                <div class="etitor-toolbar">
+                                                                                    <div class="editor-toolbar">
+                                                                                        <div
+                                                                                            class="editor-toolbar-group">
+                                                                                            <button type="button"
+                                                                                                class="editor-toolbar-icons heading"
+                                                                                                name="Short Heading list"></button>
+                                                                                            <button type="button"
+                                                                                                class="editor-toolbar-icons bold"
+                                                                                                name="Bold"></button>
+                                                                                            <button type="button"
+                                                                                                class="editor-toolbar-icons hrline"
+                                                                                                name="Line"></button>
+                                                                                            <button type="button"
+                                                                                                class="editor-toolbar-icons quote"
+                                                                                                name="Blockquote"></button>
+                                                                                            <div
+                                                                                                class="editor-toolbar-divider">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="editor-toolbar-group">
+                                                                                            <button
+                                                                                                class="editor-toolbar-icons bullet-list"
+                                                                                                aria-label="Unordered list"></button>
+                                                                                            <button
+                                                                                                class="editor-toolbar-icons orderd-list"
+                                                                                                aria-label="Ordered list"></button>
+                                                                                            <div
+                                                                                                class="editor-toolbar-divider">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="editor-toolbar-group">
+                                                                                            <button
+                                                                                                class="editor-toolbar-icons none more"></button>
+                                                                                            <button
+                                                                                                class="editor-toolbar-icons none "></button>
+                                                                                            <div
+                                                                                                class="editor-toolbar-divider none">
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="editor-tooltip">
+                                                                                            <div class="arrow"></div>
+                                                                                            <span class="text">Unordered
+                                                                                                list</span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="editor-toolbar-3 popup"
+                                                                                        aria-role="dialog">
+                                                                                        <div
+                                                                                            class="editor-toolbar-3-popup">
+                                                                                            <div>
+                                                                                                <div class="editor-toolbar-3-popup-contianer"
+                                                                                                    aria-label="이미지 삽입">
+                                                                                                    <div
+                                                                                                        class="popup-container-1">
+                                                                                                        <div class="popup-container-1-file active-1"
+                                                                                                            aria-role="tab"
+                                                                                                            aria-label="파일"
+                                                                                                            tabindex="0"
+                                                                                                            aria-selected="true">
+                                                                                                            파일</div>
+                                                                                                        <div class="popup-container-1-adress"
+                                                                                                            aria-role="tab"
+                                                                                                            aria-label="주소"
+                                                                                                            tabindex="-1"
+                                                                                                            aria-selected="false">
+                                                                                                            주소</div>
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="popup-container-2">
+                                                                                                        <label
+                                                                                                            for="ImageUrlInput">이미지
+                                                                                                            주소</label>
+                                                                                                        <input
+                                                                                                            type="text"
+                                                                                                            id="ImageUrlInput">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="popup-container-3 active-3">
+                                                                                                        <label
+                                                                                                            for="ImageFileInput">이미지
+                                                                                                            파일을
+                                                                                                            선택하세요.</label>
+                                                                                                        <span>선택된 파일
+                                                                                                            없음</span>
+                                                                                                        <input
+                                                                                                            type="file"
+                                                                                                            accept="image/*">
+                                                                                                        <button
+                                                                                                            class="popup-container-3-button">파일
+                                                                                                            선택</button>
+                                                                                                    </div>
+                                                                                                    <label
+                                                                                                        for="AltTextInput"
+                                                                                                        class="popup-container-label">설명</label>
+                                                                                                    <input type="text"
+                                                                                                        id="AltTextInput">
+                                                                                                    <div
+                                                                                                        class="popup-container-buttons">
+                                                                                                        <button
+                                                                                                            class="popup-container-button-cancel">취소</button>
+                                                                                                        <button
+                                                                                                            class="popup-container-button-confirm">확인</button>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="editor-toolbar-4 link-4"
+                                                                                        aria-role="dialog">
+                                                                                        <div
+                                                                                            class="editor-toolbar-4-link">
+                                                                                            <div
+                                                                                                aria-label="Insert link">
+                                                                                                <label
+                                                                                                    for="LinkUrlInput">URL</label>
+                                                                                                <input type="text"
+                                                                                                    name=""
+                                                                                                    id="LinkUrlInput">
+                                                                                                <label
+                                                                                                    for="LinkTextInput">Link
+                                                                                                    Text</label>
+                                                                                                <input type="text">
+                                                                                                <div
+                                                                                                    class="link-container-buttons">
+                                                                                                    <button
+                                                                                                        class="link-container-button-cancel">Cancel</button>
+                                                                                                    <button
+                                                                                                        class="link-container-button-confirm">Ok</button>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="editor-toolbar-5 heading-5"
+                                                                                        aria-role="dialog">
+                                                                                        <div
+                                                                                            class="editor-toolbar-5-heading">
+                                                                                            <div>
+                                                                                                <ul aria-role="menu"
+                                                                                                    aria-label="Headins">
+                                                                                                    <li aria-role="menuitem"
+                                                                                                        data-type="Heading"
+                                                                                                        data-level="2">
+                                                                                                        <h2>제목 2</h2>
+                                                                                                    </li>
+                                                                                                    <li aria-role="menuitem"
+                                                                                                        data-type="Heading"
+                                                                                                        data-level="3">
+                                                                                                        <h3>제목 3</h3>
+                                                                                                    </li>
+                                                                                                    <li aria-role="menuitem"
+                                                                                                        data-type="Paragraph">
+                                                                                                        <div>본문</div>
+                                                                                                    </li>
+                                                                                                </ul>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="editor-main">
+                                                                                    <div class="editor-main-container">
+                                                                                        <div
+                                                                                            class="editor-main-container-1">
+                                                                                            <div
+                                                                                                class="editor-main-container-1-mode editor-active editor-mode ">
+                                                                                                <textarea name="" id=""
+                                                                                                    cols="30" rows="10"
+                                                                                                    class="editor-textarea"></textarea>
+                                                                                                <div class="ProseMirror"
+                                                                                                    contenteditable="true"
+                                                                                                    translate="no">
+                                                                                                    <div>
+                                                                                                        <br>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="editor-mode-splitte">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="editor-mode-preview">
+                                                                                                <div
+                                                                                                    class="editor-preview-box">
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div
+                                                                                            class="editor-main-container-2">
+                                                                                            <div
+                                                                                                class="editor-main-container-2-box">
+                                                                                                <div class="editor-main-container-2-contents ProseMirror"
+                                                                                                    contenteditable="true"
+                                                                                                    translate="no">
+                                                                                                    <p>
+                                                                                                        <br>
+                                                                                                    </p>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="editor-context-menu"></div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div> -->
+                                                                    <div class="box-line"></div>
+                                                                    <div class="editor-button-line">
+                                                                        <div class="button-line"></div>
+                                                                        <button type="submit" class="save-button">
+                                                                            <div class="save-button-box">
+                                                                                <div class="save-button-box-div"></div>
+                                                                                <span
+                                                                                    class="save-button-span">저장하기</span>
+                                                                                <div class="save-button-box-div"></div>
+                                                                            </div>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="body-main-box-in-box-2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="body-line"></div>
+                    <footer></footer>
+                </div>
+            </div>
         </section>
         <footer class="footer-wrap">
             <div class="footer-container">
@@ -450,5 +743,24 @@
         </footer>
     </div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="../../../static/js/summernote/summernote-lite.js"></script>
+<script src="../../../static/js/summernote/lang/summernote-ko-KR.js"></script>
+<script>
+    $(document).ready(function () {
+        //여기 아래 부분
+        $('#summernote').summernote({
+            height: 300,                 // 에디터 높이
+            minHeight: null,             // 최소 높이
+            maxHeight: null,             // 최대 높이
+            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+            lang: "ko-KR",					// 한글 설정
+            placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
 
+        });
+    });
+</script>
+<script>
+    
+</script>
 </html>
