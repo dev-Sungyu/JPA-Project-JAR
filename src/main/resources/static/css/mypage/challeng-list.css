@@ -231,6 +231,31 @@ picture {
     color : #36f;
 }
 
+.paging-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.paging-layout {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.prev {
+    margin-top: 2px;
+    width: 20px;
+    transform: rotate(180deg);
+    margin-right: 5px;
+}
+
+.next {
+    width: 20px;
+    margin-top: 2px;
+}
+
 .paging-border-none {
     display: flex;
     align-items: center;
@@ -254,6 +279,11 @@ picture {
     color: black;
 }
 
+.human-icon {
+    height: 10px;
+    margin-right: 2px;
+    filter: invert(96%) sepia(0%) saturate(16%) hue-rotate(152deg) brightness(95%) contrast(83%);
+}
 
 @media (min-width:1024px) {
     .mypage-all-wrap {

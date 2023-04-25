@@ -7,9 +7,9 @@ const width = $(".banner-mobileChecking").width();
 
 // 관리자페이지쪽에서 넣은 이미지 가져와서 배열로 만들기
 var bannerImages = [
-    "https://cdn.class101.net/images/0e9ed883-375e-49ef-bdc2-e3b1839fb336/750xauto.webp",
-    "https://cdn.class101.net/images/f7f9c5e8-50b4-4d77-9007-93bec85aa52d/750xauto.webp",
-    "https://cdn.class101.net/images/69ac96c1-9d60-4316-9f1b-79311e667b78/750xauto.webp",
+    "../../../static/image/banner/banner_1.png",
+    "../../../static/image/banner/banner_2.png",
+    "../../../static/image/banner/banner_3.png",
 ];
 $(".banner-back-image").attr("src",bannerImages[0]);
 
@@ -27,17 +27,17 @@ $(".banner-back-image-box").css("background-color",bannerColor[0]);
 $(".banner-position").css("background-color",bannerColor[0]);
 
 var bannerMainText = [
-    "내일배움카드로 클래스 무료수강하세요.",
-    "평생교육바우처로 1년동안 무료수강하기",
-    "LOVERS #1 <br> 이연이라는 잭팟",
+    "새로운 도전 <br> 색다른 경험의 시작",
+    "다이어리를 공유해서 <br>일상을 공유하기",
+    "새로운 제안 <br> 함께 만들어가는 챌린지",
 ]
 
 $(".slide-main-text").html(bannerMainText[0]);
 
 var bannerSubText = [
-    "2023년 K-디지털 기초역량훈련 오픈",
-    "평생교육 희망카드로 연간 구독 결제가 가능해요.",
-    "'이연으로' 어디까지 갈 것인가?",
+    "도전을 통해 성취감을 느껴보세요.",
+    "다이어리를 공개로 설정해보세요.",
+    "챌린지를 제안해 보세요.",
 ]
 
 $(".slide-sub-text").text(bannerSubText[0]);
@@ -151,10 +151,10 @@ $prev.click(function(){
     indexCheck(count);
 
     if(count == 0) {
-        count = bannerImages.length;
+        count = bannerImages.length + 1;
         setTimeout(function(){
             banner.style.transition = "transform 0s";
-            banner.style.transform = `translate(${-width * (bannerImages.length)}px)`;
+            banner.style.transform = `translate(${-width * (bannerImages.length + 1)}px)`;
         }, 1000);
     }
 
@@ -166,7 +166,7 @@ $next.click(function(){
     if(checkArrow){return;}
     checkArrow = true;
     clearInterval(auto);
-    banner.style.transition = "transform 0.7s";
+    banner.style.transition = "transform 1s";
     banner.style.transform = `translate(${-width * ++count}px)`;
 
     indexCheck(count);
