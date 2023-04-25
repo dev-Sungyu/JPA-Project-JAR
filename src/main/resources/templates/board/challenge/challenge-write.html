@@ -120,8 +120,8 @@
                                                                                                     <div class="editor-toolbar-divider"></div>
                                                                                                 </div>
                                                                                                 <div class="editor-toolbar-2-group">
-                                                                                                    <button class="editor-toolbar-2-icons image" aria-label="이미지 삽입"></button>
-                                                                                                    <button class="editor-toolbar-2-icons link" aria-label="Insert link"></button>
+                                                                                                    <button type="button" class="editor-toolbar-2-icons image-button" aria-label="이미지 삽입"></button>
+                                                                                                    <button type="button" class="editor-toolbar-2-icons link-button" aria-label="Insert link"></button>
                                                                                                     <div class="editor-toolbar-divider none"></div>
                                                                                                 </div>
                                                                                                 <div class="editor-toolbar-2-group">
@@ -263,4 +263,56 @@
         </main>
     </div>
 </body>
+<script>
+    /* 버튼 */
+    var headingBtn = document.querySelector('.heading');
+    var boldBtn = document.querySelector('.bold');
+    var hrlineBtn = document.querySelector('.hrline');
+    var quoteBtn = document.querySelector('.quote');
+    var bulletBtn = document.querySelector('.bullet-list');
+    var orderBtn =  document.querySelector('.ordered-list');
+
+    var imageBtn = document.querySelector('.image-button');
+    var linkBtn = document.querySelector('.link-button');
+    var imageCancelBtn = document.querySelector('.link-container-button-cancel');
+    var imageConfirmBtn = document.querySelector('.link-container-button-confirm');
+
+    var imageUrl = document.querySelector('.popup-container-3 input[type=file]');
+
+    /* 모달 */
+    let popupMoadal = document.querySelector('.popup');
+    let linkModal = document.querySelector('.link-4');
+
+
+    
+    imageBtn.onclick = function(){
+        if(popupMoadal.style.display ==='none'){
+            linkModal.style.display = 'none';
+            popupMoadal.style.display = 'block';
+        }else{
+            popupMoadal.style.display = 'none';
+        }
+    }
+
+    linkBtn.onclick = function(){
+        
+        if(linkModal.style.display ==='none'){
+            console.log("1111");
+            popupMoadal.style.display = 'none';
+            linkModal.style.display = 'block';
+        }else{
+            linkModal.style.display = 'none';
+        }
+    }
+
+    imageCancelBtn.onclick = function(){
+        
+    }
+
+    imageConfirmBtn.onclick = function(){
+
+    }
+    
+
+</script>
 </html>
