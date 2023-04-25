@@ -155,6 +155,20 @@
                                         <input type="text" class="board-title" name="boardTitle"
                                             placeholder="제목을 입력해주세요." autocomplete="off" value="">
                                     </div>
+                                    <div>
+                                        <label class="file_insert_label">
+                                            <input type="file" style="display:none;"
+                                                class="file" multiple>
+                                            <div class="file-image-box">
+                                                <img
+                                                    src="/static/image/mypage/instagram_icon.png">
+                                                <p>사진 첨부</p>
+                                            </div>
+                                        </label>
+                                        <div class="img_whole_wrapper">
+                                            <ul class="img_ul"></ul>
+                                        </div>
+                                    </div>
                                     <label for="">
                                         <div class="type_wrapper" style="cursor: pointer; display: flex;">
                                             <span>개인</span>
@@ -180,5 +194,81 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        // $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
 
+    // const $alertModal = $(".alert-modal-display");
+
+    // 이미지 파일
+    let inputFiles = [];
+    let $imgUl = $($('ul.img_ul')[0]);
+    let $deleteLabels = $('.delete_button_wrapper svg');
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            reader.onload = (e) => {
+                if(index>=3){
+                    return;
+                }
+                let text = `
+                        <li class="img_list" id="li${index}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label id="label${index}">
+                                        <button icon-position="0" color="white" fill="false"
+                                            class="pasing-button-1 pasing-no-select" id="button${index}">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="` + e.target.result + `" alt=""
+                                            class="inserted_img">
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                `;
+                $imgUl.append(text);
+                index++;
+            }
+            reader.readAsDataURL(file);
+        });
+    });
+
+    // 이미지 제거
+    $deleteLabels.on("click", (e) => {
+        console.log("x버튼 눌림")
+        let index = $(e.target).attr('id');
+        $('#li'+index).remove();
+    });
+</script>
 </html>
