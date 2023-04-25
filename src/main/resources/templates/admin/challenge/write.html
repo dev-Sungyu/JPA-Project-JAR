@@ -8,8 +8,47 @@
     <title>관리자 페이지- 챌린지 게시판 작성</title>
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/write.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
 </head>
+<style>
+    .img_wrapper_box {
+        width: fit-content;
+        padding: 16px 0;
+    }
+
+    .img_box_wrapper {
+        position: relative;
+    }
+
+    .img_div>img {
+        max-width: 250px;
+        /* max-height: 160px; */
+        height: 200px;
+    }
+
+    .delete_button_wrapper {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    header.delete_button_wrapper * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .delete_button_wrapper {
+        position: absolute;
+        right: 0;
+        margin-right: 3px;
+        margin-top: 3px;
+    }
+
+    .delete_button_wrapper button {
+        opacity: 80%;
+        height: fit-content;
+    }
+</style>
 
 <body>
     <div>
@@ -174,17 +213,17 @@
                                             <textarea class="board-content" name="boardContent"
                                                 placeholder="내용을 입력해주세요."></textarea>
                                         </div>
-                                        <hr>
+                                        <section class="img_wrapper_box">
+                                            <div class="img_ul_wrapper">
+                                                <ul class="img_ul">
+                                                </ul>
+                                            </div>
+                                        </section>
                                         <div>
                                             <button class="btn_done">등록</button>
                                         </div>
                                     </form>
                                 </div>
-                            </div>
-                        </section>
-                        <section class="inserted_img_section">
-                            <div class="img_whole_wrapper">
-                                <ul class="img_ul"></ul>
                             </div>
                         </section>
                     </div>
@@ -196,10 +235,8 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
     $(document).ready(() => {
-        // $("#header").load("../../main/header.html");
+        $("#header").load("../../main/header.html");
         $("#footer").load("../../main/footer.html");
-        $("#mypage-header").load("user-header.html");
-        $("#side-menu").load("side-menu.html");
     });
 
     // const $alertModal = $(".alert-modal-display");
@@ -224,11 +261,11 @@
             }
             inputFiles.push(file);
 
+            if (index >= 3) {
+                return;
+            }
             var reader = new FileReader();
             reader.onload = (e) => {
-                if (index >= 3) {
-                    return;
-                }
                 let text = `
                         <li class="img_list" id="li${index}">
                             <div class="img_box_wrapper">
