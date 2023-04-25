@@ -143,7 +143,7 @@ button {
 .logo-box img {
 	/* filter: invert(75%) sepia(74%) saturate(1021%) hue-rotate(356deg) brightness(104%) contrast(110%); */
 	filter: none !important;
-	width: 40px !important;
+	width: 110px !important;
 }
 
 .logo-title {
