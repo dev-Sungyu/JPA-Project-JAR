@@ -52,6 +52,7 @@
 
 .board-info-box-layout {
 	margin-top: 30px;
+	width: 40vw;
 }
 
 .prev-button-layout {
@@ -202,5 +203,11 @@ div.file-image-box {
 }
 
 .img_div>img {
-	width: 100px;
+	/* width: 100px; */
+	max-height: 17vh;
+}
+
+.inserted_img_section {
+	width: 21vw;
+	margin-top: 30px;
 }

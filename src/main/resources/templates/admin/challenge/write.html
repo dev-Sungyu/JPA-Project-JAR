@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 제안 게시판 작성</title>
+    <title>관리자 페이지- 챌린지 게시판 작성</title>
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
@@ -138,55 +138,56 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 내용 섹션 -->
-                    <section class="board-info-box-layout">
-                        <div class="board-info-box">
-                            <div class="board-info-title-box">
-                                <span>챌린지 작성하기</span>
-                            </div>
-                            <hr>
-                            <div class="info-table">
-                                <form action="">
-                                    <input type="hidden" name="boardId" value="">
-                                    <!-- <input type="hidden" name="page" value=""> -->
-                                    <div>
-                                        <input type="text" class="board-title" name="boardTitle"
-                                            placeholder="제목을 입력해주세요." autocomplete="off" value="">
-                                    </div>
-                                    <div>
-                                        <label class="file_insert_label">
-                                            <input type="file" style="display:none;" class="file" multiple>
-                                            <div class="file-image-box">
-                                                <img src="/static/image/mypage/instagram_icon.png">
-                                                <p>사진 첨부</p>
+                    <div class="section_wrapper is-flex">
+                        <!-- 내용 섹션 -->
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>챌린지 작성하기</span>
+                                </div>
+                                <hr>
+                                <div class="info-table">
+                                    <form action="">
+                                        <input type="hidden" name="boardId" value="">
+                                        <!-- <input type="hidden" name="page" value=""> -->
+                                        <div>
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off" value="">
+                                        </div>
+                                        <div>
+                                            <label class="file_insert_label">
+                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <div class="file-image-box">
+                                                    <img src="/static/image/mypage/instagram_icon.png">
+                                                    <p>사진 첨부</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <label for="">
+                                            <div class="type_wrapper" style="cursor: pointer; display: flex;">
+                                                <span>개인</span>
+                                                <button type="button" style="display: none;"></button>
                                             </div>
                                         </label>
-                                    </div>
-                                    <label for="">
-                                        <div class="type_wrapper" style="cursor: pointer; display: flex;">
-                                            <span>개인</span>
-                                            <button type="button" style="display: none;"></button>
+                                        <hr>
+                                        <div>
+                                            <textarea class="board-content" name="boardContent"
+                                                placeholder="내용을 입력해주세요."></textarea>
                                         </div>
-                                    </label>
-                                    <hr>
-                                    <div>
-                                        <textarea class="board-content" name="boardContent"
-                                            placeholder="내용을 입력해주세요."></textarea>
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <button class="btn_done">등록</button>
-                                    </div>
-                                </form>
+                                        <hr>
+                                        <div>
+                                            <button class="btn_done">등록</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </section>
-                    <section class="inserted_img_section">
-                        <div class="img_whole_wrapper">
-                            <ul class="img_ul"></ul>
-                        </div>
-                    </section>
+                        </section>
+                        <section class="inserted_img_section">
+                            <div class="img_whole_wrapper">
+                                <ul class="img_ul"></ul>
+                            </div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
