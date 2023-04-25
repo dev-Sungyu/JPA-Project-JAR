@@ -251,6 +251,11 @@ body {
     .footer-logo-layout img{
         margin-left: 5px;
     }
+
+    .footer-project-info {
+        margin : 0 10px;
+        margin-bottom: 20px;
+    }
 }
 
 
