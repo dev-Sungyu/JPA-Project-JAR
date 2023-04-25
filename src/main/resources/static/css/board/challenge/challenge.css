@@ -555,7 +555,7 @@
     word-break: break-word;
     margin-bottom: 48px;
     width: 100%;
-    margin-bottom: 0px;
+    padding: 0 20px;
 }
 
 .reply-container-box-layout{
@@ -1189,4 +1189,16 @@ svg:not(:root) {
 
 .confirm-button {
     width: 35px;
+}
+
+.all-count {
+    font-weight: 800;
+}
+
+.swiper-pagination-bullet {
+    margin-right: 6px;
+}
+
+.swiper-pagination {
+    display: block;
 }
