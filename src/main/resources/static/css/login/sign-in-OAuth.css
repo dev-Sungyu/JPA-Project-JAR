@@ -362,3 +362,12 @@
     font-weight: 400;
     line-height: 1.125rem;
 }
+.guidance{
+    border-width: 0px;
+    color: rgb(91, 91, 91);
+    margin: 0px;
+    padding: 0px;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 1.125rem;
+}

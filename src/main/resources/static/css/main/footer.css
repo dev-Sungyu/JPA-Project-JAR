@@ -259,6 +259,7 @@
     }
     .sub-footer-wrap {
         flex-direction: row;
+        margin-bottom: 10px;
     }
 
     .footer-container .footer-logo-box {
@@ -306,5 +307,9 @@
         color: inherit;
         text-decoration: none;
      }
+
+     .footer-inquire-site-box {
+        margin-top: 0px;
+    }
 
 }
