@@ -1065,11 +1065,12 @@ button{
 }
 
 .typing-graph {
-    margin: 70px 50px 50px 50px;
+    margin: 30px 50px 50px 50px;
     text-align: left;
     color: rgb(12, 12, 12);
     -webkit-text-fill-color: rgb(12, 12, 12);
     font-size: 1rem;
     line-height: 1.75rem;
     font-weight: 400;
+    white-space: pre-line;
 }
