@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>챌린지 게시판 목록</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/list.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+</head>
+
+<body>
+    <div class="whole_wrapper">
+        <header id="header"></header>
+        <div class="main">
+            <section class="main-wrapper-section">
+                <div class="main-wrapper-section-wrap">
+                    <div class="main-top">
+                        <section class="main-top-wrap">
+                            <button class="proposal_select_button selected" type="button" value="0" icon-position="0"
+                                color="default" fill="false">
+                                <span>개인</span>
+                            </button>
+                            <button class="proposal_select_button disabled" type="button" value="1" icon-position="0"
+                                color="default" fill="false">
+                                <span>그룹</span>
+                            </button>
+                        </section>
+                    </div>
+                    <h2>제안 게시판</h2>
+                    <div class="proposal-wrapper">
+                        <div class="proposal_list_whole_wrapper">
+                            <ul smcolumn="2" class="proposal_list_wrapper">
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                                <li class="proposal-board">
+                                    <div class="proposal-board-box">
+                                        <a href="#" class="proposal-board-box-a">
+                                            <div class="proposal-board-box-a-box" style="margin-bottom: 16px;">
+                                                <div class="board-box">
+                                                    <span class="board-box-span-1 board-box-span-2">
+                                                        <picture class="board-box-picture" ratio="0.75">
+                                                            <img sizes="(min-width: 1024px) 300px, 50vw"
+                                                                src="/static/image/board/board-img.png" alt="챌린지 게시판"
+                                                                class="board-box-picture-img">
+                                                        </picture>
+                                                        <div class="board-box-heart">
+                                                            <button class="heart-button heart button-heart">
+                                                                <span class="heart-span">
+                                                                    <svg width="24" height="25" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path fill-rule="evenodd"
+                                                                            d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
+                                                                            fill="#FFF"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </span>
+                                                </div>
+                                                <div class="">
+                                                    <div class="board_writer">
+                                                        <p class="board_writer_name">곽두철</p>
+                                                    </div>
+                                                    <div class="board_title">곽두철의 폭행, 공갈협박,
+                                                        공중제비, 아리랑치기 전문가가 되는 법, 곽두철의 독학 비법서</div>
+                                                    <div class="board_footer">
+                                                        <div class="board_footer">
+                                                            <div class="board_footer_content board_footer_view">
+                                                                <img src="/static/image/board/view4-64.png" alt=""
+                                                                    class="view_icon">
+                                                                <span>51832</span>
+                                                            </div>
+                                                            <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt=""
+                                                                    class="like_icon">
+                                                                <span>302</span>
+                                                            </div>
+                                                            <!-- <div class="board_footer_content board_footer_like">
+                                                                <img src="/static/image/board/like.png" alt="" class="like_icon liked">
+                                                                <span>302</span>
+                                                            </div> -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <section class="pasing-wrapper">
+                            <div>
+                                <button icon-position="2" disabled
+                                    class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev"
+                                    color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#efefef">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </button>
+                                <button icon-position="0"
+                                    class="pasing-button-1 pasing-no-select pasing-select pasing-button-3"
+                                    color="orange" fill="false">
+                                    <span class="pasing-button-span">1</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false"
+                                    class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">2</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false"
+                                    class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">3</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false"
+                                    class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">4</span>
+                                </button>
+                                <button icon-position="0" color="white" fill="false"
+                                    class="pasing-button-1 pasing-button-3 pasing-no-select">
+                                    <span class="pasing-button-span">5</span>
+                                </button>
+                                <button icon-position="2" disabled
+                                    class="pasing-button-1 pasing-button-2 pasing-button-3 pasing-button-4 prev"
+                                    color="default">
+                                    <span class="pasing-button-span">
+                                        <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                            <path fill-rule="evenodd"
+                                                d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a">
+                                            </path>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <footer id="footer"></footer>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+    });
+</script>
+<script>
+
+    /* 진행중인 챌린지 / 종료된 챌린지 */
+    let currentlyBtn = document.querySelector('.selected');
+    let closingBtn = document.querySelector('.disabled');
+
+    const cuurrentValue = currentlyBtn.getAttribute('value');
+    const closeValue = closingBtn.getAttribute('value');
+
+    currentlyBtn.onclick = function () {
+        console.log("들어옴1");
+        currentlyBtn.style.backgroundColor = '#d7d7d7';
+        console.log("들어옴2");
+        closingBtn.style.backgroundColor = 'white';
+    }
+
+    closingBtn.onclick = function () {
+        console.log("들어옴1");
+        closingBtn.style.backgroundColor = '#d7d7d7';
+        console.log("들어옴2");
+        currentlyBtn.style.backgroundColor = 'white';
+    }
+
+    /* 페이징 버튼  */
+
+    let pages = document.querySelectorAll('.pasing-no-select')
+    console.log(pages);
+    pages.forEach(page => {
+        console.log("들어옴")
+        page.addEventListener('click', function () {
+            console.log("11111111")
+            pages.forEach(p => {
+                p.classList.remove('pasing-select');
+                console.log("222222222")
+            })
+            page.classList.add('pasing-select');
+            console.log("3333333333")
+        })
+    })
+
+
+</script>
+
+</html>

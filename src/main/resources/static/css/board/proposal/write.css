@@ -18,7 +18,7 @@
     flex-direction: column;
 }
 
-.header-wrap{
+/* .header-wrap{
     border-radius: 0px;
     width: 100%;
     height: fit-content;
@@ -28,22 +28,22 @@
     top: 0px;
     left: 0px;
     position: sticky;
-}
+} */
 
-.header-warp-box{
+/* .header-warp-box{
     display: flex;
     align-items: stretch;
     flex-direction: column;
-}
+} */
 
-.header-tag{
+/* .header-tag{
     display: flex;
     -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
-}
+} */
 
-@media screen and (min-width: 640px){
+/* @media screen and (min-width: 640px){
 .header-tag{
     padding-left: 24px;
     padding-right: 24px;
@@ -206,7 +206,7 @@
 
 .header-profile-box{
     cursor: pointer;
-}
+} */
 
 .profile-wrap{
     width: 34px;
@@ -255,6 +255,7 @@
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: row;
+    justify-content: center;
 }
 
 .body-wrap-box{
@@ -264,6 +265,7 @@
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
+    width: fit-content;
 }
 
 @media screen and (min-width: 640px) {
@@ -585,7 +587,7 @@
 }
 
 .editor-wrap{
-    height: 300px;
+    min-height: fit-content;
 }
 
 .etitor-wrap-box{
@@ -1458,7 +1460,7 @@ label.selection_label {
     width: 90px;
     height: 40px;
     border-radius: 8px;
-    background-color: rgb(255, 93, 0);
+    background-color: #4F6DF5;
     color: white;
 }
 
@@ -1476,12 +1478,13 @@ label.selection_label {
 
 .img_wrapper_box {
     width: fit-content;
-    padding: 0 16px;
+    padding: 16px 0;
 }
 
 .img_div>img {
-    max-width: 360px;
-    max-height: 209px;
+    max-width: 250px;
+    /* max-height: 160px; */
+    height: 200px;
 }
 
 .delete_button_wrapper {
@@ -1500,9 +1503,9 @@ div.head_button_wrapper {
 }
 
 div.file-image-box {
-    margin: 8px;
+    margin: 8px 16px 8px 0;
     padding: 8px 11px;
-    background-color: rgb(255, 93, 0);
+    background-color: #4F6DF5;
     color: white;
     border-radius: 8px;
     width: 90px;
@@ -1523,4 +1526,31 @@ div.file_insert_wrapper {
 
 div.file-image-box {
     display: flex;
+}
+
+.img_ul {
+    display: flex;
+}
+
+.img_box_wrapper {
+    position:relative;
+}
+
+.delete_button_wrapper {
+    position: absolute;
+    right: 0;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.delete_button_wrapper button {
+    opacity: 80%;
+    height: fit-content;
+}
+
+.img_list {
+    padding-right: 16px;
+}
+
+.img_ul img {
 }
