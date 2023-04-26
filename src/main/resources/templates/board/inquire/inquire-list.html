@@ -231,17 +231,12 @@
 <script>
 
     let pages = document.querySelectorAll('.second_button');
-    console.log(pages);
     pages.forEach(page =>{
-        console.log("들어옴");
         page.addEventListener('click', function(){
-            console.log("1111111111");
             pages.forEach(p =>{
                 p.classList.remove('first_button');
-                console.log("2222222222");
             })
             page.classList.add('first_button');
-            console.log("3333333333");
         })
     })
 
