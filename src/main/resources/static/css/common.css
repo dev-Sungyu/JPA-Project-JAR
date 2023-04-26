@@ -54,3 +54,11 @@ ul, li, ol {
     text-decoration: none;
     list-style: none;
 }
+
+textarea {
+    resize: none;
+}
+
+textarea:focus, button:focus, input:focus {
+    outline: none;
+}
