@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 챌린지 게시판 작성</title>
+    <title>관리자 페이지- 챌린지 게시판 상세보기</title>
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/board/proposal/write.css">
@@ -52,7 +52,7 @@
 
 <body>
     <div>
-        <div class="info-title-box info-title-box-flex">
+        <div class="info-title-box info-title-box-flex" style="z-index: 10;">
             <div class="logo-box-layout">
                 <div class="logo-box">
                     <img src="/static/image/logo/logo.png">
@@ -187,11 +187,24 @@
                                 <hr>
                                 <div class="info-table">
                                     <form action="">
-                                        <input type="hidden" name="boardId" value="">
-                                        <!-- <input type="hidden" name="page" value=""> -->
-                                        <div>
-                                            <input type="text" class="board-title" name="boardTitle"
-                                                placeholder="제목을 입력해주세요." autocomplete="off" value="기존 게시글 제목">
+                                        <div class="board_title">
+                                            <span class="span-bold">제목 :</span>
+                                            <!-- 제목  -->
+                                            <span>제안챌린지제목</span>
+                                        </div>
+                                        <div class="board_info board_writer">
+                                            <span class="span-bold">작성자 :</span>
+                                            <!-- 작성자 명  -->
+                                            <span>작성자닉네임</span>
+                                        </div>
+                                        <!-- <div class="info-member">
+                                            <span class="span-bold">좋아요 :</span>
+                                            <span>3</span>
+                                        </div> -->
+                                        <div class="board_info board_reigster_date">
+                                            <span class="span-bold">작성 날짜 :</span>
+                                            <!-- 작성 날짜  -->
+                                            <span>2023.04.23 11:01</span>
                                         </div>
                                         <div>
                                             <label class="file_insert_label">
@@ -202,8 +215,10 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <label for="">
-                                            <div class="type_wrapper" style="cursor: pointer; display: flex;">
+                                        <label for=""
+                                            style="color: #fff; background-color: #4F6DF5; width: 60px; display: inline-block;">
+                                            <div class="type_wrapper"
+                                                style="cursor: pointer; display: flex; margin: 5px 0; justify-content: center;">
                                                 <span>개인</span>
                                                 <button type="button" style="display: none;"></button>
                                             </div>
@@ -221,7 +236,8 @@
                                                             <header class="delete_button_wrapper">
                                                                 <label id="label0">
                                                                     <button icon-position="0" color="white" fill="false"
-                                                                        class="pasing-button-1 pasing-no-select" id="button0">
+                                                                        class="pasing-button-1 pasing-no-select"
+                                                                        id="button0">
                                                                         <span class="pasing-button-span">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 width="24" height="24" fill="none"
@@ -245,8 +261,20 @@
                                                 </ul>
                                             </div>
                                         </section>
-                                        <div>
-                                            <button class="btn_done">수정 완료</button>
+                                        <div style="display: flex; width: 250px; justify-content: space-between;">
+                                            <button class="btn_done btn_modify">수정 완료</button>
+                                            <label for="" style="display: inline-block;font-family: 'GmarketSansMedium';
+                                            width: 100px;
+                                            height: 30px;
+                                            background-color: #4F6DF5;
+                                            font-size: 15px;
+                                            font-weight: bold;
+                                            color: #fff;
+                                            border: none;
+                                            width: fit-content;
+                                            padding: 0 8px;">
+                                                <a href="#">게시글 보러가기</a>
+                                            </label>
                                         </div>
                                     </form>
                                 </div>
