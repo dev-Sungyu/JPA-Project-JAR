@@ -213,9 +213,7 @@
                                                                                                 <div class="editor-main-container-2">
                                                                                                     <div class="editor-main-container-2-box">
                                                                                                         <div class="editor-main-container-2-contents ProseMirror" contenteditable="true" translate="no">
-                                                                                                            <p>
-                                                                                                                <br>
-                                                                                                            </p>
+                                                                                                            
                                                                                                         </div>
                                                                                                     </div>
                                                                                                 </div>
@@ -272,19 +270,99 @@
     var bulletBtn = document.querySelector('.bullet-list');
     var orderBtn =  document.querySelector('.ordered-list');
 
+
     var imageBtn = document.querySelector('.image-button');
     var linkBtn = document.querySelector('.link-button');
     var imageCancelBtn = document.querySelector('.link-container-button-cancel');
     var imageConfirmBtn = document.querySelector('.link-container-button-confirm');
 
-    var imageUrl = document.querySelector('.popup-container-3 input[type=file]');
-
     /* 모달 */
-    let popupMoadal = document.querySelector('.popup');
-    let linkModal = document.querySelector('.link-4');
+    var popupMoadal = document.querySelector('.popup');
+    var linkModal = document.querySelector('.link-4');
+    var headingModal = document.querySelector('.heading-5')
+
+    // 엔터키 생성 시 p태그 추가
+    const editor = document.querySelector('.editor-main-container-2-contents');
+    let idCounter = 0; // 새로운 p 태그의 고유 id 값을 지정하기 위한 변수
+
+    editor.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault(); // 기본 동작(새 줄 생성) 막기
+
+        const newParagraph = document.createElement('p');
+        const newId = 'paragraph-' + (++idCounter); // 새로운 id 값 생성
+        newParagraph.id = newId; // 새로운 id 값 지정
+        newParagraph.setAttribute('contenteditable', true); // contenteditable 속성 추가
+        editor.appendChild(newParagraph);
+        
+        const prevParagraph = document.activeElement; // 이전 태그 가져오기
+        
+        const newLine = document.createElement('br'); // 새로운 줄 생성
+        prevParagraph.appendChild(newLine); // 이전 태그 뒤에 추가
+        
+        const range = document.createRange(); // 새로운 range 객체 생성
+        range.setStart(newParagraph, 0); // 새로운 p 태그의 첫 번째 문자 위치로 시작점 설정
+        range.collapse(true); // range 시작점과 끝점을 같게 설정
+        
+        const sel = window.getSelection(); // 현재 selection 객체 가져오기
+        sel.removeAllRanges(); // 모든 range 제거
+        sel.addRange(range); // 새로운 range 추가
+        
+        newParagraph.addEventListener('input', function() {
+    // 새로운 p 태그에서 입력한 내용 취합
+    const text = newParagraph.innerText.trim();
+    if (text === '') {
+        // 새로운 p 태그 내부의 내용이 없으면 삭제
+            newParagraph.remove();
+            return;
+        }
+        if (isBold) {
+            document.execCommand('bold');
+        }
+        // 새로운 p 태그 내부의 내용을 화면에 보여주기
+        newParagraph.innerHTML = text;
+        });
+        }
+    });
 
 
+
+
+
+    // 글씨체 버튼 클릭시    
+    headingBtn.onclick = function(){
+            headingModal.style.display = 'block';
+    }
     
+
+    // 글꼴 버튼 클릭시 글씨 
+    let isBold = false; // bold 버튼의 상태를 저장하는 변수
+
+    boldBtn.addEventListener('click', function() {
+        event.preventDefault();
+        isBold = !isBold; // bold 버튼의 상태를 반전시킴
+        document.execCommand('bold', false, null); // bold 버튼의 상태에 따라 텍스트 강조 상태를 변경함
+    });
+
+    // 줄 추가 버튼 클릭 시  이 친구도 적용이안됩니다..
+    hrlineBtn.onclick = function(){
+        var hr = document.createElement('hr');
+        document.body.appendChild(hr);
+    }
+
+
+    // bulletBtn 버튼 클릭 시 
+    // bulletBtn.onclick = function(){
+        // .editor-toolbar-2-icons' <- 클릭 했을 경우 이 class의 css가 적용되어야 하는데 어렵네요..
+        //  document.execCommand('insertUnorderedList', false, null);
+    // }
+
+    // orderBtn 버튼 클릭 시 
+    // orderBtn.onclick = function(){
+        // .editor-toolbar-2-icons' <- 클릭 했을 경우 이 class의 css가 적용되어야 하는데 어렵네요..
+    // }
+
+    // 이미지 버튼 클릭시
     imageBtn.onclick = function(){
         if(popupMoadal.style.display ==='none'){
             linkModal.style.display = 'none';
@@ -294,10 +372,15 @@
         }
     }
 
+    // 이미지 추가 파일 선택 버튼
+    // imageSelectBtn.onclick = function(){}
+
+
+
+    // 링크 버튼 클릭 시
     linkBtn.onclick = function(){
         
         if(linkModal.style.display ==='none'){
-            console.log("1111");
             popupMoadal.style.display = 'none';
             linkModal.style.display = 'block';
         }else{
@@ -305,13 +388,7 @@
         }
     }
 
-    imageCancelBtn.onclick = function(){
-        
-    }
 
-    imageConfirmBtn.onclick = function(){
-
-    }
     
 
 </script>
