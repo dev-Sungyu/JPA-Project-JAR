@@ -121,13 +121,13 @@ img.my-badge {
     box-sizing: border-box;
     position: absolute;
     top: 0px;
-    right: 0px;
+    right: 60px;
     justify-content: flex-start;
     align-items: stretch;
 }
 
 .mypage-banner-image {
-    width: 594px;
+    width: 400px;
     height: 80px;
     display: block;
     position: relative;
