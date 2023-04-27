@@ -81,7 +81,7 @@
                                                         </div>
                                                         <div class="user-container-box-2" size="64">
                                                             <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                                <span>수정</span>
+                                                                <span>도전하기</span>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -344,6 +344,19 @@
     const $replyModifyInput = $(".reply-modify-content");
     const $replyCancelButton = $(".reply-cancel-button");
     const $replyContentBox = $(".real-reply-text-box");
+
+
+    // 참여하기 버튼 
+    const changeBtn = document.querySelector('.challenge-button-check');
+
+    changeBtn.onclick = function(){
+        changeBtn.style.backgroundColor ="#d7d7d7";
+        changeBtn.innerHTML = "도전완료";
+    }
+
+
+
+
 
     const $reply = $(".reply-content-text");
 
