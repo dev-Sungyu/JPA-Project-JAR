@@ -97,7 +97,7 @@ textarea {
 
 
 .info-table div {
-	margin: 15px 0px;
+	margin: 10px 0px;
 }
 
 .info-table button.btn_done {
@@ -212,7 +212,7 @@ div.file-image-box {
 	margin-top: 30px;
 }
 
-input[type='date']::before {
+/* input[type='date']::before {
 	content: attr(data-placeholder);
 	width: 100%;
 }
@@ -220,8 +220,14 @@ input[type='date']::before {
 input[type='date']:focus::before,
 input[type='date']:valid::before {
 	display: none;
+} */
+
+input[type='date'] {
+	border: none;
+	outline: -webkit-focus-ring-color 0;
 }
 
-input[type='date']:focus {
-	border: none;
+input[type='date']:focus-visible {
 }
+
+

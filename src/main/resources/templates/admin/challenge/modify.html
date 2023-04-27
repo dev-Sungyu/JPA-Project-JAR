@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 제안 게시판 수정</title>
+    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
 </head>
@@ -153,17 +154,23 @@
                                         <input type="text" class="board-title" name="boardTitle"
                                             placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
                                     </div>
-                                    <label for="">
-                                        <div class="type_wrapper" style="cursor: pointer; display: flex;">
-                                            <span>개인</span>
-                                            <button type="button" style="display: none;"></button>
-                                        </div>
-                                    </label>
-                                    <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                        name="startdate"></input>
-                                    <span> ~ </span>
-                                    <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                        name="enddate" min="" value=""></input>
+                                    <div>
+                                        <label class="selection_label is-inline-block" for="">
+                                            <div>
+                                                <button class="selection_button is-hidden" type="button"
+                                                    value="personal"></button>
+                                                <div class="selection selected" name="personal">개인 챌린지</div>
+                                                <div class="selection is-hidden" name="group">단체 챌린지</div>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    <div class="select_date_wrapper is-hidden" >
+                                        <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                            name="startdate" />
+                                        <span> ~ </span>
+                                        <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                            name="enddate" />
+                                    </div>
                                     <hr>
                                     <div>
                                         <textarea class="board-content" name="boardContent"
@@ -189,17 +196,41 @@
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script src="/static/js/main/calendar.js"></script>
-<script src="/static/js/board/button_change_action.js"></script>
+<!-- <script src="/static/js/board/button_change_action.js"></script> -->
 <script>
     let $startdate = $($(`input[name=startdate]`)[0]);
     let $enddate = $($(`input[name=enddate]`)[0]);
 
     $startdate.on('change', (e) => {
-        console.log($enddate);
-        $enddate.attr('min', $startdate.attr('value'));
+        $enddate.attr('min', e.target.value);
     });
     $enddate.on('change', (e) => {
-        $startdate.attr('max', $endtdate.attr('value'));
+        $startdate.attr('max', e.target.value);
+    });
+</script>
+<script>
+    // 개인/단체 챌린지 전환 버튼
+    let $selectType = $($('.selection_label')[0]);
+    let $select_button = $('.selection_button');
+    $selectType.on("click", (e) => {
+        console.log("버튼 누름");
+        var $target = $(e.currentTarget);
+        var $selected = $('div.selection.selected');
+        var $hiddened = $('div.selection.is-hidden');
+        $selected.removeClass('selected').addClass('is-hidden');
+        $hiddened.removeClass('is-hidden').addClass('selected');
+        if( $('div.select_date_wrapper').hasClass('is-hidden')){
+            $('div.select_date_wrapper').removeClass('is-hidden');
+        }else {
+            $('div.select_date_wrapper').addClass('is-hidden');
+        }
+        if ($('div.selection.selected').attr('name')=='personal') {
+            $('div.selection.selected').attr('name', 'group');
+            $select_button.attr('value', $('div.selection.selected').attr('name'));
+        } else {
+            $('div.selection.selected').attr('name', 'personal');
+            $select_button.attr('value', $('div.selection.selected').attr('name'));
+        }
     });
 </script>
 
