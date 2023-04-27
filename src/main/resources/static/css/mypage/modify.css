@@ -76,7 +76,7 @@ textarea {
     height: 28px;
     padding: 4px;
     border-radius: 14px;
-    background-color: rgb(26, 26, 26);
+    background-color: #36f;
     display: flex;
     align-items: center;
 }
@@ -155,11 +155,6 @@ textarea {
     text-decoration-line: none;
 }
 
-
-.phone-modify-button:hover {
-   background-color:  rgb(215, 215, 215);
-   border: none;
-}
 
 .auto-flex {
     flex: 0 0 auto;

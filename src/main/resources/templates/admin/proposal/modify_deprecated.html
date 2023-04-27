@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 챌린지 게시판 상세보기</title>
+    <title>관리자 페이지- 챌린지 게시판 작성</title>
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/board/proposal/write.css">
@@ -182,31 +182,18 @@
                         <section class="board-info-box-layout">
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
-                                    <span>제안 게시글 상세보기</span>
+                                    <span>제안 게시글 수정하기</span>
                                 </div>
                                 <hr>
                                 <div class="info-table">
                                     <form action="">
-                                        <div class="board_title">
-                                            <span class="span-bold">제목 :</span>
-                                            <!-- 제목  -->
-                                            <span>제안챌린지제목</span>
+                                        <input type="hidden" name="boardId" value="">
+                                        <!-- <input type="hidden" name="page" value=""> -->
+                                        <div>
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off" value="기존 게시글 제목">
                                         </div>
-                                        <div class="board_info board_writer">
-                                            <span class="span-bold">작성자 :</span>
-                                            <!-- 작성자 명  -->
-                                            <span>작성자닉네임</span>
-                                        </div>
-                                        <!-- <div class="info-member">
-                                            <span class="span-bold">좋아요 :</span>
-                                            <span>3</span>
-                                        </div> -->
-                                        <div class="board_info board_reigster_date">
-                                            <span class="span-bold">작성 날짜 :</span>
-                                            <!-- 작성 날짜  -->
-                                            <span>2023.04.23 11:01</span>
-                                        </div>
-                                        <div style="display: none;">
+                                        <div>
                                             <label class="file_insert_label">
                                                 <input type="file" style="display:none;" class="file" multiple>
                                                 <div class="file-image-box">
@@ -215,22 +202,23 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <label for="" style="color: #fff; background-color: #4F6DF5; width: 60px; display: inline-block;">
-                                            <div class="type_wrapper" style="cursor: pointer; display: flex; margin: 5px 0; justify-content: center;">
+                                        <label for="">
+                                            <div class="type_wrapper" style="cursor: pointer; display: flex;">
                                                 <span>개인</span>
                                                 <button type="button" style="display: none;"></button>
                                             </div>
                                         </label>
                                         <hr>
-                                        <div style="min-height: 200px;">
-                                            게시글 내용
+                                        <div>
+                                            <textarea class="board-content" name="boardContent"
+                                                placeholder="내용을 입력해주세요.">기존 게시글 내용</textarea>
                                         </div>
                                         <section class="img_wrapper_box">
                                             <div class="img_ul_wrapper">
                                                 <ul class="img_ul">
                                                     <li class="img_list" id="li0">
                                                         <div class="img_box_wrapper">
-                                                            <header class="delete_button_wrapper" style="display: none;">
+                                                            <header class="delete_button_wrapper">
                                                                 <label id="label0">
                                                                     <button icon-position="0" color="white" fill="false"
                                                                         class="pasing-button-1 pasing-no-select" id="button0">
@@ -258,11 +246,7 @@
                                             </div>
                                         </section>
                                         <div>
-                                            <button class="btn_done btn_modify">수정하기</button>
-                                            <button class="btn_done btn_selection">채택</button>
-                                            <label for="" style="display: inline-block; height: 30px; width: fit-content; padding: 0px 8px; background-color: #4F6DF5; color: white;">
-                                                <a href="#">게시글 보러가기</a>
-                                            </label>
+                                            <button class="btn_done">수정 완료</button>
                                         </div>
                                     </form>
                                 </div>
