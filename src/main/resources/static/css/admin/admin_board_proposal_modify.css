@@ -97,7 +97,7 @@ textarea {
 
 
 .info-table div {
-	margin: 15px 0px;
+	margin: 10px 0px;
 }
 
 .info-table button.btn_done {
@@ -164,27 +164,27 @@ a.back-page {
 }
 
 div.head_button_wrapper {
-    width: fit-content;
-    height: fit-content;
+	width: fit-content;
+	height: fit-content;
 }
 
 div.file-image-box {
-    font-family: 'GmarketSansMedium';
-    width: 100px;
-    height: 30px;
-    background-color: #4F6DF5;
-    font-size: 15px;
-    font-weight: bold;
-    color: #fff;
-    border: none;
+	font-family: 'GmarketSansMedium';
+	width: 100px;
+	height: 30px;
+	background-color: #4F6DF5;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	border: none;
 	padding: 4px 0;
 }
 
 div.file-image-box>img {
-    width: 16px;
+	width: 16px;
 	height: 16px;
 	margin-top: 6px;
-    margin-right: 6px;
+	margin-right: 6px;
 	margin-left: 6px;
 }
 
@@ -193,13 +193,13 @@ div.file-image-box>p {
 }
 
 div.file_insert_wrapper {
-    width: fit-content;
-    height: fit-content;
-    border-radius: 8px;
+	width: fit-content;
+	height: fit-content;
+	border-radius: 8px;
 }
 
 div.file-image-box {
-    display: flex;
+	display: flex;
 }
 
 .img_div>img {
@@ -211,3 +211,23 @@ div.file-image-box {
 	width: 21vw;
 	margin-top: 30px;
 }
+
+/* input[type='date']::before {
+	content: attr(data-placeholder);
+	width: 100%;
+}
+
+input[type='date']:focus::before,
+input[type='date']:valid::before {
+	display: none;
+} */
+
+input[type='date'] {
+	border: none;
+	outline: -webkit-focus-ring-color 0;
+}
+
+input[type='date']:focus-visible {
+}
+
+
