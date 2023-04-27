@@ -81,7 +81,7 @@
                                                         </div>
                                                         <div class="user-container-box-2" size="64">
                                                             <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                                <span>수정</span>
+                                                                <span>참여하기</span>
                                                             </button>
                                                         </div>
                                                     </div>
@@ -347,6 +347,20 @@
 
     const $reply = $(".reply-content-text");
 
+
+
+
+    // 참여하기 버튼 
+    const changeBtn = document.querySelector('.challenge-button-check');
+
+    changeBtn.onclick = function(){
+        changeBtn.style.backgroundColor ="#d7d7d7";
+        changeBtn.innerHTML = "참여완료";
+    }
+
+
+
+
     $replyModifyButton.each((i, e) => {
         
         $(e).click(() => {
@@ -384,7 +398,7 @@
     const $imageWrap = $(".swiper-wrapper");
     const $pageWrap = $(".swiper-pagination");
     const width = 896;
-
+    
     // 이미지 정보 Array객체로 받기
     let imageArr = [
         'https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/2048xauto.webp',
