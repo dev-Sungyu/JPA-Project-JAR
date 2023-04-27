@@ -396,11 +396,11 @@
                     return;
                 }
                 let text = `
-                <li class="img_list" id="li${index}">
+                        <li class="img_list" id="li${index}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
-                                    <label id="label${index}">
-                                        <button icon-position="0" color="white" fill="false"
+                                    <label id="label${index}" for="button${index}">
+                                        <button icon-position="0" color="white" fill="false" type="button"
                                             class="pasing-button-1 pasing-no-select" id="button${index}">
                                             <span class="pasing-button-span">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -427,6 +427,7 @@
                 index++;
             }
             reader.readAsDataURL(file);
+
         });
     });
 
