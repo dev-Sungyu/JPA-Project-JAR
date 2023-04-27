@@ -206,7 +206,15 @@
                                             <!-- 작성 날짜  -->
                                             <span>2023.04.23 11:01</span>
                                         </div>
-                                        <label for="" style="color: #fff; background-color: #4F6DF5; width: 60px; display: inline-block; cursor: default;">
+                                        <div style="display: none;">
+                                            <label class="file_insert_label">
+                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <div class="file-image-box">
+                                                    <p>사진 첨부</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <label for="" style="cursor: default;color: #fff; background-color: #4F6DF5; width: 60px; display: inline-block;">
                                             <div class="type_wrapper" style="display: flex; margin: 5px 0; justify-content: center;">
                                                 <span>개인</span>
                                                 <button type="button" style="display: none;"></button>
@@ -248,6 +256,12 @@
                                                 </ul>
                                             </div>
                                         </section>
+                                        <!-- <div>
+                                            <button class="btn_done btn_selection">채택</button>
+                                            <label for="" style="display: inline-block; height: 30px; width: fit-content; padding: 0px 8px; background-color: #4F6DF5; color: white;">
+                                                <a href="#">게시글 보러가기</a>
+                                            </label>
+                                        </div> -->
                                     </form>
                                 </div>
                             </div>
