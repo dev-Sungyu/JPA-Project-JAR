@@ -277,17 +277,13 @@
                                                                                 <p>사진 첨부</p>
                                                                             </div>
                                                                         </label>
-                                                                        <label class="selection_label is-inline-block"
-                                                                            for="">
+                                                                        <label class="selection_label is-inline-block" for="">
                                                                             <div>
-                                                                                <button
-                                                                                    class="selection_button is-hidden"
+                                                                                <button class="selection_button is-hidden"
                                                                                     type="button">
                                                                                 </button>
-                                                                                <div class="selection selected">개인 챌린지
-                                                                                </div>
-                                                                                <div class="selection is-hidden">단체 챌린지
-                                                                                </div>
+                                                                                <div class="selection selected">개인 챌린지</div>
+                                                                                <div class="selection is-hidden">단체 챌린지</div>
                                                                             </div>
                                                                         </label>
                                                                     </div>
@@ -472,5 +468,18 @@
             reader.readAsDataURL(file);
         });
     });
+</script>
+<script>
+    // 개인/단체 챌린지 전환 버튼
+    let $selectType = $($('.selection_label')[0]);
+    $selectType.on("click", (e) => {
+        console.log("버튼 누름");
+        var $target = $(e.currentTarget);
+        var $selected = $('div.selection.selected');
+        var $hiddened = $('div.selection.is-hidden');
+        $selected.removeClass('selected').addClass('is-hidden');
+        $hiddened.removeClass('is-hidden').addClass('selected');
+    });
+    
 </script>
 </html>
