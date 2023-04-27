@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 챌린지 게시판 상세보기</title>
+    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_challenge_detail.css">
 </head>
@@ -152,8 +153,8 @@
                                     <span>제목</span>
                                 </div>
                                 <div class="board_info board_writer">
-                                    <span class="span-bold">타입 :</span>
-                                    <span>그룹</span>
+                                    <div class="selection is-hidden" name="personal">개인 챌린지</div>
+                                    <div class="selection selected" name="group">단체 챌린지</div>
                                 </div>
                                 <!-- <div class="info-member">
 									<span class="span-bold">좋아요 :</span>
@@ -163,6 +164,11 @@
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
                                     <span>2023.04.23 11:01</span>
+                                </div>
+                                <div class="play_date_wrapper">
+                                    <span class="span-bold">시작일:</span> 2023.04.27
+                                    <br>
+                                    <span class="span-bold">종료일:</span> 2023.05.03
                                 </div>
                                 <hr>
                                 <div class="board_content">
@@ -185,4 +191,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 </html>
