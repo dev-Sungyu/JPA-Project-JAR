@@ -1499,8 +1499,8 @@ label.selection_label {
 }
 
 .img_div>img {
-    max-height: 100px;
-    /* height: 200px; */
+    /* max-height: 100px; */
+    height: 100px;
 }
 
 .delete_button_wrapper {
