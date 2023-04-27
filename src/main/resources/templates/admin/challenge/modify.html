@@ -159,10 +159,15 @@
                                             <button type="button" style="display: none;"></button>
                                         </div>
                                     </label>
+                                    <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                        name="startdate"></input>
+                                    <span> ~ </span>
+                                    <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                        name="enddate" min="" value=""></input>
                                     <hr>
                                     <div>
-                                        <textarea class="board-content" name="boardContent" placeholder="내용을 입력해주세요.">수정 전 내용
-                                        </textarea>
+                                        <textarea class="board-content" name="boardContent"
+                                            placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
                                     </div>
                                     <hr>
                                     <div>
@@ -178,10 +183,23 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/static/js/admin/challenge_type.js">
-    let btn_type = $($('button.select_challenge_type')[0]);
-    btn_type.on('click', e => {
+<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
+<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
+<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
+<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
+<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script src="/static/js/main/calendar.js"></script>
+<script src="/static/js/board/button_change_action.js"></script>
+<script>
+    let $startdate = $($(`input[name=startdate]`)[0]);
+    let $enddate = $($(`input[name=enddate]`)[0]);
 
+    $startdate.on('change', (e) => {
+        console.log($enddate);
+        $enddate.attr('min', $startdate.attr('value'));
+    });
+    $enddate.on('change', (e) => {
+        $startdate.attr('max', $endtdate.attr('value'));
     });
 </script>
 
