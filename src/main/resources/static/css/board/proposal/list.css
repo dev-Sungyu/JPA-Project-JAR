@@ -547,3 +547,11 @@ svg:not(:root) {
     transition: background-color 0.1s ease 0s;
     text-decoration-line: none;
 }
+
+.selected {
+    background-color: #d7d7d7 !important;
+}
+
+.disabled {
+    background-color: white !important;
+}

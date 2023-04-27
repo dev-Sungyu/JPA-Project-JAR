@@ -1,15 +1,22 @@
 @charset "UTF-8";
 
+hr {
+	margin: 12px 0;
+}
+
 .container {
 	width: 100%;
 	margin-left: 250px;
 	margin-top: 55px;
+	display: flex;
+    justify-content: center;
 }
 
 .board-info-box {
 	border: 0.0625rem solid #f2f2f2;
 	box-shadow: 11px 13px 11px -14px grey;
 	background: #fff;
+	min-height: 500px;
 }
 
 .info-title-box-flex {
@@ -47,7 +54,7 @@
 }
 
 .container-margin {
-	margin: 40px 250px 0px;
+	margin-top: 40px;
 }
 
 .board-info-box-layout {
@@ -97,7 +104,7 @@ textarea {
 
 
 .info-table div {
-	margin: 10px 0px;
+	margin: 6px 0px;
 }
 
 .info-table button.btn_done {
@@ -178,6 +185,7 @@ div.file-image-box {
 	color: #fff;
 	border: none;
 	padding: 4px 0;
+	margin-bottom: 12px;
 }
 
 div.file-image-box>img {
@@ -225,4 +233,14 @@ input[type='date']:valid::before {
 input[type='date'] {
 	border: none;
 	outline: -webkit-focus-ring-color 0;
+}
+
+.board_info,.board_info>div {
+	padding: 0;
+	height: fit-content;
+	margin: 0;
+}
+
+.board_info span {
+	font-size: 10px;
 }

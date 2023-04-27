@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 챌린지 게시판 상세보기</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_challenge_detail.css">
 </head>
 
@@ -146,14 +149,9 @@
                             </div>
                             <hr>
                             <div class="info-table">
-                                <div class="board_title">
-                                    <span class="span-bold">제목 :</span>
-                                    <!-- 제목  -->
-                                    <span>제목</span>
-                                </div>
                                 <div class="board_info board_writer">
-                                    <span class="span-bold">타입 :</span>
-                                    <span>그룹</span>
+                                    <div class="selection is-hidden" name="personal">개인 챌린지</div>
+                                    <div class="selection selected" name="group">단체 챌린지</div>
                                 </div>
                                 <!-- <div class="info-member">
 									<span class="span-bold">좋아요 :</span>
@@ -164,7 +162,17 @@
                                     <!-- 작성 날짜  -->
                                     <span>2023.04.23 11:01</span>
                                 </div>
+                                <div class="play_date_wrapper" style="padding:12px 0">
+                                    <span class="span-bold">시작일:</span> 2023.04.27
+                                    <br>
+                                    <span class="span-bold">종료일:</span> 2023.05.03
+                                </div>
                                 <hr>
+                                <div class="board_title">
+                                    <span class="span-bold">제목 :</span>
+                                    <!-- 제목  -->
+                                    <span>제목</span>
+                                </div>
                                 <div class="board_content">
                                     <!-- 게시판 내용 -->
                                     게시판 내용
@@ -173,8 +181,42 @@
                                     <br>
                                     게시판 내용
                                 </div>
+                                <section class="img_wrapper_box">
+                                    <div class="img_ul_wrapper">
+                                        <ul class="img_ul">
+                                            <li class="img_list" id="li0">
+                                                <div class="img_box_wrapper">
+                                                    <header class="delete_button_wrapper">
+                                                        <label id="label0" for="button0">
+                                                            <button icon-position="0" color="white" fill="false"
+                                                                type="button"
+                                                                class="pasing-button-1 pasing-no-select"
+                                                                id="button0">
+                                                                <span class="pasing-button-span">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                                        width="24" height="24" fill="none"
+                                                                        viewBox="0 0 24 24">
+                                                                        <path
+                                                                            d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                            fill="#cacaca"></path>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </label>
+                                                    </header>
+                                                    <article class="img_wrapper">
+                                                        <div class="img_div">
+                                                            <img src="/static/image/board/board-img.png" alt=""
+                                                                class="inserted_img">
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
                                 <div>
-                                    <button>수정</button>
+                                    <button class="btn_done">수정</button>
                                 </div>
                             </div>
                         </div>
@@ -185,4 +227,5 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+
 </html>

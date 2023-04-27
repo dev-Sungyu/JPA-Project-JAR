@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 챌린지 게시판 수정</title>
+    <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/static/css/board/proposal/write.css">
@@ -154,7 +155,7 @@
                                             <input type="text" class="board-title" name="boardTitle"
                                                 placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
                                         </div>
-                                        <div>
+                                        <div style="display: inline-block;">
                                             <label class="selection_label is-inline-block" for="">
                                                 <div>
                                                     <button class="selection_button is-hidden" type="button"
@@ -164,14 +165,7 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <div class="select_date_wrapper is-hidden">
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startdate" />
-                                            <span> ~ </span>
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="enddate" />
-                                        </div>
-                                        <div>
+                                        <div style="display: inline-block;">
                                             <label class="file_insert_label">
                                                 <input type="file" style="display:none;" class="file" multiple>
                                                 <div class="file-image-box">
@@ -179,6 +173,14 @@
                                                 </div>
                                             </label>
                                         </div>
+                                        <!-- <div class="select_date_wrapper is-hidden">
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="startdate" />
+                                            <span> ~ </span>
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="enddate" />
+                                        </div> -->
+                                        
                                         <hr>
                                         <div>
                                             <textarea class="board-content" name="boardContent"

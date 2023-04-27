@@ -73,12 +73,6 @@
 	padding-left: 28px;	
 }
 
-hr {
-	height: 1px;
-	background: #f2f1f1;
-	border: 0;
-}
-
 .span-bold {
 	font-weight: bold;
 }
@@ -163,7 +157,6 @@ div.board_content {
 }
 
 .board_register_date {
-	border-bottom: 1px solid black;
 	padding-bottom: 8px;
 	margin: 0 !important;
 }
@@ -171,5 +164,16 @@ div.board_content {
 .modify_button_wrapper {
 	margin: 0;
 	padding-top: 16px;
-	border-top: 1px solid black;
+}
+
+.info-table>div {
+	margin:0;
+	padding: 4px 0;
+}
+
+.board-info-box-layout hr {
+	height: 1px;
+    background: #f2f1f1;
+    border: 0;
+	margin:8px 0;
 }

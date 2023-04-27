@@ -140,10 +140,10 @@ div.info-table>div.board_info {
 }
 
 .info-table div {
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
-.info-table button {
+.info-table button.btn_done {
     font-family: 'GmarketSansMedium';
     width: 100px;
     height: 30px;
@@ -160,4 +160,65 @@ div.board_content {
 
 .board-info-box {
     width: 100%;
+}
+
+header.delete_button_wrapper * {
+    padding: 0;
+    margin: 0;
+}
+
+div.head_button_wrapper {
+    width: fit-content;
+    height: fit-content;
+}
+
+div.file-image-box {
+    margin: 8px 16px 8px 0;
+    padding: 8px 11px;
+    background-color: #4F6DF5;
+    color: white;
+    border-radius: 8px;
+    width: 90px;
+    height: 40px;
+    align-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.file-image-box>img {
+    width: 16px;
+}
+
+div.file_insert_wrapper {
+    width: fit-content;
+    height: fit-content;
+    border-radius: 8px;
+}
+
+div.file-image-box {
+    display: flex;
+}
+
+.img_ul {
+    display: flex;
+}
+
+.img_box_wrapper {
+    position:relative;
+}
+
+.delete_button_wrapper {
+    position: absolute;
+    right: 0;
+    margin-right: 3px;
+    margin-top: 3px;
+}
+
+.delete_button_wrapper button {
+    opacity: 80%;
+    height: fit-content;
+}
+
+.img_list {
+    padding-right: 16px;
 }

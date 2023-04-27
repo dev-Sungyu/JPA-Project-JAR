@@ -100,7 +100,7 @@
                                                                 <strong>아침에 일어나서 이불개기 챌린지</strong>
                                                             </h3>
                                                         </div>
-                                                        <div class="user-container-box-2" size="64">
+                                                        <div class="user-container-box-2">
                                                             <!-- <span class="box-2-span box-2-span-2">
                                                                 <picture class="image-container-picture user-picture">
                                                                     <img sizes=" 100vw" srcset="https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/375xauto 375w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/750xauto 750w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/960xauto 960w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/1440xauto 1440w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/2048xauto 2048w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/2880xauto 2880w,https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f/autoxauto 5120w" src="https://cdn.class101.net/images/d1c47b18-f0b7-436e-a7c3-17f45db9110f">
@@ -109,35 +109,35 @@
                                                             <div class="content-image">
                                                                 <span class="content-image-span">
                                                                     <div class="heart-box">
-                                                                        <button class="heart-layout" style="position: relative;">
-                                                                            <div>
-                                                                            <span
-                                                                                class="auto-flex heart-active no-heart"
-                                                                                style="position: relative; display: inline-block; width: 100px;">
+                                                                        <button class="heart-layout"
+                                                                            style="position: relative;">
+                                                                            <span class="auto-flex heart_icon heart-up"
+                                                                                style="position: absolute; display: inline-block; width: 100px;">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     width="24" height="24" fill="none"
-                                                                                    viewBox="0 0 24 24" style="position:absolute; left: 0;">
+                                                                                    viewBox="0 0 24 24"
+                                                                                    style="position:absolute; left: 0;">
                                                                                     <path fill-rule="evenodd"
                                                                                         d="M20.5 9c0-2-1.5-3.9-3.7-3.9-2.3 0-3.8 1.63-4.8 3.33-1-1.7-2.5-3.33-4.8-3.33C5 5.1 3.5 6.867 3.5 9c0 4.62 4.949 7.667 8.5 9.623 3.551-1.956 8.5-5.003 8.5-9.623zm-19-.176C1.5 5.607 3.962 3 7 3c2.7 0 4 1 5 2.2C13 4 14.3 3 17 3c3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
                                                                                         fill="#FFF"></path>
                                                                                 </svg>
                                                                             </span>
-                                                                            <span class="auto-flex heart-up"
-                                                                                style=" position: relative; display: inline-block; width: 100px;">
+                                                                            <span class="auto-flex heart_icon heart-active no-heart"
+                                                                                style="position: absolute; display: inline-block; width: 100px;">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     width="24" height="24" fill="none"
-                                                                                    viewBox="0 0 24 24" class="heart_svg" style="position:absolute; left: 0;">
+                                                                                    viewBox="0 0 24 24"
+                                                                                    class="heart_svg"
+                                                                                    style="position:absolute; left: 0;">
                                                                                     <path fill-rule="evenodd"
                                                                                         d="M1.5 8.824C1.5 5.607 3.962 3 7 3c2.5 0 4 1.5 5 3 1-1.5 2.5-3 5-3 3.038 0 5.5 2.607 5.5 5.824C22.5 14.827 16.684 18.52 12 21 7.316 18.52 1.5 14.827 1.5 8.824z"
                                                                                         fill="#fd3049"></path>
                                                                                 </svg>
                                                                             </span>
-                                                                            <span style="position: absolute; font-size: 19px; right: 23px; top: 13px; position:absolute">좋아요</span>
+                                                                            <span style="position: absolute; font-size: 19px; right: 5px; top: 9px; position:absolute">좋아요</span>
                                                                         </button>
-
                                                                     </div>
                                                                 </span>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -637,14 +637,16 @@
     $heartButton.each((i, e) => {
 
         $(e).click(() => {
-            if ($($noHeart[i]).hasClass("heart-active")) {
+            if ($($heartUp[i]).hasClass("heart-active")) {
                 $($heartUp[i]).hide();
+                $($heartUp[i]).removeClass("heart-active");
                 $($noHeart[i]).show();
-                $($noHeart[i]).removeClass("heart-active");
-            } else {
                 $($noHeart[i]).addClass("heart-active");
+            } else {
                 $($heartUp[i]).show();
+                $($heartUp[i]).addClass('heart-active');
                 $($noHeart[i]).hide();
+                $($noHeart[i]).removeClass("heart-active");
             }
         });
     });

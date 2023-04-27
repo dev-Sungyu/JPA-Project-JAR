@@ -140,10 +140,9 @@
 
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
-
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>문의 답변하기</span>
+                                <span>문의글</span>
                             </div>
                             <div class="info-table">
                                 <div class="board_title">
@@ -173,7 +172,12 @@
                                     문의글 내용
                                 </div>
                             </div>
-                            <hr style="border-top: 1px solid;">
+                    </section>
+                    <section class="board-info-box-layout">
+                        <div class="board-info-box">
+                            <div class="board-info-title-box">
+                                <span>문의 답변하기</span>
+                            </div>
                             <div class="info-table">
                                 <form action="">
                                     <input type="hidden" name="boardId" value="">
@@ -182,12 +186,6 @@
                                         <input type="text" class="board-title" name="boardTitle"
                                             placeholder="제목을 입력해주세요." autocomplete="off" value="">
                                     </div>
-                                    <label for="">
-                                        <div class="type_wrapper" style="cursor: pointer; display: flex;">
-                                            <span>개인</span>
-                                            <button type="button" style="display: none;"></button>
-                                        </div>
-                                    </label>
                                     <hr>
                                     <div>
                                         <textarea class="board-content" name="boardContent"
