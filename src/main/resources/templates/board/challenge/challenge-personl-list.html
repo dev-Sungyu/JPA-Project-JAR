@@ -8,11 +8,13 @@
     <link rel="stylesheet" href="/static/css/common.css">
     <link rel="stylesheet" href="/static/css/board/challenge/challenge-list.css">
     <link rel="icon" href="/static/image/logo/logo.png">
+    <link rel="stylesheet" href="/static/css/main/header.css">
+    <link rel="stylesheet" href="/static/css/main/footer.css">
 </head>
 <body>
     <div class="__next">
         <div id="wrapper">
-            <header></header>
+            <div id="header"></div>
             <div class="main">
                 <div class="main-wrapper">
                     <section class="main-wrapper-section">
@@ -512,7 +514,7 @@
                     </section>
                 </div>
             </div>
-            <footer></footer>
+            <div id="footer"></div>
         </div>
     </div>
 </body>
@@ -558,5 +560,12 @@
     })
 
     
+</script>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+    });
 </script>
 </html>

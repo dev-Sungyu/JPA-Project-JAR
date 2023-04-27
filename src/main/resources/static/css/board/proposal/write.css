@@ -273,10 +273,10 @@
     padding-left: 0px;
 }}
 
-@media screen and (min-width: 1024px){
+/* @media screen and (min-width: 1024px){
 .body-wrap-box {
     padding-left: 280px;
-}}
+}} */
 
 .board-name{
     display: flex;
