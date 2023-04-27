@@ -591,17 +591,17 @@
     const closeValue = closingBtn.getAttribute('value');
 
     currentlyBtn.onclick = function () {
-        console.log("들어옴1");
-        currentlyBtn.style.backgroundColor = '#d7d7d7';
-        console.log("들어옴2");
-        closingBtn.style.backgroundColor = 'white';
+        $(currentlyBtn).addClass('selected');
+        $(currentlyBtn).removeClass('disabled');
+        $(closingBtn).addClass('disabled');
+        $(closingBtn).removeClass('selected');
     }
 
     closingBtn.onclick = function () {
-        console.log("들어옴1");
-        closingBtn.style.backgroundColor = '#d7d7d7';
-        console.log("들어옴2");
-        currentlyBtn.style.backgroundColor = 'white';
+        $(closingBtn).addClass('selected');
+        $(closingBtn).removeClass('disabled');
+        $(currentlyBtn).addClass('disabled');
+        $(currentlyBtn).removeClass('selected');
     }
 
     /* 페이징 버튼  */
