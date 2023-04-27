@@ -1202,3 +1202,15 @@ svg:not(:root) {
 .swiper-pagination {
     display: block;
 }
+
+.heart-layout {
+    width: 90px;
+    height: 40px;
+    display: flex;
+    background-color: #e1e1e1;
+}
+
+.heart_icon {
+    left: 6px;
+    top: 9px;
+}

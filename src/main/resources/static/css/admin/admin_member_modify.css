@@ -8,7 +8,7 @@
 
 .info-flex {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .board-info-box-layout {
@@ -51,11 +51,13 @@
 }
 
 .container-margin {
-	margin: 40px 305px 0px;
+	margin-top: 40px;
 }
 
 .board-info-box-layout {
 	margin-top: 30px;	
+	min-width: 450px;
+	max-width: 500px;
 }
 
 .prev-button-layout {
@@ -95,7 +97,7 @@ hr {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	background-image: url('../../image/admin/nomal_person_icon.png');
+	background-image: url('/static/image/logo/normal_profile.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
