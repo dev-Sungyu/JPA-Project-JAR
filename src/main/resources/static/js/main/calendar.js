@@ -65,7 +65,7 @@ calendars: [
 ],
 };
 
-const calendar = new Calendar(container, options);4
+const calendar = new Calendar(container, options);
 const month = calendar.getDate().getMonth() + 1;
 const year = calendar.getDate().getFullYear();
 

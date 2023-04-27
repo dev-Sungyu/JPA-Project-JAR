@@ -1501,5 +1501,17 @@ $heartButton.each((i, e) => {
         }
     });
 });
+
+$(".btn").each((i, e) => {
+
+    $(e).click(() => {
+        if(!$(e).hasClass("active")){
+            $(".btn").removeClass("active");
+            $(e).addClass("active");
+        }else {
+            $(e).removeClass("active");
+        }
+    });
+});
 </script>
 </html>
