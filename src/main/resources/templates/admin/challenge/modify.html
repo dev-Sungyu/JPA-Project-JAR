@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 제안 게시판 수정</title>
+    <title>관리자 페이지- 챌린지 게시판 수정</title>
     <link rel="stylesheet" href="/static/css/admin/admin_common.css">
     <link rel="stylesheet" href="/static/css/admin/sidemenu.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/write.css">
     <link rel="stylesheet" href="/static/css/admin/admin_board_proposal_modify.css">
 </head>
 
@@ -109,8 +110,7 @@
                                         <span>회원정보 관리</span>
                                     </a>
                                 </div>
-                            </li>
-
+                            </li>  
                             <li class="menu">
                                 <div class="menu-flex">
                                     <div>
@@ -138,99 +138,181 @@
                             </a>
                         </div>
                     </div>
-
-                    <!-- 내용 섹션 -->
-                    <section class="board-info-box-layout">
-                        <div class="board-info-box">
-                            <div class="board-info-title-box">
-                                <span>챌린지 수정하기</span>
-                            </div>
-                            <hr>
-                            <div class="info-table">
-                                <form action="">
-                                    <input type="hidden" name="boardId" value="">
-                                    <!-- <input type="hidden" name="page" value=""> -->
-                                    <div>
-                                        <input type="text" class="board-title" name="boardTitle"
-                                            placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
-                                    </div>
-                                    <div>
-                                        <label class="selection_label is-inline-block" for="">
-                                            <div>
-                                                <button class="selection_button is-hidden" type="button"
-                                                    value="personal"></button>
-                                                <div class="selection selected" name="personal">개인 챌린지</div>
-                                                <div class="selection is-hidden" name="group">단체 챌린지</div>
+                    <div class="section_wrapper is-flex">
+                        <!-- 내용 섹션 -->
+                        <section class="board-info-box-layout">
+                            <div class="board-info-box">
+                                <div class="board-info-title-box">
+                                    <span>챌린지 수정하기</span>
+                                </div>
+                                <hr>
+                                <div class="info-table">
+                                    <form action="">
+                                        <input type="hidden" name="boardId" value="">
+                                        <!-- <input type="hidden" name="page" value=""> -->
+                                        <div>
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
+                                        </div>
+                                        <div>
+                                            <label class="selection_label is-inline-block" for="">
+                                                <div>
+                                                    <button class="selection_button is-hidden" type="button"
+                                                        value="personal"></button>
+                                                    <div class="selection selected" name="personal">개인 챌린지</div>
+                                                    <div class="selection is-hidden" name="group">단체 챌린지</div>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="select_date_wrapper is-hidden">
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="startdate" />
+                                            <span> ~ </span>
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="enddate" />
+                                        </div>
+                                        <div>
+                                            <label class="file_insert_label">
+                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <div class="file-image-box">
+                                                    <p>사진 첨부</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <hr>
+                                        <div>
+                                            <textarea class="board-content" name="boardContent"
+                                                placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
+                                        </div>
+                                        <section class="img_wrapper_box">
+                                            <div class="img_ul_wrapper">
+                                                <ul class="img_ul">
+                                                    <li class="img_list" id="li0">
+                                                        <div class="img_box_wrapper">
+                                                            <header class="delete_button_wrapper">
+                                                                <label id="label0" for="button0">
+                                                                    <button icon-position="0" color="white" fill="false"
+                                                                        type="button"
+                                                                        class="pasing-button-1 pasing-no-select"
+                                                                        id="button0">
+                                                                        <span class="pasing-button-span">
+                                                                            <svg xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24" fill="none"
+                                                                                viewBox="0 0 24 24">
+                                                                                <path
+                                                                                    d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                                    fill="#cacaca"></path>
+                                                                            </svg>
+                                                                        </span>
+                                                                    </button>
+                                                                </label>
+                                                            </header>
+                                                            <article class="img_wrapper">
+                                                                <div class="img_div">
+                                                                    <img src="/static/image/board/board-img.png" alt=""
+                                                                        class="inserted_img">
+                                                                </div>
+                                                            </article>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
-                                        </label>
-                                    </div>
-                                    <div class="select_date_wrapper is-hidden" >
-                                        <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                            name="startdate" />
-                                        <span> ~ </span>
-                                        <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                            name="enddate" />
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <textarea class="board-content" name="boardContent"
-                                            placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <button class="btn_done">등록</button>
-                                    </div>
-                                </form>
+                                        </section>
+                                        <div>
+                                            <button class="btn_done">등록</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                        </div>
-                    </section>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.js"></script>
-<script src="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.js"></script>
-<script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
-<script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
-<script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-<script src="/static/js/main/calendar.js"></script>
-<!-- <script src="/static/js/board/button_change_action.js"></script> -->
+<script src="/static/js/admin/button_change_action.js"></script>
 <script>
-    let $startdate = $($(`input[name=startdate]`)[0]);
-    let $enddate = $($(`input[name=enddate]`)[0]);
+    $(document).ready(() => {
+        $("#header").load("../../main/header.html");
+        $("#footer").load("../../main/footer.html");
+        $('.img_ul>li').on('click', (e) => {
+            console.log($(e.currentTarget));
+            console.log("딜리트 버튼 눌림")
+            $(e.currentTarget).remove();
+        });
+    });
 
-    $startdate.on('change', (e) => {
-        $enddate.attr('min', e.target.value);
-    });
-    $enddate.on('change', (e) => {
-        $startdate.attr('max', e.target.value);
-    });
-</script>
-<script>
-    // 개인/단체 챌린지 전환 버튼
-    let $selectType = $($('.selection_label')[0]);
-    let $select_button = $('.selection_button');
-    $selectType.on("click", (e) => {
-        console.log("버튼 누름");
-        var $target = $(e.currentTarget);
-        var $selected = $('div.selection.selected');
-        var $hiddened = $('div.selection.is-hidden');
-        $selected.removeClass('selected').addClass('is-hidden');
-        $hiddened.removeClass('is-hidden').addClass('selected');
-        if( $('div.select_date_wrapper').hasClass('is-hidden')){
-            $('div.select_date_wrapper').removeClass('is-hidden');
-        }else {
-            $('div.select_date_wrapper').addClass('is-hidden');
-        }
-        if ($('div.selection.selected').attr('name')=='personal') {
-            $('div.selection.selected').attr('name', 'group');
-            $select_button.attr('value', $('div.selection.selected').attr('name'));
-        } else {
-            $('div.selection.selected').attr('name', 'personal');
-            $select_button.attr('value', $('div.selection.selected').attr('name'));
-        }
+    // const $alertModal = $(".alert-modal-display");
+
+    // 이미지 파일
+    let inputFiles = [];
+    let $imgUl = $($('ul.img_ul')[0]);
+    let $lists;
+
+
+    $(".file").change((e) => {
+        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
+        let index = 0;
+        let files = e.target.files;
+        let filesArr = Array.prototype.slice.call(files);
+
+        inputFiles = [];
+
+        filesArr.forEach(file => {
+            if (!file.type.match("image.*")) {
+                alertModal(errorMsg);
+                return;
+            }
+            inputFiles.push(file);
+
+            var reader = new FileReader();
+            $imgUl.empty();
+
+            reader.onload = (e) => {
+                if (index >= 3) {
+                    return;
+                }
+                let text = `
+                        <li class="img_list" id="li${index}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label id="label${index}" for="button${index}">
+                                        <button icon-position="0" color="white" fill="false" type="button"
+                                            class="pasing-button-1 pasing-no-select" id="button${index}">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="` + e.target.result + `" alt=""
+                                            class="inserted_img">
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                `;
+
+                $imgUl.append(text);
+                index++;
+                $('.img_ul>li').on('click', (e) => {
+                    console.log($(e.currentTarget));
+                    console.log("딜리트 버튼 눌림")
+                    $(e.currentTarget).remove();
+                });
+            }
+            reader.readAsDataURL(file);
+        });
     });
 </script>
 

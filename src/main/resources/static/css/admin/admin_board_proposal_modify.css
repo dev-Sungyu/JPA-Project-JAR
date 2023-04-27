@@ -226,8 +226,3 @@ input[type='date'] {
 	border: none;
 	outline: -webkit-focus-ring-color 0;
 }
-
-input[type='date']:focus-visible {
-}
-
-
