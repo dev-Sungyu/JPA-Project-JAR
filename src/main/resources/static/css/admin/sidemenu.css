@@ -153,3 +153,7 @@ button {
 	font-size: 26px;
 	font-weight: 700; */
 }
+
+.info-title-box {
+	z-index: 1000;
+}
