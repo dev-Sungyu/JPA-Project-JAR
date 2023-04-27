@@ -130,7 +130,7 @@ let datas = [
 
 datas.forEach((e, i) => {
   calendar.createEvents([
-    e
+        e
   ]);
 });
 

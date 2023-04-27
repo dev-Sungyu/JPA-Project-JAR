@@ -698,6 +698,10 @@ div.toastui-calendar-template-monthDayName {
     pointer-events: none;
 }
 
+.toastui-calendar-template-time strong {
+    display: none;
+}
+
 .human-icon {
     height: 10px;
     margin-right: 2px;
