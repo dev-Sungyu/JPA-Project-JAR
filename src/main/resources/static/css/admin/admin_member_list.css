@@ -195,7 +195,7 @@ div#paging-wrap {
     margin-bottom: 30px;
 }
 
-td.member_inactive hr {
+/* td.member_inactive hr {
 	border-bottom: 4px solid gray;
 }
 td.member_out hr {
@@ -203,4 +203,4 @@ td.member_out hr {
 }
 td.member_active hr {
 	border-bottom: 4px solid green;
-}
+} */

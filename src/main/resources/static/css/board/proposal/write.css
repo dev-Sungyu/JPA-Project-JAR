@@ -1458,7 +1458,6 @@ label.selection_label {
     margin: 8px 0;
     border: 1px solid;
     width: 100px;
-    height: 30px;
     border-radius: 8px;
     background-color: #4F6DF5;
     color: white;
@@ -1567,8 +1566,4 @@ div.file-image-box {
 
 .img_list {
     padding-right: 16px;
-}
-
-label.selection_label {
-    height: 40px;
 }
