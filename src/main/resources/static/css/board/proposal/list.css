@@ -555,3 +555,7 @@ svg:not(:root) {
 .disabled {
     background-color: white !important;
 }
+
+.board-box-heart {
+    display: none;
+}

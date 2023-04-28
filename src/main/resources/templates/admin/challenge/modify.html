@@ -165,6 +165,13 @@
                                                 </div>
                                             </label>
                                         </div>
+                                        <div class="select_date_wrapper is-hidden" >
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="startdate" />
+                                            <span> ~ </span>
+                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
+                                                name="enddate" />
+                                        </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
                                                 <input type="file" style="display:none;" class="file" multiple>
@@ -173,14 +180,6 @@
                                                 </div>
                                             </label>
                                         </div>
-                                        <!-- <div class="select_date_wrapper is-hidden">
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startdate" />
-                                            <span> ~ </span>
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="enddate" />
-                                        </div> -->
-                                        
                                         <hr>
                                         <div>
                                             <textarea class="board-content" name="boardContent"
@@ -239,11 +238,6 @@
     $(document).ready(() => {
         $("#header").load("../../main/header.html");
         $("#footer").load("../../main/footer.html");
-        $('.img_ul>li').on('click', (e) => {
-            console.log($(e.currentTarget));
-            console.log("딜리트 버튼 눌림")
-            $(e.currentTarget).remove();
-        });
     });
 
     // const $alertModal = $(".alert-modal-display");
@@ -317,5 +311,4 @@
         });
     });
 </script>
-
 </html>

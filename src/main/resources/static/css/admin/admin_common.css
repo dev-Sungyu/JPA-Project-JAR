@@ -51,3 +51,15 @@ button {
 .is-flex-align-evenly {
     justify-content:space-evenly !important;
 }
+
+td.is_inactive>hr {
+    border-bottom: 4px solid gray !important;
+}
+
+td.is_active>hr {
+    border-bottom: 4px solid green !important;
+}
+
+td.is_warning>hr {
+    border-bottom: 4px solid rgb(255, 48, 25) !important;
+}
