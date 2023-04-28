@@ -16,7 +16,7 @@ $contentNext.click(() => {
 
     $contentPrev.show();
 
-    if(checkCount == $firstContentAll.length - 2) {
+    if(checkCount == $firstContentAll.length) {
         $contentNext.hide();
     }
 });

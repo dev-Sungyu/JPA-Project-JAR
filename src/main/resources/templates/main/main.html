@@ -76,10 +76,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div></div>
-                        <div class="main-content-wrap"></div>
-                        <div class="main-content-wrap">
-                            <section>
+                        <div class="main-content-wrap group-wrap">
+                            <section class="group-section">
                                 <div class="main-content-title-box">
                                     <!-- 해당 게시판 링크 -->
                                     <a href="javascript:void(0)">
@@ -217,9 +215,39 @@
                                     </div>
                                 </div>
                             </section>
+                            <section class="calendar-section">
+                                <div class="calendar-box">
+                                    <div style="display:flex;">
+                                        <h3 class="calendar-year year"></h3>
+                                        <h3 class="calendar-year month"></h3>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div class="calendar-button-box">
+                                            <button type="button" class="btn btn-padding" id="today">
+                                                <p class="auto-flex">TODAY</p>
+                                            </button>
+                                        </div>
+                                        <div class="calendar-button-box">
+                                            <button type="button" id="calender-prev" class="btn">
+                                                <span class="auto-flex">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M15.5 5.5l-6 6.5 6 6.5L14 20l-7.5-8L14 4l1.5 1.5z" fill="#1a1a1a"></path></svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                        <div>
+                                            <button type="button" id="calender-next" class="btn">
+                                                <span class="auto-flex">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#1a1a1a"></path></svg>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="calendar"></div>
+                            </section> 
                         </div>
                         <div class="main-content-wrap">
-                            <section>
+                            <!-- <section>
                                 <div class="main-content-title-box">
                                     <div class="main-content-title-layout">
                                         <h2 class="main-content-title">그룹 챌린지 일정</h2>
@@ -253,7 +281,7 @@
                                     </div>
                                 </div>
                                 <div id="calendar"></div>
-                            </section> 
+                            </section>  -->
                         </div>
                         <div class="main-content-wrap">
                             <section class="next-section">
