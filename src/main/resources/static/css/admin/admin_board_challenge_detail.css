@@ -222,3 +222,8 @@ div.file-image-box {
 .img_list {
     padding-right: 16px;
 }
+
+div.play_date_wrapper>div {
+	margin: 0;
+    margin-bottom: 12px;
+}
