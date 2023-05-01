@@ -2,9 +2,6 @@ const Calendar = tui.Calendar;
 const container = document.getElementById('calendar');
 const options = {
 defaultView: 'month',
-hourStart: 0, 
-hourEnd: 0, 
-disableClick: true,
 month : {
       dayNames : ['Sun', 'Mon', 'Tus', 'Wen', 'Thr', 'Fri', 'Sat'],
       isAlways6Weeks: false,
