@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지-문의</title>
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="icon" href="/static/image/logo/logo.png">
+    <link rel="stylesheet" href="/static/css/mypage/inquire.css">
+</head>
+<body>
+    <div>
+        <!-- main/header.html -->
+        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+
+        <div>
+            <div class="mypage-all-wrap">
+                <!-- user-header.html -->
+                <div id="mypage-header"></div>
+
+                <div class="mypage-content-wrap">
+
+                    <!-- side-menu.html -->
+                    <div id="side-menu"></div>
+
+                    <div class="inquire-wrap">
+                        <section class="inquire-section">
+                            <div class="content-title-box">
+                                <div class="flex-center">
+                                    <h3 class="content-title">내 문의 글</h3>
+                                </div>
+                            </div>
+                            <div class="inquire-list-wrap">
+                                <div class="inquire-list-container">
+                                    <div class="inquire-list-box">
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <!-- <div class="inquire-answer-border">
+                                                            <p class="answer-status">미답변</p>
+                                                        </div> -->
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer">답변 완료</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer">답변 완료</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <!-- 여기부터 -->
+                                        <div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer-status">미답변</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                    </div>
+                                </div>
+                            </div>
+                        </section>    
+                        <div class="paging-box">
+                            <div class="paging-layout">
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="prev">
+                                </a>
+                                <div class="paging-border-none paging-active">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">1</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">2</span>
+                                    </a>
+                                </div>
+                                <div class="paging-border-none">
+                                    <a href="javascript:void(0)">
+                                        <span class="page">3</span>
+                                    </a>
+                                </div>
+                                <a href="javascript:void(0)">
+                                    <img src="/static/image/mypage/arrow.png" class="next">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- main/footer.html -->
+        <div id="footer"></div>
+    </div>               
+</body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(document).ready(() => {
+        $("#header").load("../main/header.html");
+        $("#footer").load("../main/footer.html");
+        $("#mypage-header").load("user-header.html");
+        $("#side-menu").load("side-menu.html");
+    });
+
+    const $page = $(".paging-border-none");
+
+    $page.each((i, e) => {
+        $(e).click(() => {
+            $page.removeClass("paging-active");
+            $(e).addClass("paging-active");
+        });
+    });
+</script>
+</html>
