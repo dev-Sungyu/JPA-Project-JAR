@@ -1,7 +1,7 @@
 package com.app.projectjar.entity.groupChallenge;
 
 import com.app.projectjar.audit.Period;
-import com.app.projectjar.audit.Title;
+import com.app.projectjar.type.Document;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @Getter @Setter @ToString
 @Table(name = "TBL_GROUP_CHALLENGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GroupChallenge extends Title {
+public class GroupChallenge extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
@@ -22,6 +22,8 @@ public class GroupChallenge extends Title {
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'PRIVATE'")
     private GroupChallengeType groupChallengeStatus;
+    @Embedded
+    private Document document;
     @NotNull
     private LocalDate startDate;
     @NotNull
