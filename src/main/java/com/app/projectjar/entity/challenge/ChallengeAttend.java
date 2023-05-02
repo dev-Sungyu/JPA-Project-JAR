@@ -5,6 +5,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.ChallengeAttendType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ public class ChallengeAttend extends Period {
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'NONPARTICIPANT'")
     private ChallengeAttendType challengeAttendStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

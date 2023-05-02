@@ -6,6 +6,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.DiaryType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -19,6 +20,7 @@ public class Diary extends Title {
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'PRIVATE'")
     private DiaryType diaryStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)

@@ -5,6 +5,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.GroupChallengeAttendType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ public class GroupChallengeAttend extends Period {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_CHALLENGE_ID")
+    @ColumnDefault("'NONPARTICIPANT'")
     private GroupChallenge groupChallenge;
 
     @ManyToOne(fetch = FetchType.LAZY)
