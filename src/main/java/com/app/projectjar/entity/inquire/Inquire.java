@@ -2,6 +2,7 @@ package com.app.projectjar.entity.inquire;
 
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.audit.Title;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.AnswerType;
 import com.sun.istack.NotNull;
@@ -13,14 +14,10 @@ import javax.persistence.*;
 @Getter @Setter @ToString
 @Table(name = "TBL_INQUIRE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Inquire extends Period {
+public class Inquire extends Title {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    @NotNull
-    private String inquireTitle;
-    @NotNull
-    private String inquireContent;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")

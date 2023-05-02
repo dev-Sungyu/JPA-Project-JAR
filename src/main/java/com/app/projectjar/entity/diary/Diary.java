@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.diary;
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.audit.Title;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.DiaryType;
 import com.sun.istack.NotNull;
@@ -12,14 +13,10 @@ import javax.persistence.*;
 @Getter @Setter @ToString
 @Table(name ="TBL_DIARY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Diary extends Period {
+public class Diary extends Title {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    @NotNull
-    private String diaryTitle;
-    @NotNull
-    private String diaryContent;
     @NotNull
     @Enumerated(EnumType.STRING)
     private DiaryType diaryStatus;
