@@ -12,7 +12,6 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @ToString
 @Table(name = "TBL_CHALLENGE_ATTEND")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChallengeAttend extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include

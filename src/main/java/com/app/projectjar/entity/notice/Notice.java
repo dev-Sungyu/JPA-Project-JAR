@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Entity
 @Getter @Setter @ToString
 @Table(name ="TBL_NOTICE")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Notice extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
