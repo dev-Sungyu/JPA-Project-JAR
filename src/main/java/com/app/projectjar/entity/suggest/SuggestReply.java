@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @ToString
 @Table(name = "TBL_SUGGEST_REPLY")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SuggestReply extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include

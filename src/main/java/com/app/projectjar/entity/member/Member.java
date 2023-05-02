@@ -2,6 +2,7 @@ package com.app.projectjar.entity.member;
 
 import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.file.File;
+import com.app.projectjar.entity.file.MemberFile;
 import com.app.projectjar.type.MemberType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -14,7 +15,6 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @ToString
 @Table(name = "TBL_MEMBER")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
 @DynamicUpdate
 public class Member extends Period {
@@ -33,5 +33,5 @@ public class Member extends Period {
     private MemberType memberStatus;
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member", cascade = {CascadeType.PERSIST})
-    private File file;
+    private MemberFile memberFile;
 }
