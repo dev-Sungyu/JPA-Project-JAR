@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Getter @Setter @ToString
 @Table(name = "TBL_SUGGEST_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SuggestLike extends Period{
+public class SuggestLike extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
