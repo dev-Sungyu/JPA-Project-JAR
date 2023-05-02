@@ -5,6 +5,7 @@ import com.app.projectjar.audit.Title;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ public class GroupChallenge extends Title {
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'PRIVATE'")
     private GroupChallengeType groupChallengeStatus;
     @NotNull
     private LocalDate startDate;

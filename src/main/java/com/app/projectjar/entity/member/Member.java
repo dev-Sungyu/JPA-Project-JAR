@@ -28,6 +28,7 @@ public class Member extends Period {
     @NotNull private String memberName;
     @NotNull private String memberNickname;
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'ENABLE'")
     private MemberType memberStatus;
 
 }
