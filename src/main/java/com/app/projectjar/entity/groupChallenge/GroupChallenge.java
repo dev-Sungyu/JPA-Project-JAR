@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.groupChallenge;
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.File;
 import com.app.projectjar.type.Document;
 import com.app.projectjar.type.GroupChallengeType;
@@ -16,22 +17,14 @@ import java.util.List;
 @Entity
 @Getter @Setter @ToString
 @Table(name = "TBL_GROUP_CHALLENGE")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class GroupChallenge extends Period {
-    @Id @GeneratedValue
-    @EqualsAndHashCode.Include
-    private Long id;
+public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'PRIVATE'")
     private GroupChallengeType groupChallengeStatus;
-    @Embedded
-    private Document document;
     @NotNull
     private LocalDate startDate;
     @NotNull
     private LocalDate endDate;
 
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupChallenge",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
-    private List<File> files = new ArrayList<>();
 }

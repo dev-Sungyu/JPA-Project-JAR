@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @ToString
 @Table(name ="TBL_ANSWER")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Answer extends Period {
 
     @Id @GeneratedValue

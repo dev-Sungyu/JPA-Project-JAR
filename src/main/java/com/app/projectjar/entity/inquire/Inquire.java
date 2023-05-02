@@ -11,7 +11,6 @@ import javax.persistence.*;
 @Entity
 @Getter @Setter @ToString
 @Table(name = "TBL_INQUIRE")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inquire extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
