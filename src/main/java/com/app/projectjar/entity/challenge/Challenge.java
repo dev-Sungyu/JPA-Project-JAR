@@ -5,6 +5,7 @@ import com.app.projectjar.audit.Title;
 import com.app.projectjar.type.ChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -18,5 +19,6 @@ public class Challenge extends Title {
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'PRIVATE'")
     private ChallengeType challengeStatus;
 }
