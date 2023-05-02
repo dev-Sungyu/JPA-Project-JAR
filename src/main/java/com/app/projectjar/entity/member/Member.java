@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.member;
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.entity.file.File;
 import com.app.projectjar.type.MemberType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -31,4 +32,6 @@ public class Member extends Period {
     @ColumnDefault("'ENABLE'")
     private MemberType memberStatus;
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member", cascade = {CascadeType.PERSIST})
+    private File file;
 }

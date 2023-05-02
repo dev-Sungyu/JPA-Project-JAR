@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.diary;
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.entity.file.File;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.DiaryType;
 import com.app.projectjar.type.Document;
@@ -9,6 +10,8 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter @ToString
@@ -29,4 +32,7 @@ public class Diary extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "diary",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    private List<File> files = new ArrayList<>();
 }

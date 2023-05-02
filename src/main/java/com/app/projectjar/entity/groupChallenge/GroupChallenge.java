@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.groupChallenge;
 
 import com.app.projectjar.audit.Period;
+import com.app.projectjar.entity.file.File;
 import com.app.projectjar.type.Document;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
@@ -9,6 +10,8 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter @Setter @ToString
@@ -29,4 +32,6 @@ public class GroupChallenge extends Period {
     @NotNull
     private LocalDate endDate;
 
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "groupChallenge",cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    private List<File> files = new ArrayList<>();
 }
