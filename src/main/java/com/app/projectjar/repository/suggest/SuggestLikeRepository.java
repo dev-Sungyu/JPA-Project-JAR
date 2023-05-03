@@ -4,5 +4,5 @@ import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface SuggestLikeRepository extends JpaRepository<SuggestLike, Long> {
+public interface SuggestLikeRepository extends JpaRepository<SuggestLike, Long>, SuggestLikeQueryDSL {
 }

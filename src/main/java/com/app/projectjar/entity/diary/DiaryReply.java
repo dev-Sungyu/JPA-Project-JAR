@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_DIARY_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryReply extends Period {

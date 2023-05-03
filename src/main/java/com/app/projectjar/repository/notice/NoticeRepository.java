@@ -4,5 +4,5 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.notice.Notice;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface NoticeRepository extends JpaRepository<Notice, Long> {
+public interface NoticeRepository extends JpaRepository<Notice, Long>, NoticeQueryDSL {
 }
