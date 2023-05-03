@@ -287,10 +287,10 @@ input[name="password"]{
     right: -1px;
 }
 .eyes_open {
-    background-image: url('/static/image/login/eyes_open.png');
+    background-image: url('/image/login/eyes_open.png');
 }
 .eyes_close {
-    background-image: url('/static/image/login/eyes-close.png');
+    background-image: url('/image/login/eyes-close.png');
 }
 .waring_email{
     border-width: 0px;
