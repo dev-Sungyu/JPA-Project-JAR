@@ -10,7 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name ="TBL_NOTICE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Notice extends Period {

@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_INQUIRE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inquire extends Period {

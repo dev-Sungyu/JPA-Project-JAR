@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_SUGGEST_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SuggestReply extends Period {

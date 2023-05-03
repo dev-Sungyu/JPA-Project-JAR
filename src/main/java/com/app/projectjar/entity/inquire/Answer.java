@@ -9,7 +9,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name ="TBL_ANSWER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Answer extends Period {

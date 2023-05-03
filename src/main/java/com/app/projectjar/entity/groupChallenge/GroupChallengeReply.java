@@ -9,7 +9,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_GROUP_CHALLENGE_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallengeReply extends Period {

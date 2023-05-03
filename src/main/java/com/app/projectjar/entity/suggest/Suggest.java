@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_SUGGEST")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Suggest extends Board {
