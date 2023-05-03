@@ -12,14 +12,18 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_FILE")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class File {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
-    private String imgOriginalName;
-    private String imgUuid;
-    private String imgPath;
+    private String fileOriginalName;
+    private String fileUuid;
+    private String filePath;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "BOARD_ID")
+    private Board board;
 }

@@ -7,14 +7,16 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_DIARY_LIKE")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryLike extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "DIARY_ID")
     private Diary diary;
 
     @ManyToOne(fetch = FetchType.LAZY)
