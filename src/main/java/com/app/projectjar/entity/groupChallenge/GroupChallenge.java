@@ -1,9 +1,6 @@
 package com.app.projectjar.entity.groupChallenge;
 
-import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.board.Board;
-import com.app.projectjar.entity.file.File;
-import com.app.projectjar.type.Document;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -11,12 +8,11 @@ import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_GROUP_CHALLENGE")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)

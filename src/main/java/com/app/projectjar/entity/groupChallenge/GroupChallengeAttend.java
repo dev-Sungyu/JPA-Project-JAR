@@ -10,19 +10,20 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_GROUP_CHALLENGE_ATTEND")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallengeAttend extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
     @NotNull
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'NONPARTICIPANT'")
     private GroupChallengeAttendType groupChallengeAttendStatus;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "GROUP_CHALLENGE_ID")
-    @ColumnDefault("'NONPARTICIPANT'")
     private GroupChallenge groupChallenge;
 
     @ManyToOne(fetch = FetchType.LAZY)

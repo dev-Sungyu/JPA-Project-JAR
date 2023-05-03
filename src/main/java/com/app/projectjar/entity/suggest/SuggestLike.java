@@ -7,8 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @Setter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_SUGGEST_LIKE")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class SuggestLike extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
