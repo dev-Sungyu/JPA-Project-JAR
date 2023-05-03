@@ -16,6 +16,27 @@
     margin-right: 24px;
 }
 
+.image-container-wrapper-box {
+    line-height: 0;
+}
+
+.image-flex-column {
+    display: flex;
+    flex-direction: column;
+    line-height: 0;
+    width: 100%;
+}
+
+.image-flex-column img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.image-box {
+    display: flex;
+    width: 100%;
+}
+
 @media (min-width: 1240px){
 .image-container {
     max-width: 600px;
