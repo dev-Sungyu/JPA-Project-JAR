@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_GROUP_CHALLENGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallenge extends Board {

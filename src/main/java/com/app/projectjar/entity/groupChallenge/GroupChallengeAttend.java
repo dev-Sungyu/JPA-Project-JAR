@@ -10,7 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString
 @Table(name = "TBL_GROUP_CHALLENGE_ATTEND")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallengeAttend extends Period {
