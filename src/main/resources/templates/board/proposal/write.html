@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제안게시판 - 작성하기</title>
-    <link rel="stylesheet" href="/static/css/summernote/summernote-lite.css">
-    <link rel="stylesheet" href="/static/css/common.css">
-    <!-- <link rel="stylesheet" href="/static/css/main/header.css"> -->
-    <link rel="stylesheet" href="/static/css/main/footer.css">
-    <link rel="stylesheet" href="/static/css/board/proposal/common.css">
-    <link rel="stylesheet" href="/static/css/board/proposal/write.css">
-    <link rel="icon" href="/static/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/summernote/summernote-lite.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <!-- <link rel="stylesheet" href="/css/main/header.css"> -->
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/board/proposal/common.css">
+    <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="icon" href="/image/logo/favicon.png">
 </head>
 <body>
     <div class="body_wrapper">
@@ -21,7 +21,7 @@
                     <a href="javascript:void(0)">
                         <div style="margin-bottom: 8px; display: flex;">
                             <div class="logo">
-                                <img src="/static/image/logo/logo.png" style="width: 32px;">
+                                <img src="/image/logo/logo.png" style="width: 32px;">
                             </div>
                             <h4 class="cate" style="margin-left:10px; margin-top:8px; font-size: 25px;">JAR</h4>
                         </div>
@@ -270,7 +270,7 @@
                                                                             <input type="file" style="display:none;"
                                                                                 class="file" multiple>
                                                                             <div class="file-image-box">
-                                                                                <!-- <img src="/static/image/mypage/instagram_icon.png"> -->
+                                                                                <!-- <img src="/image/mypage/instagram_icon.png"> -->
                                                                                 <p>사진 첨부</p>
                                                                             </div>
                                                                         </label>
@@ -325,7 +325,7 @@
                                                                                                 </header>
                                                                                                 <article class="img_wrapper">
                                                                                                     <div class="img_div">
-                                                                                                        <img src="/static/image/board/board-img.png" alt=""
+                                                                                                        <img src="/image/board/board-img.png" alt=""
                                                                                                             class="inserted_img">
                                                                                                     </div>
                                                                                                 </article>
@@ -373,22 +373,6 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<!-- <script src="../../../static/js/summernote/summernote-lite.js"></script>
-<script src="../../../static/js/summernote/lang/summernote-ko-KR.js"></script>
-<script>
-    $(document).ready(function () {
-        //여기 아래 부분
-        $('#summernote').summernote({
-            height: 300,                 // 에디터 높이
-            minHeight: null,             // 최소 높이
-            maxHeight: null,             // 최대 높이
-            focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
-            lang: "ko-KR",					// 한글 설정
-            placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
-
-        });
-    });
-</script> -->
 <script>
     $(document).ready(() => {
         $("#header").load("../../main/header.html");
@@ -466,7 +450,7 @@
         });
     });
 </script>
-<script src="/static/js/board/button_change_action.js">
+<script src="/js/board/button_change_action.js">
     //     // 개인/단체 챌린지 전환 버튼
     //     let $selectType = $($('.selection_label')[0]);
     // $selectType.on("click", (e) => {

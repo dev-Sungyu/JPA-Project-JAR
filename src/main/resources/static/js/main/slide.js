@@ -7,9 +7,9 @@ const width = $(".banner-mobileChecking").width();
 
 // 관리자페이지쪽에서 넣은 이미지 가져와서 배열로 만들기
 var bannerImages = [
-    "../../../static/image/banner/banner_1.png",
-    "../../../static/image/banner/banner_2.png",
-    "../../../static/image/banner/banner_3.png",
+    "/image/banner/banner_1.png",
+    "/image/banner/banner_2.png",
+    "/image/banner/banner_3.png",
 ];
 $(".banner-back-image").attr("src",bannerImages[0]);
 

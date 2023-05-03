@@ -97,7 +97,7 @@ hr {
 	width: 80px;
 	height: 80px;
 	border-radius: 50%;
-	background-image: url('/static/image/logo/normal_profile.png');
+	background-image: url('/image/logo/normal_profile.png');
 	background-repeat: no-repeat;
 	background-size: contain;
 	margin: 0 auto;
