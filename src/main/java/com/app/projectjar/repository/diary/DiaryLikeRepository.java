@@ -4,5 +4,5 @@ import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.DiaryLike;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DiaryLikeRepository extends JpaRepository<DiaryLike, Long> {
+public interface DiaryLikeRepository extends JpaRepository<DiaryLike, Long>, DiaryQueryDSL {
 }

@@ -4,5 +4,5 @@ import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.challenge.ChallengeReply;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ChallengeReplyRepository extends JpaRepository<ChallengeReply, Long> {
+public interface ChallengeReplyRepository extends JpaRepository<ChallengeReply, Long>, ChallengeReplyQueryDSL {
 }

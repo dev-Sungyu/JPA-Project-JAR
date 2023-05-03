@@ -4,5 +4,5 @@ import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.diary.Diary;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DiaryRepository extends JpaRepository<Diary, Long> {
+public interface DiaryRepository extends JpaRepository<Diary, Long>, DiaryQueryDSL {
 }

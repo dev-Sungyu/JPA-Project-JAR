@@ -10,7 +10,7 @@ import org.hibernate.annotations.ColumnDefault;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString
+@Getter @ToString(callSuper = true)
 @Table(name ="TBL_DIARY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Diary extends Board {

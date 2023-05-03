@@ -4,5 +4,5 @@ import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeReply;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface GroupChallengeReplyRepository extends JpaRepository<GroupChallengeReply, Long> {
+public interface GroupChallengeReplyRepository extends JpaRepository<GroupChallengeReply, Long>, GroupChallengeReplyQueryDSL {
 }
