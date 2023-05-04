@@ -6,12 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제안 게시판 목록</title>
     <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/board/proposal/list.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
 <body>
     <div class="whole_wrapper">
-        <header id="header"></header>
+        <th:block th:replace="~{main/header :: header}"></th:block>
         <div class="main">
             <section class="main-wrapper-section">
                 <div class="main-wrapper-section-wrap">
@@ -570,16 +572,11 @@
                 </div>
             </section>
         </div>
-        <footer id="footer"></footer>
+        <th:block th:replace="~{main/footer :: footer}"></th:block>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-    $(document).ready(() => {
-        $("#header").load("../../main/header.html");
-        $("#footer").load("../../main/footer.html");
-    });
-</script>
+<script src="/js/main/header.js"></script>
 <script>
 
     /* 진행중인 챌린지 / 종료된 챌린지 */

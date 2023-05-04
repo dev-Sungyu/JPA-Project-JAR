@@ -16,8 +16,7 @@
 
 <body>
     <div class="body_wrapper">
-        <div id="header">
-        </div>
+        <th:block th:replace="~{main/header :: header}"></th:block>
         <section class="list_wrapper">
             <div class="body-wrap">
                 <div class="body-wrap-box">
@@ -123,17 +122,12 @@
                 </div>
             </div>
         </section>
-        <footer id="footer">
-        </footer>
+        <th:block th:replace="~{main/footer :: footer}"></th:block>
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script>
-    $(document).ready(() => {
-        $("#header").load("../../main/header.html");
-        $("#footer").load("../../main/footer.html");
-    });
-
     // const $alertModal = $(".alert-modal-display");
 
     // 이미지 파일
@@ -203,6 +197,4 @@
         $('#li' + index).remove();
     });
 </script>
-</script>
-
 </html>
