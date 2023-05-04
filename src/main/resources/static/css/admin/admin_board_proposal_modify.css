@@ -70,7 +70,7 @@ hr {
 .prev-icon {
 	position: absolute;
 	width: 20px;
-	top: 3px;
+	top: -2px;
 }
 
 .prev-title {
@@ -243,5 +243,5 @@ input[type='date'] {
 }
 
 .board_info span {
-	font-size: 10px;
+	font-size: 12px;
 }
