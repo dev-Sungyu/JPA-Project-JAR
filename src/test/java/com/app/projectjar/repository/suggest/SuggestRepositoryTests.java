@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.suggest;
 
+import com.app.projectjar.entity.suggest.Suggest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +17,6 @@ public class SuggestRepositoryTests {
 
     @Autowired
     private SuggestRepository suggestRepository;
+
 
 }

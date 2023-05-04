@@ -1,8 +1,7 @@
 package com.app.projectjar.entity.member;
 
 import com.app.projectjar.audit.Period;
-import com.app.projectjar.entity.file.File;
-import com.app.projectjar.entity.file.MemberFile;
+import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.type.BedgeType;
 import com.app.projectjar.type.MemberType;
 import com.sun.istack.NotNull;
@@ -44,4 +43,7 @@ public class Member extends Period {
         this.memberName = memberName;
         this.memberNickname = memberNickname;
     }
+
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
+    private MemberFile memberFile;
 }
