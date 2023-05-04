@@ -1,23 +1,22 @@
 package com.app.projectjar.entity.file;
 
-import com.app.projectjar.entity.board.Board;
+
 import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(exclude = "board")
-@Table(name = "TBL_FILE")
+@Getter
+@ToString
+@Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class File {
-    @Id @GeneratedValue
+public abstract class Files {
+    @Id
+    @GeneratedValue
     @EqualsAndHashCode.Include
     private Long id;
+
     private String fileOriginalName;
     private String fileUuid;
     private String filePath;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "BOARD_ID")
-    private Board board;
 }

@@ -2,12 +2,9 @@ package com.app.projectjar.entity.board;
 
 
 import com.app.projectjar.audit.Period;
-import com.app.projectjar.entity.file.File;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter @ToString(callSuper = true)

@@ -1,6 +1,7 @@
 package com.app.projectjar.entity.groupChallenge;
 
 import com.app.projectjar.entity.board.Board;
+import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -10,6 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Getter @ToString(callSuper = true)
@@ -27,4 +29,6 @@ public class GroupChallenge extends Board {
     @NotNull
     private LocalDate endDate;
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "groupChallenge")
+    private List<GroupChallengeFile> groupChallengeFiles;
 }
