@@ -3,6 +3,7 @@ package com.app.projectjar.entity.suggest;
 import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.type.BoardType;
 import com.app.projectjar.type.ChallengeClassificationType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -17,7 +18,7 @@ import java.util.List;
 public class Suggest extends Board {
 
     @NotNull
-    private ChallengeClassificationType challengeType;
+    private BoardType boardType;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
