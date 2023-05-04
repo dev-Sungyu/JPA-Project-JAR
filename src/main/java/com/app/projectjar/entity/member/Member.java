@@ -34,6 +34,7 @@ public class Member extends Period {
     @ColumnDefault("'ENABLE'")
     private MemberType memberStatus;
     @Enumerated(EnumType.STRING)
+    @ColumnDefault("'ZERO'")
     private BedgeType bedgeType;
 
 }
