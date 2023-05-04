@@ -10,5 +10,4 @@ import java.util.Optional;
 public interface SuggestQueryDsl {
     // 전체 조회
     public Page<Suggest> findAllWithPaging(Pageable pageable);
-    // 상세 조회 (작성자 포함)
 }
