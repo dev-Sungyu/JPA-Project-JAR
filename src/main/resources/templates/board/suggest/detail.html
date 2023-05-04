@@ -6,8 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제안 챌린지 상세보기</title>
     <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/board/challenge/challenge.css">
     <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/board/challenge/challenge.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
 
@@ -446,7 +447,7 @@
                     </div>
                 </div>
                 <!-- footer -->
-                <footer id="footer"></footer>
+                <th:block th:replace="~{main/footer :: footer}"></th:block>
             </div>
         </div>
     </div>
@@ -528,18 +529,6 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets">
-                                <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                                <span class="swiper-pagination-bullet"></span>
-                            </div>
                         </div>
                         <button class="image-expansion-wrapper-prev" direction="left">
                             <svg width="48" height="48" fill="none" viewBox="0 0 24 24">
@@ -560,6 +549,7 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script src="/js/main/header.js"></script>
 <script>
 
     /* 참여하기 버튼 */
