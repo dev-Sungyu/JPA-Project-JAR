@@ -43,24 +43,4 @@ public class Member extends Period {
         this.memberName = memberName;
         this.memberNickname = memberNickname;
     }
-
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
-    }
-
-    public void setMemberPassword(String memberPassword) {
-        this.memberPassword = memberPassword;
-    }
-
-    public void setMemberPhoneNumber(String memberPhoneNumber) {
-        this.memberPhoneNumber = memberPhoneNumber;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public void setMemberNickname(String memberNickname) {
-        this.memberNickname = memberNickname;
-    }
 }
