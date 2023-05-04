@@ -36,4 +36,31 @@ public class Member extends Period {
     @Enumerated(EnumType.STRING)
     private BedgeType bedgeType;
 
+    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname) {
+        this.memberEmail = memberEmail;
+        this.memberPassword = memberPassword;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberName = memberName;
+        this.memberNickname = memberNickname;
+    }
+
+    public void setMemberEmail(String memberEmail) {
+        this.memberEmail = memberEmail;
+    }
+
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
+    }
+
+    public void setMemberPhoneNumber(String memberPhoneNumber) {
+        this.memberPhoneNumber = memberPhoneNumber;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
 }

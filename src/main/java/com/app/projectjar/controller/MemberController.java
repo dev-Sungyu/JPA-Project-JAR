@@ -14,9 +14,7 @@ public class MemberController {
     public void account(){}
 
     @GetMapping("change-password")
-    public String changePassword(){
-        return "/change-password";
-    }
+    public void changePassword(){}
 
     @GetMapping("login")
     public void login(){}
@@ -25,18 +23,12 @@ public class MemberController {
     public void password(){}
 
     @GetMapping("phone-certification")
-    public String phone(){
-        return "/phone-certification";
-    }
+    public void phone(){}
 
     @GetMapping("sign-in")
-    public String signIn(){
-        return "/sign-in";
-    }
+    public void signIn(){}
 
     @GetMapping("sign-in-OAuth")
-    public String Oauth(){
-        return "/sign-in-OAuth";
-    }
+    public void Oauth(){}
 
 }
