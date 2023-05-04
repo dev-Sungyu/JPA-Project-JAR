@@ -10,6 +10,7 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @Inheritance(strategy = InheritanceType.JOINED)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public abstract class Board extends Period{
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
@@ -18,4 +19,8 @@ public abstract class Board extends Period{
     private String boardContent;
 
 
+    public Board(String boardTitle, String boardContent) {
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+    }
 }
