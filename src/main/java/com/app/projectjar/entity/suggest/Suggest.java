@@ -26,11 +26,17 @@ public class Suggest extends Board {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "suggest")
     private List<SuggestFile> suggestFiles;
 
-    public Suggest(String boardTitle, String boardContent) {
+    public Suggest(String boardTitle, String boardContent, BoardType boardType, Member member) {
         super(boardTitle, boardContent);
-    }
-
-    public void setMember(Member member) {
+        this.boardType = boardType;
         this.member = member;
     }
+
+    public Suggest(String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
+        super(boardTitle, boardContent);
+        this.boardType = boardType;
+        this.member = member;
+        this.suggestFiles = suggestFiles;
+    }
+
 }
