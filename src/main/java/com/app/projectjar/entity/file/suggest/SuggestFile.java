@@ -20,4 +20,6 @@ public class SuggestFile extends Files {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Suggest suggest;
+
+
 }
