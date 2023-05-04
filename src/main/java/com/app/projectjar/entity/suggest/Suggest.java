@@ -4,7 +4,6 @@ import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BoardType;
-import com.app.projectjar.type.ChallengeClassificationType;
 import com.sun.istack.NotNull;
 import lombok.*;
 
