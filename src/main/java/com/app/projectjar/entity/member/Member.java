@@ -18,6 +18,7 @@ import javax.persistence.*;
 @Table(name = "TBL_MEMBER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
+@DynamicUpdate
 public class Member extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include

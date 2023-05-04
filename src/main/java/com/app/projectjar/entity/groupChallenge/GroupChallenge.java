@@ -5,6 +5,8 @@ import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +15,8 @@ import java.time.LocalDate;
 @Getter @ToString(callSuper = true)
 @Table(name = "TBL_GROUP_CHALLENGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@DynamicUpdate
 public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)

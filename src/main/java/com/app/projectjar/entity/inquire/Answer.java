@@ -5,6 +5,8 @@ import com.app.projectjar.type.AnswerType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -12,6 +14,8 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @Table(name ="TBL_ANSWER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@DynamicUpdate
 public class Answer extends Period {
 
     @Id @GeneratedValue

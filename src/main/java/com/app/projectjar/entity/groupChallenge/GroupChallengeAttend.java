@@ -6,6 +6,8 @@ import com.app.projectjar.type.GroupChallengeAttendType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
@@ -13,6 +15,8 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @Table(name = "TBL_GROUP_CHALLENGE_ATTEND")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@DynamicUpdate
 public class GroupChallengeAttend extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
