@@ -5,6 +5,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class ChallengeAttendQueryDSLImpl implements ChallengeQueryDSL{
+public class ChallengeAttendQueryDSLImpl implements ChallengeAttendQueryDSL{
     private final JPAQueryFactory jpaQueryFactory;
 }
