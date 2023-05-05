@@ -10,58 +10,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class AdminController {
     @GetMapping("challenge/detail")
-    public void adminChallengeDetail() {
-    }
+    public void adminChallengeDetail() {}
     @GetMapping("challenge/list")
-    public void adminChallengeList() {
-    }
+    public void adminChallengeList() {}
     @GetMapping("challenge/modify")
-    public void adminChallengeModify() {
-    }
+    public void adminChallengeModify() {}
     @GetMapping("challenge/write")
-    public void adminChallengeWrite() {
-    }
+    public void adminChallengeWrite() {}
     @GetMapping("inquiry/answer")
-    public void adminInquiryAnswer() {
-    }
+    public void adminInquiryAnswer() {}
     @GetMapping("inquiry/detail")
-    public void adminInquiryDetail() {
-    }
+    public void adminInquiryDetail() {}
     @GetMapping("inquiry/list")
-    public void adminInquiryList() {
-    }
+    public void adminInquiryList() {}
     @GetMapping("inquiry/modify")
-    public void adminInquiryModify() {
-    }
+    public void adminInquiryModify() {}
     @GetMapping("member/detail")
-    public void adminMemberDetail() {
-    }
+    public void adminMemberDetail() {}
     @GetMapping("member/list")
-    public void adminMemberList() {
-    }
+    public void adminMemberList() {}
     @GetMapping("member/modify")
-    public void adminMemberModify() {
-    }
+    public void adminMemberModify() {}
     @GetMapping("notice/detail")
-    public void adminNoticeDetail() {
-    }
+    public void adminNoticeDetail() {}
     @GetMapping("notice/list")
-    public void adminNoticeList() {
-    }
+    public void adminNoticeList() {}
     @GetMapping("notice/modify")
-    public void adminNoticeModify() {
-    }
+    public void adminNoticeModify() {}
     @GetMapping("notice/write")
-    public void adminNoticeWrite() {
-    }
+    public void adminNoticeWrite() {}
     @GetMapping("proposal/detail")
-    public void adminProposalDetail() {
-    }
+    public void adminProposalDetail() {}
     @GetMapping("proposal/list")
-    public void adminProposalList() {
-    }
+    public void adminProposalList() {}
     @GetMapping("proposal/modify")
-    public void adminProposalModify() {
-    }
+    public void adminProposalModify() {}
 
 }
