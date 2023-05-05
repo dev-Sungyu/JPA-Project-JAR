@@ -6,8 +6,11 @@ import com.app.projectjar.entity.suggest.Suggest;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+
+import java.util.List;
 
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
@@ -17,6 +20,17 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
     @Override
     public Page<Suggest> findAllWithPaging(Pageable pageable) {
-        return null;
+        List<Suggest> foundSuggest = query.select(suggest)
+                .from(suggest)
+                .orderBy(suggest.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggest.count())
+                .from(suggest)
+                .fetchOne();
+
+        return new PageImpl<>(foundSuggest, pageable, count);
     }
 }

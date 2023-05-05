@@ -1,6 +1,7 @@
 package com.app.projectjar.audit;
 
 import lombok.Getter;
+import lombok.ToString;
 
 import javax.persistence.MappedSuperclass;
 import javax.persistence.PrePersist;
@@ -8,7 +9,7 @@ import javax.persistence.PreUpdate;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-@Getter
+@Getter @ToString
 public abstract class Period {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
