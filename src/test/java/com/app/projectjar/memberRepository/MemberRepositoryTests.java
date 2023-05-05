@@ -26,7 +26,6 @@ public class MemberRepositoryTests {
 
     @Test
     public void findByIdTest(){
-        memberRepository.findById(1L).ifPresent();
+        memberRepository.findById(1L).ifPresent(member -> );
     }
-
 }

@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MemberRepository extends JpaRepository<Member, Long>, MemberQueryDsl {
 //    회원 가입
+//    회원 조회
 //    회원 삭제
 }
