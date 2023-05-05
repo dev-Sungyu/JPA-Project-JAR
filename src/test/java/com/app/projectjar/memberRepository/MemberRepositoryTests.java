@@ -28,5 +28,4 @@ public class MemberRepositoryTests {
 //    public void findByIdTest(){
 //        memberRepository.findById(1L).ifPresent();
 //    }
-
 }
