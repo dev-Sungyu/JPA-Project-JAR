@@ -22,4 +22,9 @@ public class SuggestLike extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUGGEST_ID")
     private Suggest suggest;
+
+    public SuggestLike(Member member, Suggest suggest) {
+        this.member = member;
+        this.suggest = suggest;
+    }
 }
