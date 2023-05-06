@@ -25,7 +25,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
         List<ReplyDTO> foundReply = query.select(
                 new QReplyDTO(
                         suggestReply.id,
-                        suggestReply.suggestReplyContent,
+                        suggestReply.replyContent,
                         suggestReply.updatedDate,
                         suggestReply.member.id,
                         suggestReply.member.memberNickname,

@@ -2,6 +2,7 @@ package com.app.projectjar.entity.suggest;
 
 import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.reply.Reply;
 import com.sun.istack.NotNull;
 import lombok.*;
 
@@ -11,12 +12,7 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @Table(name = "TBL_SUGGEST_REPLY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SuggestReply extends Period {
-    @Id @GeneratedValue
-    @EqualsAndHashCode.Include
-    private Long id;
-    @NotNull
-    private String suggestReplyContent;
+public class SuggestReply extends Reply {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "SUGGEST_ID")
@@ -26,13 +22,13 @@ public class SuggestReply extends Period {
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
-    public void setSuggestReplyContent(String suggestReplyContent) {
-        this.suggestReplyContent = suggestReplyContent;
-    }
-
-    public SuggestReply(String suggestReplyContent, Suggest suggest, Member member) {
-        this.suggestReplyContent = suggestReplyContent;
+    public SuggestReply(String replyContent, Suggest suggest, Member member) {
+        super(replyContent);
         this.suggest = suggest;
         this.member = member;
+    }
+
+    public void setSuggestReplyContent(String replyContent) {
+        super.setReplyContent(replyContent);
     }
 }
