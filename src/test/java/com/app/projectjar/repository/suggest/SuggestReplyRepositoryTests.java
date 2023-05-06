@@ -51,7 +51,7 @@ public class SuggestReplyRepositoryTests {
     public void saveTest() {
         suggestRepository.findById(23L).ifPresent(
                 suggest ->
-                        memberRepository.findById(2L).ifPresent(
+                        memberRepository.findById(3L).ifPresent(
                                 member ->
                                         suggestReplyRepository.save(new SuggestReply("테스트 댓글1",suggest, member))
                         )
@@ -60,7 +60,7 @@ public class SuggestReplyRepositoryTests {
 
     @Test
     public void findAllBySuggestWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(0,2);
+        PageRequest pageRequest = PageRequest.of(0,10);
         suggestReplyRepository.findAllBySuggestWithPaging(23L,pageRequest)
                 .stream()
                 .forEach(

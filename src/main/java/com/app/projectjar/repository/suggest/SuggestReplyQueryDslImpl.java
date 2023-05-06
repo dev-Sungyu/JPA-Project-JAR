@@ -3,6 +3,7 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.domain.dto.QReplyDTO;
 import com.app.projectjar.domain.dto.ReplyDTO;
+import com.app.projectjar.entity.file.member.QMemberFile;
 import com.app.projectjar.entity.suggest.QSuggestReply;
 import com.app.projectjar.entity.suggest.SuggestReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
@@ -35,6 +37,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
                         suggestReply.member.bedgeType
                         ))
                 .from(suggestReply)
+            .leftJoin(suggestReply.member.memberFile, memberFile)
                 .where(suggestReply.suggest.id.eq(suggestId))
                 .orderBy(suggestReply.id.desc())
                 .offset(pageable.getOffset())
