@@ -14,22 +14,25 @@
     <link rel="stylesheet" href="/css/mypage/mypage-main.css">
     <link rel="icon" href="/image/logo/favicon.png">
     <link rel="stylesheet" href="/css/mypage/alert.css">
+    <link rel="stylesheet" href="/css/mypage/side-menu.css">
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/mypage/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 
 <body>
     <div>
         <!-- main/header.html -->
-        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
 
         <div>
             <div class="mypage-all-wrap">
                 <!-- user-header.html -->
-                <div id="mypage-header"></div>
+                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
 
                 <div class="mypage-content-wrap">
-
                     <!-- side-menu.html -->
-                    <div id="side-menu"></div>
+                    <div id="side-menu" th:replace="~{mypage/side-menu :: sidebar}"></div>
 
                     <div class="mypage-content-container">
                         <div class="mypage-content-box">
@@ -88,7 +91,7 @@
             </div>
         </div>
         <!-- main/footer.html -->
-        <div id="footer"></div>
+        <th:block th:replace="~{main/footer :: footer}"> </th:block>
     </div>
 
     <!-- 다이어리 입력 창 -->
@@ -240,12 +243,6 @@
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script>
-    $(document).ready(() => {
-        $("#header").load("../main/header.html");
-        $("#footer").load("../main/footer.html");
-        $("#mypage-header").load("user-header.html");
-        $("#side-menu").load("side-menu.html");
-    });
 
     const $alertModal = $(".alert-modal-display");
 

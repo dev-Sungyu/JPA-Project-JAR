@@ -8,21 +8,25 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="icon" href="/image/logo/favicon.png">
     <link rel="stylesheet" href="/css/mypage/list.css">
+    <link rel="stylesheet" href="/css/mypage/side-menu.css">
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/mypage/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
     <div>
         <!-- main/header.html -->
-        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
 
         <div>
             <div class="mypage-all-wrap">
                 <!-- user-header.html -->
-                <div id="mypage-header"></div>
+                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
 
                 <div class="mypage-content-wrap">
 
                     <!-- side-menu.html -->
-                    <div id="side-menu"></div>
+                    <div id="side-menu" th:replace="~{mypage/sdie-menu :: sidebar}"></div>
                     <div class="content-wrap">
                         <section>
                             <div class="content-title-box">
@@ -83,17 +87,11 @@
         </div>
         
         <!-- main/footer.html -->
-        <div id="footer"></div>
+        <div id="footer" th:insert="~{main/footer :: footer}"></div>
     </div>               
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
-    $(document).ready(() => {
-        $("#header").load("../main/header.html");
-        $("#footer").load("../main/footer.html");
-        $("#mypage-header").load("user-header.html");
-        $("#side-menu").load("side-menu.html");
-    });
 </script>
 <script>
     const $page = $(".paging-border-none");
