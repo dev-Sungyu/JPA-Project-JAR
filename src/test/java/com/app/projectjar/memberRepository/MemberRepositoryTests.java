@@ -2,6 +2,8 @@ package com.app.projectjar.memberRepository;
 
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.type.BedgeType;
+import com.app.projectjar.type.MemberType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +22,7 @@ public class MemberRepositoryTests {
 
     @Test
     public void saveTest(){
-        Member member = new Member("user01@naver.com","qwer1234!","010-1234-5678","최규선","최팀장");
+        Member member = new Member("user01@naver.com","qwer1234!","010-1234-5678","최규선","최팀장", MemberType.ENABLE ,BedgeType.ONE);
         memberRepository.save(member);
     }
 
