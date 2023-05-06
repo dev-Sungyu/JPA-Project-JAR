@@ -36,12 +36,14 @@ public class Member extends Period {
     @ColumnDefault("'ZERO'")
     private BedgeType bedgeType;
 
-    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname) {
+    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BedgeType bedgeType) {
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberName = memberName;
         this.memberNickname = memberNickname;
+        this.memberStatus = memberStatus;
+        this.bedgeType = bedgeType;
     }
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
