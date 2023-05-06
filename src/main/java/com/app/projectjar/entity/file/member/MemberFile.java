@@ -16,4 +16,14 @@ public class MemberFile extends Files {
 //    나중에 유지보수 편하게 하기 위해 엔티티 만듬
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
+
+    public MemberFile(Member member) {
+        this.member = member;
+    }
+
+    public MemberFile(String fileOriginalName, String fileUuid, String filePath, Member member) {
+        super(fileOriginalName, fileUuid, filePath);
+        this.member = member;
+    }
+
 }
