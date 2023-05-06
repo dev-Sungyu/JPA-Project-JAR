@@ -1,6 +1,8 @@
 package com.app.projectjar.repository.suggest;
 
 
+import com.app.projectjar.domain.dto.QReplyDTO;
+import com.app.projectjar.domain.dto.ReplyDTO;
 import com.app.projectjar.entity.suggest.QSuggestReply;
 import com.app.projectjar.entity.suggest.SuggestReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -19,9 +21,21 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<SuggestReply> findAllBySuggestWithPaging(Long suggestId, Pageable pageable) {
-        List<SuggestReply> foundReply = query.select(suggestReply)
+    public Page<ReplyDTO> findAllBySuggestWithPaging(Long suggestId, Pageable pageable) {
+        List<ReplyDTO> foundReply = query.select(
+                new QReplyDTO(
+                        suggestReply.id,
+                        suggestReply.suggestReplyContent,
+                        suggestReply.updatedDate,
+                        suggestReply.member.id,
+                        suggestReply.member.memberNickname,
+                        suggestReply.member.memberFile.fileOriginalName,
+                        suggestReply.member.memberFile.fileUuid,
+                        suggestReply.member.memberFile.filePath,
+                        suggestReply.member.bedgeType
+                        ))
                 .from(suggestReply)
+                .where(suggestReply.suggest.id.eq(suggestId))
                 .orderBy(suggestReply.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

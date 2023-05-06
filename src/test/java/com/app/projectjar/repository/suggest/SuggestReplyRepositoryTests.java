@@ -1,6 +1,9 @@
 package com.app.projectjar.repository.suggest;
 
+import com.app.projectjar.domain.dto.ReplyDTO;
+import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.suggest.SuggestReply;
+import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.util.UUID;
 
 @SpringBootTest
 @Transactional
@@ -26,6 +30,23 @@ public class SuggestReplyRepositoryTests {
     @Autowired
     private SuggestRepository suggestRepository;
 
+    @Autowired
+    private MemberFIleRepository memberFIleRepository;
+
+    @Test
+    public void test() {
+        memberRepository.findById(1L).ifPresent(
+                member ->
+                        memberFIleRepository.save(new MemberFile(
+                                "테스트.png",
+                                UUID.randomUUID().toString(),
+                                "2023/05/06",
+                                member
+                        ))
+        );
+    }
+
+
     @Test
     public void saveTest() {
         suggestRepository.findById(40L).ifPresent(
@@ -39,11 +60,12 @@ public class SuggestReplyRepositoryTests {
 
     @Test
     public void findAllBySuggestWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(0,10);
+        PageRequest pageRequest = PageRequest.of(0,2);
         suggestReplyRepository.findAllBySuggestWithPaging(40L,pageRequest)
                 .stream()
-                .map(SuggestReply::toString)
-                .forEach(log::info);
+                .forEach(
+                        replyDTO -> log.info(replyDTO.toString())
+                );
     }
 
     @Test
