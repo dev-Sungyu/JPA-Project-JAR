@@ -25,4 +25,14 @@ public class SuggestReply extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
+
+    public void setSuggestReplyContent(String suggestReplyContent) {
+        this.suggestReplyContent = suggestReplyContent;
+    }
+
+    public SuggestReply(String suggestReplyContent, Suggest suggest, Member member) {
+        this.suggestReplyContent = suggestReplyContent;
+        this.suggest = suggest;
+        this.member = member;
+    }
 }
