@@ -31,7 +31,7 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void saveTest() {
-        memberRepository.findById(3L).ifPresent(
+        memberRepository.findById(1L).ifPresent(
                 member ->
                         suggestRepository.findById(40L).ifPresent(
                                 suggest ->

@@ -35,7 +35,7 @@ public class SuggestReplyRepositoryTests {
 
     @Test
     public void test() {
-        memberRepository.findById(1L).ifPresent(
+        memberRepository.findById(2L).ifPresent(
                 member ->
                         memberFIleRepository.save(new MemberFile(
                                 "테스트.png",
@@ -49,9 +49,9 @@ public class SuggestReplyRepositoryTests {
 
     @Test
     public void saveTest() {
-        suggestRepository.findById(40L).ifPresent(
+        suggestRepository.findById(23L).ifPresent(
                 suggest ->
-                        memberRepository.findById(1L).ifPresent(
+                        memberRepository.findById(2L).ifPresent(
                                 member ->
                                         suggestReplyRepository.save(new SuggestReply("테스트 댓글1",suggest, member))
                         )
@@ -61,7 +61,7 @@ public class SuggestReplyRepositoryTests {
     @Test
     public void findAllBySuggestWithPagingTest() {
         PageRequest pageRequest = PageRequest.of(0,2);
-        suggestReplyRepository.findAllBySuggestWithPaging(40L,pageRequest)
+        suggestReplyRepository.findAllBySuggestWithPaging(23L,pageRequest)
                 .stream()
                 .forEach(
                         replyDTO -> log.info(replyDTO.toString())

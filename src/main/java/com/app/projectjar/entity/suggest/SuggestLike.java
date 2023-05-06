@@ -1,6 +1,6 @@
 package com.app.projectjar.entity.suggest;
 
-import com.app.projectjar.audit.Period;
+import com.app.projectjar.entity.like.Likes;
 import com.app.projectjar.entity.member.Member;
 import lombok.*;
 
@@ -10,10 +10,7 @@ import javax.persistence.*;
 @Getter @ToString(callSuper = true)
 @Table(name = "TBL_SUGGEST_LIKE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SuggestLike extends Period {
-    @Id @GeneratedValue
-    @EqualsAndHashCode.Include
-    private Long id;
+public class SuggestLike extends Likes {
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
