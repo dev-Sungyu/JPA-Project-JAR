@@ -8,10 +8,11 @@ import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_SUGGEST")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Suggest extends Board {
@@ -24,7 +25,7 @@ public class Suggest extends Board {
     private Member member;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "suggest")
-    private List<SuggestFile> suggestFiles;
+    private List<SuggestFile> suggestFiles = new ArrayList<>();
 
     public Suggest(String boardTitle, String boardContent, BoardType boardType, Member member) {
         super(boardTitle, boardContent);
