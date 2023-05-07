@@ -177,3 +177,13 @@ div.board_content {
     border: 0;
 	margin:8px 0;
 }
+.btn_done {
+	font-family: 'GmarketSansMedium';
+	width: 100px;
+	height: 30px;
+	background-color: #4F6DF5;
+	font-size: 15px;
+	font-weight: bold;
+	color: #fff;
+	border: none;
+}

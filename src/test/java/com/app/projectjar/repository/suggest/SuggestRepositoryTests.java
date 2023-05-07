@@ -49,4 +49,12 @@ public class SuggestRepositoryTests {
         log.info(suggestRepository.findByIdSuggest(26L).toString());
     }
 
+    /*관리자 페이지*/
+    //    제안게시판 삭제하기
+    @Test
+    public void deleteTest() {
+        suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
+    }
+    
+
 }
