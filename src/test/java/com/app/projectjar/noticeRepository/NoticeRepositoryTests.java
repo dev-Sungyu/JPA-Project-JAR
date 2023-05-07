@@ -19,6 +19,11 @@ import javax.transaction.Transactional;
 public class NoticeRepositoryTests {
     @Autowired
     private NoticeRepository noticeRepository;
+//  공지사항 작성하기
+    @Test
+    public void saveTest(){
+        
+    }
 
 
 //    공지사항 리스트
@@ -38,5 +43,12 @@ public class NoticeRepositoryTests {
     @Test
     public void deleteTest() {
         noticeRepository.findById(2L).ifPresent(notice -> noticeRepository.delete(notice));
+    }
+//    공지사항 수정하기
+    @Test
+    public void updateTest(){
+        noticeRepository.findById(2L).ifPresent(
+                notice -> notice.setNoticeTitle("수정된 제목2")
+        );
     }
 }

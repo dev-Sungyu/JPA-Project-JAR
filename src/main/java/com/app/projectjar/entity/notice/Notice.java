@@ -20,4 +20,15 @@ public class Notice extends Period {
     @NotNull private String noticeTitle;
     @NotNull private String noticeContent;
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setNoticeTitle(String noticeTitle) {
+        this.noticeTitle = noticeTitle;
+    }
+
+    public void setNoticeContent(String noticeContent) {
+        this.noticeContent = noticeContent;
+    }
 }
