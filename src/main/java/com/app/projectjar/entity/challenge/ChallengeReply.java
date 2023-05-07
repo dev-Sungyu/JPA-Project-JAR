@@ -21,4 +21,10 @@ public class ChallengeReply extends Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
+
+    public ChallengeReply(String replyContent, Challenge challenge, Member member) {
+        super(replyContent);
+        this.challenge = challenge;
+        this.member = member;
+    }
 }

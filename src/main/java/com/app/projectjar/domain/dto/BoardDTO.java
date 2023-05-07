@@ -1,11 +1,15 @@
 package com.app.projectjar.domain.dto;
 
 import com.app.projectjar.entity.file.suggest.SuggestFile;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.type.BoardType;
+import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -15,6 +19,14 @@ public class BoardDTO {
     private String boardTitle;
     private String boardContent;
     private LocalDateTime registerDate;
+
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    private ChallengeType challengeType;
+
+    private GroupChallengeType groupChallengeStatus;
+
     private BoardType boardType;
 
     private FileDTO fileDTO;
@@ -34,6 +46,27 @@ public class BoardDTO {
         this.boardContent = boardContent;
         this.registerDate = registerDate;
     }
+
+    @QueryProjection
+    public BoardDTO(Long boardId, String boardTitle, String boardContent, ChallengeType challengeType, LocalDateTime registerDate) {
+        this.boardId = boardId;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.challengeType = challengeType;
+        this.registerDate = registerDate;
+    }
+
+    @QueryProjection
+    public BoardDTO(Long boardId, String boardTitle, String boardContent, LocalDate startDate,LocalDate endDate,  GroupChallengeType groupChallengeStatus) {
+        this.boardId = boardId;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.groupChallengeStatus = groupChallengeStatus;
+    }
+
+
 
     public void setFileDTO(FileDTO fileDTO) {
         this.fileDTO = fileDTO;

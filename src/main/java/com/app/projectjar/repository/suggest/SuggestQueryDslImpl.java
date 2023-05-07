@@ -18,6 +18,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.File;
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
@@ -64,7 +65,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     }
 
     @Override
-    public BoardDetailDTO findByIdSuggest(Long suggestId) {
+    public Optional<BoardDetailDTO> findByIdSuggest(Long suggestId) {
         BoardDetailDTO boardDetailDTO = query.select(new QBoardDetailDTO(
                 suggest.id,
                 suggest.boardTitle,
@@ -85,6 +86,6 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .fetch()
         );
 
-        return boardDetailDTO;
+        return Optional.ofNullable(boardDetailDTO);
     }
 }

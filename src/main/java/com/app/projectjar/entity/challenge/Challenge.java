@@ -27,4 +27,9 @@ public class Challenge extends Board {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
     private List<ChallengeFile> challengeFiles;
+
+    public Challenge(String boardTitle, String boardContent, ChallengeType challengeStatus) {
+        super(boardTitle, boardContent);
+        this.challengeStatus = challengeStatus;
+    }
 }
