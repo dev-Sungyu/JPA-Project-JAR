@@ -14,5 +14,5 @@ public interface SuggestQueryDsl {
     public Page<BoardDTO> findAllWithPaging(Pageable pageable);
 
     // 상세보기
-    public BoardDetailDTO findByIdSuggest(Long suggestId);
+    public Optional<BoardDetailDTO> findByIdSuggest(Long suggestId);
 }

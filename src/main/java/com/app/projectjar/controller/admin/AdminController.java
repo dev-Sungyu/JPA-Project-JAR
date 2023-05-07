@@ -45,5 +45,10 @@ public class AdminController {
     public void adminProposalList() {}
     @GetMapping("proposal/modify")
     public void adminProposalModify() {}
+    @GetMapping("diary/list")
+    public void adminDiaryList() {}
+    @GetMapping("diary/detail")
+    public void adminDiaryDetail() {}
+
 
 }

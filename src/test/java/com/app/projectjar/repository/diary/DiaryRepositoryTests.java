@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.diary;
 
 import com.app.projectjar.domain.dto.BoardDTO;
+import com.app.projectjar.domain.dto.BoardDetailDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.type.DiaryType;
@@ -42,7 +43,7 @@ public class DiaryRepositoryTests {
 
     @Test
     public void findByDiaryId() {
-        log.info(diaryRepository.findByDiaryId(110L).toString());
+        diaryRepository.findByDiaryId(110L).map(BoardDetailDTO::toString).ifPresent(log::info);
     }
 
     @Test

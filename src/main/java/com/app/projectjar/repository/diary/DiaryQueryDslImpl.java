@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.projectjar.entity.diary.QDiary.diary;
 import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
@@ -23,7 +24,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
 
 
     @Override
-    public BoardDetailDTO findByDiaryId(Long diaryId) {
+    public Optional<BoardDetailDTO> findByDiaryId(Long diaryId) {
         BoardDetailDTO boardDetailDTO = query.select(new QBoardDetailDTO(
                 diary.id,
                 diary.boardTitle,
@@ -44,7 +45,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                         .fetch()
         );
 
-        return boardDetailDTO;
+        return Optional.ofNullable(boardDetailDTO);
     }
 
     @Override

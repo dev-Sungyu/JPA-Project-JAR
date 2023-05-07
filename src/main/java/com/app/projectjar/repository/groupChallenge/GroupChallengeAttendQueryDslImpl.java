@@ -6,5 +6,5 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQueryDsl {
-    private final JPAQueryFactory jpaQueryFactory;
+    private final JPAQueryFactory query;
 }
