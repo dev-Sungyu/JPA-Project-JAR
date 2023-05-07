@@ -31,4 +31,10 @@ public class Notice extends Period {
     public void setNoticeContent(String noticeContent) {
         this.noticeContent = noticeContent;
     }
+
+    public Notice(Long id, String noticeTitle, String noticeContent) {
+        this.id = id;
+        this.noticeTitle = noticeTitle;
+        this.noticeContent = noticeContent;
+    }
 }

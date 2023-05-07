@@ -22,9 +22,9 @@ public class NoticeRepositoryTests {
 //  공지사항 작성하기
     @Test
     public void saveTest(){
-        
+        Notice notice = new Notice(1L, "세이브 테스트 제목 1", "세이브 테스트 내용 1");
+        noticeRepository.save(notice);
     }
-
 
 //    공지사항 리스트
     @Test
@@ -44,6 +44,7 @@ public class NoticeRepositoryTests {
     public void deleteTest() {
         noticeRepository.findById(2L).ifPresent(notice -> noticeRepository.delete(notice));
     }
+    
 //    공지사항 수정하기
     @Test
     public void updateTest(){
