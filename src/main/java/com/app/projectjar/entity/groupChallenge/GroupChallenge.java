@@ -31,4 +31,11 @@ public class GroupChallenge extends Board {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
+
+    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate) {
+        super(boardTitle, boardContent);
+        this.groupChallengeStatus = groupChallengeStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
 }

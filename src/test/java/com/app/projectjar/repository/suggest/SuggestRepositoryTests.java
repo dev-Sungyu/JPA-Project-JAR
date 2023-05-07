@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.domain.dto.BoardDTO;
+import com.app.projectjar.domain.dto.BoardDetailDTO;
 import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.suggest.Suggest;
@@ -46,7 +47,7 @@ public class SuggestRepositoryTests {
 
     @Test
     public void findByIdSuggest() {
-        log.info(suggestRepository.findByIdSuggest(26L).toString());
+        suggestRepository.findByIdSuggest(26L).map(BoardDetailDTO::toString).ifPresent(log::info);
     }
 
     /*관리자 페이지*/
