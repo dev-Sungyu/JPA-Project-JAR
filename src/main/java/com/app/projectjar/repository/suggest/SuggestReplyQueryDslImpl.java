@@ -32,7 +32,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
                         suggestReply.member.memberFile.fileOriginalName,
                         suggestReply.member.memberFile.fileUuid,
                         suggestReply.member.memberFile.filePath,
-                        suggestReply.member.bedgeType
+                        suggestReply.member.badgeType
                         ))
                 .from(suggestReply)
                 .where(suggestReply.suggest.id.eq(suggestId))
