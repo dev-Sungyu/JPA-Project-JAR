@@ -17,13 +17,15 @@ public class MemberFile extends Files {
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public MemberFile(Member member) {
-        this.member = member;
+    public MemberFile(String fileOriginalName, String fileUuid, String filePath) {
+        super(fileOriginalName, fileUuid, filePath);
     }
 
     public MemberFile(String fileOriginalName, String fileUuid, String filePath, Member member) {
         super(fileOriginalName, fileUuid, filePath);
         this.member = member;
     }
+
+
 
 }
