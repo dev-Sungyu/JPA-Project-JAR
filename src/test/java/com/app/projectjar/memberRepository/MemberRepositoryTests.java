@@ -55,12 +55,16 @@ public class MemberRepositoryTests {
                 });
     }
 
-
 //      삭제
     @Test
     public void deleteMemberTest(){
         memberRepository.findByMemberId(3L).ifPresent(memberRepository::delete);
     }
+
+//    이메일 중복 검사
+//    @Test
+//    public void overlapByMemberEmailTest(){
+//    }
 
 
 }

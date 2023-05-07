@@ -11,10 +11,10 @@ public interface MemberQueryDsl {
     /* 로그인 */
 
 //    이메일 중복 검사
-    public Optional<Member> findByMemberEmail(String memberEmail);
+    public Optional<Member> overlapByMemberEmail(String memberEmail);
 
 //    휴대폰 중복 검사
-    public Optional<Member> findByPhoneNumber(String memberPhoneNumber);
+    public Optional<Member> overlapByPhoneNumber(String memberPhoneNumber);
 
 //    로그인
     public Member findByMemberIdAndMemberPassword(String memberEmail, String memberPassword);
