@@ -30,7 +30,7 @@ public class Inquire extends Period {
         this.inquireTitle = inquireTitle;
         this.inquireContent = inquireContent;
     }
-
+//  한 사람당 여러가지를 문의할 수 있으니까 ManyToOne
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
