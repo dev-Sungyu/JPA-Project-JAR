@@ -1,5 +1,7 @@
 package com.app.projectjar.mainRepository;
 
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.notice.Notice;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestLikeRepository;
@@ -33,9 +35,9 @@ public class MainRepositoryTests {
     @Autowired
     private SuggestReplyRepository suggestReplyRepository;
 
-//    @Test
-//    private void findAllGroupChallenge(){
-//
-//    }
-
+//    그룹 챌린지 리스트
+    @Test
+    public void findAll() {
+        groupChallengeRepository.findAll().forEach(groupChallenge -> log.info(String.valueOf(groupChallenge)));
+    }
 }

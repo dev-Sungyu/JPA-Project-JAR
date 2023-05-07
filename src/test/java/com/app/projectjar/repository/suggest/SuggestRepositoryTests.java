@@ -44,4 +44,19 @@ public class SuggestRepositoryTests {
         suggestRepository.findAllWithPaging(pageRequest).stream().map(BoardDTO::toString).forEach(log::info);
     }
 
+    @Test
+    public void findByIdSuggest() {
+        log.info(suggestRepository.findByIdSuggest(26L).toString());
+    }
+
+    /*관리자 페이지*/
+    //    제안 게시판 삭제하기
+    @Test
+    public void deleteTest() {
+        suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
+    }
+
+//    제안 게시판 수정하기
+
+
 }

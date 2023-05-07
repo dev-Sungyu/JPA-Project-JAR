@@ -18,4 +18,9 @@ public class DiaryLike  extends Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    public DiaryLike(Diary diary, Member member) {
+        this.diary = diary;
+        this.member = member;
+    }
 }
