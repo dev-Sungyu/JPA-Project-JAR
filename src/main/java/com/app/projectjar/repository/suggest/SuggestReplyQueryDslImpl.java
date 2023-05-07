@@ -34,7 +34,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
                         suggestReply.member.memberFile.fileOriginalName,
                         suggestReply.member.memberFile.fileUuid,
                         suggestReply.member.memberFile.filePath,
-                        suggestReply.member.bedgeType
+                        suggestReply.member.badgeType
                         ))
                 .from(suggestReply)
             .leftJoin(suggestReply.member.memberFile, memberFile)
