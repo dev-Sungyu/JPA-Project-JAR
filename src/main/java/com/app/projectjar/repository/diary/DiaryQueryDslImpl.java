@@ -55,7 +55,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 diary.boardContent,
                 diary.createdDate
         )).from(diary)
-                .where(diary.diaryStatus.eq(DiaryType.valueOf("PRIVATE")))
+                .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
                 .orderBy(diary.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -78,7 +78,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
 
         Long count = query.select(diary.count())
                 .from(diary)
-                .where(diary.diaryStatus.eq(DiaryType.valueOf("PRIVATE")))
+                .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
                 .fetchOne();
 
         return new PageImpl<>(foundDiaries, pageable, count);
