@@ -9,39 +9,17 @@
     <link rel="stylesheet" href="/css/board/main/footer.css">
     <link rel="stylesheet" href="/css/login/notice.css">
     <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
 </head>
 <body>
     <div style="position: relative; z-index: 0;">
         <main>
             <div class="main">
                 <div class="login">
-                    <div class="header">
-                        <div class="login">
-                            <div class="header_div">
-                                <header class="real_header">
-                                    <div class="align">
-                                        <div class="div_logo">
-                                            <img style="width: 90px;" src="/image/logo/logo.png">
-                                            <div style="width: 36px; display: flex;"></div>
-                                            <div class="stretch">
-                                                <div class="stretch_div">
-                                                    <div class="div_img">
-                                                        <div class="img">
-                                                            <picture class="img_picture">
-                                                                <source type="image/webp" srcset="https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/640xauto.webp 640w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/750xauto.webp 750w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/828xauto.webp 828w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1080xauto.webp 1080w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1200xauto.webp 1200w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1920xauto.webp 1920w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/2048xauto.webp 2048w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/3840xauto.webp 3840w">
-                                                                <img class="img_picture_img" alt="profile" srcset="https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/640xauto 640w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/750xauto 750w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/828xauto 828w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1080xauto 1080w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1200xauto 1200w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/1920xauto 1920w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/2048xauto 2048w,https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0/3840xauto 3840w" src="https://cdn.class101.net/images/795850d2-81b6-4f17-aea2-6c92664456f0" loading="eager">
-                                                            </picture>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </header>
-                            </div>
-                            <div class="header_middle"></div>
-                        </div>
-                    </div>
+                    <!--헤더-->
+                    <th:block th:replace="~{main/header :: header}"></th:block>
+
                     <div class="row">
                         <div class="div_notice">
                             <div class="login">
@@ -203,9 +181,9 @@
                             </div>
                         </div>
                         <div style="height: 72px;"></div>
-                        <!-- 푸터 넣는곳 -->
-                        <th:block th:replace="~{main/footer :: footer}"></th:block>
                     </div>
+                    <!-- 푸터 넣는곳 -->
+                    <th:block th:replace="~{main/footer :: footer}"></th:block>
                 </div>
             </div>
         </main>
