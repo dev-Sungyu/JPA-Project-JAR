@@ -44,4 +44,9 @@ public class SuggestRepositoryTests {
         suggestRepository.findAllWithPaging(pageRequest).stream().map(BoardDTO::toString).forEach(log::info);
     }
 
+    @Test
+    public void findByIdSuggest() {
+        log.info(suggestRepository.findByIdSuggest(26L).toString());
+    }
+
 }

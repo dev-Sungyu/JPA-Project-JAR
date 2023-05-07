@@ -1,6 +1,5 @@
 package com.app.projectjar.domain.dto;
 
-import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.type.BoardType;
 import com.querydsl.core.annotations.QueryProjection;
 import lombok.Getter;
@@ -10,17 +9,18 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter @ToString
-public class BoardDTO {
+public class BoardDetailDTO {
+
     private Long boardId;
     private String boardTitle;
     private String boardContent;
-    private LocalDateTime registerDate;
     private BoardType boardType;
+    private LocalDateTime registerDate;
 
-    private FileDTO fileDTO;
+    private List<FileDTO> fileDTOs;
 
     @QueryProjection
-    public BoardDTO(Long boardId, String boardTitle, String boardContent, BoardType boardType) {
+    public BoardDetailDTO(Long boardId, String boardTitle, String boardContent, BoardType boardType) {
         this.boardId = boardId;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -28,14 +28,14 @@ public class BoardDTO {
     }
 
     @QueryProjection
-    public BoardDTO(Long boardId, String boardTitle, String boardContent, LocalDateTime registerDate) {
+    public BoardDetailDTO(Long boardId, String boardTitle, String boardContent, LocalDateTime registerDate) {
         this.boardId = boardId;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.registerDate = registerDate;
     }
 
-    public void setFileDTO(FileDTO fileDTO) {
-        this.fileDTO = fileDTO;
+    public void setFileDTOs(List<FileDTO> fileDTOs) {
+        this.fileDTOs = fileDTOs;
     }
 }

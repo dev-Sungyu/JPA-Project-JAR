@@ -1,10 +1,7 @@
 package com.app.projectjar.repository.suggest;
 
 
-import com.app.projectjar.domain.dto.BoardDTO;
-import com.app.projectjar.domain.dto.FileDTO;
-import com.app.projectjar.domain.dto.QBoardDTO;
-import com.app.projectjar.domain.dto.QFileDTO;
+import com.app.projectjar.domain.dto.*;
 import com.app.projectjar.entity.file.suggest.QSuggestFile;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.suggest.QSuggest;
@@ -46,15 +43,16 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
         foundSuggest.stream().forEach(
                 boardDTO -> {
-                    List<FileDTO> fileDTOS = query.select(new QFileDTO(
+                    FileDTO fileDTO = query.select(new QFileDTO(
                             suggestFile.id,
                             suggestFile.fileOriginalName,
                             suggestFile.fileUuid,
                             suggestFile.filePath
                     )).from(suggestFile)
                             .where(suggestFile.suggest.id.eq(boardDTO.getBoardId()))
-                            .fetch();
-                boardDTO.setFiles(fileDTOS);
+                            .limit(1)
+                            .fetchOne();
+                boardDTO.setFileDTO(fileDTO);
                 }
         );
 
@@ -63,5 +61,30 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .fetchOne();
 
         return new PageImpl<>(foundSuggest, pageable, count);
+    }
+
+    @Override
+    public BoardDetailDTO findByIdSuggest(Long suggestId) {
+        BoardDetailDTO boardDetailDTO = query.select(new QBoardDetailDTO(
+                suggest.id,
+                suggest.boardTitle,
+                suggest.boardContent,
+                suggest.boardType
+        )).from(suggest)
+                .where(suggest.id.eq(suggestId))
+                .fetchOne();
+
+        boardDetailDTO.setFileDTOs(
+                query.select(new QFileDTO(
+                        suggestFile.id,
+                        suggestFile.fileOriginalName,
+                        suggestFile.fileUuid,
+                        suggestFile.filePath
+                )).from(suggestFile)
+                .where(suggestFile.suggest.id.eq(suggestId))
+                .fetch()
+        );
+
+        return boardDetailDTO;
     }
 }

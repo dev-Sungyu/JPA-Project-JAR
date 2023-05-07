@@ -31,4 +31,17 @@ public class Diary extends Board {
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "diary")
     private List<DiaryFile> diaryFiles;
+
+    public Diary(String boardTitle, String boardContent, DiaryType diaryStatus, Member member) {
+        super(boardTitle, boardContent);
+        this.diaryStatus = diaryStatus;
+        this.member = member;
+    }
+
+    public Diary(String boardTitle, String boardContent, DiaryType diaryStatus, Member member, List<DiaryFile> diaryFiles) {
+        super(boardTitle, boardContent);
+        this.diaryStatus = diaryStatus;
+        this.member = member;
+        this.diaryFiles = diaryFiles;
+    }
 }
