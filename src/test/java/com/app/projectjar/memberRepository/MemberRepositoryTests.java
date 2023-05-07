@@ -26,8 +26,8 @@ public class MemberRepositoryTests {
         memberRepository.save(member);
     }
 
-//    @Test
-//    public void findByIdTest(){
-//        memberRepository.findById(1L).ifPresent();
-//    }
+    @Test
+    public void findByIdTest(){
+        memberRepository.findById(1L).toString();
+    }
 }
