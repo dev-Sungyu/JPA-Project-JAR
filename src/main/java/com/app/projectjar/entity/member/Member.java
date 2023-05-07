@@ -2,7 +2,7 @@ package com.app.projectjar.entity.member;
 
 import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.file.member.MemberFile;
-import com.app.projectjar.type.BedgeType;
+import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -34,18 +34,46 @@ public class Member extends Period {
     private MemberType memberStatus;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'ZERO'")
-    private BedgeType bedgeType;
+    private BadgeType badgeType;
 
-    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BedgeType bedgeType) {
+    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType) {
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberName = memberName;
         this.memberNickname = memberNickname;
         this.memberStatus = memberStatus;
-        this.bedgeType = bedgeType;
+        this.badgeType = badgeType;
     }
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private MemberFile memberFile;
+
+    public void setMemberPassword(String memberPassword) {
+        this.memberPassword = memberPassword;
+    }
+
+    public void setMemberPhoneNumber(String memberPhoneNumber) {
+        this.memberPhoneNumber = memberPhoneNumber;
+    }
+
+    public void setMemberName(String memberName) {
+        this.memberName = memberName;
+    }
+
+    public void setMemberNickname(String memberNickname) {
+        this.memberNickname = memberNickname;
+    }
+
+    public void setMemberStatus(MemberType memberStatus) {
+        this.memberStatus = memberStatus;
+    }
+
+    public void setBadgeType(BadgeType badgeType) {
+        this.badgeType = badgeType;
+    }
+
+    public void setMemberFile(MemberFile memberFile) {
+        this.memberFile = memberFile;
+    }
 }
