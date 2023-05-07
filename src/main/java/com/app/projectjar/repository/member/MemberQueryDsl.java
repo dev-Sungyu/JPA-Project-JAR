@@ -11,13 +11,16 @@ public interface MemberQueryDsl {
     /* 로그인 */
 
 //    이메일 중복 검사
-    public Optional<Member> findByMemberEmail(String memberEmail);
+    public Optional<Member> overlapByMemberEmail(String memberEmail);
 
 //    휴대폰 중복 검사
-    public Optional<Member> findByPhoneNumber(String memberPhoneNumber);
+    public Optional<Member> overlapByPhoneNumber(String memberPhoneNumber);
 
 //    로그인
     public Member findByMemberIdAndMemberPassword(String memberEmail, String memberPassword);
+
+//    비밀 번호 찾기
+    public Optional<Member> findByMemberEmailForPassword(String memberEmail);
 
 //    비밀 번호 변경
     public void updatePassword(Long id, String memberPassword);
@@ -36,8 +39,67 @@ public interface MemberQueryDsl {
 //    회원 삭제
     public void deleteMemberById(Long id);
 
-//    뱃지 업데이트
+    /* 다이어리 */
+
+    /* 뱃지 */
+
+//    뱃지 업데이트 ( 개인 챌린지 어탠드 카운트 + 그룹 챌린지 어탠드 카운트 )  => 그러면 attend.member로 접근해서 카운트 세야되는건가?
     public void updateMemberBadge(Long id, BadgeType badgeType);
 
-//
+
+    /* 개인 챌린지 */
+
+//    내가 완료한 개인 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
+
+//    개인 챌린지 상세 보기
+
+//    내가 완료한 개인 챌린지 전체 조회 (종료)
+
+//    그룹 챌린지 상세 보기
+
+    /* 그룹 챌린지 */
+
+//    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
+
+//    그룹 챌린지 상세 보기 ++++
+
+//    내가 완료한 그룹 챌린지 전체 조회 (종료)
+
+//    그룹 챌린지 상세 보기
+
+    /* 챌린지 제안 */
+
+//  제안 게시물 전체 조회 (제안 게시물에서 memberid 조회 후 list로 가져와 뿌리기)
+
+//   제안 게시물 수정 누르면 작성하기 쪽으로 넘겨야 되는거 물어보자.
+
+//   제안 게시물 삭제
+
+
+
+    /* 공유 일기 */
+
+//    공유 게시물 전체 조회
+
+//    공유 게시물 수정
+
+//    공유 게시물 삭제
+
+
+    /* 내가 좋아요한 게시물  */
+
+//    좋아요한 게시물 전체 조회   ( Like 테이블에서 memberId 조회 후 게시물 접근해서 리스트로 )
+
+//    좋아요 삭제
+
+
+    /* 문의 글 */
+
+//    문의 게시글 전체 조회 (문의 게시글 답변 체크 후 스테이스 변경)
+
+//    문의 게시글 수정
+
+//    문의 게시글 삭제
+
+
 }
