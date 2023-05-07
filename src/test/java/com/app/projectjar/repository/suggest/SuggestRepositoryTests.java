@@ -50,11 +50,13 @@ public class SuggestRepositoryTests {
     }
 
     /*관리자 페이지*/
-    //    제안게시판 삭제하기
+    //    제안 게시판 삭제하기
     @Test
     public void deleteTest() {
         suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
     }
-    
+
+//    제안 게시판 수정하기
+
 
 }
