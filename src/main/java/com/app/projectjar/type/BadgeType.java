@@ -1,5 +1,5 @@
 package com.app.projectjar.type;
 
-public enum  BedgeType {
+public enum BadgeType {
     ZERO, ONE, TWO, THREE
 }
