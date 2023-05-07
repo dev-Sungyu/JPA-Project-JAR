@@ -34,6 +34,12 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return query.select(member).from(member).where(member.memberEmail.eq(memberEmail),member.memberPassword.eq(memberPassword)).fetchOne();
     }
 
+//    비밀 번호 찾기
+    @Override
+    public Optional<Member> findByMemberEmailForPassword(String memberEmail) {
+        return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    }
+
 //    비밀 번호 변경
     @Override
     public void updatePassword(Long id, String memberPassword) {
@@ -89,6 +95,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 //    뱃지 수정
     @Override
     public void updateMemberBadge(Long id, BadgeType badgeType) {
+//        query.update(member).set(member.badgeType).where()
     }
 
 }

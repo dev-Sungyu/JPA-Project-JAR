@@ -62,9 +62,32 @@ public class MemberRepositoryTests {
     }
 
 //    이메일 중복 검사
-//    @Test
-//    public void overlapByMemberEmailTest(){
-//    }
+    @Test
+    public void overlapByMemberEmailTest(){
+//        memberRepository.overlapByMemberEmail("user01@naver.com").ifPresent(member -> member.getMemberEmail());
+        memberRepository.overlapByMemberEmail("user04@naver.com").map(Member::getMemberEmail).ifPresent(log::info);
+        log.info("@@@@@@@@@@@@@@@@@@");
+    }
+
+//    핸드폰 중복 검사
+    @Test
+    public void overlapByPhoneNumberTest(){
+        memberRepository.overlapByPhoneNumber("010-4444-5678").map(Member::getMemberPhoneNumber).ifPresent(log::info);
+        log.info("@@@@@@@@@@@@@@@@@@");
+    }
+
+//    비밀번호 찾기
+    @Test
+    public void findByMemberEmailForPasswordTest(){
+        memberRepository.findByMemberEmailForPassword("user01@naver.com").map(Member::getMemberEmail).ifPresent(log::info);
+    }
+
+//    비밀번호 변경
+    @Test
+    public void updatePasswordTest(){
+        memberRepository.updatePassword(1L, "qwer1234@");
+    }
+
 
 
 }
