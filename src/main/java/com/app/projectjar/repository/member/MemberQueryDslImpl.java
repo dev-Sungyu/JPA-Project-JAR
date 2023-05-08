@@ -1,6 +1,8 @@
 package com.app.projectjar.repository.member;
 
 import com.app.projectjar.domain.dto.QMemberDTO;
+import com.app.projectjar.entity.challenge.QChallengeAttend;
+import com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.domain.dto.MemberDTO;
 import com.app.projectjar.type.BadgeType;
@@ -9,8 +11,11 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
+import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
+import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
+import static com.querydsl.core.types.ExpressionUtils.count;
 
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
@@ -95,7 +100,40 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 //    뱃지 수정
     @Override
     public void updateMemberBadge(Long id, BadgeType badgeType) {
-//        query.update(member).set(member.badgeType).where()
+
+
+        Long countPersonal =  query.select(member.count()).
+                from(challengeAttend).
+                where(challengeAttend.member.id.eq(id)).
+                fetchOne();
+
+        Long countGroup = query.select(member.count()).
+                from(groupChallengeAttend).
+                where(groupChallengeAttend.member.id.eq(id)).
+                fetchOne();
+
+        int totalCount = countPersonal.intValue() + countGroup.intValue();
+
+        BadgeType newBadgeType = badgeType;
+
+        if (totalCount >= 10) {
+            newBadgeType = BadgeType.ONE;
+
+            if (totalCount >= 20) {
+                newBadgeType = BadgeType.TWO;
+            }
+            if (totalCount >= 30) {
+                newBadgeType = BadgeType.THREE;
+            }
+        } else {
+            newBadgeType = BadgeType.ZERO;
+        }
+        if (newBadgeType != badgeType) {
+            query.update(member)
+                    .set(member.badgeType, newBadgeType)
+                    .where(member.id.eq(id))
+                    .execute();
+        }
     }
 
 }

@@ -40,7 +40,7 @@ public class MemberRepositoryTests {
 //      조회
     @Test
     public void findByMemberDTOIdTest() {
-        memberRepository.findByMemberDTOId(3L).map(MemberDTO::toString).ifPresent(log::info);
+        memberRepository.findByMemberDTOId(1L).map(MemberDTO::toString).ifPresent(log::info);
     }
 
 //        수정
@@ -88,6 +88,11 @@ public class MemberRepositoryTests {
         memberRepository.updatePassword(1L, "qwer1234@");
     }
 
+//    뱃지 타입 업데이트
+    @Test
+    public void updateMemberBadgeTest(){
+        memberRepository.updateMemberBadge(1L, BadgeType.ONE);
+    }
 
 
 }
