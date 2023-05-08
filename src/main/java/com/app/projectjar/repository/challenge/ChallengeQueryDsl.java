@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.challenge;
 
-import com.app.projectjar.domain.dto.BoardDetailDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 
 import java.util.List;

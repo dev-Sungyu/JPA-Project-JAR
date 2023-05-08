@@ -26,6 +26,8 @@ public class MemberFile extends Files {
         this.member = member;
     }
 
-
-
+    public MemberFile(Long id, String fileOriginalName, String fileUuid, String filePath,Member member) {
+        super(id, fileOriginalName, fileUuid, filePath);
+        this.member = member;
+    }
 }
