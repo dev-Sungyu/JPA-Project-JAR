@@ -1,11 +1,7 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.domain.dto.QMemberDTO;
-import com.app.projectjar.entity.challenge.QChallengeAttend;
-import com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.domain.dto.MemberDTO;
-import com.app.projectjar.entity.member.QMember;
+import com.app.projectjar.domain.dto.member.MemberDTO;
 import com.app.projectjar.type.BadgeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
-import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
-import static com.querydsl.core.types.ExpressionUtils.count;
 
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {

@@ -1,6 +1,5 @@
 package com.app.projectjar.entity.file.suggest;
 
-import com.app.projectjar.domain.dto.FileDTO;
 import com.app.projectjar.entity.file.Files;
 import com.app.projectjar.entity.suggest.Suggest;
 import lombok.AccessLevel;
