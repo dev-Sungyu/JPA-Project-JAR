@@ -2,8 +2,11 @@ package com.app.projectjar.repository.diary;
 
 
 import com.app.projectjar.domain.dto.*;
+import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.QDiary;
 import com.app.projectjar.entity.file.diary.QDiaryFile;
+import com.app.projectjar.entity.file.member.QMemberFile;
+import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.DiaryType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +19,8 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.diary.QDiary.diary;
 import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
+import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
+import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
 @RequiredArgsConstructor
@@ -24,58 +29,30 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
 
 
     @Override
-    public Optional<BoardDetailDTO> findByDiaryId(Long diaryId) {
-        BoardDetailDTO boardDetailDTO = query.select(new QBoardDetailDTO(
-                diary.id,
-                diary.boardTitle,
-                diary.boardContent,
-                diary.createdDate
-        )).from(diary)
+    public Optional<Diary> findByDiaryId_QueryDsl(Long diaryId) {
+        Diary foundDiary = query.select(diary)
+                .from(diary)
+                .leftJoin(diary.diaryFiles, diaryFile)
+                .fetchJoin()
+                .leftJoin(diary.member, member)
+                .fetchJoin()
                 .where(diary.id.eq(diaryId))
                 .fetchOne();
 
-        boardDetailDTO.setFileDTOs(
-                query.select(new QFileDTO(
-                        diaryFile.id,
-                        diaryFile.fileOriginalName,
-                        diaryFile.fileUuid,
-                        diaryFile.filePath
-                )).from(diaryFile)
-                        .where(diaryFile.diary.id.eq(diaryId))
-                        .fetch()
-        );
-
-        return Optional.ofNullable(boardDetailDTO);
+        return Optional.ofNullable(foundDiary);
     }
 
     @Override
-    public Page<BoardDTO> findAllDiary(Pageable pageable) {
-        List<BoardDTO> foundDiaries = query.select(new QBoardDTO(
-                diary.id,
-                diary.boardTitle,
-                diary.boardContent,
-                diary.createdDate
-        )).from(diary)
+    public Page<Diary> findAllDiary_QueryDsl(Pageable pageable) {
+        List<Diary> foundDiaries = query.select(diary)
+                .from(diary)
+                .leftJoin(diary.diaryFiles, diaryFile)
+                .fetchJoin()
                 .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
                 .orderBy(diary.id.desc())
-                .offset(pageable.getOffset())
+                .offset(pageable.getOffset() - 1)
                 .limit(pageable.getPageSize())
                 .fetch();
-
-        foundDiaries.stream().forEach(
-                boardDTO -> {
-                    FileDTO fileDTO = query.select(new QFileDTO(
-                            diaryFile.id,
-                            diaryFile.fileOriginalName,
-                            diaryFile.fileUuid,
-                            diaryFile.filePath
-                    )).from(diaryFile)
-                            .where(diaryFile.diary.id.eq(boardDTO.getBoardId()))
-                            .limit(1)
-                            .fetchOne();
-                    boardDTO.setFileDTO(fileDTO);
-                }
-        );
 
         Long count = query.select(diary.count())
                 .from(diary)
