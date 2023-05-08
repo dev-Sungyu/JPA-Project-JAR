@@ -59,4 +59,22 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
         return Optional.ofNullable(foundSuggest);
     }
+
+
+    @Override
+    public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<Suggest> foundSuggest = query.select(suggest)
+                .from(QSuggest.suggest)
+                .where(suggest.member.id.eq(id))
+                .orderBy(suggest.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggest.count())
+                .from(suggest)
+                .where(suggest.member.id.eq(id))
+                .fetchOne();
+        return new PageImpl<>(foundSuggest, pageable, count);
+    }
 }

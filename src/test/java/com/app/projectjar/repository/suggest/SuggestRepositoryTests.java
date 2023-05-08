@@ -55,4 +55,11 @@ public class SuggestRepositoryTests {
 //    제안 게시판 수정하기
 
 
+    /* 마이 페이지 */
+    @Test
+    public void findAllByMemberIdWithPaging_QueryDslTest(){
+        PageRequest pageRequest = PageRequest.of(1, 5);
+        suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageRequest,1L).stream().map(Suggest::toString).forEach(log::info);
+        log.info("@@@@@@@@@");
+    }
 }
