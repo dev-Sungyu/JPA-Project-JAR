@@ -46,4 +46,11 @@ public class InquireRepositoryTests {
     @Test
     public void updateTest(){ inquireRepository.findById(2L).ifPresent(inquire -> inquire.setInquireTitle("수정한 타이틀1"));}
 
+
+    // 멤버 아이디를 통해 문의 사항 전체 조회
+    @Test
+    public void findAllByMemberIdWithPagingTest(){
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        inquireRepository.findAllByMemberIdWithPaging(pageRequest,1L).stream().map(Inquire::toString).forEach(log::info);
+    }
 }
