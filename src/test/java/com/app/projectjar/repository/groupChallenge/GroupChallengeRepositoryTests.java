@@ -44,7 +44,7 @@ public class GroupChallengeRepositoryTests {
 
     @Test
     public void fileSaveTest() {
-        groupChallengeRepository.findById(230L).ifPresent(
+        groupChallengeRepository.findById(231L).ifPresent(
                 groupChallenge ->
                         groupChallengeFileRepository.save(new GroupChallengeFile(
                                 "테스트12312.png",
@@ -56,31 +56,12 @@ public class GroupChallengeRepositoryTests {
     }
 
     @Test
-    public void findAllGroupChallengeWithPagingTest() {
-        List<BoardDTO> boardDTOList = new ArrayList<>();
-        PageRequest pageRequest = PageRequest.of(1,10);
-//        groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageRequest).stream().map(GroupChallenge::toString).forEach(log::info);
-        groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageRequest).stream()
-                .forEach(groupChallenge -> {
-                                BoardDTO boardDTO = new BoardDTO();
-                                boardDTO.setBoardId(groupChallenge.getId());
-                                boardDTO.setBoardTitle(groupChallenge.getBoardTitle());
-                                boardDTO.setBoardContent(groupChallenge.getBoardContent());
-                                boardDTO.setStartDate(groupChallenge.getStartDate());
-                                boardDTO.setEndDate(groupChallenge.getEndDate());
-                                boardDTO.setGroupChallengeStatus(groupChallenge.getGroupChallengeStatus());
-                    groupChallengeFileRepository.findTop1ByGroupChallengeFileId_QueryDsl(groupChallenge.getId()).ifPresent(
-                            groupChallengeFile ->{
-                                boardDTO.setFileId(groupChallengeFile.getId());
-                                boardDTO.setFileOriginalName(groupChallengeFile.getFileOriginalName());
-                                boardDTO.setFileUuid(groupChallengeFile.getFileUuid());
-                                boardDTO.setFilePath(groupChallengeFile.getFilePath());
-                            }
-                    );
-                    boardDTOList.add(boardDTO);
-                });
-        boardDTOList.stream().map(BoardDTO::toString).forEach(log::info);
-
+    public void findAllGroupChallengeWithPaging_QueryDslTest() {
+        groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(PageRequest.of(1 , 10)).map(GroupChallenge::toString).forEach(log::info);
     }
 
+    @Test
+    public void findByGroupChallengeId_QueryDslTest() {
+        groupChallengeRepository.findByGroupChallengeId_QueryDsl(231L).map(GroupChallenge::toString).ifPresent(log::info);
+    }
 }

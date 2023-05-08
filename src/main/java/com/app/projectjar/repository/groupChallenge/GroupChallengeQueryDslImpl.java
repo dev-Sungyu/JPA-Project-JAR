@@ -27,6 +27,8 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
     public Page<GroupChallenge> findAllGroupChallengeWithPaging_QueryDsl(Pageable pageable) {
         List<GroupChallenge> foundGroupChallenge = query.select(groupChallenge)
                 .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
                 .orderBy(groupChallenge.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -43,9 +45,12 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
     public Optional<GroupChallenge> findByGroupChallengeId_QueryDsl(Long groupChallengeId) {
         GroupChallenge groupChallenge = query.select(QGroupChallenge.groupChallenge)
                 .from(QGroupChallenge.groupChallenge)
+                .leftJoin(QGroupChallenge.groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
                 .where(QGroupChallenge.groupChallenge.id.eq(groupChallengeId))
                 .fetchOne();
 
         return Optional.ofNullable(groupChallenge);
     }
+
 }
