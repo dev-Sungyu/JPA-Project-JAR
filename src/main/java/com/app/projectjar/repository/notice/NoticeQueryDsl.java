@@ -6,5 +6,5 @@ import org.springframework.data.domain.Pageable;
 
 public interface NoticeQueryDsl {
     // 전체 조회
-    public Page<Notice> findAllWithPaging(Pageable pageable);
+    public Page<Notice> findAllWithPaging_QueryDSL(Pageable pageable);
 }
