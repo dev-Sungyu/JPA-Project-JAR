@@ -8,4 +8,12 @@ import org.springframework.data.domain.Pageable;
 public interface InquireQueryDsl {
 //    전체조회
     public Page<Inquire> findAllWithPaging(Pageable pageable);
+
+
+
+    /* 마이 페이지  */
+//    문의 게시글 전체 조회
+    public Page<Inquire> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
+
+
 }

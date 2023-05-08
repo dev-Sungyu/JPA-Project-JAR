@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.suggest;
 
+import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.suggest.Suggest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,4 +13,10 @@ public interface SuggestQueryDsl {
 
     // 상세보기
     public Optional<Suggest> findByIdSuggest_QueryDsl(Long suggestId);
+
+
+
+    /* 마이 페이지*/
+//    제안 게시글 전제 조회
+    public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
 }
