@@ -2,9 +2,8 @@ package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.domain.dto.MemberDTO;
+import com.app.projectjar.domain.dto.member.MemberDTO;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
-import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import lombok.extern.slf4j.Slf4j;
@@ -38,22 +37,8 @@ public class MemberRepositoryTests {
 
 //      조회
     @Test
-    public void findByMemberDTOIdTest() {
-        memberRepository.findByMemberDTOId_QueryDSL(1L).map(MemberDTO::toString).ifPresent(log::info);
-    }
-
-
-
-//        수정
-    @Test
-    public void updateTest() {
-        memberRepository.findByMemberDTOId_QueryDSL(3L).ifPresent(
-                member -> {
-                    member.setMemberName("바보맥");
-                    member.setMemberNickname("ㅇㅇㅇㅇㅇ");
-                    member.setMemberPhoneNumber("01012321256");
-                    memberRepository.updateMember_QueryDSL(member.toEntity(member));
-                });
+    public void findByMemberId_QueryDSLTest() {
+        memberRepository.findByMemberId_QueryDSL(1L).map(Member::toString).ifPresent(log::info);
     }
 
 //      삭제

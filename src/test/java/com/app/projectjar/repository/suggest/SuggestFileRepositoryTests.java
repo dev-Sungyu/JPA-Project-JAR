@@ -33,9 +33,12 @@ public class SuggestFileRepositoryTests {
     public void saveTest() {
         memberRepository.findById(1L).ifPresent(
                 member ->
-                        suggestRepository.findById(26L).ifPresent(
-                                suggest ->
-                                    suggestFileRepository.save(new SuggestFile("테스트1.png", UUID.randomUUID().toString(),"2023/05/16", suggest))
+                        suggestRepository.findById(89L).ifPresent(
+                                suggest -> {
+                                    for (int i = 0; i < 10; i++) {
+                                        suggestFileRepository.save(new SuggestFile("테스트" + (i + 1) + ".png", UUID.randomUUID().toString(), "2023/05/" + (i + 1), suggest));
+                                    }
+                                }
                         )
         );
     }

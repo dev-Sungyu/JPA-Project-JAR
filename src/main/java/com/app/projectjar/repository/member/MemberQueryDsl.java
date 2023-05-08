@@ -1,7 +1,7 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.domain.dto.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.domain.dto.MemberDTO;
 import com.app.projectjar.type.BadgeType;
 
 import java.util.Optional;
@@ -24,9 +24,6 @@ public interface MemberQueryDsl {
 
 //    비밀 번호 변경
     public void updatePassword_QueryDSL(Long id, String memberPassword);
-
-//    회원 멤버 디티오 정보 조회
-    public Optional<MemberDTO> findByMemberDTOId_QueryDSL(Long id);
 
 //    회원 멤버 조회
     public Optional<Member> findByMemberId_QueryDSL(Long id);

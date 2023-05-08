@@ -1,6 +1,5 @@
 package com.app.projectjar.entity.file.suggest;
 
-import com.app.projectjar.domain.dto.FileDTO;
 import com.app.projectjar.entity.file.Files;
 import com.app.projectjar.entity.suggest.Suggest;
 import lombok.AccessLevel;
@@ -27,4 +26,8 @@ public class SuggestFile extends Files {
         this.suggest = suggest;
     }
 
+    public SuggestFile(Long id, String fileOriginalName, String fileUuid, String filePath, Suggest suggest) {
+        super(id, fileOriginalName, fileUuid, filePath);
+        this.suggest = suggest;
+    }
 }
