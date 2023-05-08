@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.challenge;
 
+import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.challenge.ChallengeAttend;
 import com.app.projectjar.repository.challenge.ChallengeAttendRepository;
 import com.app.projectjar.repository.member.MemberRepository;
@@ -27,7 +28,11 @@ public class ChallengeAttendTests {
 
     @Test
     public void saveTest() {
-        ChallengeAttend challengeAttend = new ChallengeAttend(ChallengeAttendType.PARTICIPATION, memberRepository.findByMemberId_QueryDSL(1L).get(), challengeRepository.findById(21L).get());
+            for(int i = 0; i < 9; i++){
+                ChallengeAttend challengeAttend = new ChallengeAttend(ChallengeAttendType.PARTICIPATION, memberRepository.findByMemberId_QueryDSL(1L).get(), challengeRepository.findById(27L + i).get());
+                challengeAttendRepository.save(challengeAttend);
+                }
     }
+
 
 }

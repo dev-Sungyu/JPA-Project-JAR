@@ -87,6 +87,13 @@ public class MemberRepositoryTests {
         memberRepository.updatePassword_QueryDSL(1L, "qwer1234@");
     }
 
+//    챌린지 횟수 조회
+    @Test
+    public void findByIdWithAttendCount_QueryDslTest(){
+        log.info(""+memberRepository.findByIdWithAttendCount_QueryDsl(1L));
+    }
+
+
 //    뱃지 타입 업데이트
     @Test
     public void updateMemberBadgeTest(){
