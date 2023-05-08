@@ -1,19 +1,24 @@
 package com.app.projectjar.domain.dto;
 
+import com.app.projectjar.entity.file.Files;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.type.BoardType;
 import com.app.projectjar.type.ChallengeType;
 import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.core.annotations.QueryProjection;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Getter @ToString
+@Getter @Setter
+@ToString
 public class BoardDTO {
     private Long boardId;
     private String boardTitle;
@@ -30,6 +35,11 @@ public class BoardDTO {
     private BoardType boardType;
 
     private FileDTO fileDTO;
+
+    private Long fileId;
+    private String fileOriginalName;
+    private String fileUuid;
+    private String filePath;
 
     @QueryProjection
     public BoardDTO(Long boardId, String boardTitle, String boardContent, BoardType boardType) {
@@ -56,17 +66,8 @@ public class BoardDTO {
         this.registerDate = registerDate;
     }
 
-    @QueryProjection
-    public BoardDTO(Long boardId, String boardTitle, String boardContent, LocalDate startDate,LocalDate endDate,  GroupChallengeType groupChallengeStatus) {
-        this.boardId = boardId;
-        this.boardTitle = boardTitle;
-        this.boardContent = boardContent;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.groupChallengeStatus = groupChallengeStatus;
-    }
 
-
+    public BoardDTO(){;}
 
     public void setFileDTO(FileDTO fileDTO) {
         this.fileDTO = fileDTO;
