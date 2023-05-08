@@ -53,4 +53,15 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
         return Optional.ofNullable(groupChallenge);
     }
 
+    // 목록(페이징 처리 없는 버전)
+    @Override
+    public List<GroupChallenge> findAllGroupChallenge_QueryDsl() {
+        return query.select(groupChallenge)
+                .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
+                .orderBy(groupChallenge.id.desc())
+                .fetch();
+    }
+
 }
