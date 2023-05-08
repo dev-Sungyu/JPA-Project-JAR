@@ -7,10 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter @ToString(callSuper = true)
@@ -19,6 +16,11 @@ import javax.persistence.Table;
 public class GroupChallengeFile extends Files {
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "GROUP_CHALLENGE_ID")
     private GroupChallenge groupChallenge;
 
+    public GroupChallengeFile(String fileOriginalName, String fileUuid, String filePath, GroupChallenge groupChallenge) {
+        super(fileOriginalName, fileUuid, filePath);
+        this.groupChallenge = groupChallenge;
+    }
 }
