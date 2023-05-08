@@ -20,7 +20,7 @@ public class NoticeQueryDslImpl implements NoticeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<Notice> findAllWithPaging(Pageable pageable) {
+    public Page<Notice> findAllWithPaging_QueryDSL(Pageable pageable) {
         List<Notice> foundNotice = query.select(notice)
                 .from(notice)
                 .orderBy(notice.id.desc())
