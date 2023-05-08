@@ -21,16 +21,16 @@ public class MemberDTO {
     private MemberType memberStatus;
     private BadgeType badgeType;
 
-    public Member toEntity(MemberDTO memberDTO) {
+    public Member memberToEntity() {
         Member member = new Member(
-                memberDTO.memberId,
-                memberDTO.memberEmail,
-                memberDTO.memberPassword,
-                memberDTO.memberPhoneNumber,
-                memberDTO.memberName,
-                memberDTO.memberNickname,
-                memberDTO.memberStatus,
-                memberDTO.badgeType
+                this.memberId,
+                this.memberEmail,
+                this.memberPassword,
+                this.memberPhoneNumber,
+                this.memberName,
+                this.memberNickname,
+                this.memberStatus,
+                this.badgeType
         );
         return member;
     }
