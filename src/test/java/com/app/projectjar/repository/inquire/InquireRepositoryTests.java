@@ -1,4 +1,4 @@
-package com.app.projectjar.inquireRepositoryTests;
+package com.app.projectjar.repository.inquire;
 
 
 import com.app.projectjar.entity.inquire.Inquire;

@@ -23,37 +23,37 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
 //    이메일 중복 검사
     @Override
-    public Optional<Member> overlapByMemberEmail(String memberEmail) {
+    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail) {
         return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
     }
 
 //    휴대폰 중복 검사
     @Override
-    public Optional<Member> overlapByPhoneNumber(String memberPhoneNumber) {
+    public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber) {
         return Optional.ofNullable(query.select(member).from(member).where(member.memberPhoneNumber.eq(memberPhoneNumber)).fetchOne());
     }
 
 //    로그인
     @Override
-    public Member findByMemberIdAndMemberPassword(String memberEmail, String memberPassword) {
+    public Member findByMemberIdAndMemberPassword_QueryDSL(String memberEmail, String memberPassword) {
         return query.select(member).from(member).where(member.memberEmail.eq(memberEmail),member.memberPassword.eq(memberPassword)).fetchOne();
     }
 
 //    비밀 번호 찾기
     @Override
-    public Optional<Member> findByMemberEmailForPassword(String memberEmail) {
+    public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail) {
         return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
     }
 
 //    비밀 번호 변경
     @Override
-    public void updatePassword(Long id, String memberPassword) {
+    public void updatePassword_QueryDSL(Long id, String memberPassword) {
         query.update(member).set(member.memberPassword, memberPassword).where(member.id.eq(id)).execute();
     }
 
 //    멤버 디티오 정보 조회
     @Override
-    public Optional<MemberDTO> findByMemberDTOId(Long id) {
+    public Optional<MemberDTO> findByMemberDTOId_QueryDSL(Long id) {
         return Optional.ofNullable(
                 query.select(new QMemberDTO(
                         member.id,
@@ -74,7 +74,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
 //    멤버 정보 조회
     @Override
-    public Optional<Member> findByMemberId(Long id) {
+    public Optional<Member> findByMemberId_QueryDSL(Long id) {
         return Optional.ofNullable(query.select(member).
                 from(member).
                 where(member.id.eq(id)).fetchOne());
@@ -82,7 +82,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
 //    회원 정보 수정
     @Override
-    public void updateMember(Member memberInfo) {
+    public void updateMember_QueryDSL(Member memberInfo) {
                 query.update(member).
                 set(member.memberName, memberInfo.getMemberName()).
                 set(member.memberNickname, memberInfo.getMemberNickname()).
@@ -92,14 +92,14 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
 //    회원 삭제
     @Override
-    public void deleteMemberById(Long id) {
+    public void deleteMemberById_QueryDSL(Long id) {
             query.delete(member).where(member.id.eq(id)).execute();
 
     }
 
 //    뱃지 수정
     @Override
-    public void updateMemberBadge(Long id, BadgeType badgeType) {
+    public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType) {
 
 
         Long countPersonal =  query.select(member.count()).

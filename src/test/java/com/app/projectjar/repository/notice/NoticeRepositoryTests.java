@@ -1,4 +1,4 @@
-package com.app.projectjar.noticeRepository;
+package com.app.projectjar.repository.notice;
 
 import com.app.projectjar.entity.notice.Notice;
 import com.app.projectjar.entity.suggest.Suggest;

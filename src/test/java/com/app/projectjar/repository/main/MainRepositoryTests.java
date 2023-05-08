@@ -1,4 +1,4 @@
-package com.app.projectjar.mainRepository;
+package com.app.projectjar.repository.main;
 
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.notice.Notice;
