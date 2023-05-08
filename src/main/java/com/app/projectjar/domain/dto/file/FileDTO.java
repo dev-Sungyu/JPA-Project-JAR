@@ -1,7 +1,7 @@
 package com.app.projectjar.domain.dto.file;
 
-import com.app.projectjar.domain.dto.member.MemberDTO;
-import com.app.projectjar.entity.file.member.MemberFile;
+import com.app.projectjar.domain.dto.suggest.SuggestDTO;
+import com.app.projectjar.entity.file.suggest.SuggestFile;
 import lombok.Builder;
 import lombok.Data;
 
@@ -12,7 +12,15 @@ public class FileDTO {
     private String fileOriginalName;
     private String fileUuid;
     private String filePath;
+    private SuggestDTO suggestDTO;
 
-    private MemberDTO member;
-
+    public SuggestFile suggestFileToEntity() {
+        return new SuggestFile(
+                this.id,
+                this.fileOriginalName,
+                this.fileUuid,
+                this.filePath,
+                this.suggestDTO.suggestToEntity()
+        );
+    }
 }
