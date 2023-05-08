@@ -42,6 +42,8 @@ public class MemberRepositoryTests {
         memberRepository.findByMemberDTOId_QueryDSL(1L).map(MemberDTO::toString).ifPresent(log::info);
     }
 
+
+
 //        수정
     @Test
     public void updateTest() {

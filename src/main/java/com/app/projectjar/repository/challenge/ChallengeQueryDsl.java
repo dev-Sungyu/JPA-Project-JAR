@@ -1,7 +1,7 @@
 package com.app.projectjar.repository.challenge;
 
-import com.app.projectjar.domain.dto.BoardDTO;
 import com.app.projectjar.domain.dto.BoardDetailDTO;
+import com.app.projectjar.entity.challenge.Challenge;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,14 +9,14 @@ import java.util.Optional;
 public interface ChallengeQueryDsl {
 
     // 챌린지 type이 WAIT인 정보
-    public List<BoardDTO> findAllByChallengeTypeToWait();
+    public List<Challenge> findAllByChallengeTypeToWait();
 
     // 챌린지 type이 OPEN인 정보
-    public List<BoardDTO> findAllByChallengeTypeToOpen();
+    public List<Challenge> findAllByChallengeTypeToOpen();
 
     // 챌린지 type이 PRIVATE 정보
-    public List<BoardDTO> findAllByChallengeTypeToPrivate();
+    public List<Challenge> findAllByChallengeTypeToPrivate();
 
     // 챌린지 상세 보기
-    public Optional<BoardDetailDTO> findByChallengeId(Long challengeId);
+    public Optional<Challenge> findByChallengeId(Long challengeId);
 }

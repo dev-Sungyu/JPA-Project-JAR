@@ -1,7 +1,5 @@
 package com.app.projectjar.repository.diary;
 
-import com.app.projectjar.domain.dto.BoardDTO;
-import com.app.projectjar.domain.dto.BoardDetailDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.type.DiaryType;
@@ -29,27 +27,30 @@ public class DiaryRepositoryTests {
     @Test
     public void saveTest() {
         memberRepository.findById(1L).ifPresent(
-                member ->
+                member ->{
+                    for (int i = 0; i < 20; i++) {
                         diaryRepository.save(
                                 new Diary(
-                                        "테스트 제목1",
-                                        "테스트 내용1",
-                                        DiaryType.PRIVATE,
+                                        "테스트 제목" + (i + 1),
+                                        "테스트 내용" + (i + 1),
+                                        DiaryType.OPEN,
                                         member
                                 )
-                        )
+                        );
+                    }
+                }
         );
     }
 
     @Test
     public void findByDiaryId() {
-        diaryRepository.findByDiaryId(110L).map(BoardDetailDTO::toString).ifPresent(log::info);
+        diaryRepository.findByDiaryId_QueryDsl(110L).map(Diary::toString).ifPresent(log::info);
     }
 
     @Test
     public void findAllDiaryTest() {
-        PageRequest pageRequest = PageRequest.of(0,10);
-        diaryRepository.findAllDiary(pageRequest).stream().map(BoardDTO::toString)
+        PageRequest pageRequest = PageRequest.of(1,10);
+        diaryRepository.findAllDiary_QueryDsl(pageRequest).stream().map(Diary::toString)
                 .forEach(log::info);
     }
 }

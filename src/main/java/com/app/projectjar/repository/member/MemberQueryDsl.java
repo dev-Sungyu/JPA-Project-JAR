@@ -31,6 +31,9 @@ public interface MemberQueryDsl {
 //    회원 멤버 조회
     public Optional<Member> findByMemberId_QueryDSL(Long id);
 
+//    선규 멤버 조회
+//    public Optional<Member> findByMemberId_QueryDsl2(Long id);
+
     /* 마이 페이지 */
 
 //    회원 정보 수정
@@ -53,7 +56,7 @@ public interface MemberQueryDsl {
     /* 개인 챌린지 */
 
 //    내가 완료한 개인 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건 / 참여한 인원 수 + 댓글 개수) + 페이징 처리
-//    public page<BoardDTO> findByAllWithPage(Pageable pageable);
+//    public page<Challenge> findByAllWithPage(Pageable pageable);
 
 
 //    내가 완료한 개인 챌린지 전체 조회 (종료)

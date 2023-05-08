@@ -2,10 +2,7 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.domain.dto.BoardDTO;
 import com.app.projectjar.domain.dto.BoardDetailDTO;
-import com.app.projectjar.entity.board.Board;
-import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.suggest.Suggest;
-import com.app.projectjar.repository.file.suggest.SuggestFileRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.type.BoardType;
 import lombok.extern.slf4j.Slf4j;
@@ -41,13 +38,13 @@ public class SuggestRepositoryTests {
 
     @Test
     public void findAllWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(7,10);
-        suggestRepository.findAllWithPaging(pageRequest).stream().map(BoardDTO::toString).forEach(log::info);
+        PageRequest pageRequest = PageRequest.of(1,10);
+        suggestRepository.findAllWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
     }
 
     @Test
     public void findByIdSuggest() {
-        suggestRepository.findByIdSuggest(26L).map(BoardDetailDTO::toString).ifPresent(log::info);
+        suggestRepository.findByIdSuggest_QueryDsl(26L).map(Suggest::toString).ifPresent(log::info);
     }
 
     /*관리자 페이지*/
