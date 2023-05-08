@@ -43,7 +43,8 @@ public interface MemberQueryDsl {
 
     /* 뱃지 */
 
-//    챌린지 어탠드 조회
+//    챌린지 횟수 조회
+    public Optional<Member> findByIdWithAttendCount_QueryDsl(Long id);
 
 //    뱃지 업데이트 ( 개인 챌린지 어탠드 카운트 + 그룹 챌린지 어탠드 카운트 )  => 그러면 attend.member로 접근해서 카운트 세야되는건가?
     public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType);
