@@ -1,4 +1,4 @@
-package com.app.projectjar.challengeFileRepositoryTests;
+package com.app.projectjar.repository.challenge;
 
 import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.repository.member.MemberRepository;

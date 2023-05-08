@@ -1,4 +1,4 @@
-package com.app.projectjar.challengeAttendRepositoryTests;
+package com.app.projectjar.repository.challenge;
 
 import com.app.projectjar.entity.challenge.ChallengeAttend;
 import com.app.projectjar.repository.challenge.ChallengeAttendRepository;

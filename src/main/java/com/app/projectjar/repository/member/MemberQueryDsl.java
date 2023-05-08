@@ -11,33 +11,33 @@ public interface MemberQueryDsl {
     /* 로그인 */
 
 //    이메일 중복 검사
-    public Optional<Member> overlapByMemberEmail(String memberEmail);
+    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail);
 
 //    휴대폰 중복 검사
-    public Optional<Member> overlapByPhoneNumber(String memberPhoneNumber);
+    public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
 
 //    로그인
-    public Member findByMemberIdAndMemberPassword(String memberEmail, String memberPassword);
+    public Member findByMemberIdAndMemberPassword_QueryDSL(String memberEmail, String memberPassword);
 
 //    비밀 번호 찾기
-    public Optional<Member> findByMemberEmailForPassword(String memberEmail);
+    public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail);
 
 //    비밀 번호 변경
-    public void updatePassword(Long id, String memberPassword);
+    public void updatePassword_QueryDSL(Long id, String memberPassword);
 
 //    회원 멤버 디티오 정보 조회
-    public Optional<MemberDTO> findByMemberDTOId(Long id);
+    public Optional<MemberDTO> findByMemberDTOId_QueryDSL(Long id);
 
 //    회원 멤버 조회
-    public Optional<Member> findByMemberId(Long id);
+    public Optional<Member> findByMemberId_QueryDSL(Long id);
 
     /* 마이 페이지 */
 
 //    회원 정보 수정
-    public void updateMember(Member memberInfo);
+    public void updateMember_QueryDSL(Member memberInfo);
 
 //    회원 삭제
-    public void deleteMemberById(Long id);
+    public void deleteMemberById_QueryDSL(Long id);
 
     /* 다이어리 */
 
@@ -46,7 +46,7 @@ public interface MemberQueryDsl {
 //    챌린지 어탠드 조회
 
 //    뱃지 업데이트 ( 개인 챌린지 어탠드 카운트 + 그룹 챌린지 어탠드 카운트 )  => 그러면 attend.member로 접근해서 카운트 세야되는건가?
-    public void updateMemberBadge(Long id, BadgeType badgeType);
+    public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType);
 
 
     /* 개인 챌린지 */
