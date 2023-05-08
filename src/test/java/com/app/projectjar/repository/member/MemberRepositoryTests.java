@@ -37,22 +37,8 @@ public class MemberRepositoryTests {
 
 //      조회
     @Test
-    public void findByMemberDTOIdTest() {
-        memberRepository.findByMemberDTOId_QueryDSL(1L).map(MemberDTO::toString).ifPresent(log::info);
-    }
-
-
-
-//        수정
-    @Test
-    public void updateTest() {
-        memberRepository.findByMemberDTOId_QueryDSL(3L).ifPresent(
-                member -> {
-                    member.setMemberName("바보맥");
-                    member.setMemberNickname("ㅇㅇㅇㅇㅇ");
-                    member.setMemberPhoneNumber("01012321256");
-                    memberRepository.updateMember_QueryDSL(member.toEntity(member));
-                });
+    public void findByMemberId_QueryDSLTest() {
+        memberRepository.findByMemberId_QueryDSL(1L).map(Member::toString).ifPresent(log::info);
     }
 
 //      삭제
