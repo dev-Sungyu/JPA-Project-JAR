@@ -25,9 +25,6 @@ public interface MemberQueryDsl {
 //    비밀 번호 변경
     public void updatePassword_QueryDSL(Long id, String memberPassword);
 
-//    회원 멤버 디티오 정보 조회
-    public Optional<MemberDTO> findByMemberDTOId_QueryDSL(Long id);
-
 //    회원 멤버 조회
     public Optional<Member> findByMemberId_QueryDSL(Long id);
 
