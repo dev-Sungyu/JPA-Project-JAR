@@ -33,4 +33,11 @@ public class ChallengeAttend extends Period {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CHALLENGE_ID")
     private Challenge challenge;
+
+
+    public ChallengeAttend(ChallengeAttendType challengeAttendStatus, Member member, Challenge challenge) {
+        this.challengeAttendStatus = challengeAttendStatus;
+        this.member = member;
+        this.challenge = challenge;
+    }
 }

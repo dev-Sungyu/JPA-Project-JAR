@@ -43,29 +43,28 @@ public interface MemberQueryDsl {
 
     /* 뱃지 */
 
+//    챌린지 어탠드 조회
+
 //    뱃지 업데이트 ( 개인 챌린지 어탠드 카운트 + 그룹 챌린지 어탠드 카운트 )  => 그러면 attend.member로 접근해서 카운트 세야되는건가?
     public void updateMemberBadge(Long id, BadgeType badgeType);
 
 
     /* 개인 챌린지 */
 
-//    내가 완료한 개인 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
+//    내가 완료한 개인 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건 / 참여한 인원 수 + 댓글 개수) + 페이징 처리
+//    public page<BoardDTO> findByAllWithPage(Pageable pageable);
 
-//    개인 챌린지 상세 보기
 
 //    내가 완료한 개인 챌린지 전체 조회 (종료)
 
-//    그룹 챌린지 상세 보기
 
     /* 그룹 챌린지 */
 
 //    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
 
-//    그룹 챌린지 상세 보기 ++++
 
 //    내가 완료한 그룹 챌린지 전체 조회 (종료)
 
-//    그룹 챌린지 상세 보기
 
     /* 챌린지 제안 */
 
