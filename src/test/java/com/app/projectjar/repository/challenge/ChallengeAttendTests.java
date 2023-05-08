@@ -3,6 +3,7 @@ package com.app.projectjar.repository.challenge;
 import com.app.projectjar.entity.challenge.ChallengeAttend;
 import com.app.projectjar.repository.challenge.ChallengeAttendRepository;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.type.ChallengeAttendType;
 import com.app.projectjar.type.ChallengeType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -21,10 +22,12 @@ public class ChallengeAttendTests {
     private ChallengeAttendRepository challengeAttendRepository;
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private ChallengeRepository challengeRepository;
 
-//    @Test
-//    public void saveTest() {
-//        ChallengeAttend challengeAttend = new ChallengeAttend(ChallengeType.OPEN, memberRepository.findByMemberId(1L).get(), "테스트1");
-//    }
+    @Test
+    public void saveTest() {
+        ChallengeAttend challengeAttend = new ChallengeAttend(ChallengeAttendType.PARTICIPATION, memberRepository.findByMemberId_QueryDSL(1L).get(), challengeRepository.findById(21L).get());
+    }
 
 }

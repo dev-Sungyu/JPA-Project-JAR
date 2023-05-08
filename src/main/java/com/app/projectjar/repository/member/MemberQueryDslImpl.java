@@ -97,17 +97,37 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     }
 
-//    뱃지 수정
+    @Override
+    public Optional<Member> findByIdWithAttendCount_QueryDsl(Long id) {
+//        Long countPersonal =  query.select(challengeAttend.member.count()).
+//                from(challengeAttend).
+//                where(challengeAttend.member.id.eq(id)).
+//                fetchOne();
+//
+//        Long countGroup = query.select(groupChallengeAttend.member.count()).
+//                from(groupChallengeAttend).
+//                where(groupChallengeAttend.member.id.eq(id)).
+//                fetchOne();
+//
+//        int totalCount = countPersonal.intValue() + countGroup.intValue();
+//
+//        return Optional.ofNullable(query.select(member).
+//                where(member.id.eq(id)).
+//                fetchOne())
+        return null;
+
+    }
+
+    //    뱃지 수정
     @Override
     public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType) {
 
-
-        Long countPersonal =  query.select(member.count()).
+        Long countPersonal =  query.select(challengeAttend.member.count()).
                 from(challengeAttend).
                 where(challengeAttend.member.id.eq(id)).
                 fetchOne();
 
-        Long countGroup = query.select(member.count()).
+        Long countGroup = query.select(groupChallengeAttend.member.count()).
                 from(groupChallengeAttend).
                 where(groupChallengeAttend.member.id.eq(id)).
                 fetchOne();

@@ -20,4 +20,9 @@ public class ChallengeFile extends Files {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Challenge challenge;
+
+    public ChallengeFile(String fileOriginalName, String fileUuid, String filePath, Challenge challenge) {
+        super(fileOriginalName, fileUuid, filePath);
+        this.challenge = challenge;
+    }
 }

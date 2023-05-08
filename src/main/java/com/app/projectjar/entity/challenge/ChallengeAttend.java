@@ -34,7 +34,6 @@ public class ChallengeAttend extends Period {
     @JoinColumn(name = "CHALLENGE_ID")
     private Challenge challenge;
 
-
     public ChallengeAttend(ChallengeAttendType challengeAttendStatus, Member member, Challenge challenge) {
         this.challengeAttendStatus = challengeAttendStatus;
         this.member = member;

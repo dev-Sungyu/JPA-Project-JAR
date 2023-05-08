@@ -1,4 +1,4 @@
-package com.app.projectjar.controller;
+package com.app.projectjar.controller.mypage;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
