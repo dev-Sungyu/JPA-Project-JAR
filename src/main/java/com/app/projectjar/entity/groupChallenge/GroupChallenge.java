@@ -14,7 +14,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Getter @ToString(callSuper = true, exclude = "groupChallengeFile")
+@Getter @ToString(callSuper = true)
 @Table(name = "TBL_GROUP_CHALLENGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
@@ -28,6 +28,9 @@ public class GroupChallenge extends Board {
     private LocalDate startDate;
     @NotNull
     private LocalDate endDate;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
+    private List<GroupChallengeFile> groupChallengeFiles;
 
     public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate) {
         super(boardTitle, boardContent);

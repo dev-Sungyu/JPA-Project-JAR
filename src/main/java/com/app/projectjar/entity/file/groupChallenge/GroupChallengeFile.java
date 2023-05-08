@@ -10,13 +10,12 @@ import lombok.ToString;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = "groupChallenge")
 @Table(name = "TBL_GROUP_CHALLENGE_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class GroupChallengeFile extends Files {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "GROUP_CHALLENGE_ID")
     private GroupChallenge groupChallenge;
 
     public GroupChallengeFile(String fileOriginalName, String fileUuid, String filePath, GroupChallenge groupChallenge) {

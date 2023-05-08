@@ -13,5 +13,5 @@ public interface GroupChallengeFileQueryDsl {
     public Optional<GroupChallengeFile> findTop1ByGroupChallengeFileId_QueryDsl(Long groupChallengeId);
 
     // 그룹 챌린지 파일 여러개 조회 ( 게시판 상세보기에서 사용 )
-    public List<GroupChallengeFile> findAllByGroupChallengeFileId_QueryDsl(Long groupChallengeId);
+//    public List<GroupChallengeFile> findAllByGroupChallengeFileId_QueryDsl(Long groupChallengeId);
 }
