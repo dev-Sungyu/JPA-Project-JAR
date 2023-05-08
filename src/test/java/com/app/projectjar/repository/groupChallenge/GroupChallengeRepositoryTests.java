@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.groupChallenge;
 
-import com.app.projectjar.domain.dto.BoardDTO;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
@@ -14,8 +13,6 @@ import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
 
 @SpringBootTest

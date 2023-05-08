@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.challenge;
 
-import com.app.projectjar.domain.dto.BoardDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.type.ChallengeType;
 import lombok.extern.slf4j.Slf4j;
@@ -35,7 +34,7 @@ public class ChallengeRepositoryTests {
     @Test
     public void findAllByChallengeTypeToPrivateTest() {
 //        log.info(challengeRepository.findAllByChallengeTypeToPrivate().size() + "개 ");
-        challengeRepository.findAllByChallengeTypeToPrivate().stream().map(BoardDTO::toString).forEach(log::info);
+        challengeRepository.findAllByChallengeTypeToPrivate().stream().map(Challenge::toString).forEach(log::info);
     }
 
     @Test

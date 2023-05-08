@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_MEMBER_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberFile extends Files {
