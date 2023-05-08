@@ -10,7 +10,7 @@ import lombok.Getter;
 import lombok.ToString;
 
 @Data
-@Getter @ToString
+@Builder
 public class MemberDTO {
     private Long memberId;
     private String memberEmail;
@@ -21,72 +21,18 @@ public class MemberDTO {
     private MemberType memberStatus;
     private BadgeType badgeType;
 
-    private Long fileId;
-    private String fileOriginalName;
-    private String fileUuid;
-    private String filePath;
-
-
-//    @QueryProjection
-//    public MemberDTO(String memberEmail,String memberPhoneNumber, String memberName, String memberNickname, String fileOriginalName, String fileUuid, String filePath) {
-//        this.memberEmail = memberEmail;
-//        this.memberPhoneNumber = memberPhoneNumber;
-//        this.memberName = memberName;
-//        this.memberNickname = memberNickname;
-//        this.fileOriginalName = fileOriginalName;
-//        this.fileUuid = fileUuid;
-//        this.filePath = filePath;
-//    }
-
-    @QueryProjection
-    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType) {
-        this.memberId = memberId;
-        this.memberEmail = memberEmail;
-        this.memberPassword = memberPassword;
-        this.memberPhoneNumber = memberPhoneNumber;
-        this.memberName = memberName;
-        this.memberNickname = memberNickname;
-        this.memberStatus = memberStatus;
-        this.badgeType = badgeType;
-    }
-
-
-    public Member toEntity(MemberDTO memberDTO) {
+    public Member memberToEntity() {
         Member member = new Member(
-                memberDTO.memberId,
-                memberDTO.memberEmail,
-                memberDTO.memberPassword,
-                memberDTO.memberPhoneNumber,
-                memberDTO.memberName,
-                memberDTO.memberNickname,
-                memberDTO.memberStatus,
-                memberDTO.badgeType
+                this.memberId,
+                this.memberEmail,
+                this.memberPassword,
+                this.memberPhoneNumber,
+                this.memberName,
+                this.memberNickname,
+                this.memberStatus,
+                this.badgeType
         );
         return member;
     }
 
-
-    public void setMemberEmail(String memberEmail) {
-        this.memberEmail = memberEmail;
-    }
-
-    public void setMemberPassword(String memberPassword) {
-        this.memberPassword = memberPassword;
-    }
-
-    public void setMemberPhoneNumber(String memberPhoneNumber) {
-        this.memberPhoneNumber = memberPhoneNumber;
-    }
-
-    public void setMemberName(String memberName) {
-        this.memberName = memberName;
-    }
-
-    public void setMemberNickname(String memberNickname) {
-        this.memberNickname = memberNickname;
-    }
-
-    public void setMemberStatus(MemberType memberStatus) {
-        this.memberStatus = memberStatus;
-    }
 }
