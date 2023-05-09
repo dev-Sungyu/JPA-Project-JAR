@@ -60,7 +60,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .leftJoin(suggest.suggestFiles)
                 .fetchJoin()
                 .orderBy(suggest.createdDate.desc())
-                .offset(pageable.getOffset())
+                .offset(pageable.getOffset() -1)
                 .limit(pageable.getPageSize())
                 .fetch();
 
