@@ -32,7 +32,7 @@ public class SuggestController {
         return new RedirectView("/board/suggest/list");
     }
 
-    @GetMapping("list")
+    @GetMapping("modify-list")
     public void goToList() {
     }
 

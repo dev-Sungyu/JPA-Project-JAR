@@ -4,41 +4,188 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>검색페이지</title>
-    <link rel="stylesheet" href="/static/css/common.css">
+    <title>제안게시판 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/board/proposal/modify-list.css">
+    <style>
+        @media (min-width: 1024px){
+            .content-li {
+                width: 33.333333%;
+            }
+        }    
+    </style>
 </head>
-<body>
-    <div>
-        <th:block th:replace="~{main/header :: header}"></th:block>
 
-        <div class="list-wrap">
-            <div class="list-container">
-                <div style="position: relative;">
-                    <div class="list-title-box">
-                        <div class="list-title-layout">
-                            <h2 class="list-title">공유 다이어리 목록</h2>
-                            <div class="list-sub-title">자신의 다이어리를 공유해보세요.</div>
-                        </div>
+<body>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
+
+    <div class="list-wrap">
+        <div class="list-container">
+            <div style="position: relative;">
+                <div class="list-title-box">
+                    <div class="list-title-layout">
+                        <h2 class="list-title">챌린지 게시판 목록</h2>
+                        <div class="list-sub-title">하고싶은 챌린지를 제안해보세요.</div>
                     </div>
-                    <div class="list-content-box">
-                        <section class="list-content-wrap">
-                            <div class="popularity-button-box">
-                                <button class="btn recent active">최신순</button>
-                                <button class="btn popular">인기순</button>
-                            </div>
-                            <div>
-                                <div style="height:auto; overflow:auto">
-                                    <div style="overflow:hidden">
-                                        <ul class="content-ul">
-                                        </ul>
-                                    </div>
+                </div>
+                <div class="list-content-box">
+                    <section class="list-content-wrap">
+                        <div class="popularity-button-box">
+                            <button class="btn recent active">최신순</button>
+                            <button class="btn popular">인기순</button>
+                        </div>
+                        <div>
+                            <div style="height:auto; overflow:auto">
+                                <div style="overflow:hidden">
+                                    <ul class="content-ul">
+                                        <!-- 여기서 부터 -->
+                                        <li class="content-li">
+                                            <div class="content-flex">
+                                                <a href="javascript:void(0)">
+                                                    <div class="content-box">
+                                                        <div class="content-image-box">
+                                                                <span class="content-image-layout">
+                                                                    <picture>
+                                                                        <img
+                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">
+                                                                    </picture>
+                                                                </span>
+                                                        </div>
+                                                        <div class="content-title">
+                                                            임종욱
+                                                        </div>
+                                                        <div class="content2">
+                                                            상시 이벤트
+                                                        </div>
+                                                        <div class="liked-box">
+                                                            <div class="flex">
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/human-icon.png"class="human-icon">
+                                                                    </div>
+                                                                    <p class="like-count">5771</p>
+                                                                </div>
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/reply-icon.png" class="reply-icon">
+                                                                    </div>
+                                                                    <p class="reply-count">97</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <!--  -->
+                                        <!-- 여기서 부터 -->
+                                        <li class="content-li">
+                                            <div class="content-flex">
+                                                <a href="javascript:void(0)">
+                                                    <div class="content-box">
+                                                        <div class="content-image-box">
+                                                                <span class="content-image-layout">
+                                                                    <picture>
+                                                                        <img
+                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">
+                                                                    </picture>
+                                                                </span>
+                                                        </div>
+                                                        <div class="content-title">
+                                                            임종욱
+                                                        </div>
+                                                        <div class="content2">
+                                                            상시 이벤트
+                                                        </div>
+                                                        <div class="liked-box">
+                                                            <div class="flex">
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/human-icon.png"class="human-icon">
+                                                                    </div>
+                                                                    <p class="like-count">5771</p>
+                                                                </div>
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/reply-icon.png" class="reply-icon">
+                                                                    </div>
+                                                                    <p class="reply-count">97</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <!--  -->
+                                        <!-- 여기서 부터 -->
+                                        <li class="content-li">
+                                            <div class="content-flex">
+                                                <a href="javascript:void(0)">
+                                                    <div class="content-box">
+                                                        <div class="content-image-box">
+                                                                <span class="content-image-layout">
+                                                                    <picture>
+                                                                        <img
+                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">
+                                                                    </picture>
+                                                                </span>
+                                                        </div>
+                                                        <div class="content-title">
+                                                            임종욱
+                                                        </div>
+                                                        <div class="content2">
+                                                            상시 이벤트
+                                                        </div>
+                                                        <div class="liked-box">
+                                                            <div class="flex">
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/human-icon.png"class="human-icon">
+                                                                    </div>
+                                                                    <p class="like-count">5771</p>
+                                                                </div>
+                                                                <div class="liked-layout">
+                                                                    <div class="icon-box">
+                                                                        <img src="/image/board/reply-icon.png" class="reply-icon">
+                                                                    </div>
+                                                                    <p class="reply-count">97</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </li>
+                                        <!--  -->
+                                    </ul>
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-    </div>                                        
+    </div>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
 </body>
+<script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
+    $(".btn").each((i, e) => {
+
+        $(e).click(() => {
+            if(!$(e).hasClass("active")){
+                $(".btn").removeClass("active");
+                $(e).addClass("active");
+            }else {
+                $(e).removeClass("active");
+            }
+        });
+    });
+</script>
 </html>
