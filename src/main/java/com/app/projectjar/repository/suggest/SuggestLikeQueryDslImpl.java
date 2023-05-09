@@ -2,8 +2,14 @@ package com.app.projectjar.repository.suggest;
 
 
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.entity.suggest.SuggestLike;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.List;
 
 import static com.app.projectjar.entity.suggest.QSuggestLike.suggestLike;
 
@@ -34,6 +40,24 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
                 .where(suggestLike.member.id.eq(memberId))
                 .where(suggestLike.suggest.id.eq(suggestId))
                 .execute();
+    }
+
+    @Override
+    public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<Suggest> foundLike = query.select(suggestLike.suggest)
+                .from(suggestLike)
+                .leftJoin(suggestLike.suggest)
+                .where(suggestLike.member.id.eq(id))
+                .orderBy(suggestLike.suggest.createdDate.desc())
+                .offset(pageable.getOffset() -1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggestLike.suggest.count())
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
+                .fetchOne();
+        return null;
     }
 
 }

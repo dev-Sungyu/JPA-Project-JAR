@@ -12,7 +12,7 @@ public interface InquireQueryDsl {
 
 
     /* 마이 페이지  */
-//    문의 게시글 전체 조회
+//   내가 작성한 문의 게시글 전체 조회
     public Page<Inquire> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
 
 
