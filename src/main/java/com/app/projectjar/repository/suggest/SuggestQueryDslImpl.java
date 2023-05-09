@@ -66,6 +66,8 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         List<Suggest> foundSuggest = query.select(suggest)
                 .from(QSuggest.suggest)
                 .where(suggest.member.id.eq(id))
+                .leftJoin(suggest.suggestFiles)
+                .fetchJoin()
                 .orderBy(suggest.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
