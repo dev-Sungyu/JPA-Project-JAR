@@ -2,6 +2,7 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.suggest.Suggest;
+import org.aspectj.weaver.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -14,6 +15,8 @@ public interface SuggestQueryDsl {
     // 상세보기
     public Optional<Suggest> findByIdSuggest_QueryDsl(Long suggestId);
 
+    // 현재 시퀀스 가져오기
+    public Suggest getCurrentSequence();
 
 
     /* 마이 페이지*/

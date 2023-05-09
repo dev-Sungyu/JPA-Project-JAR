@@ -14,11 +14,15 @@ import java.util.List;
 public interface SuggestService {
 
     // 저장
-    public void register(SuggestDTO suggestDTO);
+    public void register(SuggestDTO suggestDTO, Long memberId);
     // 목록
     public List<SuggestDTO> getSuggestList(Pageable pageable);
     // 상세 보기
     public SuggestDTO getSuggest(Long suggestId);
+
+    // 현재 시퀀스 가져오기
+    public Suggest getCurrentSequence();
+
     // 수정
 
 
@@ -68,7 +72,6 @@ public interface SuggestService {
                 .boardContent(suggestDTO.getBoardContent())
                 .boardType(suggestDTO.getBoardType())
                 .member(toMemberEntity(suggestDTO.getMemberDTO()))
-                .suggestFiles(toSuggestFileListEntity(suggestDTO.getFileDTOS()))
                 .build();
     }
 
@@ -91,6 +94,7 @@ public interface SuggestService {
                 .fileOriginalName(fileDTO.getFileOriginalName())
                 .fileUuid(fileDTO.getFileUuid())
                 .filePath(fileDTO.getFilePath())
+                .suggest(fileDTO.getSuggest())
                 .build();
     }
 

@@ -1498,8 +1498,9 @@ label.selection_label {
 }
 
 .img_div>img {
-    /* max-height: 100px; */
-    height: 100px;
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
 }
 
 .delete_button_wrapper {
@@ -1546,6 +1547,8 @@ div.file-image-box {
 
 .img_ul {
     display: flex;
+    overflow: hidden;
+    flex-wrap: wrap;
 }
 
 .img_box_wrapper {
@@ -1565,5 +1568,7 @@ div.file-image-box {
 }
 
 .img_list {
-    padding-right: 16px;
+    width: 20%;
+    padding: 10px;
+    margin-bottom: 10px;
 }
