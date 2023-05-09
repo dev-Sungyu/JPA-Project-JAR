@@ -1,9 +1,8 @@
 package com.app.projectjar.repository.challenge;
 
 
-import com.app.projectjar.domain.dto.QReplyDTO;
-import com.app.projectjar.domain.dto.ReplyDTO;
-import com.app.projectjar.entity.challenge.QChallengeReply;
+import com.app.projectjar.domain.QReplyDTO;
+import com.app.projectjar.domain.ReplyDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.app.projectjar.entity.challenge.QChallengeReply.challengeReply;
-import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
-import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
 @RequiredArgsConstructor
 public class ChallengeReplyQueryDslImpl implements ChallengeReplyQueryDsl {

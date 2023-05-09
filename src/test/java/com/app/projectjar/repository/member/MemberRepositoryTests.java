@@ -2,7 +2,7 @@ package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.domain.dto.member.MemberDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;

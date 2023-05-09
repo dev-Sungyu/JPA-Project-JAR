@@ -1,8 +1,6 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
-import com.app.projectjar.domain.dto.*;
-import com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -15,9 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
-import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
-import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
 @RequiredArgsConstructor
 public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
