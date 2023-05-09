@@ -53,4 +53,10 @@ public class DiaryRepositoryTests {
         diaryRepository.findAllDiary_QueryDsl(pageRequest).stream().map(Diary::toString)
                 .forEach(log::info);
     }
+
+    @Test
+    public void findAllByMemberWithPaging_QueryDslTest(){
+        PageRequest pageRequest = PageRequest.of(1,5);
+        diaryRepository.findAllByMemberWithPaging_QueryDsl(pageRequest, 1L).stream().map(Diary::toString).forEach(log::info);
+    }
 }

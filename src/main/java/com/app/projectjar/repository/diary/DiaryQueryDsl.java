@@ -16,5 +16,5 @@ public interface DiaryQueryDsl {
 
 
     /* 마이 페이지 */
-    public Page<Diary> findAllByDiaryIdWithPaging_QueryDsl(Pageable pageable, Long id);
+    public Page<Diary> findAllByMemberWithPaging_QueryDsl(Pageable pageable, Long id);
 }
