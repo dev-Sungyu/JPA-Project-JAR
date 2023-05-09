@@ -24,8 +24,9 @@ public class SuggestFile extends Files {
     }
 
     @Builder
-    public SuggestFile(Long id, String fileOriginalName, String fileUuid, String filePath) {
+    public SuggestFile(Long id, String fileOriginalName, String fileUuid, String filePath, Suggest suggest) {
         super(id, fileOriginalName, fileUuid, filePath);
+        this.suggest = suggest;
     }
 
     public void setSuggest(Suggest suggest) {

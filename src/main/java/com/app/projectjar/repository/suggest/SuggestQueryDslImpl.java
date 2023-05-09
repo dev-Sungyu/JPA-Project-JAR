@@ -51,6 +51,15 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         return Optional.ofNullable(foundSuggest);
     }
 
+    @Override
+    public Suggest getCurrentSequence() {
+        return query.select(suggest)
+                .from(suggest)
+                .orderBy(suggest.id.desc())
+                .limit(1)
+                .fetchOne();
+    }
+
 
     @Override
     public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {

@@ -45,6 +45,11 @@ public class SuggestRepositoryTests {
         suggestRepository.findByIdSuggest_QueryDsl(26L).map(Suggest::toString).ifPresent(log::info);
     }
 
+    @Test
+    public void getCurrentSequenceTest() {
+        log.info(suggestRepository.getCurrentSequence() + "");
+    }
+
     /*관리자 페이지*/
     //    제안 게시판 삭제하기
     @Test

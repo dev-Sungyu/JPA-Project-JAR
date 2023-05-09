@@ -6,12 +6,12 @@ import com.app.projectjar.domain.member.MemberDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Builder
 @Component
-@NoArgsConstructor
 public class SuggestDTO {
     private Long id;
     private String boardTitle;
@@ -20,6 +20,10 @@ public class SuggestDTO {
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
 
+    public SuggestDTO() {
+        this.fileDTOS = new ArrayList<>();
+    }
+
     @Builder
     public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
         this.id = id;
@@ -27,6 +31,6 @@ public class SuggestDTO {
         this.boardContent = boardContent;
         this.boardType = boardType;
         this.memberDTO = memberDTO;
-        this.fileDTOS = fileDTOS;
+        this.fileDTOS = fileDTOS == null ? new ArrayList<>() : fileDTOS;
     }
 }

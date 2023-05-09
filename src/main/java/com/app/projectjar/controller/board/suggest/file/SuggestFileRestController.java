@@ -3,6 +3,7 @@ package com.app.projectjar.controller.board.suggest.file;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.service.file.SuggestFileService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/suggest/image/*")
 @RequiredArgsConstructor
+@Slf4j
 public class SuggestFileRestController {
     private final SuggestFileService suggestFileService;
 
@@ -30,17 +32,22 @@ public class SuggestFileRestController {
         List<String> uuids = new ArrayList<>();
         String path = "C:/upload/" + getPath();
         File file = new File(path);
-        if (!file.exists()) {
-            file.mkdirs();
-        }
+        if(!file.exists()) {file.mkdirs();}
 
-        for (int i = 0; i < multipartFiles.size(); i++) {
+        multipartFiles.forEach(multipartFile -> {
+            try {
+                log.info(multipartFile.getInputStream() + "=========");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+
+        for(int i=0; i<multipartFiles.size(); i++){
             uuids.add(UUID.randomUUID().toString());
             multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-
-            if (multipartFiles.get(i).getContentType().startsWith("image")) {
+            if(multipartFiles.get(i).getContentType().startsWith("image")){
                 FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
-                Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 250, 175);
+                Thumbnailator.createThumbnail(multipartFiles.get(i).getInputStream(), out, 400, 400);
                 out.close();
             }
         }
