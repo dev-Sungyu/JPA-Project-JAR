@@ -55,7 +55,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     @Override
     public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
         List<Suggest> foundSuggest = query.select(suggest)
-                .from(QSuggest.suggest)
+                .from(suggest)
                 .where(suggest.member.id.eq(id))
                 .leftJoin(suggest.suggestFiles)
                 .fetchJoin()
