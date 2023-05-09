@@ -60,4 +60,20 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
 
         return new PageImpl<>(foundDiaries, pageable, count);
     }
+
+    @Override
+    public Page<Diary> findAllByDiaryIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<Diary> foundDiaries = query.select(diary)
+                .from(diary)
+                .where(diary.member.id.eq(id))
+                .orderBy(diary.createdDate.desc())
+                .offset(pageable.getOffset() -1)
+                .limit(pageable.getPageSize())
+                .fetch();
+        Long count = query.select(diary.count())
+                .from(diary)
+                .where(diary.member.id.eq(id))
+                .fetchOne();
+        return new PageImpl<>(foundDiaries, pageable, count);
+    }
 }

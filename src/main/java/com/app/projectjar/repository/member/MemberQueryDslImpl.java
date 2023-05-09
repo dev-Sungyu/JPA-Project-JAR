@@ -1,16 +1,22 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.BadgeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
+import java.util.List;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
+import static com.app.projectjar.entity.inquire.QInquire.inquire;
 import static com.app.projectjar.entity.member.QMember.member;
 
 @RequiredArgsConstructor
@@ -134,6 +140,25 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                     .set(member.badgeType, badgeType)
                     .where(member.id.eq(id))
                     .execute();
+    }
+
+    //    관리자 페이지 회원 전체 조회
+    @Override
+    public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable) {
+        List<Member> foundMembers = query.select(QMember.member)
+                .from(member)
+                .leftJoin(member.memberFile, memberFile)
+                .fetchJoin()
+                .orderBy(member.id.desc())
+                .offset(pageable.getOffset() -1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(member.count())
+                .from(member)
+                .fetchOne();
+
+        return new PageImpl<>(foundMembers, pageable ,count);
     }
 
 }
