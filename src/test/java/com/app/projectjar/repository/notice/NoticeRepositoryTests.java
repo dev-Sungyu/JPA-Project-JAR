@@ -30,7 +30,7 @@ public class NoticeRepositoryTests {
     @Test
     public void findAllWithPagingTest() {
         PageRequest pageRequest = PageRequest.of(0,10);
-        noticeRepository.findAllWithPaging(pageRequest).stream().map(Notice::toString).forEach(log::info);
+        noticeRepository.findAllWithPaging_QueryDSL(pageRequest).stream().map(Notice::toString).forEach(log::info);
     }
 
 //    공지사항 상세보기
