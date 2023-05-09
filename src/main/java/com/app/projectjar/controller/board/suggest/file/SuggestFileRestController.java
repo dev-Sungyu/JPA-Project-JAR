@@ -1,14 +1,11 @@
 package com.app.projectjar.controller.board.suggest.file;
 
-import com.app.projectjar.domain.file.FileDTO;
-import com.app.projectjar.service.file.SuggestFileService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,7 +21,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Slf4j
 public class SuggestFileRestController {
-    private final SuggestFileService suggestFileService;
 
     //    파일 업로드
     @PostMapping("upload")
@@ -54,13 +50,6 @@ public class SuggestFileRestController {
         return uuids;
     }
 
-
-    //    파일 저장
-    @PostMapping("save")
-    public RedirectView businessSave(@RequestBody List<FileDTO> fileDTOS) {
-        suggestFileService.writeList(fileDTOS);
-        return new RedirectView("/board/suggest/list");
-    }
 
     //    파일 불러오기
     @GetMapping("display")
