@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
 import org.springframework.data.domain.Page;
@@ -101,6 +100,6 @@ public interface MemberQueryDsl {
 
     //    관리자 페이지 회원 전체 조회
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable);
-
-
+//  회원 정보 수정
+    public void updateMemberAdmin_QueryDSL(Member memberInfo);
 }
