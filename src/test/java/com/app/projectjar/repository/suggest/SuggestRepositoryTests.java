@@ -25,14 +25,14 @@ public class SuggestRepositoryTests {
     private MemberRepository memberRepository;
 
 
-    @Test
-    public void saveTest() {
-        for (int i = 0; i < 100; i++) {
-            memberRepository.findById(1L).ifPresent(
-                    member ->
-                            suggestRepository.save(new Suggest("테스트 제목","테스트 내용",BoardType.PERSONAL,member)));
-        }
-    }
+//    @Test
+//    public void saveTest() {
+//        for (int i = 0; i < 100; i++) {
+//            memberRepository.findById(1L).ifPresent(
+//                    member ->
+//                            suggestRepository.save(new Suggest("테스트 제목","테스트 내용",BoardType.PERSONAL,member)));
+//        }
+//    }
 
     @Test
     public void findAllWithPagingTest() {

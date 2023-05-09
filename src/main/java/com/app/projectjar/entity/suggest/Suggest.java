@@ -27,30 +27,19 @@ public class Suggest extends Board {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "suggest")
     private List<SuggestFile> suggestFiles = new ArrayList<>();
 
-    public Suggest(String boardTitle, String boardContent, BoardType boardType, Member member) {
-        super(boardTitle, boardContent);
-        this.boardType = boardType;
-        this.member = member;
-    }
-
-    public Suggest(String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
-        super(boardTitle, boardContent);
-        this.boardType = boardType;
-        this.member = member;
-        this.suggestFiles = suggestFiles;
-    }
-
-    public Suggest(Long id, String boardTitle, String boardContent, BoardType boardType, Member member) {
-        super(id, boardTitle, boardContent);
-        this.boardType = boardType;
-        this.member = member;
-    }
-
     @Builder
     public Suggest(Long id, String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
         super(id, boardTitle, boardContent);
         this.boardType = boardType;
         this.member = member;
         this.suggestFiles = suggestFiles;
+    }
+
+    public void addSuggestFile(SuggestFile suggestFile) {
+        this.suggestFiles.add(suggestFile);
+
+        if(suggestFile.getSuggest() != this){
+            suggestFile.setSuggest(this);
+        }
     }
 }
