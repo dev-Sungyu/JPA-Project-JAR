@@ -81,7 +81,7 @@
                                                 </div>
                                                 <div class="box-main">
                                                     <div class="box-main-wrap">
-                                                        <form th:action="@{/board/suggest/write}" method="post">
+                                                        <form th:action="@{/board/suggest/write}" method="post" enctype="multipart/form-data">
                                                             <div class="box-main-wrpa-list">
                                                                 <div style="display:flex; flex-direction: column;">
                                                                     <div class="box-line file_insert_wrapper is-flex">
@@ -97,13 +97,13 @@
                                                                     <div class="challenge-box">
                                                                         <label class="challenge-button radio-active">
                                                                             <div>
-                                                                                <input type="radio" style="display:none;">
+                                                                                <input type="radio" style="display:none;" checked value="PERSONAL">
                                                                                 <div class="challenge-text">개인 챌린지</div>
                                                                             </div>
                                                                         </label>
                                                                         <label class="challenge-button">
                                                                             <div>
-                                                                                <input type="radio" style="display:none;">
+                                                                                <input type="radio" style="display:none;" value="GROUP">
                                                                                 <div class="challenge-text">단체 챌린지</div>
                                                                             </div>
                                                                         </label>
