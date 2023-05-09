@@ -41,6 +41,17 @@ public class MemberRepositoryTests {
         memberRepository.findByMemberId_QueryDSL(1L).map(Member::toString).ifPresent(log::info);
     }
 
+//    수정
+    @Test
+    public void updateMemberTest(){
+        memberRepository.findByMemberId_QueryDSL(1L).ifPresent(member -> {
+            member.setMemberName("규선최");
+            member.setMemberPhoneNumber("010-9999-8888");
+            member.setMemberNickname("최규선규선");
+            });
+
+    }
+
 //      삭제
     @Test
     public void deleteMemberTest(){
@@ -79,7 +90,6 @@ public class MemberRepositoryTests {
     public void findByIdWithAttendCount_QueryDslTest(){
         log.info(""+memberRepository.findByIdWithAttendCount_QueryDsl(1L));
     }
-
 
 //    뱃지 타입 업데이트
     @Test
