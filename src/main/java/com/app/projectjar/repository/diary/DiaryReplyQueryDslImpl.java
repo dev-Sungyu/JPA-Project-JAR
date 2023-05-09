@@ -1,10 +1,7 @@
 package com.app.projectjar.repository.diary;
 
 
-import com.app.projectjar.domain.dto.QReplyDTO;
-import com.app.projectjar.domain.dto.ReplyDTO;
 import com.app.projectjar.entity.diary.DiaryReply;
-import com.app.projectjar.entity.member.QMember;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 import static com.app.projectjar.entity.diary.QDiaryReply.diaryReply;
-import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.member.QMember.member;
 
 @RequiredArgsConstructor

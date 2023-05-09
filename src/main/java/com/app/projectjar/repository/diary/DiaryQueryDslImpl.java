@@ -1,7 +1,6 @@
 package com.app.projectjar.repository.diary;
 
 
-import com.app.projectjar.domain.dto.*;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.QDiary;
 import com.app.projectjar.entity.file.diary.QDiaryFile;

@@ -1,6 +1,6 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.domain.dto.member.MemberDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
 

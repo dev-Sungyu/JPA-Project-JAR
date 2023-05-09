@@ -1,9 +1,8 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
-import com.app.projectjar.domain.dto.QReplyDTO;
-import com.app.projectjar.domain.dto.ReplyDTO;
-import com.app.projectjar.entity.groupChallenge.QGroupChallengeReply;
+import com.app.projectjar.domain.QReplyDTO;
+import com.app.projectjar.domain.ReplyDTO;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,7 +13,6 @@ import java.util.List;
 
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeReply.groupChallengeReply;
-import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
 @RequiredArgsConstructor
 public class GroupChallengeReplyQueryDslImpl implements GroupChallengeReplyQueryDsl {

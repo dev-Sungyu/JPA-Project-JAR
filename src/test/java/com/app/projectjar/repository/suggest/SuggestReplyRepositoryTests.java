@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.suggest;
 
-import com.app.projectjar.domain.dto.ReplyDTO;
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.suggest.SuggestReply;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;

@@ -1,7 +1,6 @@
 package com.app.projectjar.service.suggest;
 
-import com.app.projectjar.domain.dto.suggest.SuggestDTO;
-import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.repository.suggest.SuggestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,7 +19,7 @@ public class SuggestServiceImpl implements SuggestService {
 
     @Override
     public void register(SuggestDTO suggestDTO) {
-        suggestRepository.save(suggestDTO.suggestToEntity());
+
     }
 
     @Override
@@ -28,7 +27,7 @@ public class SuggestServiceImpl implements SuggestService {
         List<SuggestDTO> suggestDTOS = new ArrayList<>();
         suggestRepository.findAllWithPaging_QueryDsl(pageable).forEach(
                 suggest -> {
-                    suggestDTOS.add(SuggestToDTO(suggest));
+                    suggestDTOS.add(toSuggestDTO(suggest));
                 }
         );
         return suggestDTOS;
