@@ -49,6 +49,8 @@ public class AdminController {
     public void adminDiaryList() {}
     @GetMapping("diary/detail")
     public void adminDiaryDetail() {}
+    @GetMapping("diary/modify")
+    public void adminDiaryModify() {}
 
 
 }

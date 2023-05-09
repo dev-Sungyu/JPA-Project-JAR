@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.BadgeType;
@@ -16,7 +15,6 @@ import java.util.Optional;
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
-import static com.app.projectjar.entity.inquire.QInquire.inquire;
 import static com.app.projectjar.entity.member.QMember.member;
 
 @RequiredArgsConstructor
@@ -141,7 +139,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                     .where(member.id.eq(id))
                     .execute();
     }
-
+//------------------------------------------ 관리자 페이지 -----------------------------------------------------
     //    관리자 페이지 회원 전체 조회
     @Override
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable) {
@@ -159,6 +157,17 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .fetchOne();
 
         return new PageImpl<>(foundMembers, pageable ,count);
+    }
+
+    //    회원 정보 수정
+    @Override
+    public void updateMemberAdmin_QueryDSL(Member memberInfo) {
+        query.update(member).
+                set(member.memberEmail, memberInfo.getMemberEmail()).
+                set(member.memberNickname, memberInfo.getMemberNickname()).
+                set(member.memberPhoneNumber, memberInfo.getMemberPhoneNumber()).
+                set(member.memberStatus, memberInfo.getMemberStatus()).
+                where(member.eq(memberInfo)).execute();
     }
 
 }
