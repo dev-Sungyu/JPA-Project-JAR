@@ -3,6 +3,8 @@ package com.app.projectjar.repository.member;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.Optional;
 
@@ -96,6 +98,9 @@ public interface MemberQueryDsl {
 //    문의 게시글 수정
 
 //    문의 게시글 삭제
+
+    //    관리자 페이지 회원 전체 조회
+    public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable);
 
 
 }

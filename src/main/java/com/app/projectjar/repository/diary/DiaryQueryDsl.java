@@ -13,4 +13,8 @@ public interface DiaryQueryDsl {
     public Optional<Diary> findByDiaryId_QueryDsl(Long diaryId);
     // 리스트
     public Page<Diary> findAllDiary_QueryDsl(Pageable pageable);
+
+
+    /* 마이 페이지 */
+    public Page<Diary> findAllByDiaryIdWithPaging_QueryDsl(Pageable pageable, Long id);
 }
