@@ -2,6 +2,7 @@ package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -18,6 +19,8 @@ import java.util.Optional;
 @Qualifier("suggest") @Primary
 public class SuggestServiceImpl implements SuggestService {
     private final SuggestRepository suggestRepository;
+    private final MemberRepository memberRepository;
+
 
     @Override
     public void register(SuggestDTO suggestDTO) {

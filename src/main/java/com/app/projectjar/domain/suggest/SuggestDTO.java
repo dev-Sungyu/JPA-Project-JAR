@@ -19,4 +19,14 @@ public class SuggestDTO {
     private BoardType boardType;
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
+
+    @Builder
+    public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
+        this.id = id;
+        this.boardTitle = boardTitle;
+        this.boardContent = boardContent;
+        this.boardType = boardType;
+        this.memberDTO = memberDTO;
+        this.fileDTOS = fileDTOS;
+    }
 }

@@ -5,12 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>제안게시판 - 작성하기</title>
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="stylesheet" href="/css/main/header.css">
-    <link rel="stylesheet" href="/css/main/footer.css">
-    <link rel="stylesheet" href="/css/board/proposal/common.css">
-    <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="stylesheet" href="/static/css/common.css">
+    <link rel="stylesheet" href="/static/css/main/header.css">
+    <link rel="stylesheet" href="/static/css/main/footer.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/common.css">
+    <link rel="stylesheet" href="/static/css/board/proposal/write.css">
     <link rel="icon" href="/image/logo/favicon.png">
+    <style>
+        .challenge-box {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .challenge-button {
+            display: flex;
+            width: 90px;
+            height: 30px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .challenge-box label:first-child {
+            margin-right: 10px; 
+        }
+
+        .challenge-text {
+            font-size: 12px;
+        }
+
+        .challenge-box label.radio-active{
+            background-color: #4F6DF5;
+            color: #fff;
+        }
+    </style>
 </head>
 <body>
 <div class="body_wrapper">
@@ -21,7 +50,7 @@
                 <div class="board-name">
                     <div class="board-name-line"></div>
                     <div class="board_name-box">
-                        <a href="" target="_blank"><!-- 리스트로 돌아가는 링크 -->
+                        <a href="javascript:void(0)" target="_blank"><!-- 리스트로 돌아가는 링크 -->
                             <h2>챌린지 제안 게시판</h2>
                         </a>
                     </div>
@@ -54,27 +83,31 @@
                                                     <div class="box-main-wrap">
                                                         <form th:action="@{/board/suggest/write}" method="post">
                                                             <div class="box-main-wrpa-list">
-                                                                <p></p>
-                                                                <div class="box-line file_insert_wrapper is-flex">
-                                                                    <label class="file_insert_label">
-                                                                        <input type="file" style="display:none;"
-                                                                               class="file" multiple>
-                                                                        <div class="file-image-box">
-                                                                            <!-- <img src="/image/mypage/instagram_icon.png"> -->
-                                                                            <p>사진 첨부</p>
-                                                                        </div>
-                                                                    </label>
-                                                                    <label class="selection_label is-inline-block"
-                                                                           for="">
-                                                                        <div>
-                                                                            <button class="selection_button is-hidden"
-                                                                                    type="button">
-                                                                            </button>
-                                                                            <div class="selection selected">개인 챌린지</div>
-                                                                            <div class="selection is-hidden">단체 챌린지
+                                                                <div style="display:flex; flex-direction: column;">
+                                                                    <div class="box-line file_insert_wrapper is-flex">
+                                                                        <label class="file_insert_label">
+                                                                            <input type="file" style="display:none;"
+                                                                                class="file" multiple>
+                                                                            <div class="file-image-box">
+                                                                                <!-- <img src="/image/mypage/instagram_icon.png"> -->
+                                                                                <p>사진 첨부</p>
                                                                             </div>
-                                                                        </div>
-                                                                    </label>
+                                                                        </label>
+                                                                    </div>
+                                                                    <div class="challenge-box">
+                                                                        <label class="challenge-button radio-active">
+                                                                            <div>
+                                                                                <input type="radio" style="display:none;">
+                                                                                <div class="challenge-text">개인 챌린지</div>
+                                                                            </div>
+                                                                        </label>
+                                                                        <label class="challenge-button">
+                                                                            <div>
+                                                                                <input type="radio" style="display:none;">
+                                                                                <div class="challenge-text">단체 챌린지</div>
+                                                                            </div>
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
                                                                 <label>
                                                                     <div class="box-main-title">
@@ -87,7 +120,7 @@
                                                                 <div class="box-main-body">
                                                                     <span class="box-main-body-span"></span>
                                                                     <div class="editor-wrap">
-                                                                            <textarea name="" id="" cols="30" rows="10"
+                                                                            <textarea name="boardContent"cols="30" rows="10"
                                                                                       class="proposal_content is-no-scroll"
                                                                                       placeholder="내용을 입력해주세요."></textarea>
                                                                         <section class="img_wrapper_box">
@@ -104,7 +137,7 @@
                                                                 <div class="box-line"></div>
                                                                 <div class="editor-button-line">
                                                                     <div class="button-line"></div>
-                                                                    <button type="submit" class="save-button">
+                                                                    <button type="button" class="save-button">
                                                                         <div class="save-button-box">
                                                                             <div class="save-button-box-div"></div>
                                                                             <span
@@ -133,10 +166,21 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/main/header.js"></script>
 <script>
-    // const $alertModal = $(".alert-modal-display");
+    let $radioButton = $("input[type=radio]");
+    let $challengeButton = $(".challenge-button");
 
+    $challengeButton.each((i, e) => {
+        $(e).click(() => {
+            $challengeButton.removeClass("radio-active");
+            $radioButton.prop("checked", false);
+            $($radioButton[i]).prop("checked",true);
+            $(e).addClass("radio-active");
+        });
+    });
+</script>
+<script src="/static/js/main/header.js"></script>
+<script>
     // 이미지 파일
     let inputFiles = [];
     let $imgUl = $($('ul.img_ul')[0]);
@@ -204,5 +248,4 @@
         });
     });
 </script>
-<script src="/js/board/button_change_action.js"></script>
 </html>
