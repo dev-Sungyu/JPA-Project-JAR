@@ -62,9 +62,53 @@ public interface SuggestService {
     }
 
     default Suggest toSuggestEntity(SuggestDTO suggestDTO) {
+        return Suggest.builder()
+                .id(suggestDTO.getId())
+                .boardTitle(suggestDTO.getBoardTitle())
+                .boardContent(suggestDTO.getBoardContent())
+                .boardType(suggestDTO.getBoardType())
+                .member(toMemberEntity(suggestDTO.getMemberDTO()))
+                .suggestFiles(toSuggestFileListEntity(suggestDTO.getFileDTOS()))
+                .build();
+    }
 
+    default Member toMemberEntity(MemberDTO memberDTO) {
+        return Member.builder()
+                .id(memberDTO.getMemberId())
+                .memberEmail(memberDTO.getMemberEmail())
+                .memberName(memberDTO.getMemberName())
+                .memberNickname(memberDTO.getMemberNickname())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberPhoneNumber(memberDTO.getMemberPhoneNumber())
+                .memberStatus(memberDTO.getMemberStatus())
+                .badgeType(memberDTO.getBadgeType())
+                .build();
+    }
 
-        return null;
+    default SuggestFile toSuggestFileEntity(FileDTO fileDTO){
+        return SuggestFile.builder()
+                .id(fileDTO.getId())
+                .fileOriginalName(fileDTO.getFileOriginalName())
+                .fileUuid(fileDTO.getFileUuid())
+                .filePath(fileDTO.getFilePath())
+                .build();
+    }
+
+    default List<SuggestFile> toSuggestFileListEntity(List<FileDTO> fileDTOS){
+        List<SuggestFile> suggestFiles = new ArrayList<>();
+
+        fileDTOS.forEach(
+                fileDTO -> {
+                    SuggestFile suggestFile = SuggestFile.builder()
+                            .id(fileDTO.getId())
+                            .fileOriginalName(fileDTO.getFileOriginalName())
+                            .fileUuid(fileDTO.getFileUuid())
+                            .filePath(fileDTO.getFilePath())
+                            .build();
+                    suggestFiles.add(suggestFile);
+                }
+        );
+        return suggestFiles;
     }
 
 }

@@ -1,6 +1,7 @@
 package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.suggest.SuggestRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,7 +21,7 @@ public class SuggestServiceImpl implements SuggestService {
 
     @Override
     public void register(SuggestDTO suggestDTO) {
-
+        suggestRepository.save(toSuggestEntity(suggestDTO));
     }
 
     @Override
@@ -35,6 +37,7 @@ public class SuggestServiceImpl implements SuggestService {
 
     @Override
     public SuggestDTO getSuggest(Long suggestId) {
-        return null;
+        Optional<Suggest> suggest = suggestRepository.findByIdSuggest_QueryDsl(suggestId);
+        return toSuggestDTO(suggest.get());
     }
 }
