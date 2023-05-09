@@ -37,6 +37,8 @@ public class Member extends Period {
     private BadgeType badgeType;
 
 
+
+
     public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, MemberFile memberFile) {
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -48,7 +50,7 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
-
+    @Builder
     public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType) {
         this.id = id;
         this.memberEmail = memberEmail;

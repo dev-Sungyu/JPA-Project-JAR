@@ -2,10 +2,7 @@ package com.app.projectjar.entity.file.suggest;
 
 import com.app.projectjar.entity.file.Files;
 import com.app.projectjar.entity.suggest.Suggest;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,6 +23,7 @@ public class SuggestFile extends Files {
         this.suggest = suggest;
     }
 
+    @Builder
     public SuggestFile(Long id, String fileOriginalName, String fileUuid, String filePath) {
         super(id, fileOriginalName, fileUuid, filePath);
     }

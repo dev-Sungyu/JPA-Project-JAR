@@ -4,21 +4,35 @@ import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.data.web.PageableDefault;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/board/suggest/*")
 @RequiredArgsConstructor
 public class SuggestController {
     private final SuggestService suggestService;
 
-    @GetMapping("list")
-    public List<SuggestDTO> list() {
-        return suggestService.getSuggestList(PageRequest.of(1,10));
+    @GetMapping("write")
+    public void goToWriteForm(SuggestDTO suggestDTO) { }
+
+    @PostMapping("write")
+    public RedirectView write(SuggestDTO suggestDTO, HttpSession session) {
+        suggestService.register(suggestDTO);
+        return new RedirectView("/board/suggest/list");
     }
 
+    @GetMapping("list")
+    public void goToList() {
+    }
+
+    @GetMapping("detail")
+    public SuggestDTO goToDetail() {
+        return null;
+    }
 }

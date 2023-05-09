@@ -46,6 +46,7 @@ public class Suggest extends Board {
         this.member = member;
     }
 
+    @Builder
     public Suggest(Long id, String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
         super(id, boardTitle, boardContent);
         this.boardType = boardType;
