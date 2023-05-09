@@ -1,8 +1,6 @@
 package com.app.projectjar.repository.notice;
 
 import com.app.projectjar.entity.notice.Notice;
-import com.app.projectjar.entity.suggest.Suggest;
-import com.app.projectjar.repository.notice.NoticeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +47,8 @@ public class NoticeRepositoryTests {
     @Test
     public void updateTest(){
         noticeRepository.findById(2L).ifPresent(
-                notice -> notice.setNoticeTitle("수정된 제목2")
+                notice -> {notice.setNoticeTitle("수정된 제목2");
+                notice.setNoticeContent("수정된 내용 2");}
         );
     }
 }
