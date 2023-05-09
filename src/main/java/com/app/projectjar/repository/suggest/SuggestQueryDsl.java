@@ -17,6 +17,7 @@ public interface SuggestQueryDsl {
 
 
     /* 마이 페이지*/
-//    제안 게시글 전제 조회
+//    제안 내가 작성한 글 게시글 전체 조회
     public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
+
 }

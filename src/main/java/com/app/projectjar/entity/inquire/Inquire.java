@@ -3,8 +3,10 @@ package com.app.projectjar.entity.inquire;
 
 import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.type.AnswerType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 
@@ -18,6 +20,9 @@ public class Inquire extends Period {
     private Long id;
     @NotNull private String inquireTitle;
     @NotNull private String inquireContent;
+    @Enumerated(EnumType.STRING)
+    @ColumnDefault(value = "'UNANSWERED'")
+    private AnswerType answerType;
 
     public void setId(Long id){ this.id = id; }
 
