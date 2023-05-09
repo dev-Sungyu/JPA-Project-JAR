@@ -1,4 +1,4 @@
-package com.app.projectjar.domain.dto;
+package com.app.projectjar.domain;
 
 import com.app.projectjar.type.BadgeType;
 import com.querydsl.core.annotations.QueryProjection;

@@ -1,8 +1,8 @@
 package com.app.projectjar.service.suggest;
 
-import com.app.projectjar.domain.dto.file.FileDTO;
-import com.app.projectjar.domain.dto.member.MemberDTO;
-import com.app.projectjar.domain.dto.suggest.SuggestDTO;
+import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
@@ -22,7 +22,7 @@ public interface SuggestService {
     // 수정
 
 
-    default SuggestDTO SuggestToDTO(Suggest suggest) {
+    default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()
                 .id(suggest.getId())
                 .boardTitle(suggest.getBoardTitle())
@@ -60,4 +60,11 @@ public interface SuggestService {
         );
         return suggestFileList;
     }
+
+    default Suggest toSuggestEntity(SuggestDTO suggestDTO) {
+
+
+        return null;
+    }
+
 }

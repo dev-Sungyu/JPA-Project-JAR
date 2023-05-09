@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.diary;
 
-import com.app.projectjar.domain.dto.ReplyDTO;
 import com.app.projectjar.entity.diary.DiaryReply;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
