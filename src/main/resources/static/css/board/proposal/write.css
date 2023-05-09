@@ -488,7 +488,7 @@
     flex-direction: column;
     box-sizing: border-box;
     position: relative;
-    padding: 24px;
+    padding: 10px 24px;
     -webkit-box-pack: start;
     -webkit-box-align: stretch;
     align-items: stretch;

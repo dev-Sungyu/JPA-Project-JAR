@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Data
-@Builder
 @Component
 @NoArgsConstructor
 public class FileDTO {
@@ -15,4 +14,11 @@ public class FileDTO {
     private String fileUuid;
     private String filePath;
 
+    @Builder
+    public FileDTO(Long id, String fileOriginalName, String fileUuid, String filePath) {
+        this.id = id;
+        this.fileOriginalName = fileOriginalName;
+        this.fileUuid = fileUuid;
+        this.filePath = filePath;
+    }
 }
