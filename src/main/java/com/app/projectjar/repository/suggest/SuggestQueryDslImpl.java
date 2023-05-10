@@ -130,19 +130,15 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
     /*검색*/
     @Override
-    public Page<Suggest> findAllWithSearch(BoardSearch boardSearch, Pageable pageable) {
+    public List<Suggest> findAllWithSearch(BoardSearch boardSearch) {
         BooleanExpression suggestTitleLike = boardSearch.getBoardTitle() == null ? null : suggest.boardTitle.like(boardSearch.getBoardTitle());
 
         List<Suggest> products = query.select(suggest)
                 .from(suggest)
                 .where(suggestTitleLike)
                 .orderBy(suggest.id.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(suggest.count()).from(suggest).fetchOne();
-
-        return new PageImpl<>(products, pageable, count);
+        return products;
     }
 }

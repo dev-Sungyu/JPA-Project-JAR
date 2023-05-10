@@ -62,19 +62,15 @@ public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
 
     /*검색*/
     @Override
-    public Page<Challenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable) {
+    public List<Challenge> findAllWithSearch(BoardSearch boardSearch) {
         BooleanExpression challengeTitleLike = boardSearch.getBoardTitle() == null ? null : challenge.boardTitle.like(boardSearch.getBoardTitle());
 
         List<Challenge> products = query.select(challenge)
                 .from(challenge)
                 .where(challengeTitleLike)
                 .orderBy(challenge.id.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(challenge.count()).from(challenge).fetchOne();
-
-        return new PageImpl<>(products, pageable, count);
+        return products;
     }
 }

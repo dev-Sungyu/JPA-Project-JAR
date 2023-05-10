@@ -64,20 +64,16 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
 
     /*검색*/
     @Override
-    public Page<GroupChallenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable) {
+    public List<GroupChallenge> findAllWithSearch(BoardSearch boardSearch) {
         BooleanExpression groupChallengeTitleLike = boardSearch.getBoardTitle() == null ? null : groupChallenge.boardTitle.like(boardSearch.getBoardTitle());
 
         List<GroupChallenge> products = query.select(groupChallenge)
                 .from(groupChallenge)
                 .where(groupChallengeTitleLike)
                 .orderBy(groupChallenge.id.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(groupChallenge.count()).from(groupChallenge).fetchOne();
-
-        return new PageImpl<>(products, pageable, count);
+        return products;
     }
 
 }
