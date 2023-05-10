@@ -62,6 +62,7 @@ public interface SuggestService {
                             .fileOriginalName(suggestFile.getFileOriginalName())
                             .fileUuid(suggestFile.getFileUuid())
                             .filePath(suggestFile.getFilePath())
+                            .fileType(suggestFile.getFileType())
                             .build();
                     suggestFileList.add(fileDTO);
                 }
@@ -99,6 +100,7 @@ public interface SuggestService {
                 .fileUuid(fileDTO.getFileUuid())
                 .filePath(fileDTO.getFilePath())
                 .suggest(fileDTO.getSuggest())
+                .fileType(fileDTO.getFileType())
                 .build();
     }
 
@@ -112,6 +114,7 @@ public interface SuggestService {
                             .fileOriginalName(fileDTO.getFileOriginalName())
                             .fileUuid(fileDTO.getFileUuid())
                             .filePath(fileDTO.getFilePath())
+                            .fileType(fileDTO.getFileType())
                             .build();
                     suggestFiles.add(suggestFile);
                 }
