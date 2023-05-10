@@ -32,6 +32,7 @@ public class Notice extends Period {
         this.noticeContent = noticeContent;
     }
 
+    @Builder
     public Notice(Long id, String noticeTitle, String noticeContent) {
         this.id = id;
         this.noticeTitle = noticeTitle;
