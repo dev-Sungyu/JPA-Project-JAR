@@ -2,6 +2,7 @@ package com.app.projectjar.entity.file.challenge;
 
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.file.Files;
+import com.app.projectjar.type.FileType;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,8 +22,8 @@ public class ChallengeFile extends Files {
     @ManyToOne(fetch = FetchType.LAZY)
     private Challenge challenge;
 
-    public ChallengeFile(String fileOriginalName, String fileUuid, String filePath, Challenge challenge) {
-        super(fileOriginalName, fileUuid, filePath);
+    public ChallengeFile(String fileOriginalName, String fileUuid, String filePath, FileType fileType, Challenge challenge) {
+        super(fileOriginalName, fileUuid, filePath, fileType);
         this.challenge = challenge;
     }
 }
