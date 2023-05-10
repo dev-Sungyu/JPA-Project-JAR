@@ -35,7 +35,7 @@ public interface SuggestQueryDsl {
     public List<Suggest> findByGroup_QueryDsl();
 
     //    검색
-    public Page<Suggest> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
+    public List<Suggest> findAllWithSearch(BoardSearch boardSearch);
 
 
 }
