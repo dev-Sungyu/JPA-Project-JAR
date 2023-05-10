@@ -2,6 +2,7 @@ package com.app.projectjar.domain.member;
 
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
+import com.app.projectjar.type.Role;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +20,10 @@ public class MemberDTO {
     private String memberNickname;
     private MemberType memberStatus;
     private BadgeType badgeType;
+    private Role memberType;
 
     @Builder
-    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType) {
+    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -30,5 +32,6 @@ public class MemberDTO {
         this.memberNickname = memberNickname;
         this.memberStatus = memberStatus;
         this.badgeType = badgeType;
+        this.memberType = memberType;
     }
 }

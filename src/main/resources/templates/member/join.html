@@ -31,7 +31,7 @@
                     </div>
                     <div class="flex_hei"></div>
                     <div class="login">
-                        <form style="width: auto; height: auto;">
+                        <form style="width: auto; height: auto;" th:action="@{/member/join}" method="post" th:object="${memberDTO}">
                             <div class="login">
                                 <label style="display: inline-block;">
                                     <div class="login">

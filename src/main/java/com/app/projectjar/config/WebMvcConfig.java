@@ -1,4 +1,6 @@
 package com.app.projectjar.config;
 
-public class WebMvcConfig {
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+public class WebMvcConfig implements WebMvcConfigurer {
 }
