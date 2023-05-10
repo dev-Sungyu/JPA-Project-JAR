@@ -53,6 +53,29 @@ public class GroupChallengeRepositoryTests {
     }
 
     @Test
+    public void combinedTest() {
+        for (int i = 0; i < 10; i++) {
+            GroupChallenge groupChallenge = new GroupChallenge(
+                    "그룹 챌린지 제목" + (i + 1),
+                    "그룹 챌린지 내용" + (i + 1),
+                    GroupChallengeType.PRIVATE,
+                    LocalDate.of(2023, 05, 8 + i),
+                    LocalDate.of(2023, 05, 10 + i)
+            );
+
+            groupChallengeRepository.save(groupChallenge);
+
+            groupChallengeFileRepository.save(new GroupChallengeFile(
+                    "테스트12312.png",
+                    UUID.randomUUID().toString(),
+                    "2023/05/08",
+                    groupChallenge
+            ));
+        }
+    }
+
+
+    @Test
     public void findAllGroupChallengeWithPaging_QueryDslTest() {
         groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(PageRequest.of(1 , 10)).map(GroupChallenge::toString).forEach(log::info);
     }

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class MainController {
 
-    @GetMapping("main")
+    @GetMapping("")
     public void main() {
     }
 }
