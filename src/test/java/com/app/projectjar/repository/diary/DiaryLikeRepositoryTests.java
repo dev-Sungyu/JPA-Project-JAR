@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -66,5 +67,13 @@ public class DiaryLikeRepositoryTests {
                         )
         );
     }
+
+        @Test
+    public void findByLikeMemberIdWithPaging_QueryDsl(){
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        diaryLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageRequest, 1L).stream().map(DiaryLike::toString).forEach(log::info);
+        log.info("@@@@@@@@@");
+    }
+
 
 }

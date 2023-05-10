@@ -20,6 +20,10 @@ import java.util.List;
 @DynamicInsert
 @DynamicUpdate
 public class Diary extends Board {
+
+    @ColumnDefault(value = "0")
+    private Integer diaryLikeCount;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'PRIVATE'")
