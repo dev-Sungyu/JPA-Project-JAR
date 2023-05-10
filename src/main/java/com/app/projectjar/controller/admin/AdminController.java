@@ -9,23 +9,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/*")
 @RequiredArgsConstructor
 public class AdminController {
-    @GetMapping("challenge/detail")
-    public void adminChallengeDetail() {
-
-    }
-    @GetMapping("challenge/list")
+    @GetMapping("board/challenge/detail")
+    public void adminChallengeDetail() {}
+    @GetMapping("board/challenge/list")
     public void adminChallengeList() {}
-    @GetMapping("challenge/modify")
+    @GetMapping("board/challenge/modify")
     public void adminChallengeModify() {}
-    @GetMapping("challenge/write")
+    @GetMapping("board/challenge/write")
     public void adminChallengeWrite() {}
-    @GetMapping("inquiry/answer")
+    @GetMapping("board/inquiry/answer")
     public void adminInquiryAnswer() {}
-    @GetMapping("inquiry/detail")
+    @GetMapping("board/inquiry/detail")
     public void adminInquiryDetail() {}
-    @GetMapping("inquiry/list")
+    @GetMapping("board/inquiry/list")
     public void adminInquiryList() {}
-    @GetMapping("inquiry/modify")
+    @GetMapping("board/inquiry/modify")
     public void adminInquiryModify() {}
     @GetMapping("member/detail")
     public void adminMemberDetail() {}
@@ -33,33 +31,33 @@ public class AdminController {
     public void adminMemberList() {}
     @GetMapping("member/modify")
     public void adminMemberModify() {}
-    @GetMapping("notice/detail")
+    @GetMapping("board/notice/detail")
     public void adminNoticeDetail() {}
-    @GetMapping("notice/list")
+    @GetMapping("board/notice/list")
     public void adminNoticeList() {}
-    @GetMapping("notice/modify")
+    @GetMapping("board/notice/modify")
     public void adminNoticeModify() {}
-    @GetMapping("notice/write")
+    @GetMapping("board/notice/write")
     public void adminNoticeWrite() {}
-    @GetMapping("proposal/detail")
+    @GetMapping("board/proposal/detail")
     public void adminProposalDetail() {}
-    @GetMapping("proposal/list")
+    @GetMapping("board/proposal/list")
     public void adminProposalList() {}
-    @GetMapping("proposal/modify")
+    @GetMapping("board/proposal/modify")
     public void adminProposalModify() {}
-    @GetMapping("diary/list")
+    @GetMapping("board/diary/list")
     public void adminDiaryList() {}
-    @GetMapping("diary/detail")
+    @GetMapping("board/diary/detail")
     public void adminDiaryDetail() {}
-    @GetMapping("diary/modify")
+    @GetMapping("board/diary/modify")
     public void adminDiaryModify() {}
-    @GetMapping("groupChallenge/detail")
+    @GetMapping("board/groupChallenge/detail")
     public void adminGroupChallengeDetail() {}
-    @GetMapping("groupChallenge/list")
+    @GetMapping("board/groupChallenge/list")
     public void adminGroupChallengeList() {}
-    @GetMapping("groupChallenge/modify")
+    @GetMapping("board/groupChallenge/modify")
     public void adminGroupChallengeModify() {}
-    @GetMapping("groupChallenge/write")
+    @GetMapping("board/groupChallenge/write")
     public void adminGroupChallengeWrite() {}
 
 
