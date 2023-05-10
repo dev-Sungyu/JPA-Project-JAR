@@ -33,9 +33,9 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void saveTest() {
-        memberRepository.findById(1L).ifPresent(
+        memberRepository.findById(7L).ifPresent(
                 member ->
-                        suggestRepository.findById(138L).ifPresent(
+                        suggestRepository.findById(17L).ifPresent(
                                 suggest ->
                                 suggestLikeRepository.save(new SuggestLike(member, suggest))
                         )
@@ -62,7 +62,7 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void findByLikeMemberIdWithPaging_QueryDsl(){
-        PageRequest pageRequest = PageRequest.of(1, 5);
+        PageRequest pageRequest = PageRequest.of(0, 5);
         suggestLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageRequest, 1L).stream().map(SuggestLike::toString).forEach(log::info);
         log.info("@@@@@@@@@");
     }

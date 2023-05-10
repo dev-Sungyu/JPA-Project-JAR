@@ -71,33 +71,13 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .leftJoin(suggest.suggestFiles)
                 .fetchJoin()
                 .orderBy(suggest.createdDate.desc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(suggest.count())
                 .from(suggest)
                 .where(suggest.member.id.eq(id))
-                .fetchOne();
-        return new PageImpl<>(foundSuggest, pageable, count);
-    }
-
-
-    @Override
-    public Page<Suggest> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
-        List<Suggest> foundSuggest = query.select(suggest)
-                .from(suggestLike)
-                .leftJoin(suggestLike.suggest)
-                .fetchJoin()
-                .where(suggestLike.member.id.eq(id))
-                .orderBy(suggestLike.suggest.createdDate.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(suggestLike.count())
-                .from(suggestLike)
-                .where(suggestLike.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundSuggest, pageable, count);
     }

@@ -38,7 +38,7 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
                 .from(inquire)
                 .where(inquire.member.id.eq(id))
                 .orderBy(inquire.createdDate.desc())
-                .offset(pageable.getOffset() -1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 

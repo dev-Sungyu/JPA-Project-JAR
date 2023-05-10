@@ -18,4 +18,5 @@ public interface ChallengeQueryDsl {
 
     // 챌린지 상세 보기
     public Optional<Challenge> findByChallengeId(Long challengeId);
+
 }

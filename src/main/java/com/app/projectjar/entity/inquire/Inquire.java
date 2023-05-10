@@ -39,4 +39,12 @@ public class Inquire extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    public Inquire(Long id, String inquireTitle, String inquireContent, AnswerType answerType, Member member) {
+        this.id = id;
+        this.inquireTitle = inquireTitle;
+        this.inquireContent = inquireContent;
+        this.answerType = answerType;
+        this.member = member;
+    }
 }
