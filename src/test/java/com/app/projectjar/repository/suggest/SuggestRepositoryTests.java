@@ -2,7 +2,6 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.member.MemberRepository;
-import com.app.projectjar.type.BoardType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class SuggestRepositoryTests {
     @Test
     public void findAllWithPagingTest() {
         PageRequest pageRequest = PageRequest.of(0,10);
-        suggestRepository.findAllWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
+        suggestRepository.findByGroupWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
     }
 
     @Test
