@@ -53,6 +53,7 @@ public class SuggestServiceImpl implements SuggestService {
                 if(i == 0){
                     fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
                 }
+                fileDTOS.get(i).setFileType(FileType.NORMAL);
                 fileDTOS.get(i).setSuggest(getCurrentSequence());
                 suggestFileRepository.save(toSuggestFileEntity(fileDTOS.get(i)));
             }
