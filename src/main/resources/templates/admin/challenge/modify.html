@@ -157,6 +157,12 @@
     let $imgUl = $($('ul.img_ul')[0]);
     let $lists;
 
+    
+    if ($imgUl.length === 2) {
+        $imgUl.find('.img_list').css('width', '50%');
+    } else if ($imgUl.length > 2) {
+        $imgUl.find('.img_list').css('width', '33%');
+    }
 
     $(".file").change((e) => {
         let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
@@ -177,9 +183,10 @@
             $imgUl.empty();
 
             reader.onload = (e) => {
-                if (index >= 3) {
+                if (index >= 5) {
                     return;
                 }
+
                 let text = `
                         <li class="img_list" id="li${index}">
                             <div class="img_box_wrapper">
