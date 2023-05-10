@@ -1,10 +1,8 @@
 package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.file.FileDTO;
-import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.suggest.Suggest;
-import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.file.suggest.SuggestFileRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestLikeRepository;
@@ -14,14 +12,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.context.annotation.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -62,8 +58,23 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public Page<SuggestDTO> getSuggestList(Pageable pageable) {
-        Page<Suggest> suggests = suggestRepository.findAllWithPaging_QueryDsl(pageable);
+    public Page<SuggestDTO> getPersonalSuggestList(Pageable pageable) {
+        Page<Suggest> suggests = suggestRepository.findByPersonalWithPaging_QueryDsl(pageable);
+        List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
+
+        suggestDTOS.forEach(suggestDTO -> {
+            suggestDTO.setLikeCount(getLikeCount(suggestDTO.getId()));
+            suggestDTO.setReplyCount(getReplyCount(suggestDTO.getId()));
+        });
+
+        return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
+    }
+
+    @Override
+    public Page<SuggestDTO> getGroupSuggestList(Pageable pageable) {
+        Page<Suggest> suggests = suggestRepository.findByGroupWithPaging_QueryDsl(pageable);
         List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
                 .map(this::toSuggestDTO)
                 .collect(Collectors.toList());

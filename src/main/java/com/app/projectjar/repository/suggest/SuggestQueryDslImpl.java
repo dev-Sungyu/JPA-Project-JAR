@@ -4,6 +4,8 @@ package com.app.projectjar.repository.suggest;
 import com.app.projectjar.entity.suggest.QSuggest;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
+import com.app.projectjar.type.BoardType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -24,11 +26,29 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<Suggest> findAllWithPaging_QueryDsl(Pageable pageable) {
+    public Page<Suggest> findByPersonalWithPaging_QueryDsl(Pageable pageable) {
         List<Suggest> foundSuggests = query.select(suggest)
                 .from(suggest)
                 .leftJoin(suggest.suggestFiles, suggestFile)
                 .fetchJoin()
+                .where(suggest.boardType.eq(BoardType.PERSONAL))
+                .orderBy(suggest.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggest.count()).from(suggest).fetchOne();
+
+        return new PageImpl<>(foundSuggests, pageable, count);
+    }
+
+    @Override
+    public Page<Suggest> findByGroupWithPaging_QueryDsl(Pageable pageable) {
+        List<Suggest> foundSuggests = query.select(suggest)
+                .from(suggest)
+                .leftJoin(suggest.suggestFiles, suggestFile)
+                .fetchJoin()
+                .where(suggest.boardType.eq(BoardType.GROUP))
                 .orderBy(suggest.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -81,4 +101,5 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .fetchOne();
         return new PageImpl<>(foundSuggest, pageable, count);
     }
+
 }
