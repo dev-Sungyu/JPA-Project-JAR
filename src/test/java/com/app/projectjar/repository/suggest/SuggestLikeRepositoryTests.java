@@ -1,12 +1,14 @@
 package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -31,9 +33,9 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void saveTest() {
-        memberRepository.findById(1L).ifPresent(
+        memberRepository.findById(7L).ifPresent(
                 member ->
-                        suggestRepository.findById(40L).ifPresent(
+                        suggestRepository.findById(17L).ifPresent(
                                 suggest ->
                                 suggestLikeRepository.save(new SuggestLike(member, suggest))
                         )
@@ -55,6 +57,14 @@ public class SuggestLikeRepositoryTests {
         Member member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
         suggestLikeRepository.deleteByMemberIdAndSuggestId(40L, 1L);
         assertThat(member).isNotNull();
+    }
+
+
+    @Test
+    public void findByLikeMemberIdWithPaging_QueryDsl(){
+        PageRequest pageRequest = PageRequest.of(0, 5);
+        suggestLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageRequest, 1L).stream().map(SuggestLike::toString).forEach(log::info);
+        log.info("@@@@@@@@@");
     }
 
 }

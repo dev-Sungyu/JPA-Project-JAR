@@ -69,7 +69,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .leftJoin(diary.diaryFiles)
                 .fetchJoin()
                 .orderBy(diary.createdDate.desc())
-                .offset(pageable.getOffset() -1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
