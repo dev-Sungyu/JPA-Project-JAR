@@ -1,5 +1,6 @@
 package com.app.projectjar.controller.board.suggest;
 
+import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
@@ -37,30 +38,20 @@ public class SuggestController {
     }
 
     @GetMapping("list/group")
-    public String goToGroupList(Model model, @PageableDefault(size = 16) Pageable pageable) {
-        Page<SuggestDTO> suggestList = suggestService.getGroupSuggestList(pageable);
-
-
-        int currentPage = suggestList.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(currentPage - 4 , 1);
-        int endPage =  Math.min(currentPage + 5, suggestList.getTotalPages());
-
-        suggestList.getContent().stream().map(SuggestDTO::toString).forEach(log::info);
+    public String goToGroupList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        Page<SuggestDTO> suggestList = suggestService.getGroupSuggestList(page - 1);
+        model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
         return "/board/suggest/list";
     }
 
     @GetMapping("list/personal")
-    public String goToPersonalList(Model model, @PageableDefault(size = 16) Pageable pageable) {
-        Page<SuggestDTO> suggestList = suggestService.getPersonalSuggestList(pageable);
-
-        int currentPage = suggestList.getPageable().getPageNumber() + 1;
-        int startPage = Math.max(currentPage - 4 , 1);
-        int endPage =  Math.min(currentPage + 5, suggestList.getTotalPages());
-
-        suggestList.getContent().stream().map(SuggestDTO::toString).forEach(log::info);
+    public String goToPersonalList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        Page<SuggestDTO> suggestList = suggestService.getPersonalSuggestList(page - 1);
+        log.info("" + suggestList.getTotalPages());
+        log.info("" + suggestList.getTotalElements());
+        model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
-
         return "/board/suggest/list";
     }
 
@@ -68,4 +59,5 @@ public class SuggestController {
     public SuggestDTO goToDetail() {
         return null;
     }
+
 }

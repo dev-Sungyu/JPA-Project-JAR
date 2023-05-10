@@ -278,12 +278,12 @@ picture {
     margin-top: 2px;
 }
 
-.paging-active {
+div.paging-active {
     border-radius: 3px;
     background-color: rgb(255, 86, 0);
 }
 
-.paging-active .page {
+div.paging-active .page {
     color: #fff;
     font-weight: 600;
 }
