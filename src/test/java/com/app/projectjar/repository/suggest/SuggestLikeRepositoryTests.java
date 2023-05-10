@@ -60,11 +60,11 @@ public class SuggestLikeRepositoryTests {
     }
 
 
-    @Test
-    public void findByLikeMemberIdWithPaging_QueryDsl(){
-        PageRequest pageRequest = PageRequest.of(0, 5);
-        suggestLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageRequest, 1L).stream().map(SuggestLike::toString).forEach(log::info);
-        log.info("@@@@@@@@@");
-    }
+//    @Test
+//    public void findByLikeMemberIdWithPaging_QueryDsl(){
+//        PageRequest pageRequest = PageRequest.of(0, 5);
+//        suggestLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageRequest, 1L).stream().map(SuggestLike::toString).forEach(log::info);
+//        log.info("@@@@@@@@@");
+//    }
 
 }

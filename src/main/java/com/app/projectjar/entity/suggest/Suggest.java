@@ -6,6 +6,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BoardType;
 import com.sun.istack.NotNull;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ import java.util.List;
 @Table(name = "TBL_SUGGEST")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Suggest extends Board {
+
+    @ColumnDefault(value = "0")
+    private Integer suggestLikeCount;
 
     @NotNull
     @Enumerated(EnumType.STRING)

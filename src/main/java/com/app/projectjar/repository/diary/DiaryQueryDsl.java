@@ -18,4 +18,7 @@ public interface DiaryQueryDsl {
     /* 마이 페이지 */
 //    내가 작성한 다이어리 게시판 전체 조회
     public Page<Diary> findAllByMemberWithPaging_QueryDsl(Pageable pageable, Long id);
+
+//    내가 좋아요한 다이어리 게시판 전체조회
+    public Page<Diary> findByLikeMEmberIdWithPaging_QueryDsl(Pageable pageable, Long id);
 }
