@@ -3,6 +3,7 @@ package com.app.projectjar.repository.diary;
 
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.QDiary;
+import com.app.projectjar.entity.diary.QDiaryLike;
 import com.app.projectjar.entity.file.diary.QDiaryFile;
 import com.app.projectjar.entity.file.member.QMemberFile;
 import com.app.projectjar.entity.member.QMember;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.diary.QDiary.diary;
+import static com.app.projectjar.entity.diary.QDiaryLike.diaryLike;
 import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.member.QMember.member;
@@ -78,5 +80,18 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .where(diary.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundDiaries, pageable, count);
+    }
+
+    @Override
+    public Page<Diary> findByLikeMEmberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<Diary> foundDiaries = query.select(diary)
+                .from(diary)
+                .leftJoin(diaryLike)
+                .where(diary.member.id.eq(id))
+                .orderBy(diary.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        return new PageImpl<>(foundDiaries);
     }
 }
