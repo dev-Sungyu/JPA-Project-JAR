@@ -16,8 +16,10 @@ public interface SuggestService {
 
     // 저장
     public void register(SuggestDTO suggestDTO, Long memberId);
-    // 목록
-    public Page<SuggestDTO> getSuggestList(Pageable pageable);
+    // 그룹 목록
+    public Page<SuggestDTO> getPersonalSuggestList(Pageable pageable);
+    // 그룹 목록
+    public Page<SuggestDTO> getGroupSuggestList(Pageable pageable);
     // 상세 보기
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기
