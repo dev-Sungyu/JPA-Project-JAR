@@ -55,9 +55,17 @@ public class SuggestController {
         return "/board/suggest/list";
     }
 
+    @GetMapping("detail/{boardId}")
+    public String goToDetail(Model model, @PathVariable("boardId") Long boardId) {
+        SuggestDTO suggestDTO = suggestService.getSuggest(boardId);
+        model.addAttribute("suggestDTO", suggestDTO);
+
+        return "/board/suggest/detail";
+    }
+
     @GetMapping("detail")
-    public SuggestDTO goToDetail() {
-        return null;
+    public void test(){
+
     }
 
 }
