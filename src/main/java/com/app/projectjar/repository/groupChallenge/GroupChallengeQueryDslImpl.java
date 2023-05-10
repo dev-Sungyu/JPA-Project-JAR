@@ -1,8 +1,10 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
+import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -58,6 +60,24 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
                 .fetchJoin()
                 .orderBy(groupChallenge.id.desc())
                 .fetch();
+    }
+
+    /*검색*/
+    @Override
+    public Page<GroupChallenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable) {
+        BooleanExpression groupChallengeTitleLike = boardSearch.getBoardTitle() == null ? null : groupChallenge.boardTitle.like(boardSearch.getBoardTitle());
+
+        List<GroupChallenge> products = query.select(groupChallenge)
+                .from(groupChallenge)
+                .where(groupChallengeTitleLike)
+                .orderBy(groupChallenge.id.desc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(groupChallenge.count()).from(groupChallenge).fetchOne();
+
+        return new PageImpl<>(products, pageable, count);
     }
 
 }

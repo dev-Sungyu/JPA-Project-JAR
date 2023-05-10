@@ -1,9 +1,11 @@
 package com.app.projectjar.repository.suggest;
 
 
+import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.suggest.QSuggest;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.type.BoardType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -124,5 +126,23 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .fetch();
 
         return foundSuggests;
+    }
+
+    /*검색*/
+    @Override
+    public Page<Suggest> findAllWithSearch(BoardSearch boardSearch, Pageable pageable) {
+        BooleanExpression suggestTitleLike = boardSearch.getBoardTitle() == null ? null : suggest.boardTitle.like(boardSearch.getBoardTitle());
+
+        List<Suggest> products = query.select(suggest)
+                .from(suggest)
+                .where(suggestTitleLike)
+                .orderBy(suggest.id.desc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggest.count()).from(suggest).fetchOne();
+
+        return new PageImpl<>(products, pageable, count);
     }
 }
