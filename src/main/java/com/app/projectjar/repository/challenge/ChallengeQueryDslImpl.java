@@ -4,9 +4,15 @@ package com.app.projectjar.repository.challenge;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
+
+import static com.app.projectjar.entity.challenge.QChallenge.challenge;
+import static com.app.projectjar.entity.file.challenge.QChallengeFile.challengeFile;
 
 @RequiredArgsConstructor
 public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
@@ -31,5 +37,24 @@ public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
     @Override
     public Optional<Challenge> findByChallengeId(Long challengeId) {
         return Optional.empty();
+    }
+
+
+    @Override
+    public Page<Challenge> findAllChallengeWithPaging_QueryDsl(Pageable pageable) {
+        List<Challenge> foundChallenge = query.select(challenge)
+                .from(challenge)
+                .leftJoin(challenge.challengeFiles, challengeFile)
+                .fetchJoin()
+                .orderBy(challenge.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(challenge.count())
+                .from(challenge)
+                .fetchOne();
+
+        return new PageImpl<>(foundChallenge, pageable, count);
     }
 }
