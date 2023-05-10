@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -52,8 +53,9 @@ public class SuggestServiceImpl implements SuggestService {
             for (int i = 0; i < fileDTOS.size(); i++) {
                 if(i == 0){
                     fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
                 }
-                fileDTOS.get(i).setFileType(FileType.NORMAL);
                 fileDTOS.get(i).setSuggest(getCurrentSequence());
                 suggestFileRepository.save(toSuggestFileEntity(fileDTOS.get(i)));
             }
@@ -61,8 +63,8 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public Page<SuggestDTO> getPersonalSuggestList(Pageable pageable) {
-        Page<Suggest> suggests = suggestRepository.findByPersonalWithPaging_QueryDsl(pageable);
+    public Page<SuggestDTO> getPersonalSuggestList(int page) {
+        Page<Suggest> suggests = suggestRepository.findByPersonalWithPaging_QueryDsl(PageRequest.of(page, 16));
         List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
                 .map(this::toSuggestDTO)
                 .collect(Collectors.toList());
@@ -76,8 +78,8 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public Page<SuggestDTO> getGroupSuggestList(Pageable pageable) {
-        Page<Suggest> suggests = suggestRepository.findByGroupWithPaging_QueryDsl(pageable);
+    public Page<SuggestDTO> getGroupSuggestList(int page) {
+        Page<Suggest> suggests = suggestRepository.findByGroupWithPaging_QueryDsl(PageRequest.of(page, 16));
         List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
                 .map(this::toSuggestDTO)
                 .collect(Collectors.toList());
