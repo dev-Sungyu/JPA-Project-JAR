@@ -3,6 +3,7 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.suggest.QSuggest;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.entity.suggest.SuggestLike;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import java.util.Optional;
 import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
 import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
+import static com.app.projectjar.entity.suggest.QSuggestLike.suggestLike;
 
 
 @RequiredArgsConstructor
@@ -60,13 +62,33 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .leftJoin(suggest.suggestFiles)
                 .fetchJoin()
                 .orderBy(suggest.createdDate.desc())
-                .offset(pageable.getOffset() -1)
+                .offset(pageable.getOffset() - 1)
                 .limit(pageable.getPageSize())
                 .fetch();
 
         Long count = query.select(suggest.count())
                 .from(suggest)
                 .where(suggest.member.id.eq(id))
+                .fetchOne();
+        return new PageImpl<>(foundSuggest, pageable, count);
+    }
+
+
+    @Override
+    public Page<Suggest> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<Suggest> foundSuggest = query.select(suggest)
+                .from(suggestLike)
+                .leftJoin(suggestLike.suggest)
+                .fetchJoin()
+                .where(suggestLike.member.id.eq(id))
+                .orderBy(suggestLike.suggest.createdDate.desc())
+                .offset(pageable.getOffset() - 1)
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(suggestLike.count())
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundSuggest, pageable, count);
     }
