@@ -26,6 +26,6 @@ public interface ChallengeQueryDsl {
     public Page<Challenge> findAllChallengeWithPaging_QueryDsl(Pageable pageable);
 
     //    검색
-    public Page<Challenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
+    public List<Challenge> findAllWithSearch(BoardSearch boardSearch);
 
 }

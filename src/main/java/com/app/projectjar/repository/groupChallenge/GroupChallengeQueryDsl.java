@@ -20,6 +20,6 @@ public interface GroupChallengeQueryDsl {
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl();
 
     //    검색
-    public Page<GroupChallenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
+    public List<GroupChallenge> findAllWithSearch(BoardSearch boardSearch);
 
 }
