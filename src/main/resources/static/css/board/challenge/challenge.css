@@ -86,10 +86,6 @@
     flex-direction: column;
 }
 
-.image-sub-container > :not(:first-child) {
-    margin-left: 6px;
-}
-
 .image-sub-container-wrap-1{
     position: relative;
     flex: 0 0 auto;
@@ -113,10 +109,6 @@
     height: 100%;
     overflow: hidden;
     flex-direction: row;
-}
-
-.image-sub-container-wrap-2 > :not(:first-child) {
-    margin-top: 6px;
 }
 
 .image-sub-container-wrap-2-box{
@@ -149,13 +141,9 @@
     font-size: 16px;
     font-weight: 700;
     color: rgb(255, 255, 255);
-    line-height: 24px;
     letter-spacing: -0.3px;
     margin: 0px;
     display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    -webkit-box-pack: center;
     justify-content: center;
     position: absolute;
     top: 0px;
@@ -165,6 +153,7 @@
     text-align: center;
     background-color: rgba(0, 0, 0, 0.58);
     cursor: pointer;
+    flex-direction: column;
 }
 
 .main-container{
@@ -212,8 +201,7 @@
 }}
 
 .main-information-box{
-    padding-top: 40px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
     border-bottom: 1px solid rgb(248, 248, 248);
 }
 
@@ -224,6 +212,22 @@
     margin: 0px 0px 16px;
     font-weight: bold;
     color: rgb(0, 0, 0);
+}
+
+.location-info {
+    font-size: 13px;
+    color: darkcyan;
+}
+
+.location-info:first-child {
+    marign-right: 10px;
+}
+
+.location-info:first-child::after {
+    content: '>';
+    font-size: 14px;
+    padding-right: 3px;
+    padding-left: 9px;
 }
 
 .main-information-box-wrap{
@@ -280,7 +284,7 @@
 .user-container-box{
     position: relative;
     width: 100%;
-    margin: 48px 0px 24px;
+    margin: 15px 0px 24px;
 }
 
 .challenge-division{
@@ -490,10 +494,8 @@
 }
 
 .text-container-box-layout-box{
-    
-    padding: 0px 24px;
+    padding: 0px 14px;
     color: rgb(26, 26, 26);
-
 }
 
 .text-container-box-layout-box-text p{
@@ -813,9 +815,7 @@
     flex: initial;
     box-sizing: border-box;
     display: flex;
-    -webkit-box-pack: center;
     justify-content: center;
-    -webkit-box-align: center;
     align-items: center;
     flex-direction: row;
 }
@@ -865,7 +865,7 @@
     visibility: visible;
     overscroll-behavior: contain;
     position: fixed !important;
-    z-index: 3000 !important;
+    z-index: 9000 !important;
 }
 
 .image-expansion-container{

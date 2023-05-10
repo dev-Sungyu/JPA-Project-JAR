@@ -113,4 +113,19 @@ public class SuggestServiceImpl implements SuggestService {
         return suggestLikeRepository.getSuggestLikeCount(suggestId);
     }
 
+    @Override
+    public void heartUp(Long memberId, Long suggestId) {
+
+    }
+
+    @Override
+    public void heartDown(Long memberId, Long suggestId) {
+
+    }
+
+    @Override
+    public Boolean heartCheck(Long memberId, Long suggestId) {
+        return null;
+    }
+
 }

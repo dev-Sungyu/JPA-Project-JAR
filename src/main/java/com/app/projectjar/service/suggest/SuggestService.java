@@ -28,7 +28,12 @@ public interface SuggestService {
     public Long getLikeCount(Long suggestId);
     // 댓글 갯수
     public Long getReplyCount(Long suggestId);
-
+    // 좋아요 ++
+    public void heartUp(Long memberId, Long suggestId);
+    // 좋아요 --
+    public void heartDown(Long memberId, Long suggestId);
+    // 좋아요 한 게시물인지 검사
+    public Boolean heartCheck(Long memberId, Long suggestId);
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()
