@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.challenge;
 
+import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.challenge.Challenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,5 +24,8 @@ public interface ChallengeQueryDsl {
 
     // 목록
     public Page<Challenge> findAllChallengeWithPaging_QueryDsl(Pageable pageable);
+
+    //    검색
+    public Page<Challenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
 
 }

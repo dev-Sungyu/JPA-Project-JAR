@@ -4,7 +4,6 @@ package com.app.projectjar.repository.groupChallenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +16,6 @@ public interface GroupChallengeQueryDsl {
     public Optional<GroupChallenge> findByGroupChallengeId_QueryDsl(Long groupChallengeId);
 
     // 목록(페이징 처리 없는 버전)
-    @EntityGraph(value = "groupChallenge")
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl();
 
 }
