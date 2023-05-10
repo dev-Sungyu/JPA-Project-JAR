@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
+import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,5 +18,8 @@ public interface GroupChallengeQueryDsl {
 
     // 목록(페이징 처리 없는 버전)
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl();
+
+    //    검색
+    public Page<GroupChallenge> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
 
 }

@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.suggest;
 
+import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.suggest.Suggest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -32,6 +33,9 @@ public interface SuggestQueryDsl {
 
     // 전체 그룹 조회
     public List<Suggest> findByGroup_QueryDsl();
+
+    //    검색
+    public Page<Suggest> findAllWithSearch(BoardSearch boardSearch, Pageable pageable);
 
 
 }

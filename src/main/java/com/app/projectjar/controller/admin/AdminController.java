@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequiredArgsConstructor
 public class AdminController {
     @GetMapping("challenge/detail")
-    public void adminChallengeDetail() {}
+    public void adminChallengeDetail() {
+
+    }
     @GetMapping("challenge/list")
     public void adminChallengeList() {}
     @GetMapping("challenge/modify")
