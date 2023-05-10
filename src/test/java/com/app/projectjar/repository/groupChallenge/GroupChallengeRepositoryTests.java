@@ -15,6 +15,8 @@ import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.UUID;
 
+import static com.app.projectjar.type.FileType.REPRESENTATIVE;
+
 @SpringBootTest
 @Transactional
 @Rollback(false)
@@ -47,6 +49,7 @@ public class GroupChallengeRepositoryTests {
                                 "테스트12312.png",
                                 UUID.randomUUID().toString(),
                                 "2023/05/08",
+                                REPRESENTATIVE,
                                 groupChallenge
                         ))
         );
@@ -69,6 +72,7 @@ public class GroupChallengeRepositoryTests {
                     "테스트12312.png",
                     UUID.randomUUID().toString(),
                     "2023/05/08",
+                    REPRESENTATIVE,
                     groupChallenge
             ));
         }
@@ -84,4 +88,5 @@ public class GroupChallengeRepositoryTests {
     public void findByGroupChallengeId_QueryDslTest() {
         groupChallengeRepository.findByGroupChallengeId_QueryDsl(231L).map(GroupChallenge::toString).ifPresent(log::info);
     }
+
 }
