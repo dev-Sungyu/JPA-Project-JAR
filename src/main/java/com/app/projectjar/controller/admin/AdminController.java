@@ -51,6 +51,14 @@ public class AdminController {
     public void adminDiaryDetail() {}
     @GetMapping("diary/modify")
     public void adminDiaryModify() {}
+    @GetMapping("groupChallenge/detail")
+    public void adminGroupChallengeDetail() {}
+    @GetMapping("groupChallenge/list")
+    public void adminGroupChallengeList() {}
+    @GetMapping("groupChallenge/modify")
+    public void adminGroupChallengeModify() {}
+    @GetMapping("groupChallenge/write")
+    public void adminGroupChallengeWrite() {}
 
 
 }

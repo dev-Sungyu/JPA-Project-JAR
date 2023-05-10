@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>관리자 페이지- 챌린지 게시판 수정</title>
+    <title>관리자 페이지- 개인 챌린지 게시판 수정</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/admin/admin_common.css">
     <link rel="stylesheet" href="/css/admin/sidemenu.css">
@@ -27,7 +27,7 @@
             </div>
             <div>
                 <div class="select-name">
-                    <span>챌린지 게시판 관리</span>
+                    <span>개인 챌린지 게시판 관리</span>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
                         <section class="board-info-box-layout">
                             <div class="board-info-box">
                                 <div class="board-info-title-box">
-                                    <span>챌린지 수정하기</span>
+                                    <span>개인 챌린지 수정하기</span>
                                 </div>
                                 <hr>
                                 <div class="info-table">
@@ -63,23 +63,6 @@
                                         <div>
                                             <input type="text" class="board-title" name="boardTitle"
                                                 placeholder="제목을 입력해주세요." autocomplete="off" value="수정 전 제목">
-                                        </div>
-                                        <div style="display: inline-block;">
-                                            <label class="selection_label is-inline-block" for="">
-                                                <div>
-                                                    <button class="selection_button is-hidden" type="button"
-                                                        value="personal"></button>
-                                                    <div class="selection selected" name="personal" style="font-weight: 100;">개인 챌린지</div>
-                                                    <div class="selection is-hidden" name="group" style="font-weight: 100;">단체 챌린지</div>
-                                                </div>
-                                            </label>
-                                        </div>
-                                        <div class="select_date_wrapper is-hidden" >
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startdate" />
-                                            <span> ~ </span>
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="enddate" />
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
