@@ -278,9 +278,6 @@ input[name=phoneNumberConfirm]{
     font-weight: 700;
     line-height: 1.25rem;
 }
-.semi_modal{
-    display: none;
-}
 input[name=phone_number_confirm]{
     background-color: #ffffff;
     border-width: 0;
