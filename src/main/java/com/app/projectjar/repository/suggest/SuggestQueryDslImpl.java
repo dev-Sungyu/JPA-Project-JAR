@@ -3,9 +3,7 @@ package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.suggest.QSuggest;
 import com.app.projectjar.entity.suggest.Suggest;
-import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.type.BoardType;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,7 +16,6 @@ import java.util.Optional;
 import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
 import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
-import static com.app.projectjar.entity.suggest.QSuggestLike.suggestLike;
 
 
 @RequiredArgsConstructor
@@ -102,4 +99,30 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         return new PageImpl<>(foundSuggest, pageable, count);
     }
 
+    /*관리자 페이지*/
+    @Override
+    public List<Suggest> findByPersonal_QueryDsl() {
+        List<Suggest> foundSuggests = query.select(suggest)
+                .from(suggest)
+                .leftJoin(suggest.suggestFiles, suggestFile)
+                .fetchJoin()
+                .where(suggest.boardType.eq(BoardType.PERSONAL))
+                .orderBy(suggest.id.desc())
+                .fetch();
+
+        return foundSuggests;
+    }
+
+    @Override
+    public List<Suggest> findByGroup_QueryDsl() {
+        List<Suggest> foundSuggests = query.select(suggest)
+                .from(suggest)
+                .leftJoin(suggest.suggestFiles, suggestFile)
+                .fetchJoin()
+                .where(suggest.boardType.eq(BoardType.GROUP))
+                .orderBy(suggest.id.desc())
+                .fetch();
+
+        return foundSuggests;
+    }
 }

@@ -2,7 +2,6 @@ package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
@@ -13,6 +12,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+
+import static com.app.projectjar.type.FileType.REPRESENTATIVE;
 
 @SpringBootTest
 @Transactional
@@ -29,7 +30,7 @@ public class MemberRepositoryTests {
 //      추가
     @Test
     public void saveTest() {
-        MemberFile memberFile = new MemberFile("", "", "");
+        MemberFile memberFile = new MemberFile("", "", "", REPRESENTATIVE);
         Member member = new Member("user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, memberFile);
         memberRepository.save(member);
         memberFIleRepository.save(memberFile);

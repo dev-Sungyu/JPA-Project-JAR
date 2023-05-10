@@ -56,8 +56,12 @@ public class SuggestRepositoryTests {
         suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
     }
 
-//    제안 게시판 수정하기
-
+//     메인 페이지 페이징 없이 조회
+    @Test
+    public void findAllByPersonal_QueryDslTest(){
+        suggestRepository.findByPersonal_QueryDsl().stream().map(Suggest::toString).forEach(log::info);
+        log.info("@@@@@@@@@");
+    }
 
     /* 마이 페이지 */
     @Test

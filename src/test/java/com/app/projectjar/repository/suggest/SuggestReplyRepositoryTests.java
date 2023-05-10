@@ -14,6 +14,8 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 import java.util.UUID;
 
+import static com.app.projectjar.type.FileType.REPRESENTATIVE;
+
 @SpringBootTest
 @Transactional
 @Rollback(false)
@@ -40,6 +42,7 @@ public class SuggestReplyRepositoryTests {
                                 "테스트.png",
                                 UUID.randomUUID().toString(),
                                 "2023/05/06",
+                                REPRESENTATIVE,
                                 member
                         ))
         );
