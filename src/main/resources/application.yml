@@ -39,10 +39,5 @@ spring:
     multipart:
       maxFileSize: 10MB
       maxRequestSize: 20MB
-<<<<<<< HEAD
-      location: c:\upload
-      enabled: true
-=======
   session:
     store-type: redis
->>>>>>> member
