@@ -32,7 +32,7 @@ public class SuggestFileRestController {
 
         multipartFiles.forEach(multipartFile -> {
             try {
-                log.info(multipartFile.getInputStream() + "=========");
+                multipartFile.getInputStream();
             } catch (IOException e) {
                 e.printStackTrace();
             }

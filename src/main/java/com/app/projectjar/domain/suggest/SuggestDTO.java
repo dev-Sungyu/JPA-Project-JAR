@@ -10,13 +10,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-@Builder
 @Component
 public class SuggestDTO {
     private Long id;
     private String boardTitle;
     private String boardContent;
     private BoardType boardType;
+
+    private Long likeCount;
+    private Long replyCount;
+
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
 

@@ -14,6 +14,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Role;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +24,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -38,7 +42,7 @@ public class SuggestServiceImpl implements SuggestService {
     private final SuggestReplyRepository suggestReplyRepository;
 
 
-    @Override
+    @Override @Transactional
     public void register(SuggestDTO suggestDTO, Long memberId) {
         List<FileDTO> fileDTOS = suggestDTO.getFileDTOS();
 
@@ -47,7 +51,6 @@ public class SuggestServiceImpl implements SuggestService {
         );
 
         suggestRepository.save(toSuggestEntity(suggestDTO));
-        log.info(fileDTOS.size()+"11111111111111111");
         if(!fileDTOS.isEmpty()){
             fileDTOS.forEach(
                     fileDTO -> {
@@ -59,14 +62,18 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public List<SuggestDTO> getSuggestList(Pageable pageable) {
-        List<SuggestDTO> suggestDTOS = new ArrayList<>();
-        suggestRepository.findAllWithPaging_QueryDsl(pageable).forEach(
-                suggest -> {
-                    suggestDTOS.add(toSuggestDTO(suggest));
-                }
-        );
-        return suggestDTOS;
+    public Page<SuggestDTO> getSuggestList(Pageable pageable) {
+        Page<Suggest> suggests = suggestRepository.findAllWithPaging_QueryDsl(pageable);
+        List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
+
+        suggestDTOS.forEach(suggestDTO -> {
+            suggestDTO.setLikeCount(getLikeCount(suggestDTO.getId()));
+            suggestDTO.setReplyCount(getReplyCount(suggestDTO.getId()));
+        });
+
+        return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
     }
 
     @Override
@@ -78,6 +85,16 @@ public class SuggestServiceImpl implements SuggestService {
     @Override
     public Suggest getCurrentSequence() {
         return suggestRepository.getCurrentSequence();
+    }
+
+    @Override
+    public Long getLikeCount(Long suggestId) {
+        return suggestReplyRepository.getReplyCount(suggestId);
+    }
+
+    @Override
+    public Long getReplyCount(Long suggestId) {
+        return suggestLikeRepository.getSuggestLikeCount(suggestId);
     }
 
 }

@@ -36,7 +36,7 @@ public class SuggestRepositoryTests {
 
     @Test
     public void findAllWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(1,10);
+        PageRequest pageRequest = PageRequest.of(0,10);
         suggestRepository.findAllWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
     }
 
