@@ -3,6 +3,7 @@ package com.app.projectjar.entity.file.member;
 
 import com.app.projectjar.entity.file.Files;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.type.FileType;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,17 +18,17 @@ public class MemberFile extends Files {
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public MemberFile(String fileOriginalName, String fileUuid, String filePath) {
-        super(fileOriginalName, fileUuid, filePath);
+    public MemberFile(String fileOriginalName, String fileUuid, String filePath, FileType fileType) {
+        super(fileOriginalName, fileUuid, filePath, fileType);
     }
 
-    public MemberFile(String fileOriginalName, String fileUuid, String filePath, Member member) {
-        super(fileOriginalName, fileUuid, filePath);
+    public MemberFile(String fileOriginalName, String fileUuid, String filePath, FileType fileType, Member member) {
+        super(fileOriginalName, fileUuid, filePath,fileType);
         this.member = member;
     }
 
-    public MemberFile(Long id, String fileOriginalName, String fileUuid, String filePath,Member member) {
-        super(id, fileOriginalName, fileUuid, filePath);
+    public MemberFile(Long id, String fileOriginalName, String fileUuid, String filePath, FileType fileType, Member member) {
+        super(id, fileOriginalName, fileUuid, filePath, fileType);
         this.member = member;
     }
 }

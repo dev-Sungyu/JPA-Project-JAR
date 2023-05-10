@@ -8,6 +8,7 @@ import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestLikeRepository;
 import com.app.projectjar.repository.suggest.SuggestReplyRepository;
 import com.app.projectjar.repository.suggest.SuggestRepository;
+import com.app.projectjar.type.FileType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,13 +48,14 @@ public class SuggestServiceImpl implements SuggestService {
         );
 
         suggestRepository.save(toSuggestEntity(suggestDTO));
-        if(!fileDTOS.isEmpty()){
-            fileDTOS.forEach(
-                    fileDTO -> {
-                        fileDTO.setSuggest(getCurrentSequence());
-                        suggestFileRepository.save(toSuggestFileEntity(fileDTO));
-                    }
-            );
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }
+                fileDTOS.get(i).setSuggest(getCurrentSequence());
+                suggestFileRepository.save(toSuggestFileEntity(fileDTOS.get(i)));
+            }
         }
     }
 

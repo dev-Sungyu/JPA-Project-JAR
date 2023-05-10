@@ -29,7 +29,11 @@ public class SuggestController {
 //        Long memberId = (Long)session.getAttribute("id");
         Long memberId = 1L;
         suggestService.register(suggestDTO, memberId);
-        return new RedirectView("/board/suggest/list");
+
+        if(suggestDTO.getBoardType().name().equals("GROUP")){
+            return new RedirectView("/board/suggest/list/group");
+        }
+        return new RedirectView("/board/suggest/list/personal");
     }
 
     @GetMapping("list/group")
