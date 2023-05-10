@@ -6,6 +6,7 @@ import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
@@ -16,14 +17,15 @@ public interface SuggestService {
     // 저장
     public void register(SuggestDTO suggestDTO, Long memberId);
     // 목록
-    public List<SuggestDTO> getSuggestList(Pageable pageable);
+    public Page<SuggestDTO> getSuggestList(Pageable pageable);
     // 상세 보기
     public SuggestDTO getSuggest(Long suggestId);
-
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
-
-    // 수정
+    // 좋아요 갯수
+    public Long getLikeCount(Long suggestId);
+    // 댓글 갯수
+    public Long getReplyCount(Long suggestId);
 
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {

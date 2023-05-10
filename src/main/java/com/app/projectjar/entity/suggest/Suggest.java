@@ -18,6 +18,7 @@ import java.util.List;
 public class Suggest extends Board {
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private BoardType boardType;
 
     @ManyToOne(fetch = FetchType.LAZY)

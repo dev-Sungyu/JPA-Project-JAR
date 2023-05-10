@@ -116,6 +116,10 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let dto = [[${suggestDTO}]];
+    console.log(dto);
+</script>
 <script>
     const $heartButton = $(".heart-layout");
 const $noHeart = $(".no-heart");

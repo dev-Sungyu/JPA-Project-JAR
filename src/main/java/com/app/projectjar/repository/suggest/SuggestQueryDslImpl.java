@@ -28,7 +28,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .leftJoin(suggest.suggestFiles, suggestFile)
                 .fetchJoin()
                 .orderBy(suggest.id.desc())
-                .offset(pageable.getOffset() - 1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
