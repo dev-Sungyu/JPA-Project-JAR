@@ -30,7 +30,7 @@ public class MemberRepositoryTests {
     @Test
     public void saveTest() {
         MemberFile memberFile = new MemberFile("", "", "");
-        Member member = new Member("user011@naver.com", "qwer1234!", "010-1231-5678", "최규선", "최팀장", MemberType.ENABLE, BadgeType.ONE, memberFile);
+        Member member = new Member("user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, memberFile);
         memberRepository.save(member);
         memberFIleRepository.save(memberFile);
     }

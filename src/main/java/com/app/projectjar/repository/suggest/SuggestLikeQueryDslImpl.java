@@ -7,6 +7,7 @@ import com.app.projectjar.entity.suggest.SuggestLike;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -44,19 +45,22 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
 
     @Override
     public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
-        List<Suggest> foundLike = query.select(suggestLike.suggest)
-                .from(suggestLike)
-                .leftJoin(suggestLike.suggest)
-                .where(suggestLike.member.id.eq(id))
-                .orderBy(suggestLike.suggest.createdDate.desc())
-                .offset(pageable.getOffset() -1)
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(suggestLike.suggest.count())
-                .from(suggestLike)
-                .where(suggestLike.member.id.eq(id))
-                .fetchOne();
+//        List<Suggest> foundSuggest = query.select(suggestLike.suggest)
+//                .from(suggestLike)
+//                .leftJoin(suggestLike.suggest)
+//                .fetchJoin()
+////                .where(suggestLike.suggest.id.eq(id))
+//                .where(suggestLike.member.id.eq(id))
+//                .orderBy(suggestLike.suggest.createdDate.desc())
+//                .offset(pageable.getOffset() -1)
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        Long count = query.select(suggestLike.count())
+//                .from(suggestLike)
+//                .where(suggestLike.member.id.eq(id))
+//                .fetchOne();
+//        return new PageImpl<SuggestLike>(foundSuggest, pageable, count);
         return null;
     }
 
