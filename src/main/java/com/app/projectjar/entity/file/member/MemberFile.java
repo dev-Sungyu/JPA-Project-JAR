@@ -18,15 +18,7 @@ public class MemberFile extends Files {
     @OneToOne(fetch = FetchType.LAZY)
     private Member member;
 
-    public MemberFile(String fileOriginalName, String fileUuid, String filePath, FileType fileType) {
-        super(fileOriginalName, fileUuid, filePath, fileType);
-    }
-
-    public MemberFile(String fileOriginalName, String fileUuid, String filePath, FileType fileType, Member member) {
-        super(fileOriginalName, fileUuid, filePath,fileType);
-        this.member = member;
-    }
-
+    @Builder
     public MemberFile(Long id, String fileOriginalName, String fileUuid, String filePath, FileType fileType, Member member) {
         super(id, fileOriginalName, fileUuid, filePath, fileType);
         this.member = member;

@@ -40,8 +40,8 @@ public class Member extends Period {
     private Role memberType;
 
     @Builder
-    public Member(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
-        this.id = memberId;
+    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
+        this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
