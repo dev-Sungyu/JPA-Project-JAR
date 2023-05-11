@@ -10,284 +10,324 @@
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/board/proposal/common.css">
     <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="stylesheet" href="/css/mypage/alert.css">
     <link rel="icon" href="/image/logo/favicon.png">
+    <style>
+        .challenge-box {
+            display: flex;
+            margin-bottom: 10px;
+        }
+
+        .challenge-button {
+            display: flex;
+            width: 90px;
+            height: 30px;
+            border-radius: 8px;
+            background-color: #f1f1f1;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .challenge-box label:first-child {
+            margin-right: 10px;
+        }
+
+        .challenge-text {
+            font-size: 12px;
+        }
+
+        .challenge-box label.radio-active {
+            background-color: #4F6DF5;
+            color: #fff;
+        }
+    </style>
 </head>
-<style>
-    
-.experience-category {
-    padding-top: calc(0.9rem + 1px);
-    font-size: 17px;
-    font-weight: bold;
-}
-
-.experience-category-full-content {
-    margin-right: 0;
-    margin-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-.experience-category-box {
-    padding-right: 0;
-    padding-left: 0;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    min-height: 7rem;
-    width: 300px;
-    margin-bottom: 10px;
-}
-
-.experience-category-inner-padding {
-    padding: 1rem!important;
-}
-
-.experience-category-explain {
-    margin-top: 0.5rem!important;
-    font-weight: bold;
-}
-.experience-category-box:hover {
-    background-color: #4F6DF5;
-    color: white;
-}
-</style>
 <body>
-    <div class="body_wrapper">
-        <th:block th:replace="~{main/header :: header}"></th:block>
-        <section class="list_wrapper">
-            <div class="body-wrap">
-                <div class="body-wrap-box">
-                    <div class="board-name">
-                        <div class="board-name-line"></div>
-                        <div class="board_name-box">
-                            <a href="" target="_blank">
-                                <h2>챌린지 제안 게시판</h2>
-                            </a>
-                        </div>
+<div class="body_wrapper">
+    <th:block th:replace="~{main/header :: header}"></th:block>
+    <section class="list_wrapper">
+        <div class="body-wrap">
+            <div class="body-wrap-box">
+                <div class="board-name">
+                    <div class="board-name-line"></div>
+                    <div class="board_name-box">
+                        <a href="javascript:void(0)" target="_blank"><!-- 리스트로 돌아가는 링크 -->
+                            <h2>챌린지 제안 게시판</h2>
+                        </a>
                     </div>
-                    <div class="body-main">
-                        <div class="body-main-box">
-                            <div class="body-mian-box-in">
-                                <div class="body-mian-box-in-box is-no-scroll">
-                                    <div class="body-mian-box-in-box-in">
-                                        <div class="real-wrap">
-                                            <div class="real-wrap-box">
-                                                <div class="real-wrap-box-box">
-                                                    <div class="pasing-wrapper">
-                                                        <button icon-position="0" color="white" fill="false"
-                                                            class="pasing-button-1 pasing-no-select">
-                                                            <span class="pasing-button-span"><svg
-                                                                    xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                    height="24" fill="none" viewBox="0 0 24 24">
+                </div>
+                <div class="body-main">
+                    <div class="body-main-box">
+                        <div class="body-mian-box-in">
+                            <div class="body-mian-box-in-box is-no-scroll">
+                                <div class="body-mian-box-in-box-in">
+                                    <div class="real-wrap">
+                                        <div class="real-wrap-box">
+                                            <div class="real-wrap-box-box">
+                                                <div class="pasing-wrapper">
+                                                    <button type="button"
+                                                            onclick="javascript:location.href='/board/suggest/list/personal'"
+                                                            icon-position="0" color="white" fill="false"
+                                                            class="pasing-button-1 pasing-no-select"
+                                                            style="background-color: #fff;">
+                                                            <span class="pasing-button-span">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                     height="24" fill="none" viewBox="0 0 24 24">
                                                                     <path
-                                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                                                        fill="#cacaca"></path>
-                                                                </svg></span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="box-header">
-                                                        <h3>챌린지 제안 게시글 수정</h3>
-                                                    </div>
-                                                    <div class="box-main">
-                                                        <div class="box-main-wrap">
-                                                            <form action="">
-                                                                <div class="box-main-wrpa-list">
-                                                                    <p></p>
+                                                                            d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                                            fill="#cacaca"></path>
+                                                                </svg>
+                                                            </span>
+                                                    </button>
+                                                </div>
+                                                <div class="box-header">
+                                                    <h3>챌린지 제안 게시글 작성</h3>
+                                                </div>
+                                                <div class="box-main">
+                                                    <div class="box-main-wrap">
+                                                        <form th:action="@{/board/suggest/write}" method="post"
+                                                              enctype="multipart/form-data" name="form">
+                                                            <div class="box-main-wrpa-list">
+                                                                <div style="display:flex; flex-direction: column;">
                                                                     <div class="box-line file_insert_wrapper is-flex">
                                                                         <label class="file_insert_label">
                                                                             <input type="file" style="display:none;"
-                                                                                class="file" multiple>
+                                                                                   class="file" multiple>
                                                                             <div class="file-image-box">
                                                                                 <!-- <img src="/image/mypage/instagram_icon.png"> -->
                                                                                 <p>사진 첨부</p>
                                                                             </div>
                                                                         </label>
-
-                                                                        <div class="experience-category-full-content">
-                                                                            <!-- 카테고리 하나 시작 -->
-                                                                            <div class="experience-category-box">
-                                                                                <div class="experience-category-inner-padding">
-                                                                                    <div class="experience-category">
-                                                                                        개인 챌린지
-                                                                                    </div>
-                                                                                    <div class="experience-category-explain">
-                                                                                        장수풍뎅이잡기, 논밭가꾸기, 등등..
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- 카테고리 하나 끝 -->
-                                                                            <!-- 카테고리 하나 시작 -->
-                                                                            <div class="experience-category-box">
-                                                                                <div class="experience-category-inner-padding">
-                                                                                    <div class="experience-category">
-                                                                                        단체 챌린지
-                                                                                    </div>
-                                                                                    <div class="experience-category-explain">
-                                                                                        장수풍뎅이잡기, 논밭가꾸기, 등등..
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                            <!-- 카테고리 하나 끝 -->
-                                                                        </div>
-
-                                                                        <!-- <label class="selection_label is-inline-block is-hidden"
-                                                                            for="">
+                                                                    </div>
+                                                                    <div class="challenge-box">
+                                                                        <label class="challenge-button radio-active">
                                                                             <div>
-                                                                                <button
-                                                                                    class="selection_button is-hidden"
-                                                                                    type="button">
-                                                                                </button>
-                                                                                <div class="selection selected">개인 챌린지
-                                                                                </div>
-                                                                                <div class="selection is-hidden">단체 챌린지
-                                                                                </div>
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" checked
+                                                                                       value="PERSONAL">
+                                                                                <div class="challenge-text">개인 챌린지</div>
                                                                             </div>
-                                                                        </label> -->
-                                                                    </div>
-                                                                    <label>
-                                                                        <div class="box-main-title">
-                                                                            <input type="text" name="title"
-                                                                                class="main-title"
-                                                                                placeholder="제목을 입력해주세요." value="이전 제목">
-                                                                        </div>
-                                                                    </label>
-                                                                    <div class="box-line"></div>
-                                                                    <!-- <form method="post">
-                                                                        <textarea id="summernote"
-                                                                            name="editordata"></textarea>
-                                                                    </form> -->
-                                                                    <div class="box-main-body">
-                                                                        <span class="box-main-body-span"></span>
-                                                                        <div class="editor-wrap">
-                                                                            <textarea name="" id="" cols="30" rows="10"
-                                                                                class="proposal_content is-no-scroll"
-                                                                                placeholder="내용을 입력해주세요.">이전 내용</textarea>
-                                                                                <section class="img_wrapper_box">
-                                                                                    <div class="img_ul_wrapper">
-                                                                                        <ul class="img_ul">
-                                                                                        </ul>
-                                                                                    </div>
-                                                                                </section>
-                                                                            <div class="body-main-box-in-box-2">
+                                                                        </label>
+                                                                        <label class="challenge-button">
+                                                                            <div>
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" value="GROUP">
+                                                                                <div class="challenge-text">단체 챌린지</div>
                                                                             </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="box-line"></div>
-                                                                    <div class="editor-button-line">
-                                                                        <div class="button-line"></div>
-                                                                        <button type="submit" class="save-button">
-                                                                            <div class="save-button-box">
-                                                                                <div class="save-button-box-div"></div>
-                                                                                <span class="save-button-span">저장하기</span>
-                                                                                <div class="save-button-box-div"></div>
-                                                                            </div>
-                                                                        </button>
+                                                                        </label>
                                                                     </div>
                                                                 </div>
-                                                            </form>
-                                                        </div>
+                                                                <label>
+                                                                    <div class="box-main-title">
+                                                                        <input type="text" name="boardTitle"
+                                                                               class="main-title"
+                                                                               placeholder="제목을 입력해주세요.">
+                                                                    </div>
+                                                                </label>
+                                                                <div class="box-line"></div>
+                                                                <div class="box-main-body">
+                                                                    <span class="box-main-body-span"></span>
+                                                                    <div class="editor-wrap">
+                                                                            <textarea name="boardContent" cols="30"
+                                                                                      rows="10"
+                                                                                      class="proposal_content is-no-scroll"
+                                                                                      placeholder="내용을 입력해주세요."></textarea>
+                                                                        <section class="img_wrapper_box">
+                                                                            <div class="img_ul_wrapper">
+                                                                                <ul class="img_ul sumnail-layout">
+                                                                                    <!--이미지 들어가는 곳-->
+                                                                                </ul>
+                                                                            </div>
+                                                                        </section>
+                                                                        <div class="body-main-box-in-box-2">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="box-line"></div>
+                                                                <div class="editor-button-line">
+                                                                    <div class="button-line"></div>
+                                                                    <button type="button" class="save-button">
+                                                                        <div class="save-button-box">
+                                                                            <div class="save-button-box-div"></div>
+                                                                            <span
+                                                                                    class="save-button-span">저장하기</span>
+                                                                            <div class="save-button-box-div"></div>
+                                                                        </div>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="body-line"></div>
-                    <footer></footer>
+                </div>
+                <div class="body-line"></div>
+            </div>
+        </div>
+    </section>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
+<!-- 잠깐 나왓다 사라지는 알람창 -->
+<div class="alert-modal-display">
+    <div class="diary-modal">
+        <div class="alert-modal-box" style="width: 500px;">
+            <div style="text-align: center;">
+                <div style="margin-top: 12px;">
+                    <span class="alert"></span>
                 </div>
             </div>
-        </section>
-        <th:block th:replace="~{main/footer :: footer}"></th:block>
+        </div>
     </div>
+</div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/main/header.js"></script>
 <script>
-    // const $alertModal = $(".alert-modal-display");
+    let $radioButton = $("input[type=radio]");
+    let $challengeButton = $(".challenge-button");
 
-    // 이미지 파일
-    let inputFiles = [];
-    let $imgUl = $($('ul.img_ul')[0]);
-    let $lists;
-
-
-    $(".file").change((e) => {
-        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-        let index = 0;
-        let files = e.target.files;
-        let filesArr = Array.prototype.slice.call(files);
-
-        inputFiles = [];
-
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
-            }
-            inputFiles.push(file);
-
-            var reader = new FileReader();
-            // $imgUl.empty();
-
-            reader.onload = (e) => {
-                if (index >= 3) {
-                    return;
-                }
-                let text = `
-                    <li class="img_list" id="li${index}">
-                        <div class="img_box_wrapper">
-                            <header class="delete_button_wrapper">
-                                <label id="label${index}" for="button${index}">
-                                    <button icon-position="0" color="white" fill="false" type="button"
-                                        class="pasing-button-1 pasing-no-select" id="button${index}">
-                                        <span class="pasing-button-span">
-                                            <svg xmlns="http://www.w3.org/2000/svg"
-                                                width="24" height="24" fill="none"
-                                                viewBox="0 0 24 24">
-                                                <path
-                                                    d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                                    fill="#cacaca"></path>
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </label>
-                            </header>
-                            <article class="img_wrapper">
-                                <div class="img_div">
-                                    <img src="` + e.target.result + `" alt=""
-                                        class="inserted_img">
-                                </div>
-                            </article>
-                        </div>
-                    </li>
-                `;
-
-                $imgUl.append(text);
-                index++;
-                $('.img_ul>li').on('click', (e) => {
-                    console.log($(e.currentTarget));
-                    console.log("딜리트 버튼 눌림")
-                    $(e.currentTarget).remove();
-                });
-            }
-            reader.readAsDataURL(file);
+    $challengeButton.each((i, e) => {
+        $(e).click(() => {
+            $challengeButton.removeClass("radio-active");
+            $radioButton.prop("checked", false);
+            $($radioButton[i]).prop("checked", true);
+            $(e).addClass("radio-active");
         });
     });
 </script>
-<script src="/js/board/button_change_action.js">
-    //     // 개인/단체 챌린지 전환 버튼
-    //     let $selectType = $($('.selection_label')[0]);
-    // $selectType.on("click", (e) => {
-    //     console.log("버튼 누름");
-    //     var $target = $(e.currentTarget);
-    //     var $selected = $('div.selection.selected');
-    //     var $hiddened = $('div.selection.is-hidden');
-    //     $selected.removeClass('selected').addClass('is-hidden');
-    //     $hiddened.removeClass('is-hidden').addClass('selected');
-    // });
+<script src="/js/main/header.js"></script>
+<script th:inline="javascript">
+    globalThis.uuids;
+    FileList.prototype.forEach = Array.prototype.forEach;
+
+    const $alertModal = $(".alert-modal-display");
+    const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
+
+    let $ul = $(".img_ul");
+
+    $("input[type=file]").on("change", function () {
+        const $files = $("input[type=file]")[0].files;
+        let formData = new FormData();
+
+        $($files).each((i, file) => {
+            formData.append("file", file);
+        })
+
+
+        $.ajax({
+            url: "/suggest/image/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (uuids) {
+                $ul.removeAttr("li");
+                globalThis.uuids = uuids;
+                $files.forEach((file, i) => {
+                    if (file.type.startsWith("image")) {
+                        let text = `
+                        <li class="img_list" id="li${i}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label class="close-button">
+                                        <button icon-position="0" color="white" fill="false" type="button"
+                                            class="pasing-button-1 pasing-no-select" id="button${i}">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="/suggest/image/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
+                                    </div>
+                                </article>
+                            </div>
+                        </li>
+                `;
+                        $ul.append(text);
+                    }
+                });
+                $(".close-button").click((e) => {
+                    let target = $(e.currentTarget).parent().parent().parent();
+                    target.remove();
+                });
+            }
+        });
+    });
+
+    $(".save-button").click(() => {
+        const $files = $("input[type=file]")[0].files;
+        let text = "";
+
+        let boardTitle = $("input[name='boardTitle']").val();
+        let boardContent = $(".proposal_content").val();
+
+        if ($files.length < 4) {
+            alertModal(alertMsg[0]);
+            return false;
+        } else if (!boardTitle) {
+            alertModal(alertMsg[1]);
+            return false;
+        } else if (!boardContent) {
+            alertModal(alertMsg[2]);
+            return false;
+        }
+
+
+        FileList.prototype.forEach = Array.prototype.forEach;
+        $files.forEach((file, i) => {
+            text +=
+                `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                `;
+        });
+        $("form[name=form]").append(text);
+        $("form[name=form]").submit();
+    })
+
+    /*****************************************************/
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function toStringByFormatting(source, delimiter = '/') {
+        const year = source.getFullYear();
+        const month = leftPad(source.getMonth() + 1);
+        const day = leftPad(source.getDate());
+
+        return [year, month, day].join(delimiter);
+    }
+
+    function alertModal(errorMsg) {
+
+        $(".alert").text(errorMsg);
+        $alertModal.fadeIn();
+        setTimeout(function () {
+            $alertModal.fadeOut();
+        }, 2000);
+
+    }
 </script>
 </html>

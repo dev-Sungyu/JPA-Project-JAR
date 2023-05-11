@@ -1,48 +1,27 @@
 package com.app.projectjar.domain;
 
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.type.BadgeType;
 import com.querydsl.core.annotations.QueryProjection;
-import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Getter @ToString
+@NoArgsConstructor
 public class ReplyDTO {
 
     private Long id;
     private String replyContent;
     private LocalDateTime registerDate;
 
-    private Long memberId;
-    private String memberNickname;
-    private String originalFileName;
-    private String fileUuid;
-    private String filePath;
-    private BadgeType badgeType;
+    private MemberDTO memberDTO;
 
-    @QueryProjection
-    public ReplyDTO(Long id, String replyContent, LocalDateTime registerDate, Long memberId, String memberNickname, String originalFileName, String fileUuid, String filePath, BadgeType badgeType) {
+    @Builder
+    public ReplyDTO(Long id, String replyContent, LocalDateTime registerDate, MemberDTO memberDTO) {
         this.id = id;
         this.replyContent = replyContent;
         this.registerDate = registerDate;
-        this.memberId = memberId;
-        this.memberNickname = memberNickname;
-        this.originalFileName = originalFileName;
-        this.fileUuid = fileUuid;
-        this.filePath = filePath;
-        this.badgeType = badgeType;
+        this.memberDTO = memberDTO;
     }
-
-
-//    @QueryProjection
-//    public ReplyDTO(Long id, String replyContent, LocalDateTime registerDate, Long memberId, String memberNickname, BadgeType badgeType) {
-//        this.id = id;
-//        this.replyContent = replyContent;
-//        this.registerDate = registerDate;
-//        this.memberId = memberId;
-//        this.memberNickname = memberNickname;
-//        this.badgeType = badgeType;
-//    }
 }

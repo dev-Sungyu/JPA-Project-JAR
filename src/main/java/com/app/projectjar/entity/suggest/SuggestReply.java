@@ -31,4 +31,11 @@ public class SuggestReply extends Reply {
     public void setSuggestReplyContent(String replyContent) {
         super.setReplyContent(replyContent);
     }
+
+    @Builder
+    public SuggestReply(Long id, String replyContent, Suggest suggest, Member member) {
+        super(id, replyContent);
+        this.suggest = suggest;
+        this.member = member;
+    }
 }
