@@ -37,7 +37,7 @@ public class SecurityConfig {
 
     private static final String IGNORE_BOARD_SUGGEST_LIST_PATH = "/board/suggest/list";
     private static final String IGNORE_BOARD_SUGGEST_DETAIL_PATH = "/board/suggest/detail";
-    private static final String BOARD_SUGGEST_WRITE_PATH = "board/suggest/write";
+    private static final String BOARD_SUGGEST_WRITE_PATH = "/board/suggest/write";
 
     private static final String IGNORE_BOARD_DIARY_LIST_PATH = "/board/diary/list";
     private static final String IGNORE_BOARD_DIARY_DETAIL_PATH = "/board/detail/list";
@@ -106,14 +106,11 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                관리자 권한 설정
                 .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-                .antMatchers(ADMIN_PATH).authenticated()
-//                게시물 권한 설정
-                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
-                .antMatchers(BOARD_DIARY_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
-                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
-                .antMatchers(MYPAGE_PATH).authenticated()
+                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
                 .and()
                 .csrf().disable()
                 .exceptionHandling()
