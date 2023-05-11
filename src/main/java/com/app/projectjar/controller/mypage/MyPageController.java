@@ -25,8 +25,11 @@ public class MyPageController {
     @GetMapping("propsal")
     public void propsal(){}
 
-    @GetMapping("like-list")
-    public void like_list(){}
+    @GetMapping("suggest-like-list")
+    public void suggestLikelist(){}
+
+    @GetMapping("diary-like-list")
+    public void diarylikelist(){}
 
     @GetMapping("badge")
     public void badge(){}
