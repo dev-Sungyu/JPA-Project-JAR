@@ -20,6 +20,7 @@ public class SuggestLike extends Likes {
     @JoinColumn(name = "SUGGEST_ID")
     private Suggest suggest;
 
+    @Builder
     public SuggestLike(Member member, Suggest suggest) {
         this.member = member;
         this.suggest = suggest;

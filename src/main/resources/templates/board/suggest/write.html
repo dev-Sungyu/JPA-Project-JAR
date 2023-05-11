@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/board/proposal/common.css">
     <link rel="stylesheet" href="/css/board/proposal/write.css">
+    <link rel="stylesheet" href="/css/mypage/alert.css">
     <link rel="icon" href="/image/logo/favicon.png">
     <style>
         .challenge-box {
@@ -28,14 +29,14 @@
         }
 
         .challenge-box label:first-child {
-            margin-right: 10px; 
+            margin-right: 10px;
         }
 
         .challenge-text {
             font-size: 12px;
         }
 
-        .challenge-box label.radio-active{
+        .challenge-box label.radio-active {
             background-color: #4F6DF5;
             color: #fff;
         }
@@ -64,8 +65,11 @@
                                         <div class="real-wrap-box">
                                             <div class="real-wrap-box-box">
                                                 <div class="pasing-wrapper">
-                                                    <button icon-position="0" color="white" fill="false"
-                                                            class="pasing-button-1 pasing-no-select">
+                                                    <button type="button"
+                                                            onclick="javascript:location.href='/board/suggest/list/personal'"
+                                                            icon-position="0" color="white" fill="false"
+                                                            class="pasing-button-1 pasing-no-select"
+                                                            style="background-color: #fff;">
                                                             <span class="pasing-button-span">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
                                                                      height="24" fill="none" viewBox="0 0 24 24">
@@ -81,13 +85,14 @@
                                                 </div>
                                                 <div class="box-main">
                                                     <div class="box-main-wrap">
-                                                        <form th:action="@{/board/suggest/write}" method="post" enctype="multipart/form-data" name="form">
+                                                        <form th:action="@{/board/suggest/write}" method="post"
+                                                              enctype="multipart/form-data" name="form">
                                                             <div class="box-main-wrpa-list">
                                                                 <div style="display:flex; flex-direction: column;">
                                                                     <div class="box-line file_insert_wrapper is-flex">
                                                                         <label class="file_insert_label">
                                                                             <input type="file" style="display:none;"
-                                                                                class="file" multiple>
+                                                                                   class="file" multiple>
                                                                             <div class="file-image-box">
                                                                                 <!-- <img src="/image/mypage/instagram_icon.png"> -->
                                                                                 <p>사진 첨부</p>
@@ -97,13 +102,18 @@
                                                                     <div class="challenge-box">
                                                                         <label class="challenge-button radio-active">
                                                                             <div>
-                                                                                <input type="radio" style="display:none;" name="boardType" checked value="PERSONAL">
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" checked
+                                                                                       value="PERSONAL">
                                                                                 <div class="challenge-text">개인 챌린지</div>
                                                                             </div>
                                                                         </label>
                                                                         <label class="challenge-button">
                                                                             <div>
-                                                                                <input type="radio" style="display:none;" name="boardType" value="GROUP">
+                                                                                <input type="radio"
+                                                                                       style="display:none;"
+                                                                                       name="boardType" value="GROUP">
                                                                                 <div class="challenge-text">단체 챌린지</div>
                                                                             </div>
                                                                         </label>
@@ -120,12 +130,13 @@
                                                                 <div class="box-main-body">
                                                                     <span class="box-main-body-span"></span>
                                                                     <div class="editor-wrap">
-                                                                            <textarea name="boardContent"cols="30" rows="10"
+                                                                            <textarea name="boardContent" cols="30"
+                                                                                      rows="10"
                                                                                       class="proposal_content is-no-scroll"
                                                                                       placeholder="내용을 입력해주세요."></textarea>
                                                                         <section class="img_wrapper_box">
                                                                             <div class="img_ul_wrapper">
-                                                                                <ul class="img_ul">
+                                                                                <ul class="img_ul sumnail-layout">
                                                                                     <!--이미지 들어가는 곳-->
                                                                                 </ul>
                                                                             </div>
@@ -164,6 +175,19 @@
     </section>
     <th:block th:replace="~{main/footer :: footer}"></th:block>
 </div>
+<!-- 잠깐 나왓다 사라지는 알람창 -->
+<div class="alert-modal-display">
+    <div class="diary-modal">
+        <div class="alert-modal-box" style="width: 500px;">
+            <div style="text-align: center;">
+                <div style="margin-top: 12px;">
+                    <span class="alert"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
@@ -174,7 +198,7 @@
         $(e).click(() => {
             $challengeButton.removeClass("radio-active");
             $radioButton.prop("checked", false);
-            $($radioButton[i]).prop("checked",true);
+            $($radioButton[i]).prop("checked", true);
             $(e).addClass("radio-active");
         });
     });
@@ -183,6 +207,9 @@
 <script th:inline="javascript">
     globalThis.uuids;
     FileList.prototype.forEach = Array.prototype.forEach;
+
+    const $alertModal = $(".alert-modal-display");
+    const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
 
     let $ul = $(".img_ul");
 
@@ -198,14 +225,14 @@
         $.ajax({
             url: "/suggest/image/upload",
             type: "post",
-            data : formData,
-            contentType : false,
-            processData : false,
-            success: function(uuids) {
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (uuids) {
                 $ul.removeAttr("li");
                 globalThis.uuids = uuids;
                 $files.forEach((file, i) => {
-                    if(file.type.startsWith("image")){
+                    if (file.type.startsWith("image")) {
                         let text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
@@ -236,7 +263,7 @@
                         $ul.append(text);
                     }
                 });
-                $(".close-button").click((e) =>{
+                $(".close-button").click((e) => {
                     let target = $(e.currentTarget).parent().parent().parent();
                     target.remove();
                 });
@@ -247,6 +274,22 @@
     $(".save-button").click(() => {
         const $files = $("input[type=file]")[0].files;
         let text = "";
+
+        let boardTitle = $("input[name='boardTitle']").val();
+        let boardContent = $(".proposal_content").val();
+
+        if ($files.length < 4) {
+            alertModal(alertMsg[0]);
+            return false;
+        } else if (!boardTitle) {
+            alertModal(alertMsg[1]);
+            return false;
+        } else if (!boardContent) {
+            alertModal(alertMsg[2]);
+            return false;
+        }
+
+
         FileList.prototype.forEach = Array.prototype.forEach;
         $files.forEach((file, i) => {
             text +=
@@ -259,6 +302,7 @@
         $("form[name=form]").append(text);
         $("form[name=form]").submit();
     })
+
     /*****************************************************/
     function leftPad(value) {
         if (value >= 10) {
@@ -274,6 +318,16 @@
         const day = leftPad(source.getDate());
 
         return [year, month, day].join(delimiter);
+    }
+
+    function alertModal(errorMsg) {
+
+        $(".alert").text(errorMsg);
+        $alertModal.fadeIn();
+        setTimeout(function () {
+            $alertModal.fadeOut();
+        }, 2000);
+
     }
 </script>
 </html>

@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface SuggestLikeQueryDsl {
 
-    public Member findMemberBySuggestLike(Long suggestId, Long memberId);
+    public Long findMemberBySuggestLike(Long suggestId, Long memberId);
 
     public Long getSuggestLikeCount(Long suggestId);
 

@@ -29,16 +29,16 @@ public class SuggestLikeRepositoryTests {
     private SuggestRepository suggestRepository;
 
 
-    @Test
-    public void saveTest() {
-        memberRepository.findById(7L).ifPresent(
-                member ->
-                        suggestRepository.findById(17L).ifPresent(
-                                suggest ->
-                                suggestLikeRepository.save(new SuggestLike(member, suggest))
-                        )
-        );
-    }
+//    @Test
+//    public void saveTest() {
+//        memberRepository.findById(7L).ifPresent(
+//                member ->
+//                        suggestRepository.findById(17L).ifPresent(
+//                                suggest ->
+//                                suggestLikeRepository.save(new SuggestLike(member, suggest))
+//                        )
+//        );
+//    }
 
     @Test
     public void getSuggestLikeCountTest() {

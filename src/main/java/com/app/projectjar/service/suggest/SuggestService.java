@@ -1,11 +1,13 @@
 package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.entity.suggest.SuggestLike;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -25,9 +27,9 @@ public interface SuggestService {
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
     // 좋아요 갯수
-    public Long getLikeCount(Long suggestId);
+    public Integer getLikeCount(Long suggestId);
     // 댓글 갯수
-    public Long getReplyCount(Long suggestId);
+    public Integer getReplyCount(Long suggestId);
     // 좋아요 ++
     public void heartUp(Long memberId, Long suggestId);
     // 좋아요 --
@@ -41,6 +43,8 @@ public interface SuggestService {
                 .boardTitle(suggest.getBoardTitle())
                 .boardContent(suggest.getBoardContent())
                 .boardType(suggest.getBoardType())
+                .likeCount(suggest.getSuggestLikeCount())
+                .replyCount(suggest.getSuggestReplyCount())
                 .memberDTO(toMemberDTO(suggest.getMember()))
                 .fileDTOS(FileToDTO(suggest.getSuggestFiles()))
                 .build();
@@ -125,6 +129,14 @@ public interface SuggestService {
                 }
         );
         return suggestFiles;
+    }
+
+    default LikeDTO toSuggestLikeDTO(SuggestLike suggestLike){
+        return LikeDTO.builder()
+                .boardId(suggestLike.getSuggest().getId())
+                .memberId(suggestLike.getMember().getId())
+                .likeId(suggestLike.getId())
+                .build();
     }
 
 }
