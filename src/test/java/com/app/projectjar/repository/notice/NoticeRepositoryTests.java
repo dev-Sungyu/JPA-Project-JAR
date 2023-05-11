@@ -20,8 +20,9 @@ public class NoticeRepositoryTests {
 //  공지사항 작성하기
     @Test
     public void saveTest(){
-        Notice notice = new Notice(1L, "세이브 테스트 제목 1", "세이브 테스트 내용 1");
-        noticeRepository.save(notice);
+        for (int i = 0; i < 37; i++) {
+            noticeRepository.save(Notice.builder().noticeTitle("테스트용 제목" + i).noticeContent("테스트용 내용" + i).build());
+        }
     }
 
 //    공지사항 리스트
