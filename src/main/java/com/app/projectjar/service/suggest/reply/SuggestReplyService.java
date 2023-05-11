@@ -34,7 +34,7 @@ public interface SuggestReplyService {
 
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder()
-                .id(memberDTO.getMemberId())
+                .id(memberDTO.getId())
                 .badgeType(memberDTO.getBadgeType())
                 .memberStatus(memberDTO.getMemberStatus())
                 .memberPhoneNumber(memberDTO.getMemberPhoneNumber())
