@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class MemberDTO {
-    private Long memberId;
+    private Long id;
     private String memberEmail;
     private String memberPassword;
     private String memberPhoneNumber;
@@ -26,8 +26,8 @@ public class MemberDTO {
     private FileDTO fileDTO;
 
     @Builder
-    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, FileDTO fileDTO) {
-        this.memberId = memberId;
+    public MemberDTO(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, FileDTO fileDTO) {
+        this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
@@ -36,18 +36,6 @@ public class MemberDTO {
         this.memberStatus = memberStatus;
         this.badgeType = badgeType;
         this.memberType = memberType;
-        this.fileDTO = fileDTO;
-    }
-
-    @Builder
-    public MemberDTO(Long memberId, String memberEmail, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, FileDTO fileDTO) {
-        this.memberId = memberId;
-        this.memberEmail = memberEmail;
-        this.memberPhoneNumber = memberPhoneNumber;
-        this.memberName = memberName;
-        this.memberNickname = memberNickname;
-        this.memberStatus = memberStatus;
-        this.badgeType = badgeType;
         this.fileDTO = fileDTO;
     }
 }

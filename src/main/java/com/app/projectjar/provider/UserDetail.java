@@ -22,7 +22,7 @@ import java.util.Collection;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class UserDetail implements UserDetails {
 
-    private Long memberId;
+    private Long id;
     private String memberEmail;
     private String memberPassword;
     private String memberPhoneNumber;
@@ -34,8 +34,8 @@ public class UserDetail implements UserDetails {
     private Collection<? extends GrantedAuthority> authorities;
 
     @Builder
-    public UserDetail(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickName, BadgeType badgeType, Role memberType, Collection<? extends GrantedAuthority> authorities) {
-        this.memberId = memberId;
+    public UserDetail(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickName, BadgeType badgeType, Role memberType, Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
