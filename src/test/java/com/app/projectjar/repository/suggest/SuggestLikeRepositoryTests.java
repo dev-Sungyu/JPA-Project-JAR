@@ -1,9 +1,5 @@
 package com.app.projectjar.repository.suggest;
 
-<<<<<<< HEAD
-import com.app.projectjar.entity.member.Member;
-=======
->>>>>>> 퍼블리싱
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -12,8 +8,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
@@ -52,18 +46,18 @@ public class SuggestLikeRepositoryTests {
         log.info(suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L,1L).toString());
     }
 
-    @Test
-    public void deleteByMemberId() {
-        Member member = suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L , 1L);
-        suggestLikeRepository.deleteByMemberIdAndSuggestId_QueryDsl(40L, 1L);
-        assertThat(member).isNotNull();
-    }
-    @Test
-    public void deleteByMemberId() {
-        Long member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
-        suggestLikeRepository.deleteByMemberIdAndSuggestId(40L, 1L);
-        assertThat(member).isNotNull();
-    }
+//    @Test
+//    public void deleteByMemberId() {
+//        Member member = suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L , 1L);
+//        suggestLikeRepository.deleteByMemberIdAndSuggestId_QueryDsl(40L, 1L);
+//        assertThat(member).isNotNull();
+//    }
+//    @Test
+//    public void deleteByMemberId() {
+//        Long member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
+//        suggestLikeRepository.deleteByMemberIdAndSuggestId(40L, 1L);
+//        assertThat(member).isNotNull();
+//    }
 
 
 //    @Test

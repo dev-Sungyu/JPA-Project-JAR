@@ -46,14 +46,14 @@ public class SuggestController {
         model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
         model.addAttribute("userDetail", userDetail);
+
         return "/board/suggest/list";
     }
 
     @GetMapping("list/personal")
     public String goToPersonalList(Model model, @RequestParam(value="page", defaultValue="1") int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<SuggestDTO> suggestList = suggestService.getPersonalSuggestList(page - 1);
-        log.info("" + suggestList.getTotalPages());
-        log.info("" + suggestList.getTotalElements());
+
         model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
         model.addAttribute("userDetail", userDetail);

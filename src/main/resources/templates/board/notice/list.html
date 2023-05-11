@@ -31,7 +31,7 @@
                                             <div class="login"><!--  -->
                                                 <div class="login"><!-- 공지사항 목록 -->
                                                     <div class="login_margin" th:each="noticeDTO : ${noticeDTOS}">
-                                                        <a class="login_margin_a">
+                                                        <a class="login_margin_a" th:href="@{detail/{id}(id=${noticeDTO.id})}">
                                                             <div class="notice_list">
                                                                 <p class="notice_list_p" th:text="${noticeDTO.noticeTitle}">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</p>
                                                                 <div class="align">
@@ -58,12 +58,12 @@
                                                     </a>
                                                     <div style="width: 16px; display: flex;"></div>
                                                     <div class="row">
-                                                        <a class="first_button second_button changePage" th:href="${pageDTO.startPage}">
-                                                            <span class="button_number" th:text="${pageDTO.startPage}"></span>
-                                                        </a>
+<!--                                                        <a class=" second_button changePage" th:if="${pageDTO.pageNum == num}" th:href="${pageDTO.startPage}">-->
+<!--                                                            <span class="button_number" th:text="${pageDTO.startPage}"></span>-->
+<!--                                                        </a>-->
                                                         <div style="width: 2px;"></div>
-                                                        <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage + 1, pageDTO.endPage + 1)}">
-                                                            <a class="second_button changePage" th:href="${num}">
+                                                        <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                                            <a th:class="${num == pageDTO.startPage} ? 'first_button second_button changePage' : 'second_button changePage'" th:href="${num}">
                                                                 <span class="button_number" th:text="${num}"></span>
                                                             </a>
                                                             <div style="width: 2px;"></div>

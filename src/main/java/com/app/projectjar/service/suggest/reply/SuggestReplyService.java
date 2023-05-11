@@ -1,8 +1,9 @@
 package com.app.projectjar.service.suggest.reply;
 
-import com.app.projectjar.domain.ReplyDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.reply.ReplyDTO;
+import com.app.projectjar.domain.reply.ReplyRequestDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
@@ -14,7 +15,7 @@ import org.springframework.data.domain.Slice;
 public interface SuggestReplyService {
 
     // 댓글 저장
-    public void insertReply(Long suggestId,Long memberId, String replyContent);
+    public void insertReply(ReplyRequestDTO replyRequestDTO);
     // 댓글 수정
     public void modifyReply(Long replyId, String replyContent);
     // 댓글 삭제
@@ -62,6 +63,40 @@ public interface SuggestReplyService {
                 .boardContent(suggestDTO.getBoardContent())
                 .boardTitle(suggestDTO.getBoardTitle())
                 .boardType(suggestDTO.getBoardType())
+                .build();
+    }
+
+    default ReplyDTO toReplyDTO(SuggestReply suggestReply) {
+        return ReplyDTO.builder()
+                .id(suggestReply.getId())
+                .memberDTO(toMemberDTO(suggestReply.getMember()))
+                .registerDate(suggestReply.getUpdatedDate())
+                .replyContent(suggestReply.getReplyContent())
+                .build();
+    }
+
+    default MemberDTO toMemberDTO(Member member){
+        return MemberDTO.builder()
+                .badgeType(member.getBadgeType())
+                .fileDTO(toFileDTO(member.getMemberFile()))
+                .memberEmail(member.getMemberEmail())
+                .memberId(member.getId())
+                .memberName(member.getMemberName())
+                .memberNickname(member.getMemberNickname())
+                .memberStatus(member.getMemberStatus())
+                .build();
+    }
+
+    default FileDTO toFileDTO(MemberFile memberFile) {
+        if(memberFile == null){
+            return null;
+        }
+
+        return FileDTO.builder()
+                .fileOriginalName(memberFile.getFileOriginalName())
+                .filePath(memberFile.getFilePath())
+                .fileUuid(memberFile.getFileUuid())
+                .id(memberFile.getId())
                 .build();
     }
 }
