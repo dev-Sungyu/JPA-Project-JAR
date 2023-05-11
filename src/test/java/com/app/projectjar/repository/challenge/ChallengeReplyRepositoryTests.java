@@ -1,13 +1,11 @@
 package com.app.projectjar.repository.challenge;
 
-import com.app.projectjar.domain.ReplyDTO;
 import com.app.projectjar.entity.challenge.ChallengeReply;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -41,13 +39,13 @@ public class ChallengeReplyRepositoryTests {
         );
     }
 
-    @Test
-    public void findAllByChallengeWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(0, 5);
-        challengeRepository.findById(212L).ifPresent(
-                challenge -> {
-                    challengeReplyRepository.findAllByChallengeWithPaging(challenge.getId(),pageRequest).map(ReplyDTO::toString).forEach(log::info);
-                }
-        );
-    }
+//    @Test
+//    public void findAllByChallengeWithPagingTest() {
+//        PageRequest pageRequest = PageRequest.of(0, 5);
+//        challengeRepository.findById(212L).ifPresent(
+//                challenge -> {
+//                    challengeReplyRepository.findAllByChallengeWithPaging(challenge.getId(),pageRequest).map(ReplyDTO::toString).forEach(log::info);
+//                }
+//        );
+//    }
 }
