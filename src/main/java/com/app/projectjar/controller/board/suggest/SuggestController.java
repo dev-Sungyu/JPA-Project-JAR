@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,11 +29,11 @@ public class SuggestController {
     public void goToWriteForm(SuggestDTO suggestDTO) { }
 
     @PostMapping("write")
-    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, UserDetail userDetail) {
-        Long memberId = userDetail.getMemberId();
-        log.info(memberId + "-------------------------------------------------------------");
-        suggestService.register(suggestDTO, memberId);
+    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
+        Long memberId = userDetail.getMemberId();
+        log.info(memberId + "000000000000000000");
+//        suggestService.register(suggestDTO, memberId);
         if(suggestDTO.getBoardType().name().equals("GROUP")){
             return new RedirectView("/board/suggest/list/group");
         }

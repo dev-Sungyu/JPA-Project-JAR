@@ -36,7 +36,7 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
     public Page<Inquire> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
         List<Inquire> foundInquire = query.select(inquire)
                 .from(inquire)
-                .where(inquire.member.memberId.eq(id))
+                .where(inquire.member.id.eq(id))
                 .orderBy(inquire.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -44,7 +44,7 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
 
         Long count = query.select(inquire.count())
                 .from(inquire)
-                .where(inquire.member.memberId.eq(id))
+                .where(inquire.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundInquire, pageable, count);
     }
