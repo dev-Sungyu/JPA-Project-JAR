@@ -1,12 +1,14 @@
 const $heartButton = $(".heart-layout");
-const $noHeart = $(".no-heart");
-const $heartUp = $(".heart-up");
 
 $heartButton.each((i, e) => {
     let boardId = e.id.replaceAll("heart", "");
     let likeDTO = new Object();
     likeDTO.memberId = memberId;
     likeDTO.boardId = boardId;
+
+    if(memberId == undefined){
+        return false;
+    }
 
     likeService.heartCheck(likeDTO,function(result){
         if(result){

@@ -22,7 +22,8 @@ public interface SuggestReplyService {
     public void deleteReply(Long replyId);
     // 댓글 목록
     public Slice<ReplyDTO> getReplyList(Long suggestId, Pageable pageable);
-
+    // 댓글 갯수
+    public Integer getReplyCount(Long suggestId);
 
     default SuggestReply toSuggestReplyEntity(ReplyDTO replyDTO){
         return SuggestReply.builder()

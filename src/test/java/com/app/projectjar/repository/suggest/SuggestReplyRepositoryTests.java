@@ -1,6 +1,5 @@
 package com.app.projectjar.repository.suggest;
 
-import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.suggest.SuggestReply;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.repository.member.MemberRepository;
@@ -12,9 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-import java.util.UUID;
-
-import static com.app.projectjar.type.FileType.REPRESENTATIVE;
 
 @SpringBootTest
 @Transactional
@@ -80,6 +76,13 @@ public class SuggestReplyRepositoryTests {
     public void deleteTest() {
         suggestReplyRepository.findById(104L).ifPresent(
                 suggestReply -> suggestReplyRepository.delete(suggestReply)
+        );
+    }
+
+    @Test
+    public void countTest(){
+        suggestRepository.findById(2L).ifPresent(
+                suggest -> log.info(suggestReplyRepository.getReplyCount(suggest.getId())+ "개수")
         );
     }
 }
