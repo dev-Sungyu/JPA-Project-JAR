@@ -61,7 +61,7 @@
                                                         <p class="email_pw">이메일</p>
                                                         <div class="email_pw_gap"></div>
                                                         <div class="login">
-                                                            <input name="email" type="email" placeholder="example@naver.com">
+                                                            <input name="memberEmail" type="email" placeholder="example@naver.com">
                                                             <div style="height: 4px;"></div>
                                                             <div class="login">
                                                                 <p id="red_email" class="waring_email">이메일을 입력해주세요.</p>
@@ -76,7 +76,7 @@
                                                         <div class="email_pw_gap"></div>
                                                         <div class="login">
                                                             <div class="password_box">
-                                                                <input placeholder="********" name="password" type="password">
+                                                                <input placeholder="********" name="memberPassword" type="password">
                                                                 <div class="eye_wrap">
                                                                     <span class="hide span_div">
                                                                         <img id="eye_close" class="eye" src="/image/login/eyes-close.png">
@@ -97,7 +97,7 @@
                                                     <p class="forget_pw_text">비밀번호를 잊으셨나요?</p>
                                                 </a>
                                             </div>
-                                            <button type="button" class="login_btn">
+                                            <button type="submit" class="login_btn">
                                                 <div class="login_btn_div">
                                                     <div class="wid_flex_four"></div>
                                                     <span class="two_span">로그인</span>
@@ -187,24 +187,24 @@ function alertModal(errorMsg) {
 // 로그인 실패시 나오는 빨간줄
     $(".login_btn").click(function() {
         $("#red_email").css('display', 'block');
-        $("input[name='email']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
         $("#red_password").css('display', 'block');
-        $("input[name='password']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
     });
 
-    $("input[name='email']").keyup(function() {
+    $("input[name='memberEmail']").keyup(function() {
         $("#red_email").css('display', 'none');
-        $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+        $("input[name='memberEmail']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     });
-    $("input[name='password']").keyup(function() {
+    $("input[name='memberPassword']").keyup(function() {
         $("#red_password").css('display', 'none');
-        $("input[name='password']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+        $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     });
 
 
 // 비밀번호 눈표시 JS
 
-let userPassword = $("input[name=password]");
+let userPassword = $("input[name=memberPassword]");
 
 $(".hide").click(function(){
     if(userPassword.attr("type") == "password"){
