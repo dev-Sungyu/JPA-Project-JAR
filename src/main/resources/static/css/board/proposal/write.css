@@ -1427,7 +1427,7 @@ box-sizing: border-box;
     vertical-align: middle;
     border-radius: 3px;
     color: rgb(58, 58, 58);
-    background-color: rgb(255, 255, 255);
+    background-color: #f1f1f1;
     font-weight: 500;
     /* font-size: 14px; */
     letter-spacing: -0.2px;
@@ -1547,8 +1547,41 @@ div.file-image-box {
 
 .img_ul {
     display: flex;
-    overflow: hidden;
+    width:100%;
+    margin-bottom : 10px;
     flex-wrap: wrap;
+}
+
+.sumnail-layout {
+    display: flex;
+    width:100%;
+    margin-bottom : 10px;
+}
+
+.img_ul li {
+    margin-right : 5px;
+}
+
+.sumnail-layout li {
+    margin-right : 5px;
+}
+
+.img_ul li:last-child {
+    margin-right : 0;
+}
+
+.sumnail-layout li:last-child  {
+    margin-right : 0;
+}
+
+.img_ul img {
+    width: 100%;
+}
+
+.sumnail-layout img {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
 }
 
 .img_box_wrapper {
@@ -1565,10 +1598,4 @@ div.file-image-box {
 .delete_button_wrapper button {
     opacity: 80%;
     height: fit-content;
-}
-
-.img_list {
-    width: 33%;
-    padding: 10px;
-    margin-bottom: 10px;
 }

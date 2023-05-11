@@ -1037,7 +1037,7 @@ svg:not(:root) {
 
 .swiper-slide-picture img{
     transition: opacity 0.1s linear 0s;
-    object-fit: cover;
+    object-fit: unset;
     opacity: 1;
 }
 
