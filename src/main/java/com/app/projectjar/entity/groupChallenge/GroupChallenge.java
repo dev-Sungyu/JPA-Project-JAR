@@ -28,14 +28,17 @@ public class GroupChallenge extends Board {
     private LocalDate startDate;
     @NotNull
     private LocalDate endDate;
+    @ColumnDefault(value = "0")
+    private Integer groupChallengeReplyCount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
 
-    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate) {
+    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount) {
         super(boardTitle, boardContent);
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.groupChallengeReplyCount = groupChallengeReplyCount;
     }
 }

@@ -37,7 +37,8 @@ public class GroupChallengeRepositoryTests {
                     "그룹 챌린지 내용" + (i + 1),
                     GroupChallengeType.PRIVATE,
                     LocalDate.of(2023,05,8 + i),
-                    LocalDate.of(2023,05,10 + i)));
+                    LocalDate.of(2023,05,10 + i),
+                    i));
         }
     }
 
@@ -63,7 +64,8 @@ public class GroupChallengeRepositoryTests {
                     "그룹 챌린지 내용" + (i + 1),
                     GroupChallengeType.PRIVATE,
                     LocalDate.of(2023, 05, 8 + i),
-                    LocalDate.of(2023, 05, 10 + i)
+                    LocalDate.of(2023, 05, 10 + i),
+                    i
             );
 
             groupChallengeRepository.save(groupChallenge);
