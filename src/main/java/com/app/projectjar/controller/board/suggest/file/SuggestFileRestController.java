@@ -17,7 +17,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/suggest/image/*")
 @RequiredArgsConstructor
-@Slf4j
 public class SuggestFileRestController {
 
     //    파일 업로드

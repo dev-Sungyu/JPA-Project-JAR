@@ -11,7 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
@@ -23,7 +25,7 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Long findMemberBySuggestLike(Long suggestId,Long memberId) {
+    public Long findMemberBySuggestLike_QueryDsl(Long suggestId, Long memberId) {
         return query.select(suggestLike.member.count())
                 .from(suggestLike)
                 .where(suggestLike.suggest.id.eq(suggestId))
@@ -32,20 +34,18 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     }
 
     @Override
-    public Long getSuggestLikeCount(Long suggestId) {
+    public Long getSuggestLikeCount_QueryDsl(Long suggestId) {
             return query.select(suggestLike.count())
                     .from(suggestLike)
                     .where(suggestLike.suggest.id.eq(suggestId))
                     .fetchOne();
     }
 
-    @Override
-    public void deleteByMemberIdAndSuggestId(Long suggestId, Long memberId) {
+    @Override @Transactional
+    public void deleteByMemberIdAndSuggestId_QueryDsl(Long suggestId, Long memberId) {
         query.delete(suggestLike)
-                .where(suggestLike.member.id.eq(memberId))
-                .where(suggestLike.suggest.id.eq(suggestId))
+                .where(suggestLike.member.id.eq(memberId).and(suggestLike.suggest.id.eq(suggestId)))
                 .execute();
     }
-
 
 }

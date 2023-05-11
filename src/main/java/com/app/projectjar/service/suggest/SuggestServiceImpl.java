@@ -36,8 +36,6 @@ public class SuggestServiceImpl implements SuggestService {
 
     private final MemberRepository memberRepository;
 
-    private final SuggestLikeRepository suggestLikeRepository;
-
     private final SuggestReplyRepository suggestReplyRepository;
 
 
@@ -99,49 +97,10 @@ public class SuggestServiceImpl implements SuggestService {
         return suggestRepository.getCurrentSequence();
     }
 
-    // 좋아요 갯수
-    @Override
-    public Integer getLikeCount(Long suggestId) {
-        return suggestReplyRepository.getReplyCount(suggestId).intValue();
-    }
-
     // 댓글 갯수
     @Override
     public Integer getReplyCount(Long suggestId) {
-        return suggestLikeRepository.getSuggestLikeCount(suggestId).intValue();
-    }
-
-    //하트 ++
-    @Override
-    public void heartUp(Long memberId, Long suggestId) {
-        memberRepository.findById(memberId).ifPresent(
-            member -> suggestRepository.findById(suggestId).ifPresent(
-                    suggest -> {
-                        SuggestLike suggestLike = SuggestLike.builder()
-                                .member(member)
-                                .suggest(suggest)
-                                .build();
-                        suggestLikeRepository.save(suggestLike);
-                        suggest.setSuggestLikeCount(getLikeCount(suggestId));
-                    }
-            )
-        );
-    }
-
-//    하트 --
-    @Override
-    public void heartDown(Long memberId, Long suggestId) {
-        suggestLikeRepository.deleteByMemberIdAndSuggestId(suggestId,memberId);
-        suggestRepository.findById(suggestId).ifPresent(
-                suggest -> suggest.setSuggestLikeCount(getLikeCount(suggestId))
-        );
-    }
-
-//    하트 체크
-    @Override
-    public Boolean heartCheck(Long memberId, Long suggestId) {
-        Long member = suggestLikeRepository.findMemberBySuggestLike(suggestId, memberId);
-        return member == 0;
+        return suggestReplyRepository.getReplyCount(suggestId).intValue();
     }
 
 }
