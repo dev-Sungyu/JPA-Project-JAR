@@ -83,7 +83,7 @@ public interface SuggestService {
 
     default Member toMemberEntity(MemberDTO memberDTO) {
         return Member.builder()
-                .memberId(memberDTO.getMemberId())
+                .id(memberDTO.getMemberId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberName(memberDTO.getMemberName())
                 .memberNickname(memberDTO.getMemberNickname())
