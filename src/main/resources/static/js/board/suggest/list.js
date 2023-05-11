@@ -4,10 +4,11 @@ SuggestDTOS.forEach((suggestDTO, i) => {
     let text = `
                                         <li class="content-li">
                                                 <div class="content-flex">
-                                                    <a href="/board/suggest/detail/${suggestDTO.id}">
+                                                    
                                                         <div class="content-box">
                                                             <div class="content-image-box">
                                                                 <span class="content-image-layout">
+                                                                    <a href="/board/suggest/detail/${suggestDTO.id}">
                                                                     <picture>
                                          `
     if(suggestDTO.fileDTOS.length == 0){
@@ -20,8 +21,9 @@ SuggestDTOS.forEach((suggestDTO, i) => {
         }
     }
     text +=             `                            </picture>
+                                                            </a>
                                                                     <div class="heart-box">
-                                                                        <button class="heart-layout">
+                                                                        <button class="heart-layout" id="heart${suggestDTO.id}">
                                                                             <span class="auto-flex no-heart">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     width="24" height="24" fill="none"
@@ -52,7 +54,7 @@ SuggestDTOS.forEach((suggestDTO, i) => {
                                                             </div>
                                                             <div class="liked-box">
                                                                 <div class="flex">
-                                                                    <div class="liked-layout" id="heart${i}">
+                                                                    <div class="liked-layout">
                                                                         <div class="icon-box">
                                                                             <svg xmlns="http://www.w3.org/2000/svg"
                                                                                 width="12" height="12" fill="none"
@@ -73,7 +75,6 @@ SuggestDTOS.forEach((suggestDTO, i) => {
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </a>
                                                 </div>
                                             </li>
     `;
