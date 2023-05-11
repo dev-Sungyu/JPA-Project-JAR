@@ -2,6 +2,7 @@ package com.app.projectjar.repository.inquire;
 
 
 import com.app.projectjar.entity.inquire.Inquire;
+import com.app.projectjar.entity.notice.Notice;
 import com.app.projectjar.repository.inquire.InquireRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -29,14 +30,15 @@ public class InquireRepositoryTests {
 
     //문의사항 리스트
     @Test
-    public void findAllWithPagingTest(){
+    public void findAllWithPagingTest() {
         PageRequest pageRequest = PageRequest.of(0,10);
-        inquireRepository.findAllWithPaging(pageRequest).stream().map(Inquire::toString).forEach(log::info);
+        inquireRepository.findAllWithPaging_QueryDSL(pageRequest).stream().map(Inquire::toString).forEach(log::info);
     }
 
     //문의사항 상세보기
     @Test
     public void findByInquireIdTest(){ inquireRepository.findById(2L).map(Inquire::toString).ifPresent(log::info); }
+
 
     //문의사항 삭제하기
     @Test

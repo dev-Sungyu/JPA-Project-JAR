@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 public interface InquireQueryDsl {
 //    전체조회
-    public Page<Inquire> findAllWithPaging(Pageable pageable);
+    public Page<Inquire> findAllWithPaging_QueryDSL(Pageable pageable);
 
 
 
