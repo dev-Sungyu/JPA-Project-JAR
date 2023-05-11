@@ -44,7 +44,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
     public Long getReplyCount(Long suggestId) {
         return query.select(suggestReply.count())
                 .from(suggestReply)
-                .where(suggestReply.id.eq(suggestId))
+                .where(suggestReply.suggest.id.eq(suggestId))
                 .fetchOne();
     }
 }

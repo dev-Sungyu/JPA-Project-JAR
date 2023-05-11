@@ -15,6 +15,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,7 +30,7 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
 
     private final SuggestRepository suggestRepository;
 
-    @Override
+    @Override @Transactional
     public void insertReply(ReplyRequestDTO replyRequestDTO) {
         memberRepository.findById(replyRequestDTO.getMemberId()).ifPresent(
                 member ->
@@ -41,17 +42,20 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
                                             .replyContent(replyRequestDTO.getReplyContent())
                                             .build();
                                     suggestReplyRepository.save(suggestReply);
-                                    suggest.setSuggestReplyCount(suggestReplyRepository.getReplyCount(replyRequestDTO.getBoardId()).intValue());
+                                    suggest.setSuggestReplyCount(getReplyCount(replyRequestDTO.getBoardId()));
                                     suggestRepository.save(suggest);
                                 }
                         )
         );
     }
 
-    @Override
+    @Override @Transactional
     public void modifyReply(Long replyId, String replyContent) {
         suggestReplyRepository.findById(replyId).ifPresent(
-                suggestReply -> suggestReply.setSuggestReplyContent(replyContent)
+                suggestReply -> {
+                    suggestReply.setSuggestReplyContent(replyContent);
+                    suggestReplyRepository.save(suggestReply);
+                }
         );
     }
 
@@ -62,7 +66,7 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
                     suggestReplyRepository.delete(suggestReply);
                     suggestRepository.findById(suggestReply.getSuggest().getId()).ifPresent(
                             suggest -> {
-                                suggest.setSuggestReplyCount(suggestReplyRepository.getReplyCount(replyId).intValue());
+                                suggest.setSuggestReplyCount(getReplyCount(replyId));
                                 suggestRepository.save(suggest);
                             }
                     );
@@ -76,5 +80,10 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
 
         List<ReplyDTO> replyDTOS = suggestReplyList.getContent().stream().map(this::toReplyDTO).collect(Collectors.toList());
         return new SliceImpl<>(replyDTOS, pageable, suggestReplyList.hasNext());
+    }
+
+    @Override
+    public Integer getReplyCount(Long suggestId) {
+        return suggestReplyRepository.getReplyCount(suggestId).intValue();
     }
 }
