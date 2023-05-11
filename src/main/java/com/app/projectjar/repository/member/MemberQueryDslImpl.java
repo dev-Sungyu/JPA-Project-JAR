@@ -74,7 +74,12 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
         return Optional.ofNullable(member);
     }
 
-//    회원 정보 수정
+    @Override
+    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail) {
+        return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    }
+
+    //    회원 정보 수정
     @Override
     public void updateMember_QueryDSL(Member memberInfo) {
                 query.update(member).

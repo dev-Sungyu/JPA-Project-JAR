@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Member member = memberRepository.findByMemberEmailForPassword_QueryDSL(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+        Member member = memberRepository.findByMemberEmail_QueryDSL(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
         return UserDetail.builder()
                 .memberId(member.getId())
                 .memberEmail(member.getMemberEmail())
@@ -41,5 +41,16 @@ public class MemberServiceImpl implements MemberService {
         memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
         memberDTO.setMemberType(Role.MEMBER);
         memberRepository.save(toMemberEntity(memberDTO));
+    }
+
+    @Override
+    public Long checkEmail(String memberEmail) {
+//        return memberRepository.overlapByMemberEmail_QueryDSL(memberEmail).ifPresent(member -> toMemberEntity(memberEmail));
+        return null;
+    }
+
+    @Override
+    public Long checkPhoneNumber(String memberPhoneNumber) {
+        return null;
     }
 }
