@@ -105,11 +105,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let memberId = [[${userDetail.memberId}]];
+    let userDetail = [[${userDetail}]];
+    let memberId;
+    if(userDetail){
+        memberId = userDetail.memberId;
+    }
+
     let SuggestDTOS = [[${suggestDTOS}]];
-
-
-    console.log(memberId);
 
     if(SuggestDTOS[0].boardType == "PERSONAL"){
         $(".group").removeClass("active");
