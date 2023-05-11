@@ -26,16 +26,8 @@ public interface SuggestService {
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
-    // 좋아요 갯수
-    public Integer getLikeCount(Long suggestId);
     // 댓글 갯수
     public Integer getReplyCount(Long suggestId);
-    // 좋아요 ++
-    public void heartUp(Long memberId, Long suggestId);
-    // 좋아요 --
-    public void heartDown(Long memberId, Long suggestId);
-    // 좋아요 한 게시물인지 검사
-    public Boolean heartCheck(Long memberId, Long suggestId);
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()
