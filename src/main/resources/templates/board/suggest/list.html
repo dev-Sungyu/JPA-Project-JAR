@@ -107,7 +107,7 @@
 <script th:inline="javascript">
     let userDetail = [[${userDetail}]];
     let memberId;
-    if(userDetail){
+    if(!userDetail){
         memberId = userDetail.memberId;
     }
 
