@@ -80,7 +80,7 @@ public interface SuggestReplyService {
                 .badgeType(member.getBadgeType())
                 .fileDTO(toFileDTO(member.getMemberFile()))
                 .memberEmail(member.getMemberEmail())
-                .memberId(member.getId())
+                .id(member.getId())
                 .memberName(member.getMemberName())
                 .memberNickname(member.getMemberNickname())
                 .memberStatus(member.getMemberStatus())

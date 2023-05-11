@@ -102,12 +102,13 @@ public class SecurityConfig {
                 .antMatchers(IGNORE_BOARD_NOTICE_DETAIL_PATH)
 
                 /* 미안해요 !여러분 여기다 경로를 올리면 다 접근이 가능해서 사용이 가능해질 겁니다!. */
-                .antMatchers(MYPAGE_PATH)
+//                .antMatchers(MYPAGE_PATH)
                 .antMatchers(BOARD_SUGGEST_WRITE_PATH)
                 .antMatchers(BOARD_DIARY_WRITE_PATH)
                 .antMatchers(BOARD_INQUIRE_WRITE_PATH)
                 .antMatchers(ADMIN_PATH)
                 /* 여기 까지 */
+                
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
     }
 
@@ -119,7 +120,7 @@ public class SecurityConfig {
 //                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasRole(Role.MEMBER.name())
 //                .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
 //                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasRole(Role.MEMBER.name())
-//                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
                 .and()
                 .csrf().disable()
                 .exceptionHandling()

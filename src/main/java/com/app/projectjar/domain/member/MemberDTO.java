@@ -38,16 +38,4 @@ public class MemberDTO {
         this.memberType = memberType;
         this.fileDTO = fileDTO;
     }
-
-    @Builder
-    public MemberDTO(Long memberId, String memberEmail, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, FileDTO fileDTO) {
-        this.memberId = memberId;
-        this.memberEmail = memberEmail;
-        this.memberPhoneNumber = memberPhoneNumber;
-        this.memberName = memberName;
-        this.memberNickname = memberNickname;
-        this.memberStatus = memberStatus;
-        this.badgeType = badgeType;
-        this.fileDTO = fileDTO;
-    }
 }
