@@ -44,7 +44,7 @@ public interface SuggestService {
 
     default MemberDTO toMemberDTO(Member member) {
         return MemberDTO.builder()
-                .memberId(member.getId())
+                .memberId(member.getMemberId())
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
                 .memberName(member.getMemberName())
@@ -83,7 +83,7 @@ public interface SuggestService {
 
     default Member toMemberEntity(MemberDTO memberDTO) {
         return Member.builder()
-                .id(memberDTO.getMemberId())
+                .memberId(memberDTO.getMemberId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberName(memberDTO.getMemberName())
                 .memberNickname(memberDTO.getMemberNickname())
@@ -126,7 +126,7 @@ public interface SuggestService {
     default LikeDTO toSuggestLikeDTO(SuggestLike suggestLike){
         return LikeDTO.builder()
                 .boardId(suggestLike.getSuggest().getId())
-                .memberId(suggestLike.getMember().getId())
+                .memberId(suggestLike.getMember().getMemberId())
                 .likeId(suggestLike.getId())
                 .build();
     }
