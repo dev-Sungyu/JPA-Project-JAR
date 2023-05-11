@@ -43,6 +43,7 @@ public class InquireRepositoryTests {
     //문의사항 삭제하기
     @Test
     public void deleteTest(){ inquireRepository.findById(2L).ifPresent(inquire -> inquireRepository.delete(inquire));}
+    
 
     //문의사항 수정하기
     @Test

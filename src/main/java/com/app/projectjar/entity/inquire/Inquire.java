@@ -30,6 +30,7 @@ public class Inquire extends Period {
 
     public void setInquireContent(String inquireContent){ this.inquireContent = inquireContent; }
 
+    @Builder
     public Inquire(Long id, String inquireTitle, String inquireContent){
         this.id = id;
         this.inquireTitle = inquireTitle;

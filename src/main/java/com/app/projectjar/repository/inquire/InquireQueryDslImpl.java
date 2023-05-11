@@ -18,7 +18,7 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<Inquire> findAllWithPaging(Pageable pageable){
+    public Page<Inquire> findAllWithPaging_QueryDSL(Pageable pageable){
         List<Inquire> foundInquire = query.select(inquire)
                 .from(inquire)
                 .orderBy(inquire.id.desc())
