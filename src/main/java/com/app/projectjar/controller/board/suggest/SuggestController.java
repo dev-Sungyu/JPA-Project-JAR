@@ -31,7 +31,7 @@ public class SuggestController {
     @PostMapping("write")
     public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
-        Long memberId = userDetail.getMemberId();
+        Long memberId = userDetail.getId();
         suggestService.register(suggestDTO, memberId);
         if(suggestDTO.getBoardType().name().equals("GROUP")){
             return new RedirectView("/board/suggest/list/group");
