@@ -28,7 +28,7 @@ public class NoticeController {
         Page<NoticeDTO> noticePage = noticeService.getAllNoticesWithPaging(page - 1);
         List<String> noticeTitles = noticePage.stream().map(NoticeDTO::getNoticeTitle).collect(Collectors.toList());
         model.addAttribute("pageDTO",new PageDTO(noticePage));
-        model.addAttribute("noticeTitles", noticeTitles);
+        model.addAttribute("noticeDTOS", noticePage.getContent());
         return "board/notice/list";
     }
 
