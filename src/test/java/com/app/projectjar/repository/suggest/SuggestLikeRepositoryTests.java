@@ -1,7 +1,5 @@
 package com.app.projectjar.repository.suggest;
 
-import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -52,7 +50,7 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void deleteByMemberId() {
-        Member member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
+        Long member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
         suggestLikeRepository.deleteByMemberIdAndSuggestId(40L, 1L);
         assertThat(member).isNotNull();
     }
