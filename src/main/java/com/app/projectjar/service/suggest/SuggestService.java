@@ -26,8 +26,6 @@ public interface SuggestService {
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
-    // 댓글 갯수
-    public Integer getReplyCount(Long suggestId);
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()

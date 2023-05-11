@@ -28,8 +28,7 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     public Long findMemberBySuggestLike_QueryDsl(Long suggestId, Long memberId) {
         return query.select(suggestLike.member.count())
                 .from(suggestLike)
-                .where(suggestLike.suggest.id.eq(suggestId))
-                .where(suggestLike.member.id.eq(memberId))
+                .where(suggestLike.suggest.id.eq(suggestId).and(suggestLike.member.id.eq(memberId)))
                 .fetchOne();
     }
 
