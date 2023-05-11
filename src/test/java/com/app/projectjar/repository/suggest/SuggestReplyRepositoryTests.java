@@ -34,40 +34,39 @@ public class SuggestReplyRepositoryTests {
     @Autowired
     private MemberFIleRepository memberFIleRepository;
 
-    @Test
-    public void test() {
-        memberRepository.findById(2L).ifPresent(
-                member ->
-                        memberFIleRepository.save(new MemberFile(
-                                "테스트.png",
-                                UUID.randomUUID().toString(),
-                                "2023/05/06",
-                                REPRESENTATIVE,
-                                member
-                        ))
-        );
-    }
+//    @Test
+//    public void test() {
+//        memberRepository.findById(2L).ifPresent(
+//                member ->
+//                        memberFIleRepository.save(new MemberFile(
+//                                "테스트.png",
+//                                UUID.randomUUID().toString(),
+//                                "2023/05/06",
+//                                REPRESENTATIVE,
+//                                member
+//                        ))
+//        );
+//    }
 
 
     @Test
     public void saveTest() {
-        suggestRepository.findById(23L).ifPresent(
+        suggestRepository.findById(129L).ifPresent(
                 suggest ->
-                        memberRepository.findById(3L).ifPresent(
-                                member ->
-                                        suggestReplyRepository.save(new SuggestReply("테스트 댓글1",suggest, member))
-                        )
+                        memberRepository.findById(1L).ifPresent(
+                                member -> {
+                                    for (int i = 0; i < 10; i++) {
+                                        suggestReplyRepository.save(new SuggestReply("테스트 댓글" + (i + 1), suggest, member));
+                                    }
+                                }
+                                )
         );
     }
 
     @Test
     public void findAllBySuggestWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(0,10);
-        suggestReplyRepository.findAllBySuggestWithPaging(23L,pageRequest)
-                .stream()
-                .forEach(
-                        replyDTO -> log.info(replyDTO.toString())
-                );
+        PageRequest pageRequest = PageRequest.of(0,5);
+        suggestReplyRepository.findAllBySuggestWithPaging(129L,pageRequest).forEach(suggestReply -> log.info(suggestReply.toString()));
     }
 
     @Test

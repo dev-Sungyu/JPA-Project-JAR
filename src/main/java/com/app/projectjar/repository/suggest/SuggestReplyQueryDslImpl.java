@@ -1,17 +1,18 @@
 package com.app.projectjar.repository.suggest;
 
 
-import com.app.projectjar.domain.QReplyDTO;
-import com.app.projectjar.domain.ReplyDTO;
+import com.app.projectjar.entity.member.QMember;
+import com.app.projectjar.entity.suggest.SuggestReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 
 import java.util.List;
 
-import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
+import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
 @RequiredArgsConstructor
@@ -19,30 +20,24 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<ReplyDTO> findAllBySuggestWithPaging(Long suggestId, Pageable pageable) {
-        List<ReplyDTO> foundReply = query.select(
-                new QReplyDTO(
-                        suggestReply.id,
-                        suggestReply.replyContent,
-                        suggestReply.updatedDate,
-                        suggestReply.member.id,
-                        suggestReply.member.memberNickname,
-                        suggestReply.member.memberFile.fileOriginalName,
-                        suggestReply.member.memberFile.fileUuid,
-                        suggestReply.member.memberFile.filePath,
-                        suggestReply.member.badgeType
-                        ))
+    public Slice<SuggestReply> findAllBySuggestWithPaging(Long suggestId, Pageable pageable) {
+        List<SuggestReply> foundReply = query.select(suggestReply)
                 .from(suggestReply)
-            .leftJoin(suggestReply.member.memberFile, memberFile)
+                .leftJoin(suggestReply.member, member)
+                .fetchJoin()
                 .where(suggestReply.suggest.id.eq(suggestId))
                 .orderBy(suggestReply.id.desc())
                 .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
+                .limit(pageable.getPageSize() + 1)
                 .fetch();
 
-        Long count = getReplyCount(suggestId);
+        boolean hasNext = false;
+        if (foundReply.size() > pageable.getPageSize()) {
+            foundReply.remove(pageable.getPageSize());
+            hasNext = true;
+        }
 
-        return new PageImpl<>(foundReply,pageable,count);
+        return new SliceImpl<>(foundReply, pageable, hasNext);
     }
 
     @Override
