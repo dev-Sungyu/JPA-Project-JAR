@@ -25,21 +25,41 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @RequiredArgsConstructor @Slf4j
 public class SecurityConfig {
 //    메인
-    private static final String MAIN_PATH = "/main/**";
+    private static final String IGNORE_MAIN_PATH = "/main/**";
 //    관리자
     private static final String ADMIN_PATH = "/admin/**";
-//    게시판
-    private static final String BOARD_PATH = "/board/**";
-//    서비스
-    private static final String SERVICE_PATH = "Service/**";
-//    faq
-    private static final String FAQ_PATH = "Faq/**";
 //    마이 페이지
     private static final String MYPAGE_PATH = "/mypage/**";
+//    게시판
+    private static final String IGNORE_BOARD_CHALLENGE_PATH = "/board/challenge/**";
+
+    private static final String IGNORE_BOARD_GROUP_CHALLENGE_PATH = "/board/group-challenge/**";
+
+    private static final String IGNORE_BOARD_SUGGEST_LIST_PATH = "/board/suggest/list";
+    private static final String IGNORE_BOARD_SUGGEST_DETAIL_PATH = "/board/suggest/detail";
+    private static final String BOARD_SUGGEST_WRITE_PATH = "board/suggest/write";
+
+    private static final String IGNORE_BOARD_DIARY_LIST_PATH = "/board/diary/list";
+    private static final String IGNORE_BOARD_DIARY_DETAIL_PATH = "/board/detail/list";
+    private static final String BOARD_DIARY_WRITE_PATH = "/board/write/list";
+
+    private static final String IGNORE_BOARD_INQUIRE_LIST_PATH = "/board/inquire/list";
+    private static final String IGNORE_BOARD_INQUIRE_DETAIL_PATH = "/board/inquire/detail";
+    private static final String BOARD_INQUIRE_WRITE_PATH = "/board/inquire/write";
+
+    private static final String IGNORE_BOARD_NOTICE_LIST_PATH = "/board/notice/list";
+    private static final String IGNORE_BOARD_NOTICE_DETAIL_PATH = "/board/notice/detail";
+
+//    서비스
+    private static final String IGNORE_SERVICE_PATH = "/service/**";
+//    faq
+    private static final String IGNORE_FAQ_PATH = "/faq/**";
 
 //    파비콘
     private static final String IGNORE_FAVICON = "/favicon.ico";
 
+//    static 하위 폴더 (css, js, img)
+    private static final String IGNORE_RESOURCE_PATH = "**/resource/**";
 
 //    로그인
     private static final String LOGIN_PAGE = "/member/login";
@@ -67,10 +87,20 @@ public class SecurityConfig {
 //        즉, 권한이 없어도 사용이 가능한 경로
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON) //favicon은 필터에서 제외
-//                .antMatchers(MAIN_PATH)
-//                .antMatchers(BOARD_PATH)
-//                .antMatchers(SERVICE_PATH)
-//                .antMatchers(FAQ_PATH)
+                .antMatchers(IGNORE_RESOURCE_PATH)
+                .antMatchers(IGNORE_SERVICE_PATH)
+                .antMatchers(IGNORE_FAQ_PATH)
+                .antMatchers(IGNORE_MAIN_PATH)
+                .antMatchers(IGNORE_BOARD_CHALLENGE_PATH)
+                .antMatchers(IGNORE_BOARD_GROUP_CHALLENGE_PATH)
+                .antMatchers(IGNORE_BOARD_SUGGEST_LIST_PATH)
+                .antMatchers(IGNORE_BOARD_SUGGEST_DETAIL_PATH)
+                .antMatchers(IGNORE_BOARD_DIARY_LIST_PATH)
+                .antMatchers(IGNORE_BOARD_DIARY_DETAIL_PATH)
+                .antMatchers(IGNORE_BOARD_INQUIRE_LIST_PATH)
+                .antMatchers(IGNORE_BOARD_INQUIRE_DETAIL_PATH)
+                .antMatchers(IGNORE_BOARD_NOTICE_LIST_PATH)
+                .antMatchers(IGNORE_BOARD_NOTICE_DETAIL_PATH)
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
     }
 
@@ -82,9 +112,13 @@ public class SecurityConfig {
                 .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
                 .antMatchers(ADMIN_PATH).authenticated()
 //                게시물 권한 설정
-                .antMatchers(BOARD_PATH).hasRole(Role.MEMBER.name())
-//                인가 및 인증된  -> 마이페이지 및 추가 페이지 등록해야
-
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_DIARY_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasAnyRole(Role.MEMBER.name())
+                .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
                 .and()
                 .csrf().disable()
                 .exceptionHandling()
@@ -97,7 +131,7 @@ public class SecurityConfig {
         http
                 .formLogin()
                 .loginPage(LOGIN_PAGE)
-                .usernameParameter("memberId")
+                .usernameParameter("memberEmail")
                 .passwordParameter("memberPassword")
                 .loginProcessingUrl(LOGIN_PROCESSING_URL)
                 .successHandler(authenticationSuccessHandler) // 로그인 성공 시

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 
     @GetMapping("")
-    public void main() {
-    }
+    public void main() {}
+
     @GetMapping("search")
     public void boardSearch() {
     }

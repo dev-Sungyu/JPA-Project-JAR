@@ -13,7 +13,7 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
-    private static final String REDIRECT_URL = "/main";
+    private static final String REDIRECT_URL = "/main/";
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
         response.sendRedirect(REDIRECT_URL);
