@@ -1,5 +1,7 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.entity.challenge.ChallengeAttend;
+import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
 import org.springframework.data.domain.Page;
@@ -50,17 +52,24 @@ public interface MemberQueryDsl {
 
     /* 개인 챌린지 */
 
-//    내가 완료한 개인 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건 / 참여한 인원 수 + 댓글 개수) + 페이징 처리
-//    public page<Challenge> findByAllWithPage(Pageable pageable);
+//    내가 완료한 개인 챌린지 전체 조회 (완료) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건 / 참여한 인원 수 + 댓글 개수) + 페이징 처리
+    public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable);
 
+//    내가 완료한 개인 챌린지 전체 조회 (종료된 챌린지)
+    public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable);
 
-//    내가 완료한 개인 챌린지 전체 조회 (종료)
+    public Long getChallengeReplyCount_QueryDsl(Long challengeId);
 
 
     /* 그룹 챌린지 */
 
 //    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
+public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
 
+//    내가 완료 중인 그룹 챌린지 전체 조회 (종료된)
+public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
+
+    public Long getGroupChallengeReplyCount_QueryDsl(Long challengeId);
 //    내가 완료한 그룹 챌린지 전체 조회 (종료)
 
 

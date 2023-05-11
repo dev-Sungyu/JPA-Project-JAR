@@ -136,6 +136,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         List<Suggest> products = query.select(suggest)
                 .from(suggest)
                 .where(suggestTitleLike)
+                .leftJoin(suggest.suggestFiles, suggestFile)
                 .orderBy(suggest.id.desc())
                 .fetch();
 

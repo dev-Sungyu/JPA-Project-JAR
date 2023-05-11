@@ -69,6 +69,7 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
 
         List<GroupChallenge> products = query.select(groupChallenge)
                 .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
                 .where(groupChallengeTitleLike)
                 .orderBy(groupChallenge.id.desc())
                 .fetch();

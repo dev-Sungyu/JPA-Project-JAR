@@ -1,19 +1,29 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.entity.challenge.ChallengeAttend;
+import com.app.projectjar.entity.challenge.QChallengeReply;
+import com.app.projectjar.entity.file.challenge.QChallengeFile;
+import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
+import com.app.projectjar.entity.groupChallenge.QGroupChallengeReply;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.BadgeType;
+import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
+import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
 
@@ -101,7 +111,130 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     }
 
-//    뱃지 수정
+//    개인 챌린지 목록(페이징, 진행중)
+
+    @Override
+    public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable) {
+        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
+                .join(challengeAttend.member, member)
+                .leftJoin(challengeAttend.challenge, challenge)
+                .where(challengeAttend.member.id.eq(memberId))
+                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("OPEN")))
+                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
+                .orderBy(challengeAttend.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(challengeAttend.count())
+                .from(challengeAttend)
+                .join(challengeAttend.member, member)
+                .where(member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundChallengeAttend, pageable, count);
+    }
+
+//    내가 완료한 개인 챌린지 전체 조회 (종료된 챌린지)
+    @Override
+    public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable) {
+        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
+                .join(challengeAttend.member, member)
+                .leftJoin(challengeAttend.challenge, challenge)
+                .where(challengeAttend.member.id.eq(memberId))
+                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("PRIVATE")))
+                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
+                .orderBy(challengeAttend.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(challengeAttend.count())
+                .from(challengeAttend)
+                .join(challengeAttend.member, member)
+                .where(member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundChallengeAttend, pageable, count);
+    }
+
+//    개인 챌린지 목록(댓글 갯수)
+    @Override
+    public Long getChallengeReplyCount_QueryDsl(Long challengeId) {
+        QChallengeReply challengeReply = QChallengeReply.challengeReply;
+
+        return query.select(challengeReply.count())
+                .from(challengeReply)
+                .where(challengeReply.challenge.id.eq(challengeId))
+                .fetchOne();
+}
+//    그룹 챌린지 목록(페이징, 진행중)
+
+    @Override
+    public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
+
+        List<GroupChallengeAttend> foundGroupChallengeAttend = query.selectFrom(groupChallengeAttend)
+                .join(groupChallengeAttend.member, member)
+                .leftJoin(groupChallengeAttend.groupChallenge, groupChallenge)
+                .where(groupChallengeAttend.member.id.eq(memberId))
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("OPEN")))
+                .where(groupChallenge.startDate.before(LocalDate.now()))
+                .where(groupChallenge.endDate.after(LocalDate.now()))
+                .orderBy(groupChallengeAttend.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .join(groupChallengeAttend.member, member)
+                .where(member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundGroupChallengeAttend, pageable, count);
+    }
+
+//    그룹 챌린지 목록(페이징, 종료된)
+    @Override
+    public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
+
+        List<GroupChallengeAttend> foundGroupChallengeAttend = query.selectFrom(groupChallengeAttend)
+                .join(groupChallengeAttend.member, member)
+                .leftJoin(groupChallengeAttend.groupChallenge, groupChallenge)
+                .where(groupChallengeAttend.member.id.eq(memberId))
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("PRIVATE")))
+                .where(groupChallenge.startDate.before(LocalDate.now()))
+                .where(groupChallenge.endDate.after(LocalDate.now()))
+                .orderBy(groupChallengeAttend.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .join(groupChallengeAttend.member, member)
+                .where(member.id.eq(memberId))
+                .fetchOne();
+
+        return new PageImpl<>(foundGroupChallengeAttend, pageable, count);
+    }
+
+//    그룹 챌린지 목록(댓글 갯수)
+    @Override
+    public Long getGroupChallengeReplyCount_QueryDsl(Long groupChallengeId) {
+        QGroupChallengeReply groupChallengeReply = QGroupChallengeReply.groupChallengeReply;
+
+        return query.select(groupChallengeReply.count())
+                .from(groupChallengeReply)
+                .where(groupChallengeReply.groupChallenge.id.eq(groupChallengeId))
+                .fetchOne();
+}
+
+
+
+
+
+    //    뱃지 수정
     @Override
     public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType) {
 
@@ -139,7 +272,9 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                     .where(member.id.eq(id))
                     .execute();
     }
-//------------------------------------------ 관리자 페이지 -----------------------------------------------------
+
+
+    //------------------------------------------ 관리자 페이지 -----------------------------------------------------
     //    관리자 페이지 회원 전체 조회
     @Override
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable) {

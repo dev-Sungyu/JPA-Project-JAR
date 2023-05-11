@@ -25,6 +25,9 @@ public class Challenge extends Board {
     @ColumnDefault("'PRIVATE'")
     private ChallengeType challengeStatus;
 
+    @ColumnDefault(value = "0")
+    private Integer challengeReplyCount;
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
     private List<ChallengeFile> challengeFiles;
 
@@ -32,11 +35,11 @@ public class Challenge extends Board {
         super(boardTitle, boardContent);
         this.challengeStatus = challengeStatus;
     }
-    public Challenge(String boardTitle, String boardContent, ChallengeType challengeStatus, List<ChallengeFile> challengeFiles) {
+    public Challenge(String boardTitle, String boardContent, ChallengeType challengeStatus, List<ChallengeFile> challengeFiles, Integer challengeReplyCount) {
         super(boardTitle, boardContent);
         this.challengeStatus = challengeStatus;
         this.challengeFiles = challengeFiles;
-
+        this.challengeReplyCount = challengeReplyCount;
 
     }
 }
