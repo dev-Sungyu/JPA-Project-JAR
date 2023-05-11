@@ -1,17 +1,24 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.entity.challenge.ChallengeAttend;
 import com.app.projectjar.entity.file.member.MemberFile;
+import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
+import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
+import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static com.app.projectjar.type.FileType.REPRESENTATIVE;
 
@@ -26,6 +33,11 @@ public class MemberRepositoryTests {
     @Autowired
     private MemberFIleRepository memberFIleRepository;
 
+    @Autowired
+    private GroupChallengeAttendRepository groupChallengeAttendRepository;
+
+    @Autowired
+    private GroupChallengeRepository groupChallengeRepository;
 
 //      추가
 //    @Test
@@ -41,6 +53,14 @@ public class MemberRepositoryTests {
     public void findByMemberId_QueryDSLTest() {
         memberRepository.findByMemberId_QueryDSL(1L).map(Member::toString).ifPresent(log::info);
     }
+
+    @Test
+    public void findAllWithPageAndChallenges_QueryDslTest(){
+        PageRequest pageRequest = PageRequest.of(0,10);
+        Long memberId = 1L;
+        memberRepository.findAllWithPageAndChallenges_QueryDsl(memberId, pageRequest).map(ChallengeAttend::toString).forEach(log::info);
+    }
+
 
 //    수정
     @Test
@@ -99,4 +119,26 @@ public class MemberRepositoryTests {
     }
 
 
-}
+
+
+
+
+        @Test
+        void findAllWithPageAndGroupChallenges_QueryDslTest() {
+            Long memberId = 5L;
+            PageRequest pageable = PageRequest.of(0, 10);
+
+            Page<GroupChallengeAttend> resultPage = memberRepository.findAllWithPageAndGroupChallenges_QueryDsl(memberId, pageable);
+
+            List<GroupChallengeAttend> groupChallengeAttendList = resultPage.getContent();
+            for (GroupChallengeAttend groupChallengeAttend : groupChallengeAttendList) {
+                log.info(groupChallengeAttend.toString());
+            }
+
+            long totalCount = resultPage.getTotalElements();
+            System.out.println("Total Count: " + totalCount);
+        }
+
+    }
+
+

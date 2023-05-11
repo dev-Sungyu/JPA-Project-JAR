@@ -68,6 +68,7 @@ public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
         List<Challenge> products = query.select(challenge)
                 .from(challenge)
                 .where(challengeTitleLike)
+                .leftJoin(challenge.challengeFiles, challengeFile)
                 .orderBy(challenge.id.desc())
                 .fetch();
 

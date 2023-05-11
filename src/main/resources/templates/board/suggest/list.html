@@ -105,7 +105,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let memberId = [[${session.memberId}]];
+    let memberId = 1;
     let SuggestDTOS = [[${suggestDTOS}]];
 
     if(SuggestDTOS[0].boardType == "PERSONAL"){
@@ -116,55 +116,8 @@
         $(".personal").removeClass("active");
     }
 </script>
+<script src="/js/board/suggest/like-service.js"></script>
 <script src="/js/board/suggest/list.js"></script>
-<script>
-
-    let $pageForm = $("form[name='pageForm']");
-
-    $("a.changePage").on("click", function (e) {
-        e.preventDefault();
-        $pageForm.find("input[name='page']").val($(this).attr("href"));
-        $pageForm.submit();
-    });
-
-const $heartButton = $(".heart-layout");
-const $noHeart = $(".no-heart");
-const $heartUp = $(".heart-up");
-
-$heartButton.each((i, e) => {
-
-    $(e).click(() => {
-        if($($noHeart[i]).hasClass("heart-active")){
-            $($heartUp[i]).hide();
-            $($noHeart[i]).show();
-            $($noHeart[i]).removeClass("heart-active");
-        }else {
-            $($noHeart[i]).addClass("heart-active");
-            $($heartUp[i]).show();
-            $($noHeart[i]).hide();
-        }
-    });
-});
-
-$(".btn").each((i, e) => {
-
-    $(e).click(() => {
-        if(!$(e).hasClass("active")){
-            $(".btn").removeClass("active");
-            $(e).addClass("active");
-        }else {
-            $(e).removeClass("active");
-        }
-    });
-});
-
-const $page = $(".paging-border-none");
-
-$page.each((i, e) => {
-    $(e).click(() => {
-        $page.removeClass("paging-active");
-        $(e).addClass("paging-active");
-    });
-});
-</script>
+<script src="/js/board/suggest/like-button.js"></script>
+<script src="/js/board/suggest/page-button.js"></script>
 </html>

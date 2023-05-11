@@ -1,7 +1,6 @@
 package com.app.projectjar.repository.suggest;
 
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -42,18 +41,18 @@ public class SuggestLikeRepositoryTests {
 
     @Test
     public void getSuggestLikeCountTest() {
-        log.info(suggestLikeRepository.getSuggestLikeCount(40L) + "개");
+        log.info(suggestLikeRepository.getSuggestLikeCount_QueryDsl(40L) + "개");
     }
 
     @Test
     public void findMemberBySuggestLikeTest() {
-        log.info(suggestLikeRepository.findMemberBySuggestLike(40L,1L).toString());
+        log.info(suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L,1L).toString());
     }
 
     @Test
     public void deleteByMemberId() {
-        Member member = suggestLikeRepository.findMemberBySuggestLike(40L , 1L);
-        suggestLikeRepository.deleteByMemberIdAndSuggestId(40L, 1L);
+        Member member = suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L , 1L);
+        suggestLikeRepository.deleteByMemberIdAndSuggestId_QueryDsl(40L, 1L);
         assertThat(member).isNotNull();
     }
 
