@@ -21,6 +21,9 @@ public class Suggest extends Board {
     @ColumnDefault(value = "0")
     private Integer suggestLikeCount;
 
+    @ColumnDefault(value= "0")
+    private Integer suggestReplyCount;
+
     @NotNull
     @Enumerated(EnumType.STRING)
     private BoardType boardType;
@@ -40,11 +43,11 @@ public class Suggest extends Board {
         this.suggestFiles = suggestFiles;
     }
 
-    public void addSuggestFile(SuggestFile suggestFile) {
-        this.suggestFiles.add(suggestFile);
+    public void setSuggestLikeCount(Integer suggestLikeCount) {
+        this.suggestLikeCount = suggestLikeCount;
+    }
 
-        if(suggestFile.getSuggest() != this){
-            suggestFile.setSuggest(this);
-        }
+    public void setSuggestReplyCount(Integer suggestReplyCount) {
+        this.suggestReplyCount = suggestReplyCount;
     }
 }

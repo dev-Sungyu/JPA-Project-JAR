@@ -23,8 +23,8 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Member findMemberBySuggestLike(Long suggestId,Long memberId) {
-        return query.select(suggestLike.member)
+    public Long findMemberBySuggestLike(Long suggestId,Long memberId) {
+        return query.select(suggestLike.member.count())
                 .from(suggestLike)
                 .where(suggestLike.suggest.id.eq(suggestId))
                 .where(suggestLike.member.id.eq(memberId))
