@@ -48,4 +48,20 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
                 .execute();
     }
 
+    @Override
+    public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<SuggestLike> foundSuggest = query.select(suggestLike)
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
+                .orderBy(suggestLike.suggest.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        Long count = query.select(suggestLike.count())
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
+                .fetchOne();
+        return new PageImpl<>(foundSuggest, pageable, count);
+    }
+
 }
