@@ -97,12 +97,16 @@
                                             </dl>
                                         </div>
                                         <div class="user-container-box-2" size="64" style="display: flex; align-items: flex-end;">
-                                            <button style="margin-right: 10px;" class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                <span>수정</span>
-                                            </button>
-                                            <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                <span>삭제</span>
-                                            </button>
+                                            <th:block th:if="${not #strings.isEmpty(userDetail)}">
+                                                <th:block th:if="${userDetail.memberId == suggestDTO.memberDTO.memberId}">
+                                                    <button style="margin-right: 10px;" class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                        <span>수정</span>
+                                                    </button>
+                                                    <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                        <span>삭제</span>
+                                                    </button>
+                                                </th:block>
+                                            </th:block>
                                         </div>
                                     </section>
                                     <div class="container-wrapper">
@@ -144,219 +148,87 @@
                                                         <div class="reply-container-box-layout">
                                                             <div class="reply-box-container">
                                                                 <!-- 여기부터 -->
-                                                                <div class="reply-text-box">
-                                                                    <div class="reply-text-box-user">
-                                                                        <section class="reply-user-box">
-                                                                            <div class="reply-user-box-image" size="40">
-                                                                                <span
-                                                                                    class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
-                                                                                    <picture class="reply-user-picture">
-                                                                                        <img src="/image/board/default-user.png"
-                                                                                            sizes="100vw" alt="">
-                                                                                    </picture>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="reply-user-box-info">
-                                                                                <strong
-                                                                                    class="reply-user-box-info-name">강한친구곽두철</strong>
-                                                                                <div class="reply-user-box-info-date">
-                                                                                    2023. 04. 21</div>
-                                                                            </div>
-                                                                            <div class="trophy-box">
-                                                                                <img
-                                                                                    src="/image/mypage/trophy_1.png">
-                                                                            </div>
-                                                                        </section>
-                                                                        <div class="modify-button-box">
-                                                                            <button type="button"
-                                                                                class="btn reply-cancel-button">취소</button>
-                                                                            <button type="button"
-                                                                                class="btn modify-button">수정</button>
-                                                                            <button type="button"
-                                                                                class="btn delete-button">삭제</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="reply-text-box-text">
-                                                                        <div class="reply-text-container" top="16"
-                                                                            right="0" bottom="8" left="0">
-                                                                            <div class="reply-text-container-box-1 reply-text-container-box"
-                                                                                md="Body2">
-                                                                                <div
-                                                                                    class="reply-text-container-box-layout">
-                                                                                    <div class="reply-text-container-box-layout-text"
-                                                                                        size="200">
-                                                                                        <div
-                                                                                            class="real-reply-text-box">
-                                                                                            <p
-                                                                                                class="reply-content-text">
-                                                                                                안녕하세요 페이스북 홍보는 아직도
-                                                                                                추천하시나요? 지금 페이스북 이용자가 많이
-                                                                                                줄었다고 들어서 궁금합니다 ㅎㅎ</p>
-                                                                                        </div>
-                                                                                        <div class="modify-content-box">
-                                                                                            <div
-                                                                                                class="modify-content-layout">
-                                                                                                <input type="text"
-                                                                                                    placeholder="댓글을 입력해주세요."
-                                                                                                    class="reply-modify-content">
-                                                                                                <button type="button"
-                                                                                                    class="confirm-button">완료</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--  -->
-                                                                <!-- 여기부터 -->
-                                                                <div class="reply-text-box">
-                                                                    <div class="reply-text-box-user">
-                                                                        <section class="reply-user-box">
-                                                                            <div class="reply-user-box-image" size="40">
-                                                                                <span
-                                                                                    class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
-                                                                                    <picture class="reply-user-picture">
-                                                                                        <img src="/image/board/default-user.png"
-                                                                                            sizes="100vw" alt="">
-                                                                                    </picture>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="reply-user-box-info">
-                                                                                <strong
-                                                                                    class="reply-user-box-info-name">강한친구곽두철</strong>
-                                                                                <div class="reply-user-box-info-date">
-                                                                                    2023. 04. 21</div>
-                                                                            </div>
-                                                                            <div class="trophy-box">
-                                                                                <img
-                                                                                    src="/image/mypage/trophy_2.png">
-                                                                            </div>
-                                                                        </section>
-                                                                        <div class="modify-button-box">
-                                                                            <button type="button"
-                                                                                class="btn reply-cancel-button">취소</button>
-                                                                            <button type="button"
-                                                                                class="btn modify-button">수정</button>
-                                                                            <button type="button"
-                                                                                class="btn delete-button">삭제</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="reply-text-box-text">
-                                                                        <div class="reply-text-container" top="16"
-                                                                            right="0" bottom="8" left="0">
-                                                                            <div class="reply-text-container-box-1 reply-text-container-box"
-                                                                                md="Body2">
-                                                                                <div
-                                                                                    class="reply-text-container-box-layout">
-                                                                                    <div class="reply-text-container-box-layout-text"
-                                                                                        size="200">
-                                                                                        <div
-                                                                                            class="real-reply-text-box">
-                                                                                            <p
-                                                                                                class="reply-content-text">
-                                                                                                안녕하세요</p>
-                                                                                        </div>
-                                                                                        <div class="modify-content-box">
-                                                                                            <div
-                                                                                                class="modify-content-layout">
-                                                                                                <input type="text"
-                                                                                                    placeholder="댓글을 입력해주세요."
-                                                                                                    class="reply-modify-content">
-                                                                                                <button type="button"
-                                                                                                    class="confirm-button">완료</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!--  -->
-                                                                <!-- 여기부터 -->
-                                                                <div class="reply-text-box">
-                                                                    <div class="reply-text-box-user">
-                                                                        <section class="reply-user-box">
-                                                                            <div class="reply-user-box-image" size="40">
-                                                                                <span
-                                                                                    class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
-                                                                                    <picture class="reply-user-picture">
-                                                                                        <img src="/image/board/default-user.png"
-                                                                                            sizes="100vw" alt="">
-                                                                                    </picture>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="reply-user-box-info">
-                                                                                <strong
-                                                                                    class="reply-user-box-info-name">강한친구곽두철</strong>
-                                                                                <div class="reply-user-box-info-date">
-                                                                                    2023. 04. 21</div>
-                                                                            </div>
-                                                                            <div class="trophy-box">
-                                                                                <img
-                                                                                    src="/image/mypage/trophy_3.png">
-                                                                            </div>
-                                                                        </section>
-                                                                        <div class="modify-button-box">
-                                                                            <button type="button"
-                                                                                class="btn reply-cancel-button">취소</button>
-                                                                            <button type="button"
-                                                                                class="btn modify-button">수정</button>
-                                                                            <button type="button"
-                                                                                class="btn delete-button">삭제</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="reply-text-box-text">
-                                                                        <div class="reply-text-container" top="16"
-                                                                            right="0" bottom="8" left="0">
-                                                                            <div class="reply-text-container-box-1 reply-text-container-box"
-                                                                                md="Body2">
-                                                                                <div
-                                                                                    class="reply-text-container-box-layout">
-                                                                                    <div class="reply-text-container-box-layout-text"
-                                                                                        size="200">
-                                                                                        <div
-                                                                                            class="real-reply-text-box">
-                                                                                            <p
-                                                                                                class="reply-content-text">
-                                                                                                안녕하세요 페이스북 홍보는 아직도
-                                                                                                추천하시나요? 지금 페이스북 이용자가 많이
-                                                                                                줄었다고 들어서 궁금합니다 ㅎㅎ</p>
-                                                                                        </div>
-                                                                                        <div class="modify-content-box">
-                                                                                            <div
-                                                                                                class="modify-content-layout">
-                                                                                                <input type="text"
-                                                                                                    placeholder="댓글을 입력해주세요."
-                                                                                                    class="reply-modify-content">
-                                                                                                <button type="button"
-                                                                                                    class="confirm-button">완료</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+<!--                                                                <div class="reply-text-box">-->
+<!--                                                                    <div class="reply-text-box-user">-->
+<!--                                                                        <section class="reply-user-box">-->
+<!--                                                                            <div class="reply-user-box-image" size="40">-->
+<!--                                                                                <span-->
+<!--                                                                                    class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">-->
+<!--                                                                                    <picture class="reply-user-picture">-->
+<!--                                                                                        <img src="/image/board/default-user.png"-->
+<!--                                                                                            sizes="100vw" alt="">-->
+<!--                                                                                    </picture>-->
+<!--                                                                                </span>-->
+<!--                                                                            </div>-->
+<!--                                                                            <div class="reply-user-box-info">-->
+<!--                                                                                <strong-->
+<!--                                                                                    class="reply-user-box-info-name">강한친구곽두철</strong>-->
+<!--                                                                                <div class="reply-user-box-info-date">-->
+<!--                                                                                    2023. 04. 21</div>-->
+<!--                                                                            </div>-->
+<!--                                                                            <div class="trophy-box">-->
+<!--                                                                                <img-->
+<!--                                                                                    src="/image/mypage/trophy_1.png">-->
+<!--                                                                            </div>-->
+<!--                                                                        </section>-->
+<!--                                                                        <div class="modify-button-box">-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                class="btn reply-cancel-button">취소</button>-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                class="btn modify-button">수정</button>-->
+<!--                                                                            <button type="button"-->
+<!--                                                                                class="btn delete-button">삭제</button>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                    <div class="reply-text-box-text">-->
+<!--                                                                        <div class="reply-text-container" top="16"-->
+<!--                                                                            right="0" bottom="8" left="0">-->
+<!--                                                                            <div class="reply-text-container-box-1 reply-text-container-box"-->
+<!--                                                                                md="Body2">-->
+<!--                                                                                <div-->
+<!--                                                                                    class="reply-text-container-box-layout">-->
+<!--                                                                                    <div class="reply-text-container-box-layout-text"-->
+<!--                                                                                        size="200">-->
+<!--                                                                                        <div-->
+<!--                                                                                            class="real-reply-text-box">-->
+<!--                                                                                            <p-->
+<!--                                                                                                class="reply-content-text">-->
+<!--                                                                                                안녕하세요 페이스북 홍보는 아직도-->
+<!--                                                                                                추천하시나요? 지금 페이스북 이용자가 많이-->
+<!--                                                                                                줄었다고 들어서 궁금합니다 ㅎㅎ</p>-->
+<!--                                                                                        </div>-->
+<!--                                                                                        <div class="modify-content-box">-->
+<!--                                                                                            <div-->
+<!--                                                                                                class="modify-content-layout">-->
+<!--                                                                                                <input type="text"-->
+<!--                                                                                                    placeholder="댓글을 입력해주세요."-->
+<!--                                                                                                    class="reply-modify-content">-->
+<!--                                                                                                <button type="button"-->
+<!--                                                                                                    class="confirm-button">완료</button>-->
+<!--                                                                                            </div>-->
+<!--                                                                                        </div>-->
+<!--                                                                                    </div>-->
+<!--                                                                                </div>-->
+<!--                                                                            </div>-->
+<!--                                                                        </div>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
                                                                 <!--  -->
                                                             </div>
                                                         </div>
                                                         <div class="reply-container-box-layout">
                                                             <div>
-                                                                <form action="" class="reply-form">
+                                                                <div class="reply-form">
                                                                     <div class="reply-form-container">
                                                                         <div class="reply-form-container-box">
-                                                                            <textarea name="content" id="" cols="30"
+                                                                            <textarea name="content" id="" cols="30", maxlength="20"
                                                                                 rows="1" placeholder="댓글을 입력해주세요."
                                                                                 class="reply-content"></textarea>
                                                                         </div>
                                                                     </div>
                                                                     <button
-                                                                        class="reply-from-button-1 reply-from-button-2"
-                                                                        type="submit" kind="textGray">
+                                                                        class="reply-from-button-1 reply-from-button-2 register-button"
+                                                                        type="button" kind="textGray">
                                                                         <div class="reply-from-button-box">
                                                                             <span class="reply-from-button-box-span">
                                                                                 <svg width="24" height="24" fill="none"
@@ -368,7 +240,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </button>
-                                                                </form>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <button class="the-bogi" icon-position="0" color="default"
@@ -435,6 +307,13 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
+    let userDetail = [[${userDetail}]];
+    let memberId;
+    if(userDetail){
+        memberId = userDetail.memberId;
+    }
+    const suggestDTO = [[${suggestDTO}]];
+
     const fileDTOS = [[${suggestDTO.fileDTOS}]];
     const $mainImage = $(".main-picture");
     $mainImage.attr("src", `/suggest/image/display?fileName=${fileDTOS[0].filePath}/${fileDTOS[0].fileUuid}_${fileDTOS[0].fileOriginalName}`)
@@ -445,17 +324,58 @@
     $subImage2.attr("src", `/suggest/image/display?fileName=${fileDTOS[2].filePath}/${fileDTOS[2].fileUuid}_${fileDTOS[2].fileOriginalName}`)
     const $subImage3 = $(".sub-image3");
     $subImage3.attr("src", `/suggest/image/display?fileName=${fileDTOS[3].filePath}/${fileDTOS[3].fileUuid}_${fileDTOS[3].fileOriginalName}`)
-    $(".remaining-image-count").text("+ " + (fileDTOS.length - 4) +"개");
+    if(fileDTOS.length - 4 != 0){
+        $(".remaining-image-count").text("+ " + (fileDTOS.length - 4) +"개");
+    }else {
+        $(".sub-image-container-plus").hide();
+    }
 </script>
+<script src="/js/board/suggest/slide.js"></script>
 <script>
+    let replyService = (function(){
 
-    /* 참여하기 버튼 */
-    let challengeBtn = document.querySelector('.challenge-button-check')
+        function save(reply, callback){
+            $.ajax({
+                url : '/suggest/reply/save',
+                type: "post",
+                data: JSON.stringify(reply),
+                contentType: "application/json;charset=utf-8",
+                success: function () {
+                    if (callback) {
+                        callback();
+                    }
+                }
+            });
+        }
 
-    // challengeBtn.onclick = function () {
-    //     challengeBtn.style.backgroundColor = '#d7d7d7';
-    //     challengeBtn.innerHTML = "좋아요 완료"
-    // }
+        function list(reply, callback){
+            $.ajax({
+                url : '/suggest/reply/list',
+                type: 'get',
+                data: reply,
+                success : function(replies){
+                    if(callback) {
+                        callback(replies);
+                    }
+
+                    if (replies.last) {
+                    }
+                }
+            });
+        }
+
+        return {
+            save : save,
+            list : list,
+        }
+    })();
+
+    replyService.list({
+        page : 0,
+        suggestId : suggestDTO.id
+    }, function(replies){
+        $replyBox.html(repliesContent(replies));
+    });
 
     /* 댓글 */
     const $replyModifyButton = $(".modify-button");
@@ -463,8 +383,31 @@
     const $replyModifyInput = $(".reply-modify-content");
     const $replyCancelButton = $(".reply-cancel-button");
     const $replyContentBox = $(".real-reply-text-box");
-
+    const $registerButton = $(".register-button");
     const $reply = $(".reply-content-text");
+    let $replyContent = $(".reply-content");
+    let $replyBox = $(".reply-box-container");
+
+    $registerButton.click(() => {
+        let replyDTO = new Object();
+
+        replyDTO.memberId = memberId;
+        replyDTO.replyContent = $replyContent.val();
+        replyDTO.boardId = suggestDTO.id;
+
+        if(!$replyContent.val()){
+            alert("입력해주세요.");
+            return false;
+        }else {
+            replyService.save(replyDTO,function(){
+                replyService.list({page: 0, suggestId : suggestDTO.id},function(replies){
+                    $replyBox.html(repliesContent(replies));
+                    $replyContent.val("");
+                })
+            });
+        }
+    });
+
 
     $replyModifyButton.each((i, e) => {
 
@@ -493,171 +436,95 @@
         });
     });
 
-</script>
-<script>
-    //  이미지 받아서 이미지 갯수 + 2개 만큼 태그 만들기
-
-    const $imageModal = $(".image-expansion-display");
-    const $image = $(".image");
-    const $modalExitButtton = $(".cancel-button");
-    const $imageWrap = $(".swiper-wrapper");
-    const width = 896;
-
-    // 이미지 정보 Array객체로 받기
-
-    let totalWidth = width * (fileDTOS.length + 2);
-    // 슬라이드 요소 감싸고잇는 div의 width 설정
-    $imageWrap.css("width", totalWidth);
-    $(".all-count").text(numberFormat(fileDTOS.length));
-
-
-    createImageSlideDiv(fileDTOS);
-
-    function createImageSlideDiv(fileDTOS) {
-        let length = fileDTOS.length;
-        let text = "";
-
-        fileDTOS.forEach((file, i) => {
+//    =====================================================
+    function repliesContent(replies){
+        let text = '';
+        let replyDTO = replies.content;
+        $(replyDTO).each((i, reply) => {
             text += `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
+                                                                <div class="reply-text-box">
+                                                                    <div class="reply-text-box-user">
+                                                                        <section class="reply-user-box">
+                                                                            <div class="reply-user-box-image" size="40">
+                                                                                <span
+                                                                                    class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
+                                                                                    <picture class="reply-user-picture">
+                                                                                        <img src="/image/board/default-user.png"
+                                                                                            sizes="100vw" alt="">
+                                                                                    </picture>
+                                                                                </span>
+                                                                            </div>
+                                                                            <div class="reply-user-box-info">
+                                                                                <strong
+                                                                                    class="reply-user-box-info-name">${reply.memberDTO.memberNickname}</strong>
+                                                                                <div class="reply-user-box-info-date">
+                                                                                    ${date(reply.registerDate)}
+                                                                                 </div>
+                                                                            </div>
+                                                                            <div class="trophy-box">
+                                                                          `;
+                                        if(reply.memberDTO.badgeType == 'THREE'){
+                                            text += `<img src="/image/mypage/trophy_3.png">`;
+                                        }else if(reply.memberDTO.badgeType == 'TWO'){
+                                            text += `<img src="/image/mypage/trophy_2.png">`;
+                                        }else if(reply.memberDTO.badgeType == 'TWO'){
+                                            text += `<img src="/image/mypage/trophy_1.png">`;
+                                        }else {
+                                            text += `<img src="/image/mypage/trophy_1_5.png">`;
+                                        }
+
+                                        text+=                             `</div>
+                                                                        </section>
+                                         `;
+                                        if(reply.memberDTO.memberId == memberId){
+                                            text+= `<div class="modify-button-box">
+                                                        <button type="button" class="btn reply-cancel-button">취소</button>
+                                                        <button type="button" class="btn modify-button">수정</button>
+                                                        <button type="button" class="btn delete-button">삭제</button>
+                                                    </div>`;
+                                        }
+
+                    text += `                                       </div>
+                                                                    <div class="reply-text-box-text">
+                                                                        <div class="reply-text-container" top="16"
+                                                                            right="0" bottom="8" left="0">
+                                                                            <div class="reply-text-container-box-1 reply-text-container-box"
+                                                                                md="Body2">
+                                                                                <div
+                                                                                    class="reply-text-container-box-layout">
+                                                                                    <div class="reply-text-container-box-layout-text"
+                                                                                        size="200">
+                                                                                        <div
+                                                                                            class="real-reply-text-box">
+                                                                                            <p class="reply-content-text">
+                                                                                                ${reply.replyContent}
+                                                                                            </p>
+                                                                                        </div>
+                                                                                        <div class="modify-content-box">
+                                                                                            <div
+                                                                                                class="modify-content-layout">
+                                                                                                <input type="text"
+                                                                                                    placeholder="댓글을 입력해주세요."
+                                                                                                    class="reply-modify-content">
+                                                                                                <button type="button"
+                                                                                                    class="confirm-button">완료</button>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+            `;
         });
-        $imageWrap.html(text);
-        createAppendAndPrependImageDiv();
+        return text;
     }
 
-
-    function createAppendAndPrependImageDiv() {
-        let firstImage = fileDTOS[0];
-        let lastImage = fileDTOS[fileDTOS.length - 1];
-
-        let text1 = `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${firstImage.filePath}/${firstImage.fileUuid}_${firstImage.fileOriginalName}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
-
-        let text2 = `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${lastImage.filePath}/${lastImage.fileUuid}_${lastImage.fileOriginalName}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
-
-        $imageWrap.prepend(text2);
-        $imageWrap.append(text1);
+    function date(date) {
+        let registerDate = new Date(date);
+        return registerDate.getFullYear() + ". " + (numberFormat(registerDate.getMonth() + 1)) + ". " + numberFormat(registerDate.getDate());
     }
-
-    function numberFormat(number) {
-        if(number < 10){
-            return "0" + number;
-        }
-        return number;
-    }
-    // =========================================================================================================
-    //  슬라이드 이벤트
-    let checkArrow = false;
-    let count = 1;
-    const $prev = $(".image-expansion-wrapper-prev");
-    const $next = $(".image-expansion-wrapper-next");
-    const $imageNumber = $(".count-first");
-
-    $imageWrap.css("transform",`translate(-${width}px)`);
-
-    $prev.click(function(){
-        if(checkArrow){return;}
-        checkArrow = true;
-        $imageWrap.css("transition","transform 0.3s");
-        $imageWrap.css("transform",`translate(${-width * --count}px)`);
-
-        if(count == 0) {
-            count = fileDTOS.length;
-            setTimeout(function(){
-                $imageWrap.css("transition","transform 0s");
-                $imageWrap.css("transform",`translate(${-width * (fileDTOS.length)}px)`);
-            }, 300);
-        }
-        $imageNumber.text(numberFormat(count));
-        setTimeout(()=>{checkArrow = false}, 300);
-    });
-
-    $next.click(function(){
-        if(checkArrow){return;}
-        checkArrow = true;
-
-        $imageWrap.css("transition","transform 0.3s");
-        $imageWrap.css("transform",`translate(${-width * ++count}px)`);
-
-        if(count == fileDTOS.length + 1) {
-            count = 1;
-            setTimeout(function(){
-                $imageWrap.css("transition","transform 0s");
-                $imageWrap.css("transform",`translate(-${width}px)`);
-            }, 300);
-        }
-        $imageNumber.text(numberFormat(count));
-
-        setTimeout(()=>{checkArrow = false}, 300);
-    });
-
-
-
-    // ==========================================================================================================
-    //  모달
-    $image.each((i, e) => {
-        $(e).click(() => {
-            $imageModal.show();
-        });
-    });
-
-    $modalExitButtton.click(() => {
-        $imageModal.hide();
-    });
 
 </script>
-<script>
-    const $heartButton = $(".heart-layout");
-    const $noHeart = $(".no-heart");
-    const $heartUp = $(".heart-up");
-
-    $heartButton.each((i, e) => {
-
-        $(e).click(() => {
-            if ($($heartUp[i]).hasClass("heart-active")) {
-                $($heartUp[i]).hide();
-                $($heartUp[i]).removeClass("heart-active");
-                $($noHeart[i]).show();
-                $($noHeart[i]).addClass("heart-active");
-            } else {
-                $($heartUp[i]).show();
-                $($heartUp[i]).addClass('heart-active');
-                $($noHeart[i]).hide();
-                $($noHeart[i]).removeClass("heart-active");
-            }
-        });
-    });
-
-    const $page = $(".paging-border-none");
-
-    $page.each((i, e) => {
-        $(e).click(() => {
-            $page.removeClass("paging-active");
-            $(e).addClass("paging-active");
-        });
-    });
-</script>
-
 </html>
