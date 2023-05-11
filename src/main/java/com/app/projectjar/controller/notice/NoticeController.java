@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,8 +22,15 @@ public class NoticeController {
 
     private final NoticeService noticeService;
 
-    @GetMapping("detail")
-    public void noticeDetail() {}
+    @GetMapping("detail/{noticeId}")
+    public String noticeDetail(Model model, @PathVariable("noticeId") Long noticeId) {
+        NoticeDTO noticeDTO = noticeService.getNotice(noticeId);
+
+        model.addAttribute("noticeDTO", noticeDTO);
+
+        return "board/notice/detail";
+    }
+
     @GetMapping("list")
     public String getAllNotices(Model model, @RequestParam(value="page", defaultValue="1") int page) {
         Page<NoticeDTO> noticePage = noticeService.getAllNoticesWithPaging(page - 1);
