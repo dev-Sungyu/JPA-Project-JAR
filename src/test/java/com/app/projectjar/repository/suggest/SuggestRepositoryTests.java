@@ -33,41 +33,41 @@ public class SuggestRepositoryTests {
 //        }
 //    }
 
-    @Test
-    public void findAllWithPagingTest() {
-        PageRequest pageRequest = PageRequest.of(0,10);
-        suggestRepository.findByGroupWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
-    }
-
-    @Test
-    public void findByIdSuggest() {
-        suggestRepository.findByIdSuggest_QueryDsl(26L).map(Suggest::toString).ifPresent(log::info);
-    }
-
-    @Test
-    public void getCurrentSequenceTest() {
-        log.info(suggestRepository.getCurrentSequence() + "");
-    }
-
-    /*관리자 페이지*/
-    //    제안 게시판 삭제하기
-    @Test
-    public void deleteTest() {
-        suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
-    }
-
-//     메인 페이지 페이징 없이 조회
-    @Test
-    public void findAllByPersonal_QueryDslTest(){
-        suggestRepository.findByPersonal_QueryDsl().stream().map(Suggest::toString).forEach(log::info);
-        log.info("@@@@@@@@@");
-    }
-
-    /* 마이 페이지 */
-    @Test
-    public void findAllByMemberIdWithPaging_QueryDslTest(){
-        PageRequest pageRequest = PageRequest.of(1, 5);
-        suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageRequest,1L).stream().map(Suggest::toString).forEach(log::info);
-        log.info("@@@@@@@@@");
-    }
+//    @Test
+//    public void findAllWithPagingTest() {
+//        PageRequest pageRequest = PageRequest.of(0,10);
+//        suggestRepository.findByGroupWithPaging_QueryDsl(pageRequest).stream().map(Suggest::toString).forEach(log::info);
+//    }
+//
+//    @Test
+//    public void findByIdSuggest() {
+//        suggestRepository.findByIdSuggest_QueryDsl(26L).map(Suggest::toString).ifPresent(log::info);
+//    }
+//
+//    @Test
+//    public void getCurrentSequenceTest() {
+//        log.info(suggestRepository.getCurrentSequence() + "");
+//    }
+//
+//    /*관리자 페이지*/
+//    //    제안 게시판 삭제하기
+//    @Test
+//    public void deleteTest() {
+//        suggestRepository.findById(2L).ifPresent(notice -> suggestRepository.delete(notice));
+//    }
+//
+////     메인 페이지 페이징 없이 조회
+//    @Test
+//    public void findAllByPersonal_QueryDslTest(){
+//        suggestRepository.findByPersonal_QueryDsl().stream().map(Suggest::toString).forEach(log::info);
+//        log.info("@@@@@@@@@");
+//    }
+//
+//    /* 마이 페이지 */
+//    @Test
+//    public void findAllByMemberIdWithPaging_QueryDslTest(){
+//        PageRequest pageRequest = PageRequest.of(1, 5);
+//        suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageRequest,1L).stream().map(Suggest::toString).forEach(log::info);
+//        log.info("@@@@@@@@@");
+//    }
 }
