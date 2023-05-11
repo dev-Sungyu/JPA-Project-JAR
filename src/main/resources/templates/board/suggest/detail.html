@@ -356,6 +356,7 @@
             return false;
         }else {
             replyService.save(replyRequestDTO,function(){
+                page = 0;
                 replyService.list({page: page, suggestId : suggestDTO.id},function(replies){
                     $replyBox.html(repliesContent(replies));
                     $replyContent.val("");
@@ -413,7 +414,12 @@
         replyService.deleteReply({
             replyId : replyId
         },function(){
-            $($(".reply-text-box")[i]).remove();
+            replyService.list({
+                page : page,
+                suggestId : suggestDTO.id
+            },function(replies){
+                $replyBox.html(repliesContent(replies));
+            })
         })
 
     });
