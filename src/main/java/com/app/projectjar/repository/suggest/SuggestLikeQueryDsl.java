@@ -13,4 +13,6 @@ public interface SuggestLikeQueryDsl {
 
     public void deleteByMemberIdAndSuggestId_QueryDsl(Long suggestId, Long memberId);
 
+    public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
+
 }
