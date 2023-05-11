@@ -59,7 +59,6 @@ public class SecurityConfig {
     private static final String IGNORE_FAVICON = "/favicon.ico";
 
 //    static 하위 폴더 (css, js, img)
-    private static final String IGNORE_RESOURCE_PATH = "**/resource/**";
 
 //    로그인
     private static final String LOGIN_PAGE = "/member/login";
@@ -87,7 +86,6 @@ public class SecurityConfig {
 //        즉, 권한이 없어도 사용이 가능한 경로
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON) //favicon은 필터에서 제외
-                .antMatchers(IGNORE_RESOURCE_PATH)
                 .antMatchers(IGNORE_SERVICE_PATH)
                 .antMatchers(IGNORE_FAQ_PATH)
                 .antMatchers(IGNORE_MAIN_PATH)
