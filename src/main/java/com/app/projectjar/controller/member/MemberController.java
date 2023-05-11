@@ -21,6 +21,7 @@ public class MemberController {
     public String goToJoinForm(MemberDTO memberDTO){
         return "/member/join";
     }
+
     @PostMapping("join")
     public RedirectView join(MemberDTO memberDTO){
         memberService.join(memberDTO, passwordEncoder);

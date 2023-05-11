@@ -25,15 +25,23 @@ public class UserDetail implements UserDetails {
     private Long memberId;
     private String memberEmail;
     private String memberPassword;
+    private String memberPhoneNumber;
+    private String memberName;
+    private String memberNickName;
+    private BadgeType badgeType;
     private Role memberType;
 
     private Collection<? extends GrantedAuthority> authorities;
 
     @Builder
-    public UserDetail(Long memberId, String memberEmail, String memberPassword, Role memberType, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetail(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickName, BadgeType badgeType, Role memberType, Collection<? extends GrantedAuthority> authorities) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberName = memberName;
+        this.memberNickName = memberNickName;
+        this.badgeType = badgeType;
         this.memberType = memberType;
         this.authorities = authorities;
     }

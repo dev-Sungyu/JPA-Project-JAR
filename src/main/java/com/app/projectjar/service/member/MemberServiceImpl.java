@@ -28,6 +28,10 @@ public class MemberServiceImpl implements MemberService {
                 .memberId(member.getId())
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
+                .memberPhoneNumber(member.getMemberPhoneNumber())
+                .memberName(member.getMemberName())
+                .memberNickName(member.getMemberNickname())
+                .badgeType(member.getBadgeType())
                 .memberType(member.getMemberType())
                 .build();
     }

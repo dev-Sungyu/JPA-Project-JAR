@@ -100,8 +100,8 @@ public class SecurityConfig {
                 .usernameParameter("memberId")
                 .passwordParameter("memberPassword")
                 .loginProcessingUrl(LOGIN_PROCESSING_URL)
-                .successHandler(authenticationSuccessHandler)
-                .failureHandler(authenticationFailureHandler)
+                .successHandler(authenticationSuccessHandler) // 로그인 성공 시
+                .failureHandler(authenticationFailureHandler) // 로그인 실패 시
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
                 .logoutSuccessUrl(LOGOUT_SUCCESS_URL)

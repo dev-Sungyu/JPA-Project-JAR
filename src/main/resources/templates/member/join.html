@@ -38,7 +38,7 @@
                                         <p class="email_p">이름</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="text" name="name" placeholder="홍길동">
+                                            <input class="email_input" type="text" name="memberName" placeholder="ex) 홍길동" >
                                         </div>
                                         <div class="hei_4"></div>
                                         <div class="login">
@@ -52,7 +52,7 @@
                                         <p class="email_p">닉네임</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="text" name="nickname" placeholder="사용하실 닉네임을 적어주세요.">
+                                            <input class="email_input" type="text" name="memberNickname" placeholder="사용하실 닉네임을 적어주세요." >
                                         </div>
                                         <div class="hei_4"></div>
                                         <div class="login">
@@ -66,7 +66,7 @@
                                         <p class="email_p">이메일</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="email" name="email" placeholder="example@google.com">
+                                            <input class="email_input" type="email" name="memberEmail" placeholder="example@google.com" >
                                             <div style="height: 4px;"></div>
                                             <div class="login">
                                                 <p id="red_email" class="waring_email">이메일을 입력해주세요.</p>
@@ -81,7 +81,7 @@
                                         <div class="hei_10"></div>
                                         <div class="login">
                                             <div class="password_div">
-                                                <input class="password_input" type="password" name="password" placeholder="********">
+                                                <input class="password_input" type="password" name="memberPassword" placeholder="********">
                                                 <div class="password_eye">
                                                     <span class="password_eye_span hide password_span">
                                                         <img id="eye_close" class="eye" src="/image/login/eyes-close.png">
@@ -123,23 +123,17 @@
                                 </label>
                                 <div class="phone" style="margin-top: 10px;">
                                     <div class="phone_div">
-                                        <h3 class="phone_h3">휴대폰 인증</h3>
+                                        <p class="email_p">휴대폰 번호</p>
                                     </div>
                                 </div>
-                                <p class="all_p">
-                                    가입을 위해 본인의
-                                    <br>
-                                    휴대폰 번호를 인증해 주세요.
-                                </p>
                                 <div class="hei_16"></div>
-                                <form style="width: auto; height: auto;">
                                     <div class="login">
                                         <div class="login_div">
                                             <div class="phone_number">
                                                 <label>
                                                     <div class="login">
                                                         <div class="login">
-                                                            <input type="tel" name="phone_number" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
+                                                            <input type="tel" name="memberPhoneNumber" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
                                                         </div>
                                                     </div>
                                                 </label>
@@ -156,25 +150,16 @@
                                             </div>
                                         </button>
                                     </div>
-                                </form>
                                 <div style="height: 48px; display: flex;"></div>
                                 <!-- 이 아래가 인증번호 누를시 나오는 곳 -->
-                                <div class="semi_modal" style="margin-bottom: 30px;">
+                                <div class="semi_modal" style="margin-bottom: 30px; display: none">
                                     <p class="message_p">문자로 전송된 인증번호를 입력해 주세요.</p>
                                     <div style="height: 20px; display: flex;"></div>
-                                    <form style="width: auto; height: auto;">
                                         <label>
                                             <div class="login">
                                                 <div class="login">
                                                     <div class="confirm_box">
                                                         <input type="tel" name="phone_number_confirm" placeholder="인증번호 6자리">
-                                                        <!--  <div> 인증번호 옆에 타이머 부분
-                                                                <div>
-                                                                    <div>
-                                                                        <p></p>
-                                                                    </div>
-                                                                </div>
-                                                            </div> -->
                                                     </div>
                                                 </div>
                                             </div>
@@ -189,12 +174,11 @@
                                                 <div style="width: 4px; display: flex;"></div>
                                             </div>
                                         </button>
-                                    </form>
                                 </div>
-                                <button type="button" class="next_btn">
+                                <button type="submit" class="next_btn">
                                     <div class="next_box">
                                         <div class="hei_4flex"></div>
-                                        <span class="next_span">다음</span>
+                                        <span class="next_span">회원가입 완료</span>
                                         <div class="hei_4flex"></div>
                                     </div>
                                 </button>
@@ -259,7 +243,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 <script>
-    let userPassword = $("input[name=password]");
+    let userPassword = $("input[name=memberPassword]");
     let userConfirmPassword = $("input[name=confirmPassword]");
 
     // 비밀번호 눈표시 JS
@@ -291,23 +275,26 @@
 // 로그인 실패시 나오는 빨간줄
 $(".next_btn").click(function() {
         $("#red_name").css('display', 'block');
-        $("input[name='name']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberName']").css('border-color', 'rgb(243, 33, 59)');
 
         $("#red_nickname").css('display', 'block');
-        $("input[name='nickname']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberNickName']").css('border-color', 'rgb(243, 33, 59)');
 
         $("#red_email").css('display', 'block');
-        $("input[name='email']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
 
         $("#red_password").css('display', 'block');
-        $("input[name='password']").css('border-color', 'rgb(243, 33, 59)');
+        $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
 
         $("#red_confirm_password").css('display', 'block');
         $("input[name='confirm_password']").css('border-color', 'rgb(243, 33, 59)');
+
+    $("#red_phone_number").css('display', 'block');
+    $("input[name='memberPhoneNumber']").css('border-color', 'rgb(243, 33, 59)');
         
     });
 // 이메일 정규식
-    let emailInput = $("input[name=email]");
+    let emailInput = $("input[name=memberEmail]");
     let emailErrorMsg = $("#red_email");
 
     emailInput.on("input", function() {
@@ -328,7 +315,7 @@ $(".next_btn").click(function() {
     }
     });
 // 비밀번호 정규식
-let passwordInput = $("input[name=password]");
+let passwordInput = $("input[name=memberPassword]");
 let passwordErrorMsg = $("#red_password");
 let confirmPasswordInput = $("input[name=confirmPassword]");
 let confirmPasswordErrorMsg = $("#red_confirm_password");
@@ -336,7 +323,7 @@ let confirmPasswordErrorMsg = $("#red_confirm_password");
 passwordInput.on("input", function() {
   let password = passwordInput.val().trim();
   let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/;
-  let passwordContinuity = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}(?!.*([0-9a-zA-Z])\1\1)/;
+  let passwordContinuity = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/
 
   if (password === "") {
     passwordErrorMsg.text("비밀번호를 입력해주세요.").show();
@@ -351,7 +338,7 @@ passwordInput.on("input", function() {
     passwordErrorMsg.hide();
     passwordInput.removeClass("error-input");
     $("#red_password").css('display', 'none');
-    $("input[name='password']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
   }
 });
 
@@ -369,19 +356,20 @@ confirmPasswordInput.on("input", function() {
 });
 
 
-    $("input[name='name']").keyup(function() {
+    $("input[name='memberName']").keyup(function() {
         $("#red_name").css('display', 'none');
-        $("input[name='name']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+        $("input[name='memberName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     });
-    $("input[name='nickname']").keyup(function() {
+    $("input[name='memberNickName']").keyup(function() {
         $("#red_nickname").css('display', 'none');
-        $("input[name='nickname']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+        $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     });
 
 
 /*휴대폰 번호 버튼 색상 변경*/
     $(".confirm_number").click(function(){
-        $(".semi_modal").css('display', 'block');
+        $(".semi_modal").css('display', 'block' +
+            '');
         $(".confirm_number_span_p").text("인증번호 다시 받기");
     });
 
@@ -397,7 +385,7 @@ confirmPasswordInput.on("input", function() {
         }
     });
 
-    const inputUp = document.querySelector('input[name="phone_number"]');
+    const inputUp = document.querySelector('input[name="memberPhoneNumber"]');
     const buttonUp = document.querySelector('.confirm_number');
 
     inputUp.addEventListener('input', function() {
@@ -408,5 +396,6 @@ confirmPasswordInput.on("input", function() {
             buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
         }
     });
+
 </script>
 </html>
