@@ -38,4 +38,12 @@ public class FileDTO {
         this.fileType = fileType;
         this.suggest = suggest;
     }
+
+    @Builder
+    public FileDTO(Long id, String fileOriginalName, String fileUuid, String filePath) {
+        this.id = id;
+        this.fileOriginalName = fileOriginalName;
+        this.fileUuid = fileUuid;
+        this.filePath = filePath;
+    }
 }

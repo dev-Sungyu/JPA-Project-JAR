@@ -1,9 +1,6 @@
 package com.app.projectjar.repository.suggest;
 
-import com.app.projectjar.domain.ReplyDTO;
-import com.app.projectjar.entity.reply.Reply;
 import com.app.projectjar.entity.suggest.SuggestReply;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
