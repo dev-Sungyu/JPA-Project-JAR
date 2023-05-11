@@ -25,7 +25,7 @@ public class MemberServiceImpl implements MemberService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByMemberEmailForPassword_QueryDSL(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
         return UserDetail.builder()
-                .memberId(member.getMemberId())
+                .memberId(member.getId())
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
                 .memberPhoneNumber(member.getMemberPhoneNumber())

@@ -22,7 +22,7 @@ import javax.persistence.*;
 public class Member extends Period {
     @Id @GeneratedValue
     @EqualsAndHashCode.Include
-    private Long memberId;
+    private Long id;
     @Column(unique = true)
     @NotNull private String memberEmail;
     @NotNull private String memberPassword;
@@ -41,7 +41,7 @@ public class Member extends Period {
 
     @Builder
     public Member(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
-        this.memberId = memberId;
+        this.id = memberId;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;

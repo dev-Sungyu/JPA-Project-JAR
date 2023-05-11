@@ -86,7 +86,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     public Page<Suggest> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
         List<Suggest> foundSuggest = query.select(suggest)
                 .from(suggest)
-                .where(suggest.member.memberId.eq(id))
+                .where(suggest.member.id.eq(id))
                 .leftJoin(suggest.suggestFiles)
                 .fetchJoin()
                 .orderBy(suggest.createdDate.desc())
@@ -96,7 +96,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
         Long count = query.select(suggest.count())
                 .from(suggest)
-                .where(suggest.member.memberId.eq(id))
+                .where(suggest.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundSuggest, pageable, count);
     }
