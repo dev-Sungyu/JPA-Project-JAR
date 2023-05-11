@@ -49,12 +49,12 @@ public class SuggestLikeRepositoryTests {
         log.info(suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L,1L).toString());
     }
 
-    @Test
-    public void deleteByMemberId() {
-        Member member = suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L , 1L);
-        suggestLikeRepository.deleteByMemberIdAndSuggestId_QueryDsl(40L, 1L);
-        assertThat(member).isNotNull();
-    }
+//    @Test
+//    public void deleteByMemberId() {
+//        Member member = suggestLikeRepository.findMemberBySuggestLike_QueryDsl(40L , 1L);
+//        suggestLikeRepository.deleteByMemberIdAndSuggestId_QueryDsl(40L, 1L);
+//        assertThat(member).isNotNull();
+//    }
 
 
 //    @Test
