@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="user-container-box-2" size="64" style="display: flex; align-items: flex-end;">
                                             <th:block th:if="${not #strings.isEmpty(userDetail)}">
-                                                <th:block th:if="${userDetail.memberId == suggestDTO.memberDTO.memberId}">
+                                                <th:block th:if="${userDetail.memberId == suggestDTO.memberDTO.id}">
                                                     <button style="margin-right: 10px;" class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
                                                         <span>수정</span>
                                                     </button>
@@ -357,11 +357,12 @@
                     if(callback) {
                         callback(replies);
                     }
-
-                    if (replies.last) {
-                    }
                 }
             });
+        }
+
+        function modify(reply, callback){
+
         }
 
         return {
@@ -388,6 +389,7 @@
     let $replyContent = $(".reply-content");
     let $replyBox = $(".reply-box-container");
 
+    // 댓글 등록 시
     $registerButton.click(() => {
         let replyDTO = new Object();
 
@@ -408,6 +410,11 @@
         }
     });
 
+
+    // 댓글 수정 버튼
+    $replyBox.on("click", "modify-button", function() {
+
+    });
 
     $replyModifyButton.each((i, e) => {
 
@@ -476,11 +483,11 @@
                                         text+=                             `</div>
                                                                         </section>
                                          `;
-                                        if(reply.memberDTO.memberId == memberId){
+                                        if(reply.memberDTO.id == memberId){
                                             text+= `<div class="modify-button-box">
-                                                        <button type="button" class="btn reply-cancel-button">취소</button>
-                                                        <button type="button" class="btn modify-button">수정</button>
-                                                        <button type="button" class="btn delete-button">삭제</button>
+                                                        <button type="button" class="btn reply-cancel-button" id="cancel${i}">취소</button>
+                                                        <button type="button" class="btn modify-button" id="modify${i}">수정</button>
+                                                        <button type="button" class="btn delete-button" id="delete${i}">삭제</button>
                                                     </div>`;
                                         }
 
@@ -503,11 +510,11 @@
                                                                                         <div class="modify-content-box">
                                                                                             <div
                                                                                                 class="modify-content-layout">
-                                                                                                <input type="text"
+                                                                                                <input type="text" id="reply${replyDTO.id}"
                                                                                                     placeholder="댓글을 입력해주세요."
                                                                                                     class="reply-modify-content">
                                                                                                 <button type="button"
-                                                                                                    class="confirm-button">완료</button>
+                                                                                                    class="confirm-button" id="confirm${i}">완료</button>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>

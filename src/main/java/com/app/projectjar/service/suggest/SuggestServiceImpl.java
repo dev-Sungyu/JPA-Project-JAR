@@ -97,10 +97,4 @@ public class SuggestServiceImpl implements SuggestService {
         return suggestRepository.getCurrentSequence();
     }
 
-    // 댓글 갯수
-    @Override
-    public Integer getReplyCount(Long suggestId) {
-        return suggestReplyRepository.getReplyCount(suggestId).intValue();
-    }
-
 }
