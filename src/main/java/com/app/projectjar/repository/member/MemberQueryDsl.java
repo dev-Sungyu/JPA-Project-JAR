@@ -31,6 +31,9 @@ public interface MemberQueryDsl {
 //    회원 멤버 조회
     public Optional<Member> findByMemberId_QueryDSL(Long id);
 
+//    이메일로 회원 조회
+    public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail);
+
     /* 마이 페이지 */
 
 //    회원 정보 수정
@@ -64,48 +67,14 @@ public interface MemberQueryDsl {
     /* 그룹 챌린지 */
 
 //    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
-public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
+    public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
 
 //    내가 완료 중인 그룹 챌린지 전체 조회 (종료된)
-public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
+    public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
 
-    public Long getGroupChallengeReplyCount_QueryDsl(Long challengeId);
 //    내가 완료한 그룹 챌린지 전체 조회 (종료)
+    public Long getGroupChallengeReplyCount_QueryDsl(Long challengeId);
 
-
-    /* 챌린지 제안 */
-
-//  제안 게시물 전체 조회 (제안 게시물에서 memberid 조회 후 list로 가져와 뿌리기)
-
-//   제안 게시물 수정 누르면 작성하기 쪽으로 넘겨야 되는거 물어보자.
-
-//   제안 게시물 삭제
-
-
-
-    /* 공유 일기 */
-
-//    공유 게시물 전체 조회
-
-//    공유 게시물 수정
-
-//    공유 게시물 삭제
-
-
-    /* 내가 좋아요한 게시물  */
-
-//    좋아요한 게시물 전체 조회   ( Like 테이블에서 memberId 조회 후 게시물 접근해서 리스트로 )
-
-//    좋아요 삭제
-
-
-    /* 문의 글 */
-
-//    문의 게시글 전체 조회 (문의 게시글 답변 체크 후 스테이스 변경)
-
-//    문의 게시글 수정
-
-//    문의 게시글 삭제
 
     //    관리자 페이지 회원 전체 조회
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable);
