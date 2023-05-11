@@ -14,13 +14,15 @@ public class NoticeDTO {
     private Long id;
     private String noticeTitle;
     private String noticeContent;
+    private LocalDate createDate;
     private LocalDate updateDate;
 
     @Builder
-    public NoticeDTO(Long id, String noticeTitle, String noticeContent, LocalDate updateDate) {
+    public NoticeDTO(Long id, String noticeTitle, String noticeContent, LocalDate createDate, LocalDate updateDate) {
         this.id = id;
         this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;
+        this.createDate = createDate;
         this.updateDate = updateDate;
     }
 }
