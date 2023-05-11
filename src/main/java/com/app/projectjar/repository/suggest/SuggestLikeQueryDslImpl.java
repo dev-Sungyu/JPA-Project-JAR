@@ -29,7 +29,7 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
         return query.select(suggestLike.member.count())
                 .from(suggestLike)
                 .where(suggestLike.suggest.id.eq(suggestId))
-                .where(suggestLike.member.memberId.eq(memberId))
+                .where(suggestLike.member.id.eq(memberId))
                 .fetchOne();
     }
 
@@ -44,7 +44,7 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     @Override @Transactional
     public void deleteByMemberIdAndSuggestId_QueryDsl(Long suggestId, Long memberId) {
         query.delete(suggestLike)
-                .where(suggestLike.member.memberId.eq(memberId).and(suggestLike.suggest.id.eq(suggestId)))
+                .where(suggestLike.member.id.eq(memberId).and(suggestLike.suggest.id.eq(suggestId)))
                 .execute();
     }
 

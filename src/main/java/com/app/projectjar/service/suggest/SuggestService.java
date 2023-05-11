@@ -44,7 +44,7 @@ public interface SuggestService {
 
     default MemberDTO toMemberDTO(Member member) {
         return MemberDTO.builder()
-                .memberId(member.getMemberId())
+                .memberId(member.getId())
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
                 .memberName(member.getMemberName())
@@ -126,7 +126,7 @@ public interface SuggestService {
     default LikeDTO toSuggestLikeDTO(SuggestLike suggestLike){
         return LikeDTO.builder()
                 .boardId(suggestLike.getSuggest().getId())
-                .memberId(suggestLike.getMember().getMemberId())
+                .memberId(suggestLike.getMember().getId())
                 .likeId(suggestLike.getId())
                 .build();
     }

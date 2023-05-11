@@ -24,7 +24,7 @@ public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
         return query.select(diaryLike.member)
                 .from(diaryLike)
                 .where(diaryLike.diary.id.eq(diaryId))
-                .where(diaryLike.member.memberId.eq(memberId))
+                .where(diaryLike.member.id.eq(memberId))
                 .fetchOne();
     }
 
@@ -39,7 +39,7 @@ public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
     @Override
     public void deleteByMemberIdAndDiaryId(Long diaryId, Long memberId) {
         query.delete(diaryLike)
-                .where(diaryLike.member.memberId.eq(memberId))
+                .where(diaryLike.member.id.eq(memberId))
                 .where(diaryLike.diary.id.eq(diaryId))
                 .execute();
     }
@@ -48,14 +48,14 @@ public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
     public Page<DiaryLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long memberId) {
         List<DiaryLike> foundDiaries = query.select(diaryLike)
                 .from(diaryLike)
-                .where(diaryLike.member.memberId.eq(memberId))
+                .where(diaryLike.member.id.eq(memberId))
                 .orderBy(diaryLike.diary.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
         Long count = query.select(diaryLike.count())
                 .from(diaryLike)
-                .where(diaryLike.member.memberId.eq(memberId))
+                .where(diaryLike.member.id.eq(memberId))
                 .fetchOne();
 
         return new PageImpl<>(foundDiaries, pageable, count);
