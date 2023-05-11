@@ -67,7 +67,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
     public Page<Diary> findAllByMemberWithPaging_QueryDsl(Pageable pageable, Long id) {
         List<Diary> foundDiaries = query.select(diary)
                 .from(diary)
-                .where(diary.member.id.eq(id))
+                .where(diary.member.memberId.eq(id))
                 .leftJoin(diary.diaryFiles)
                 .fetchJoin()
                 .orderBy(diary.createdDate.desc())
@@ -77,7 +77,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
 
         Long count = query.select(diary.count())
                 .from(diary)
-                .where(diary.member.id.eq(id))
+                .where(diary.member.memberId.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundDiaries, pageable, count);
     }
@@ -87,7 +87,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
         List<Diary> foundDiaries = query.select(diary)
                 .from(diary)
                 .leftJoin(diaryLike)
-                .where(diary.member.id.eq(id))
+                .where(diary.member.memberId.eq(id))
                 .orderBy(diary.createdDate.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

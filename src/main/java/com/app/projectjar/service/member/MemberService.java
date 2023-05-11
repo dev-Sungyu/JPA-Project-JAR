@@ -11,7 +11,7 @@ public interface MemberService extends UserDetailsService {
 
     default Member toMemberEntity(MemberDTO memberDTO){
         return Member.builder().
-                id(memberDTO.getMemberId())
+                memberId(memberDTO.getMemberId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberPassword(memberDTO.getMemberPassword())
                 .memberPhoneNumber(memberDTO.getMemberPhoneNumber())

@@ -2,6 +2,7 @@ package com.app.projectjar.controller.board.suggest;
 
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,9 +27,9 @@ public class SuggestController {
     public void goToWriteForm(SuggestDTO suggestDTO) { }
 
     @PostMapping("write")
-    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, HttpServletRequest session) {
-//        Long memberId = (Long)session.getAttribute("id");
-        Long memberId = 1L;
+    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, UserDetail userDetail) {
+        Long memberId = userDetail.getMemberId();
+        log.info(memberId + "-------------------------------------------------------------");
         suggestService.register(suggestDTO, memberId);
 
         if(suggestDTO.getBoardType().name().equals("GROUP")){
