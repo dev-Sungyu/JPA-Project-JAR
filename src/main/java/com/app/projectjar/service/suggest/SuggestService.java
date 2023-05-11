@@ -26,8 +26,6 @@ public interface SuggestService {
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
-    // 댓글 갯수
-    public Integer getReplyCount(Long suggestId);
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()
@@ -44,7 +42,7 @@ public interface SuggestService {
 
     default MemberDTO toMemberDTO(Member member) {
         return MemberDTO.builder()
-                .memberId(member.getId())
+                .id(member.getId())
                 .memberEmail(member.getMemberEmail())
                 .memberPassword(member.getMemberPassword())
                 .memberName(member.getMemberName())
@@ -83,7 +81,7 @@ public interface SuggestService {
 
     default Member toMemberEntity(MemberDTO memberDTO) {
         return Member.builder()
-                .id(memberDTO.getMemberId())
+                .id(memberDTO.getId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberName(memberDTO.getMemberName())
                 .memberNickname(memberDTO.getMemberNickname())

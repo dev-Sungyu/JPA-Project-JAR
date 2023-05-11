@@ -28,8 +28,7 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
     public Long findMemberBySuggestLike_QueryDsl(Long suggestId, Long memberId) {
         return query.select(suggestLike.member.count())
                 .from(suggestLike)
-                .where(suggestLike.suggest.id.eq(suggestId))
-                .where(suggestLike.member.id.eq(memberId))
+                .where(suggestLike.suggest.id.eq(suggestId).and(suggestLike.member.id.eq(memberId)))
                 .fetchOne();
     }
 
@@ -46,6 +45,22 @@ public class SuggestLikeQueryDslImpl implements SuggestLikeQueryDsl {
         query.delete(suggestLike)
                 .where(suggestLike.member.id.eq(memberId).and(suggestLike.suggest.id.eq(suggestId)))
                 .execute();
+    }
+
+    @Override
+    public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
+        List<SuggestLike> foundSuggest = query.select(suggestLike)
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
+                .orderBy(suggestLike.suggest.createdDate.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+        Long count = query.select(suggestLike.count())
+                .from(suggestLike)
+                .where(suggestLike.member.id.eq(id))
+                .fetchOne();
+        return new PageImpl<>(foundSuggest, pageable, count);
     }
 
 }
