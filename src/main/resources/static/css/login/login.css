@@ -37,7 +37,7 @@
     flex-grow: 0;
     flex-shrink: 0;
 }
-input[name="email"]{
+input[name="memberEmail"]{
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
     outline-style: none;
@@ -69,7 +69,7 @@ input[name="email"]{
     -webkit-box-pack: start;
     justify-content: flex-start;
 }
-input[name="password"]{
+input[name="memberPassword"]{
     background-color: rgb(255, 255, 255);
     border-radius: 2px;
     outline-style: none;

@@ -4,6 +4,7 @@ import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
+import com.app.projectjar.type.Role;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -35,23 +36,11 @@ public class Member extends Period {
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'ZERO'")
     private BadgeType badgeType;
-
-
-
-
-    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, MemberFile memberFile) {
-        this.memberEmail = memberEmail;
-        this.memberPassword = memberPassword;
-        this.memberPhoneNumber = memberPhoneNumber;
-        this.memberName = memberName;
-        this.memberNickname = memberNickname;
-        this.memberStatus = memberStatus;
-        this.badgeType = badgeType;
-        this.memberFile = memberFile;
-    }
+    @Enumerated(EnumType.STRING)
+    private Role memberType;
 
     @Builder
-    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType) {
+    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -60,6 +49,8 @@ public class Member extends Period {
         this.memberNickname = memberNickname;
         this.memberStatus = memberStatus;
         this.badgeType = badgeType;
+        this.memberType = memberType;
+        this.memberFile = memberFile;
     }
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")

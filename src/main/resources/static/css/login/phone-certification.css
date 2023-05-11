@@ -172,7 +172,22 @@ input[name=phone_number]{
     border-width: 1px;
     border-style: solid;
     border-color: rgba(0, 0, 0, 0.15);
-}
+
+}input[name=memberPhoneNumber]{
+     background-color: rgb(255, 255, 255);
+     border-radius: 2px;
+     outline-style: none;
+     color: var(--system-on-color);
+     width: 100%;
+     height: 100%;
+     padding: 13px 16px;
+     font-size: 0.875rem;
+     font-weight: 400;
+     line-height: 1.125rem;
+     border-width: 1px;
+     border-style: solid;
+     border-color: rgba(0, 0, 0, 0.15);
+ }
 .confirm_number{
     color: rgb(255, 255, 255);
     --system-on-color: #ffffff;

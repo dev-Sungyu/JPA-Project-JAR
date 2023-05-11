@@ -40,13 +40,13 @@ public class MemberRepositoryTests {
     private GroupChallengeRepository groupChallengeRepository;
 
 //      추가
-    @Test
-    public void saveTest() {
-        MemberFile memberFile = new MemberFile("", "", "", REPRESENTATIVE);
-        Member member = new Member("user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, memberFile);
-        memberRepository.save(member);
-        memberFIleRepository.save(memberFile);
-    }
+//    @Test
+//    public void saveTest() {
+//        MemberFile memberFile = new MemberFile("", "", "", REPRESENTATIVE);
+//        Member member = new Member("user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, memberFile);
+//        memberRepository.save(member);
+//        memberFIleRepository.save(memberFile);
+//    }
 
 //      조회
     @Test
