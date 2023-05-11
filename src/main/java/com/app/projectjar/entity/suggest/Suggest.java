@@ -7,6 +7,8 @@ import com.app.projectjar.type.BoardType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -16,12 +18,14 @@ import java.util.List;
 @Getter @ToString(callSuper = true, exclude = "member")
 @Table(name = "TBL_SUGGEST")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@DynamicInsert
+@DynamicUpdate
 public class Suggest extends Board {
 
-    @ColumnDefault(value = "0")
+    @Column(columnDefinition = "integer default 0")
     private Integer suggestLikeCount;
 
-    @ColumnDefault(value= "0")
+    @Column(columnDefinition = "integer default 0")
     private Integer suggestReplyCount;
 
     @NotNull

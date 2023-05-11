@@ -32,8 +32,7 @@ public class SuggestController {
     public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
         Long memberId = userDetail.getMemberId();
-        log.info(memberId + "000000000000000000");
-//        suggestService.register(suggestDTO, memberId);
+        suggestService.register(suggestDTO, memberId);
         if(suggestDTO.getBoardType().name().equals("GROUP")){
             return new RedirectView("/board/suggest/list/group");
         }
@@ -41,34 +40,33 @@ public class SuggestController {
     }
 
     @GetMapping("list/group")
-    public String goToGroupList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+    public String goToGroupList(Model model, @RequestParam(value="page", defaultValue="1") int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<SuggestDTO> suggestList = suggestService.getGroupSuggestList(page - 1);
+
         model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
+        model.addAttribute("userDetail", userDetail);
         return "/board/suggest/list";
     }
 
     @GetMapping("list/personal")
-    public String goToPersonalList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+    public String goToPersonalList(Model model, @RequestParam(value="page", defaultValue="1") int page, @AuthenticationPrincipal UserDetail userDetail) {
         Page<SuggestDTO> suggestList = suggestService.getPersonalSuggestList(page - 1);
         log.info("" + suggestList.getTotalPages());
         log.info("" + suggestList.getTotalElements());
         model.addAttribute("pageDTO",new PageDTO(suggestList));
         model.addAttribute("suggestDTOS", suggestList.getContent());
+        model.addAttribute("userDetail", userDetail);
         return "/board/suggest/list";
     }
 
     @GetMapping("detail/{boardId}")
-    public String goToDetail(Model model, @PathVariable("boardId") Long boardId) {
+    public String goToDetail(Model model, @PathVariable("boardId") Long boardId, @AuthenticationPrincipal UserDetail userDetail) {
         SuggestDTO suggestDTO = suggestService.getSuggest(boardId);
+
         model.addAttribute("suggestDTO", suggestDTO);
+        model.addAttribute("userDetail", userDetail);
 
         return "/board/suggest/detail";
     }
-
-    @GetMapping("detail")
-    public void test(){
-
-    }
-
 }

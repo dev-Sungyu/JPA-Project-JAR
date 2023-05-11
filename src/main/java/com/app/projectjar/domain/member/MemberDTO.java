@@ -1,5 +1,6 @@
 package com.app.projectjar.domain.member;
 
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import com.app.projectjar.type.Role;
@@ -22,8 +23,10 @@ public class MemberDTO {
     private BadgeType badgeType;
     private Role memberType;
 
+    private FileDTO fileDTO;
+
     @Builder
-    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType) {
+    public MemberDTO(Long memberId, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, FileDTO fileDTO) {
         this.memberId = memberId;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -33,5 +36,6 @@ public class MemberDTO {
         this.memberStatus = memberStatus;
         this.badgeType = badgeType;
         this.memberType = memberType;
+        this.fileDTO = fileDTO;
     }
 }
