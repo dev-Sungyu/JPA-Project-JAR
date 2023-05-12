@@ -34,6 +34,8 @@ public interface NoticeService {
                 .id(notice.getId())
                 .noticeTitle(notice.getNoticeTitle())
                 .noticeContent(notice.getNoticeContent())
+                .createdDate(notice.getCreatedDate())
+                .updatedDate(notice.getUpdatedDate())
                 .build();
     }
 }
