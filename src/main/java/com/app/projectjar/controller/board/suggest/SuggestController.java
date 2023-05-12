@@ -31,8 +31,8 @@ public class SuggestController {
     @PostMapping("write")
     public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
-//        Long memberId = userDetail.getId();
-        suggestService.register(suggestDTO, 1L);
+        Long memberId = userDetail.getId();
+        suggestService.register(suggestDTO, memberId);
         if(suggestDTO.getBoardType().name().equals("GROUP")){
             return new RedirectView("/board/suggest/list/group");
         }
@@ -80,12 +80,10 @@ public class SuggestController {
     @PostMapping("modify")
     public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("suggestDTO") SuggestDTO suggestDTO) {
 
+        suggestDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         suggestDTO.setId(boardId);
         suggestService.update(suggestDTO);
-        if(suggestDTO.getBoardType().name().equals("GROUP")){
-            return new RedirectView("/board/suggest/list/group");
-        }
-        return new RedirectView("/board/suggest/list/personal");
+        return new RedirectView("/board/suggest/detail/" + boardId);
     }
 
 }

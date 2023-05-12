@@ -1,3 +1,5 @@
+globalThis.uuids;
+
 // 개인, 그룹 선택
 let $radioButton = $("input[type=radio]");
 let $challengeButton = $(".challenge-button");
@@ -19,26 +21,34 @@ const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 �
 
 let $ul = $(".img_ul");
 let files = [];
+if(fileDTOS != null && fileDTOS != undefined){
+    fileDTOS.forEach((file, i) => {
+        files.push(file);
+    });
+}
+
 $("input[type=file]").on("change", function () {
     const $files = $("input[type=file]")[0].files;
-    files = $files;
-    fileDTOS = $files;
     let formData = new FormData();
 
     $($files).each((i, file) => {
+        files.push(file);
+    })
+
+    files.forEach((file, e) => {
         formData.append("file", file);
     })
 
 
     $.ajax({
-        url: "/suggest/image/upload",
+        url: "/file/upload",
         type: "post",
         data: formData,
         contentType: false,
         processData: false,
         success: function (uuids) {
-            $ul.children().remove();
             globalThis.uuids = uuids;
+            console.log(uuids);
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
                     let text = `
@@ -62,7 +72,7 @@ $("input[type=file]").on("change", function () {
                                 </header>
                                 <article class="img_wrapper">
                                     <div class="img_div">
-                                        <img src="/suggest/image/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
+                                        <img src="/file/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
                                     </div>
                                 </article>
                             </div>
@@ -71,14 +81,38 @@ $("input[type=file]").on("change", function () {
                     $ul.append(text);
                 }
             });
-
-            $(".close-button").click((e) => {
-                let target = $(e.currentTarget).parent().parent().parent();
-                target.remove();
-            });
         }
     });
 });
+
+
+// 이미지 지울 때
+$ul.on("click",".close-button", function(e){
+    const dataTransfer = new DataTransfer();
+
+    let target = $(e.currentTarget).parent().parent().parent();
+    let fileArray = Array.from(files);
+    let ul = target.parent();
+    let i = ul.find("li").index(target);
+    files = [];
+
+        fileArray.splice(i, 1);
+        fileArray.forEach(file => {
+            if(file.fileOriginalName == null && file.fileOriginalName == undefined){
+                dataTransfer.items.add(file);
+            }else {
+                files.push(file);
+            }
+        })
+
+        target.remove();
+        dataTransfer.files.forEach((file, i) =>{
+            files.push(file);
+        });
+
+    console.log(files);
+});
+
 
 $(".save-button").click(() => {
     const $files = $("input[type=file]")[0].files;
@@ -111,7 +145,6 @@ $(".save-button").click(() => {
     $("form[name=form]").append(text);
     $("form[name=form]").submit();
 })
-
 /*****************************************************/
 function leftPad(value) {
     if (value >= 10) {

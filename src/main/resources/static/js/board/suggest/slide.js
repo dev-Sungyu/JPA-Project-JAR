@@ -25,7 +25,7 @@ function createImageSlideDiv(fileDTOS) {
                                 <div class="swiper-slide swiper-slide-active" style="width: 896px;">
                                     <span class="swiper-slide-span" ratio="0.75">
                                         <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
+                                            <img sizes=" 100vw" src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
                                         </picture>
                                     </span>
                                 </div>
@@ -44,7 +44,7 @@ function createAppendAndPrependImageDiv() {
                                 <div class="swiper-slide swiper-slide-active" style="width: 896px;">
                                     <span class="swiper-slide-span" ratio="0.75">
                                         <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${firstImage.filePath}/${firstImage.fileUuid}_${firstImage.fileOriginalName}">
+                                            <img sizes=" 100vw" src="/file/display?fileName=${firstImage.filePath}/${firstImage.fileUuid}_${firstImage.fileOriginalName}">
                                         </picture>
                                     </span>
                                 </div>
@@ -54,7 +54,7 @@ function createAppendAndPrependImageDiv() {
                                 <div class="swiper-slide swiper-slide-active" style="width: 896px;">
                                     <span class="swiper-slide-span" ratio="0.75">
                                         <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="/suggest/image/display?fileName=${lastImage.filePath}/${lastImage.fileUuid}_${lastImage.fileOriginalName}">
+                                            <img sizes=" 100vw" src="/file/display?fileName=${lastImage.filePath}/${lastImage.fileUuid}_${lastImage.fileOriginalName}">
                                         </picture>
                                     </span>
                                 </div>
