@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>제안게시판 - 수정하기</title>
+    <title>제안게시판 - 수정</title>
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
@@ -81,11 +81,11 @@
                                                     </button>
                                                 </div>
                                                 <div class="box-header">
-                                                    <h3>챌린지 제안 게시글 작성</h3>
+                                                    <h3>챌린지 제안 게시글 수정</h3>
                                                 </div>
                                                 <div class="box-main">
                                                     <div class="box-main-wrap">
-                                                        <form th:action="@{/board/suggest/write}" method="post"
+                                                        <form th:action="@{/board/suggest/modify(boardId = ${suggestDTO.id})}" method="post"
                                                               enctype="multipart/form-data" name="form">
                                                             <div class="box-main-wrpa-list">
                                                                 <div style="display:flex; flex-direction: column;">
@@ -123,7 +123,7 @@
                                                                     <div class="box-main-title">
                                                                         <input type="text" name="boardTitle"
                                                                                class="main-title"
-                                                                               placeholder="제목을 입력해주세요.">
+                                                                               placeholder="제목을 입력해주세요." th:value="${suggestDTO.boardTitle}">
                                                                     </div>
                                                                 </label>
                                                                 <div class="box-line"></div>
@@ -133,7 +133,7 @@
                                                                             <textarea name="boardContent" cols="30"
                                                                                       rows="10"
                                                                                       class="proposal_content is-no-scroll"
-                                                                                      placeholder="내용을 입력해주세요."></textarea>
+                                                                                      placeholder="내용을 입력해주세요.">[[${suggestDTO.boardContent}]]</textarea>
                                                                         <section class="img_wrapper_box">
                                                                             <div class="img_ul_wrapper">
                                                                                 <ul class="img_ul sumnail-layout">
@@ -148,11 +148,11 @@
                                                                 <div class="box-line"></div>
                                                                 <div class="editor-button-line">
                                                                     <div class="button-line"></div>
-                                                                    <button type="button" class="save-button">
+                                                                    <button type="button" class="modify-button">
                                                                         <div class="save-button-box">
                                                                             <div class="save-button-box-div"></div>
                                                                             <span
-                                                                                    class="save-button-span">저장하기</span>
+                                                                                    class="save-button-span">수정하기</span>
                                                                             <div class="save-button-box-div"></div>
                                                                         </div>
                                                                     </button>
@@ -190,50 +190,76 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-    let $radioButton = $("input[type=radio]");
-    let $challengeButton = $(".challenge-button");
-
-    $challengeButton.each((i, e) => {
-        $(e).click(() => {
-            $challengeButton.removeClass("radio-active");
-            $radioButton.prop("checked", false);
-            $($radioButton[i]).prop("checked", true);
-            $(e).addClass("radio-active");
-        });
-    });
-</script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
     globalThis.uuids;
-    FileList.prototype.forEach = Array.prototype.forEach;
+    let suggestDTO = [[${suggestDTO}]];
+    let fileDTOS = suggestDTO.fileDTOS;
+    console.log(fileDTOS);
+</script>
+<script src="/js/board/suggest/write.js"></script>
+<script>
 
-    const $alertModal = $(".alert-modal-display");
-    const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
+    $("input[type=radio]").each((i, e) => {
 
-    let $ul = $(".img_ul");
+        if($(e).val() == suggestDTO.boardType) {
+            $("input[type=radio]").prop("checked", false);
+            $challengeButton.removeClass("radio-active");
+            $(e).prop("checked", true);
+            $($challengeButton[i]).addClass("radio-active");
+        }
+    });
 
-    $("input[type=file]").on("change", function () {
-        const $files = $("input[type=file]")[0].files;
-        let formData = new FormData();
+    $(".modify-button").click(() => {
+        const $files = fileDTOS;
+        let text = "";
 
-        $($files).each((i, file) => {
-            formData.append("file", file);
-        })
+        let boardTitle = $("input[name='boardTitle']").val();
+        let boardContent = $(".proposal_content").val();
+
+        if ($files.length < 4) {
+            alertModal(alertMsg[0]);
+            return false;
+        } else if (!boardTitle) {
+            alertModal(alertMsg[1]);
+            return false;
+        } else if (!boardContent) {
+            alertModal(alertMsg[2]);
+            return false;
+        }
 
 
-        $.ajax({
-            url: "/suggest/image/upload",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (uuids) {
-                $ul.removeAttr("li");
-                globalThis.uuids = uuids;
-                $files.forEach((file, i) => {
-                    if (file.type.startsWith("image")) {
-                        let text = `
+        FileList.prototype.forEach = Array.prototype.forEach;
+
+        if(fileDTOS[0].fileOriginalName == undefined){
+            fileDTOS.forEach((file, i) => {
+                text +=
+                    `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                `;
+            });
+        }else {
+            fileDTOS.forEach((file, i) => {
+                text +=
+                    `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.fileOriginalName}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${file.fileUuid}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${file.filePath}">
+                `;
+            });
+
+        }
+
+        $("form[name=form]").append(text);
+        $("form[name=form]").submit();
+    });
+
+    imageText(suggestDTO.fileDTOS);
+    function imageText(files){
+        files.forEach((file, i) => {
+            let text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
@@ -254,80 +280,15 @@
                                 </header>
                                 <article class="img_wrapper">
                                     <div class="img_div">
-                                        <img src="/suggest/image/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
+                                        <img src="/suggest/image/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}" class="inserted_img">
                                     </div>
                                 </article>
                             </div>
                         </li>
                 `;
-                        $ul.append(text);
-                    }
-                });
-                $(".close-button").click((e) => {
-                    let target = $(e.currentTarget).parent().parent().parent();
-                    target.remove();
-                });
-            }
-        });
-    });
-
-    $(".save-button").click(() => {
-        const $files = $("input[type=file]")[0].files;
-        let text = "";
-
-        let boardTitle = $("input[name='boardTitle']").val();
-        let boardContent = $(".proposal_content").val();
-
-        if ($files.length < 4) {
-            alertModal(alertMsg[0]);
-            return false;
-        } else if (!boardTitle) {
-            alertModal(alertMsg[1]);
-            return false;
-        } else if (!boardContent) {
-            alertModal(alertMsg[2]);
-            return false;
-        }
-
-
-        FileList.prototype.forEach = Array.prototype.forEach;
-        $files.forEach((file, i) => {
-            text +=
-                `
-                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
-                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
-                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
-                `;
-        });
-        $("form[name=form]").append(text);
-        $("form[name=form]").submit();
-    })
-
-    /*****************************************************/
-    function leftPad(value) {
-        if (value >= 10) {
-            return value;
-        }
-
-        return `0${value}`;
+            $ul.append(text);
+        })
     }
 
-    function toStringByFormatting(source, delimiter = '/') {
-        const year = source.getFullYear();
-        const month = leftPad(source.getMonth() + 1);
-        const day = leftPad(source.getDate());
-
-        return [year, month, day].join(delimiter);
-    }
-
-    function alertModal(errorMsg) {
-
-        $(".alert").text(errorMsg);
-        $alertModal.fadeIn();
-        setTimeout(function () {
-            $alertModal.fadeOut();
-        }, 2000);
-
-    }
 </script>
 </html>

@@ -68,4 +68,24 @@ public class SuggestController {
         model.addAttribute("userDetail", userDetail);
         return "/board/suggest/detail";
     }
+
+    @GetMapping("modify/{boardId}")
+    public String goToModify(Model model, @PathVariable("boardId") Long boardId) {
+        SuggestDTO suggestDTO = suggestService.getSuggest(boardId);
+
+        model.addAttribute("suggestDTO", suggestDTO);
+        return "/board/suggest/modify";
+    }
+
+    @PostMapping("modify")
+    public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("suggestDTO") SuggestDTO suggestDTO) {
+
+        suggestDTO.setId(boardId);
+        suggestService.update(suggestDTO);
+        if(suggestDTO.getBoardType().name().equals("GROUP")){
+            return new RedirectView("/board/suggest/list/group");
+        }
+        return new RedirectView("/board/suggest/list/personal");
+    }
+
 }

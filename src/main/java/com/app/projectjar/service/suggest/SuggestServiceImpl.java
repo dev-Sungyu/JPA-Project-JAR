@@ -97,4 +97,34 @@ public class SuggestServiceImpl implements SuggestService {
         return suggestRepository.getCurrentSequence();
     }
 
+    @Override @Transactional
+    public void update(SuggestDTO suggestDTO) {
+        List<FileDTO> fileDTOS = suggestDTO.getFileDTOS();
+
+        suggestRepository.findById(suggestDTO.getId()).ifPresent(
+                suggest -> {
+                    suggest.builder()
+                            .boardType(suggestDTO.getBoardType())
+                            .boardContent(suggestDTO.getBoardContent())
+                            .boardTitle(suggestDTO.getBoardTitle())
+                            .member(suggest.getMember())
+                            .build();
+                    suggestRepository.save(suggest);
+                }
+        );
+        suggestFileRepository.deleteBySuggestId(suggestDTO.getId());
+
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setSuggest(getCurrentSequence());
+                suggestFileRepository.save(toSuggestFileEntity(fileDTOS.get(i)));
+            }
+        }
+    }
+
 }

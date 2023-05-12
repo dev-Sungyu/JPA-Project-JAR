@@ -594,6 +594,20 @@
     display: flex;
 }
 
+.none-reply-box {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.none-reply-layout {
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    margin : 10px 0;
+}
+
 .reply-user-box-image{
     position: relative;
     width: 40px;
@@ -831,22 +845,6 @@
     -webkit-box-align: center;
     align-items: center;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 이미지 확대 */
 
