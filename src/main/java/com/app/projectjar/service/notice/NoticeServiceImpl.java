@@ -64,4 +64,11 @@ public class NoticeServiceImpl implements NoticeService {
         }
     }
 
+    @Override
+    public void setNotice(NoticeDTO noticeDTO) {
+        Notice notice = toNoticeEntity(noticeDTO);
+        updateNotice(notice.getId(), noticeDTO);
+        noticeRepository.save(notice);
+    }
+
 }

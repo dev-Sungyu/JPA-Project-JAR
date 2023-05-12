@@ -39,7 +39,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
+                            <a th:href="@{/admin/board/notice/list}">
                                 <img src="/image/admin/prev_icon.png" class="prev-icon">
                             </a>
                             <span class="prev-title">리스트로 돌아가기</span>
@@ -52,27 +52,27 @@
                         <div class="board-info-box">
                             <div class="board-info-title-box" style="position: relative">
                                 <span>공지사항 상세보기</span>
-                                <button class="btn_done" style="position: absolute; right: 22px; top: 15px;">수정</button>
+                                <a th:href="@{/admin/board/notice/modify/{noticeId}(noticeId=${noticeDTO.id})}" class="btn_done">수정</a>
                             </div>
                             <div class="info-table">
                                 <div class="info-member">
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
-                                    <span>[공지]
+                                    <span th:text="${noticeDTO.noticeTitle}">[공지]
                                         공지 제목
                                     </span>
                                 </div>
                                 <div class="info-member">
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
-                                    <span>
+                                    <span th:text="${#temporals.format(noticeDTO.createdDate, 'yyyy/MM/dd')}">
                                         2023-04-24
                                     </span>
                                 </div>
                             </div>
                             <hr>
                             <div class="info-table">
-                                <div><!-- 게시판 내용 -->
+                                <div th:text="${noticeDTO.noticeContent}"><!-- 게시판 내용 -->
                                     게시판 내용
                                 </div>
                             </div>

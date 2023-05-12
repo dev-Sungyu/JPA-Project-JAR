@@ -41,7 +41,7 @@
                         <div class="delete-box-layout ">
                             <div class="delete-box">
                                 <button class="register-button">
-                                    <a href="">공지사항 등록</a>
+                                    <a th:href="@{write}">공지사항 등록</a>
                                 </button>
                             </div>
                         </div>
@@ -84,10 +84,10 @@
                                                 공지 제목
                                             </a>
                                         </td>
-                                        <td>
+                                        <td th:text="${#temporals.format(noticeDTO.createdDate, 'yyyy-MM-dd')}">
                                             2023-04-24
                                         </td>
-                                        <td>
+                                        <td th:text="${#temporals.format(noticeDTO.updatedDate, 'yyyy-MM-dd')}">
                                             2023-04-24
                                         </td>
                                     </tr>

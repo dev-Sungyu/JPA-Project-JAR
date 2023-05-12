@@ -9,10 +9,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -52,7 +50,7 @@ public class AdminController {
     public String adminNoticeDetail(Model model, @PathVariable("noticeId") Long noticeId) {
         NoticeDTO noticeDTO = noticeService.getNotice(noticeId);
 
-        model.addAttribute("noticeDTOS", noticeDTO);
+        model.addAttribute("noticeDTO", noticeDTO);
 
         return "admin/board/notice/detail";
     }
@@ -64,8 +62,25 @@ public class AdminController {
         model.addAttribute("noticeDTOS", noticePage.getContent());
         return "admin/board/notice/list";
     }
-    @GetMapping("board/notice/modify")
-    public void adminNoticeModify() {}
+    @GetMapping("board/notice/modify/{noticeId}")
+    public String adminNoticeModify(Model model, @PathVariable("noticeId") Long noticeId) {
+        NoticeDTO noticeModifyDTO = noticeService.getNotice(noticeId);
+
+        model.addAttribute("noticeDTO", noticeModifyDTO);
+        return "board/notice/modify";
+    }
+    @PostMapping("board/notice/modify/{noticeId}")
+    public RedirectView adminNoticeModifyPost(Long noticeId, String noticeTitle, String noticeContent) {
+        NoticeDTO noticeDTO = NoticeDTO.builder().id(noticeId).noticeTitle(noticeTitle).noticeContent(noticeContent).build();
+        noticeService.setNotice(noticeDTO);
+        return new RedirectView("admin/board/notice/list");
+    }
+//    @PostMapping("notice-update")
+//    public RedirectView noticeUpdate(Long id, String noticeTitle, String noticeContent) {
+//        NoticeDTO noticeDTO = NoticeDTO.builder().id(id).noticeTitle(noticeTitle).noticeContent(noticeContent).build();
+//        noticeService.setNotice(noticeDTO);
+//        return new RedirectView("/admin/notice");
+//    }
     @GetMapping("board/notice/write")
     public void adminNoticeWrite() {}
     @GetMapping("board/proposal/detail")

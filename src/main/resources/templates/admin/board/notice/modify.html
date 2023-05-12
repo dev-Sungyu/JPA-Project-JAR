@@ -52,23 +52,24 @@
                                 <span>공지사항 수정하기</span>
                             </div>
                             <div class="info-table">
-                                <form action="">
+                                <form action="" th:action="@{/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
                                     <input type="hidden" name="boardId" value="">
                                     <!-- <input type="hidden" name="page" value=""> -->
                                     <div>
                                         <input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요."
-                                            autocomplete="off" value="수정 전 제목">
+                                               autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
                                     <hr>
                                     <div>
                                         <textarea class="board-content" name="boardContent"
-                                            placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
+                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <div>
                                         <button class="btn_done">수정 완료</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </section>

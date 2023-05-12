@@ -20,6 +20,8 @@ public interface NoticeService {
     // 업데이트
     public void updateNotice(Long noticeId, NoticeDTO noticeDTO);
 
+    public void setNotice(NoticeDTO noticeDTO);
+
 
     default Notice toNoticeEntity(NoticeDTO noticeDTO) {
         return Notice.builder()
