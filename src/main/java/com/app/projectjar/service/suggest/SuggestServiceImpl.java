@@ -133,4 +133,14 @@ public class SuggestServiceImpl implements SuggestService {
                 }
         );
     }
+
+    @Override
+    public Page<SuggestDTO> getSuggestList(int page) {
+        Page<Suggest> suggests = suggestRepository.findAllWithPaging_QueryDsl(PageRequest.of(page, 10));
+        List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
+    }
 }

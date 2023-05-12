@@ -4,6 +4,8 @@ import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.entity.notice.Notice;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 public interface NoticeService {
 //    전체 목록 페이징
     public Page<NoticeDTO> getAllNoticesWithPaging(int page);
@@ -15,10 +17,12 @@ public interface NoticeService {
     public NoticeDTO getNotice(Long noticeId);
 
     // 삭제
-     public void deleteNotice(Long noticeId);
+     public void deleteNotices(List<Long> noticeIds);
 
     // 업데이트
     public void updateNotice(Long noticeId, NoticeDTO noticeDTO);
+
+//    public void setNotice(NoticeDTO noticeDTO);
 
 
     default Notice toNoticeEntity(NoticeDTO noticeDTO) {

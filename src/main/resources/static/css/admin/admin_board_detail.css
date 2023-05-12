@@ -186,4 +186,9 @@ div.board_content {
 	font-weight: bold;
 	color: #fff;
 	border: none;
+	position: absolute;
+	padding-top: 11px;
+	right: 22px;
+	top: 15px;
+	text-align: center;
 }

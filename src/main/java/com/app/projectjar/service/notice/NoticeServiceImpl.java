@@ -44,24 +44,63 @@ public class NoticeServiceImpl implements NoticeService {
     @Override
     public NoticeDTO getNotice(Long noticeId) {
         Optional<Notice> notice = noticeRepository.findById(noticeId);
-        return toNoticeDTO(notice.get());
+        NoticeDTO noticeDTO = toNoticeDTO(notice.get());
+
+        // 생성 날짜를 가져와서 noticeDTO에 설정
+        noticeDTO.setCreatedDate(notice.get().getCreatedDate());
+
+        return noticeDTO;
     }
 
+
+//    @Override
+//    public void deleteNotice(Long noticeId) {
+//        noticeRepository.deleteById(noticeId);
+//    }
+
     @Override
-    public void deleteNotice(Long noticeId) {
-        noticeRepository.deleteById(noticeId);
+    public void deleteNotices(List<Long> noticeIds) {
+        for (Long noticeId : noticeIds) {
+            noticeRepository.deleteById(noticeId);
+        }
     }
 
     @Override
     public void updateNotice(Long noticeId, NoticeDTO noticeDTO) {
         Optional<Notice> optionalNotice = noticeRepository.findById(noticeId);
-        if (optionalNotice.isPresent()) {
-            Notice existingNotice = optionalNotice.get();
-            existingNotice.setNoticeTitle(noticeDTO.getNoticeTitle());
-            existingNotice.setNoticeContent(noticeDTO.getNoticeContent());
-            noticeRepository.save(existingNotice);
-        } else {
-        }
+
+        optionalNotice.ifPresent(
+                notice -> {
+                    notice.setNoticeContent(noticeDTO.getNoticeContent());
+                    notice.setNoticeTitle(noticeDTO.getNoticeTitle());
+                    noticeRepository.save(notice);
+                }
+        );
+
+
+//        if (optionalNotice.isPresent()) {
+//            Notice existingNotice = optionalNotice.get();
+//            existingNotice.setNoticeTitle(noticeDTO.getNoticeTitle());
+//            existingNotice.setNoticeContent(noticeDTO.getNoticeContent());
+//            noticeRepository.save(existingNotice);
+//        } else {
+//        }
     }
+
+//    @Override
+//    public void setNotice(NoticeDTO noticeDTO) {
+//        Notice notice = toNoticeEntity(noticeDTO);
+//
+//        // 기존 작성 날짜 가져오기
+//        Notice existingNotice = noticeRepository.findById(notice.getId()).orElseThrow(() -> new IllegalArgumentException("Notice not found"));
+//        LocalDateTime createdDate = existingNotice.getCreatedDate();
+//
+////        // 기존 작성 날짜 및 업데이트 날짜 설정
+////        notice.setCreatedDate(createdDate);
+////        notice.setUpdatedDate(LocalDateTime.now());
+//
+//        noticeRepository.save(notice);
+//    }
+
 
 }

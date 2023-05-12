@@ -28,11 +28,9 @@ public interface SuggestQueryDsl {
 
 
     /*관리자 페이지*/
-    // 전체 개인 조회
-    public List<Suggest> findByPersonal_QueryDsl();
+    // 전체 조회
+    public Page<Suggest> findAllWithPaging_QueryDsl(Pageable pageable);
 
-    // 전체 그룹 조회
-    public List<Suggest> findByGroup_QueryDsl();
 
     //    검색
     public List<Suggest> findAllWithSearch(BoardSearch boardSearch);

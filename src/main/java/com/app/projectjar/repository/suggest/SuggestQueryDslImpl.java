@@ -103,29 +103,19 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
     /*관리자 페이지*/
     @Override
-    public List<Suggest> findByPersonal_QueryDsl() {
+    public Page<Suggest> findAllWithPaging_QueryDsl(Pageable pageable) {
         List<Suggest> foundSuggests = query.select(suggest)
                 .from(suggest)
                 .leftJoin(suggest.suggestFiles, suggestFile)
                 .fetchJoin()
-                .where(suggest.boardType.eq(BoardType.PERSONAL))
                 .orderBy(suggest.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return foundSuggests;
-    }
+        Long count = query.select(suggest.count()).from(suggest).fetchOne();
 
-    @Override
-    public List<Suggest> findByGroup_QueryDsl() {
-        List<Suggest> foundSuggests = query.select(suggest)
-                .from(suggest)
-                .leftJoin(suggest.suggestFiles, suggestFile)
-                .fetchJoin()
-                .where(suggest.boardType.eq(BoardType.GROUP))
-                .orderBy(suggest.id.desc())
-                .fetch();
-
-        return foundSuggests;
+        return new PageImpl<>(foundSuggests, pageable, count);
     }
 
     /*검색*/

@@ -38,7 +38,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
+                            <a th:href="@{/admin/board/notice/list}">
                                 <img style="top: 2px;" src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -52,23 +52,22 @@
                                 <span>공지사항 수정하기</span>
                             </div>
                             <div class="info-table">
-                                <form action="">
-                                    <input type="hidden" name="boardId" value="">
-                                    <!-- <input type="hidden" name="page" value=""> -->
+                                <form th:action="@{/admin/board/notice/modify/{id}(id=${noticeDTO.id})}" method="post">
                                     <div>
-                                        <input type="text" class="board-title" name="boardTitle" placeholder="제목을 입력해주세요."
-                                            autocomplete="off" value="수정 전 제목">
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
+                                               autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
                                     <hr>
                                     <div>
-                                        <textarea class="board-content" name="boardContent"
-                                            placeholder="내용을 입력해주세요.">수정 전 내용</textarea>
+                                        <textarea class="board-content" name="noticeContent"
+                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <div>
                                         <button class="btn_done">수정 완료</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </section>
