@@ -26,6 +26,8 @@ public interface SuggestService {
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기
     public Suggest getCurrentSequence();
+    // 수정
+    public void update(SuggestDTO suggestDTO);
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()

@@ -138,7 +138,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- 댓글 -->
                                 <div>
                                     <div class="reply-container">
                                         <div class="reply-container-wrap" data-test-id="fold-community-original">
@@ -148,14 +147,16 @@
                                                     <div class="reply-container-box-layout">
                                                         <div class="reply-box-container">
                                                             <!--댓글-->
+
                                                         </div>
                                                     </div>
+                                                    <th:block th:if="${not #strings.isEmpty(userDetail)}">
                                                     <div class="reply-container-box-layout">
                                                         <div>
                                                             <div class="reply-form">
                                                                 <div class="reply-form-container">
                                                                     <div class="reply-form-container-box">
-                                                                            <textarea name="content" id="" cols="30", maxlength="20"
+                                                                            <textarea name="content" id="" cols="30", maxlength="80"
                                                                                       rows="1" placeholder="댓글을 입력해주세요."
                                                                                       class="reply-content"></textarea>
                                                                     </div>
@@ -177,6 +178,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    </th:block>
                                                     <button class="the-bogi" icon-position="0" color="default"
                                                             fill="true">
                                                         <span class="the-bogi-span">더 보기</span>
@@ -263,6 +265,10 @@
     }else {
         $(".sub-image-container-plus").hide();
     }
+
+    $(".diary-modify-button").click(() => {
+        location.href = '/board/suggest/modify/' + suggestDTO.id;
+    });
 </script>
 <script src="/js/board/suggest/slide.js"></script>
 <script>
@@ -335,6 +341,25 @@
         page : page,
         suggestId : suggestDTO.id
     }, function(replies){
+        if(replies.content.length < 1){
+            let text = `
+                                                            <div class="none-reply-display">
+                                                                <div class="none-reply-box">
+                                                                    <div class="none-reply-layout">
+                                                                        <p>현재 댓글이 없습니다.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+            `;
+            $replyBox.html(text);
+            $(".the-bogi").hide();
+            return false;
+        }
+
+        if(replies.last){
+            $(".the-bogi").hide();
+        }
+
         $replyBox.html(repliesContent(replies));
     });
 
@@ -356,11 +381,12 @@
             return false;
         }else {
             replyService.save(replyRequestDTO,function(){
+                $(".the-bogi").show();
                 page = 0;
                 replyService.list({page: page, suggestId : suggestDTO.id},function(replies){
                     $replyBox.html(repliesContent(replies));
                     $replyContent.val("");
-                })
+                });
             });
         }
     });
@@ -440,7 +466,7 @@
     });
 
 
-    //    =====================================================
+    //    ===================================================== function
     function repliesContent(replies){
         let text = '';
         let replyDTO = replies.content;
