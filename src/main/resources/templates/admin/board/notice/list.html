@@ -84,12 +84,8 @@
                                                 공지 제목
                                             </a>
                                         </td>
-                                        <td th:text="${#temporals.format(noticeDTO.createdDate, 'yyyy-MM-dd')}">
-                                            2023-04-24
-                                        </td>
-                                        <td th:text="${#temporals.format(noticeDTO.updatedDate, 'yyyy-MM-dd')}">
-                                            2023-04-24
-                                        </td>
+                                        <td th:text="${#temporals.format(noticeDTO.createdDate, 'yyyy-MM-dd')}"></td>
+                                        <td th:text="${#temporals.format(noticeDTO.updatedDate, 'yyyy-MM-dd')}"></td>
                                     </tr>
 
                                 </table>

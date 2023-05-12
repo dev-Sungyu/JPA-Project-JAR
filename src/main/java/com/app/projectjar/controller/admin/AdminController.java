@@ -6,6 +6,7 @@ import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/admin/*")
 @RequiredArgsConstructor
+@Slf4j
 public class AdminController {
     private final SuggestService suggestService;
     private final NoticeService noticeService;
@@ -67,20 +69,21 @@ public class AdminController {
         NoticeDTO noticeModifyDTO = noticeService.getNotice(noticeId);
 
         model.addAttribute("noticeDTO", noticeModifyDTO);
-        return "board/notice/modify";
+        return "/admin/board/notice/modify";
     }
+
     @PostMapping("board/notice/modify/{noticeId}")
-    public RedirectView adminNoticeModifyPost(Long noticeId, String noticeTitle, String noticeContent) {
-        NoticeDTO noticeDTO = NoticeDTO.builder().id(noticeId).noticeTitle(noticeTitle).noticeContent(noticeContent).build();
-        noticeService.setNotice(noticeDTO);
-        return new RedirectView("admin/board/notice/list");
+    public RedirectView adminNoticeModifyPost(@PathVariable Long noticeId, String noticeTitle, String noticeContent) {
+        NoticeDTO noticeDTO = NoticeDTO.builder()
+                .noticeContent(noticeContent)
+                .noticeTitle(noticeTitle)
+                .build();
+
+        noticeService.updateNotice(noticeId, noticeDTO);
+        return new RedirectView("/admin/board/notice/list");
     }
-//    @PostMapping("notice-update")
-//    public RedirectView noticeUpdate(Long id, String noticeTitle, String noticeContent) {
-//        NoticeDTO noticeDTO = NoticeDTO.builder().id(id).noticeTitle(noticeTitle).noticeContent(noticeContent).build();
-//        noticeService.setNotice(noticeDTO);
-//        return new RedirectView("/admin/notice");
-//    }
+
+
     @GetMapping("board/notice/write")
     public void adminNoticeWrite() {}
     @GetMapping("board/proposal/detail")
