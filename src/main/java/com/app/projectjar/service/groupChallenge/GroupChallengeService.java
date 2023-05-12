@@ -14,7 +14,7 @@ import java.util.Optional;
 public interface GroupChallengeService {
 
     // 목록
-    public Page<GroupChallengeDTO> getGroupChallengeList(int page);
+    public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable);
 
     // 상세보기
     public GroupChallengeDTO getGroupChallenge(Long groupChallengeId);

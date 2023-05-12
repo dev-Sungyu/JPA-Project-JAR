@@ -24,9 +24,8 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     private final GroupChallengeRepository groupChallengeRepository;
 
     @Override
-    public Page<GroupChallengeDTO> getGroupChallengeList(int page) {
-        PageRequest pageRequest = PageRequest.of(page, 9);
-        Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageRequest);
+    public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable) {
+        Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageable);
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallenges.stream().map(this::toGroupChallengeDTO).collect(Collectors.toList());
 
         return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable() , groupChallenges.getTotalElements());
