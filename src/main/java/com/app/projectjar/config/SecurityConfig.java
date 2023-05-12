@@ -1,7 +1,6 @@
 package com.app.projectjar.config;
 
 import com.app.projectjar.type.Role;
-import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -9,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,7 +23,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor @Slf4j
-public class SecurityConfig {
+public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    메인
     private static final String IGNORE_MAIN_PATH = "/main/**";
 //    관리자
@@ -81,6 +81,36 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
 
+
+//    SecurityContextHolder 설정:
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+//
+//        // SecurityContextHolder 설정
+//        http.addFilterAfter(new SecurityContextPersistenceFilter(), HeaderWriterFilter.class);
+//    }
+
+//    세션 설정
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+//
+//        // 세션 관리 설정
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
+//                .sessionFixation().migrateSession();
+//     }
+
+//    CSRF 설정:
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
+//
+//        // CSRF 설정
+//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+//    }
+
+
     @Bean
     public WebSecurityCustomizer webSecurityCustomizer() {
 //        WebSecurity에서 관여하지 않을 경로
@@ -103,10 +133,10 @@ public class SecurityConfig {
 
                 /* 미안해요 !여러분 여기다 경로를 올리면 다 접근이 가능해서 사용이 가능해질 겁니다!. */
 //                .antMatchers(MYPAGE_PATH)
-                .antMatchers(BOARD_SUGGEST_WRITE_PATH)
-                .antMatchers(BOARD_DIARY_WRITE_PATH)
-                .antMatchers(BOARD_INQUIRE_WRITE_PATH)
-                .antMatchers(ADMIN_PATH)
+//                .antMatchers(BOARD_SUGGEST_WRITE_PATH)
+//                .antMatchers(BOARD_DIARY_WRITE_PATH)
+//                .antMatchers(BOARD_INQUIRE_WRITE_PATH)
+//                .antMatchers(ADMIN_PATH)
                 /* 여기 까지 */
                 
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
@@ -116,10 +146,10 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-//                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
-//                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasRole(Role.MEMBER.name())
-//                .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
-//                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
+                .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
+                .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasRole(Role.MEMBER.name())
                 .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
                 .and()
                 .csrf().disable()

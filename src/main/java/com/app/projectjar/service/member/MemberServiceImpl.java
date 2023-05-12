@@ -24,6 +24,8 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByMemberEmail_QueryDSL(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
+        log.info(member.getMemberType().name());
+
         return UserDetail.builder()
                 .id(member.getId())
                 .memberEmail(member.getMemberEmail())
