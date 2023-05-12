@@ -102,9 +102,11 @@
                                                 <button style="margin-right: 10px;" class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
                                                     <span>수정</span>
                                                 </button>
-                                                <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                    <span>삭제</span>
-                                                </button>
+                                                <form action="" class="challenge-button-check delete-form" method="post">
+                                                    <button type="submit" class="chellenage-delete" icon-position="0" color="default" fill="true">
+                                                        <span>삭제</span>
+                                                    </button>
+                                                </form>
                                             </th:block>
                                         </th:block>
                                     </div>
@@ -272,6 +274,12 @@
 </script>
 <script src="/js/board/suggest/slide.js"></script>
 <script>
+    $(".chellenage-delete").click(() => {
+        $("form.delete-form").attr('action', `/board/suggest/delete/`+ suggestDTO.id);
+        $("form.delete-form").submit();
+    });
+
+
     let replyService = (function(){
 
         function save(reply, callback){

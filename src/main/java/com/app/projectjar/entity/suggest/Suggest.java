@@ -36,7 +36,7 @@ public class Suggest extends Board {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "suggest")
+    @OneToMany(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "suggest")
     private List<SuggestFile> suggestFiles = new ArrayList<>();
 
     @Builder

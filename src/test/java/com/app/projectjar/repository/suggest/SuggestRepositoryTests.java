@@ -70,4 +70,10 @@ public class SuggestRepositoryTests {
 //        suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageRequest,1L).stream().map(Suggest::toString).forEach(log::info);
 //        log.info("@@@@@@@@@");
 //    }
+//    @Test
+//    public void deleteTest(){
+//        suggestRepository.findById(35L).ifPresent(
+//                suggest -> suggestRepository.delete(suggest)
+//        );
+//    }
 }

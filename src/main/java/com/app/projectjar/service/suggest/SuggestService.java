@@ -28,6 +28,9 @@ public interface SuggestService {
     public Suggest getCurrentSequence();
     // 수정
     public void update(SuggestDTO suggestDTO);
+    // 삭제
+    public void delete(Long suggestId);
+
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {
         return SuggestDTO.builder()
