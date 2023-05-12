@@ -9,7 +9,6 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +29,10 @@ public interface SuggestService {
     public void update(SuggestDTO suggestDTO);
     // 삭제
     public void delete(Long suggestId);
+
+    /*관리자 페이지*/
+    /*전체 조회*/
+    public Page<SuggestDTO> getSuggestList(int page);
 
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {

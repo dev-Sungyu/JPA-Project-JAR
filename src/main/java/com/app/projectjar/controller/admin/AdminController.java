@@ -2,6 +2,7 @@ package com.app.projectjar.controller.admin;
 
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.suggest.SuggestService;
@@ -88,8 +89,6 @@ public class AdminController {
         noticeService.deleteNotices(noticeIds);
     }
 
-
-
     @GetMapping("board/notice/write")
     public void adminNoticeWrite(Model model) {
         model.addAttribute("noticeDTO", new NoticeDTO());
@@ -105,12 +104,18 @@ public class AdminController {
 
 
 
-    @GetMapping("board/proposal/detail")
-    public void adminProposalDetail() {}
     @GetMapping("board/proposal/list")
-    public void adminProposalList() {}
-    @GetMapping("board/proposal/modify")
-    public void adminProposalModify() {}
+    public String adminProposalList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Page<SuggestDTO> suggestPage = suggestService.getGroupSuggestList(page - 1);
+        List<String> suggestTitles = suggestPage.stream().map(SuggestDTO::getBoardTitle).collect(Collectors.toList());
+        model.addAttribute("pageDTO",new PageDTO(suggestPage));
+        model.addAttribute("suggestDTOS", suggestPage.getContent());
+        return "admin/board/proposal/list";
+    }
+    @GetMapping("board/proposal/detail")
+    public void adminProposalDetail() {
+
+    }
     @GetMapping("board/diary/list")
     public void adminDiaryList() {}
     @GetMapping("board/diary/detail")
