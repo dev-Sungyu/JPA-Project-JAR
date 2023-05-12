@@ -16,7 +16,7 @@ SuggestDTOS.forEach((suggestDTO, i) => {
     }else {
         for (let  j= 0; j < suggestDTO.fileDTOS.length; j++){
             if(suggestDTO.fileDTOS[j].fileType === "REPRESENTATIVE"){
-                text += `<img src="/suggest/image/display?fileName=${suggestDTO.fileDTOS[j].filePath}/${suggestDTO.fileDTOS[j].fileUuid}_${suggestDTO.fileDTOS[j].fileOriginalName}">`;
+                text += `<img src="/file/display?fileName=${suggestDTO.fileDTOS[j].filePath}/${suggestDTO.fileDTOS[j].fileUuid}_${suggestDTO.fileDTOS[j].fileOriginalName}">`;
             }
         }
     }
