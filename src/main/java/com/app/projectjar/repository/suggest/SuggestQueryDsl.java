@@ -19,7 +19,7 @@ public interface SuggestQueryDsl {
     public Optional<Suggest> findByIdSuggest_QueryDsl(Long suggestId);
 
     // 현재 시퀀스 가져오기
-    public Suggest getCurrentSequence();
+    public Suggest getCurrentSequence_QueryDsl();
 
 
     /* 마이 페이지*/

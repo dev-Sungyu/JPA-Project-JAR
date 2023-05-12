@@ -4,6 +4,7 @@ package com.app.projectjar.repository.groupChallenge;
 import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
+import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
+import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
 @RequiredArgsConstructor
 public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
@@ -28,6 +30,7 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
                 .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
                 .fetchJoin()
                 .orderBy(groupChallenge.id.desc())
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("OPEN")))
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
@@ -49,6 +52,15 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
                 .fetchOne();
 
         return Optional.ofNullable(groupChallenge);
+    }
+
+    @Override
+    public GroupChallenge getCurrentSequence_QueryDsl() {
+        return query.select(groupChallenge)
+                .from(groupChallenge)
+                .orderBy(groupChallenge.id.desc())
+                .limit(1)
+                .fetchOne();
     }
 
     // 목록(페이징 처리 없는 버전)
