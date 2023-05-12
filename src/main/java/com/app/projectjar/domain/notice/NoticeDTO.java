@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Data
 @Component
@@ -14,15 +14,15 @@ public class NoticeDTO {
     private Long id;
     private String noticeTitle;
     private String noticeContent;
-    private LocalDate createDate;
-    private LocalDate updateDate;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     @Builder
-    public NoticeDTO(Long id, String noticeTitle, String noticeContent, LocalDate createDate, LocalDate updateDate) {
+    public NoticeDTO(Long id, String noticeTitle, String noticeContent, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.noticeTitle = noticeTitle;
         this.noticeContent = noticeContent;
-        this.createDate = createDate;
-        this.updateDate = updateDate;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 }
