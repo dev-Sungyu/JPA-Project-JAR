@@ -9,18 +9,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/board/group-challenge/*")
+@RequestMapping("/board/challenge/group/*")
 @RequiredArgsConstructor
 public class GroupChallengeController {
 
     private final GroupChallengeService groupChallengeService;
 
 
-    @GetMapping("list")
+    @GetMapping("content-list")
     @ResponseBody
     public Page<GroupChallengeDTO> getGroupChallengeList(@RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 9);
         return groupChallengeService.getGroupChallengeList(pageable);
     }
+
+    @GetMapping("list")
+    public void goToList(){ ; }
 
 }
