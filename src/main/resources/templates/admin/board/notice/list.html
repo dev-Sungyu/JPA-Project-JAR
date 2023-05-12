@@ -47,7 +47,7 @@
                         </div>
                         <div class="delete-box-layout">
                             <div class="delete-box">
-                                <button class="delete-button">선택 게시물 삭제</button>
+                                <button class="delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
                             </div>
                         </div>
                     </div>
@@ -62,31 +62,30 @@
                             <div class="info-table">
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th class="checkbox-line">
-                                                <input type="checkbox" id="allSelect">
-                                            </th>
-                                            <th>No</th>
-                                            <th>제목</th>
-                                            <th>작성 날짜</th>
-                                            <th>수정 날짜</th>
-                                        </tr>
+                                    <tr>
+                                        <th class="checkbox-line">
+                                            <input type="checkbox" id="allSelect">
+                                        </th>
+                                        <th>No</th>
+                                        <th>제목</th>
+                                        <th>작성 날짜</th>
+                                        <th>수정 날짜</th>
+                                    </tr>
                                     </thead>
+                                    <tbody>
                                     <tr th:each="noticeDTO : ${noticeDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check" value="">
+                                            <input type="checkbox" class="noticeCheckbox" name="check" th:value="${noticeDTO.id}">
                                         </td>
-                                        <td th:text="${noticeDTO.id}" class="noticeId">
-                                            1
-                                        </td>
+                                        <td th:text="${noticeDTO.id}" class="noticeId"></td>
                                         <td>
-                                            <a th:href="@{detail/{id}(id=${noticeDTO.id})}" th:text="${noticeDTO.noticeTitle}">
-                                                공지 제목
-                                            </a>
+                                            <a th:href="@{detail/{id}(id=${noticeDTO.id})}" th:text="${noticeDTO.noticeTitle}"></a>
                                         </td>
                                         <td th:text="${#temporals.format(noticeDTO.createdDate, 'yyyy-MM-dd')}"></td>
                                         <td th:text="${#temporals.format(noticeDTO.updatedDate, 'yyyy-MM-dd')}"></td>
                                     </tr>
+                                    </tbody>
+
 
                                 </table>
                             </div>
@@ -161,6 +160,9 @@
 <script src="/js/admin/board_proposal.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script>
+
+    const noticeId = '${noticeDTO.noticeId}';
+
     //페이지 번호 링크로 가져오는 코드
     let $pageForm = $("form[name='pageForm']");
 
@@ -169,6 +171,55 @@
         $pageForm.find("input[name='page']").val($(this).attr("href"));
         $pageForm.submit();
     });
+
+    function getSelectedNoticeIds() {
+        const noticeIds = [];
+        $(".noticeCheckbox:checked").each(function() {
+            noticeIds.push($(this).val());
+        });
+        return noticeIds;
+    }
+
+    function deleteNotices(noticeIds) {
+        $.ajax({
+            url: "/admin/board/notice/delete/",
+            type: "DELETE",
+            data: { noticeIds: noticeIds },
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".noticeCheckbox:checked");
+            const noticeIds = [];
+            checkedItems.each(function() {
+                noticeIds.push($(this).val());
+            });
+
+            if (noticeIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteNotices(noticeIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
+    });
+
+
+
+
+
+
+
 </script>
 
 </html>

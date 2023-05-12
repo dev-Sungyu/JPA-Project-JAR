@@ -38,10 +38,10 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
+                            <a th:href="@{/admin/board/notice/list}">
                                 <img src="/image/admin/prev_icon.png" class="prev-icon">
                             </a>
-                            <a class="back-page" href="">리스트로 돌아가기</a>
+                            <a class="back-page" th:href="@{/admin/board/notice/list}">리스트로 돌아가기</a>
                         </div>
                     </div>
 
@@ -54,21 +54,22 @@
                             </div>
                             <hr>
                             <div class="info-table">
-                                <form action="">
+                                <form th:action="@{/admin/board/notice/write}" method="post">
                                     <div>
-                                        <input type="text" class="notice-title" name="noticeTitle"
-                                            placeholder="제목을 입력해주세요.">
+                                        <input type="text" class="board-title" name="noticeTitle" placeholder="제목을 입력해주세요."
+                                               autocomplete="off" th:value="${noticeDTO.noticeTitle}">
                                     </div>
                                     <hr>
                                     <div>
-                                        <textarea class="notice-content" name="noticeContent"
-                                            placeholder="내용을 입력해주세요."></textarea>
+                                        <textarea class="board-content" name="noticeContent"
+                                                  placeholder="내용을 입력해주세요." th:text="${noticeDTO.noticeContent}"></textarea>
                                     </div>
                                     <hr>
                                     <div>
-                                        <button id="notice-button">등록</button>
+                                        <button class="btn_done" type="submit">수정 완료</button>
                                     </div>
                                 </form>
+
                             </div>
                         </div>
                     </section>

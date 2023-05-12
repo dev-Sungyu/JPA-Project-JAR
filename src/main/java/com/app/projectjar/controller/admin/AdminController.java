@@ -83,9 +83,28 @@ public class AdminController {
         return new RedirectView("/admin/board/notice/list");
     }
 
+    @DeleteMapping("board/notice/delete")
+    public void deleteNotices(@RequestBody List<Long> noticeIds) {
+        noticeService.deleteNotices(noticeIds);
+    }
+
+
 
     @GetMapping("board/notice/write")
-    public void adminNoticeWrite() {}
+    public void adminNoticeWrite(Model model) {
+        model.addAttribute("noticeDTO", new NoticeDTO());
+    }
+
+    @PostMapping("board/notice/write")
+    public String adminNoticeListPost(@ModelAttribute("noticeDTO") NoticeDTO noticeDTO) {
+        noticeService.register(noticeDTO);
+        return "redirect:/admin/board/notice/list";
+    }
+
+
+
+
+
     @GetMapping("board/proposal/detail")
     public void adminProposalDetail() {}
     @GetMapping("board/proposal/list")

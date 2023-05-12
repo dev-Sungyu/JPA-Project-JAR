@@ -11,7 +11,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -54,9 +53,16 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
 
+//    @Override
+//    public void deleteNotice(Long noticeId) {
+//        noticeRepository.deleteById(noticeId);
+//    }
+
     @Override
-    public void deleteNotice(Long noticeId) {
-        noticeRepository.deleteById(noticeId);
+    public void deleteNotices(List<Long> noticeIds) {
+        for (Long noticeId : noticeIds) {
+            noticeRepository.deleteById(noticeId);
+        }
     }
 
     @Override
