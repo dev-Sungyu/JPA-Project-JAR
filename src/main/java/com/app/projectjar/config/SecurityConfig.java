@@ -31,9 +31,9 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    마이 페이지
     private static final String MYPAGE_PATH = "/mypage/**";
 //    게시판
-    private static final String IGNORE_BOARD_CHALLENGE_PATH = "/board/challenge/**";
+    private static final String IGNORE_BOARD_CHALLENGE_PATH = "/board/challenge/personal/**";
 
-    private static final String IGNORE_BOARD_GROUP_CHALLENGE_PATH = "/board/group-challenge/**";
+    private static final String IGNORE_BOARD_GROUP_CHALLENGE_PATH = "/board/challenge/group/**";
 
     private static final String IGNORE_BOARD_SUGGEST_LIST_PATH = "/board/suggest/list";
     private static final String IGNORE_BOARD_SUGGEST_DETAIL_PATH = "/board/suggest/detail";
