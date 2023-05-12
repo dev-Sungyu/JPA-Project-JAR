@@ -76,7 +76,7 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
 
     @Override
     public Slice<ReplyDTO> getReplyList(Long suggestId, Pageable pageable) {
-        Slice<SuggestReply> suggestReplyList = suggestReplyRepository.findAllBySuggestWithPaging(suggestId, pageable);
+        Slice<SuggestReply> suggestReplyList = suggestReplyRepository.findAllBySuggestWithPaging_QueryDsl(suggestId, pageable);
 
         List<ReplyDTO> replyDTOS = suggestReplyList.getContent().stream().map(this::toReplyDTO).collect(Collectors.toList());
         return new SliceImpl<>(replyDTOS, pageable, suggestReplyList.hasNext());
@@ -84,6 +84,6 @@ public class SuggestReplyServiceImpl implements SuggestReplyService {
 
     @Override
     public Integer getReplyCount(Long suggestId) {
-        return suggestReplyRepository.getReplyCount(suggestId).intValue();
+        return suggestReplyRepository.getReplyCount_QueryDsl(suggestId).intValue();
     }
 }

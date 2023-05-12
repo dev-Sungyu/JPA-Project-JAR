@@ -73,7 +73,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     }
 
     @Override
-    public Suggest getCurrentSequence() {
+    public Suggest getCurrentSequence_QueryDsl() {
         return query.select(suggest)
                 .from(suggest)
                 .orderBy(suggest.id.desc())

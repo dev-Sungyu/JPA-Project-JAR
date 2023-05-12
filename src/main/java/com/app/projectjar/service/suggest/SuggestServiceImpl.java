@@ -3,10 +3,8 @@ package com.app.projectjar.service.suggest;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.suggest.Suggest;
-import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.file.suggest.SuggestFileRepository;
 import com.app.projectjar.repository.member.MemberRepository;
-import com.app.projectjar.repository.suggest.SuggestLikeRepository;
 import com.app.projectjar.repository.suggest.SuggestReplyRepository;
 import com.app.projectjar.repository.suggest.SuggestRepository;
 import com.app.projectjar.type.FileType;
@@ -17,7 +15,6 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -94,7 +91,7 @@ public class SuggestServiceImpl implements SuggestService {
 //    현재 시퀀스 가져오기
     @Override
     public Suggest getCurrentSequence() {
-        return suggestRepository.getCurrentSequence();
+        return suggestRepository.getCurrentSequence_QueryDsl();
     }
 
     @Override @Transactional
@@ -127,4 +124,13 @@ public class SuggestServiceImpl implements SuggestService {
         }
     }
 
+    @Override @Transactional
+    public void delete(Long suggestId) {
+        suggestRepository.findById(suggestId).ifPresent(
+                suggest -> {
+                    suggestReplyRepository.deleteBySuggestId(suggestId);
+                    suggestRepository.delete(suggest);
+                }
+        );
+    }
 }

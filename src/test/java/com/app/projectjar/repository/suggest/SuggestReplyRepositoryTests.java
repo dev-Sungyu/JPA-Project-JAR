@@ -62,7 +62,7 @@ public class SuggestReplyRepositoryTests {
     @Test
     public void findAllBySuggestWithPagingTest() {
         PageRequest pageRequest = PageRequest.of(0,5);
-        suggestReplyRepository.findAllBySuggestWithPaging(11L,pageRequest).forEach(suggestReply -> log.info(suggestReply.toString()));
+        suggestReplyRepository.findAllBySuggestWithPaging_QueryDsl(11L,pageRequest).forEach(suggestReply -> log.info(suggestReply.toString()));
     }
 
     @Test
@@ -82,7 +82,7 @@ public class SuggestReplyRepositoryTests {
     @Test
     public void countTest(){
         suggestRepository.findById(2L).ifPresent(
-                suggest -> log.info(suggestReplyRepository.getReplyCount(suggest.getId())+ "개수")
+                suggest -> log.info(suggestReplyRepository.getReplyCount_QueryDsl(suggest.getId())+ "개수")
         );
     }
 }

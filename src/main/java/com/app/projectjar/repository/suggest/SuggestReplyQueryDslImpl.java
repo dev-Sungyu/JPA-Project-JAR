@@ -20,7 +20,7 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Slice<SuggestReply> findAllBySuggestWithPaging(Long suggestId, Pageable pageable) {
+    public Slice<SuggestReply> findAllBySuggestWithPaging_QueryDsl(Long suggestId, Pageable pageable) {
         List<SuggestReply> foundReply = query.select(suggestReply)
                 .from(suggestReply)
                 .leftJoin(suggestReply.member, member)
@@ -41,10 +41,17 @@ public class SuggestReplyQueryDslImpl implements SuggestReplyQueryDsl {
     }
 
     @Override
-    public Long getReplyCount(Long suggestId) {
+    public Long getReplyCount_QueryDsl(Long suggestId) {
         return query.select(suggestReply.count())
                 .from(suggestReply)
                 .where(suggestReply.suggest.id.eq(suggestId))
                 .fetchOne();
+    }
+
+    @Override
+    public void deleteBySuggestId(Long suggestId) {
+        query.delete(suggestReply)
+                .where(suggestReply.suggest.id.eq(suggestId))
+                .execute();
     }
 }
