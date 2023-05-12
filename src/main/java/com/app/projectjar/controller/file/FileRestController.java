@@ -1,7 +1,6 @@
-package com.app.projectjar.controller.board.suggest.file;
+package com.app.projectjar.controller.file;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +14,9 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/suggest/image/*")
+@RequestMapping("/file/*")
 @RequiredArgsConstructor
-public class SuggestFileRestController {
+public class FileRestController {
 
     //    파일 업로드
     @PostMapping("upload")

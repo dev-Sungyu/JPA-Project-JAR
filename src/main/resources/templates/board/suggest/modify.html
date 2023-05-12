@@ -192,10 +192,13 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
-    globalThis.uuids;
     let suggestDTO = [[${suggestDTO}]];
-    let fileDTOS = suggestDTO.fileDTOS;
-    console.log(fileDTOS);
+    let fileDTOS = null;
+    if(suggestDTO == null || suggestDTO == undefined){
+    }else {
+        fileDTOS = suggestDTO.fileDTOS;
+    }
+
 </script>
 <script src="/js/board/suggest/write.js"></script>
 <script>
@@ -211,6 +214,7 @@
     });
 
     $(".modify-button").click(() => {
+        console.log(globalThis.uuids);
         const $files = fileDTOS;
         let text = "";
 
@@ -230,28 +234,26 @@
 
 
         FileList.prototype.forEach = Array.prototype.forEach;
-
-        if(fileDTOS[0].fileOriginalName == undefined){
-            fileDTOS.forEach((file, i) => {
+        let count = 0;
+        files.forEach((file, i) => {
+            if(file.fileOriginalName == undefined && file.fileOriginalName == null){
                 text +=
                     `
-                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
-                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
-                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
-                `;
-            });
-        }else {
-            fileDTOS.forEach((file, i) => {
+                        <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                        <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[count]}">
+                        <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                        `;
+                count++;
+            }else {
                 text +=
                     `
                 <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.fileOriginalName}">
                 <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${file.fileUuid}">
                 <input type="hidden" name="fileDTOS[${i}].filePath" value="${file.filePath}">
                 `;
-            });
+            }
 
-        }
-
+        });
         $("form[name=form]").append(text);
         $("form[name=form]").submit();
     });
@@ -289,6 +291,5 @@
             $ul.append(text);
         })
     }
-
 </script>
 </html>

@@ -192,7 +192,12 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
-    globalThis.uuids;
+    let fileDTOS = null;
+    let suggestDTO = [[${suggestDTO}]];
+    if(suggestDTO == null || suggestDTO == undefined){
+    }else {
+        fileDTOS = suggestDTO.fileDTOS;
+    }
 </script>
 <script src="/js/board/suggest/write.js"></script>
 </html>
