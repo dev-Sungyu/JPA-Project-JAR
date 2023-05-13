@@ -26,7 +26,7 @@ public class DiaryRepositoryTests {
 
     @Test
     public void saveTest() {
-        memberRepository.findById(1L).ifPresent(
+        memberRepository.findById(13L).ifPresent(
                 member ->{
                     for (int i = 0; i < 20; i++) {
                         diaryRepository.save(
@@ -47,16 +47,21 @@ public class DiaryRepositoryTests {
         diaryRepository.findByDiaryId_QueryDsl(110L).map(Diary::toString).ifPresent(log::info);
     }
 
-    @Test
-    public void findAllDiaryTest() {
-        PageRequest pageRequest = PageRequest.of(1,10);
-        diaryRepository.findAllDiary_QueryDsl(pageRequest).stream().map(Diary::toString)
-                .forEach(log::info);
-    }
+//    @Test
+//    public void findAllDiaryTest() {
+//        PageRequest pageRequest = PageRequest.of(1,10);
+//        diaryRepository.findAllDiary_QueryDsl(pageRequest).stream().map(Diary::toString)
+//                .forEach(log::info);
+//    }
 
     @Test
     public void findAllByMemberWithPaging_QueryDslTest(){
         PageRequest pageRequest = PageRequest.of(1,5);
         diaryRepository.findAllByMemberWithPaging_QueryDsl(pageRequest, 1L).stream().map(Diary::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findAllDiary_QueryDslTest() {
+        diaryRepository.findAllDiary_QueryDsl("popular",PageRequest.of(0,10)).map(Diary::toString).forEach(log::info);
     }
 }

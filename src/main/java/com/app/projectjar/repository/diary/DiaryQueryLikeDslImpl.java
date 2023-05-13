@@ -1,9 +1,13 @@
 package com.app.projectjar.repository.diary;
 
 
+import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.DiaryLike;
+import com.app.projectjar.entity.diary.QDiary;
 import com.app.projectjar.entity.diary.QDiaryLike;
+import com.app.projectjar.entity.file.diary.QDiaryFile;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,7 +16,11 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
+import static com.app.projectjar.entity.diary.QDiary.diary;
 import static com.app.projectjar.entity.diary.QDiaryLike.diaryLike;
+import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
+import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
+import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 import static com.app.projectjar.entity.suggest.QSuggestLike.suggestLike;
 
 @RequiredArgsConstructor

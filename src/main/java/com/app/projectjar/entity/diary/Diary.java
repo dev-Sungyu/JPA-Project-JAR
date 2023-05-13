@@ -21,8 +21,11 @@ import java.util.List;
 @DynamicUpdate
 public class Diary extends Board {
 
-    @ColumnDefault(value = "0")
+    @Column(columnDefinition = "integer default 0")
     private Integer diaryLikeCount;
+
+    @Column(columnDefinition = "integer default 0")
+    private Integer diaryReplyCount;
 
     @NotNull
     @Enumerated(EnumType.STRING)

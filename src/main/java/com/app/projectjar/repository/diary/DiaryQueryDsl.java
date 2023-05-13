@@ -3,6 +3,7 @@ package com.app.projectjar.repository.diary;
 import com.app.projectjar.entity.diary.Diary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
 
 import java.util.Optional;
 
@@ -12,7 +13,7 @@ public interface DiaryQueryDsl {
     // 상세보기
     public Optional<Diary> findByDiaryId_QueryDsl(Long diaryId);
     // 리스트
-    public Page<Diary> findAllDiary_QueryDsl(Pageable pageable);
+    public Slice<Diary> findAllDiary_QueryDsl(String sort, Pageable pageable);
 
 
     /* 마이 페이지 */
