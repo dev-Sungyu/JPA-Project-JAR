@@ -10,9 +10,7 @@ import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.DiaryType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -44,23 +42,24 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
     }
 
     @Override
-    public Page<Diary> findAllDiary_QueryDsl(Pageable pageable) {
-        List<Diary> foundDiaries = query.select(diary)
-                .from(diary)
-                .leftJoin(diary.diaryFiles, diaryFile)
-                .fetchJoin()
-                .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
-                .orderBy(diary.id.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
-                .fetch();
+    public Slice<Diary> findAllDiary_QueryDsl(String sort, Pageable pageable) {
+            List<Diary> foundDiaryList = query.select(diary)
+                    .from(diary)
+                    .leftJoin(diary.diaryFiles, diaryFile)
+                    .fetchJoin()
+                    .orderBy(sort.equals("recent") ? diary.id.desc() : diary.diaryLikeCount.desc())
+                    .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
+                    .offset(pageable.getOffset())
+                    .limit(pageable.getPageSize() + 1)
+                    .fetch();
 
-        Long count = query.select(diary.count())
-                .from(diary)
-                .where(diary.diaryStatus.eq(DiaryType.valueOf("OPEN")))
-                .fetchOne();
+        boolean hasNext = false;
+        if (foundDiaryList.size() > pageable.getPageSize()) {
+            foundDiaryList.remove(pageable.getPageSize());
+            hasNext = true;
+        }
 
-        return new PageImpl<>(foundDiaries, pageable, count);
+        return new SliceImpl<>(foundDiaryList, pageable, hasNext);
     }
 
     @Override
