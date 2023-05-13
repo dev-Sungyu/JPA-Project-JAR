@@ -16,6 +16,9 @@ public interface GroupChallengeService {
     // 목록
     public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable);
 
+    // 종료된 목록
+    public Page<GroupChallengeDTO> getEndGroupChallengeList(Pageable pageable);
+
     // 상세보기
     public GroupChallengeDTO getGroupChallenge(Long groupChallengeId);
 

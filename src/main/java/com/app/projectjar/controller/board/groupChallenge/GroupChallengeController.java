@@ -23,9 +23,13 @@ public class GroupChallengeController {
 
     @GetMapping("content-list")
     @ResponseBody
-    public Page<GroupChallengeDTO> getGroupChallengeList(@RequestParam(defaultValue = "0", name = "page") int page){
+    public Page<GroupChallengeDTO> getGroupChallengeList(@RequestParam("boardStatus") String boardStatus, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 9);
-        return groupChallengeService.getGroupChallengeList(pageable);
+        if(boardStatus.equals("OPEN")){
+            return groupChallengeService.getGroupChallengeList(pageable);
+        }else {
+            return groupChallengeService.getEndGroupChallengeList(pageable);
+        }
     }
 
     @GetMapping("list")

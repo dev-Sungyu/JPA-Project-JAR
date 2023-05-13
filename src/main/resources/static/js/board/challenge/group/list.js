@@ -1,6 +1,7 @@
 
 const $ul = $(".challenge-wrapper-list");
 let page = 0;
+let boardStatus = "OPEN";
 
 groupChallengeService = (function () {
     function list(page, callback) {
@@ -17,10 +18,27 @@ groupChallengeService = (function () {
     }
 
     return {
-        list: list
+        list: list,
     }
 })();
-getList(page);
+getList(boardStatus, page);
+
+$(".currently-challenge").click(() => {
+    $ul.empty();
+    page = 0;
+    boardStatus = "OPEN";
+    getList(boardStatus, page);
+    check =false;
+});
+
+$(".closing-challenge ").click(() => {
+    page = 0;
+    boardStatus = "PRIVATE";
+    $ul.empty();
+    check = true;
+    getList(boardStatus, page);
+});
+
 
 $(".paging-layout").on("click", "a", function(e) {
     e.preventDefault();
@@ -38,7 +56,8 @@ $(".paging-layout").on("click", "a", function(e) {
         // 페이지 번호 클릭 시 해당 페이지로 이동
         page = parseInt(targetPage) - 1;
     }
-    getList(page);
+
+    getList(boardStatus, page);
 });
 
 function displayPagination(totalPages) {
@@ -116,9 +135,10 @@ function listText(list) {
 
 }
 
-function getList(page){
+function getList(boardStatus, page){
     groupChallengeService.list({
-        page: page
+        page: page,
+        boardStatus : boardStatus
     }, function (list) {
         window.scrollTo(0, 0);
         listText(list);
