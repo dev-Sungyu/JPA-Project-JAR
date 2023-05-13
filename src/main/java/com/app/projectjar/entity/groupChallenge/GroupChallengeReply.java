@@ -22,4 +22,15 @@ public class GroupChallengeReply extends Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
+
+    public void setGroupChallengeReplyContent(String replyContent) {
+        super.setReplyContent(replyContent);
+    }
+
+    @Builder
+    public GroupChallengeReply(Long id, String replyContent, GroupChallenge groupChallenge, Member member) {
+        super(id, replyContent);
+        this.groupChallenge = groupChallenge;
+        this.member = member;
+    }
 }

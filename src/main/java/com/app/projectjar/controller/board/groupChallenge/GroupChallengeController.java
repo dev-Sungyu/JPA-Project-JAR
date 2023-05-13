@@ -4,10 +4,10 @@ import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 @RequestMapping("/board/challenge/group/*")
 @RequiredArgsConstructor
+@Slf4j
 public class GroupChallengeController {
 
     private final GroupChallengeService groupChallengeService;
@@ -28,7 +29,9 @@ public class GroupChallengeController {
     }
 
     @GetMapping("list")
-    public void goToList(){ ; }
+    public void goToList(Model model, @AuthenticationPrincipal UserDetail userDetail){
+        model.addAttribute("userDetail", userDetail);
+    }
 
     @GetMapping("detail/{boardId}")
     public String goToDetail(Model model,  @PathVariable("boardId") Long boardId, @AuthenticationPrincipal UserDetail userDetail) {
