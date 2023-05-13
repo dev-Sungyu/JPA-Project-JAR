@@ -14,6 +14,10 @@ public interface GroupChallengeQueryDsl {
 
     // 목록
     public Page<GroupChallenge> findAllGroupChallengeWithPaging_QueryDsl(Pageable pageable);
+
+    // 종료된 챌린지
+    public Page<GroupChallenge> findAllGroupChallengeByPrivateWithPaging_QueryDsl(Pageable pageable);
+
     // 상세 보기
     public Optional<GroupChallenge> findByGroupChallengeId_QueryDsl(Long groupChallengeId);
 
