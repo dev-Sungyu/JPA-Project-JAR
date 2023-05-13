@@ -32,6 +32,7 @@ public interface GroupChallengeService {
                 .fileDTOS(toFileDTO(groupChallenge.getGroupChallengeFiles()))
                 .groupChallengeReplyCount(groupChallenge.getGroupChallengeReplyCount())
                 .groupChallengeStatus(groupChallenge.getGroupChallengeStatus())
+                .replyCount(groupChallenge.getGroupChallengeReplyCount())
                 .build();
     }
 

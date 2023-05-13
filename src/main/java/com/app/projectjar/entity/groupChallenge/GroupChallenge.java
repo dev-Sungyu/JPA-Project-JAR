@@ -18,7 +18,6 @@ import java.util.List;
 @Table(name = "TBL_GROUP_CHALLENGE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
-@DynamicUpdate
 public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -28,17 +27,16 @@ public class GroupChallenge extends Board {
     private LocalDate startDate;
     @NotNull
     private LocalDate endDate;
-    @ColumnDefault(value = "0")
+    @Column(columnDefinition = "integer default 0")
     private Integer groupChallengeReplyCount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
 
-    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount) {
+    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate) {
         super(boardTitle, boardContent);
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.groupChallengeReplyCount = groupChallengeReplyCount;
     }
 }

@@ -25,7 +25,7 @@ public class Challenge extends Board {
     @ColumnDefault("'PRIVATE'")
     private ChallengeType challengeStatus;
 
-    @ColumnDefault(value = "0")
+    @Column(columnDefinition = "integer default 0")
     private Integer challengeReplyCount;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
