@@ -131,73 +131,40 @@
                                                     <div class="reply-container-box">
                                                         <div class="reply-container-box-layout">
                                                             <div class="reply-box-container">
-                                                                <!-- 여기부터 -->
-                                                                <div class="reply-text-box">
-                                                                    <div class="reply-text-box-user">
-                                                                        <section class="reply-user-box">
-                                                                            <div class="reply-user-box-image" size="40">
-                                                                                <span class="reply-user-box-image-sapn-1  reply-user-box-image-sapn-2">
-                                                                                    <picture class="reply-user-picture">
-                                                                                        <img src="/image/board/default-user.png" sizes="100vw" alt="">
-                                                                                    </picture>
-                                                                                </span>
-                                                                            </div>
-                                                                            <div class="reply-user-box-info">
-                                                                                <strong class="reply-user-box-info-name">강한친구곽두철</strong>
-                                                                                <div class="reply-user-box-info-date">2023. 04. 21</div>
-                                                                            </div>
-                                                                            <div class="trophy-box">
-                                                                                <img src="/image/mypage/trophy_1.png">
-                                                                            </div>
-                                                                        </section>
-                                                                        <div class="modify-button-box">
-                                                                            <button type="button" class="btn reply-cancel-button">취소</button>
-                                                                            <button type="button" class="btn modify-button">수정</button>
-                                                                            <button type="button" class="btn delete-button">삭제</button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="reply-text-box-text">
-                                                                        <div class="reply-text-container" top="16" right="0" bottom="8" left="0">
-                                                                            <div class="reply-text-container-box-1 reply-text-container-box" md="Body2">
-                                                                                <div class="reply-text-container-box-layout">
-                                                                                    <div class="reply-text-container-box-layout-text" size="200">
-                                                                                        <div class="real-reply-text-box">
-                                                                                            <p class="reply-content-text">안녕하세요 페이스북 홍보는 아직도 추천하시나요? 자굼 페이스북 이용자가 많이 줄었다고 들어서 궁급합니다 ㅎㅎ</p>
-                                                                                        </div>
-                                                                                        <div class="modify-content-box">
-                                                                                            <div class="modify-content-layout">
-                                                                                                <input type="text" placeholder="댓글을 입력해주세요." class="reply-modify-content">
-                                                                                                <button type="button" class="confirm-button">완료</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
+                                                                <!--댓글-->
+                                                            </div>
+                                                        </div>
+                                                        <th:block th:if="${not #strings.isEmpty(userDetail)}">
+                                                            <div class="reply-container-box-layout">
+                                                                <div>
+                                                                    <div class="reply-form">
+                                                                        <div class="reply-form-container">
+                                                                            <div class="reply-form-container-box">
+                                                                            <textarea name="content" id="" cols="30", maxlength="80"
+                                                                                      rows="1" placeholder="댓글을 입력해주세요."
+                                                                                      class="reply-content"></textarea>
                                                                             </div>
                                                                         </div>
+                                                                        <button
+                                                                                class="reply-from-button-1 reply-from-button-2 register-button"
+                                                                                type="button" kind="textGray">
+                                                                            <div class="reply-from-button-box">
+                                                                            <span class="reply-from-button-box-span">
+                                                                                <svg width="24" height="24" fill="none"
+                                                                                     viewBox="0 0 24 24">
+                                                                                    <path fill-rule="evenodd"
+                                                                                          d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z"
+                                                                                          fill="#e5e5e5"></path>
+                                                                                </svg>
+                                                                            </span>
+                                                                            </div>
+                                                                        </button>
                                                                     </div>
                                                                 </div>
-                                                                <!--  -->
                                                             </div>
-                                                        </div>
-                                                        <div class="reply-container-box-layout">
-                                                            <div>
-                                                                <form action="" class="reply-form">
-                                                                    <div class="reply-form-container">
-                                                                        <div class="reply-form-container-box">
-                                                                            <textarea name="content" id="" cols="30" rows="1" placeholder="댓글을 입력해주세요." class="reply-content"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <button class="reply-from-button-1 reply-from-button-2" type="submit" kind="textGray">
-                                                                        <div class="reply-from-button-box">
-                                                                            <span class="reply-from-button-box-span">
-                                                                                <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M6 11h4a1 1 0 110 2H6v6l13-7L6 5v6zm.948 9.761C5.616 21.478 4 20.513 4 19V5c0-1.513 1.616-2.478 2.948-1.761l13 7c1.402.755 1.402 2.767 0 3.522l-13 7z" fill="#e5e5e5"></path></svg>
-                                                                            </span>
-                                                                        </div>
-                                                                    </button>
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <button class="the-bogi" icon-position="0" color="default" fill="true">
+                                                        </th:block>
+                                                        <button class="the-bogi" icon-position="0" color="default"
+                                                                fill="true">
                                                             <span class="the-bogi-span">더 보기</span>
                                                         </button>
                                                     </div>
@@ -266,7 +233,10 @@
     if(userDetail){
         memberId = userDetail.id;
     }
+
+    console.log(memberId);
     const groupChallengeDTO = [[${groupChallengeDTO}]];
+    const boardId = groupChallengeDTO.id;
 
     const fileDTOS = [[${groupChallengeDTO.fileDTOS}]];
     const $mainImage = $(".main-picture");
@@ -285,167 +255,7 @@
         $(".sub-image-container-plus").hide();
     }
 </script>
-<script>
-// =========================================================================================================    
-//  이미지 받아서 이미지 갯수 + 2개 만큼 태그 만들기
-    const $imageModal = $(".image-expansion-display");
-    const $image = $(".image-container-picture");
-    const $modalExitButtton = $(".cancel-button");
-    const $imageWrap = $(".swiper-wrapper");
-    const $pageWrap = $(".swiper-pagination");
-    const width = 896;
-    
-    // 이미지 정보 Array객체로 받기
-    let imageArr = [
-        'https://cdn.class101.net/images/80a349f4-cd0e-4ef7-ae18-14c0d8161112/2048xauto.webp',
-        'https://cdn.class101.net/images/e16f5209-bf9a-49c4-b429-bfa8792bfb51/2048xauto.webp',
-        'https://cdn.class101.net/images/aa3b5298-80c7-46e3-b44d-8203492dc659/2048xauto.webp',
-        'https://cdn.class101.net/images/d125bc77-a03a-41fb-9ea6-b04db24f3aff',
-        'https://cdn.class101.net/images/692e8aa8-a883-4e28-b6be-fd28a998d24c/2048xauto.webp',
-    ];
-
-    let totalWidth = width * (imageArr.length + 2);
-    // 슬라이드 요소 감싸고잇는 div의 width 설정
-    $imageWrap.css("width", totalWidth);
-    $(".all-count").text(numberFormat(imageArr.length));
-
-
-    createImageSlideDiv(imageArr);
-
-    function createImageSlideDiv(imageArr) {
-        let length = imageArr.length;
-        let text = "";
-
-        imageArr.forEach((image, i) => {
-           text += `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="${image}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
-        });
-        $imageWrap.html(text);
-        createPaging(imageArr.length);
-        createAppendAndPrependImageDiv();
-    }
-
-
-    function createAppendAndPrependImageDiv() {
-        let firstImage = imageArr[0];
-        let lastImage = imageArr[imageArr.length - 1];
-
-        let text1 = `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="${firstImage}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
-        
-        let text2 = `
-                                <div class="swiper-slide swiper-slide-active" style="width: 896px;">
-                                    <span class="swiper-slide-span" ratio="0.75">
-                                        <picture ratio="0.75" class="swiper-slide-picture image-container-picture">
-                                            <img sizes=" 100vw" src="${lastImage}">
-                                        </picture>
-                                    </span>
-                                </div>
-           `;
-
-        $imageWrap.prepend(text2);
-        $imageWrap.append(text1);   
-    }
-
-    function createPaging(index) {
-        let text = "";
-        for(let i = 0; i < index; i++) {
-            text += `<span class="swiper-pagination-bullet"></span>`;
-        }
-        $pageWrap.html(text);
-        $($(".swiper-pagination-bullet")[0]).addClass("swiper-pagination-bullet-active");
-    }
-
-    function pagingActive(index) {
-        let pagingLength = $(".swiper-pagination-bullet").length; 
-
-        $(".swiper-pagination-bullet").removeClass("swiper-pagination-bullet-active");
-        $($(".swiper-pagination-bullet")[index - 1]).addClass("swiper-pagination-bullet-active");
-    }
-
-    function numberFormat(number) {
-        if(number < 10){
-            return "0" + number;
-        }
-        return number;
-    }
-// ========================================================================================================= 
-//  슬라이드 이벤트
-let checkArrow = false;
-let count = 1;
-const $prev = $(".image-expansion-wrapper-prev");
-const $next = $(".image-expansion-wrapper-next");
-const $imageNumber = $(".count-first");
-
-$imageWrap.css("transform",`translate(-${width}px)`);
-
-$prev.click(function(){
-    if(checkArrow){return;}
-    checkArrow = true;
-    $imageWrap.css("transition","transform 0.3s");
-    $imageWrap.css("transform",`translate(${-width * --count}px)`);
-
-    if(count == 0) {
-        count = imageArr.length;
-        setTimeout(function(){
-            $imageWrap.css("transition","transform 0s");
-            $imageWrap.css("transform",`translate(${-width * (imageArr.length)}px)`);
-        }, 300);
-    }
-    $imageNumber.text(numberFormat(count));
-    pagingActive(count);
-    setTimeout(()=>{checkArrow = false}, 300);
-});
-
-$next.click(function(){
-    if(checkArrow){return;}
-    checkArrow = true;
-
-    $imageWrap.css("transition","transform 0.3s");
-    $imageWrap.css("transform",`translate(${-width * ++count}px)`);
-    
-    if(count == imageArr.length + 1) {
-        count = 1;
-        setTimeout(function(){
-            $imageWrap.css("transition","transform 0s");
-            $imageWrap.css("transform",`translate(-${width}px)`);
-        }, 300);
-    }
-    $imageNumber.text(numberFormat(count));
-    pagingActive(count);
-
-    setTimeout(()=>{checkArrow = false}, 300);
-});
-
-
-
-// ==========================================================================================================
-//  모달
-    $image.each((i, e) => {
-        $(e).click(() => {
-            $imageModal.show();
-        });
-    });
-
-    $modalExitButtton.click(() => {
-        $imageModal.hide();
-    });
-
-
-
-</script>
+<script src="/js/board/suggest/slide.js"></script>
+<script src="/js/board/challenge/group/reply.js"></script>
+<script src="/js/board/reply/reply.js"></script>
 </html>
