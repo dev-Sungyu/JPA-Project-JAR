@@ -2,6 +2,9 @@ package com.app.projectjar.entity.groupChallenge;
 
 import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
+import com.app.projectjar.entity.file.suggest.SuggestFile;
+import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.type.BoardType;
 import com.app.projectjar.type.GroupChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -38,5 +41,18 @@ public class GroupChallenge extends Board {
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public void setGroupChallengeReplyCount(Integer groupChallengeReplyCount) {
+        this.groupChallengeReplyCount = groupChallengeReplyCount;
+    }
+
+    @Builder
+    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, List<GroupChallengeFile> groupChallengeFiles) {
+        super(id, boardTitle, boardContent);
+        this.groupChallengeStatus = groupChallengeStatus;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.groupChallengeFiles = groupChallengeFiles;
     }
 }
