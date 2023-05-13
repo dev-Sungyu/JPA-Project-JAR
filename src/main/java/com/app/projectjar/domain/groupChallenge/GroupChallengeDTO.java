@@ -29,11 +29,12 @@ public class GroupChallengeDTO {
     private LocalDate endDate;
     private Integer groupChallengeReplyCount;
     private Integer attendCount;
+    private Integer replyCount;
 
     private List<FileDTO> fileDTOS;
 
     @Builder
-    public GroupChallengeDTO(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer attendCount, List<FileDTO> fileDTOS) {
+    public GroupChallengeDTO(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer attendCount, Integer replyCount, List<FileDTO> fileDTOS) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -42,6 +43,7 @@ public class GroupChallengeDTO {
         this.endDate = endDate;
         this.groupChallengeReplyCount = groupChallengeReplyCount;
         this.attendCount = attendCount;
+        this.replyCount = replyCount;
         this.fileDTOS = fileDTOS;
     }
 }
