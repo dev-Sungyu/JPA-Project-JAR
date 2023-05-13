@@ -37,6 +37,27 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
 
         Long count = query.select(groupChallenge.count())
                 .from(groupChallenge)
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("OPEN")))
+                .fetchOne();
+
+        return new PageImpl<>(foundGroupChallenge, pageable, count);
+    }
+
+    @Override
+    public Page<GroupChallenge> findAllGroupChallengeByPrivateWithPaging_QueryDsl(Pageable pageable) {
+        List<GroupChallenge> foundGroupChallenge = query.select(groupChallenge)
+                .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
+                .orderBy(groupChallenge.id.desc())
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("PRIVATE")))
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(groupChallenge.count())
+                .from(groupChallenge)
+                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("PRIVATE")))
                 .fetchOne();
 
         return new PageImpl<>(foundGroupChallenge, pageable, count);

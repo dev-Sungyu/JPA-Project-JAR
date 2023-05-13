@@ -14,7 +14,7 @@
 <body>
 <div class="__next">
     <div id="wrapper">
-        <div id="header"></div>
+        <th:block th:replace="~{main/header :: header}"></th:block>
         <div class="main">
             <div class="main-wrapper">
                 <section class="main-wrapper-section">
@@ -104,14 +104,13 @@
                 </section>
             </div>
         </div>
-        <div id="footer"></div>
+        <th:block th:replace="~{main/footer :: footer}"></th:block>
     </div>
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let userDetail = [[${userDetail}]];
-    console.log(userDetail);
 </script>
 <script>
     /* 진행중인 챌린지 / 종료된 챌린지 */

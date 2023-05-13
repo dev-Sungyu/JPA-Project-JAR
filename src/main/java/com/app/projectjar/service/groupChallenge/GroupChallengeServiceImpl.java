@@ -27,6 +27,13 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable) {
         Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageable);
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallenges.stream().map(this::toGroupChallengeDTO).collect(Collectors.toList());
+        return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable() , groupChallenges.getTotalElements());
+    }
+
+    @Override
+    public Page<GroupChallengeDTO> getEndGroupChallengeList(Pageable pageable) {
+        Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllGroupChallengeByPrivateWithPaging_QueryDsl(pageable);
+        List<GroupChallengeDTO> groupChallengeDTOS = groupChallenges.stream().map(this::toGroupChallengeDTO).collect(Collectors.toList());
 
         return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable() , groupChallenges.getTotalElements());
     }
