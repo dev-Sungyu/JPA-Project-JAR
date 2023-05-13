@@ -65,65 +65,16 @@
                                             <th>작성 날짜</th>
                                         </tr>
                                     </thead>
-                                    <tr>
+                                    <tr th:each="suggestDTO : ${suggestDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>개인</td>
+                                            <input type="checkbox" name="check"  th:value="${suggestDTO.id}"></td>
+                                        <td th:text="${suggestDTO.id}" class="noticeId"></td>
+                                        <td th:text="${suggestDTO.boardType}"></td>
                                         <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
+                                            <a th:href="@{detail/{id}(id=${suggestDTO.id})}" th:text="${suggestDTO.boardTitle}"></a>
                                         </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>개인</td>
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            3
-                                        </td>
-                                        <td>단체</td>
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23
-                                        </td>
+                                        <td th:text="${suggestDTO.memberDTO.id}"></td>
+                                        <td th:text="${#temporals.format(suggestDTO.updatedDate, 'yyyy-MM-dd')}"></td>
                                     </tr>
                                 </table>
                             </div>
@@ -212,5 +163,15 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/board_proposal.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script>
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+</script>
 
 </html>

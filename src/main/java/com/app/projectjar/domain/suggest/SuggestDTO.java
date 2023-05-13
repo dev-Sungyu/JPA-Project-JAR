@@ -6,6 +6,7 @@ import com.app.projectjar.domain.member.MemberDTO;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,13 +23,15 @@ public class SuggestDTO {
 
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
+    private LocalDateTime createdDate;
+    private LocalDateTime updatedDate;
 
     public SuggestDTO() {
         this.fileDTOS = new ArrayList<>();
     }
 
     @Builder
-    public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
+    public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS, LocalDateTime createdDate, LocalDateTime updatedDate) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -37,5 +40,7 @@ public class SuggestDTO {
         this.replyCount = replyCount;
         this.memberDTO = memberDTO;
         this.fileDTOS = fileDTOS;
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
     }
 }
