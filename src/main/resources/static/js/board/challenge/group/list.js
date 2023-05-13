@@ -96,8 +96,18 @@ function listText(list) {
                                                                     <div class="board-box">
                                                                         <span class="board-box-span-1 board-box-span-2">
                                                                             <picture class="board-box-picture" ratio="0.75">
-                                                                                <img sizes="(min-width: 1024px) 300px, 50vw" src="/image/board/board-img.png" alt="챌린지 게시판" class="board-box-picture-img">
-                                                                            </picture>
+                                                                            `;
+        if(groupChallengeDTO.fileDTOS.length == 0){
+            text += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png" class="no-image">`;
+        }else {
+            for (let  j= 0; j < groupChallengeDTO.fileDTOS.length; j++){
+                if(groupChallengeDTO.fileDTOS[j].fileType === "REPRESENTATIVE"){
+                    text += `<img class="list-image"  src="/file/display?fileName=${groupChallengeDTO.fileDTOS[j].filePath}/${groupChallengeDTO.fileDTOS[j].fileUuid}_${groupChallengeDTO.fileDTOS[j].fileOriginalName}">`;
+                }
+            }
+        }
+
+                        text +=                                        `        </picture>
                                                                         </span>
                                                                     </div>
                                                                     <div class="">

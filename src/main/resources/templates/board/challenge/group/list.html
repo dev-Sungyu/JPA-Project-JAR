@@ -26,11 +26,11 @@
                                 <div class="main-top">
                                     <section class="main-top-wrap">
                                         <section class="main-top-wrap-box">
-                                            <button class="currently-challenge challenge challenge-1 challenge-2"
+                                            <button class="currently-challenge select-button challenge challenge-1 challenge-2 select-button-active"
                                                     value="0" icon-position="0" color="default" fill="false">
                                                 <span>진행중인 챌린지</span>
                                             </button>
-                                            <button class="closing-challenge challenge challenge-1 challenge-2"
+                                            <button class="closing-challenge select-button challenge challenge-1 challenge-2"
                                                     value="1" icon-position="0" color="default" fill="false">
                                                 <span>종료된 챌린지</span>
                                             </button>
@@ -111,29 +111,17 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let userDetail = [[${userDetail}]];
+    let groupChallengeDTO = [[${groupChallengeDTO}]];
 </script>
 <script>
-    /* 진행중인 챌린지 / 종료된 챌린지 */
-    let currentlyBtn = document.querySelector('.currently-challenge');
-    let closingBtn = document.querySelector('.closing-challenge');
+    let $selectButton = $(".select-button");
 
-    const cuurrentValue = currentlyBtn.getAttribute('value');
-    const closeValue = closingBtn.getAttribute('value');
-
-    currentlyBtn.onclick = function () {
-        currentlyBtn.style.backgroundColor = '#d7d7d7';
-        currentlyBtn.style.fontWeight = '900';
-        closingBtn.style.backgroundColor = 'white';
-        closingBtn.style.fontWeight = 'normal';
-    }
-
-    closingBtn.onclick = function () {
-        closingBtn.style.backgroundColor = '#d7d7d7';
-        closingBtn.style.fontWeight = '900';
-        currentlyBtn.style.backgroundColor = 'white';
-        currentlyBtn.style.fontWeight = 'normal';
-
-    }
+    $selectButton.each((i, e) => {
+        $(e).click(() => {
+            $selectButton.removeClass("select-button-active");
+            $(e).addClass("select-button-active");
+        });
+    });
 </script>
 <script src="/js/board/challenge/group/list.js">
 </script>
