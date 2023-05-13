@@ -36,7 +36,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(suggest.count()).from(suggest).fetchOne();
+        Long count = query.select(suggest.count()).from(suggest).where(suggest.boardType.eq(BoardType.PERSONAL)).fetchOne();
 
         return new PageImpl<>(foundSuggests, pageable, count);
     }
@@ -53,7 +53,7 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(suggest.count()).from(suggest).fetchOne();
+        Long count = query.select(suggest.count()).from(suggest).where(suggest.boardType.eq(BoardType.GROUP)).fetchOne();
 
         return new PageImpl<>(foundSuggests, pageable, count);
     }
