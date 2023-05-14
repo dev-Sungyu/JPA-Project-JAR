@@ -51,4 +51,8 @@ public class Diary extends Board {
         this.member = member;
         this.diaryFiles = diaryFiles;
     }
+
+    public void setDiaryReplyCount(Integer diaryReplyCount) {
+        this.diaryReplyCount = diaryReplyCount;
+    }
 }
