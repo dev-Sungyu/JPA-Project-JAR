@@ -137,6 +137,20 @@ $(".the-bogi").click(() => {
 function repliesContent(replies){
     let text = '';
     let replyDTO = replies.content;
+
+    if(replyDTO.length < 1){
+        text = `
+                                                            <div class="none-reply-display">
+                                                                <div class="none-reply-box">
+                                                                    <div class="none-reply-layout">
+                                                                        <p>현재 댓글이 없습니다.</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+            `;
+        return text;
+    }
+
     $(replyDTO).each((i, reply) => {
         text += `
                                                                 <div class="reply-text-box">

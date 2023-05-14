@@ -23,7 +23,7 @@ SuggestDTOS.forEach((suggestDTO, i) => {
     text +=             `                            </picture>
                                                             </a>
                                                                     <div class="heart-box">
-                                                                        <button class="heart-layout" id="heart${suggestDTO.id}">
+                                                                        <button class="heart-layout" id="heart${i}">
                                                                             <span class="auto-flex no-heart">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     width="24" height="24" fill="none"

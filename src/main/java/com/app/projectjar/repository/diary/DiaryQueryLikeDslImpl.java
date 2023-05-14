@@ -1,54 +1,43 @@
 package com.app.projectjar.repository.diary;
 
 
-import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.diary.DiaryLike;
-import com.app.projectjar.entity.diary.QDiary;
-import com.app.projectjar.entity.diary.QDiaryLike;
-import com.app.projectjar.entity.file.diary.QDiaryFile;
-import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.entity.suggest.Suggest;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
-import static com.app.projectjar.entity.diary.QDiary.diary;
 import static com.app.projectjar.entity.diary.QDiaryLike.diaryLike;
-import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
-import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
-import static com.app.projectjar.entity.suggest.QSuggest.suggest;
-import static com.app.projectjar.entity.suggest.QSuggestLike.suggestLike;
 
 @RequiredArgsConstructor
 public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
     private final JPAQueryFactory query;
 
+
     @Override
-    public Member findMemberByDiaryLike(Long diaryId, Long memberId) {
-        return query.select(diaryLike.member)
+    public Long findMemberByDiaryLike_QueryDsl(Long diaryId, Long memberId) {
+        return query.select(diaryLike.member.count())
                 .from(diaryLike)
-                .where(diaryLike.diary.id.eq(diaryId))
-                .where(diaryLike.member.id.eq(memberId))
+                .where(diaryLike.diary.id.eq(diaryId).and(diaryLike.member.id.eq(memberId)))
                 .fetchOne();
     }
 
     @Override
-    public Long getDiaryLikeCount(Long diaryId) {
+    public Long getDiaryLikeCount_QueryDsl(Long diaryId) {
         return query.select(diaryLike.count())
                 .from(diaryLike)
                 .where(diaryLike.diary.id.eq(diaryId))
                 .fetchOne();
     }
 
-    @Override
-    public void deleteByMemberIdAndDiaryId(Long diaryId, Long memberId) {
+    @Override @Transactional
+    public void deleteByMemberIdAndDiaryId_QueryDsl(Long diaryId, Long memberId) {
         query.delete(diaryLike)
-                .where(diaryLike.member.id.eq(memberId))
-                .where(diaryLike.diary.id.eq(diaryId))
+                .where(diaryLike.member.id.eq(memberId).and(diaryLike.diary.id.eq(diaryId)))
                 .execute();
     }
 
