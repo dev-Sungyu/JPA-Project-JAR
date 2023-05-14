@@ -4,6 +4,7 @@ import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.service.inquire.InquireService;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -36,4 +37,7 @@ public class InquireController {
 
     @GetMapping("write")
     public void inquireWrite(){}
+
+//    답변
+//    @GetMapping
 }
