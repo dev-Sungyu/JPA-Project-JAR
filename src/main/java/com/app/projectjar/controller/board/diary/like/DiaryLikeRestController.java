@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/diary/like/*")
+@RequestMapping("/diary/heart/*")
 @RequiredArgsConstructor
 public class DiaryLikeRestController {
 
