@@ -13,116 +13,72 @@
 </head>
 
 <body>
-    <div>
-        <th:block th:replace="~{main/header :: header}"></th:block>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
 
-        <div class="list-wrap">
-            <div class="list-container">
-                <div style="position: relative;">
-                    <div class="list-title-box">
-                        <div class="list-title-layout">
-                            <div style="display: flex; justify-content: space-between">
-                                <h2 class="list-title">제안 게시판 목록</h2>
-                                <a href="/board/suggest/write">
-                                    <div class="write-button-box">
-                                        <div class="write-button-button-layout">
-                                            <p>제안하기</p>
-                                        </div>
+    <div class="list-wrap">
+        <div class="list-container">
+            <div style="position: relative;">
+                <div class="list-title-box">
+                    <div class="list-title-layout">
+                        <div style="display: flex; justify-content: space-between">
+                            <h2 class="list-title">제안 게시판 목록</h2>
+                            <a href="/board/suggest/write">
+                                <div class="write-button-box">
+                                    <div class="write-button-button-layout">
+                                        <p>제안하기</p>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="list-sub-title">하고싶은 챌린지를 제안해보세요.</div>
+                                </div>
+                            </a>
                         </div>
+                        <div class="list-sub-title">하고싶은 챌린지를 제안해보세요.</div>
                     </div>
-                    <div class="list-content-box">
-                        <section class="list-content-wrap">
-                            <div class="popularity-button-box">
-                                <button onclick="javascript:location.href='/board/suggest/list/personal'" class="btn personal active">개인 챌린지</button>
-                                <button onclick="javascript:location.href='/board/suggest/list/group'" class="btn group">그룹 챌린지</button>
-                            </div>
-                            <div style="margin-bottom: 30px;">
-                                <div style="height:auto; overflow:auto">
-                                    <div style="overflow:hidden">
-                                        <ul class="content-ul">
-                                            <!--리스트-->
-                                        </ul>
-                                    </div>
+                </div>
+                <div class="list-content-box">
+                    <section class="list-content-wrap">
+                        <div class="popularity-button-box">
+                            <button type="button"
+                                    class="btn personal active">개인 챌린지
+                            </button>
+                            <button type="button" class="btn group">그룹
+                                챌린지
+                            </button>
+                        </div>
+                        <div style="margin-bottom: 30px;">
+                            <div style="height:auto; overflow:auto">
+                                <div style="overflow:hidden">
+                                    <ul class="content-ul">
+                                        <!--리스트-->
+                                    </ul>
                                 </div>
                             </div>
-                            <div class="paging-box">
-                                <div class="paging-layout">
-                                    <th:block th:if="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                        <a class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
-                                            <img src="/image/mypage/arrow.png" class="prev">
-                                        </a>
-                                    </th:block>
-                                    <th:block th:unless="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                        <a  class="changePage" th:if="${pageDTO.prev}" th:href="${pageDTO.startPage - 1}">
-                                            <img src="/image/mypage/arrow.png" class="prev">
-                                        </a>
-                                    </th:block>
-                                    <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage)}">
-                                        <div th:if="${pageDTO.pageNum == num}" class="paging-border-none paging-active">
-                                             <span class="page" th:text="${num}"></span>
-                                        </div>
-                                        <div th:unless="${pageDTO.pageNum == num}" class="paging-border-none" >
-                                            <th:block th:if="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                                <a class="changePage" th:href="${num}">
-                                                    <span class="page" th:text="${num}"></span>
-                                                </a>
-                                            </th:block>
-                                            <th:block th:unless="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                                <a class="changePage" th:href="${num}">
-                                                    <span class="page" th:text="${num}"></span>
-                                                </a>
-                                            </th:block>
-                                        </div>
-                                    </th:block>
-                                    <th:block th:if="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                        <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
-                                            <img src="/image/mypage/arrow.png" class="next">
-                                        </a>
-                                    </th:block>
-                                    <th:block th:unless="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                        <a class="changePage" th:if="${pageDTO.next}" th:href="${pageDTO.endPage + 1}">
-                                            <img src="/image/mypage/arrow.png" class="next">
-                                        </a>
-                                    </th:block>
-                                </div>
+                        </div>
+                        <div class="paging-box">
+                            <div class="paging-layout">
+                                    <!-- 페이지 들어가는 곳-->
                             </div>
-                            <th:block th:if="${#strings.equals(suggestDTOS[0].boardType, 'PERSONAL')}">
-                                <form action="/board/suggest/list/personal"  name="pageForm">
-                                    <input type="hidden" name="page">
-                                </form>
-                            </th:block>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-        <th:block th:replace="~{main/footer :: footer}"></th:block>
     </div>
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let userDetail = [[${userDetail}]];
     let memberId;
-    if(userDetail){
+    if (userDetail) {
         memberId = userDetail.id;
     }
+    console.log(userDetail);
 
-    let SuggestDTOS = [[${suggestDTOS}]];
-
-    if(SuggestDTOS[0].boardType == "PERSONAL"){
-        $(".group").removeClass("active");
-        $(".personal").addClass("active");
-    }else {
-        $(".group").addClass("active");
-        $(".personal").removeClass("active");
-    }
+    memberId = 13;
 </script>
-<script src="/js/board/suggest/like-service.js"></script>
 <script src="/js/board/suggest/list.js"></script>
+<script src="/js/board/suggest/like-service.js"></script>
 <script src="/js/board/suggest/like-button.js"></script>
 <script src="/js/board/suggest/page-button.js"></script>
 </html>
