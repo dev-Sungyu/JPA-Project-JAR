@@ -20,9 +20,7 @@ public interface SuggestService {
     // 저장
     public void register(SuggestDTO suggestDTO, Long memberId);
     // 그룹 목록
-    public Page<SuggestDTO> getPersonalSuggestList(int page);
-    // 그룹 목록
-    public Page<SuggestDTO> getGroupSuggestList(int page);
+    public Page<SuggestDTO> getSuggestListByBoardType(String boardType, Pageable pageable);
     // 상세 보기
     public SuggestDTO getSuggest(Long suggestId);
     // 현재 시퀀스 가져오기

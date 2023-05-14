@@ -10,10 +10,7 @@ import java.util.Optional;
 
 public interface SuggestQueryDsl {
     // 전체 개인 조회
-    public Page<Suggest> findByPersonalWithPaging_QueryDsl(Pageable pageable);
-
-    // 전체 그룹 조회
-    public Page<Suggest> findByGroupWithPaging_QueryDsl(Pageable pageable);
+    public Page<Suggest> findByBoardTypeWithPaging_QueryDsl(String boardType, Pageable pageable);
 
     // 상세보기
     public Optional<Suggest> findByIdSuggest_QueryDsl(Long suggestId);

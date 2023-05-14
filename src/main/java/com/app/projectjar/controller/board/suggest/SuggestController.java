@@ -7,6 +7,7 @@ import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -39,25 +40,16 @@ public class SuggestController {
         return new RedirectView("/board/suggest/list/personal");
     }
 
-    @GetMapping("list/group")
-    public String goToGroupList(Model model, @RequestParam(value="page", defaultValue="1") int page, @AuthenticationPrincipal UserDetail userDetail) {
-        Page<SuggestDTO> suggestList = suggestService.getGroupSuggestList(page - 1);
-
-        model.addAttribute("pageDTO",new PageDTO(suggestList));
-        model.addAttribute("suggestDTOS", suggestList.getContent());
-        model.addAttribute("userDetail", userDetail);
-
-        return "/board/suggest/list";
+    @GetMapping("list")
+    public void goToList(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        model.addAttribute("userDetail",userDetail);
     }
 
-    @GetMapping("list/personal")
-    public String goToPersonalList(Model model, @RequestParam(value="page", defaultValue="1") int page, @AuthenticationPrincipal UserDetail userDetail) {
-        Page<SuggestDTO> suggestList = suggestService.getPersonalSuggestList(page - 1);
-
-        model.addAttribute("pageDTO",new PageDTO(suggestList));
-        model.addAttribute("suggestDTOS", suggestList.getContent());
-        model.addAttribute("userDetail", userDetail);
-        return "/board/suggest/list";
+    @GetMapping("list-content")
+    @ResponseBody
+    public Page<SuggestDTO> getList(@RequestParam("boardType") String boardType, @RequestParam(defaultValue = "0", name = "page") int page){
+        PageRequest pageRequest = PageRequest.of(page, 12);
+        return suggestService.getSuggestListByBoardType(boardType, pageRequest);
     }
 
     @GetMapping("detail/{boardId}")
