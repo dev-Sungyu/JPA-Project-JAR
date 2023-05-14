@@ -39,7 +39,7 @@
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
                         <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
+                            <button class="deleteButton delete-button" onclick="deleteSuggests(getSelectedSuggestIds())">선택 게시물 삭제</button>
                         </div>
                     </div>
 
@@ -67,7 +67,8 @@
                                     </thead>
                                     <tr th:each="suggestDTO : ${suggestDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check"  th:value="${suggestDTO.id}"></td>
+                                            <input type="checkbox" class="suggestCheckbox" name="check"  th:value="${suggestDTO.id}">
+                                        </td>
                                         <td th:text="${suggestDTO.id}" class="noticeId"></td>
                                         <td th:text="${suggestDTO.boardType}"></td>
                                         <td>
@@ -154,6 +155,34 @@
 <script src="/js/admin/board_proposal.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script>
+
+    const suggestId = '${suggestDTO.suggestId}';
+
+    function getSelectedSuggestIds() {
+        const suggestIds = [];
+        $(".suggestCheckbox:checked").each(function() {
+            suggestIds.push($(this).val());
+        });
+        return suggestIds;
+    }
+
+    function deleteSuggests(suggestIds) {
+        $.ajax({
+            url: "/admin/board/proposal/delete",
+            type: "DELETE",
+            contentType: "application/json",
+            data: JSON.stringify(suggestIds),
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+
     /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
     $(document).ready(function() {
         const urlParams = new URLSearchParams(window.location.search);
@@ -168,6 +197,26 @@
                 }
             });
         }
+    });
+
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".suggestCheckbox:checked");
+            const suggestIds = [];
+            checkedItems.each(function() {
+                suggestIds.push($(this).val());
+            });
+
+            if (suggestIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteSuggests(suggestIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
     });
 
     //페이지 번호 링크로 가져오는 코드
