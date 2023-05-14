@@ -9,6 +9,7 @@ import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -85,9 +86,12 @@ public class AdminController {
     }
 
     @DeleteMapping("board/notice/delete")
-    public void deleteNotices(@RequestBody List<Long> noticeIds) {
+    @ResponseBody
+    public ResponseEntity<String> deleteNotices(@RequestBody List<Long> noticeIds) {
         noticeService.deleteNotices(noticeIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
+
 
     @GetMapping("board/notice/write")
     public void adminNoticeWrite(Model model) {
