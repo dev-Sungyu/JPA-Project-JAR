@@ -36,6 +36,7 @@ public class DiaryController {
 
         DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
         model.addAttribute("diaryDTO", diaryDTO);
+        model.addAttribute("userDetail", userDetail);
         return "/board/diary/detail";
     }
 

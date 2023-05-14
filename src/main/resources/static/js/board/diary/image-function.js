@@ -216,3 +216,25 @@ function imageToOne(fileDTOS){
         `;
     $imageBox.append(text);
 }
+
+const fileSize = fileDTOS.length;
+
+if(fileSize == 8){
+    imageToEight(fileDTOS);
+}else if(fileSize == 7){
+    imageToSeven(fileDTOS);
+}else if(fileSize == 6){
+    imageToSix(fileDTOS);
+}else if(fileSize == 5){
+    imageToFive(fileDTOS);
+}else if(fileSize == 4){
+    imageToFour(fileDTOS);
+}else if(fileSize == 3){
+    imageToFThree(fileDTOS);
+}else if(fileSize == 2){
+    imageToFTwo(fileDTOS);
+}else if(fileSize == 1){
+    imageToOne(fileDTOS);
+}else {
+
+}
