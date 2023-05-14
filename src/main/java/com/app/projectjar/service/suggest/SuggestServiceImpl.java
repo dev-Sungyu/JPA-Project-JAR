@@ -60,21 +60,10 @@ public class SuggestServiceImpl implements SuggestService {
         }
     }
 
-//    개인 챌린지 제안 게시판 목록
+//    제안 게시판 목록
     @Override
-    public Page<SuggestDTO> getPersonalSuggestList(int page) {
-        Page<Suggest> suggests = suggestRepository.findByPersonalWithPaging_QueryDsl(PageRequest.of(page, 16));
-        List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
-                .map(this::toSuggestDTO)
-                .collect(Collectors.toList());
-
-        return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
-    }
-
-    //    그룹 챌린지 제안 게시판 목록
-    @Override
-    public Page<SuggestDTO> getGroupSuggestList(int page) {
-        Page<Suggest> suggests = suggestRepository.findByGroupWithPaging_QueryDsl(PageRequest.of(page, 16));
+    public Page<SuggestDTO> getSuggestListByBoardType(String boardType, Pageable pageable) {
+        Page<Suggest> suggests = suggestRepository.findByBoardTypeWithPaging_QueryDsl(boardType, pageable);
         List<SuggestDTO> suggestDTOS = suggests.getContent().stream()
                 .map(this::toSuggestDTO)
                 .collect(Collectors.toList());

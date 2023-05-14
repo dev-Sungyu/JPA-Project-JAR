@@ -25,35 +25,18 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<Suggest> findByPersonalWithPaging_QueryDsl(Pageable pageable) {
+    public Page<Suggest> findByBoardTypeWithPaging_QueryDsl(String boardType, Pageable pageable) {
         List<Suggest> foundSuggests = query.select(suggest)
                 .from(suggest)
                 .leftJoin(suggest.suggestFiles, suggestFile)
                 .fetchJoin()
-                .where(suggest.boardType.eq(BoardType.PERSONAL))
+                .where(boardType.equals("personal") ? suggest.boardType.eq(BoardType.PERSONAL) : suggest.boardType.eq(BoardType.GROUP))
                 .orderBy(suggest.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 
-        Long count = query.select(suggest.count()).from(suggest).where(suggest.boardType.eq(BoardType.PERSONAL)).fetchOne();
-
-        return new PageImpl<>(foundSuggests, pageable, count);
-    }
-
-    @Override
-    public Page<Suggest> findByGroupWithPaging_QueryDsl(Pageable pageable) {
-        List<Suggest> foundSuggests = query.select(suggest)
-                .from(suggest)
-                .leftJoin(suggest.suggestFiles, suggestFile)
-                .fetchJoin()
-                .where(suggest.boardType.eq(BoardType.GROUP))
-                .orderBy(suggest.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(suggest.count()).from(suggest).where(suggest.boardType.eq(BoardType.GROUP)).fetchOne();
+        Long count = query.select(suggest.count()).from(suggest).where(boardType.equals("personal") ? suggest.boardType.eq(BoardType.PERSONAL) : suggest.boardType.eq(BoardType.GROUP)).fetchOne();
 
         return new PageImpl<>(foundSuggests, pageable, count);
     }
