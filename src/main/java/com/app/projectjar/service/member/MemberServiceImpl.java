@@ -4,6 +4,7 @@ import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.Role;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -38,6 +41,7 @@ public class MemberServiceImpl implements MemberService {
                 .build();
     }
 
+//    회원가입
     @Override
     public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder) {
         memberDTO.setMemberPassword(passwordEncoder.encode(memberDTO.getMemberPassword()));
@@ -45,14 +49,58 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(toMemberEntity(memberDTO));
     }
 
+//    이메일 중복검사
     @Override
     public Long checkEmail(String memberEmail) {
 //        return memberRepository.overlapByMemberEmail_QueryDSL(memberEmail).ifPresent(member -> toMemberEntity(memberEmail));
         return null;
     }
 
+//    핸드폰 중복검사
     @Override
     public Long checkPhoneNumber(String memberPhoneNumber) {
         return null;
     }
+
+//    비밀번호 찾기
+    @Override
+    public Long findByMemberPassword(String Email) {
+        return null;
+    }
+
+//    회원정보 수정
+    @Override
+    public void updateMember(MemberDTO memberDTO, Long id) {
+    }
+
+    @Override
+    public MemberDTO getMember(Long id) {
+        Optional<Member> member = memberRepository.findById(id);
+        return toMemberDTO(member.get());
+    }
+
+    //    뱃지 횟수 조회
+    @Override
+    public int getMemberBadgeCount(Long id) {
+        return memberRepository.findByIdWithAttendCount_QueryDsl(id);
+    }
+
+//    뱃지 업데이트
+    @Override
+    public void updateBadge(Long id) {
+        memberRepository.findById(id).ifPresent(member -> {
+            int totalCount = memberRepository.findByIdWithAttendCount_QueryDsl(member.getId());
+
+            if (totalCount == 10) {
+                member.setBadgeType(BadgeType.ONE);
+            } else if (totalCount == 20) {
+                member.setBadgeType(BadgeType.TWO);
+            } else if (totalCount == 30) {
+                member.setBadgeType(BadgeType.THREE);
+            }
+            memberRepository.save(member);
+
+        });
+    }
+
 }

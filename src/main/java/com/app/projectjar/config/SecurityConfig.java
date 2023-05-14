@@ -60,7 +60,7 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    파비콘
     private static final String IGNORE_FAVICON = "/favicon.ico";
 
-    private static final String JOIN_IN_OAUTH = "/member/join-in-OAuth";
+    private static final String JOIN_OAUTH = "/member/join-OAuth";
     private static final String PASSWORD = "/member/password";
     private static final String CHANGE_PASSWORD = "/member/change-password";
     private static final String ACCOUNT_CONFIRM = "/member/account-confirm";
@@ -107,7 +107,7 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
                 .antMatchers(IGNORE_BOARD_NOTICE_DETAIL_PATH)
 
                 /* 로그인 확인사항*/
-                .antMatchers(JOIN_IN_OAUTH)
+                .antMatchers(JOIN_OAUTH)
                 .antMatchers(PASSWORD)
                 .antMatchers(CHANGE_PASSWORD)
                 .antMatchers(ACCOUNT_CONFIRM)

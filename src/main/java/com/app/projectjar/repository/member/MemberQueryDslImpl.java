@@ -116,7 +116,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
     //    뱃지 수정
     @Override
-    public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType) {
+    public void updateMemberBadge_QueryDSL(Long id) {
 
         Long countPersonal =  query.select(challengeAttend.member.count()).
                 from(challengeAttend).
@@ -147,7 +147,8 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 //        if (newBadgeType != badgeType) {
 
 //        연산은 서비스에서 진행하기
-            query.update(member)
+        BadgeType badgeType = BadgeType.ZERO;
+        query.update(member)
                     .set(member.badgeType, badgeType)
                     .where(member.id.eq(id))
                     .execute();

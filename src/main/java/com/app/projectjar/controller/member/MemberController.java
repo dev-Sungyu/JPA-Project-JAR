@@ -42,7 +42,7 @@ public class MemberController {
 //    @GetMapping("sign-in")
 //    public void signIn(){}
 
-    @GetMapping("join-in-OAuth")
+    @GetMapping("join-OAuth")
     public void Oauth(){}
 
     @GetMapping("password")
@@ -54,8 +54,8 @@ public class MemberController {
     @GetMapping("account-confirm")
     public void account(){}
 
-    @GetMapping("phone-certification")
-    public void phone(){}
+//    @GetMapping("phone-certification")
+//    public void phone(){}
 
 
 }
