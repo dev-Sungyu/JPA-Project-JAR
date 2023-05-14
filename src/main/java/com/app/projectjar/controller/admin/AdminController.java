@@ -9,6 +9,7 @@ import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -85,9 +86,12 @@ public class AdminController {
     }
 
     @DeleteMapping("board/notice/delete")
-    public void deleteNotices(@RequestBody List<Long> noticeIds) {
+    @ResponseBody
+    public ResponseEntity<String> deleteNotices(@RequestBody List<Long> noticeIds) {
         noticeService.deleteNotices(noticeIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
+
 
     @GetMapping("board/notice/write")
     public void adminNoticeWrite(Model model) {
@@ -106,7 +110,7 @@ public class AdminController {
 
     @GetMapping("board/proposal/list")
     public String adminProposalList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Page<SuggestDTO> suggestPage = suggestService.getGroupSuggestList(page - 1);
+        Page<SuggestDTO> suggestPage = suggestService.getSuggestList(page - 1);
         List<String> suggestTitles = suggestPage.stream().map(SuggestDTO::getBoardTitle).collect(Collectors.toList());
         model.addAttribute("pageDTO",new PageDTO(suggestPage));
         model.addAttribute("suggestDTOS", suggestPage.getContent());

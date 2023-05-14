@@ -47,7 +47,7 @@
                         </div>
                         <div class="delete-box-layout">
                             <div class="delete-box">
-                                <button class="delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
+                                <button class="deleteButton delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
                             </div>
                         </div>
                     </div>
@@ -128,8 +128,8 @@
                                 </div>
                             </div>
                             <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
-                                <a th:class="${num == pageDTO.startPage} ? 'first_button second_button changePage' : 'second_button changePage'" th:href="${num}">
-                                    <span class="button_number" th:text="${num}"></span>
+                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
+                                    <span class="page-button" th:text="${num}"></span>
                                 </a>
                                 <div style="width: 2px;"></div>
                             </th:block>
@@ -183,9 +183,10 @@
 
     function deleteNotices(noticeIds) {
         $.ajax({
-            url: "/admin/board/notice/delete/",
+            url: "/admin/board/notice/delete",
             type: "DELETE",
-            data: { noticeIds: noticeIds },
+            contentType: "application/json",
+            data: JSON.stringify(noticeIds),
             traditional: true,
             success: function() {
                 location.reload();
@@ -195,6 +196,24 @@
             }
         });
     }
+
+
+    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.page-button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('page-button-active');
+                } else {
+                    $(element).removeClass('page-button-active');
+                }
+            });
+        }
+    });
+
 
     $(document).ready(function() {
         // 삭제 버튼 클릭 이벤트 핸들러
