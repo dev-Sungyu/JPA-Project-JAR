@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/suggest/heart/*")
-public class SuggestLikeController {
+public class SuggestLikeRestController {
     private final SuggestLikeService suggestLikeService;
 
     // 좋아요 카운트 1 증가
