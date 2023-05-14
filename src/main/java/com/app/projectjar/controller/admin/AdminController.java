@@ -121,6 +121,13 @@ public class AdminController {
 
         return "admin/board/proposal/detail";
     }
+
+    @DeleteMapping("board/proposal/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteSuggests(@RequestBody List<Long> suggestIds) {
+        suggestService.deleteSuggests(suggestIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
     @GetMapping("board/diary/list")
     public void adminDiaryList() {}
     @GetMapping("board/diary/detail")
