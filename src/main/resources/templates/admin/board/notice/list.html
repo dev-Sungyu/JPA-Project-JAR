@@ -47,7 +47,7 @@
                         </div>
                         <div class="delete-box-layout">
                             <div class="delete-box">
-                                <button class="delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
+                                <button class="deleteButton delete-button" onclick="deleteNotices(getSelectedNoticeIds())">선택 게시물 삭제</button>
                             </div>
                         </div>
                     </div>
@@ -183,9 +183,10 @@
 
     function deleteNotices(noticeIds) {
         $.ajax({
-            url: "/admin/board/notice/delete/",
+            url: "/admin/board/notice/delete",
             type: "DELETE",
-            data: { noticeIds: noticeIds },
+            contentType: "application/json",
+            data: JSON.stringify(noticeIds),
             traditional: true,
             success: function() {
                 location.reload();
@@ -195,6 +196,8 @@
             }
         });
     }
+
+
 
     $(document).ready(function() {
         // 삭제 버튼 클릭 이벤트 핸들러
