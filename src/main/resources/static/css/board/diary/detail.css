@@ -884,7 +884,7 @@
     visibility: visible;
     overscroll-behavior: contain;
     position: fixed !important;
-    z-index: 3000 !important;
+    z-index: 5000 !important;
 }
 
 .image-expansion-container{
