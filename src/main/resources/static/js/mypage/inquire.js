@@ -1,29 +1,44 @@
-$(document).ready(function() {
-    // 목록과 페이징 버튼 초기화
-    getInquireList(1);
 
-    // 이전 버튼 클릭 시 이벤트 핸들러
-    $("#prevBtn").on("click", function() {
-        var currentPage = parseInt($("#pagingList").find(".active").text());
-        if (currentPage > 1) {
-            getInquireList(currentPage - 1);
+const $ul = $(".challenge-wrapper-list");
+let page = 0;
+
+inquireService = (function (){
+    function list(page, callback){
+        $.ajax({
+            url: '/mypage/inquire-list',
+            type:'get',
+            data: page,
+            success: function(list){
+                if (callback){
+                    callback(list);
+                }
+            }
+        });
+    }
+    return {
+        list:list,
+    }
+});
+
+
+$(".paging-layout").on("click", "a", function(e) {
+    e.preventDefault();
+    $ul.empty();
+    const targetPage = $(this).text();
+
+    if ($(this).hasClass("arrow")) {
+        // 화살표 클릭 시 이전 페이지 또는 다음 페이지로 이동
+        if ($(this).attr("id") === "prev") {
+            page--;
+        } else if ($(this).attr("id") === "next") {
+            page++;
         }
-    });
+    } else {
+        // 페이지 번호 클릭 시 해당 페이지로 이동
+        page = parseInt(targetPage) - 1;
+    }
 
-    // 페이지 버튼 클릭 시 이벤트 핸들러
-    $(document).on("click", ".pageBtn", function() {
-        var page = $(this).text();
-        getInquireList(page);
-    });
-
-    // 다음 버튼 클릭 시 이벤트 핸들러
-    $("#nextBtn").on("click", function() {
-        var currentPage = parseInt($("#pagingList").find(".active").text());
-        var lastPage = parseInt($("#pagingList").find(".pageBtn:last-child").text());
-        if (currentPage < lastPage) {
-            getInquireList(currentPage + 1);
-        }
-    });
+    getList(page);
 });
 
 // Ajax를 사용해 목록 데이터와 페이지 정보 가져오기
@@ -51,16 +66,19 @@ function getInquireList(page) {
                             </a>
                             <div class="inquire-answer-status-box">
                                 <div class="inquire-answer-status-layout">
-                                    ${data.answered ? `
+                                ';
+                        if(        
+                        listHtml += '        
                                         <div class="inquire-answer-border">
                                             <p class="answer">답변 완료</p>
                                         </div>
-                                    ` : `
+                                ';
+                        listHtml += '            
                                         <div class="inquire-answer-border">
                                             <p class="answer-status">미답변</p>
                                         </div>
-                                              <p class="answer-status">미답변</p>-->
-                                    `}
+                                ';   
+                                    
                                 </div>
                             </div>
                         </div>

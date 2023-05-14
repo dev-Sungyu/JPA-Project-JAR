@@ -2,11 +2,13 @@ package com.app.projectjar.service.diary;
 
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.file.diary.DiaryFile;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
@@ -19,6 +21,9 @@ public interface DiaryService {
     public Slice<DiaryDTO> getOpenDiaryList(String sort, Pageable pageable);
 //    상세보기
     public DiaryDTO getDiary(Long diaryId);
+
+//  마이 페이지 공유 일기 목록 조회
+    public Page<DiaryDTO> getDiaryForMemberIdList(Pageable pageable, Long id);
 
     default DiaryDTO toDiaryDTO(Diary diary) {
         return DiaryDTO.builder()
