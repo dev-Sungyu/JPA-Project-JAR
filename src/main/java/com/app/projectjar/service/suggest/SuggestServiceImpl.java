@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -141,6 +142,13 @@ public class SuggestServiceImpl implements SuggestService {
                 .map(this::toSuggestDTO)
                 .collect(Collectors.toList());
 
+        return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
+    }
+
+    @Override
+    public Page<SuggestDTO> getSuggestForMemberIdList(Pageable pageable, Long id) {
+        Page<Suggest> suggests = suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageable, id);
+        List<SuggestDTO> suggestDTOS = suggests.stream().map(this::toSuggestDTO).collect(Collectors.toList());
         return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
     }
 }
