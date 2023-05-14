@@ -54,12 +54,12 @@ public class MemberRepositoryTests {
         memberRepository.findByMemberId_QueryDSL(1L).map(Member::toString).ifPresent(log::info);
     }
 
-    @Test
-    public void findAllWithPageAndChallenges_QueryDslTest(){
-        PageRequest pageRequest = PageRequest.of(0,10);
-        Long memberId = 1L;
-        memberRepository.findAllWithPageAndChallenges_QueryDsl(memberId, pageRequest).map(ChallengeAttend::toString).forEach(log::info);
-    }
+//    @Test
+//    public void findAllWithPageAndChallenges_QueryDslTest(){
+//        PageRequest pageRequest = PageRequest.of(0,10);
+//        Long memberId = 1L;
+//        memberRepository.findAllWithPageAndChallenges_QueryDsl(memberId, pageRequest).map(ChallengeAttend::toString).forEach(log::info);
+//    }
 
 
 //    수정
@@ -113,31 +113,31 @@ public class MemberRepositoryTests {
     }
 
 //    뱃지 타입 업데이트
-    @Test
-    public void updateMemberBadgeTest(){
-        memberRepository.updateMemberBadge_QueryDSL(1L, BadgeType.ONE);
-    }
+//    @Test
+//    public void updateMemberBadgeTest(){
+//        memberRepository.updateMemberBadge_QueryDSL(1L, BadgeType.ONE);
+//    }
 
 
 
 
 
 
-        @Test
-        void findAllWithPageAndGroupChallenges_QueryDslTest() {
-            Long memberId = 5L;
-            PageRequest pageable = PageRequest.of(0, 10);
-
-            Page<GroupChallengeAttend> resultPage = memberRepository.findAllWithPageAndGroupChallenges_QueryDsl(memberId, pageable);
-
-            List<GroupChallengeAttend> groupChallengeAttendList = resultPage.getContent();
-            for (GroupChallengeAttend groupChallengeAttend : groupChallengeAttendList) {
-                log.info(groupChallengeAttend.toString());
-            }
-
-            long totalCount = resultPage.getTotalElements();
-            System.out.println("Total Count: " + totalCount);
-        }
+//        @Test
+//        void findAllWithPageAndGroupChallenges_QueryDslTest() {
+//            Long memberId = 5L;
+//            PageRequest pageable = PageRequest.of(0, 10);
+//
+//            Page<GroupChallengeAttend> resultPage = memberRepository.findAllWithPageAndGroupChallenges_QueryDsl(memberId, pageable);
+//
+//            List<GroupChallengeAttend> groupChallengeAttendList = resultPage.getContent();
+//            for (GroupChallengeAttend groupChallengeAttend : groupChallengeAttendList) {
+//                log.info(groupChallengeAttend.toString());
+//            }
+//
+//            long totalCount = resultPage.getTotalElements();
+//            System.out.println("Total Count: " + totalCount);
+//        }
 
     }
 

@@ -16,7 +16,7 @@ import java.io.IOException;
 @Component
 @Slf4j
 public class AuthenticationSuccessHandlerImpl implements AuthenticationSuccessHandler {
-    private static final String REDIRECT_URL_FOR_MEMBER = "/mypage/main/";
+    private static final String REDIRECT_URL_FOR_MEMBER = "/main/";
     private static final String REDIRECT_URL_FOR_ADMIN = "/admin/member/list";
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {

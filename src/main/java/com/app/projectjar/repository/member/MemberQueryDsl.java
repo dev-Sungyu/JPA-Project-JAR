@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.challenge.ChallengeAttend;
+import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
@@ -19,8 +20,6 @@ public interface MemberQueryDsl {
 //    휴대폰 중복 검사
     public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
 
-//    로그인
-    public Member findByMemberIdAndMemberPassword_QueryDSL(String memberEmail, String memberPassword);
 
 //    비밀 번호 찾기
     public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail);
@@ -39,6 +38,9 @@ public interface MemberQueryDsl {
 //    회원 정보 수정
     public void updateMember_QueryDSL(Member memberInfo);
 
+//    프로필 이미지
+//    public void updateMemberFile(Member member);
+
 //    회원 삭제
     public void deleteMemberById_QueryDSL(Long id);
 
@@ -50,30 +52,7 @@ public interface MemberQueryDsl {
     public int findByIdWithAttendCount_QueryDsl(Long id);
 
 //    뱃지 업데이트 ( 개인 챌린지 어탠드 카운트 + 그룹 챌린지 어탠드 카운트 )  => 그러면 attend.member로 접근해서 카운트 세야되는건가?
-    public void updateMemberBadge_QueryDSL(Long id, BadgeType badgeType);
-
-
-    /* 개인 챌린지 */
-
-//    내가 완료한 개인 챌린지 전체 조회 (완료) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건 / 참여한 인원 수 + 댓글 개수) + 페이징 처리
-    public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable);
-
-//    내가 완료한 개인 챌린지 전체 조회 (종료된 챌린지)
-    public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable);
-
-    public Long getChallengeReplyCount_QueryDsl(Long challengeId);
-
-
-    /* 그룹 챌린지 */
-
-//    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리
-    public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
-
-//    내가 완료 중인 그룹 챌린지 전체 조회 (종료된)
-    public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable);
-
-//    내가 완료한 그룹 챌린지 전체 조회 (종료)
-    public Long getGroupChallengeReplyCount_QueryDsl(Long challengeId);
+    public void updateMemberBadge_QueryDSL(Long id);
 
 
     //    관리자 페이지 회원 전체 조회

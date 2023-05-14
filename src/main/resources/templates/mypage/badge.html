@@ -15,85 +15,89 @@
 </head>
 
 <body>
+<div>
+    <!-- main/header.html -->
+    <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
+
     <div>
-        <!-- main/header.html -->
-        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
+        <div class="mypage-all-wrap">
+            <!-- user-header.html -->
+            <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
 
-        <div>
-            <div class="mypage-all-wrap">
-                <!-- user-header.html -->
-                <div id="mypage-header" th:replace="~{mypage/user-header :: user-header}"></div>
+            <div class="mypage-content-wrap">
 
-                <div class="mypage-content-wrap">
-
-                    <!-- side-menu.html -->
-                    <div id="side-menu" th:insert="~{mypage/side-menu :: sidebar}"></div>
-                    <div class="badge-wrap">
-                        <section class="badge-section">
-                            <div class="content-title-box">
-                                <div class="flex-center">
-                                    <h2 class="content-title">뱃지 목표</h2>
-                                </div>
+                <!-- side-menu.html -->
+                <div id="side-menu" th:insert="~{mypage/side-menu :: sidebar}"></div>
+                <div class="badge-wrap">
+                    <section class="badge-section">
+                        <div class="content-title-box">
+                            <div class="flex-center">
+                                <h2 class="content-title">뱃지 목표</h2>
                             </div>
-                            <div class="badge-info-box">
-                                <div class="badge-info-layout">
-                                    <div class="badge-flex">
-                                        <div class="badge-image-box">
-                                            <div class="badge-column">
-                                                <img src="/image/mypage/trophy_1.png">
-                                                <div class="badge-info">
-                                                    <span>챌린지 10회 완료</span>
-                                                </div>
+                        </div>
+                        <div class="badge-info-box">
+                            <div class="badge-info-layout">
+                                <div class="badge-flex">
+                                    <div class="badge-image-box">
+                                        <div class="badge-column">
+                                            <img src="/image/mypage/trophy_1.png">
+                                            <div class="badge-info">
+                                                <span>챌린지 10회 완료</span>
                                             </div>
-                                        </div>
-                                        <div class="badge-image-box">
-                                            <div class="badge-column">
-                                                <img src="/image/mypage/trophy_2.png">
-                                                <div class="badge-info">
-                                                    <span>챌린지 20회 완료</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="badge-image-box">
-                                            <div class="badge-column">
-                                                <img src="/image/mypage/trophy_3.png">
-                                                <div class="badge-info">
-                                                    <span>챌린지 30회 완료</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="badge-section">
-                            <div class="content-title-box">
-                                <div class="flex-center">
-                                    <h2 class="content-title">나의 갓생 일차</h2>
-                                </div>
-                            </div>
-                            <div class="badge-info-box" style="width:70%">
-                                <div class="mypage-status-box">
-                                    <div class="mypage-diary-day-box">
-                                        <div class= "mypage-diary-day-layout" style="display: flex; align-items: center; justify-content: center; height: 100%;">
-                                            <div class="mypage-diary-day">0 회</div>
                                         </div>
                                     </div>
                                     <div class="badge-image-box">
-                                        <div class="my-badge-image">
-                                            <img src="/image/mypage/trophy_1_5.png">
+                                        <div class="badge-column">
+                                            <img src="/image/mypage/trophy_2.png">
+                                            <div class="badge-info">
+                                                <span>챌린지 20회 완료</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="badge-image-box">
+                                        <div class="badge-column">
+                                            <img src="/image/mypage/trophy_3.png">
+                                            <div class="badge-info">
+                                                <span>챌린지 30회 완료</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-                    </div>
+                        </div>
+                    </section>
+                    <section class="badge-section">
+                        <div class="content-title-box">
+                            <div class="flex-center">
+                                <h2 class="content-title">나의 갓생 일차</h2>
+                            </div>
+                        </div>
+                        <div class="badge-info-box" style="width:70%">
+                            <div class="mypage-status-box">
+                                <div class="mypage-diary-day-box">
+                                    <div class= "mypage-diary-day-layout" style="display: flex; align-items: center; justify-content: center; height: 100%;">
+                                        <div class="mypage-diary-day" th:text="${totalCount} + '회'"></div>
+                                    </div>
+                                </div>
+                                <div class="badge-image-box">
+                                    <div class="my-badge-image">
+<!--                                        <img src="/image/mypage/trophy_1_5.png">-->
+                                        <img th:src="@{/image/mypage/trophy_1_5.png}" th:if="${totalCount < 10}">
+                                        <img th:src="@{/image/mypage/trophy_1.png}" th:if="${totalCount >= 10 and totalCount < 20}">
+                                        <img th:src="@{/image/mypage/trophy_2.png}" th:if="${totalCount >= 20 and totalCount < 30}">
+                                        <img th:src="@{/image/mypage/trophy_3.png}" th:if="${totalCount >= 30}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
-        <!-- main/footer.html -->
-        <div id="footer" th:insert="~{main/footer :: footer}"></div>
     </div>
+    <!-- main/footer.html -->
+    <div id="footer" th:insert="~{main/footer :: footer}"></div>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script>
