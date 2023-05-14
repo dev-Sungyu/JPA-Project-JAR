@@ -198,6 +198,22 @@
     padding-top: 12px;
 }
 
+.location-info {
+    font-size: 13px;
+    color: darkcyan;
+}
+
+.location-info:first-child {
+    marign-right: 10px;
+}
+
+.location-info:first-child::after {
+    content: '>';
+    font-size: 14px;
+    padding-right: 3px;
+    padding-left: 9px;
+}
+
 @media (min-width: 1240px){
 .main-container{
     max-width: 600px;

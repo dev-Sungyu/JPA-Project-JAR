@@ -10,10 +10,7 @@ import org.springframework.data.domain.Slice;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/board/diary/*")
@@ -32,6 +29,14 @@ public class DiaryController {
     public Slice<DiaryDTO> getDiaryList(@RequestParam("sort") String sort, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageRequest = PageRequest.of(page, 12);
         return diaryService.getOpenDiaryList(sort, pageRequest);
+    }
+
+    @GetMapping("detail/{diaryId}")
+    public String goToDetail(Model model, @AuthenticationPrincipal UserDetail userDetail, @PathVariable("diaryId") Long diaryId) {
+
+        DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
+        model.addAttribute("diaryDTO", diaryDTO);
+        return "/board/diary/detail";
     }
 
 }
