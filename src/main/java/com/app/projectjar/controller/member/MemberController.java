@@ -42,8 +42,8 @@ public class MemberController {
 //    @GetMapping("sign-in")
 //    public void signIn(){}
 
-//    @GetMapping("sign-in-OAuth")
-//    public void Oauth(){}
+    @GetMapping("join-in-OAuth")
+    public void Oauth(){}
 
     @GetMapping("password")
     public void password(){}

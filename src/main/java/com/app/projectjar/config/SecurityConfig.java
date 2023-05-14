@@ -19,6 +19,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @EnableWebSecurity
 @Configuration
@@ -59,14 +60,17 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    파비콘
     private static final String IGNORE_FAVICON = "/favicon.ico";
 
-//    static 하위 폴더 (css, js, img)
+    private static final String JOIN_IN_OAUTH = "/member/join-in-OAuth";
+    private static final String PASSWORD = "/member/password";
+    private static final String CHANGE_PASSWORD = "/member/change-password";
+    private static final String ACCOUNT_CONFIRM = "/member/account-confirm";
+    private static final String PHONE_CERTIFICATION = "/member/phone-certification";
 
 //    로그인
     private static final String LOGIN_PAGE = "/member/login";
     private static final String LOGIN_PROCESSING_URL = "/member/login";
     private static final String LOGOUT_URL = "/member/logout";
     private static final String LOGOUT_SUCCESS_URL = "/member/login";
-
 
     private static final String REMEMBER_ME_TOKEN_KEY = "have a nice day";
     private static final int REMEMBER_ME_TOKEN_EXPIRED = 86400 * 14;
@@ -80,35 +84,6 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
 //    비밀번호 암호화
     @Bean
     public PasswordEncoder passwordEncoder() {return new BCryptPasswordEncoder();}
-
-
-//    SecurityContextHolder 설정:
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
-//
-//        // SecurityContextHolder 설정
-//        http.addFilterAfter(new SecurityContextPersistenceFilter(), HeaderWriterFilter.class);
-//    }
-
-//    세션 설정
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
-//
-//        // 세션 관리 설정
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-//                .sessionFixation().migrateSession();
-//     }
-
-//    CSRF 설정:
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests().anyRequest().authenticated().and().formLogin().and().httpBasic();
-//
-//        // CSRF 설정
-//        http.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-//    }
 
 
     @Bean
@@ -131,14 +106,13 @@ public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
                 .antMatchers(IGNORE_BOARD_NOTICE_LIST_PATH)
                 .antMatchers(IGNORE_BOARD_NOTICE_DETAIL_PATH)
 
-                /* 미안해요 !여러분 여기다 경로를 올리면 다 접근이 가능해서 사용이 가능해질 겁니다!. */
-//                .antMatchers(MYPAGE_PATH)
-//                .antMatchers(BOARD_SUGGEST_WRITE_PATH)
-//                .antMatchers(BOARD_DIARY_WRITE_PATH)
-//                .antMatchers(BOARD_INQUIRE_WRITE_PATH)
-//                .antMatchers(ADMIN_PATH)
-                /* 여기 까지 */
-                
+                /* 로그인 확인사항*/
+                .antMatchers(JOIN_IN_OAUTH)
+                .antMatchers(PASSWORD)
+                .antMatchers(CHANGE_PASSWORD)
+                .antMatchers(ACCOUNT_CONFIRM)
+                .antMatchers(PHONE_CERTIFICATION)
+
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
     }
 
