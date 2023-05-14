@@ -19,7 +19,9 @@ public class DiaryLike  extends Likes {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    public DiaryLike(Diary diary, Member member) {
+    @Builder
+    public DiaryLike(Long id, Diary diary, Member member) {
+        super(id);
         this.diary = diary;
         this.member = member;
     }
