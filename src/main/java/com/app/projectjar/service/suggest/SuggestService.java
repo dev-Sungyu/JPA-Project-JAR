@@ -45,6 +45,8 @@ public interface SuggestService {
                 .replyCount(suggest.getSuggestReplyCount())
                 .memberDTO(toMemberDTO(suggest.getMember()))
                 .fileDTOS(FileToDTO(suggest.getSuggestFiles()))
+                .createdDate(suggest.getCreatedDate())
+                .updatedDate(suggest.getUpdatedDate())
                 .build();
     }
 
