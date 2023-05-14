@@ -8,9 +8,7 @@ import com.app.projectjar.repository.diary.DiaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Slice;
-import org.springframework.data.domain.SliceImpl;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,5 +33,12 @@ public class DiaryServiceImpl implements DiaryService {
     public DiaryDTO getDiary(Long diaryId) {
         Optional<Diary> diary = diaryRepository.findByDiaryId_QueryDsl(diaryId);
         return toDiaryDTO(diary.get());
+    }
+
+    @Override
+    public Page<DiaryDTO> getDiaryForMemberIdList(Pageable pageable, Long id) {
+        Page<Diary> diaries = diaryRepository.findAllByMemberWithPaging_QueryDsl(pageable, id);
+        List<DiaryDTO> diaryDTOS = diaries.stream().map(this::toDiaryDTO).collect(Collectors.toList());
+        return new PageImpl<>(diaryDTOS, diaries.getPageable(), diaries.getTotalElements());
     }
 }

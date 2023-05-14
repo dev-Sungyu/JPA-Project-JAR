@@ -71,15 +71,4 @@ public class InquireServiceImpl implements InquireService {
         return new PageImpl<>(inquireDTOS, inquires.getPageable(), inquires.getTotalElements());
     }
 
-//    @Override
-//    public Page<InquireDTO> getInquireForMemberIdList(Pageable pageable, Long id) {
-//        Page<InquireDTO> result = null;
-//        Optional<Member> member = memberRepository.findById(id);
-//        if (member.isPresent()) {
-//            Page<Inquire> inquires = inquireRepository.findAllByMemberIdWithPaging_QueryDsl(pageable, id);
-//            List<InquireDTO> inquireDTOS = inquires.stream().map(this::toInquireDTO).collect(Collectors.toList());
-//            result = new PageImpl<>(inquireDTOS, inquires.getPageable(), inquires.getTotalElements());
-//        }
-//        return result;
-//    }
 }

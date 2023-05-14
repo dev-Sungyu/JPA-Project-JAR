@@ -1,6 +1,7 @@
 package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
@@ -9,6 +10,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +35,10 @@ public interface SuggestService {
     /*관리자 페이지*/
     /*전체 조회*/
     public Page<SuggestDTO> getSuggestList(int page);
+
+    // 마이 페이지 제안 게시 목록 조회
+    public Page<SuggestDTO> getSuggestForMemberIdList(Pageable pageable, Long id);
+
 
 
     default SuggestDTO toSuggestDTO(Suggest suggest) {

@@ -1,10 +1,14 @@
 package com.app.projectjar.controller.mypage;
 
+import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
+import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
+import com.app.projectjar.service.suggest.SuggestService;
 import com.app.projectjar.type.BadgeType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,38 +32,11 @@ import java.util.Map;
 public class MyPageController {
     private final MemberService memberService;
     private final InquireService inquireService;
+    private final SuggestService suggestService;
+    private final DiaryService diaryService;
 
     @GetMapping("main")
     public void main(){}
-
-    @GetMapping("personal-challenge")
-    public void personal(){}
-
-    @GetMapping("group-challenge")
-    public void group(){}
-
-    @GetMapping("inquire")
-    public void goToInquire(){
-
-    }
-
-    @GetMapping("inquire-list")
-    @ResponseBody
-    public Page<InquireDTO> inquire(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
-        Long memberId = userDetail.getId();
-        PageRequest pageable = PageRequest.of(page, 6);
-        Page<InquireDTO> inquireDTOS = inquireService.getInquireForMemberIdList(Pageable.unpaged(), memberId);
-        return inquireDTOS;
-    }
-
-    @GetMapping("propsal")
-    public void propsal(){}
-
-    @GetMapping("suggest-like-list")
-    public void suggestLikelist(){}
-
-    @GetMapping("diary-like-list")
-    public void diarylikelist(){}
 
     @GetMapping("badge")
     public void badge(@AuthenticationPrincipal UserDetail userDetail, Model model){
@@ -72,11 +49,57 @@ public class MyPageController {
         memberService.updateBadge(memberId);
     }
 
+    @GetMapping("personal-challenge")
+    public void personal(){}
+
+    @GetMapping("group-challenge")
+    public void group(){}
+
+    @GetMapping("inquire")
+    public void goToInquire(){}
+
+    @GetMapping("inquire-list")
+    @ResponseBody
+    public Page<InquireDTO> inquire(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
+        Long memberId = userDetail.getId();
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<InquireDTO> inquireDTOS = inquireService.getInquireForMemberIdList(pageable, memberId);
+        return inquireDTOS;
+    }
+
+    @GetMapping("propasal")
+    public void goToPropasal(){}
+
+    @GetMapping("propsal-list")
+    @ResponseBody
+    public Page<SuggestDTO> propsal(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
+        Long memberId = userDetail.getId();
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<SuggestDTO> suggestDTOS = suggestService.getSuggestForMemberIdList(pageable, memberId);
+        return suggestDTOS;
+    }
+
+    @GetMapping("share")
+    public void goToshare(){}
+
+    @GetMapping("share-list")
+    public Page<DiaryDTO> share(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
+        Long memberId = userDetail.getId();
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, memberId);
+        return diaryDTOS;
+    }
+
+    @GetMapping("suggest-like-list")
+    public void suggestLikelist(){}
+
+    @GetMapping("diary-like-list")
+    public void diarylikelist(){}
+
+
     @GetMapping("modify")
     public void modify(){}
 
-    @GetMapping("share")
-    public void share(){}
 
    
 }
