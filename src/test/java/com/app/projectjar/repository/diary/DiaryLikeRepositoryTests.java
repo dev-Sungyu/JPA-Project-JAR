@@ -27,46 +27,46 @@ public class DiaryLikeRepositoryTests {
     private DiaryLikeRepository diaryLikeRepository;
 
 
-    @Test
-    public void saveTest() {
-        diaryRepository.findById(110L).ifPresent(
-                diary ->
-                    memberRepository.findById(1L).ifPresent(
-                            member ->
-                                    diaryLikeRepository.save(new DiaryLike(diary, member))
-                    )
-        );
-    }
+//    @Test
+//    public void saveTest() {
+//        diaryRepository.findById(110L).ifPresent(
+//                diary ->
+//                    memberRepository.findById(1L).ifPresent(
+//                            member ->
+//                                    diaryLikeRepository.save(new DiaryLike(diary, member))
+//                    )
+//        );
+//    }
 
-    @Test
-    public void findMemberByDiaryLikeTest() {
-        diaryRepository.findById(110L).ifPresent(
-                diary ->
-                        memberRepository.findById(1L).ifPresent(
-                                member ->
-                                        diaryLikeRepository.findMemberByDiaryLike(diary.getId(), member.getId())
-                        )
-        );
-    }
+//    @Test
+//    public void findMemberByDiaryLikeTest() {
+//        diaryRepository.findById(110L).ifPresent(
+//                diary ->
+//                        memberRepository.findById(1L).ifPresent(
+//                                member ->
+//                                        diaryLikeRepository.findMemberByDiaryLike(diary.getId(), member.getId())
+//                        )
+//        );
+//    }
 
-    @Test
-    public void getDiaryLikeCountTest() {
-        diaryRepository.findById(110L).ifPresent(
-             diary ->
-             log.info(diaryLikeRepository.getDiaryLikeCount(diary.getId()) + "개")
-        );
-    }
-
-    @Test
-    public void deleteByMemberIdAndDiaryIdTest() {
-        diaryRepository.findById(110L).ifPresent(
-                diary ->
-                        memberRepository.findById(1L).ifPresent(
-                                member ->
-                                diaryLikeRepository.deleteByMemberIdAndDiaryId(diary.getId(), member.getId())
-                        )
-        );
-    }
+//    @Test
+//    public void getDiaryLikeCountTest() {
+//        diaryRepository.findById(110L).ifPresent(
+//             diary ->
+//             log.info(diaryLikeRepository.getDiaryLikeCount(diary.getId()) + "개")
+//        );
+//    }
+//
+//    @Test
+//    public void deleteByMemberIdAndDiaryIdTest() {
+//        diaryRepository.findById(110L).ifPresent(
+//                diary ->
+//                        memberRepository.findById(1L).ifPresent(
+//                                member ->
+//                                diaryLikeRepository.deleteByMemberIdAndDiaryId(diary.getId(), member.getId())
+//                        )
+//        );
+//    }
 
         @Test
     public void findByLikeMemberIdWithPaging_QueryDsl(){

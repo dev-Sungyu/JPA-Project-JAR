@@ -55,4 +55,8 @@ public class Diary extends Board {
     public void setDiaryReplyCount(Integer diaryReplyCount) {
         this.diaryReplyCount = diaryReplyCount;
     }
+
+    public void setDiaryLikeCount(Integer diaryLikeCount) {
+        this.diaryLikeCount = diaryLikeCount;
+    }
 }
