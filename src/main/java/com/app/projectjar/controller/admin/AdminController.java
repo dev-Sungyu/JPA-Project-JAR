@@ -110,7 +110,7 @@ public class AdminController {
 
     @GetMapping("board/proposal/list")
     public String adminProposalList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
-        Page<SuggestDTO> suggestPage = suggestService.getGroupSuggestList(page - 1);
+        Page<SuggestDTO> suggestPage = suggestService.getSuggestList(page - 1);
         List<String> suggestTitles = suggestPage.stream().map(SuggestDTO::getBoardTitle).collect(Collectors.toList());
         model.addAttribute("pageDTO",new PageDTO(suggestPage));
         model.addAttribute("suggestDTOS", suggestPage.getContent());
