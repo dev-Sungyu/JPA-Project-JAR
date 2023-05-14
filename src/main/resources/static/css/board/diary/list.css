@@ -97,12 +97,12 @@
 .content-box {
     position: relative;
     width: 100%;
+    overflow: hidden;
 }
 
 .content-image-box {
     overflow: hidden;
     border-radius: 3px;
-    margin-bottom: 8px;
 }
 
 .content-image-layout {
@@ -135,7 +135,7 @@ picture {
     padding: 45px 22px 0px;
     box-sizing: border-box;
     cursor: pointer;
-    border-radius: 0px 0px 10px 10px;
+    border-radius: 3px;
     bottom: -260px;
     transition: all 0.2s ease-in-out 0s;
     transform: translate(0px, 0px);
@@ -146,6 +146,12 @@ picture {
     color: rgb(255, 255, 255);
     font-size: 18px;
     font-weight: 700;
+    height: 35px;
+    max-height: 35px;
+    word-break: break-all;
+    padding-right: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 
