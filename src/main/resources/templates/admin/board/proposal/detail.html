@@ -144,13 +144,13 @@
 <!--                                                                    </button>-->
 <!--                                                                </label>-->
 <!--                                                            </header>-->
-                                                            <th:block th:each="fileDTO : ${suggestDTO.fileDTOS}">
+<!--                                                            <th:block th:each="fileDTO : ${suggestDTO.fileDTOS}">-->
                                                                 <article class="img_wrapper">
-                                                                    <div class="img_div">
-                                                                        <img th:src="@{'/file/display(fileName=' + fileDTO.filePath + '/' + fileDTO.fileUuid + '_' + fileDTO.fileOriginalName + ')'}" alt="" class="inserted_img">
-                                                                    </div>
+<!--                                                                    <div class="img_div">-->
+<!--                                                                        <img th:src="@{'/file/display(fileName=' + fileDTO.filePath + '/' + fileDTO.fileUuid + '_' + fileDTO.fileOriginalName + ')'}" alt="" class="inserted_img">-->
+<!--                                                                    </div>-->
                                                                 </article>
-                                                            </th:block>
+<!--                                                            </th:block>-->
 
                                                         </div>
                                                     </li>
@@ -169,7 +169,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
+<script th:inline="javascript">
     // const $alertModal = $(".alert-modal-display");
 
     // 이미지 파일
@@ -241,7 +241,19 @@
 
 
 
-    // const suggestDTO = [[${suggestDTO}]];
+    const suggestDTO = [[${suggestDTO}]];
+
+    let fileDTOS = suggestDTO.fileDTOS;
+
+    fileDTOS.forEach((fileDTO, i) => {
+        let text = `
+        <div class="img_div">
+            <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+        </div>
+   `;
+
+        $(".img_wrapper").append(text);
+    });
     // const boardId = suggestDTO.id;
     //
     // const fileDTOS = [[${suggestDTO.fileDTOS}]];
