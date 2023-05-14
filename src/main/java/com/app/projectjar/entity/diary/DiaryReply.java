@@ -20,4 +20,16 @@ public class DiaryReply extends Reply {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="MEMBER_ID")
     private Member member;
+
+
+    @Builder
+    public DiaryReply(Long id, String replyContent, Diary diary, Member member) {
+        super(id, replyContent);
+        this.diary = diary;
+        this.member = member;
+    }
+
+    public void setDiaryReplyContent(String replyContent) {
+        super.setReplyContent(replyContent);
+    }
 }

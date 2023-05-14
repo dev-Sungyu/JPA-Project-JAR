@@ -4,9 +4,9 @@ package com.app.projectjar.repository.diary;
 import com.app.projectjar.entity.diary.DiaryReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.domain.SliceImpl;
 
 import java.util.List;
 
@@ -18,27 +18,38 @@ public class DiaryReplyQueryDslImpl implements DiaryReplyQueryDsl {
     private final JPAQueryFactory query;
 
     @Override
-    public Page<DiaryReply> findAllByDiaryWithPaging_QueryDsl(Long diaryId, Pageable pageable) {
-        List<DiaryReply> foundDiaryReply = query.select(diaryReply)
+    public Slice<DiaryReply> findAllByDiaryWithPaging_QueryDsl(Long diaryId, Pageable pageable) {
+        List<DiaryReply> foundReply = query.select(diaryReply)
                 .from(diaryReply)
                 .leftJoin(diaryReply.member, member)
                 .fetchJoin()
                 .where(diaryReply.diary.id.eq(diaryId))
                 .orderBy(diaryReply.id.desc())
-                .offset(pageable.getOffset() - 1)
-                .limit(pageable.getPageSize())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize() + 1)
                 .fetch();
 
-        Long count = getReplyCount_QueryDsl(diaryId);
+        boolean hasNext = false;
+        if (foundReply.size() > pageable.getPageSize()) {
+            foundReply.remove(pageable.getPageSize());
+            hasNext = true;
+        }
 
-        return new PageImpl<>(foundDiaryReply, pageable, count);
+        return new SliceImpl<>(foundReply, pageable, hasNext);
     }
 
     @Override
     public Long getReplyCount_QueryDsl(Long diaryId) {
         return query.select(diaryReply.count())
                 .from(diaryReply)
-                .where(diaryReply.id.eq(diaryId))
+                .where(diaryReply.diary.id.eq(diaryId))
                 .fetchOne();
+    }
+
+    @Override
+    public void deleteByDiaryId(Long diaryId) {
+        query.delete(diaryReply)
+                .where(diaryReply.diary.id.eq(diaryId))
+                .execute();
     }
 }
