@@ -228,10 +228,6 @@
 }}
 
 .main-container-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    -webkit-box-pack: start;
-    place-content: stretch flex-start;
     margin-right: -12px;
     margin-left: -12px;
 }
@@ -245,6 +241,9 @@
     box-sizing: border-box; 
 }
 
+.none-reply-display {
+    margin : 20px;
+}
 
 .main-information-box{
     padding-top: 40px;
