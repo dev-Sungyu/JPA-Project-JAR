@@ -9,11 +9,11 @@ import java.util.List;
 
 public interface DiaryQueryLikeDsl {
 
-    public Member findMemberByDiaryLike(Long diaryId, Long memberId);
+    public Long findMemberByDiaryLike_QueryDsl(Long diaryId, Long memberId);
 
-    public Long getDiaryLikeCount(Long diaryId);
+    public Long getDiaryLikeCount_QueryDsl(Long diaryId);
 
-    public void deleteByMemberIdAndDiaryId(Long diaryId, Long memberId);
+    public void deleteByMemberIdAndDiaryId_QueryDsl(Long diaryId, Long memberId);
 
     public Page<DiaryLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long memberId);
 }
