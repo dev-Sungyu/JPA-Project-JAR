@@ -43,6 +43,7 @@ public interface InquireService {
                 .id(inquire.getId())
                 .inquireTitle(inquire.getInquireTitle())
                 .inquireContent(inquire.getInquireContent())
+                .answerType((inquire.getAnswerType()))
                 .memberDTO(toMemberDTO(inquire.getMember()))
                 .build();
     }
