@@ -135,6 +135,13 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
+    public void deleteSuggests(List<Long> suggestIds) {
+        for (Long suggestId : suggestIds) {
+            suggestRepository.deleteById(suggestId);
+        }
+    }
+
+    @Override
     public Page<SuggestDTO> getSuggestForMemberIdList(Pageable pageable, Long id) {
         Page<Suggest> suggests = suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageable, id);
         List<SuggestDTO> suggestDTOS = suggests.stream().map(this::toSuggestDTO).collect(Collectors.toList());

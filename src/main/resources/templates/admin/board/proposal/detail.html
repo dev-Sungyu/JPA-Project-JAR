@@ -22,11 +22,11 @@
         position: relative;
     }
 
-    .img_div>img {
-        max-width: 250px;
-        /* max-height: 160px; */
-        height: 200px;
-    }
+    /*.img_div>img {*/
+    /*    max-width: 250px;*/
+    /*    !* max-height: 160px; *!*/
+    /*    height: 200px;*/
+    /*}*/
 
     .delete_button_wrapper {
         display: flex;
@@ -145,11 +145,14 @@
 <!--                                                                </label>-->
 <!--                                                            </header>-->
 <!--                                                            <th:block th:each="fileDTO : ${suggestDTO.fileDTOS}">-->
-                                                                <article class="img_wrapper">
+                                                        <section class="img_wrapper_box">
+                                                            <div class="img_ul_wrapper">
+                                                                <ul class="img_wrapper img_ul sumnail-layout">
 <!--                                                                    <div class="img_div">-->
 <!--                                                                        <img th:src="@{'/file/display(fileName=' + fileDTO.filePath + '/' + fileDTO.fileUuid + '_' + fileDTO.fileOriginalName + ')'}" alt="" class="inserted_img">-->
 <!--                                                                    </div>-->
-                                                                </article>
+                                                                </ul>
+                                                            </div>
 <!--                                                            </th:block>-->
 
                                                         </div>
@@ -170,75 +173,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script th:inline="javascript">
-    // const $alertModal = $(".alert-modal-display");
-
-    // 이미지 파일
-    // let inputFiles = [];
-    // let $imgUl = $($('ul.img_ul')[0]);
-    // let $deleteLabels = $('.delete_button_wrapper svg');
-    //
-    // $(".file").change((e) => {
-    //     let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-    //     let index = 0;
-    //     let files = e.target.files;
-    //     let filesArr = Array.prototype.slice.call(files);
-    //
-    //     inputFiles = [];
-    //
-    //     filesArr.forEach(file => {
-    //         if (!file.type.match("image.*")) {
-    //             alertModal(errorMsg);
-    //             return;
-    //         }
-    //         inputFiles.push(file);
-    //
-    //         if (index >= 3) {
-    //             return;
-    //         }
-    //         var reader = new FileReader();
-    //         reader.onload = (e) => {
-    //             let text = `
-    //                     <li class="img_list" id="li${index}">
-    //                         <div class="img_box_wrapper">
-    //                             <header class="delete_button_wrapper">
-    //                                 <label id="label${index}">
-    //                                     <button icon-position="0" color="white" fill="false"
-    //                                         class="pasing-button-1 pasing-no-select" id="button${index}">
-    //                                         <span class="pasing-button-span">
-    //                                             <svg xmlns="http://www.w3.org/2000/svg"
-    //                                                 width="24" height="24" fill="none"
-    //                                                 viewBox="0 0 24 24">
-    //                                                 <path
-    //                                                     d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-    //                                                     fill="#cacaca"></path>
-    //                                             </svg>
-    //                                         </span>
-    //                                     </button>
-    //                                 </label>
-    //                             </header>
-    //                             <article class="img_wrapper">
-    //                                 <div class="img_div">
-    //                                     <img src="` + e.target.result + `" alt=""
-    //                                         class="inserted_img">
-    //                                 </div>
-    //                             </article>
-    //                         </div>
-    //                     </li>
-    //             `;
-    //             $imgUl.append(text);
-    //             index++;
-    //         }
-    //         reader.readAsDataURL(file);
-    //     });
-    // });
-
-    // 이미지 제거
-    // $deleteLabels.on("click", (e) => {
-    //     console.log("x버튼 눌림")
-    //     let index = $(e.target).attr('id');
-    //     $('#li' + index).remove();
-    // });
-
 
 
     const suggestDTO = [[${suggestDTO}]];
@@ -247,31 +181,13 @@
 
     fileDTOS.forEach((fileDTO, i) => {
         let text = `
-        <div class="img_div">
+        <li class="img_div">
             <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
-        </div>
+        </li>
    `;
 
         $(".img_wrapper").append(text);
     });
-    // const boardId = suggestDTO.id;
-    //
-    // const fileDTOS = [[${suggestDTO.fileDTOS}]];
-    // const $mainImage = $("#mainImage");
-    //
-    // // 이미지를 동적으로 생성하여 표시
-    // fileDTOS.forEach((fileDTO) => {
-    //     const imageUrl = `/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}`;
-    //     const $img = $("<img>").attr("src", imageUrl).addClass("inserted_img");
-    //     $mainImage.after($img);
-    // });
-
-    // const $subImage1 = $(".sub-image1");
-    // $subImage1.attr("src", `/file/display?fileName=${fileDTOS[1].filePath}/${fileDTOS[1].fileUuid}_${fileDTOS[1].fileOriginalName}`)
-    // const $subImage2 = $(".sub-image2");
-    // $subImage2.attr("src", `/file/display?fileName=${fileDTOS[2].filePath}/${fileDTOS[2].fileUuid}_${fileDTOS[2].fileOriginalName}`)
-    // const $subImage3 = $(".sub-image3");
-    // $subImage3.attr("src", `/file/display?fileName=${fileDTOS[3].filePath}/${fileDTOS[3].fileUuid}_${fileDTOS[3].fileOriginalName}`)
 </script>
 
 </html>

@@ -1,7 +1,6 @@
 package com.app.projectjar.service.suggest;
 
 import com.app.projectjar.domain.file.FileDTO;
-import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
@@ -30,9 +29,14 @@ public interface SuggestService {
     // 삭제
     public void delete(Long suggestId);
 
+
+
     /*관리자 페이지*/
     /*전체 조회*/
     public Page<SuggestDTO> getSuggestList(int page);
+
+    // 삭제
+    public void deleteSuggests(List<Long> suggestIds);
 
     // 마이 페이지 제안 게시 목록 조회
     public Page<SuggestDTO> getSuggestForMemberIdList(Pageable pageable, Long id);
