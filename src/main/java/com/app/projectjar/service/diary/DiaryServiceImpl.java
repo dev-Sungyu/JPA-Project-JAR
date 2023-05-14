@@ -28,7 +28,6 @@ public class DiaryServiceImpl implements DiaryService {
         Slice<Diary> diaryList = diaryRepository.findAllDiary_QueryDsl(sort, pageable);
 
         List<DiaryDTO> diaryDTOS = diaryList.getContent().stream().map(this::toDiaryDTO).collect(Collectors.toList());
-
         return new SliceImpl<>(diaryDTOS, pageable, diaryList.hasNext());
     }
 
