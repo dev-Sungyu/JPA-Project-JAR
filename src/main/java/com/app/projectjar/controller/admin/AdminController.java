@@ -105,9 +105,6 @@ public class AdminController {
     }
 
 
-
-
-
     @GetMapping("board/proposal/list")
     public String adminProposalList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         Page<SuggestDTO> suggestPage = suggestService.getSuggestList(page - 1);
@@ -116,9 +113,13 @@ public class AdminController {
         model.addAttribute("suggestDTOS", suggestPage.getContent());
         return "admin/board/proposal/list";
     }
-    @GetMapping("board/proposal/detail")
-    public void adminProposalDetail() {
+    @GetMapping("board/proposal/detail/{suggestId}")
+    public String adminProposalDetail(Model model, @PathVariable("suggestId") Long suggestId) {
+        SuggestDTO suggestDTO = suggestService.getSuggest(suggestId);
 
+        model.addAttribute("suggestDTO", suggestDTO);
+
+        return "admin/board/proposal/detail";
     }
     @GetMapping("board/diary/list")
     public void adminDiaryList() {}
