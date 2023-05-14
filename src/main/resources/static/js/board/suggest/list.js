@@ -1,29 +1,73 @@
 const $ul = $(".content-ul");
+let page = 0;
+let boardType = "personal";
 
-SuggestDTOS.forEach((suggestDTO, i) => {
-    let text = `
+
+suggestService = (function () {
+    function list(page, callback) {
+        $.ajax({
+            url: '/board/suggest/list-content',
+            type: 'get',
+            data: page,
+            success: function (list) {
+                if (callback) {
+                    callback(list);
+                }
+            }
+        });
+    }
+
+    return {
+        list: list,
+    }
+})();
+
+getList(boardType, page);
+
+
+$(".personal").click(() => {
+    boardType = "personal"
+    page = 0;
+    getList(boardType, page);
+});
+
+$(".group").click(() => {
+    boardType = "group"
+    page =0;
+    getList(boardType, page);
+});
+
+
+
+function listText(list) {
+
+    let text = '';
+    let suggestDTOS = list.content;
+
+    suggestDTOS.forEach((suggestDTO, i) => {
+        text += `
                                         <li class="content-li">
                                                 <div class="content-flex">
-                                                    
+
                                                         <div class="content-box">
                                                             <div class="content-image-box">
                                                                 <span class="content-image-layout">
                                                                     <a href="/board/suggest/detail/${suggestDTO.id}">
                                                                     <picture>
                                          `
-    if(suggestDTO.fileDTOS.length == 0){
-        text += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png" class="no-image">`;
-    }else {
-        for (let  j= 0; j < suggestDTO.fileDTOS.length; j++){
-            if(suggestDTO.fileDTOS[j].fileType === "REPRESENTATIVE"){
-                text += `<img src="/file/display?fileName=${suggestDTO.fileDTOS[j].filePath}/${suggestDTO.fileDTOS[j].fileUuid}_${suggestDTO.fileDTOS[j].fileOriginalName}">`;
+        if (suggestDTO.fileDTOS.length == 0) {
+            text += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png" class="no-image">`;
+        } else {
+            for (let j = 0; j < suggestDTO.fileDTOS.length; j++) {
+                if (suggestDTO.fileDTOS[j].fileType === "REPRESENTATIVE") {
+                    text += `<img src="/file/display?fileName=${suggestDTO.fileDTOS[j].filePath}/${suggestDTO.fileDTOS[j].fileUuid}_${suggestDTO.fileDTOS[j].fileOriginalName}">`;
+                }
             }
         }
-    }
-    text +=             `                            </picture>
+        text += `                            </picture>
                                                             </a>
                                                                     <div class="heart-box">
-                                                                        <button class="heart-layout" id="heart${i}">
+                                                                        <button class="heart-layout" id="heart${suggestDTO.id}">
                                                                             <span class="auto-flex no-heart">
                                                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                                                     width="24" height="24" fill="none"
@@ -78,5 +122,66 @@ SuggestDTOS.forEach((suggestDTO, i) => {
                                                 </div>
                                             </li>
     `;
-    $ul.append(text);
-});
+    });
+    return text;
+}
+
+function getList(boardType, page){
+    suggestService.list({
+        boardType : boardType,
+        page : page
+    },function (list) {
+        window.scrollTo(0, 0);
+        $ul.html(listText(list));
+        displayPagination(list.totalPages);
+        heartCheck(list);
+    })
+}
+
+function displayPagination(totalPages) {
+    const $pagination = $(".paging-layout");
+    $pagination.empty();
+
+    if (page > 0) {
+        $pagination.append("<a href='#' class='arrow' id='prev'><img class='prev'  src='/image/mypage/arrow.png'></a>");
+    }
+
+    for (let i = 1; i <= totalPages; i++) {
+        if (i === page + 1) {
+            // 현재 페이지를 텍스트로 표시
+            $pagination.append(
+                "<div class='paging-border-none paging-active'><span class='page'>" + i + "</span></div>"
+            );
+        } else {
+            // 다른 페이지는 a 태그로 표시
+            $pagination.append("<div class='paging-border-none'><a href='#' class='page'>" + i + "</a></div>");
+        }
+    }
+    if (page < totalPages - 1) {
+        $pagination.append("<a href='#' class='arrow' id='next'><img class='next' src='/image/mypage/arrow.png'></a>");
+    }
+}
+
+
+function heartCheck(list) {
+
+    let diaryDTOS = list.content;
+
+    diaryDTOS.forEach((diaryDTO, i) => {
+        let likeDTO = new Object();
+        likeDTO.memberId = memberId;
+        likeDTO.boardId = diaryDTO.id;
+
+        likeService.heartCheck(likeDTO,function(result){
+            if(result){
+                $($(".heart-up")[i]).hide();
+                $($(".no-heart")[i]).show();
+                $($(".no-heart")[i]).removeClass("heart-active");
+            }else {
+                $($(".no-heart")[i]).addClass("heart-active");
+                $($(".heart-up")[i]).show();
+                $($(".no-heart")[i]).hide();
+            }
+        });
+    })
+}

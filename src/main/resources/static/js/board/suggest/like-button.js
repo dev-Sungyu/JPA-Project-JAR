@@ -1,49 +1,37 @@
-const $heartButton = $(".heart-layout");
+// 좋아요 버튼
+$ul.on("click","button.heart-layout",function(e){
+    let boardId = e.currentTarget.id.replaceAll("heart","");
 
-$heartButton.each((i, e) => {
-    let boardId = e.id.replaceAll("heart", "");
+    let ul = $(e.currentTarget).parent().parent().parent().parent().parent().parent().parent();
+    let li = $(e.currentTarget).parent().parent().parent().parent().parent().parent();
+    let i = ul.find("li").index(li);
+
     let likeDTO = new Object();
     likeDTO.memberId = memberId;
     likeDTO.boardId = boardId;
 
-    if(memberId == undefined){
-        return false;
-    }
-
-    likeService.heartCheck(likeDTO,function(result){
+    likeService.heartCheck(likeDTO, function(result){
         if(result){
-            $($(".heart-up")[i]).hide();
-            $($(".no-heart")[i]).show();
-            $($(".no-heart")[i]).removeClass("heart-active");
-        }else {
-            $($(".no-heart")[i]).addClass("heart-active");
-            $($(".heart-up")[i]).show();
-            $($(".no-heart")[i]).hide();
+            // 좋아요 ++
+            likeService.heartUp(likeDTO, function(){
+                $($(".no-heart")[i]).addClass("heart-active");
+                $($(".heart-up")[i]).show();
+                $($(".no-heart")[i]).hide();
+                likeService.count({boardId: boardId}, function (result) {
+                    $($(".like-count")[i]).text(result);
+                });
+            });
+        } else {
+            // 좋아요 --
+            likeService.heartDown(likeDTO, function(){
+                $($(".heart-up")[i]).hide();
+                $($(".no-heart")[i]).show();
+                $($(".no-heart")[i]).removeClass("heart-active");
+                likeService.count({boardId: boardId}, function (result) {
+                    $($(".like-count")[i]).text(result);
+                })
+            });
         }
     });
 
-    $(e).click(() => {
-        likeService.heartCheck(likeDTO, function (result) {
-            if(result){
-                likeService.heartUp(likeDTO, function(){
-                    $($(".no-heart")[i]).addClass("heart-active");
-                    $($(".heart-up")[i]).show();
-                    $($(".no-heart")[i]).hide();
-                    likeService.count({boardId: boardId}, function (result) {
-                        $($(".like-count")[i]).text(result);
-                    });
-                });
-            } else {
-                likeService.heartDown(likeDTO, function(){
-                    $($(".heart-up")[i]).hide();
-                    $($(".no-heart")[i]).show();
-                    $($(".no-heart")[i]).removeClass("heart-active");
-                    likeService.count({boardId: boardId}, function (result) {
-                        $($(".like-count")[i]).text(result);
-                    })
-                });
-            }
-        });
-
-    });
 });

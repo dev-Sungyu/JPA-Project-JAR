@@ -1,15 +1,4 @@
-
-let $pageForm = $("form[name='pageForm']");
-
-$("a.changePage").on("click", function (e) {
-    e.preventDefault();
-    $pageForm.find("input[name='page']").val($(this).attr("href"));
-    $pageForm.submit();
-});
-
-
 $(".btn").each((i, e) => {
-
     $(e).click(() => {
         if(!$(e).hasClass("active")){
             $(".btn").removeClass("active");
