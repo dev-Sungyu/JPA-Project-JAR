@@ -238,3 +238,7 @@ if(fileSize == 8){
 }else {
 
 }
+
+$(".image-box").click(() => {
+    $imageModal.show();
+});
