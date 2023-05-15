@@ -45,6 +45,7 @@ public interface InquireService {
                 .inquireContent(inquire.getInquireContent())
                 .answerType((inquire.getAnswerType()))
                 .memberDTO(toMemberDTO(inquire.getMember()))
+                .createDate(inquire.getCreatedDate())
                 .build();
     }
 
