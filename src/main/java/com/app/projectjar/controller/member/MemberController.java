@@ -33,14 +33,7 @@ public class MemberController {
     }
 
     @GetMapping("login")
-    public void goToLoginForm() {
-    };
-
-//    @GetMapping("login")
-//    public void login(){}
-//
-//    @GetMapping("sign-in")
-//    public void signIn(){}
+    public void goToLoginForm() {;}
 
     @GetMapping("join-OAuth")
     public void Oauth(){}
@@ -56,6 +49,9 @@ public class MemberController {
 
 //    @GetMapping("phone-certification")
 //    public void phone(){}
+
+    @GetMapping("logout")
+    public void goToLogOut(){;}
 
 
 }

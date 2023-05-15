@@ -70,7 +70,7 @@ public class MyPageController {
     }
 
     @GetMapping("propasal")
-    public void goToPropasal(@AuthenticationPrincipal UserDetail userDetail,Model model){
+    public void goToPropasal(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
     }
 
