@@ -56,19 +56,23 @@ public class MyPageController {
     public void group(){}
 
     @GetMapping("inquire")
-    public void goToInquire(){}
+    public void goToInquire(@AuthenticationPrincipal UserDetail userDetail,Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
 
     @GetMapping("inquire-list")
     @ResponseBody
-    public Page<InquireDTO> inquire(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
-        Long memberId = userDetail.getId();
+    public Page<InquireDTO> inquire(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
+        log.info(id.toString());
         PageRequest pageable = PageRequest.of(page, 6);
-        Page<InquireDTO> inquireDTOS = inquireService.getInquireForMemberIdList(pageable, memberId);
+        Page<InquireDTO> inquireDTOS = inquireService.getInquireForMemberIdList(pageable, id);
         return inquireDTOS;
     }
 
     @GetMapping("propasal")
-    public void goToPropasal(){}
+    public void goToPropasal(@AuthenticationPrincipal UserDetail userDetail,Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
 
     @GetMapping("propsal-list")
     @ResponseBody
