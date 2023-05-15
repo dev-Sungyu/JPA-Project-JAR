@@ -8,6 +8,7 @@ import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
+import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.suggest.SuggestService;
 import com.app.projectjar.type.BadgeType;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,13 +32,23 @@ import java.util.Map;
 @RequiredArgsConstructor
 @Slf4j
 public class MyPageController {
+    private final MyPageService myPageService;
     private final MemberService memberService;
     private final InquireService inquireService;
     private final SuggestService suggestService;
     private final DiaryService diaryService;
 
     @GetMapping("main")
-    public void main(){}
+    public void main(){
+    }
+
+    @PostMapping("register")
+    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail ){
+        Long memberId = userDetail.getId();
+        myPageService.registerDiary(diaryDTO, memberId);
+        return new RedirectView("/mypage/main");
+    }
+
 
     @GetMapping("badge")
     public void badge(@AuthenticationPrincipal UserDetail userDetail, Model model){

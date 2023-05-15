@@ -1,5 +1,6 @@
 package com.app.projectjar.domain.file;
 
+import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.type.FileType;
@@ -20,6 +21,8 @@ public class FileDTO {
     private FileType fileType;
 
     private Suggest suggest;
+    private Diary diary;
+
 
     @Builder
     public FileDTO(Long id, String fileOriginalName, String fileUuid, String filePath, FileType fileType) {

@@ -93,4 +93,15 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .fetch();
         return new PageImpl<>(foundDiaries);
     }
+
+    @Override
+    public Diary getCurrentSequence_QueryDsl() {
+        return query.select(diary)
+                .from(diary)
+                .orderBy(diary.id.desc())
+                .limit(1)
+                .fetchOne();
+    }
+
+
 }
