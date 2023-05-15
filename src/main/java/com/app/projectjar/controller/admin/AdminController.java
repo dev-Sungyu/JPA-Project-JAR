@@ -47,7 +47,9 @@ public class AdminController {
     @GetMapping("member/detail")
     public void adminMemberDetail() {}
     @GetMapping("member/list")
-    public void adminMemberList() {}
+    public void adminMemberList() {
+
+    }
     @GetMapping("member/modify")
     public void adminMemberModify() {}
     @GetMapping("board/notice/detail/{noticeId}")
