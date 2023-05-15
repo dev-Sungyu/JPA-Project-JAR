@@ -3,10 +3,7 @@ package com.app.projectjar.entity.challenge;
 import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
-import com.app.projectjar.type.ChallengeType;
-import com.sun.istack.NotNull;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -24,6 +21,4 @@ public class Challenge extends Board {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
     private List<ChallengeFile> challengeFiles;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<PersonalChallenge> personalChallengeList;
 }

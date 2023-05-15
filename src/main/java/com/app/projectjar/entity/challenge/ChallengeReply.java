@@ -1,10 +1,8 @@
 package com.app.projectjar.entity.challenge;
 
-import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.entity.reply.Reply;
-import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
