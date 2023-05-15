@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @EnableWebSecurity
 @Configuration
 @RequiredArgsConstructor @Slf4j
-public class SecurityConfig /*extends WebSecurityConfigurerAdapter*/ {
+public class SecurityConfig  {
 //    메인
     private static final String IGNORE_MAIN_PATH = "/main/**";
 //    관리자
