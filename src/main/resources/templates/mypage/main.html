@@ -110,6 +110,7 @@
                     </div>
                 </h1>
                 <div>
+                    <form th:action="@{/mypage/register}" method="post" enctype="multipart/form-data" name="form">
                     <div class="box">
                         <h4 class="date"></h4>
                         <div class="flex-box">
@@ -124,7 +125,7 @@
                             </div>
                             <div>
                                 <label>
-                                    <input type="checkbox" style="display:none;">
+                                    <input type="checkbox" style="display:none;" name="diaryStatus" value="PRIVATE">
                                     <div class="private-check-box">
                                         <div class="private-check-layout">
                                             <p>
@@ -134,18 +135,18 @@
                                     </div>
                                 </label>
                             </div>
-                            <button type="button" class="insert-button">저장</button>
+                            <button type="button" class="insert-button save-button">저장</button>
                         </div>
                     </div>
                     <div class="input-box">
                         <div class="align-flex">
                             <div>
-                                <input type="text" placeholder="제목을 입력하세요." class="diary-title">
+                                <input type="text" name="boardTitle" placeholder="제목을 입력하세요." class="diary-title">
                             </div>
                         </div>
                         <div class="diary-content-box">
                             <div>
-                                <textarea name="" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
+                                <textarea name="boardContent" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
                             </div>
                         </div>
                         <div class="attachment-box">
@@ -154,6 +155,7 @@
                             </ul>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -243,49 +245,131 @@
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script>
-
+    FileList.prototype.forEach = Array.prototype.forEach;
     const $alertModal = $(".alert-modal-display");
-
+    const alertMsg = ['사진은 최소 1개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
     // 이미지 파일
-    let inputFiles = [];
+    let files = [];
+    let $ul =$(".sumnail-box");
+    $("input[type=file]").on("change", function () {
+        const $files = $("input[type=file]")[0].files;
+        let formData = new FormData();
 
-    $(".file").change((e) => {
-        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-        let index = 0;
-        let files = e.target.files;
-        let filesArr = Array.prototype.slice.call(files);
+        $($files).each((i, file) => {
+            files.push(file);
+        })
 
-        inputFiles = [];
+        files.forEach((file, e) => {
+            formData.append("file", file);
+        })
 
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
-            }
-            inputFiles.push(file);
 
-            var reader = new FileReader();
-            reader.onload = (e) => {
-                let text = `
-                            <li id="${index}">
+        $.ajax({
+            url: "/file/upload",
+            type: "post",
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (uuids) {
+                globalThis.uuids = uuids;
+                console.log(uuids);
+                $files.forEach((file, i) => {
+                    if (file.type.startsWith("image")) {
+                        let text = `
+                            <li id="${i}">
                                 <div style="position:relative;">
-                                    <div class="image-cancel-box">
+                                    <div class="image-cancel-box close-button">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
                                             <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
                                                 fill="#cacaca"></path>
                                         </svg>
                                     </div>
-                           `
-                text += "<img src=\"" + e.target.result + "\" />";
-                text += `</div>
+                                <img src="/file/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
+                                </div>
                             </li>
-                `;
-                $(".attachment-layout").append(text);
-                index++;
+                           `;
+                        $ul.append(text);
+                    }
+                });
             }
-            reader.readAsDataURL(file);
         });
     });
+
+
+    // 이미지 지울 때
+    $ul.on("click",".close-button", function(e){
+        const dataTransfer = new DataTransfer();
+
+        let target = $(e.currentTarget).parent().parent().parent();
+        let fileArray = Array.from(files);
+        let ul = target.parent();
+        let i = ul.find("li").index(target);
+        files = [];
+
+        fileArray.splice(i, 1);
+        fileArray.forEach(file => {
+            if(file.fileOriginalName == null && file.fileOriginalName == undefined){
+                dataTransfer.items.add(file);
+            }else {
+                files.push(file);
+            }
+        })
+
+        target.remove();
+        dataTransfer.files.forEach((file, i) =>{
+            files.push(file);
+        });
+
+        console.log(files);
+    });
+
+    $(".save-button").click(() => {
+        const $files = $("input[type=file]")[0].files;
+        let text = "";
+
+        let boardTitle = $("input[name='boardTitle']").val();
+        let boardContent = $(".diary-content").val();
+
+        if ($files.length < 1) {
+            alertModal(alertMsg[0]);
+            return false;
+        } else if (!boardTitle) {
+            alertModal(alertMsg[1]);
+            return false;
+        } else if (!boardContent) {
+            alertModal(alertMsg[2]);
+            return false;
+        }
+
+
+        FileList.prototype.forEach = Array.prototype.forEach;
+        files.forEach((file, i) => {
+            text +=
+                `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                `;
+        });
+        $("form[name=form]").append(text);
+        $("form[name=form]").submit();
+    })
+    /*****************************************************/
+    function leftPad(value) {
+        if (value >= 10) {
+            return value;
+        }
+
+        return `0${value}`;
+    }
+
+    function toStringByFormatting(source, delimiter = '/') {
+        const year = source.getFullYear();
+        const month = leftPad(source.getMonth() + 1);
+        const day = leftPad(source.getDate());
+
+        return [year, month, day].join(delimiter);
+    }
 
     // 이미지 제거
     $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
@@ -360,7 +444,6 @@
     let datas = [
         {
             id: '1',// 다이어리의 번호 값 넣어주기
-            calendarId: 2,
             title: "안녕",
             start: "2023-04-19",
             end: "2023-04-19",
@@ -468,7 +551,7 @@
             return;
         }else if(!$(".diary-content").val()) {
             errorMsg = "내용을 입력해주세요.";
-            alertModal(errorMsg);      4
+            alertModal(errorMsg);
             return;    
         }
 
@@ -531,9 +614,11 @@
         if(!$check.is(":checked")){
             $checkbox.addClass("check-active");
             $checkText.text("공개");
+            $check.val("OPEN");
         }else {
             $checkbox.removeClass("check-active");
             $checkText.text("비공개");
+            $check.val("PRIVATE");
         }
     });
     
@@ -591,13 +676,6 @@
 
     }
 
-    function deleteImage(index){ 
-        inputFiles.splice(index, 1);
-
-        var imageId = "#" + index;
-        $(imageId).remove();
-    }
-
     function inputCheck() {
         if(!$diaryTitle.val() || !$diaryContent.val()){
             $diaryButton.removeClass("save-active");
@@ -643,5 +721,4 @@
 
 // ================================================
 </script>
-
 </html>
