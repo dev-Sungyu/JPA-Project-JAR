@@ -1,5 +1,6 @@
 package com.app.projectjar.controller.mypage;
 
+import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -39,7 +41,11 @@ public class MyPageController {
     private final DiaryService diaryService;
 
     @GetMapping("main")
-    public void main(){
+    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(userDetail.getId());
+
+        model.addAttribute("calendarDTOS",calendarDTOS);
+        model.addAttribute("userDetail", userDetail);
     }
 
     @PostMapping("register")
@@ -49,6 +55,11 @@ public class MyPageController {
         return new RedirectView("/mypage/main?check=true");
     }
 
+    @GetMapping("diary-detail")
+    @ResponseBody
+    public DiaryDTO getDiaryDTO(@RequestParam("boardId")Long diaryId) {
+        return myPageService.getDiary(diaryId);
+    }
 
     @GetMapping("badge")
     public void badge(@AuthenticationPrincipal UserDetail userDetail, Model model){

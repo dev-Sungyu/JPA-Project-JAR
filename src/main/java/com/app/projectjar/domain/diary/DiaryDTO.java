@@ -6,6 +6,7 @@ import com.app.projectjar.type.DiaryType;
 import lombok.*;
 
 import javax.persistence.Column;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -16,17 +17,21 @@ public class DiaryDTO {
     private String boardTitle;
     private String boardContent;
     private DiaryType diaryStatus;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private Integer likeCount;
     private Integer replyCount;
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
 
     @Builder
-    public DiaryDTO(Long id, String boardTitle, String boardContent, DiaryType diaryStatus, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
+    public DiaryDTO(Long id, String boardTitle, String boardContent, DiaryType diaryStatus, LocalDateTime start, LocalDateTime end, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
         this.diaryStatus = diaryStatus;
+        this.start = start;
+        this.end = end;
         this.likeCount = likeCount;
         this.replyCount = replyCount;
         this.memberDTO = memberDTO;

@@ -42,7 +42,7 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
     }
 
     @Override
-    public Slice<Diary> findAllDiary_QueryDsl(String sort, Pageable pageable) {
+    public Slice<Diary> findByMemberIdDiary_QueryDsl(String sort, Pageable pageable) {
             List<Diary> foundDiaryList = query.select(diary)
                     .from(diary)
                     .leftJoin(diary.diaryFiles, diaryFile)
@@ -60,6 +60,17 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
         }
 
         return new SliceImpl<>(foundDiaryList, pageable, hasNext);
+    }
+
+    @Override
+    public List<Diary> findByMemberIdDiary_QueryDsl(Long memberId) {
+        return query.select(diary)
+                .distinct()
+                .from(diary)
+                .leftJoin(diary.diaryFiles, diaryFile)
+                .fetchJoin()
+                .where(diary.member.id.eq(memberId))
+                .fetch();
     }
 
     @Override

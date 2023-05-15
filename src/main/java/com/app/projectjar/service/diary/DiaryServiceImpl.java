@@ -1,9 +1,7 @@
 package com.app.projectjar.service.diary;
 
 import com.app.projectjar.domain.diary.DiaryDTO;
-import com.app.projectjar.domain.reply.ReplyDTO;
 import com.app.projectjar.entity.diary.Diary;
-import com.app.projectjar.entity.suggest.SuggestReply;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +21,7 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public Slice<DiaryDTO> getOpenDiaryList(String sort, Pageable pageable) {
-        Slice<Diary> diaryList = diaryRepository.findAllDiary_QueryDsl(sort, pageable);
+        Slice<Diary> diaryList = diaryRepository.findByMemberIdDiary_QueryDsl(sort, pageable);
 
         List<DiaryDTO> diaryDTOS = diaryList.getContent().stream().map(this::toDiaryDTO).collect(Collectors.toList());
         return new SliceImpl<>(diaryDTOS, pageable, diaryList.hasNext());

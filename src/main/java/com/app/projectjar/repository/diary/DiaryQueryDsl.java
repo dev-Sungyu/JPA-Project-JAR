@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface DiaryQueryDsl {
@@ -14,10 +15,14 @@ public interface DiaryQueryDsl {
     // 상세보기
     public Optional<Diary> findByDiaryId_QueryDsl(Long diaryId);
     // 리스트
-    public Slice<Diary> findAllDiary_QueryDsl(String sort, Pageable pageable);
+    public Slice<Diary> findByMemberIdDiary_QueryDsl(String sort, Pageable pageable);
 
 
     /* 마이 페이지 */
+//    다이어리 목록
+    public List<Diary> findByMemberIdDiary_QueryDsl(Long memberId);
+
+
 //    내가 작성한 다이어리 게시판 전체 조회
     public Page<Diary> findAllByMemberWithPaging_QueryDsl(Pageable pageable, Long id);
 
