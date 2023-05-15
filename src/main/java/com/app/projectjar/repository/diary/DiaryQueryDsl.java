@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.diary;
 
 import com.app.projectjar.entity.diary.Diary;
+import com.app.projectjar.entity.suggest.Suggest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -22,4 +23,8 @@ public interface DiaryQueryDsl {
 
 //    내가 좋아요한 다이어리 게시판 전체조회
     public Page<Diary> findByLikeMEmberIdWithPaging_QueryDsl(Pageable pageable, Long id);
+ 
+//      현재 시퀀스 가져오기
+    public Diary getCurrentSequence_QueryDsl();
+
 }
