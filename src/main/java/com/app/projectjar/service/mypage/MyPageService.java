@@ -14,7 +14,7 @@ import java.util.List;
 
 public interface MyPageService {
 
-    public void registerDiary(DiaryDTO diaryDTO, Long memberId);
+    public void registerDiary(DiaryDTO diaryDTO,Long memberId);
 
     // 현재 시퀀스 가져오기
     public Diary getCurrentSequence();
