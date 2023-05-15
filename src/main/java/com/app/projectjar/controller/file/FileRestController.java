@@ -20,7 +20,7 @@ public class FileRestController {
 
     //    파일 업로드
     @PostMapping("upload")
-    public List<String> suggestUpload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
+    public List<String> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
         String path = "C:/upload/" + getPath();
         File file = new File(path);
@@ -45,7 +45,7 @@ public class FileRestController {
 
     //    파일 불러오기
     @GetMapping("display")
-    public byte[] businessDisplay(String fileName) throws Exception {
+    public byte[] display(String fileName) throws Exception {
         try {
             return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
         } catch (IOException e) {

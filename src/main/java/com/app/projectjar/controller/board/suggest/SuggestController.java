@@ -34,10 +34,7 @@ public class SuggestController {
 
         Long memberId = userDetail.getId();
         suggestService.register(suggestDTO, memberId);
-        if(suggestDTO.getBoardType().name().equals("GROUP")){
-            return new RedirectView("/board/suggest/list/group");
-        }
-        return new RedirectView("/board/suggest/list/personal");
+        return new RedirectView("/board/suggest/list");
     }
 
     @GetMapping("list")
