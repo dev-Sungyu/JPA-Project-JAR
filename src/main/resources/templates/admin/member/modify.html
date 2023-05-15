@@ -39,7 +39,7 @@
 					<div style="margin: 0 auto;width: 70%;">
 						<div class="prev-button-layout">
 							<div>
-								<a>
+								<a th:href="@{/admin/member/detail/{id}(id=${memberDTO.id})}">
 									<img src="/image/admin/prev_icon.png" class="prev-icon">
 									<span class="prev-title">회원정보로 돌아가기</span>
 								</a>
@@ -63,41 +63,39 @@
 											<span class="info-tag">이름</span>
 											<!-- 이름 -->
 											<div class="info info-name">
-												<span>이준상</span>
+												<span th:text="${memberDTO.memberName}"></span>
 											</div>
-										</div>	
-										<form action="">
+										</div>
+										<form th:action="@{/admin/member/modify/{id}(id=${memberDTO.id})}" method="post">
 											<div class="member-info-tag-box">
 												<span class="info-tag">이메일</span>
-												<!-- 이메일 -->
 												<div class="info">
-													<input type="text" class="member-email" name="memberEmail" value="ljs1234@gmail.com">
+													<input type="text" class="member-email" name="memberEmail" th:value="${memberDTO.memberEmail}">
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">닉네임</span>
 												<div class="info">
-													<input type="text" class="member-nickname" name="memberNickname" value="닉네임1234">
+													<input type="text" class="member-nickname" name="memberNickname" th:value="${memberDTO.memberNickname}">
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">핸드폰 번호</span>
-												<!-- 핸드폰 번호 -->
 												<div class="info">
-													<input type="text" class="member-phone" name="memberPhoneNumber" value="01012341234">
+													<input type="text" class="member-phone" name="memberPhoneNumber" th:value="${memberDTO.memberPhoneNumber}">
 												</div>
 											</div>
 											<div class="member-info-tag-box">
 												<span class="info-tag">유저 상태</span>
-												<!-- 유저 상태 -->
 												<div class="info">
-													<input type="text" class="member-status" name="memberStatus" value="일반회원">
+													<input type="text" class="member-status" name="memberStatus" th:value="${memberDTO.memberStatus}">
 												</div>
 											</div>
 											<div class="button-box">
-												<button id ="modify-button">변경</button>
+												<button type="submit" id="modify-button">변경</button>
 											</div>
 										</form>
+
 									</div>	
 								</div>
 							</section>
