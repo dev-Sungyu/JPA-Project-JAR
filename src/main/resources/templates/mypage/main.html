@@ -244,6 +244,18 @@
 <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
+<script th:inline="javascript">
+    const urlParams = new URL(location.href).searchParams;
+    const check = urlParams.get('check');
+
+    if(check){
+        $(".alert").text("저장 완료");
+        $(".alert-modal-display").fadeIn();
+        setTimeout(function () {
+            $(".alert-modal-display").fadeOut();
+        }, 2000);
+    }
+</script>
 <script>
     FileList.prototype.forEach = Array.prototype.forEach;
     const $alertModal = $(".alert-modal-display");
@@ -376,6 +388,17 @@
         let index = $(e.target).closest("li").attr("id");
         deleteImage(index);
     });
+
+    function alertModal(errorMsg) {
+
+        $(".alert").text(errorMsg);
+        $alertModal.fadeIn();
+        setTimeout(function () {
+            $alertModal.fadeOut();
+        }, 2000);
+
+    }
+
 </script>
 <script>
     // 여기는 신경 안써도 됨
@@ -531,48 +554,31 @@
 
     });
 
-    $(".insert-button").click((e) => {
-        let alertMsg = "저장 완료";
-        let title = $(".diary-title").val();
-        let content = $(".diary-content").val();
-        let date = $(".date").text();
-        let index = $(e.target).attr("id");
-        let calendarId = Math.floor(Math.random() * 4) + 1 + "";
-
-        let errorMsg = "";
-
-        if(!$(".diary-title").val() && !$(".diary-content").val()){
-            errorMsg = "내용을 입력해주세요.";
-            alertModal(errorMsg);
-            return;
-        }else if(!$(".diary-title").val()){
-            errorMsg = "제목을 입력해주세요.";
-            alertModal(errorMsg);
-            return;
-        }else if(!$(".diary-content").val()) {
-            errorMsg = "내용을 입력해주세요.";
-            alertModal(errorMsg);
-            return;    
-        }
-
-
-        /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
-        /* ID값만 리턴 받아서  */
-        let datas = [
-            {
-                id: '1',// 다이어리의 번호 값 넣어주기
-                calendarId: calendarId,
-                title: title,
-                start: date,
-                end: date,
-            }
-        ]
-        // 데이터를 담아서 화면에 뿌려줌
-        calendar.createEvents(datas)
-
-        diaryModal(index);
-        alertModal(alertMsg);
-    });
+    // $(".insert-button").click((e) => {
+    //     let alertMsg = "저장 완료";
+    //     let title = $(".diary-title").val();
+    //     let content = $(".diary-content").val();
+    //     let date = $(".date").text();
+    //     let index = $(e.target).attr("id");
+    //     let calendarId = Math.floor(Math.random() * 4) + 1 + "";
+    //
+    //     /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
+    //     /* ID값만 리턴 받아서  */
+    //     let datas = [
+    //         {
+    //             id: '1',// 다이어리의 번호 값 넣어주기
+    //             calendarId: calendarId,
+    //             title: title,
+    //             start: date,
+    //             end: date,
+    //         }
+    //     ]
+    //     // 데이터를 담아서 화면에 뿌려줌
+    //     calendar.createEvents(datas)
+    //
+    //     diaryModal(index);
+    //
+    // });
 
 
     // 제목 클릭 시 발생하는 이벤트
@@ -664,16 +670,6 @@
             text += $(e).text() + "\n";
         });
         return text;
-    }
-
-    function alertModal(errorMsg) {
-
-        $(".alert").text(errorMsg);
-        $alertModal.fadeIn();
-        setTimeout(function () {
-            $alertModal.fadeOut();
-        }, 2000);
-
     }
 
     function inputCheck() {

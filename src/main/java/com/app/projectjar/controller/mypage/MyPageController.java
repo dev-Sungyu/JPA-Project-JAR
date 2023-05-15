@@ -43,11 +43,10 @@ public class MyPageController {
     }
 
     @PostMapping("register")
-    @ResponseBody
-    public RedirectView register(@RequestBody DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail ){
+    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail){
         Long memberId = userDetail.getId();
         myPageService.registerDiary(diaryDTO, memberId);
-        return new RedirectView("/mypage/main");
+        return new RedirectView("/mypage/main?check=true");
     }
 
 
