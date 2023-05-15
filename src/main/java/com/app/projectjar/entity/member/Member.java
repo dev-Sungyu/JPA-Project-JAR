@@ -83,4 +83,6 @@ public class Member extends Period {
     public void setMemberFile(MemberFile memberFile) {
         this.memberFile = memberFile;
     }
+
+    public void setMemberEmail(String memberEmail) { this.memberEmail = memberEmail; }
 }

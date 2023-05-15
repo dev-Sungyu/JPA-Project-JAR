@@ -76,6 +76,17 @@ public class MemberServiceImpl implements MemberService {
 //    회원정보 수정
     @Override
     public void updateMember(MemberDTO memberDTO, Long id) {
+        Optional<Member> optionalMember = memberRepository.findById(id);
+
+        optionalMember.ifPresent(
+                member -> {
+                    member.setMemberNickname(memberDTO.getMemberNickname());
+                    member.setMemberEmail(memberDTO.getMemberEmail());
+                    member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
+                    member.setMemberStatus(memberDTO.getMemberStatus());
+                    memberRepository.save(member);
+                }
+        );
     }
 
     @Override
@@ -116,6 +127,13 @@ public class MemberServiceImpl implements MemberService {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(memberDTOS, members.getPageable(), members.getTotalElements());
+    }
+
+    @Override
+    public void deleteMembers(List<Long> memberIds) {
+        for (Long memberId : memberIds) {
+            memberRepository.deleteById(memberId);
+        }
     }
 
 }
