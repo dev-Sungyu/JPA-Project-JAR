@@ -1,5 +1,5 @@
 package com.app.projectjar.type;
 
 public enum MemberType {
-    ENABLE, DISABLE, DORMANT
+    ENABLE, DISABLE
 }

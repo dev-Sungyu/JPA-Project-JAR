@@ -80,25 +80,25 @@
                         </div>
                         <div class="main-content-wrap suggest-wrap"> 
                             <section class="suggest-image-box">
-                                <div class="suggest-image-layout">
+                                <a th:href="@{/board/suggest/list}" class="suggest-image-layout">
                                     <div class="suggest-text-box">
                                         <p>하고싶은 챌린지가 있다면 어떻게 해야할까?</p>
                                         <h2>챌린지를 제안해 좋아요 순위에 따라 출시 될 수 있어요.</h2>
                                     </div>
-                                </div>
+                                </a>
                             </section>
                         </div>
                         <div class="main-content-wrap group-wrap">
                             <section class="group-section">
                                 <div class="main-content-title-box">
                                     <!-- 해당 게시판 링크 -->
-                                    <a href="javascript:void(0)">
+                                    <a th:href="@{/board/challenge/group/list}">
                                         <div class="main-content-title-layout">
                                             <h2 class="main-content-title">진행중인 그룹 챌린지</h2>
                                         </div>
                                     </a>
                                     <span class="go-to-list-box">
-                                        <a href="javascript:void(0)" class="list-a">
+                                        <a th:href="@{/board/challenge/group/list}" class="list-a">
                                             <span class="auto-flex">전체 그룹 챌린지 보기</span>
                                         </a>
                                     </span>
@@ -114,7 +114,7 @@
                                             <div class="content-slide-box-container first-content-slide">
                                                 <!-- 자료 뿌려 줄 곳 -->
                                                 <div class="content-image-box first-content-box">
-                                                    <a href="javascript:void(0)">
+                                                    <a th:href="@{/board/challenge/group/list}">
                                                         <!-- 이미지 -->
                                                         <div class="content-image">
                                                             <span class="content-image-span">
@@ -299,7 +299,7 @@
                             <section class="next-section">
                                 <div class="main-content-title-box">
                                     <!-- 해당 게시판 링크 -->
-                                    <a href="javascript:void(0)">
+                                    <a th:href="@{/board/suggest/list}">
                                         <div class="main-content-title-layout">
                                             <h2 class="main-content-title">제안 챌린지</h2>
                                         </div>
@@ -314,7 +314,7 @@
                                     <div class="content-wrap content-padding">
                                         <div class="content-slide-box-container second-content-slide">
                                              <!-- 자료 뿌려 줄 곳 -->
-                                             <div class="content-image-box content-image-box2">
+                                             <div th:each="suggestDTO : ${suggestDTOS}" class="content-image-box content-image-box2">
                                                 <a href="javascript:void(0)">
                                                     <!-- 이미지 -->
                                                     <div class="content-image">
