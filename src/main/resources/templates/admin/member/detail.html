@@ -39,7 +39,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a>
+                            <a th:href="@{/admin/member/list}">
                                 <img src="/image/admin/prev_icon.png"
                                     class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
@@ -54,10 +54,10 @@
                                     <span>회원 정보</span>
                                 </div>
                                 <div class="modify-button-box">
-                                    <a href="adminPage-modifyMember.jsp">
+                                    <a th:href="@{/admin/member/modify/{id}(id=${memberDTO.id})}">
                                         <img src="/image/admin/gear_icon.png"
                                             class="gear-icon">
-                                        <span>수정</span>
+                                        <a th:href="@{/admin/member/modify/{id}(id=${memberDTO.id})}">수정</a>
                                     </a>
                                 </div>
                             </div>
@@ -65,10 +65,10 @@
                             <div class="board-info-box">
                                 <div class="member-img-box">
                                     <div class="member-img">
-                                        <img src="" alt="">
+
                                     </div>
                                     <div class="member-nickname-box">
-                                        <span>닉네임123</span>
+                                        <span th:text="${memberDTO.memberNickname}">닉네임123</span>
                                     </div>
                                 </div>
                                 <div class="member-info-box">
@@ -76,28 +76,21 @@
                                         <span class="info-tag">이름</span>
                                         <!-- 이름 -->
                                         <div class="info">
-                                            <span>이준상</span>
+                                            <span th:text="${memberDTO.memberName}">이준상</span>
                                         </div>
                                     </div>
                                     <div class="member-info-tag-box">
                                         <span class="info-tag">이메일</span>
                                         <!-- 이메일 -->
                                         <div class="info">
-                                            <span>ljs1234@gmail.com</span>
-                                        </div>
-                                    </div>
-                                    <div class="member-info-tag-box">
-                                        <span class="info-tag">생년월일</span>
-                                        <!-- 생년월일 -->
-                                        <div class="info">
-                                            <span>2000.01.01</span>
+                                            <span th:text="${memberDTO.memberEmail}">ljs1234@gmail.com</span>
                                         </div>
                                     </div>
                                     <div class="member-info-tag-box">
                                         <span class="info-tag">핸드폰 번호</span>
                                         <!-- 핸드폰 번호 -->
                                         <div class="info">
-                                            <span>010-1234-1234</span>
+                                            <span th:text="${memberDTO.memberPhoneNumber}">010-1234-1234</span>
                                         </div>
                                     </div>
                                 </div>
@@ -114,37 +107,16 @@
                                 <div class="info-margin">
                                     <span class="info-tag">가입일</span>
                                     <!-- 유저 가입날짜  -->
-                                    <h4>2023.01.01</h4>
+                                    <h4 th:text="${#temporals.format(memberDTO.createdDate, 'yyyy-MM-dd')}">2023.01.01</h4>
                                 </div>
                                 <div class="info-margin margin">
-                                    <span class="info-tag">작성</span>
                                     <!-- 유저 작성한 것들  -->
-                                    <div class="write-count-box">
-                                        <div>
-                                            <span>게시물</span>
-                                        </div>
-                                        <div class="count">
-                                            <!-- 작성한 게시물 갯수 뽑아주기 -->
-                                            <span>0개</span>
-                                        </div>
-                                    </div>
-                                    <div class="info-margin">
-                                        <div class="write-count-box">
-                                            <div>
-                                                <span>댓글</span>
-                                            </div>
-                                            <div class="count">
-                                                <!-- 작성한 댓글 갯수 뽑아주기 -->
-                                                <span>0개</span>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <hr style="margin: 8px 0;">
                                     <span class="info-tag">챌린지</span>
                                     <div class="info-margin">
                                         <div class="write-count-box">
                                             <div>
-                                                <span>참여한 그룹 챌린지</span>
+                                                <span>참여한 개인 챌린지</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>
@@ -154,7 +126,7 @@
                                     <div class="info-margin">
                                         <div class="write-count-box">
                                             <div>
-                                                <span>참여한 개인 챌린지</span>
+                                                <span>참여한 그룹 챌린지</span>
                                             </div>
                                             <div class="count">
                                                 <span>0회</span>
@@ -182,4 +154,22 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+    const memberDTO = [[${memberDTO}]];
+
+    const fileDTO = memberDTO.fileDTO;
+    let text = '';
+
+    if (fileDTO == undefined || fileDTO == null) {
+        text = `
+                    <img style="width: 100%; object-fit: cover; height="100%;" src="/image/logo/normal_profile.png">
+        `;
+    }else {
+        text = `
+                      <img style="width: 100%; object-fit: cover; height="100%;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}">
+                  `;
+    }
+    $(".member-img").append(text);
+
+</script>
 </html>

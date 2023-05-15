@@ -1,11 +1,13 @@
 package com.app.projectjar.controller.admin;
 
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.suggest.SuggestService;
+import com.app.projectjar.type.MemberType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -44,14 +46,56 @@ public class AdminController {
     public void adminInquiryList() {}
     @GetMapping("board/inquiry/modify")
     public void adminInquiryModify() {}
-    @GetMapping("member/detail")
-    public void adminMemberDetail() {}
-    @GetMapping("member/list")
-    public void adminMemberList() {
 
+    @GetMapping("member/list")
+    public String adminMemberList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+            Page<MemberDTO> memberPage = memberService.getAllMembersWithPaging(page - 1);
+            model.addAttribute("pageDTO",new PageDTO(memberPage));
+            model.addAttribute("memberDTOS", memberPage.getContent());
+            return "admin/member/list";
     }
-    @GetMapping("member/modify")
-    public void adminMemberModify() {}
+    @GetMapping("member/modify/{id}")
+    public String adminMemberModify(Model model, @PathVariable("id") Long memberId) {
+        MemberDTO memberModifyDTO = memberService.getMember(memberId);
+
+        model.addAttribute("memberDTO", memberModifyDTO);
+        return "/admin/member/modify";
+    }
+
+    @PostMapping("member/modify/{id}")
+    public RedirectView adminMemberModifyPost(@PathVariable("id") Long id,
+                                              @RequestParam("memberEmail") String memberEmail,
+                                              @RequestParam("memberNickname") String memberNickname,
+                                              @RequestParam("memberPhoneNumber") String memberPhoneNumber,
+                                              @RequestParam("memberStatus") MemberType memberStatus) {
+        MemberDTO memberDTO = MemberDTO.builder()
+                .memberEmail(memberEmail)
+                .memberNickname(memberNickname)
+                .memberPhoneNumber(memberPhoneNumber)
+                .memberStatus(memberStatus)
+                .build();
+
+        memberService.updateMember(memberDTO, id);
+
+        return new RedirectView("/admin/member/detail/" + id);
+    }
+
+
+
+    @DeleteMapping("member/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteMembers(@RequestBody List<Long> memberIds) {
+        memberService.deleteMembers(memberIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
+    @GetMapping("member/detail/{id}")
+    public String adminMemberDetail(Model model, @PathVariable("id") Long memberId) {
+        MemberDTO memberDTO = memberService.getMember(memberId);
+
+        model.addAttribute("memberDTO", memberDTO);
+
+        return "admin/member/detail";
+    }
     @GetMapping("board/notice/detail/{noticeId}")
     public String adminNoticeDetail(Model model, @PathVariable("noticeId") Long noticeId) {
         NoticeDTO noticeDTO = noticeService.getNotice(noticeId);

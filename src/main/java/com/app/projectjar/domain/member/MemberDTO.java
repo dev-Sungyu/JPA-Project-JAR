@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Data
 @Component
 @NoArgsConstructor
@@ -22,11 +24,12 @@ public class MemberDTO {
     private MemberType memberStatus;
     private BadgeType badgeType;
     private Role memberType;
+    private LocalDateTime createdDate;
 
     private FileDTO fileDTO;
 
     @Builder
-    public MemberDTO(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, FileDTO fileDTO) {
+    public MemberDTO(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, FileDTO fileDTO, LocalDateTime createdDate) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -37,5 +40,6 @@ public class MemberDTO {
         this.badgeType = badgeType;
         this.memberType = memberType;
         this.fileDTO = fileDTO;
+        this.createdDate = createdDate;
     }
 }
