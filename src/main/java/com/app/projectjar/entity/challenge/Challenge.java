@@ -21,11 +21,6 @@ import java.util.List;
 @DynamicUpdate
 public class Challenge extends Board {
 
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @ColumnDefault("'PRIVATE'")
-    private ChallengeType challengeStatus;
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
     private List<ChallengeFile> challengeFiles;
 
