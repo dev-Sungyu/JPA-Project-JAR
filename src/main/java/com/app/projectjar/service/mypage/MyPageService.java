@@ -1,5 +1,6 @@
 package com.app.projectjar.service.mypage;
 
+import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -19,6 +20,23 @@ public interface MyPageService {
     // 현재 시퀀스 가져오기
     public Diary getCurrentSequence();
 
+    List<CalendarDTO> getCalendarDTO(Long memberId);
+
+    public DiaryDTO getDiary(Long diaryId);
+
+
+    default DiaryDTO toDiaryDTO(Diary diary) {
+        return DiaryDTO.builder()
+                .memberDTO(toMemberDTO(diary.getMember()))
+                .diaryStatus(diary.getDiaryStatus())
+                .boardTitle(diary.getBoardTitle())
+                .boardContent(diary.getBoardContent())
+                .fileDTOS(fileToDTO(diary.getDiaryFiles()))
+                .id(diary.getId())
+                .start(diary.getCreatedDate())
+                .end(diary.getCreatedDate())
+                .build();
+    }
 
     default MemberDTO toMemberDTO(Member member) {
         return MemberDTO.builder()
@@ -30,6 +48,23 @@ public interface MyPageService {
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
                 .build();
+    }
+
+    default List<FileDTO> fileToDTO(List<DiaryFile> diaryFiles) {
+        List<FileDTO> diaryFileDTOList = new ArrayList<>();
+        diaryFiles.forEach(
+                diaryFile -> {
+                    FileDTO fileDTO = FileDTO.builder()
+                            .id(diaryFile.getId())
+                            .fileOriginalName(diaryFile.getFileOriginalName())
+                            .fileUuid(diaryFile.getFileUuid())
+                            .filePath(diaryFile.getFilePath())
+                            .fileType(diaryFile.getFileType())
+                            .build();
+                    diaryFileDTOList.add(fileDTO);
+                }
+        );
+        return diaryFileDTOList;
     }
 
     default Diary toDiaryEntity(DiaryDTO diaryDTO){

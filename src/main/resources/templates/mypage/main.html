@@ -204,26 +204,7 @@
                     <div class="flex">
                         <div>
                             <ul class="sumnail-layout" style="padding: 0; margin-top: 30px;">
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
+                                <!-- 이미지 들어가는 부분-->
                             </ul>
                         </div>
                     </div>
@@ -245,6 +226,9 @@
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
 <script th:inline="javascript">
+    const userDetail = [[${userDetail}]];
+    const calendarDTOS = [[${calendarDTOS}]];
+
     const urlParams = new URL(location.href).searchParams;
     const check = urlParams.get('check');
 
@@ -257,6 +241,27 @@
     }
 </script>
 <script>
+
+    diaryService = (function(){
+
+        function diary(id, callback) {
+            $.ajax({
+               url :'/mypage/diary-detail',
+               type: 'get',
+               data : id,
+               success : function(result) {
+                   if(callback) {
+                       callback(result);
+                   }
+               }
+            });
+        }
+
+        return {diary : diary}
+    })();
+
+
+
     FileList.prototype.forEach = Array.prototype.forEach;
     const $alertModal = $(".alert-modal-display");
     const alertMsg = ['사진은 최소 1개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
@@ -266,6 +271,10 @@
     $("input[type=file]").on("change", function () {
         const $files = $("input[type=file]")[0].files;
         let formData = new FormData();
+
+        if($files.length > 8) {
+            alertModal("이미지는 8장까지 넣을 수 있습니다.");
+        }
 
         $($files).each((i, file) => {
             files.push(file);
@@ -464,15 +473,7 @@
 
     const calendar = new Calendar(container, options);
 
-    let datas = [
-        {
-            id: '1',// 다이어리의 번호 값 넣어주기
-            title: "안녕",
-            start: "2023-04-19",
-            end: "2023-04-19",
-        }
-    ]
-    datas.forEach((e, i) => {
+    calendarDTOS.forEach((e, i) => {
         calendar.createEvents([
             e
         ]);
@@ -554,47 +555,36 @@
 
     });
 
-    // $(".insert-button").click((e) => {
-    //     let alertMsg = "저장 완료";
-    //     let title = $(".diary-title").val();
-    //     let content = $(".diary-content").val();
-    //     let date = $(".date").text();
-    //     let index = $(e.target).attr("id");
-    //     let calendarId = Math.floor(Math.random() * 4) + 1 + "";
-    //
-    //     /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
-    //     /* ID값만 리턴 받아서  */
-    //     let datas = [
-    //         {
-    //             id: '1',// 다이어리의 번호 값 넣어주기
-    //             calendarId: calendarId,
-    //             title: title,
-    //             start: date,
-    //             end: date,
-    //         }
-    //     ]
-    //     // 데이터를 담아서 화면에 뿌려줌
-    //     calendar.createEvents(datas)
-    //
-    //     diaryModal(index);
-    //
-    // });
-
-
     // 제목 클릭 시 발생하는 이벤트
     calendar.on("clickEvent", function (e) {
         // id 값으로 다이어리 상세조회 ajax써야함 모델 객체가 아닌 rest
         // 해당 id값의 정보를 가져와서 상세보기쪽에 뿌려야함 가져와야할 정보 이미지 정보, 제목, 내용
-        let id = e.event.id;
+        let boardId = e.event.id;
         let date = new Date(e.event.start);
 
-        // 예시 내용 \n은 애초에 신경 안써도 textarea에서 작성하면 알아서 들어가는 거임 신경 ㄴㄴ
-        let content = "오늘의 도전\n 너무너무 재미가 있었어서\n내 마음이 너무나도 편안해 지고\n나의 마음이 좀더 강해지고 있어서\n우울증이 점점 극복된다.";
-        date = dateFomat(date);
+        diaryService.diary({
+            boardId : boardId,
+        },function(diaryDTO){
+            $(".diary-content-title").text(diaryDTO.boardTitle);
 
+            let content = diaryDTO.boardContent;
+            contentPrint(content);
+            let fileDTOS = diaryDTO.fileDTOS;
+
+            fileDTOS.forEach((file, i) => {
+                let text = `
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
+                                    </div>
+                                </li>
+                `;
+                $(".sumnail-layout").append(text);
+            });
+        })
+        date = dateFomat(date);
         // 날짜 담아주기
         $(".diary-detail-date").text(date);
-        contentPrint(content);
         $(".diary-detail-display").show();
     });
 

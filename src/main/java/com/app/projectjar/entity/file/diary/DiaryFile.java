@@ -8,7 +8,7 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = {"diary"})
 @Table(name = "TBL_DIARY_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class DiaryFile extends Files {

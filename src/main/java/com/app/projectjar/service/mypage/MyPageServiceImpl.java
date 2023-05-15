@@ -1,5 +1,6 @@
 package com.app.projectjar.service.mypage;
 
+import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.entity.diary.Diary;
@@ -12,6 +13,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -51,5 +54,28 @@ public class MyPageServiceImpl implements MyPageService {
     @Override
     public Diary getCurrentSequence() {
         return diaryRepository.getCurrentSequence_QueryDsl();
+    }
+
+    @Override
+    public List<CalendarDTO> getCalendarDTO(Long memberId) {
+        List<CalendarDTO> calendarDTOS = new ArrayList<>();
+
+        diaryRepository.findByMemberIdDiary_QueryDsl(memberId).stream().forEach(
+                diary -> {
+                    CalendarDTO calendarDTO = CalendarDTO.builder()
+                            .end(diary.getCreatedDate())
+                            .start(diary.getCreatedDate())
+                            .title(diary.getBoardTitle())
+                            .id(diary.getId())
+                            .build();
+                    calendarDTOS.add(calendarDTO);
+                }
+        );
+        return calendarDTOS;
+    }
+
+    @Override
+    public DiaryDTO getDiary(Long diaryId) {
+        return toDiaryDTO(diaryRepository.findByDiaryId_QueryDsl(diaryId).get());
     }
 }
