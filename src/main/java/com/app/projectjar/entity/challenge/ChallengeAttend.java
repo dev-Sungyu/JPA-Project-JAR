@@ -2,6 +2,7 @@ package com.app.projectjar.entity.challenge;
 
 import com.app.projectjar.audit.Period;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.type.ChallengeAttendType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -31,12 +32,7 @@ public class ChallengeAttend extends Period {
     private Member member;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CHALLENGE_ID")
-    private Challenge challenge;
+    @JoinColumn(name = "PERSONAL_CHALLENGE_ID")
+    private PersonalChallenge personalChallenge;
 
-    public ChallengeAttend(ChallengeAttendType challengeAttendStatus, Member member, Challenge challenge) {
-        this.challengeAttendStatus = challengeAttendStatus;
-        this.member = member;
-        this.challenge = challenge;
-    }
 }

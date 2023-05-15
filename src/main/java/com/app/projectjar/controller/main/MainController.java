@@ -16,4 +16,14 @@ public class MainController {
     @GetMapping("search")
     public void boardSearch() {
     }
+
+    @GetMapping("service-introduction")
+    public void serviceIntroduce(){
+
+    }
+    @GetMapping("faq")
+    public void faq(){
+
+    }
+
 }

@@ -2,6 +2,7 @@ package com.app.projectjar.entity.challenge;
 
 import com.app.projectjar.entity.board.Board;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
+import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -25,21 +26,9 @@ public class Challenge extends Board {
     @ColumnDefault("'PRIVATE'")
     private ChallengeType challengeStatus;
 
-    @Column(columnDefinition = "integer default 0")
-    private Integer challengeReplyCount;
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "challenge")
     private List<ChallengeFile> challengeFiles;
 
-    public Challenge(String boardTitle, String boardContent, ChallengeType challengeStatus) {
-        super(boardTitle, boardContent);
-        this.challengeStatus = challengeStatus;
-    }
-    public Challenge(String boardTitle, String boardContent, ChallengeType challengeStatus, List<ChallengeFile> challengeFiles, Integer challengeReplyCount) {
-        super(boardTitle, boardContent);
-        this.challengeStatus = challengeStatus;
-        this.challengeFiles = challengeFiles;
-        this.challengeReplyCount = challengeReplyCount;
-
-    }
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<PersonalChallenge> personalChallengeList;
 }

@@ -4,6 +4,7 @@ package com.app.projectjar.repository.challenge;
 import com.app.projectjar.entity.challenge.ChallengeAttend;
 import com.app.projectjar.entity.challenge.QChallengeReply;
 import com.app.projectjar.entity.file.challenge.QChallengeFile;
+import com.app.projectjar.entity.personalChallenge.QPersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.util.List;
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.personalChallenge.QPersonalChallenge.personalChallenge;
 
 @RequiredArgsConstructor
 public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
@@ -26,7 +28,7 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
     public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable) {
         List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
                 .join(challengeAttend.member, member)
-                .leftJoin(challengeAttend.challenge, challenge)
+                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
                 .where(challengeAttend.member.id.eq(memberId))
                 .where(challenge.challengeStatus.eq(ChallengeType.valueOf("OPEN")))
                 .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
@@ -49,7 +51,7 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
     public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable) {
         List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
                 .join(challengeAttend.member, member)
-                .leftJoin(challengeAttend.challenge, challenge)
+                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
                 .where(challengeAttend.member.id.eq(memberId))
                 .where(challenge.challengeStatus.eq(ChallengeType.valueOf("PRIVATE")))
                 .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
@@ -74,7 +76,7 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
 
         return query.select(challengeReply.count())
                 .from(challengeReply)
-                .where(challengeReply.challenge.id.eq(challengeId))
+                .where(challengeReply.personalChallenge.id.eq(challengeId))
                 .fetchOne();
     }
 }
