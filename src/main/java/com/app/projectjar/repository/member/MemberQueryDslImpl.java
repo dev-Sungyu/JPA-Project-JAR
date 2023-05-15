@@ -1,29 +1,19 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.entity.challenge.ChallengeAttend;
-import com.app.projectjar.entity.challenge.QChallengeReply;
-import com.app.projectjar.entity.file.challenge.QChallengeFile;
-import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
-import com.app.projectjar.entity.groupChallenge.QGroupChallengeReply;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.BadgeType;
-import com.app.projectjar.type.ChallengeType;
-import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
-import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
 
@@ -164,7 +154,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .leftJoin(member.memberFile, memberFile)
                 .fetchJoin()
                 .orderBy(member.id.desc())
-                .offset(pageable.getOffset() -1)
+                .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
                 .fetch();
 

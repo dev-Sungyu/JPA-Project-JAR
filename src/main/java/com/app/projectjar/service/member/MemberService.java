@@ -4,12 +4,9 @@ import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.repository.member.MemberRepository;
-import com.app.projectjar.type.BadgeType;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.util.Optional;
 
 public interface MemberService extends UserDetailsService {
 //    회원가입
@@ -35,7 +32,9 @@ public interface MemberService extends UserDetailsService {
 
 //    뱃지 업데이트
     public void updateBadge(Long id);
-
+    /*관리자 페이지*/
+//    회원 전체 조회
+    public Page<MemberDTO> getAllMembersWithPaging(int page);
 
     default MemberDTO toMemberDTO(Member member){
         return MemberDTO.builder()
