@@ -33,7 +33,7 @@ public class FileCheckQuartz {
      *   0 0 0 1 * ? : 매월 1일 마다
      *   * 10-13 * * * * : 매 10, 11, 12, 13분에 동작한다.
      * */
-    @Scheduled(cron = " 0 0 0 * * ")
+    @Scheduled(cron = "0 0 0 * * ?")
     public void checkFiles() {
         List<FileDTO> fileDTOS = fileService.getFileList(LocalDateTime.now().minusDays(1));
 
