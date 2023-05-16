@@ -1,7 +1,6 @@
 package com.app.projectjar.repository.diary;
 
 import com.app.projectjar.entity.diary.Diary;
-import com.app.projectjar.entity.suggest.Suggest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
@@ -16,6 +15,8 @@ public interface DiaryQueryDsl {
     public Optional<Diary> findByDiaryId_QueryDsl(Long diaryId);
     // 리스트
     public Slice<Diary> findByMemberIdDiary_QueryDsl(String sort, Pageable pageable);
+    // 전체 조회
+    public Page<Diary> findAllWithPaging_QueryDSL(Pageable pageable);
 
 
     /* 마이 페이지 */

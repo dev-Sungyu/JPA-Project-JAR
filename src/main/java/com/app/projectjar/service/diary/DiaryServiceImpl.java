@@ -27,6 +27,16 @@ public class DiaryServiceImpl implements DiaryService {
     private final DiaryFileRepository diaryFileRepository;
 
     @Override
+    public Page<DiaryDTO> getAllDiarysWithPaging(int page) {
+        Page<Diary> diaries = diaryRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
+        List<DiaryDTO> diaryDTOS = diaries.getContent().stream()
+                .map(this::toDiaryDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(diaryDTOS, diaries.getPageable(), diaries.getTotalElements());
+    }
+
+    @Override
     public Slice<DiaryDTO> getOpenDiaryList(String sort, Pageable pageable) {
         Slice<Diary> diaryList = diaryRepository.findByMemberIdDiary_QueryDsl(sort, pageable);
 
