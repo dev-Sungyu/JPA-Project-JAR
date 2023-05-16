@@ -2,11 +2,6 @@ package com.app.projectjar.repository.diary;
 
 
 import com.app.projectjar.entity.diary.Diary;
-import com.app.projectjar.entity.diary.QDiary;
-import com.app.projectjar.entity.diary.QDiaryLike;
-import com.app.projectjar.entity.file.diary.QDiaryFile;
-import com.app.projectjar.entity.file.member.QMemberFile;
-import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.type.DiaryType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -18,9 +13,7 @@ import java.util.Optional;
 import static com.app.projectjar.entity.diary.QDiary.diary;
 import static com.app.projectjar.entity.diary.QDiaryLike.diaryLike;
 import static com.app.projectjar.entity.file.diary.QDiaryFile.diaryFile;
-import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.member.QMember.member;
-import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
 @RequiredArgsConstructor
 public class DiaryQueryDslImpl implements DiaryQueryDsl {
@@ -39,6 +32,22 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .fetchOne();
 
         return Optional.ofNullable(foundDiary);
+    }
+
+    @Override
+    public Page<Diary> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<Diary> foundDiary = query.select(diary)
+                .from(diary)
+                .orderBy(diary.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(diary.count())
+                .from(diary)
+                .fetchOne();
+
+        return new PageImpl<>(foundDiary, pageable, count);
     }
 
     @Override
@@ -112,6 +121,13 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .orderBy(diary.id.desc())
                 .limit(1)
                 .fetchOne();
+    }
+
+    @Override
+    public void deleteByDiaryId_QueryDsl(Long diaryId) {
+        query.delete(diary)
+                .where(diary.id.eq(diaryId))
+                .execute();
     }
 
 

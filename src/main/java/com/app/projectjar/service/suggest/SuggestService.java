@@ -35,6 +35,10 @@ public interface SuggestService {
     /*전체 조회*/
     public Page<SuggestDTO> getSuggestList(int page);
 
+    /*메인 페이지*/
+    // 페이징 없는 전체 조회
+    List<SuggestDTO> findAllWithoutPaging_QueryDsl();
+
     // 삭제
     public void deleteSuggests(List<Long> suggestIds);
 

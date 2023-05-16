@@ -1,9 +1,11 @@
 package com.app.projectjar.controller.admin;
 
+import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.suggest.SuggestService;
@@ -28,6 +30,7 @@ public class AdminController {
     private final SuggestService suggestService;
     private final NoticeService noticeService;
     private final MemberService memberService;
+    private final DiaryService diaryService;
 
 
     @GetMapping("board/challenge/detail")
@@ -175,11 +178,28 @@ public class AdminController {
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
     @GetMapping("board/diary/list")
-    public void adminDiaryList() {}
-    @GetMapping("board/diary/detail")
-    public void adminDiaryDetail() {}
-    @GetMapping("board/diary/modify")
-    public void adminDiaryModify() {}
+    public String adminDiaryList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Page<DiaryDTO> diaryPage = diaryService.getAllDiarysWithPaging(page -  1);
+        List<String> diaryTitles = diaryPage.stream().map(DiaryDTO::getBoardContent).collect(Collectors.toList());
+        model.addAttribute("pageDTO",new PageDTO(diaryPage));
+        model.addAttribute("diaryDTOS", diaryPage.getContent());
+        return "admin/board/diary/list";
+    }
+    @GetMapping("board/diary/detail/{diaryId}")
+    public String adminDiaryDetail(Model model, @PathVariable("diaryId") Long diaryId) {
+        DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
+
+        model.addAttribute("diaryDTO", diaryDTO);
+
+        return "admin/board/diary/detail";
+    }
+    @DeleteMapping("board/diary/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteDiarys(@RequestBody List<Long> diaryIds) {
+        suggestService.deleteSuggests(diaryIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
+
     @GetMapping("board/groupChallenge/detail")
     public void adminGroupChallengeDetail() {}
     @GetMapping("board/groupChallenge/list")

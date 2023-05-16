@@ -2,11 +2,9 @@ package com.app.projectjar.service.diary;
 
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
-import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.file.diary.DiaryFile;
-import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,7 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public interface DiaryService {
-    
+    //    전체 목록 페이징
+    public Page<DiaryDTO> getAllDiarysWithPaging(int page);
 //    목록
     public Slice<DiaryDTO> getOpenDiaryList(String sort, Pageable pageable);
 //    상세보기
@@ -24,6 +23,12 @@ public interface DiaryService {
 
 //  마이 페이지 공유 일기 목록 조회
     public Page<DiaryDTO> getDiaryForMemberIdList(Pageable pageable, Long id);
+
+//    수정
+    public void modifyDiary(DiaryDTO diaryDTO);
+
+    // 현재 시퀀스 가져오기
+    public Diary getCurrentSequence();
 
     default DiaryDTO toDiaryDTO(Diary diary) {
         return DiaryDTO.builder()
@@ -66,6 +71,17 @@ public interface DiaryService {
                 }
         );
         return diaryFileList;
+    }
+
+    default DiaryFile toDiaryFileEntity(FileDTO fileDTO){
+        return DiaryFile.builder()
+                .id(fileDTO.getId())
+                .fileOriginalName(fileDTO.getFileOriginalName())
+                .fileUuid(fileDTO.getFileUuid())
+                .filePath(fileDTO.getFilePath())
+                .diary(fileDTO.getDiary())
+                .fileType(fileDTO.getFileType())
+                .build();
     }
 
 }

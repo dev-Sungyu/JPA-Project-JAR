@@ -39,7 +39,7 @@
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
                         <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
+                            <button class="deleteButton delete-button" onclick="deleteDiarys(getSelectedDiaryIds())">선택 게시물 삭제</button>
                         </div>
                     </div>
 
@@ -62,63 +62,27 @@
                                             <th>게시판 제목</th>
                                             <th>작성자 명</th>
                                             <th>작성 날짜</th>
+                                            <th>공개 여부</th>
                                         </tr>
                                     </thead>
-                                    <tr>
+                                    <tr th:each="diaryDTO : ${diaryDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" class="diaryCheckbox" name="check" th:value="${diaryDTO.id}">
                                         </td>
-                                        <td class="noticeId">
+                                        <td class="noticeId" th:text="${diaryDTO.id}">
                                             1
                                         </td>
                                         <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
+                                            <a th:href="@{detail/{id}(id=${diaryDTO.id})}" th:text="${diaryDTO.boardTitle}"></a>
                                         </td>
-                                        <td>
+                                        <td th:text="${diaryDTO.memberDTO.memberNickname}">
                                             닉네임
                                         </td>
-                                        <td>
+                                        <td th:text="${#temporals.format(diaryDTO.createDate, 'yyyy-MM-dd')}">
                                             2023.04.23
                                         </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            1
-                                        </td>
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            3
-                                        </td>
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23
+                                        <td class="diary_status" th:text="${diaryDTO.diaryStatus}">
+                                            공개
                                         </td>
                                     </tr>
                                 </table>
@@ -167,37 +131,19 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <img src="/image/admin/right_icon.png"
-                                            class="right-button">
-                                    </div>
-                                </div>
-                            </div>
+                            <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
+                                    <span class="page-button" th:text="${num}"></span>
+                                </a>
+                                <div style="width: 2px;"></div>
+                            </th:block>
                         </div>
                     </div>
+                    <th:block>
+                        <form action="list" name="pageForm">
+                            <input type="hidden" name="page">
+                        </form>
+                    </th:block>
                     <!-- 페이지 버튼 끝 -->
                 </div>
             </div>
@@ -208,5 +154,87 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/board_proposal.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script>
+    const diaryId = '${diaryDTO.diaryId}';
+
+    function getSelectedDiaryIds() {
+        const diaryIds = [];
+        $(".diaryCheckbox:checked").each(function() {
+            diaryIds.push($(this).val());
+        });
+        return diaryIds;
+    }
+
+    function deleteDiarys(diaryIds) {
+        $.ajax({
+            url: "/admin/board/diary/delete",
+            type: "DELETE",
+            contentType: "application/json",
+            data: JSON.stringify(diaryIds),
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+
+    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.page-button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('page-button-active');
+                } else {
+                    $(element).removeClass('page-button-active');
+                }
+            });
+        }
+    });
+
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".diaryCheckbox:checked");
+            const diaryIds = [];
+            checkedItems.each(function() {
+                diaryIds.push($(this).val());
+            });
+
+            if (diaryIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteDiarys(diaryIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    $(".diary_status").each((i, e) => {
+
+        if($(e).text() == 'OPEN'){
+            $(e).text("공개");
+        }else {
+            $(e).text("비공개");
+        }
+    })
+</script>
 
 </html>

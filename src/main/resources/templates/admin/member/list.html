@@ -201,5 +201,15 @@
         $pageForm.find("input[name='page']").val($(this).attr("href"));
         $pageForm.submit();
     });
+
+
+    $(".member_type").each((i, e) => {
+
+        if($(e).text() == 'ENABLE'){
+            $(e).text("일반 회원");
+        }else {
+            $(e).text("탈퇴 회원");
+        }
+    })
 </script>
 </html>

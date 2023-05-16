@@ -119,7 +119,7 @@ function imageToFive(fileDTOS){
                                                     </div>
                                                     <div class="image-flex-column">
                                                         <div class="image">
-                                                            <img style="height:150px" src="/file/display?fileName=${fileDTOS[2].filePath}/l${fileDTOS[2].fileUuid}_${fileDTOS[2].fileOriginalName}">
+                                                            <img style="height:150px" src="/file/display?fileName=${fileDTOS[2].filePath}/${fileDTOS[2].fileUuid}_${fileDTOS[2].fileOriginalName}">
                                                         </div>
                                                         <div class="image">
                                                             <img style="height: 400px;" src="/file/display?fileName=${fileDTOS[3].filePath}/${fileDTOS[3].fileUuid}_${fileDTOS[3].fileOriginalName}">
