@@ -8,19 +8,22 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/board/diary/diary.css">
     <link rel="stylesheet" href="/css/board/diary/modify.css">
+    <link rel="stylesheet" href="/css/main/header.css">
+    <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
 </head>
 <body>
-    <div>
-        <!-- main/header.html -->
-        <div id="header" style="position: sticky; top: 0; z-index: 100;"></div>
-        <div class="modify-wrap">
-            <div class="modify-container">
-                <div>
-                    <div class="title-box">
-                        <h2>다이어리 수정</h2>
-                    </div>
+<div>
+    <th:block th:replace="~{main/header :: header}"></th:block>
+    <div class="modify-wrap">
+        <div class="modify-container">
+            <div>
+                <div class="title-box">
+                    <h2>다이어리 수정</h2>
+                </div>
+                <form th:action="@{/board/diary/modify(boardId = ${diaryDTO.id})}" method="post"
+                      enctype="multipart/form-data" name="form">
                     <div style="display:flex; justify-content: space-between;">
                         <div class="date-box">
                             <h3 class="date">2022-04-19</h3>
@@ -37,7 +40,8 @@
                             </div>
                             <div>
                                 <label>
-                                    <input type="checkbox" style="display:none;">
+                                    <input type="checkbox" class="diary-status" name="diaryStatus" style="display:none;"
+                                           th:value="${diaryDTO.diaryStatus}">
                                     <div class="private-check-box check-active">
                                         <div class="private-check-layout">
                                             <p>
@@ -47,7 +51,7 @@
                                     </div>
                                 </label>
                             </div>
-                            <button type="button" class="insert-button">저장</button>
+                            <button type="button" class="insert-button modify-button">수정</button>
                         </div>
                     </div>
                     <div class="modify-box">
@@ -55,12 +59,13 @@
                             <div class="input-box">
                                 <div class="align-flex">
                                     <div>
-                                        <input type="text" placeholder="제목을 입력하세요." class="diary-title">
+                                        <input type="text" name="boardTitle" placeholder="제목을 입력하세요."
+                                               class="diary-title" th:value="${diaryDTO.boardTitle}">
                                     </div>
                                 </div>
                                 <div class="diary-content-box">
                                     <div>
-                                        <textarea name="" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
+                                        <textarea name="boardContent" placeholder="내용을 입력해주세요." class="diary-content">[[${diaryDTO.boardContent}]]</textarea>
                                     </div>
                                 </div>
                                 <div class="attachment-box">
@@ -71,75 +76,107 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
-
-        <div id="footer"></div>
     </div>
+
+    <th:block th:replace="~{main/footer :: footer}"></th:block>
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
-    $(document).ready(() => {
-        $("#header").load("../../main/header.html");
-        $("#footer").load("../../main/footer.html");
-    });   
+<script th:inline="javascript">
+    const diaryDTO = [[${diaryDTO}]];
+    const fileDTOS = diaryDTO.fileDTOS;
+
+    if (diaryDTO.diaryStatus == 'PRIVATE') {
+        $(".diary-status").prop("checked", false);
+        $(".diary-status").val("PRIVATE");
+    } else {
+        $(".diary-status").prop("checked", true);
+        $(".diary-status").val("OPEN");
+    }
+
 </script>
+<script src="/js/mypage/file.js"></script>
 <script>
-    const $alertModal = $(".alert-modal-display");
+    files = fileDTOS;
 
-    // 이미지 파일
-    let inputFiles = [];
+    $(".modify-button").click(() => {
+        const $files = fileDTOS;
+        let text = "";
+        let boardTitle = $("input[name='boardTitle']").val();
+        let boardContent = $(".diary-content").val();
 
-    $(".file").change((e) => {
-        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-        let index = 0;
-        let files = e.target.files;
-        let filesArr = Array.prototype.slice.call(files);
+        if ($files.length < 1) {
+            alertModal(alertMsg[0]);
+            return false;
+        } else if (!boardTitle) {
+            alertModal(alertMsg[1]);
+            return false;
+        } else if (!boardContent) {
+            alertModal(alertMsg[2]);
+            return false;
+        }
 
-        inputFiles = [];
 
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
+        FileList.prototype.forEach = Array.prototype.forEach;
+        let count = 0;
+        files.forEach((file, i) => {
+            if (file.fileOriginalName == undefined && file.fileOriginalName == null) {
+                text +=
+                    `
+                        <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                        <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[count]}">
+                        <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                        `;
+                count++;
+            } else {
+                text +=
+                    `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.fileOriginalName}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${file.fileUuid}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${file.filePath}">
+                `;
             }
-            inputFiles.push(file);
 
-            var reader = new FileReader();
-            reader.onload = (e) => {
-                let text = `
-                        <li id="${index}">
-                            <div style="position:relative;">
-                                <div class="image-cancel-box">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
-                                        <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                            fill="#cacaca"></path>
-                                    </svg>
-                                </div>
-                       `
-                text += "<img src=\"" + e.target.result + "\" />";
-                text += `</div>
-                        </li>
-            `;
-                $(".attachment-layout").append(text);
-                index++;
-            }
-            reader.readAsDataURL(file);
         });
+        $("form[name=form]").append(text);
+        $("form[name=form]").submit();
     });
 
-    // 이미지 제거
-    $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
-        let index = $(e.target).closest("li").attr("id");
-        deleteImage(index);
-    });
+    imageText(fileDTOS);
 
+    function imageText(files) {
+        files.forEach((file, i) => {
+            let text = `
+                            <li id="${i}">
+                                <div style="position:relative;">
+                                    <div class="image-cancel-box close-button">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                                            <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                fill="#cacaca"></path>
+                                        </svg>
+                                    </div>
+                                <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}" class="inserted_img">
+                                </div>
+                            </li>
+                           `;
+            $ul.append(text);
+        })
+    }
 
+    //    =======================================
     //input 창
     let $diaryTitle = $(".diary-title");
     let $diaryContent = $(".diary-content");
     let $diaryButton = $(".insert-button");
+
+    if (!$diaryTitle.val() || !$diaryContent.val()) {
+        $diaryButton.removeClass("save-active");
+    } else {
+        $diaryButton.addClass("save-active");
+    }
 
     $diaryTitle.keyup(() => {
         inputCheck();
@@ -149,22 +186,22 @@
         inputCheck();
     });
 
-    // 공개 비공개 
+    // 공개 비공개
     const $check = $("input[type=checkbox]");
     const $checkbox = $(".private-check-box");
     const $checkText = $(".private-check-layout p");
 
     $checkbox.click(() => {
-        if(!$check.is(":checked")){
+        if (!$check.is(":checked")) {
             $checkbox.addClass("check-active");
             $checkText.text("공개");
-        }else {
+            $check.val("OPEN");
+        } else {
             $checkbox.removeClass("check-active");
             $checkText.text("비공개");
+            $check.val("PRIVATE");
         }
     });
-
-
 
     function alertModal(errorMsg) {
 
@@ -176,13 +213,6 @@
 
     }
 
-    function deleteImage(index) {
-        inputFiles.splice(index, 1);
-
-        var imageId = "#" + index;
-        $(imageId).remove();
-    }
-
     function inputCheck() {
         if (!$diaryTitle.val() || !$diaryContent.val()) {
             $diaryButton.removeClass("save-active");
@@ -190,6 +220,7 @@
             $diaryButton.addClass("save-active");
         }
     }
+
 </script>
 
 </html>

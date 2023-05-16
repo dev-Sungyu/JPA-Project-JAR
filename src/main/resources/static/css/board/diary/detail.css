@@ -16,6 +16,10 @@
     margin-right: 24px;
 }
 
+.image {
+    cursor: pointer;
+}
+
 .image-container-wrapper-box {
     line-height: 0;
 }
