@@ -78,7 +78,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
+                            <a th:href="@{/admin/board/diary/list}">
                                 <img style="top: 2px;" src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -97,21 +97,17 @@
                                         <div class="board_info board_writer">
                                             <span class="span-bold">작성자 :</span>
                                             <!-- 작성자 명  -->
-                                            <span>작성자닉네임</span>
+                                            <span th:text="${diaryDTO.memberDTO.memberNickname}">작성자닉네임</span>
                                         </div>
-                                        <!-- <div class="info-member">
-                                            <span class="span-bold">좋아요 :</span>
-                                            <span>3</span>
-                                        </div> -->
                                         <div class="board_info board_reigster_date">
                                             <span class="span-bold">작성 날짜 :</span>
                                             <!-- 작성 날짜  -->
-                                            <span>2023.04.23</span>
+                                            <span th:text="${#temporals.format(diaryDTO.createDate, 'yyyy/MM/dd')}">2023.04.23</span>
                                         </div>
                                         <div class="board_title">
                                             <span class="span-bold">제목 :</span>
                                             <!-- 제목  -->
-                                            <span>다이어리챌린지제목</span>
+                                            <span th:text="${diaryDTO.boardTitle}">다이어리챌린지제목</span>
                                         </div>
                                         <div style="display: none;">
                                             <label class="file_insert_label">
@@ -122,7 +118,7 @@
                                             </label>
                                         </div>
                                         <hr>
-                                        <div style="min-height: 200px;">
+                                        <div style="min-height: 200px;" th:text="${diaryDTO.boardContent}">
                                             게시글 내용
                                         </div>
                                         <section class="img_wrapper_box">
@@ -147,10 +143,10 @@
                                                                 </label>
                                                             </header>
                                                             <article class="img_wrapper">
-                                                                <div class="img_div">
-                                                                    <img src="/image/board/board-img.png" alt=""
-                                                                        class="inserted_img">
-                                                                </div>
+<!--                                                                <div class="img_div">-->
+<!--                                                                    <img src="/image/board/board-img.png" alt=""-->
+<!--                                                                        class="inserted_img">-->
+<!--                                                                </div>-->
                                                             </article>
                                                         </div>
                                                     </li>
@@ -176,79 +172,20 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
 <script>
-    $(document).ready(() => {
-        $("#header").load("../../main/header.html");
-        $("#footer").load("../../main/footer.html");
-    });
+</script>
+<script>
+    const diaryDTO = [[${diaryDTO}]];
 
-    // const $alertModal = $(".alert-modal-display");
+    let fileDTOS = diaryDTO.fileDTOS;
 
-    // 이미지 파일
-    let inputFiles = [];
-    let $imgUl = $($('ul.img_ul')[0]);
-    let $deleteLabels = $('.delete_button_wrapper svg');
+    fileDTOS.forEach((fileDTO, i) => {
+        let text = `
+        <li class="img_div">
+            <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+        </li>
+    `;
 
-    $(".file").change((e) => {
-        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-        let index = 0;
-        let files = e.target.files;
-        let filesArr = Array.prototype.slice.call(files);
-
-        inputFiles = [];
-
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
-            }
-            inputFiles.push(file);
-
-            if (index >= 3) {
-                return;
-            }
-            var reader = new FileReader();
-            reader.onload = (e) => {
-                let text = `
-                        <li class="img_list" id="li${index}">
-                            <div class="img_box_wrapper">
-                                <header class="delete_button_wrapper">
-                                    <label id="label${index}">
-                                        <button icon-position="0" color="white" fill="false"
-                                            class="pasing-button-1 pasing-no-select" id="button${index}">
-                                            <span class="pasing-button-span">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    width="24" height="24" fill="none"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                                        fill="#cacaca"></path>
-                                                </svg>
-                                            </span>
-                                        </button>
-                                    </label>
-                                </header>
-                                <article class="img_wrapper">
-                                    <div class="img_div">
-                                        <img src="` + e.target.result + `" alt=""
-                                            class="inserted_img">
-                                    </div>
-                                </article>
-                            </div>
-                        </li>
-                `;
-                $imgUl.append(text);
-                index++;
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-
-    // 이미지 제거
-    $deleteLabels.on("click", (e) => {
-        console.log("x버튼 눌림")
-        let index = $(e.target).attr('id');
-        $('#li' + index).remove();
+    $(".img_wrapper").append(text);
     });
 </script>
-
 </html>

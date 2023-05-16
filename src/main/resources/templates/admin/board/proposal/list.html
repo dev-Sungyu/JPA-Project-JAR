@@ -67,10 +67,10 @@
                                     </thead>
                                     <tr th:each="suggestDTO : ${suggestDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" class="suggestCheckbox" name="check"  th:value="${suggestDTO.id}">
+                                            <input type="checkbox" class="suggestCheckbox" name="check" th:value="${suggestDTO.id}">
                                         </td>
                                         <td th:text="${suggestDTO.id}" class="noticeId"></td>
-                                        <td th:text="${suggestDTO.boardType}"></td>
+                                        <td class="board-type" th:text="${suggestDTO.boardType}"></td>
                                         <td>
                                             <a th:href="@{detail/{id}(id=${suggestDTO.id})}" th:text="${suggestDTO.boardTitle}"></a>
                                         </td>
@@ -227,6 +227,15 @@
         $pageForm.find("input[name='page']").val($(this).attr("href"));
         $pageForm.submit();
     });
+
+    $(".board-type").each((i, e) => {
+
+        if($(e).text() == 'PERSONAL'){
+            $(e).text("개인");
+        }else {
+            $(e).text("그룹");
+        }
+    })
 </script>
 
 </html>
