@@ -101,14 +101,23 @@ public class MyPageController {
     public Page<SuggestDTO> propsal(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
         Page<SuggestDTO> suggestDTOS = suggestService.getSuggestForMemberIdList(pageable, id);
-//        log.info("================");
-//        log.info(String.valueOf(id));
-//        log.info(String.valueOf(page));
-//        suggestDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
-//        log.info("================");
-
         return suggestDTOS;
     }
+
+//    @GetMapping("")
+//    public void getToSuggest(Model model){
+//        model.addAttribute();
+//
+//    }
+
+
+    @PostMapping("delete/{boardId}")
+    @ResponseBody
+    public void delete(@PathVariable("boardId") Long boardId){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@");
+        suggestService.delete(boardId);
+    }
+
 
     @GetMapping("share")
     public void goToshare(@AuthenticationPrincipal UserDetail userDetail, Model model){

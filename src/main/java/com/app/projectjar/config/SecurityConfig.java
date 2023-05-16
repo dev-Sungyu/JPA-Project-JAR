@@ -92,27 +92,6 @@ public class SecurityConfig  {
 //        즉, 권한이 없어도 사용이 가능한 경로
         return web -> web.ignoring()
                 .mvcMatchers(IGNORE_FAVICON) //favicon은 필터에서 제외
-                .antMatchers(IGNORE_SERVICE_PATH)
-                .antMatchers(IGNORE_FAQ_PATH)
-                .antMatchers(IGNORE_MAIN_PATH)
-                .antMatchers(IGNORE_BOARD_CHALLENGE_PATH)
-                .antMatchers(IGNORE_BOARD_GROUP_CHALLENGE_PATH)
-                .antMatchers(IGNORE_BOARD_SUGGEST_LIST_PATH)
-                .antMatchers(IGNORE_BOARD_SUGGEST_DETAIL_PATH)
-                .antMatchers(IGNORE_BOARD_DIARY_LIST_PATH)
-                .antMatchers(IGNORE_BOARD_DIARY_DETAIL_PATH)
-                .antMatchers(IGNORE_BOARD_INQUIRE_LIST_PATH)
-                .antMatchers(IGNORE_BOARD_INQUIRE_DETAIL_PATH)
-                .antMatchers(IGNORE_BOARD_NOTICE_LIST_PATH)
-                .antMatchers(IGNORE_BOARD_NOTICE_DETAIL_PATH)
-
-                /* 로그인 확인사항*/
-                .antMatchers(JOIN_OAUTH)
-                .antMatchers(PASSWORD)
-                .antMatchers(CHANGE_PASSWORD)
-                .antMatchers(ACCOUNT_CONFIRM)
-                .antMatchers(PHONE_CERTIFICATION)
-
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()); //static 경로도 필터에서 제외
     }
 
@@ -125,6 +104,7 @@ public class SecurityConfig  {
                 .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
                 .antMatchers(BOARD_INQUIRE_WRITE_PATH).hasRole(Role.MEMBER.name())
                 .antMatchers(MYPAGE_PATH).hasRole(Role.MEMBER.name())
+                .anyRequest().permitAll()
                 .and()
                 .csrf().disable()
                 .exceptionHandling()
@@ -153,6 +133,7 @@ public class SecurityConfig  {
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
                 .authenticationSuccessHandler(authenticationSuccessHandler);
+        log.info("@@@@@@@@@@@@@@@@@");
 
         return http.build();
     }
