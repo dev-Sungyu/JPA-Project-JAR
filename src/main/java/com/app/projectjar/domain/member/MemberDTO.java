@@ -1,6 +1,7 @@
 package com.app.projectjar.domain.member;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import com.app.projectjar.type.Role;
@@ -41,5 +42,12 @@ public class MemberDTO {
         this.memberType = memberType;
         this.fileDTO = fileDTO;
         this.createdDate = createdDate;
+    }
+
+    public MemberDTO(Member member) {
+        this.memberEmail = member.getMemberEmail();
+        this.memberName = member.getMemberName();
+        this.memberNickname = member.getMemberNickname();
+        this.memberPhoneNumber = member.getMemberPhoneNumber();
     }
 }

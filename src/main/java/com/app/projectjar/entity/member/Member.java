@@ -53,6 +53,15 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
+    public Member update(String memberEmail, String memberName, String memberNickname, String memberPhoneNumber) {
+        this.memberEmail = memberEmail;
+        this.memberName = memberName;
+        this.memberNickname = memberNickname;
+        this.memberPhoneNumber = memberPhoneNumber;
+
+        return this;
+    }
+
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
     private MemberFile memberFile;
 
