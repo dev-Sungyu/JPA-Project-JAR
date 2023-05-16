@@ -120,7 +120,7 @@ function listText(list) {
                                                                                 <div class="board-container-set-wrap" data-test-group="product-card-wishlited-count1">
                                                                                     <div class="board-container-set-box">
                                                                                         <img src="/image/board/human-icon.png" alt="" class="human-icon">
-                                                                                        51832
+                                                                                       <span>${groupChallengeDTO.attendCount}</span>
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="board-container-set-like" data-test-group="product-card-like-count">

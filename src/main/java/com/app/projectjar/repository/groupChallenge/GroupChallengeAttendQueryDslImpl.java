@@ -21,9 +21,31 @@ import static com.app.projectjar.entity.member.QMember.member;
 public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQueryDsl {
     private final JPAQueryFactory query;
 
+    @Override
+    public Integer getAttendCountByGroupChallengeId(Long groupChallengeId) {
+        return query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId))
+                .fetchOne().intValue();
+    }
 
-//    그룹 챌린지 목록(페이징, 진행중)
+    @Override
+    public Long findByChallengeIdAndMemberId(Long groupChallengeId, Long memberId) {
+        return query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
 
+    @Override
+    public void deleteByGroupChallengeIdAndMemberId(Long groupChallengeId, Long memberId) {
+        query.delete(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .execute();
+    }
+
+
+    //    그룹 챌린지 목록(페이징, 진행중)
     @Override
     public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
 

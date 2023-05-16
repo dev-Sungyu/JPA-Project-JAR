@@ -33,6 +33,9 @@ public class GroupChallenge extends Board {
     @Column(columnDefinition = "integer default 0")
     private Integer groupChallengeReplyCount;
 
+    @Column(columnDefinition = "integer default 0")
+    private Integer groupChallengeAttendCount;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
 
@@ -47,12 +50,18 @@ public class GroupChallenge extends Board {
         this.groupChallengeReplyCount = groupChallengeReplyCount;
     }
 
+    public void setGroupChallengeAttendCount(Integer groupChallengeAttendCount) {
+        this.groupChallengeAttendCount = groupChallengeAttendCount;
+    }
+
     @Builder
-    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, List<GroupChallengeFile> groupChallengeFiles) {
+    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer groupChallengeAttendCount, List<GroupChallengeFile> groupChallengeFiles) {
         super(id, boardTitle, boardContent);
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.groupChallengeReplyCount = groupChallengeReplyCount;
+        this.groupChallengeAttendCount = groupChallengeAttendCount;
         this.groupChallengeFiles = groupChallengeFiles;
     }
 }
