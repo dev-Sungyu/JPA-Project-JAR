@@ -11,6 +11,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ import java.util.List;
 public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("'PRIVATE'")
+    @ColumnDefault("'WAIT'")
     private GroupChallengeType groupChallengeStatus;
     @NotNull
     private LocalDate startDate;
