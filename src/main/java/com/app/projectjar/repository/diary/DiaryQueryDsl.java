@@ -32,4 +32,7 @@ public interface DiaryQueryDsl {
 //      현재 시퀀스 가져오기
     public Diary getCurrentSequence_QueryDsl();
 
+//    다이어리 삭제
+    public void deleteByDiaryId_QueryDsl(Long diaryId);
+
 }
