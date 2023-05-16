@@ -1,5 +1,6 @@
 const $ul =$(".list-box")
 let page = 0;
+// page = $('.paging-active div').text();
 
 suggestService = (function () {
     function list(page, callback) {
@@ -82,7 +83,7 @@ function listText(list) {
                                                 <p class="date">${createDate}</p>
                                                 <div>
                                                     <button type="button" class="btn modify-btn" onclick="location.href='/board/suggest/modify/${suggestDTO.id}'">수정</button>
-                                                    <button type="button" class="btn delete-btn"  data-item-id="${suggestDTO.id}"  >삭제</button>
+                                                    <button type="button" class="btn delete-btn" onclick="deleteSuggests(${suggestDTO.id})">삭제</button>
                                                 </div>
                                             </div>
                                             <a href="/board/suggest/detail/${suggestDTO.id}">
@@ -95,7 +96,7 @@ function listText(list) {
 
 
     });
-    $ul.append(text);
+    return text;
 
 }
 
@@ -109,8 +110,20 @@ function getList(page, memberId) {
         page: page,
         memberId : memberId
     }, function (list) {
-        window.scrollTo(0, 0);
-        listText(list);
+        // window.scrollTo(0, 0);
+        $ul.append(listText(list));
+        displayPagination(list.totalPages);
+
+    });
+}
+
+function getNewList(page, memberId) {
+    suggestService.list({
+        page: page,
+        memberId : memberId
+    }, function (list) {
+        // window.scrollTo(0, 0);
+        $ul.html(listText(list));
         displayPagination(list.totalPages);
 
     });
@@ -129,25 +142,22 @@ function getDate(register){
     // 2021-01-01
 }
 
-$(".delete-btn").on("click", function() {
-    // 삭제 버튼이 클릭되었을 때 수행할 동작을 여기에 작성합니다.
-    const itemId = $(this).data("item-id"); // 예시: 삭제 대상 항목의 ID를 가져오는 방법
-    // Ajax 요청을 사용하여 서버에 삭제 요청을 보냅니다.
+
+function deleteSuggests(boardId) {
     $.ajax({
-        url: "/delete/{boardId}", // 실제 삭제 요청을 처리하는 서버의 URL로 대체해야 합니다.
-        type: "POST", // 적절한 HTTP 메소드를 선택해야 합니다.
-        data: { itemId: itemId }, // 삭제 대상 항목의 ID를 서버에 전달합니다.
-        success: function(response) {
-            // 삭제 요청이 성공적으로 처리되었을 때 수행할 동작을 여기에 작성합니다.
-
-
-            console.log("삭제가 완료되었습니다.");
-            // 필요한 경우 페이지 새로고침 등의 동작을 수행할 수 있습니다.
+        url: `/mypage/delete/${boardId}`,
+        type: "DELETE",
+        contentType: "application/json",
+        data: JSON.stringify(boardId),
+        traditional: true,
+        success: function() {
+            console.log(page);
+            suggestService;
+            getNewList(page , memberId);
+            alert("success")
         },
-        error: function(xhr, status, error) {
-            // 삭제 요청이 실패했을 때 수행할 동작을 여기에 작성합니다.
-            console.error("삭제 요청이 실패했습니다.");
-            console.error(error);
+        error: function() {
+            alert("게시물 삭제에 실패했습니다.");
         }
     });
-});
+}

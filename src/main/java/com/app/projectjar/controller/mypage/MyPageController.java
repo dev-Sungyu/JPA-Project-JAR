@@ -111,7 +111,7 @@ public class MyPageController {
 //    }
 
 
-    @PostMapping("delete/{boardId}")
+    @DeleteMapping("delete/{boardId}")
     @ResponseBody
     public void delete(@PathVariable("boardId") Long boardId){
         log.info("@@@@@@@@@@@@@@@@@@@@@@@@");
