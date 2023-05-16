@@ -29,6 +29,7 @@ public class Member extends Period {
     @Column(unique = true)
     @NotNull private String memberPhoneNumber;
     @NotNull private String memberName;
+    @COlumn(unique = true)
     @NotNull private String memberNickname;
     @Enumerated(EnumType.STRING)
     @ColumnDefault("'ENABLE'")
