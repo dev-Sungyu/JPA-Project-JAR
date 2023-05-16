@@ -1,6 +1,8 @@
 package com.app.projectjar.domain.OAuth;
 
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.type.BadgeType;
+import com.app.projectjar.type.MemberType;
 import com.app.projectjar.type.Role;
 import lombok.Builder;
 import lombok.Getter;
@@ -51,4 +53,17 @@ public class OAuthAttributes {
                 .memberType(Role.MEMBER)
                 .build();
     }
+
+//    public Member toEntity(){
+//        return Member.builder()
+//                .memberEmail(email)
+//                .memberName(name)
+//                .memberNickname(nickname)
+//                .memberPhoneNumber(mobile)
+//                .memberType(Role.MEMBER)
+//                .memberStatus(MemberType.ENABLE)
+//                .badgeType(BadgeType.ZERO)
+//                .build();
+//
+//    }
 }
