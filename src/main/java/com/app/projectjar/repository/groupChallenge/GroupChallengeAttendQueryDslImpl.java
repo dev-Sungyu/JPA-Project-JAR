@@ -22,7 +22,7 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
     private final JPAQueryFactory query;
 
     @Override
-    public Integer getAttendCountByGroupChallengeId(Long groupChallengeId) {
+    public Integer getAttendCountByGroupChallengeId_QueryDsl(Long groupChallengeId) {
         return query.select(groupChallengeAttend.count())
                 .from(groupChallengeAttend)
                 .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId))
@@ -30,7 +30,7 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
     }
 
     @Override
-    public Long findByChallengeIdAndMemberId(Long groupChallengeId, Long memberId) {
+    public Long findByChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
         return query.select(groupChallengeAttend.count())
                 .from(groupChallengeAttend)
                 .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
@@ -38,12 +38,19 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
     }
 
     @Override
-    public void deleteByGroupChallengeIdAndMemberId(Long groupChallengeId, Long memberId) {
+    public void deleteByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
         query.delete(groupChallengeAttend)
                 .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
                 .execute();
     }
 
+    @Override
+    public GroupChallengeAttend findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
+        return query.select(groupChallengeAttend)
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
 
     //    그룹 챌린지 목록(페이징, 진행중)
     @Override

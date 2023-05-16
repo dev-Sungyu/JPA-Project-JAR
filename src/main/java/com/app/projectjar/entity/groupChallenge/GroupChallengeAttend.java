@@ -41,4 +41,8 @@ public class GroupChallengeAttend extends Period {
         this.groupChallenge = groupChallenge;
         this.member = member;
     }
+
+    public void setGroupChallengeAttendStatus(GroupChallengeAttendType groupChallengeAttendStatus) {
+        this.groupChallengeAttendStatus = groupChallengeAttendStatus;
+    }
 }

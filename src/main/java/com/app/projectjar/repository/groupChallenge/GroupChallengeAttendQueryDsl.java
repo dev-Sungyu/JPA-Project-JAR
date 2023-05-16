@@ -7,14 +7,16 @@ import org.springframework.data.domain.Pageable;
 public interface GroupChallengeAttendQueryDsl {
 
     // 챌린지 참여 인원 가져오기
-    public Integer getAttendCountByGroupChallengeId(Long groupChallengeId);
+    public Integer getAttendCountByGroupChallengeId_QueryDsl(Long groupChallengeId);
 
     // 해당 챌린지에 참여햇는지 여부 검사
-    public Long findByChallengeIdAndMemberId(Long groupChallengeId, Long memberId);
+    public Long findByChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId);
 
     // 참여 취소
-    public void deleteByGroupChallengeIdAndMemberId(Long groupChallengeId, Long memberId);
+    public void deleteByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId);
 
+    // 챌린지 참여 번호 가져오기
+    public GroupChallengeAttend findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId);
 
     /* 그룹 챌린지 */
 
