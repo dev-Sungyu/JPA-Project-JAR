@@ -110,6 +110,7 @@
                     </div>
                 </h1>
                 <div>
+                    <form th:action="@{/mypage/register}" method="post" enctype="multipart/form-data" name="form">
                     <div class="box">
                         <h4 class="date"></h4>
                         <div class="flex-box">
@@ -124,7 +125,7 @@
                             </div>
                             <div>
                                 <label>
-                                    <input type="checkbox" style="display:none;">
+                                    <input type="checkbox" style="display:none;" name="diaryStatus" value="PRIVATE">
                                     <div class="private-check-box">
                                         <div class="private-check-layout">
                                             <p>
@@ -134,18 +135,18 @@
                                     </div>
                                 </label>
                             </div>
-                            <button type="button" class="insert-button">저장</button>
+                            <button type="button" class="insert-button save-button">저장</button>
                         </div>
                     </div>
                     <div class="input-box">
                         <div class="align-flex">
                             <div>
-                                <input type="text" placeholder="제목을 입력하세요." class="diary-title">
+                                <input type="text" name="boardTitle" placeholder="제목을 입력하세요." class="diary-title">
                             </div>
                         </div>
                         <div class="diary-content-box">
                             <div>
-                                <textarea name="" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
+                                <textarea name="boardContent" placeholder="내용을 입력해주세요." class="diary-content"></textarea>
                             </div>
                         </div>
                         <div class="attachment-box">
@@ -154,6 +155,7 @@
                             </ul>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -202,26 +204,7 @@
                     <div class="flex">
                         <div>
                             <ul class="sumnail-layout" style="padding: 0; margin-top: 30px;">
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div style="position:relative;">
-                                        <img src="/image/mypage/test.jpg">
-                                    </div>
-                                </li>
+                                <!-- 이미지 들어가는 부분-->
                             </ul>
                         </div>
                     </div>
@@ -242,57 +225,22 @@
 <script src="https://uicdn.toast.com/calendar/latest/toastui-calendar.min.js"></script>
 <script src="https://uicdn.toast.com/tui-grid/latest/tui-grid.js"></script>
 <script src="https://uicdn.toast.com/tui.pagination/latest/tui-pagination.js"></script>
-<script>
+<script th:inline="javascript">
+    const userDetail = [[${userDetail}]];
+    const calendarDTOS = [[${calendarDTOS}]];
 
-    const $alertModal = $(".alert-modal-display");
+    const urlParams = new URL(location.href).searchParams;
+    const check = urlParams.get('check');
 
-    // 이미지 파일
-    let inputFiles = [];
-
-    $(".file").change((e) => {
-        let errorMsg = "확장자는 이미지 확장자만 가능합니다.";
-        let index = 0;
-        let files = e.target.files;
-        let filesArr = Array.prototype.slice.call(files);
-
-        inputFiles = [];
-
-        filesArr.forEach(file => {
-            if (!file.type.match("image.*")) {
-                alertModal(errorMsg);
-                return;
-            }
-            inputFiles.push(file);
-
-            var reader = new FileReader();
-            reader.onload = (e) => {
-                let text = `
-                            <li id="${index}">
-                                <div style="position:relative;">
-                                    <div class="image-cancel-box">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
-                                            <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                                fill="#cacaca"></path>
-                                        </svg>
-                                    </div>
-                           `
-                text += "<img src=\"" + e.target.result + "\" />";
-                text += `</div>
-                            </li>
-                `;
-                $(".attachment-layout").append(text);
-                index++;
-            }
-            reader.readAsDataURL(file);
-        });
-    });
-
-    // 이미지 제거
-    $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
-        let index = $(e.target).closest("li").attr("id");
-        deleteImage(index);
-    });
+    if(check){
+        $(".alert").text("저장 완료");
+        $(".alert-modal-display").fadeIn();
+        setTimeout(function () {
+            $(".alert-modal-display").fadeOut();
+        }, 2000);
+    }
 </script>
+<script src="/js/mypage/file.js"></script>
 <script>
     // 여기는 신경 안써도 됨
     const Calendar = tui.Calendar;
@@ -357,16 +305,7 @@
 
     const calendar = new Calendar(container, options);
 
-    let datas = [
-        {
-            id: '1',// 다이어리의 번호 값 넣어주기
-            calendarId: 2,
-            title: "안녕",
-            start: "2023-04-19",
-            end: "2023-04-19",
-        }
-    ]
-    datas.forEach((e, i) => {
+    calendarDTOS.forEach((e, i) => {
         calendar.createEvents([
             e
         ]);
@@ -448,64 +387,36 @@
 
     });
 
-    $(".insert-button").click((e) => {
-        let alertMsg = "저장 완료";
-        let title = $(".diary-title").val();
-        let content = $(".diary-content").val();
-        let date = $(".date").text();
-        let index = $(e.target).attr("id");
-        let calendarId = Math.floor(Math.random() * 4) + 1 + "";
-
-        let errorMsg = "";
-
-        if(!$(".diary-title").val() && !$(".diary-content").val()){
-            errorMsg = "내용을 입력해주세요.";
-            alertModal(errorMsg);
-            return;
-        }else if(!$(".diary-title").val()){
-            errorMsg = "제목을 입력해주세요.";
-            alertModal(errorMsg);
-            return;
-        }else if(!$(".diary-content").val()) {
-            errorMsg = "내용을 입력해주세요.";
-            alertModal(errorMsg);      4
-            return;    
-        }
-
-
-        /* AJAX로 이미지랑, 제목 내용 등 DB에 먼저 저장 후 */
-        /* ID값만 리턴 받아서  */
-        let datas = [
-            {
-                id: '1',// 다이어리의 번호 값 넣어주기
-                calendarId: calendarId,
-                title: title,
-                start: date,
-                end: date,
-            }
-        ]
-        // 데이터를 담아서 화면에 뿌려줌
-        calendar.createEvents(datas)
-
-        diaryModal(index);
-        alertModal(alertMsg);
-    });
-
-
     // 제목 클릭 시 발생하는 이벤트
     calendar.on("clickEvent", function (e) {
         // id 값으로 다이어리 상세조회 ajax써야함 모델 객체가 아닌 rest
         // 해당 id값의 정보를 가져와서 상세보기쪽에 뿌려야함 가져와야할 정보 이미지 정보, 제목, 내용
-        let id = e.event.id;
+        let boardId = e.event.id;
         let date = new Date(e.event.start);
 
-        // 예시 내용 \n은 애초에 신경 안써도 textarea에서 작성하면 알아서 들어가는 거임 신경 ㄴㄴ
-        let content = "오늘의 도전\n 너무너무 재미가 있었어서\n내 마음이 너무나도 편안해 지고\n나의 마음이 좀더 강해지고 있어서\n우울증이 점점 극복된다.";
-        date = dateFomat(date);
+        diaryService.diary({
+            boardId : boardId,
+        },function(diaryDTO){
+            $(".diary-content-title").text(diaryDTO.boardTitle);
 
+            let content = diaryDTO.boardContent;
+            contentPrint(content);
+            let fileDTOS = diaryDTO.fileDTOS;
+
+            fileDTOS.forEach((file, i) => {
+                let text = `
+                                <li>
+                                    <div style="position:relative;">
+                                        <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
+                                    </div>
+                                </li>
+                `;
+                $(".sumnail-layout").append(text);
+            });
+        })
+        date = dateFomat(date);
         // 날짜 담아주기
         $(".diary-detail-date").text(date);
-        contentPrint(content);
         $(".diary-detail-display").show();
     });
 
@@ -531,9 +442,11 @@
         if(!$check.is(":checked")){
             $checkbox.addClass("check-active");
             $checkText.text("공개");
+            $check.val("OPEN");
         }else {
             $checkbox.removeClass("check-active");
             $checkText.text("비공개");
+            $check.val("PRIVATE");
         }
     });
     
@@ -581,23 +494,6 @@
         return text;
     }
 
-    function alertModal(errorMsg) {
-
-        $(".alert").text(errorMsg);
-        $alertModal.fadeIn();
-        setTimeout(function () {
-            $alertModal.fadeOut();
-        }, 2000);
-
-    }
-
-    function deleteImage(index){ 
-        inputFiles.splice(index, 1);
-
-        var imageId = "#" + index;
-        $(imageId).remove();
-    }
-
     function inputCheck() {
         if(!$diaryTitle.val() || !$diaryContent.val()){
             $diaryButton.removeClass("save-active");
@@ -643,5 +539,4 @@
 
 // ================================================
 </script>
-
 </html>

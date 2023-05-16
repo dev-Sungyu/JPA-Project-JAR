@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/board/diary/*")
@@ -40,4 +41,23 @@ public class DiaryController {
         return "/board/diary/detail";
     }
 
+    @GetMapping("modify/{diaryId}")
+    public String goToModify(Model model, @PathVariable("diaryId") Long diaryId) {
+
+        DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
+        model.addAttribute("diaryDTO", diaryDTO);
+        return "/board/diary/modify";
+    }
+
+    @PostMapping("modify")
+    public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
+
+        diaryDTO.setId(boardId);
+        diaryService.modifyDiary(diaryDTO);
+        if(diaryDTO.getDiaryStatus().equals("PRIVATE")){
+            return new RedirectView("/board/diary/detail/" + boardId);
+        }else {
+            return new RedirectView("/board/diary/list/");
+        }
+    }
 }

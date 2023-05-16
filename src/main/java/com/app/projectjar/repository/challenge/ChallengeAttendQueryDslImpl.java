@@ -26,47 +26,49 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
 
     @Override
     public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable) {
-        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
-                .join(challengeAttend.member, member)
-                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
-                .where(challengeAttend.member.id.eq(memberId))
-                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("OPEN")))
-                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
-                .orderBy(challengeAttend.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(challengeAttend.count())
-                .from(challengeAttend)
-                .join(challengeAttend.member, member)
-                .where(member.id.eq(memberId))
-                .fetchOne();
-
-        return new PageImpl<>(foundChallengeAttend, pageable, count);
+//        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
+//                .join(challengeAttend.member, member)
+//                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
+//                .where(challengeAttend.member.id.eq(memberId))
+//                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("OPEN")))
+//                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
+//                .orderBy(challengeAttend.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        Long count = query.select(challengeAttend.count())
+//                .from(challengeAttend)
+//                .join(challengeAttend.member, member)
+//                .where(member.id.eq(memberId))
+//                .fetchOne();
+//
+//        return new PageImpl<>(foundChallengeAttend, pageable, count);
+        return null;
     }
 
     //    내가 완료한 개인 챌린지 전체 조회 (종료된 챌린지)
     @Override
     public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable) {
-        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
-                .join(challengeAttend.member, member)
-                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
-                .where(challengeAttend.member.id.eq(memberId))
-                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("PRIVATE")))
-                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
-                .orderBy(challengeAttend.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
+//        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)
+//                .join(challengeAttend.member, member)
+//                .leftJoin(challengeAttend.personalChallenge, personalChallenge)
+//                .where(challengeAttend.member.id.eq(memberId))
+//                .where(challenge.challengeStatus.eq(ChallengeType.valueOf("PRIVATE")))
+//                .leftJoin(challenge.challengeFiles, QChallengeFile.challengeFile)
+//                .orderBy(challengeAttend.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        Long count = query.select(challengeAttend.count())
+//                .from(challengeAttend)
+//                .join(challengeAttend.member, member)
+//                .where(member.id.eq(memberId))
+//                .fetchOne();
 
-        Long count = query.select(challengeAttend.count())
-                .from(challengeAttend)
-                .join(challengeAttend.member, member)
-                .where(member.id.eq(memberId))
-                .fetchOne();
-
-        return new PageImpl<>(foundChallengeAttend, pageable, count);
+//        return new PageImpl<>(foundChallengeAttend, pageable, count);
+        return null;
     }
 
     //    개인 챌린지 목록(댓글 갯수)

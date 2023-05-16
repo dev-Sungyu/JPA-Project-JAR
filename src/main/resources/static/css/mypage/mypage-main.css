@@ -309,7 +309,7 @@
             display: flex;
             width:100%; 
             margin-bottom : 10px;
-            padding: 0 20px;
+            flex-wrap: wrap;
         }
 
         .attachment-layout li {
@@ -317,7 +317,7 @@
         }
 
         .sumnail-layout li {
-            margin-right : 5px;          
+            width: 25%;
         }
 
         .attachment-layout li:last-child {
@@ -333,6 +333,7 @@
         }
 
         .sumnail-layout img {
+            object-fit: cover;
             width: 100%;
         }
 
@@ -436,7 +437,7 @@
 
         .image-cancel-box {
             position: absolute;
-            top: 10px;
+            top: 3px;
             right: 5px;
             text-align: center;
             color:#fff;
@@ -448,7 +449,7 @@
         }
         .sumnail-box img {
             height: 100px;
-            object-fit: contain;
+            object-fit: cover;
         }
         
 

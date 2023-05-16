@@ -39,61 +39,61 @@
                                 <div class="inquire-list-container">
                                     <div class="inquire-list-box">
                                         <!-- 여기부터 -->
-<!--                                        <div class="inquire-list-layout">-->
-<!--                                            <div class="flex-between">-->
-<!--                                                <p class="date">2022.02.01</p>-->
-<!--                                                <div>-->
-<!--                                                    <button type="button" class="btn modify-btn">수정</button>-->
-<!--                                                    <button type="button" class="btn delete-btn">삭제</button>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="inquire-title-box">-->
-<!--                                                <a href="javascript:void(0)">-->
-<!--                                                    <h3>순철이 발 몇cm?</h3>-->
-<!--                                                </a>-->
-<!--                                                <div class="inquire-answer-status-box">-->
-<!--                                                    <div class="inquire-answer-status-layout">-->
-<!--                                                        &lt;!&ndash; <div class="inquire-answer-border">-->
-<!--                                                            <p class="answer-status">미답변</p>-->
-<!--                                                        </div> &ndash;&gt;-->
-<!--                                                        <div class="inquire-answer-border">-->
-<!--                                                            <p class="answer">답변 완료</p>-->
-<!--                                                        </div>-->
-<!--                                                    </div>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
+                                        <!--<div class="inquire-list-layout">
+                                            <div class="flex-between">
+                                                <p class="date">2022.02.01</p>
+                                                <div>
+                                                    <button type="button" class="btn modify-btn">수정</button>
+                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                </div>
+                                            </div>
+                                            <div class="inquire-title-box">
+                                                <a href="javascript:void(0)">
+                                                    <h3>순철이 발 몇cm?</h3>
+                                                </a>
+                                                <div class="inquire-answer-status-box">
+                                                    <div class="inquire-answer-status-layout">
+                                                        &lt;!&ndash; <div class="inquire-answer-border">
+                                                            <p class="answer-status">미답변</p>
+                                                        </div> &ndash;&gt;
+                                                        <div class="inquire-answer-border">
+                                                            <p class="answer">답변 완료</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
                                         <!--  -->
                                     </div>
                                 </div>
                             </div>
                         </section>    
                         <div class="paging-box">
-                            <div class="paging-layout">
-                                <a href="javascript:void(0)">
-                                    <img src="/image/mypage/arrow.png" class="prev">
-                                </a>
-                                <div class="paging-border-none paging-active">
-                                    <a href="javascript:void(0)">
-                                        <span class="page">1</span>
-                                    </a>
+                               <div class="paging-layout">
+<!--                                    <a href="javascript:void(0)">-->
+<!--                                        <img src="/image/mypage/arrow.png" class="prev">-->
+<!--                                    </a>-->
+<!--                                    <div class="paging-border-none paging-active">-->
+<!--                                        <a href="javascript:void(0)">-->
+<!--                                            <span class="page">1</span>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="paging-border-none">-->
+<!--                                        <a href="javascript:void(0)">-->
+<!--                                            <span class="page">2</span>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <div class="paging-border-none">-->
+<!--                                        <a href="javascript:void(0)">-->
+<!--                                            <span class="page">3</span>-->
+<!--                                        </a>-->
+<!--                                    </div>-->
+<!--                                    <a href="javascript:void(0)">-->
+<!--                                        <img src="/image/mypage/arrow.png" class="next">-->
+<!--                                    </a>-->
                                 </div>
-                                <div class="paging-border-none">
-                                    <a href="javascript:void(0)">
-                                        <span class="page">2</span>
-                                    </a>
-                                </div>
-                                <div class="paging-border-none">
-                                    <a href="javascript:void(0)">
-                                        <span class="page">3</span>
-                                    </a>
-                                </div>
-                                <a href="javascript:void(0)">
-                                    <img src="/image/mypage/arrow.png" class="next">
-                                </a>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -104,11 +104,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
+    let userDetail = [[${userDetail}]];
 
-    // 처음에 화면에 목록 뿌려주기
-    $(document).ready(function () {
-        fetchData();
-    });
+    let memberId = userDetail.id;
 </script>
 <script>
 

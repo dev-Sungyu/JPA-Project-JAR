@@ -1,5 +1,6 @@
 package com.app.projectjar.domain.inquire;
 
+import com.app.projectjar.audit.Period;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.type.AnswerType;
 import lombok.Builder;
@@ -20,10 +21,13 @@ public class InquireDTO {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
+    private LocalDateTime createDate;
+
     private MemberDTO memberDTO;
 
     @Builder
     public InquireDTO(Long id, String inquireTitle, String inquireContent, MemberDTO memberDTO, AnswerType answerType, LocalDateTime createDate, LocalDateTime updateDate) {
+
         this.id = id;
         this.inquireTitle = inquireTitle;
         this.inquireContent = inquireContent;
@@ -33,5 +37,6 @@ public class InquireDTO {
 
         this.answerType = answerType;
 
+        this.createDate = createDate;
     }
 }
