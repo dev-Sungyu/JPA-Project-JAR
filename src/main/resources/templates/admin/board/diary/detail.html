@@ -142,12 +142,16 @@
                                                                     </button>
                                                                 </label>
                                                             </header>
-                                                            <article class="img_wrapper">
+                                                            <section class="img_wrapper_box">
+                                                                <div class="img_ul_wrapper">
+                                                                    <ul class="img_wrapper img_ul sumnail-layout">
 <!--                                                                <div class="img_div">-->
 <!--                                                                    <img src="/image/board/board-img.png" alt=""-->
 <!--                                                                        class="inserted_img">-->
 <!--                                                                </div>-->
-                                                            </article>
+                                                                    </ul>
+                                                                </div>
+                                                            </section>
                                                         </div>
                                                     </li>
                                                 </ul>
@@ -171,9 +175,7 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
-</script>
-<script>
+<script th:inline="javascript">
     const diaryDTO = [[${diaryDTO}]];
 
     let fileDTOS = diaryDTO.fileDTOS;
