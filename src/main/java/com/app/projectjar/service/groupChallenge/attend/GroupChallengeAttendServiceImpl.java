@@ -1,11 +1,13 @@
 package com.app.projectjar.service.groupChallenge.attend;
 
 
-import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.type.ChallengeAttendType;
+import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.type.GroupChallengeAttendType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -34,7 +36,7 @@ public class GroupChallengeAttendServiceImpl implements GroupChallengeAttendServ
                                             .member(member)
                                             .build();
                                     groupChallengeAttendRepository.save(groupChallengeAttend);
-                                    groupChallenge.setGroupChallengeAttendCount(getAttendCount(boardId));
+                                    groupChallenge.setGroupChallengeAttendCount(getAttendCount(groupChallenge.getId()));
                                     groupChallengeRepository.save(groupChallenge);
                                 }
                         )
@@ -43,28 +45,38 @@ public class GroupChallengeAttendServiceImpl implements GroupChallengeAttendServ
 
     @Override @Transactional
     public void deleteAttend(Long boardId, Long memberId) {
-        groupChallengeAttendRepository.deleteByGroupChallengeIdAndMemberId(boardId, memberId);
-        
-        groupChallengeRepository.findById(boardId).ifPresent(
-                groupChallenge -> {
-                    groupChallenge.setGroupChallengeAttendCount(getAttendCount(boardId));
-                    groupChallengeRepository.save(groupChallenge);
-                }
+        memberRepository.findById(memberId).ifPresent(
+                member ->
+                        groupChallengeRepository.findById(boardId).ifPresent(
+                                groupChallenge -> {
+                                    groupChallengeAttendRepository.deleteByGroupChallengeIdAndMemberId_QueryDsl(groupChallenge.getId(), member.getId());
+                                    groupChallenge.setGroupChallengeAttendCount(getAttendCount(groupChallenge.getId()));
+                                    groupChallengeRepository.save(groupChallenge);
+                                }
+                        )
         );
     }
 
     @Override
     public Boolean attendCheck(Long boardId, Long memberId) {
-        return groupChallengeAttendRepository.findByChallengeIdAndMemberId(boardId,memberId) == 0;
+        return groupChallengeAttendRepository.findByChallengeIdAndMemberId_QueryDsl(boardId,memberId) == 0;
+    }
+
+    @Override
+    public Boolean challengeSuccessCheck(Long boardId, Long memberId) {
+        GroupChallengeAttend groupChallengeAttend = groupChallengeAttendRepository.findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(boardId, memberId);
+        return groupChallengeAttend.getGroupChallengeAttendStatus().equals(GroupChallengeAttendType.PARTICIPATION);
     }
 
     @Override
     public void updateAttendToAttendType(Long boardId, Long memberId) {
-
+        GroupChallengeAttend groupChallengeAttend = groupChallengeAttendRepository.findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(boardId, memberId);
+        groupChallengeAttend.setGroupChallengeAttendStatus(GroupChallengeAttendType.PARTICIPATION);
+        groupChallengeAttendRepository.save(groupChallengeAttend);
     }
 
     @Override
     public Integer getAttendCount(Long boardId) {
-        return groupChallengeAttendRepository.getAttendCountByGroupChallengeId(boardId);
+        return groupChallengeAttendRepository.getAttendCountByGroupChallengeId_QueryDsl(boardId);
     }
 }

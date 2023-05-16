@@ -11,7 +11,10 @@ public interface GroupChallengeAttendService {
     // 참여한 챌린지 인지 검사
     public Boolean attendCheck(Long boardId, Long memberId);
 
-    // 참여 완료
+    // 도전 완료한 챌린지인지 검사
+    public Boolean challengeSuccessCheck(Long boardId, Long memberId);
+
+    // 도전 완료
     public void updateAttendToAttendType(Long boardId, Long memberId);
 
     // 참여 갯수
