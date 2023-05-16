@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -104,6 +106,7 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl() {
         return query.select(groupChallenge)
                 .from(groupChallenge)
+                .distinct()
                 .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
                 .fetchJoin()
                 .orderBy(groupChallenge.id.desc())
@@ -123,6 +126,26 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
                 .fetch();
 
         return products;
+    }
+
+    @Override
+    public List<GroupChallenge> findByStartDate(LocalDate startDate) {
+        return query.select(groupChallenge)
+                .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
+                .where(groupChallenge.startDate.eq(startDate))
+                .fetch();
+    }
+
+    @Override
+    public List<GroupChallenge> findByEndDate(LocalDate endDate) {
+        return query.select(groupChallenge)
+                .from(groupChallenge)
+                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
+                .fetchJoin()
+                .where(groupChallenge.startDate.eq(endDate))
+                .fetch();
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +57,7 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     public GroupChallenge getCurrentSequence() {
         return groupChallengeRepository.getCurrentSequence_QueryDsl();
     }
+
 
     @Override
     public void deleteGroupChallenges(List<Long> groupChallengeIds) {
