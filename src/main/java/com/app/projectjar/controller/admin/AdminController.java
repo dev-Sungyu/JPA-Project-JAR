@@ -1,11 +1,13 @@
 package com.app.projectjar.controller.admin;
 
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.diary.DiaryService;
+import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.suggest.SuggestService;
@@ -31,6 +33,8 @@ public class AdminController {
     private final NoticeService noticeService;
     private final MemberService memberService;
     private final DiaryService diaryService;
+    private final GroupChallengeService groupChallengeService;
+
 
 
     @GetMapping("board/challenge/detail")
@@ -180,7 +184,6 @@ public class AdminController {
     @GetMapping("board/diary/list")
     public String adminDiaryList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
         Page<DiaryDTO> diaryPage = diaryService.getAllDiarysWithPaging(page -  1);
-        List<String> diaryTitles = diaryPage.stream().map(DiaryDTO::getBoardContent).collect(Collectors.toList());
         model.addAttribute("pageDTO",new PageDTO(diaryPage));
         model.addAttribute("diaryDTOS", diaryPage.getContent());
         return "admin/board/diary/list";
@@ -200,10 +203,24 @@ public class AdminController {
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
 
-    @GetMapping("board/groupChallenge/detail")
-    public void adminGroupChallengeDetail() {}
+    @GetMapping("board/groupChallenge/detail/{groupChallengeId}")
+    public void adminGroupChallengeDetail(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
+
+    }
     @GetMapping("board/groupChallenge/list")
-    public void adminGroupChallengeList() {}
+    public String adminGroupChallengeList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
+        Page<GroupChallengeDTO> groupChallengePage = groupChallengeService.getAllGroupChallengesWithPaging(page - 1);
+        model.addAttribute("pageDTO",new PageDTO(groupChallengePage));
+        model.addAttribute("groupChallengeDTOS", groupChallengePage.getContent());
+        return "admin/board/groupChallenge/list";
+    }
+
+    @DeleteMapping("board/groupChallenge/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteGroupChallenges(@RequestBody List<Long> groupChallengeIds) {
+        groupChallengeService.deleteGroupChallenges(groupChallengeIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
     @GetMapping("board/groupChallenge/modify")
     public void adminGroupChallengeModify() {}
     @GetMapping("board/groupChallenge/write")

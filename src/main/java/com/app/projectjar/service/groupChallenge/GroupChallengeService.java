@@ -9,18 +9,22 @@ import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public interface GroupChallengeService {
 
     // 목록
     public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable);
 
+    //    전체 목록 페이징
+    public Page<GroupChallengeDTO> getAllGroupChallengesWithPaging(int page);
+
     // 종료된 목록
     public Page<GroupChallengeDTO> getEndGroupChallengeList(Pageable pageable);
 
     // 상세보기
     public GroupChallengeDTO getGroupChallenge(Long groupChallengeId);
+    // 삭제
+    public void deleteGroupChallenges(List<Long> groupChallengeIds);
 
     // 현재 시퀀스 가져오기
     public GroupChallenge getCurrentSequence();

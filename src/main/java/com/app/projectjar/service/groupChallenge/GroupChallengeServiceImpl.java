@@ -13,8 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -28,6 +26,16 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
         Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllGroupChallengeWithPaging_QueryDsl(pageable);
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallenges.stream().map(this::toGroupChallengeDTO).collect(Collectors.toList());
         return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable() , groupChallenges.getTotalElements());
+    }
+
+    @Override
+    public Page<GroupChallengeDTO> getAllGroupChallengesWithPaging(int page) {
+        Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
+        List<GroupChallengeDTO> groupChallengeDTOS = groupChallenges.getContent().stream()
+                .map(this::toGroupChallengeDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable(), groupChallenges.getTotalElements());
     }
 
     @Override
@@ -47,5 +55,12 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     @Override
     public GroupChallenge getCurrentSequence() {
         return groupChallengeRepository.getCurrentSequence_QueryDsl();
+    }
+
+    @Override
+    public void deleteGroupChallenges(List<Long> groupChallengeIds) {
+        for (Long groupChallengeId : groupChallengeIds) {
+            groupChallengeRepository.deleteById(groupChallengeId);
+        }
     }
 }

@@ -17,7 +17,6 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
-import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
 @RequiredArgsConstructor
 public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
@@ -38,6 +37,22 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
         Long count = query.select(groupChallenge.count())
                 .from(groupChallenge)
                 .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("OPEN")))
+                .fetchOne();
+
+        return new PageImpl<>(foundGroupChallenge, pageable, count);
+    }
+
+    @Override
+    public Page<GroupChallenge> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<GroupChallenge> foundGroupChallenge = query.select(groupChallenge)
+                .from(groupChallenge)
+                .orderBy(groupChallenge.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(groupChallenge.count())
+                .from(groupChallenge)
                 .fetchOne();
 
         return new PageImpl<>(foundGroupChallenge, pageable, count);
