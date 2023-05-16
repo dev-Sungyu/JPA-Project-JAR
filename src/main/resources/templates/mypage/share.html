@@ -38,7 +38,7 @@
                                 <div class="list-container">
                                     <div class="list-box">
                                         <!-- 여기서 부터 -->
-                                        <div class="list-layout">
+                                       <!-- <div class="list-layout">
                                             <div class="flex-between">
                                                 <p class="date">2022.02.01</p>
                                                 <div>
@@ -51,14 +51,14 @@
                                                     <h3>테스트 제목</h3>
                                                 </div>
                                             </a>
-                                        </div>
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </section>
                         <div class="paging-box">
                             <div class="paging-layout">
-                                <a href="javascript:void(0)">
+                              <!--  <a href="javascript:void(0)">
                                     <img src="/image/mypage/arrow.png" class="prev">
                                 </a>
                                 <div class="paging-border-none paging-active">
@@ -78,7 +78,7 @@
                                 </div>
                                 <a href="javascript:void(0)">
                                     <img src="/image/mypage/arrow.png" class="next">
-                                </a>
+                                </a>-->
                             </div>
                         </div>
                     </div>    
@@ -91,7 +91,10 @@
     </div>               
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script>
+<script th:inline="javascript">
+    let userDetail = [[${userDetail}]];
+
+    let memberId = userDetail.id;
 </script>
 <script>
     const $page = $(".paging-border-none");
@@ -102,5 +105,7 @@
             $(e).addClass("paging-active");
         });
     });    
+</script>
+<script src="/js/mypage/share.js">
 </script>
 </html>
