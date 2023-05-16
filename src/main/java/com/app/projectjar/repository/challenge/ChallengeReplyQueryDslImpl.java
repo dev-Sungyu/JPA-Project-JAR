@@ -4,8 +4,6 @@ package com.app.projectjar.repository.challenge;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 
-import static com.app.projectjar.entity.challenge.QChallengeReply.challengeReply;
-
 @RequiredArgsConstructor
 public class ChallengeReplyQueryDslImpl implements ChallengeReplyQueryDsl {
     private final JPAQueryFactory query;
@@ -39,9 +37,10 @@ public class ChallengeReplyQueryDslImpl implements ChallengeReplyQueryDsl {
 
     @Override
     public Long getReplyCount(Long challengeId) {
-        return query.select(challengeReply.count())
-                .from(challengeReply)
-                .where(challengeReply.id.eq(challengeId))
-                .fetchOne();
+//        return query.select(challengeReply.count())
+//                .from(challengeReply)
+//                .where(challengeReply.id.eq(challengeId))
+//                .fetchOne();
+        return null;
     }
 }

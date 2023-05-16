@@ -98,13 +98,26 @@
                                                                 <strong th:text="${groupChallengeDTO.boardTitle}"></strong>
                                                             </h3>
                                                         </div>
-<!--                                                        <th:block th:if="${not #strings.isEmpty(userDetail)}">-->
+                                                        <th:block th:if="${not #strings.isEmpty(userDetail)}">
                                                                 <div class="user-container-box-2" size="64">
-                                                                    <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                                    <button class="attend-button challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
                                                                         <span>참여하기</span>
                                                                     </button>
+                                                                    <div class="challenge-button-box">
+                                                                        <div style="display: flex">
+                                                                            <button style="margin-right: 10px;" class="complete-button challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                                                <span>참여완료</span>
+                                                                            </button>
+                                                                            <button class="attend-cancel challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
+                                                                                <span>참여취소</span>
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="challenge-complete">
+                                                                        <p>이미 완료된 챌린지 입니다.</p>
+                                                                    </div>
                                                                 </div>
-<!--                                                        </th:block>-->
+                                                        </th:block>
                                                     </div>
                                                 </div>
                                                 <div class="text-container">
@@ -234,7 +247,6 @@
         memberId = userDetail.id;
     }
 
-    console.log(memberId);
     const groupChallengeDTO = [[${groupChallengeDTO}]];
     const boardId = groupChallengeDTO.id;
 
@@ -256,6 +268,150 @@
     }
 </script>
 <script src="/js/board/suggest/slide.js"></script>
+<script>
+    attendService =(function(){
+
+        //  참여 버튼
+        function attend(data, callback){
+            $.ajax({
+                url : '/groupChallenge/attend/insert',
+                type : 'post',
+                data : data,
+                success : function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            });
+        }
+
+        // 참여 여부
+        function attendCheck(data, callback){
+            $.ajax({
+                url : '/groupChallenge/attend/check',
+                type : 'get',
+                data : data,
+                success : function(result) {
+                    if(callback){
+                        callback(result);
+                    }
+                }
+            })
+        }
+
+        // 참여 취소
+        function attendCancel(data, callback){
+            $.ajax({
+                url : '/groupChallenge/attend/delete',
+                type: "delete",
+                data : data,
+                success : function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            });
+        }
+
+        // 참여 완료
+        function challengeSuccess(data, callback){
+            $.ajax({
+                url : '/groupChallenge/attend/update',
+                type : 'patch',
+                data : data,
+                success : function(){
+                    if(callback){
+                        callback();
+                    }
+                }
+            });
+        }
+
+        // 참여 완료햇엇는지
+        function successCheck(data, callback){
+            $.ajax({
+                url : '/groupChallenge/attend/success-check',
+                type : 'get',
+                data : data,
+                success : function(result){
+                    if(callback){
+                        callback(result);
+                    }
+                }
+            })
+        }
+
+        return {
+            attend : attend,
+            attendCheck : attendCheck,
+            attendCancel : attendCancel,
+            challengeSuccess : challengeSuccess,
+            successCheck : successCheck
+        }
+    })();
+
+    // 참여 완료햇엇는지, 참여 하기만 눌럿는지 확인
+    attendService.attendCheck({
+        boardId : boardId,
+        memberId : memberId
+    },function(result){
+        if(result){
+            $(".attend-button").show();
+            $(".challenge-button-box").hide();
+        }else {
+            attendService.successCheck({
+                boardId : boardId,
+                memberId : memberId
+            },function (check) {
+                if(check) {
+                    $(".attend-button").hide();
+                    $(".challenge-button-box").hide();
+                    $(".challenge-complete").show();
+                }else {
+                    $(".attend-button").hide();
+                    $(".challenge-button-box").show();
+                }
+            });
+        }
+    });
+
+
+    // 참여 버튼
+    $(".attend-button").click(() => {
+        attendService.attend({
+            boardId : boardId,
+            memberId : memberId
+        },function () {
+            $(".attend-button").hide();
+            $(".challenge-button-box").show();
+        });
+    });
+
+
+    // 참여 취소 버튼
+    $(".attend-cancel").click(() => {
+       attendService.attendCancel({
+           boardId : boardId,
+           memberId : memberId
+       },function(){
+           $(".attend-button").show();
+           $(".challenge-button-box").hide();
+       });
+    });
+
+    // 참여 완료 버튼
+    $(".complete-button").click(() => {
+        attendService.challengeSuccess({
+            boardId : boardId,
+            memberId : memberId
+        },function(){
+            $(".challenge-complete").show();
+            $(".attend-button").hide();
+            $(".challenge-button-box").hide();
+        });
+    });
+
+</script>
 <script src="/js/board/challenge/group/reply.js"></script>
 <script src="/js/board/reply/reply.js"></script>
 </html>

@@ -21,9 +21,38 @@ import static com.app.projectjar.entity.member.QMember.member;
 public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQueryDsl {
     private final JPAQueryFactory query;
 
+    @Override
+    public Integer getAttendCountByGroupChallengeId_QueryDsl(Long groupChallengeId) {
+        return query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId))
+                .fetchOne().intValue();
+    }
 
-//    그룹 챌린지 목록(페이징, 진행중)
+    @Override
+    public Long findByChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
+        return query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
 
+    @Override
+    public void deleteByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
+        query.delete(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .execute();
+    }
+
+    @Override
+    public GroupChallengeAttend findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId) {
+        return query.select(groupChallengeAttend)
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
+
+    //    그룹 챌린지 목록(페이징, 진행중)
     @Override
     public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
 

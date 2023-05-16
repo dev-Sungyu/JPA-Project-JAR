@@ -271,7 +271,7 @@
     }
 });
 
-
+/*  next 버튼 삭제로 인해 없어도됌
 // 로그인 실패시 나오는 빨간줄
 $(".next_btn").click(function() {
         $("#red_name").css('display', 'block');
@@ -291,8 +291,9 @@ $(".next_btn").click(function() {
 
     $("#red_phone_number").css('display', 'block');
     $("input[name='memberPhoneNumber']").css('border-color', 'rgb(243, 33, 59)');
-        
-    });
+
+    });*/
+
 // 이메일 정규식
     let emailInput = $("input[name=memberEmail]");
     let emailErrorMsg = $("#red_email");
@@ -314,6 +315,7 @@ $(".next_btn").click(function() {
         $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
     }
     });
+
 // 비밀번호 정규식
 let passwordInput = $("input[name=memberPassword]");
 let passwordErrorMsg = $("#red_password");
@@ -366,11 +368,84 @@ confirmPasswordInput.on("input", function() {
     });
 
 
+
+
+
+
+
+
+
+
+
+
+
+    $.ajax({
+        url:"/members/checkEmail" ,
+        data: {"memberEmail": emailInput.val()},
+        success: function(result){
+            let message;
+            if(result == 1){
+                message = "중복된 이메일입니다.";
+                emailInput.css('color', 'red')
+                emailInput.css('display', 'block');
+                emailErrorMsg = false;
+
+            } else if($identificationInput.val().length < 1){
+                $identificationWarning.css('display', 'block');
+                $identificationWarning.css('color', 'red');
+                message = "필수 입력 사항입니다";
+                identificationFlag = false;
+
+            } else if(!emailPattern.test($identificationInput.val())){
+                $identificationWarning.css('display', 'block');
+                $identificationWarning.css('color', 'red');
+                message = "이메일 형식에 맞춰주세요";
+                identificationFlag = false;
+
+            } else{
+                message = "사용 가능한 이메일입니다.";
+                $identificationWarning.css('display', 'block');
+                $identificationWarning.css('color', '#2bb673');
+                identificationFlag = true;
+                if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
+                    console.log("asdasd")
+                    $(".signup-submit-button").css("opacity","3");
+                    console.log("zz11")
+                }
+            }
+
+            $identificationWarning.text(message);
+        }
+    });
+
+
+
+
+
+
+
+
+
+
 /*휴대폰 번호 버튼 색상 변경*/
     $(".confirm_number").click(function(){
         $(".semi_modal").css('display', 'block' +
             '');
         $(".confirm_number_span_p").text("인증번호 다시 받기");
+
+
+        // /* 해당 전화번호로 인증 번호 전송 */
+        let phone = $('input[name=memberPhoneNumber]').val().replaceAll("-", "");
+        console.log(phone);
+        $.ajax({
+            type: "POST",
+            url: "/member/sendCode",
+            data: { memberPhone: phone },
+            success: function(data) {
+                console.log(data);
+                code = data;
+            }
+        });
     });
 
     const inputDown = document.querySelector('input[name="phone_number_confirm"]');
@@ -396,6 +471,11 @@ confirmPasswordInput.on("input", function() {
             buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
         }
     });
+
+
+
+
+
 
 </script>
 </html>

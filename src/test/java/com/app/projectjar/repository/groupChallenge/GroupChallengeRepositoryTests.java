@@ -31,13 +31,13 @@ public class GroupChallengeRepositoryTests {
 
     @Test
     public void saveTest() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 5; i++) {
             groupChallengeRepository.save(new GroupChallenge(
                     "그룹 챌린지 제목" + (i + 1),
                     "그룹 챌린지 내용" + (i + 1),
-                    GroupChallengeType.PRIVATE,
-                    LocalDate.of(2023,05,8 + i),
-                    LocalDate.of(2023,05,10 + i)));
+                    GroupChallengeType.WAIT,
+                    LocalDate.of(2023,05,16),
+                    LocalDate.of(2023,05,20)));
         }
     }
 
@@ -87,6 +87,16 @@ public class GroupChallengeRepositoryTests {
     @Test
     public void findByGroupChallengeId_QueryDslTest() {
         groupChallengeRepository.findByGroupChallengeId_QueryDsl(231L).map(GroupChallenge::toString).ifPresent(log::info);
+    }
+
+    @Test
+    public void findAllGroupChallenge_QueryDslTest() {
+        groupChallengeRepository.findAllGroupChallenge_QueryDsl().stream().map(GroupChallenge::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findByStartDateTest(){
+        groupChallengeRepository.findByStartDate(LocalDate.now()).stream().map(GroupChallenge::toString).forEach(log::info);
     }
 
 }

@@ -12,10 +12,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
 
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
@@ -23,17 +23,23 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
 
 //    이메일 중복 검사
     @Override
-    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail) {
+        return query.select(member.count()).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
     }
 
 //    휴대폰 중복 검사
     @Override
-    public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber) {
-        return Optional.ofNullable(query.select(member).from(member).where(member.memberPhoneNumber.eq(memberPhoneNumber)).fetchOne());
+    public Long overlapByPhoneNumber_QueryDSL(String memberPhoneNumber) {
+        return query.select(member.count()).from(member).where(member.memberPhoneNumber.eq(memberPhoneNumber)).fetchOne();
     }
 
-//    비밀 번호 찾기
+//    닉네임 중복검사
+    @Override
+    public Long overlapByNickName_QueryDSL(String memberNickName) {
+        return query.select(member.count()).from(member).where(member.memberNickname.eq(memberNickName)).fetchOne();
+    }
+
+    //    비밀 번호 찾기
     @Override
     public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail) {
         return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());

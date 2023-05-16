@@ -20,6 +20,9 @@ public interface MemberService extends UserDetailsService {
 //    휴대폰 번호 중복 검사
     public Long checkPhoneNumber(String memberPhoneNumber);
 
+//    이메일 중복 검사
+    public Long checkNickName(String memberNickName);
+
 //    비밀번호 찾기
     public Long findByMemberPassword(String Email);
 
@@ -34,6 +37,10 @@ public interface MemberService extends UserDetailsService {
 
 //    뱃지 업데이트
     public void updateBadge(Long id);
+
+//    인증 번호 발급
+    public void checkSMS(String memberPhone, String code);
+
     /*관리자 페이지*/
 //    회원 전체 조회
     public Page<MemberDTO> getAllMembersWithPaging(int page);

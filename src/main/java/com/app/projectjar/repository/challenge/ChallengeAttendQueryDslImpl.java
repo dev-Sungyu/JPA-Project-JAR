@@ -1,23 +1,11 @@
 package com.app.projectjar.repository.challenge;
 
 
-import com.app.projectjar.entity.challenge.ChallengeAttend;
-import com.app.projectjar.entity.challenge.QChallengeReply;
-import com.app.projectjar.entity.file.challenge.QChallengeFile;
-import com.app.projectjar.entity.personalChallenge.QPersonalChallenge;
-import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
-
-import static com.app.projectjar.entity.challenge.QChallenge.challenge;
-import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
-import static com.app.projectjar.entity.member.QMember.member;
-import static com.app.projectjar.entity.personalChallenge.QPersonalChallenge.personalChallenge;
 
 @RequiredArgsConstructor
 public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
@@ -74,11 +62,12 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
     //    개인 챌린지 목록(댓글 갯수)
     @Override
     public Long getChallengeReplyCount_QueryDsl(Long challengeId) {
-        QChallengeReply challengeReply = QChallengeReply.challengeReply;
-
-        return query.select(challengeReply.count())
-                .from(challengeReply)
-                .where(challengeReply.personalChallenge.id.eq(challengeId))
-                .fetchOne();
+//        QChallengeReply challengeReply = QChallengeReply.challengeReply;
+//
+//        return query.select(challengeReply.count())
+//                .from(challengeReply)
+//                .where(challengeReply.personalChallenge.id.eq(challengeId))
+//                .fetchOne();
+        return null;
     }
 }

@@ -33,4 +33,16 @@ public class GroupChallengeAttend extends Period {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
+
+    @Builder
+    public GroupChallengeAttend(Long id, GroupChallengeAttendType groupChallengeAttendStatus, GroupChallenge groupChallenge, Member member) {
+        this.id = id;
+        this.groupChallengeAttendStatus = groupChallengeAttendStatus;
+        this.groupChallenge = groupChallenge;
+        this.member = member;
+    }
+
+    public void setGroupChallengeAttendStatus(GroupChallengeAttendType groupChallengeAttendStatus) {
+        this.groupChallengeAttendStatus = groupChallengeAttendStatus;
+    }
 }

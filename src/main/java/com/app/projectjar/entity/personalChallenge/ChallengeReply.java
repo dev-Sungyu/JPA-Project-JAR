@@ -1,4 +1,4 @@
-package com.app.projectjar.entity.challenge;
+package com.app.projectjar.entity.personalChallenge;
 
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;

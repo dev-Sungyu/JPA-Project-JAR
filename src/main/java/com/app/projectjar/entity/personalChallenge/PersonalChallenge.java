@@ -23,7 +23,7 @@ public class PersonalChallenge extends Period {
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("'PRIVATE'")
+    @ColumnDefault("'OPEN'")
     private ChallengeType challengeStatus;
 
     @Column(columnDefinition = "integer default 0")

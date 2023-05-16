@@ -3,6 +3,7 @@ package com.app.projectjar.service.diary;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.entity.diary.Diary;
+import com.app.projectjar.repository.diary.DiaryReplyRepository;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import com.app.projectjar.repository.file.diary.DiaryFileRepository;
 import com.app.projectjar.type.FileType;
@@ -25,6 +26,8 @@ public class DiaryServiceImpl implements DiaryService {
     private final DiaryRepository diaryRepository;
 
     private final DiaryFileRepository diaryFileRepository;
+
+    private final DiaryReplyRepository diaryReplyRepository;
 
     @Override
     public Page<DiaryDTO> getAllDiarysWithPaging(int page) {
@@ -85,6 +88,16 @@ public class DiaryServiceImpl implements DiaryService {
                 diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
             }
         }
+    }
+
+    @Override @Transactional
+    public void delete(Long diaryId) {
+       diaryRepository.findById(diaryId).ifPresent(
+               diary -> {
+                   diaryReplyRepository.deleteByDiaryId(diaryId);
+                   diaryRepository.deleteByDiaryId_QueryDsl(diaryId);
+               }
+       );
     }
 
     @Override

@@ -27,6 +27,9 @@ public interface DiaryService {
 //    수정
     public void modifyDiary(DiaryDTO diaryDTO);
 
+//    삭제
+    public void delete(Long diaryId);
+
     // 현재 시퀀스 가져오기
     public Diary getCurrentSequence();
 

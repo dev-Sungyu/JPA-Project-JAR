@@ -1,10 +1,6 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.entity.challenge.ChallengeAttend;
-import com.app.projectjar.entity.file.member.MemberFile;
-import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.type.BadgeType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -15,11 +11,13 @@ public interface MemberQueryDsl {
     /* 로그인 */
 
 //    이메일 중복 검사
-    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail);
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail);
 
 //    휴대폰 중복 검사
-    public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
+    public Long overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
 
+//    닉네임 중복검사
+    public Long overlapByNickName_QueryDSL(String memberNickName);
 
 //    비밀 번호 찾기
     public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail);

@@ -11,6 +11,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ import java.util.List;
 public class GroupChallenge extends Board {
     @NotNull
     @Enumerated(EnumType.STRING)
-    @ColumnDefault("'PRIVATE'")
+    @ColumnDefault("'WAIT'")
     private GroupChallengeType groupChallengeStatus;
     @NotNull
     private LocalDate startDate;
@@ -32,6 +33,9 @@ public class GroupChallenge extends Board {
     private LocalDate endDate;
     @Column(columnDefinition = "integer default 0")
     private Integer groupChallengeReplyCount;
+
+    @Column(columnDefinition = "integer default 0")
+    private Integer groupChallengeAttendCount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
@@ -47,12 +51,22 @@ public class GroupChallenge extends Board {
         this.groupChallengeReplyCount = groupChallengeReplyCount;
     }
 
+    public void setGroupChallengeAttendCount(Integer groupChallengeAttendCount) {
+        this.groupChallengeAttendCount = groupChallengeAttendCount;
+    }
+
+    public void setGroupChallengeStatus(GroupChallengeType groupChallengeStatus) {
+        this.groupChallengeStatus = groupChallengeStatus;
+    }
+
     @Builder
-    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, List<GroupChallengeFile> groupChallengeFiles) {
+    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer groupChallengeAttendCount, List<GroupChallengeFile> groupChallengeFiles) {
         super(id, boardTitle, boardContent);
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.groupChallengeReplyCount = groupChallengeReplyCount;
+        this.groupChallengeAttendCount = groupChallengeAttendCount;
         this.groupChallengeFiles = groupChallengeFiles;
     }
 }
