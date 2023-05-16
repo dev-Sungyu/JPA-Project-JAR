@@ -1,14 +1,11 @@
 package com.app.projectjar.repository.personalChallenge;
 
-import com.app.projectjar.entity.challenge.QChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
-import com.app.projectjar.entity.personalChallenge.QPersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
@@ -19,12 +16,24 @@ public class PersonalChallengeQueryDslImpl implements PersonalChallengeQueryDsl 
     private final JPAQueryFactory query;
 
     @Override
-    public List<PersonalChallenge> findAllByChallengeStatusToOpen() {
+    public List<PersonalChallenge> findAllByChallengeStatus(String challengeStatus) {
         List<PersonalChallenge> personalChallengeList = query.select(personalChallenge)
                 .from(personalChallenge)
                 .leftJoin(personalChallenge.challenge, challenge)
                 .fetchJoin()
-                .where(personalChallenge.challengeStatus.eq(ChallengeType.valueOf("OPEN")))
+                .where(challengeStatus.equals("OPEN") ? personalChallenge.challengeStatus.eq(ChallengeType.OPEN) : personalChallenge.challengeStatus.eq(ChallengeType.PRIVATE))
+                .fetch();
+
+        return personalChallengeList;
+    }
+
+    @Override
+    public List<PersonalChallenge> findByCreateDateYesterday(LocalDateTime localDateTime) {
+        List<PersonalChallenge> personalChallengeList = query.select(personalChallenge)
+                .from(personalChallenge)
+                .leftJoin(personalChallenge.challenge, challenge)
+                .fetchJoin()
+                .where(personalChallenge.createdDate.eq(localDateTime))
                 .fetch();
 
         return personalChallengeList;

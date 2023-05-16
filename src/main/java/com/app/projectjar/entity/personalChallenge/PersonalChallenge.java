@@ -29,8 +29,31 @@ public class PersonalChallenge extends Period {
     @Column(columnDefinition = "integer default 0")
     private Integer challengeReplyCount;
 
+    @Column(columnDefinition = "integer default 0")
+    private Integer challengeAttendCount;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "CHALLENGE_ID")
     private Challenge challenge;
 
+
+    @Builder
+    public PersonalChallenge(Long id, ChallengeType challengeStatus, Integer challengeReplyCount, Challenge challenge) {
+        this.id = id;
+        this.challengeStatus = challengeStatus;
+        this.challengeReplyCount = challengeReplyCount;
+        this.challenge = challenge;
+    }
+
+    public void setChallengeStatus(ChallengeType challengeStatus) {
+        this.challengeStatus = challengeStatus;
+    }
+
+    public void setChallengeReplyCount(Integer challengeReplyCount) {
+        this.challengeReplyCount = challengeReplyCount;
+    }
+
+    public void setChallengeAttendCount(Integer challengeAttendCount) {
+        this.challengeAttendCount = challengeAttendCount;
+    }
 }
