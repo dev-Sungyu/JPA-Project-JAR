@@ -28,9 +28,9 @@
                                 <div class="login"><!--  -->
                                     <div class="login"><!-- 공지사항 목록 -->
                                         <div class="login_margin" th:each="inquireDTO : ${inquireDTOS}">
-                                            <a class="login_margin_a" th:href="@{detail/{id}(id=${inquireDTO.id})">
+                                            <a class="login_margin_a" th:href="@{detail/{id}(id=${inquireDTO.id})}" th:text="${inquireDTO.inquireTitle}">
                                                 <div class="notice_list">
-                                                    <p class="notice_list_p" th:text="{inquireDTO. iquireTitle}">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</p>
+                                                    <p class="notice_list_p" th:text="${inquireDTO.inquireContent}">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</p>
                                                     <div class="align">
                                                         <!-- <p class="important">미답변</p> -->
                                                         <img src="/image/board/V_icon.png" alt="" class="inquire-icon">
@@ -38,7 +38,8 @@
                                                 </div>
                                             </a>
                                         </div>
-<!--                                        <div class="important_div"></div>-->
+
+                                        <!--                                        <div class="important_div"></div>-->
 <!--                                        <div class="login_margin">-->
 <!--                                            <a class="login_margin_a">-->
 <!--                                                <div class="notice_list">-->
