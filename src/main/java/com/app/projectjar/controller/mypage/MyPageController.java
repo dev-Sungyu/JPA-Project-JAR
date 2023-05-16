@@ -86,36 +86,53 @@ public class MyPageController {
     @GetMapping("inquire-list")
     @ResponseBody
     public Page<InquireDTO> inquire(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
-        log.info(id.toString());
         PageRequest pageable = PageRequest.of(page, 6);
         Page<InquireDTO> inquireDTOS = inquireService.getInquireForMemberIdList(pageable, id);
         return inquireDTOS;
     }
 
-    @GetMapping("propasal")
+//
+//    @PostMapping("delete/{boardId}")
+//    public RedirectView deleteInquire(@PathVariable("boardId") Long boardId){
+//        suggestService.delete(boardId);
+//        return new RedirectView("/mypage/inquir-list");
+//    }
+
+
+    @GetMapping("propsal")
     public void goToPropasal(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
     }
 
     @GetMapping("propsal-list")
     @ResponseBody
-    public Page<SuggestDTO> propsal(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
-        Long memberId = userDetail.getId();
+    public Page<SuggestDTO> propsal(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
-        Page<SuggestDTO> suggestDTOS = suggestService.getSuggestForMemberIdList(pageable, memberId);
+        Page<SuggestDTO> suggestDTOS = suggestService.getSuggestForMemberIdList(pageable, id);
         return suggestDTOS;
     }
 
+//    @DeleteMapping("propsal-delete")
+//    @ResponseBody
+//    public void removeSuggest(){
+//    }
+
     @GetMapping("share")
-    public void goToshare(){}
+    public void goToshare(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
 
     @GetMapping("share-list")
-    public Page<DiaryDTO> share(@AuthenticationPrincipal UserDetail userDetail, @RequestParam(defaultValue = "0", name = "page") int page){
-        Long memberId = userDetail.getId();
+    public Page<DiaryDTO> share(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
-        Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, memberId);
+        Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, id);
         return diaryDTOS;
     }
+
+//    @PostMapping("delete/{boardId}")
+//    public void removeDiary(){
+//    }
+
 
     @GetMapping("suggest-like-list")
     public void suggestLikelist(){}
