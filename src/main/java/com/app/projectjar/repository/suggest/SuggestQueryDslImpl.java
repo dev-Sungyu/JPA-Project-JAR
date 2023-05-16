@@ -100,6 +100,21 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
         return new PageImpl<>(foundSuggests, pageable, count);
     }
+/*메인 페이지*/
+    // 페이징 없는 전체 조회
+    @Override
+    public List<Suggest> findAllWithoutPaging_QueryDsl() {
+        List<Suggest> foundSuggests = query.select(suggest)
+                .from(suggest)
+                .distinct()
+                .leftJoin(suggest.suggestFiles, suggestFile)
+                .fetchJoin()
+                .orderBy(suggest.id.desc())
+                .fetch();
+
+        return foundSuggests;
+    }
+
 
     /*검색*/
     @Override

@@ -51,7 +51,7 @@ $secondNext.click(() => {
 
     $secondPrev.show();
 
-    if(checkCount2 == $secondContentAll.length - 3) {
+    if(checkCount2 == globalThis.suggestLength - 3) {
         $secondNext.hide();
     }
 });

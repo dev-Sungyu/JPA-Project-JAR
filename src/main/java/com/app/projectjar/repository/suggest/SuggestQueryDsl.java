@@ -28,6 +28,11 @@ public interface SuggestQueryDsl {
     // 전체 조회
     public Page<Suggest> findAllWithPaging_QueryDsl(Pageable pageable);
 
+    /*메인 페이지*/
+
+    // 페이징 없는 전체조회
+    List<Suggest> findAllWithoutPaging_QueryDsl();
+
 
     //    검색
     public List<Suggest> findAllWithSearch(BoardSearch boardSearch);
