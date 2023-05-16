@@ -204,8 +204,12 @@ public class AdminController {
     }
 
     @GetMapping("board/groupChallenge/detail/{groupChallengeId}")
-    public void adminGroupChallengeDetail(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
+    public String adminGroupChallengeDetail(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
+        GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
 
+        model.addAttribute("groupChallengeDTO", groupChallengeDTO);
+
+        return "admin/board/groupChallenge/detail";
     }
     @GetMapping("board/groupChallenge/list")
     public String adminGroupChallengeList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {

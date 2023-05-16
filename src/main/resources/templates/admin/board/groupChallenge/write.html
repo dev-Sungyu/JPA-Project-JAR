@@ -40,7 +40,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
+                            <a th:href="@{/admin/board/groupChallenge/list}">
                                 <img src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -55,12 +55,12 @@
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <form action="">
+                                    <form th:action="@{/admin/board/groupChallenge/write}" method="post" enctype="multipart/form-data" name="form">
                                         <input type="hidden" name="boardId" value="">
                                         <!-- <input type="hidden" name="page" value=""> -->
                                         <div>
-                                            <input type="text" class="board-title" name="boardTitle"
-                                                placeholder="제목을 입력해주세요." autocomplete="off" value="">
+                                            <input type="text" class="board-title" name="groupChallengeTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off" th:value="${groupChallengeDTO.boardTitle}">
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="selection_label is-inline-block" for="">
@@ -71,10 +71,10 @@
                                         </div>
                                         <div class="select_date_wrapper">
                                             <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startdate" />
+                                                name="startDate" th:value="${groupChallengeDTO.startDate}" />
                                             <span> ~ </span>
                                             <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="enddate" />
+                                                name="endDate" th:value="${groupChallengeDTO.endDate}"/>
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
@@ -87,7 +87,7 @@
                                         <hr>
                                         <div>
                                             <textarea class="board-content" name="boardContent"
-                                                placeholder="내용을 입력해주세요."></textarea>
+                                                placeholder="내용을 입력해주세요." th:text="${groupChallengeDTO.boardContent}"></textarea>
                                         </div>
                                         <section class="img_wrapper_box">
                                             <div class="img_ul_wrapper">
@@ -111,7 +111,19 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/button_change_action.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script>
+<script src="/js/admin/board/challenge/group/write.js"></script>
+<script th:inline="javascript">
+    let fileDTOS = null;
+    let groupChallengeDTO = [[${groupChallengeDTO}]];
+    if(groupChallengeDTO == null || groupChallengeDTO == undefined){
+    }else {
+        fileDTOS = groupChallengeDTO.fileDTOS;
+    }
+
+
+
+
+
     $(document).ready(() => {
         $("#header").load("../../main/header.html");
         $("#footer").load("../../main/footer.html");
