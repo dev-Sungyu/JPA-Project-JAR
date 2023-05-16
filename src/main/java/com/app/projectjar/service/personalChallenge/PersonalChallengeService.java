@@ -6,6 +6,8 @@ import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import java.util.List;
 
 public interface PersonalChallengeService {
 
-    // challengeStatus가 open인 목록
-    public List<PersonalChallengeDTO> getListToOpen();
+    // 목록 가져오기
+    public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable);
 
     // 어제 insert된 목록
     public List<PersonalChallenge> getListToYesterday(LocalDateTime yesterday);

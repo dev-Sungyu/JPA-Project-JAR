@@ -4,6 +4,9 @@ import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,15 +19,23 @@ public class PersonalChallengeQueryDslImpl implements PersonalChallengeQueryDsl 
     private final JPAQueryFactory query;
 
     @Override
-    public List<PersonalChallenge> findAllByChallengeStatus(String challengeStatus) {
+    public Page<PersonalChallenge> findAllByChallengeStatus(String challengeStatus, Pageable pageable) {
         List<PersonalChallenge> personalChallengeList = query.select(personalChallenge)
                 .from(personalChallenge)
                 .leftJoin(personalChallenge.challenge, challenge)
                 .fetchJoin()
                 .where(challengeStatus.equals("OPEN") ? personalChallenge.challengeStatus.eq(ChallengeType.OPEN) : personalChallenge.challengeStatus.eq(ChallengeType.PRIVATE))
+                .orderBy(personalChallenge.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
                 .fetch();
 
-        return personalChallengeList;
+        Long count = query.select(personalChallenge.count())
+                            .from(personalChallenge)
+                            .where(challengeStatus.equals("OPEN") ? personalChallenge.challengeStatus.eq(ChallengeType.OPEN) : personalChallenge.challengeStatus.eq(ChallengeType.PRIVATE))
+                            .fetchOne();
+
+        return new PageImpl<>(personalChallengeList, pageable, count);
     }
 
     @Override

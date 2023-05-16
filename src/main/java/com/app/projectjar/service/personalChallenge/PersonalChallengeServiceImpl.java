@@ -1,17 +1,22 @@
 package com.app.projectjar.service.personalChallenge;
 
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -21,15 +26,14 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     private final PersonalChallengeRepository personalChallengeRepository;
 
     @Override
-    public List<PersonalChallengeDTO> getListToOpen() {
-        List<PersonalChallengeDTO> challengeDTOList = new ArrayList<>();
+    public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable) {
+        Page<PersonalChallenge> personalChallenges = personalChallengeRepository.findAllByChallengeStatus(challengeStatus, pageable);
 
-        personalChallengeRepository.findAllByChallengeStatus().stream().forEach(
-                personalChallenge -> {
-                    challengeDTOList.add(toPersonalChallengeDTO(personalChallenge));
-                }
-        );
-        return challengeDTOList;
+        List<PersonalChallengeDTO> personalChallengeDTOS = personalChallenges.getContent().stream()
+                .map(this::toPersonalChallengeDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(personalChallengeDTOS, pageable, personalChallenges.getTotalElements());
     }
 
     @Override
