@@ -36,6 +36,7 @@ public interface GroupChallengeService {
                 .groupChallengeReplyCount(groupChallenge.getGroupChallengeReplyCount())
                 .groupChallengeStatus(groupChallenge.getGroupChallengeStatus())
                 .replyCount(groupChallenge.getGroupChallengeReplyCount())
+                .attendCount(groupChallenge.getGroupChallengeAttendCount())
                 .build();
     }
 
