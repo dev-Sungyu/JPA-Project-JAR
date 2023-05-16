@@ -42,6 +42,7 @@ label {
 
 @media (min-width: 1240px) {
     .modify-wrap {
+        margin-top: 40px;
         max-width: 1176px;
         width: 100%;
         margin-left: auto;

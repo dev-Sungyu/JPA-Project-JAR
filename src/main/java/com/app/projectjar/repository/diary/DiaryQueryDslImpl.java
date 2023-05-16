@@ -114,5 +114,12 @@ public class DiaryQueryDslImpl implements DiaryQueryDsl {
                 .fetchOne();
     }
 
+    @Override
+    public void deleteByDiaryId_QueryDsl(Long diaryId) {
+        query.delete(diary)
+                .where(diary.id.eq(diaryId))
+                .execute();
+    }
+
 
 }
