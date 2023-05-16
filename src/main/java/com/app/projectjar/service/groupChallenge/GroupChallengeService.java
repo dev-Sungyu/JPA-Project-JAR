@@ -7,6 +7,7 @@ import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,18 @@ public interface GroupChallengeService {
 
     // 현재 시퀀스 가져오기
     public GroupChallenge getCurrentSequence();
+
+    // 어제 날짜가 종료인 게시물 목록 가져오기
+    public List<GroupChallenge> getListByEndDate(LocalDate endDate);
+
+    // 오늘 날짜가 시작인 게시물 목록 가져오기
+    public List<GroupChallenge> getListByStartDate(LocalDate startDate);
+
+    // status OPEN으로 변경
+    public void updateGroupChallengeTypeToOpen(List<GroupChallenge> groupChallengeList);
+
+    // status PRIVATE로 변경
+    public void updateGroupChallengeTypeToPrivate(List<GroupChallenge> groupChallengeList);
 
     default GroupChallengeDTO toGroupChallengeDTO(GroupChallenge groupChallenge) {
         return GroupChallengeDTO.builder()

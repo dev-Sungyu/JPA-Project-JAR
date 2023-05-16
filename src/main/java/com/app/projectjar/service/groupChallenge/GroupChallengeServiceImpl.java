@@ -3,6 +3,7 @@ package com.app.projectjar.service.groupChallenge;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
+import com.app.projectjar.type.GroupChallengeType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,6 +59,37 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     public GroupChallenge getCurrentSequence() {
         return groupChallengeRepository.getCurrentSequence_QueryDsl();
     }
+
+    @Override
+    public List<GroupChallenge> getListByEndDate(LocalDate endDate) {
+        return groupChallengeRepository.findByEndDate(endDate);
+    }
+
+    @Override
+    public List<GroupChallenge> getListByStartDate(LocalDate startDate) {
+        return groupChallengeRepository.findByStartDate(startDate);
+    }
+
+    @Override
+    public void updateGroupChallengeTypeToOpen(List<GroupChallenge> groupChallengeList) {
+        groupChallengeList.stream().forEach(
+                groupChallenge -> {
+                    groupChallenge.setGroupChallengeStatus(GroupChallengeType.OPEN);
+                    groupChallengeRepository.save(groupChallenge);
+                }
+        );
+    }
+
+    @Override
+    public void updateGroupChallengeTypeToPrivate(List<GroupChallenge> groupChallengeList) {
+        groupChallengeList.stream().forEach(
+                groupChallenge -> {
+                    groupChallenge.setGroupChallengeStatus(GroupChallengeType.PRIVATE);
+                    groupChallengeRepository.save(groupChallenge);
+                }
+        );
+    }
+
 
     @Override
     public void deleteGroupChallenges(List<Long> groupChallengeIds) {
