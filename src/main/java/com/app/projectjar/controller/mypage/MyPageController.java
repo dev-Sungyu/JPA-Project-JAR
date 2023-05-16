@@ -91,7 +91,7 @@ public class MyPageController {
         return inquireDTOS;
     }
 
-    @DeleteMapping("delete/{boardId}")
+    @DeleteMapping("delete-inquire/{boardId}")
     @ResponseBody
     public void deleteInquire(@PathVariable("boardId") Long boardId){
         inquireService.deleteInquire(boardId);
@@ -110,7 +110,7 @@ public class MyPageController {
         return suggestDTOS;
     }
 
-    @DeleteMapping("delete/{boardId}")
+    @DeleteMapping("delete-suggest/{boardId}")
     @ResponseBody
     public void deletePropsal(@PathVariable("boardId") Long boardId){
         suggestService.delete(boardId);
@@ -135,9 +135,10 @@ public class MyPageController {
         return diaryDTOS;
     }
 
-    @DeleteMapping("delete/{boardId")
+    @DeleteMapping("delete-diary/{boardId}")
     @ResponseBody
     public void deleteShare(@PathVariable("boardId") Long boardId){
+        diaryService.delete(boardId);
     }
 
     @GetMapping("suggest-like-list")

@@ -3,12 +3,15 @@ let page = 0;
 // page = $('.paging-active div').text();
 
 suggestService = (function () {
+    console.log("들어옴1");
     function list(page, callback) {
+        console.log("들어옴2");
         $.ajax({
             url: '/mypage/propsal-list',
             type: 'get',
             data: page,
             success: function(list){
+                console.log("들어옴3");
                 if(callback){
                     callback(list);
                     console.log(list);
@@ -83,7 +86,7 @@ function listText(list) {
                                                 <p class="date">${createDate}</p>
                                                 <div>
                                                     <button type="button" class="btn modify-btn" onclick="location.href='/board/suggest/modify/${suggestDTO.id}'">수정</button>
-                                                    <button type="button" class="btn delete-btn" onclick="deleteSuggests(${suggestDTO.id})">삭제</button>
+                                                    <button type="button" class="btn delete-btn" onclick="deleteSuggest(${suggestDTO.id})">삭제</button>
                                                 </div>
                                             </div>
                                             <a href="/board/suggest/detail/${suggestDTO.id}">
@@ -106,13 +109,14 @@ function listText(list) {
 
 
 function getList(page, memberId) {
+    console.log("들어옴4");
     suggestService.list({
         page: page,
         memberId : memberId
     }, function (list) {
-        // window.scrollTo(0, 0);
         $ul.append(listText(list));
         displayPagination(list.totalPages);
+
 
     });
 }
@@ -122,9 +126,9 @@ function getNewList(page, memberId) {
         page: page,
         memberId : memberId
     }, function (list) {
-        // window.scrollTo(0, 0);
         $ul.html(listText(list));
         displayPagination(list.totalPages);
+        console.log("들어옴5");
 
     });
 }
@@ -143,9 +147,10 @@ function getDate(register){
 }
 
 
-function deleteSuggests(boardId) {
+function deleteSuggest(boardId) {
+    console.log("들어옴6")
     $.ajax({
-        url: `/mypage/delete/${boardId}`,
+        url: `/mypage/delete-suggest/${boardId}`,
         type: "DELETE",
         contentType: "application/json",
         data: JSON.stringify(boardId),
@@ -153,11 +158,8 @@ function deleteSuggests(boardId) {
         success: function() {
             console.log(page);
             suggestService;
-            getNewList(page , memberId);
-            alert("success")
-        },
-        error: function() {
-            alert("게시물 삭제에 실패했습니다.");
+            getNewList(page, memberId);
+            console.log("success");
         }
     });
 }

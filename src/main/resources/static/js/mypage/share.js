@@ -2,12 +2,15 @@ const $ul = $(".list-box");
 let page = 0;
 
 diaryService = (function () {
+    console.log("들어옴1");
     function list(page, callback) {
+        console.log("들어옴2");
         $.ajax({
             url: '/mypage/share-list',
             type: 'get',
             data: page,
             success: function (list) {
+                console.log("들어옴3");
                 if (callback) {
                     callback(list);
                     console.log(list);
@@ -74,17 +77,17 @@ function displayPagination(totalPages) {
 function listText(list) {
     let diaryDTOS = list.content;
     console.log(diaryDTOS);
+
     let text = '';
     $(diaryDTOS).each((i, diaryDTO) => {
         var createDate = getDate(diaryDTO.createDate);
-        console.log(diaryDTOS);
         text += `
                                         <div class="list-layout">
                                             <div class="flex-between">
                                                 <p class="date">${createDate}</p>
                                                 <div>
-                                                    <button type="button" class="btn modify-btn">수정</button>
-                                                    <button type="button" class="btn delete-btn">삭제</button>
+                                                    <button type="button" class="btn modify-btn" onclick="location.href='/board/dairy/modify'${diaryDTO.id}">수정</button>
+                                                    <button type="button" class="btn delete-btn" onclick="deleteDiaray(${diaryDTO.id})">삭제</button>
                                                 </div>
                                             </div>
                                             <a href="/board/diary/detail/${diaryDTO.id}">
@@ -97,18 +100,30 @@ function listText(list) {
 
 
     });
-    $ul.append(text);
+    return text;
 
 }
 
 function getList(page, memberId) {
+    console.log("들어옴4");
     diaryService.list({
         page: page,
         memberId : memberId
     }, function (list) {
-        window.scrollTo(0, 0);
-        listText(list);
+        $ul.append(listText(list));
         displayPagination(list.totalPages);
+
+    });
+}
+
+function getNewList(page, memberId) {
+    diaryService.list({
+        page: page,
+        memberId : memberId
+    }, function (list) {
+        $ul.html(listText(list));
+        displayPagination(list.totalPages);
+        console.log("들어옴5");
 
     });
 }
@@ -124,6 +139,23 @@ function getDate(register){
 
     return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
     // 2021-01-01
+}
+
+function deleteDiaray(boardId) {
+    console.log("들어옴6")
+    $.ajax({
+        url: `/mypage/delete-diary/${boardId}`,
+        type: "DELETE",
+        contentType: "application/json",
+        data: JSON.stringify(boardId),
+        traditional: true,
+        success: function() {
+            console.log(page);
+            diaryService;
+            getNewList(page, memberId);
+            console.log("success");
+        }
+    });
 }
 
 
