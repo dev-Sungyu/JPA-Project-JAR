@@ -11,7 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Random;
 
 @Controller
 @RequestMapping("/member/*")
@@ -52,6 +55,22 @@ public class MemberController {
 
     @GetMapping("logout")
     public void goToLogOut(){;}
+
+    //    인증번호 보내기
+    @PostMapping("sendCode")
+    @ResponseBody
+    public String sendCode(String memberPhone) {
+        Random random = new Random();
+
+        String code = "";
+        for (int i = 0; i < 6; i++) {
+            String number = Integer.toString(random.nextInt(10));
+            code += number;
+        }
+
+        memberService.checkSMS(memberPhone, code);
+        return code;
+    }
 
 
 }

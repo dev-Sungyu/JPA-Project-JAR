@@ -121,7 +121,6 @@ function getList(page, memberId) {
         page: page,
         memberId : memberId
     }, function (list) {
-        window.scrollTo(0, 0);
         listText(list);
         displayPagination(list.totalPages);
 

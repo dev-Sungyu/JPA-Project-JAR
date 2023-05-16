@@ -91,6 +91,12 @@ public class MyPageController {
         return inquireDTOS;
     }
 
+    @DeleteMapping("delete/{boardId}")
+    @ResponseBody
+    public void deleteInquire(@PathVariable("boardId") Long boardId){
+        inquireService.deleteInquire(boardId);
+    }
+
     @GetMapping("propsal")
     public void goToPropsal(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
@@ -104,23 +110,15 @@ public class MyPageController {
         return suggestDTOS;
     }
 
-//    @GetMapping("")
-//    public void getToSuggest(Model model){
-//        model.addAttribute();
-//
-//    }
-
-
     @DeleteMapping("delete/{boardId}")
     @ResponseBody
-    public void delete(@PathVariable("boardId") Long boardId){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@");
+    public void deletePropsal(@PathVariable("boardId") Long boardId){
         suggestService.delete(boardId);
     }
 
 
     @GetMapping("share")
-    public void goToshare(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public void goToShare(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
     }
 
@@ -135,6 +133,11 @@ public class MyPageController {
         diaryDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
         log.info("================");
         return diaryDTOS;
+    }
+
+    @DeleteMapping("delete/{boardId")
+    @ResponseBody
+    public void deleteShare(@PathVariable("boardId") Long boardId){
     }
 
     @GetMapping("suggest-like-list")

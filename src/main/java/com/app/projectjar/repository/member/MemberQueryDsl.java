@@ -15,11 +15,13 @@ public interface MemberQueryDsl {
     /* 로그인 */
 
 //    이메일 중복 검사
-    public Optional<Member> overlapByMemberEmail_QueryDSL(String memberEmail);
+    public Long overlapByMemberEmail_QueryDSL(String memberEmail);
 
 //    휴대폰 중복 검사
-    public Optional<Member> overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
+    public Long overlapByPhoneNumber_QueryDSL(String memberPhoneNumber);
 
+//    닉네임 중복검사
+    public Long overlapByNickName_QueryDSL(String memberNickName);
 
 //    비밀 번호 찾기
     public Optional<Member> findByMemberEmailForPassword_QueryDSL(String memberEmail);
