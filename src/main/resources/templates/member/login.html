@@ -173,33 +173,33 @@ let errorMsg = "아이디 또는 비밀번호를 다시 확인하세요.";
 let emailInput = document.querySelector('input[name=email]');
 
 // 로그인 실패시 나오는 모달창
-login_btn.addEventListener("click", function () {
-    alertModal(errorMsg);
-});
+// login_btn.addEventListener("click", function () {
+//     alertModal(errorMsg);
+// });
 
-function alertModal(errorMsg) {
-    $(".alert").text(errorMsg);
-    $alertModal.show();
-    setTimeout(function () {
-        $alertModal.hide();
-    }, 2000);
-}
+// function alertModal(errorMsg) {
+//     $(".alert").text(errorMsg);
+//     $alertModal.show();
+//     setTimeout(function () {
+//         $alertModal.hide();
+//     }, 2000);
+// }
 // 로그인 실패시 나오는 빨간줄
-    $(".login_btn").click(function() {
-        $("#red_email").css('display', 'block');
-        $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
-        $("#red_password").css('display', 'block');
-        $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
-    });
-
-    $("input[name='memberEmail']").keyup(function() {
-        $("#red_email").css('display', 'none');
-        $("input[name='memberEmail']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    });
-    $("input[name='memberPassword']").keyup(function() {
-        $("#red_password").css('display', 'none');
-        $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    });
+//     $(".login_btn").click(function() {
+//         $("#red_email").css('display', 'block');
+//         $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
+//         $("#red_password").css('display', 'block');
+//         $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
+//     });
+//
+//     $("input[name='memberEmail']").keyup(function() {
+//         $("#red_email").css('display', 'none');
+//         $("input[name='memberEmail']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+//     });
+//     $("input[name='memberPassword']").keyup(function() {
+//         $("#red_password").css('display', 'none');
+//         $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+//     });
 
 
 // 비밀번호 눈표시 JS
