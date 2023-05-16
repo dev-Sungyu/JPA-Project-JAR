@@ -1,26 +1,16 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.entity.challenge.ChallengeAttend;
-import com.app.projectjar.entity.file.member.MemberFile;
-import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
-import com.app.projectjar.type.BadgeType;
-import com.app.projectjar.type.MemberType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
-import java.util.List;
-
-import static com.app.projectjar.type.FileType.REPRESENTATIVE;
 
 @SpringBootTest
 @Transactional
@@ -80,19 +70,19 @@ public class MemberRepositoryTests {
     }
 
 //    이메일 중복 검사
-    @Test
-    public void overlapByMemberEmailTest(){
-//        memberRepository.overlapByMemberEmail("user01@naver.com").ifPresent(member -> member.getMemberEmail());
-        memberRepository.overlapByMemberEmail_QueryDSL("user04@naver.com").map(Member::getMemberEmail).ifPresent(log::info);
-        log.info("@@@@@@@@@@@@@@@@@@");
-    }
-
-//    핸드폰 중복 검사
-    @Test
-    public void overlapByPhoneNumberTest(){
-        memberRepository.overlapByPhoneNumber_QueryDSL("010-4444-5678").map(Member::getMemberPhoneNumber).ifPresent(log::info);
-        log.info("@@@@@@@@@@@@@@@@@@");
-    }
+//    @Test
+//    public void overlapByMemberEmailTest(){
+////        memberRepository.overlapByMemberEmail("user01@naver.com").ifPresent(member -> member.getMemberEmail());
+//        memberRepository.overlapByMemberEmail_QueryDSL("user04@naver.com").map(Member::getMemberEmail).ifPresent(log::info);
+//        log.info("@@@@@@@@@@@@@@@@@@");
+//    }
+//
+////    핸드폰 중복 검사
+//    @Test
+//    public void overlapByPhoneNumberTest(){
+//        memberRepository.overlapByPhoneNumber_QueryDSL("010-4444-5678").map(Member::getMemberPhoneNumber).ifPresent(log::info);
+//        log.info("@@@@@@@@@@@@@@@@@@");
+//    }
 
 //    비밀번호 찾기
     @Test

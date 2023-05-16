@@ -12,10 +12,10 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 import java.util.Optional;
 
-import static com.app.projectjar.entity.challenge.QChallengeAttend.challengeAttend;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
 
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
