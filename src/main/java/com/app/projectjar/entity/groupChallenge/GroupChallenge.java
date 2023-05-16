@@ -55,6 +55,10 @@ public class GroupChallenge extends Board {
         this.groupChallengeAttendCount = groupChallengeAttendCount;
     }
 
+    public void setGroupChallengeStatus(GroupChallengeType groupChallengeStatus) {
+        this.groupChallengeStatus = groupChallengeStatus;
+    }
+
     @Builder
     public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer groupChallengeAttendCount, List<GroupChallengeFile> groupChallengeFiles) {
         super(id, boardTitle, boardContent);

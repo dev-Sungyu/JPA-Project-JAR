@@ -144,7 +144,7 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
                 .from(groupChallenge)
                 .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
                 .fetchJoin()
-                .where(groupChallenge.startDate.eq(endDate))
+                .where(groupChallenge.endDate.eq(endDate))
                 .fetch();
     }
 

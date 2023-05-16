@@ -36,8 +36,8 @@ public class GroupChallengeRepositoryTests {
                     "그룹 챌린지 제목" + (i + 1),
                     "그룹 챌린지 내용" + (i + 1),
                     GroupChallengeType.WAIT,
-                    LocalDate.now(),
-                    LocalDate.now()));
+                    LocalDate.of(2023,05,16),
+                    LocalDate.of(2023,05,20)));
         }
     }
 
