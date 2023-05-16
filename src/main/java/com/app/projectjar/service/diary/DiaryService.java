@@ -35,6 +35,7 @@ public interface DiaryService {
                 .likeCount(diary.getDiaryLikeCount())
                 .memberDTO(toMemberDTO(diary.getMember()))
                 .replyCount(diary.getDiaryReplyCount())
+                .createDate(diary.getCreatedDate())
                 .build();
     }
 

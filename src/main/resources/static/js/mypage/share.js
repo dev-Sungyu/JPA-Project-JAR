@@ -77,7 +77,7 @@ function listText(list) {
     let text = '';
     $(diaryDTOS).each((i, diaryDTO) => {
         var createDate = getDate(diaryDTO.createDate);
-
+        console.log(diaryDTOS);
         text += `
                                         <div class="list-layout">
                                             <div class="flex-between">
@@ -87,9 +87,9 @@ function listText(list) {
                                                     <button type="button" class="btn delete-btn">삭제</button>
                                                 </div>
                                             </div>
-                                            <a href="javascript:void(0)">
+                                            <a href="/board/diary/detail/${diaryDTO.id}">
                                                 <div class="list-content-title-box">
-                                                    <h3>${diaryDTO.diaryTitle}</h3>
+                                                    <h3>${diaryDTO.boardTitle}</h3>
                                                 </div>
                                             </a>
                                         </div>

@@ -24,8 +24,10 @@ public class DiaryDTO {
     private MemberDTO memberDTO;
     private List<FileDTO> fileDTOS;
 
+    private LocalDateTime createDate;
+
     @Builder
-    public DiaryDTO(Long id, String boardTitle, String boardContent, DiaryType diaryStatus, LocalDateTime start, LocalDateTime end, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS) {
+    public DiaryDTO(Long id, String boardTitle, String boardContent, DiaryType diaryStatus, LocalDateTime start, LocalDateTime end, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS, LocalDateTime createDate) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -36,5 +38,6 @@ public class DiaryDTO {
         this.replyCount = replyCount;
         this.memberDTO = memberDTO;
         this.fileDTOS = fileDTOS;
+        this.createDate = createDate;
     }
 }

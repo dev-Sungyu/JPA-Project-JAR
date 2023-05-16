@@ -1,7 +1,7 @@
 const $ul =$(".list-box")
 let page = 0;
 
-propsalService = (function () {
+suggestService = (function () {
     function list(page, callback) {
         $.ajax({
             url: '/mypage/propsal-list',
@@ -74,8 +74,8 @@ function listText(list) {
     console.log(suggestDTOS);
     let text = '';
 
-    $(suggestDTOS).each((i, sugeestDTO) => {
-    var createDate = getDate(suggestDTO.createDate);
+    $(suggestDTOS).each((i, suggestDTO) => {
+    var createDate = getDate(suggestDTO.createdDate);
         text += `
                                         <div class="list-layout">
                                             <div class="flex-between">
@@ -85,9 +85,9 @@ function listText(list) {
                                                     <button type="button" class="btn delete-btn">삭제</button>
                                                 </div>
                                             </div>
-                                            <a href="javascript:void(0)">
+                                            <a href="/board/suggest/detail/${suggestDTO.id}">
                                                 <div class="list-content-title-box">
-                                                    <h3>${suggestDTO.suggestTitle}</h3>
+                                                    <h3>${suggestDTO.boardTitle}</h3>
                                                 </div>
                                             </a>
                                         </div>              

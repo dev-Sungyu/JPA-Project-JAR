@@ -91,16 +91,8 @@ public class MyPageController {
         return inquireDTOS;
     }
 
-//
-//    @PostMapping("delete/{boardId}")
-//    public RedirectView deleteInquire(@PathVariable("boardId") Long boardId){
-//        suggestService.delete(boardId);
-//        return new RedirectView("/mypage/inquir-list");
-//    }
-
-
     @GetMapping("propsal")
-    public void goToPropasal(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    public void goToPropsal(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
     }
 
@@ -109,13 +101,14 @@ public class MyPageController {
     public Page<SuggestDTO> propsal(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
         Page<SuggestDTO> suggestDTOS = suggestService.getSuggestForMemberIdList(pageable, id);
+//        log.info("================");
+//        log.info(String.valueOf(id));
+//        log.info(String.valueOf(page));
+//        suggestDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
+//        log.info("================");
+
         return suggestDTOS;
     }
-
-//    @DeleteMapping("propsal-delete")
-//    @ResponseBody
-//    public void removeSuggest(){
-//    }
 
     @GetMapping("share")
     public void goToshare(@AuthenticationPrincipal UserDetail userDetail, Model model){
@@ -123,16 +116,17 @@ public class MyPageController {
     }
 
     @GetMapping("share-list")
+    @ResponseBody
     public Page<DiaryDTO> share(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
         Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, id);
+        log.info("================");
+        log.info(String.valueOf(id));
+        log.info(String.valueOf(page));
+        diaryDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
+        log.info("================");
         return diaryDTOS;
     }
-
-//    @PostMapping("delete/{boardId}")
-//    public void removeDiary(){
-//    }
-
 
     @GetMapping("suggest-like-list")
     public void suggestLikelist(){}
