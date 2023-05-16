@@ -135,6 +135,15 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
+    public List<SuggestDTO> findAllWithoutPaging_QueryDsl() {
+        List<Suggest> foundSuggests = suggestRepository.findAllWithoutPaging_QueryDsl();
+
+        return foundSuggests.stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void deleteSuggests(List<Long> suggestIds) {
         for (Long suggestId : suggestIds) {
             suggestRepository.deleteById(suggestId);
