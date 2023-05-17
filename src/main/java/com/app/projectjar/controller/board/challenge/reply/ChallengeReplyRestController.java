@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/challenge/reply/*")
-public class ChallengeReplyController {
+public class ChallengeReplyRestController {
 
     private final ChallengeReplyService challengeReplyService;
 
