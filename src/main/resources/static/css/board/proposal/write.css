@@ -1298,6 +1298,8 @@ box-sizing: border-box;
     background-color: rgb(255, 93, 0);
     border-width: 0px;
     border-radius: 2px;
+    width: 70px;
+    height: 30px;
     -webkit-box-align: center;
     align-items: center;
     -webkit-box-pack: center;

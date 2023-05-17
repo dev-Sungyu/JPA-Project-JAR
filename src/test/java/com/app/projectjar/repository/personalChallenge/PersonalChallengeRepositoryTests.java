@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 
 @SpringBootTest
 @Transactional
@@ -42,5 +43,10 @@ public class PersonalChallengeRepositoryTests {
     @Test
     public void findAllByChallengeStatusToOpenTest(){
         personalChallengeRepository.findAllByChallengeStatus("OPEN", PageRequest.of(0,12)).stream().map(PersonalChallenge::getChallengeStatus).forEach(challengeType -> log.info(challengeType + ""));
+    }
+
+    @Test
+    public void findByCreateDateYesterdayTest(){
+        personalChallengeRepository.findByCreateDateYesterday(LocalDate.now().minusDays(1)).stream().map(PersonalChallenge::toString).forEach(log::info);
     }
 }
