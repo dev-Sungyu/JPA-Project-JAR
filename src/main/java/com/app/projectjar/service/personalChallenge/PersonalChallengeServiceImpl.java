@@ -1,7 +1,10 @@
 package com.app.projectjar.service.personalChallenge;
 
+import com.app.projectjar.domain.challenge.ChallengeDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
@@ -11,6 +14,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +42,16 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(personalChallengeDTOS, pageable, personalChallenges.getTotalElements());
+    }
+
+    @Override
+    public Page<PersonalChallengeDTO> getAllChallengesWithPaging(int page) {
+        Page<PersonalChallenge> personalChallenges = personalChallengeRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
+        List<PersonalChallengeDTO> personalChallengeDTOS = personalChallenges.getContent().stream()
+                .map(this::toPersonalChallengeDTO)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(personalChallengeDTOS, personalChallenges.getPageable(), personalChallenges.getTotalElements());
     }
 
     @Override
