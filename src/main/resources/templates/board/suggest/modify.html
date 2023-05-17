@@ -66,9 +66,9 @@
                                             <div class="real-wrap-box-box">
                                                 <div class="pasing-wrapper">
                                                     <button type="button"
-                                                            onclick="javascript:location.href='/board/suggest/list/personal'"
+
                                                             icon-position="0" color="white" fill="false"
-                                                            class="pasing-button-1 pasing-no-select"
+                                                            class="pasing-button-1 pasing-no-select return-detail"
                                                             style="background-color: #fff;">
                                                             <span class="pasing-button-span">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="24"
@@ -198,6 +198,10 @@
     }else {
         fileDTOS = suggestDTO.fileDTOS;
     }
+
+    $(".return-detail").click(() => {
+        location.href= '/board/suggest/detail/' + suggestDTO.id;
+    });
 
 </script>
 <script src="/js/board/suggest/write.js"></script>

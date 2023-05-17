@@ -1,8 +1,9 @@
 package com.app.projectjar.service.personalChallenge;
 
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
-import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
+import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
 import lombok.RequiredArgsConstructor;
@@ -13,8 +14,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,6 +26,8 @@ import java.util.stream.Collectors;
 public class PersonalChallengeServiceImpl implements PersonalChallengeService {
 
     private final PersonalChallengeRepository personalChallengeRepository;
+
+    private final ChallengeRepository challengeRepository;
 
     @Override
     public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable) {
@@ -38,7 +41,7 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     }
 
     @Override
-    public List<PersonalChallenge> getListToYesterday(LocalDateTime yesterday) {
+    public List<PersonalChallenge> getListToYesterday(LocalDate yesterday) {
         return personalChallengeRepository.findByCreateDateYesterday(yesterday);
     }
 
@@ -56,5 +59,16 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     public PersonalChallengeDTO getPersonalChallenge(Long personalChallengeId) {
         Optional<PersonalChallenge> personalChallenge = personalChallengeRepository.findByPersonalChallengeId(personalChallengeId);
         return toPersonalChallengeDTO(personalChallenge.get());
+    }
+
+    @Override
+    public List<Challenge> getChallengeList() {
+        return challengeRepository.findAll_QueryDsl();
+    }
+
+    @Override
+    public void insertChallenge(Challenge challenge) {
+        PersonalChallenge personalChallenge = PersonalChallenge.builder().challenge(challenge).build();
+        personalChallengeRepository.save(personalChallenge);
     }
 }

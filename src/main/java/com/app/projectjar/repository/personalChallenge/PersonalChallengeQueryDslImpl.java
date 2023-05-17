@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -41,12 +42,12 @@ public class PersonalChallengeQueryDslImpl implements PersonalChallengeQueryDsl 
     }
 
     @Override
-    public List<PersonalChallenge> findByCreateDateYesterday(LocalDateTime localDateTime) {
+    public List<PersonalChallenge> findByCreateDateYesterday(LocalDate createDate) {
         List<PersonalChallenge> personalChallengeList = query.select(personalChallenge)
                 .from(personalChallenge)
                 .leftJoin(personalChallenge.challenge, challenge)
                 .fetchJoin()
-                .where(personalChallenge.createdDate.eq(localDateTime))
+                .where(personalChallenge.createdDate.eq(createDate))
                 .fetch();
 
         return personalChallengeList;

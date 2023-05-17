@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 public class PersonalChallengeDTO {
     private Long id;
     private ChallengeType challengeStatus;
-    private LocalDateTime startDate;
+    private LocalDate startDate;
     private Integer replyCount;
     private Integer attendCount;
 
@@ -24,7 +25,7 @@ public class PersonalChallengeDTO {
 
 
     @Builder
-    public PersonalChallengeDTO(Long id, ChallengeType challengeStatus, LocalDateTime startDate, Integer replyCount, Integer attendCount, ChallengeDTO challengeDTO) {
+    public PersonalChallengeDTO(Long id, ChallengeType challengeStatus, LocalDate startDate, Integer replyCount, Integer attendCount, ChallengeDTO challengeDTO) {
         this.id = id;
         this.challengeStatus = challengeStatus;
         this.startDate = startDate;
@@ -32,6 +33,4 @@ public class PersonalChallengeDTO {
         this.attendCount = attendCount;
         this.challengeDTO = challengeDTO;
     }
-
-
 }
