@@ -1,15 +1,18 @@
 package com.app.projectjar.controller.admin;
 
+import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
+import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
+import com.app.projectjar.service.personalChallenge.PersonalChallengeService;
 import com.app.projectjar.service.suggest.SuggestService;
 import com.app.projectjar.type.MemberType;
 import lombok.RequiredArgsConstructor;
@@ -35,13 +38,19 @@ public class AdminController {
     private final MemberService memberService;
     private final DiaryService diaryService;
     private final GroupChallengeService groupChallengeService;
+    private final PersonalChallengeService personalChallengeService;
 
 
 
     @GetMapping("board/challenge/detail")
     public void adminChallengeDetail() {}
     @GetMapping("board/challenge/list")
-    public void adminChallengeList() {}
+    public String adminChallengeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        Page<PersonalChallengeDTO> personalChallengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
+        model.addAttribute("pageDTO",new PageDTO(personalChallengePage));
+        model.addAttribute("personalChallengeDTOS", personalChallengePage.getContent());
+        return "admin/board/challenge/list";
+    }
     @GetMapping("board/challenge/modify")
     public void adminChallengeModify() {}
     @GetMapping("board/challenge/write")
@@ -233,8 +242,8 @@ public class AdminController {
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
         return "/board/groupChallenge/modify";
     }
-    @PostMapping("board/groupChallenge/modify/{groupChallengeId}")
-    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @PathVariable Long groupChallengeId) {
+    @PostMapping("board/groupChallenge/modify")
+    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam Long groupChallengeId) {
 
         groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         groupChallengeService.update(groupChallengeDTO);

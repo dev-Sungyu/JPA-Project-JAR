@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.personalChallenge;
 
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,4 +17,7 @@ public interface PersonalChallengeQueryDsl {
     public List<PersonalChallenge> findByCreateDateYesterday(LocalDate createDate);
 
     public Optional<PersonalChallenge> findByPersonalChallengeId(Long personalChallengeId);
+
+    // 전체 조회
+    public Page<PersonalChallenge> findAllWithPaging_QueryDSL(Pageable pageable);
 }

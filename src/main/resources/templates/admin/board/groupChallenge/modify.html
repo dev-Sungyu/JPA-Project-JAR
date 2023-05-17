@@ -57,7 +57,7 @@
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <form th:action="@{/admin/board/groupChallenge/modify(groupChallengeId = ${groupChallengeDTO.groupChallengeid})}" method="post" enctype="multipart/form-data" name="form">
+                                    <form th:action="@{/admin/board/groupChallenge/modify/{groupChallengeId}(groupChallengeId=${groupChallengeDTO.groupChallengeid})}" method="post" enctype="multipart/form-data" name="form">
                                         <div>
                                             <input type="text" class="board_title" name="boardTitle"
                                                 placeholder="제목을 입력해주세요." autocomplete="off" th:value="${groupChallengeDTO.boardTitle}">
@@ -78,7 +78,7 @@
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
-                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <input type="file" style="display:none;" name="file" class="file" multiple>
                                                 <div class="file-image-box">
                                                     <p style="font-weight: 100;">사진 첨부</p>
                                                 </div>
@@ -124,10 +124,11 @@
 <script th:inline="javascript">
     let fileDTOS = null;
     let groupChallengeDTO = [[${groupChallengeDTO}]];
-    if(groupChallengeDTO == null || groupChallengeDTO == undefined){
-    }else {
+    if (groupChallengeDTO == null || groupChallengeDTO == undefined) {
+    } else {
         fileDTOS = groupChallengeDTO.fileDTOS;
     }
+
 </script>
 <script src="/js/admin/write.js"></script>
 <script>

@@ -2,6 +2,7 @@ package com.app.projectjar.service.personalChallenge;
 
 import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
@@ -21,6 +22,9 @@ public interface PersonalChallengeService {
 
     // 어제 insert된 목록
     public List<PersonalChallenge> getListToYesterday(LocalDate yesterday);
+
+    //    전체 목록 페이징
+    public Page<PersonalChallengeDTO> getAllChallengesWithPaging(int page);
 
     // challengeStatus private로 수정
     public void updateChallengeStatus(List<PersonalChallenge> challengeList);
@@ -51,6 +55,7 @@ public interface PersonalChallengeService {
                 .boardContent(challenge.getBoardContent())
                 .boardTitle(challenge.getBoardTitle())
                 .fileDTOS(toFileDTOS(challenge.getChallengeFiles()))
+                .createdDate(challenge.getCreatedDate())
                 .id(challenge.getId())
                 .build();
     }

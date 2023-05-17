@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.personalChallenge;
 
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.entity.personalChallenge.QPersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
+import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 import static com.app.projectjar.entity.personalChallenge.QPersonalChallenge.personalChallenge;
 
 @RequiredArgsConstructor
@@ -63,5 +65,22 @@ public class PersonalChallengeQueryDslImpl implements PersonalChallengeQueryDsl 
                 .fetchOne();
 
         return Optional.ofNullable(personalChallenge);
+    }
+
+
+    @Override
+    public Page<PersonalChallenge> findAllWithPaging_QueryDSL(Pageable pageable) {
+        List<PersonalChallenge> foundPersonalChallenge = query.select(personalChallenge)
+                .from(personalChallenge)
+                .orderBy(personalChallenge.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        Long count = query.select(personalChallenge.count())
+                .from(personalChallenge)
+                .fetchOne();
+
+        return new PageImpl<>(foundPersonalChallenge, pageable, count);
     }
 }
