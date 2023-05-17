@@ -24,8 +24,12 @@ public interface GroupChallengeService {
 
     // 상세보기
     public GroupChallengeDTO getGroupChallenge(Long groupChallengeId);
+
     // 삭제
     public void deleteGroupChallenges(List<Long> groupChallengeIds);
+
+    // 저장
+    public void register(GroupChallengeDTO groupChallengeDTO);
 
     // 현재 시퀀스 가져오기
     public GroupChallenge getCurrentSequence();
@@ -73,6 +77,28 @@ public interface GroupChallengeService {
                 }
         );
         return fileDTOS;
+    }
+
+    default GroupChallenge toGroupChallengeEntity(GroupChallengeDTO groupChallengeDTO){
+        return GroupChallenge.builder()
+                .id(groupChallengeDTO.getId())
+                .boardTitle(groupChallengeDTO.getBoardTitle())
+                .boardContent(groupChallengeDTO.getBoardContent())
+                .startDate(groupChallengeDTO.getStartDate())
+                .endDate(groupChallengeDTO.getEndDate())
+                .groupChallengeStatus(groupChallengeDTO.getGroupChallengeStatus())
+                .build();
+    }
+
+    default GroupChallengeFile toGroupChallengeFileEntity(FileDTO fileDTO){
+        return GroupChallengeFile.builder()
+                .id(fileDTO.getId())
+                .fileOriginalName(fileDTO.getFileOriginalName())
+                .fileUuid(fileDTO.getFileUuid())
+                .filePath(fileDTO.getFilePath())
+                .groupChallenge(fileDTO.getGroupChallenge())
+                .fileType(fileDTO.getFileType())
+                .build();
     }
 
 }

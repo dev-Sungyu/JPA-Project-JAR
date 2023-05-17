@@ -1,7 +1,7 @@
 package com.app.projectjar.domain.file;
 
 import com.app.projectjar.entity.diary.Diary;
-import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.type.FileType;
 import com.querydsl.core.annotations.QueryProjection;
@@ -22,6 +22,7 @@ public class FileDTO {
 
     private Suggest suggest;
     private Diary diary;
+    private GroupChallenge groupChallenge;
 
 
     @Builder
@@ -41,6 +42,16 @@ public class FileDTO {
         this.filePath = filePath;
         this.fileType = fileType;
         this.suggest = suggest;
+    }
+
+    @Builder
+    public FileDTO(Long id, String fileOriginalName, String fileUuid, String filePath, FileType fileType,  GroupChallenge groupChallenge) {
+        this.id = id;
+        this.fileOriginalName = fileOriginalName;
+        this.fileUuid = fileUuid;
+        this.filePath = filePath;
+        this.fileType = fileType;
+        this.groupChallenge = groupChallenge;
     }
 
     @QueryProjection
