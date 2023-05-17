@@ -36,4 +36,11 @@ public class GroupChallengeFileQueryDslImpl implements GroupChallengeFileQueryDs
                 .where(files.filePath.eq(date.format(DateTimeFormatter.ofPattern("yyyy/MM/dd"))))
                 .fetch();
     }
+
+    @Override
+    public void deleteByGroupChallengeId(Long groupChallengeId) {
+        query.delete(groupChallengeFile)
+                .where(groupChallengeFile.groupChallenge.id.eq(groupChallengeId))
+                .execute();
+    }
 }

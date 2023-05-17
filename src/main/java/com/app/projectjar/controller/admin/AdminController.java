@@ -233,14 +233,13 @@ public class AdminController {
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
         return "/board/groupChallenge/modify";
     }
-//    @PostMapping("board/groupChallenge/modify/{groupChallengeId}")
-//    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO) {
-//
-//        groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
-//        groupChallengeDTO.setId(boardId);
-//        groupChallengeService.up.update(suggestDTO);
-//        return new RedirectView("/board/suggest/detail/" + boardId);
-//    }
+    @PostMapping("board/groupChallenge/modify/{groupChallengeId}")
+    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @PathVariable Long groupChallengeId) {
+
+        groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
+        groupChallengeService.update(groupChallengeDTO);
+        return new RedirectView("/board/groupChallenge/modify/" + groupChallengeId);
+    }
     @GetMapping("board/groupChallenge/write")
     public void adminGroupChallengeWrite(Model model) {
         model.addAttribute("groupChallengeDTO", new GroupChallengeDTO());
