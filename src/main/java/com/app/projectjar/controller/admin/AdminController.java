@@ -233,7 +233,7 @@ public class AdminController {
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
         return "/board/groupChallenge/modify";
     }
-    @PostMapping("board/groupChallenge/modify/{groupChallengeId}")
+    @PostMapping("board/groupChallenge/modify")
     public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @PathVariable Long groupChallengeId) {
 
         groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
