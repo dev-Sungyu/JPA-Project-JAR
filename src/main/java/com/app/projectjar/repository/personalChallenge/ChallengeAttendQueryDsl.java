@@ -1,11 +1,23 @@
-package com.app.projectjar.repository.challenge;
+package com.app.projectjar.repository.personalChallenge;
 
+import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 public interface ChallengeAttendQueryDsl {
 
+    // 챌린지 참여 인원 가져오기
+    public Integer getAttendCountByPersonalChallengeId_QueryDsl(Long personalChallengeId);
+
+    // 해당 챌린지에 참여햇는지 여부 검사
+    public Long findByChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId);
+
+    // 참여 취소
+    public void deleteByPersonalChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId);
+
+    // 챌린지 참여 번호 가져오기
+    public ChallengeAttend findPersonalChallengeAttendByPersonalChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId);
 
     /* 개인 챌린지 */
 

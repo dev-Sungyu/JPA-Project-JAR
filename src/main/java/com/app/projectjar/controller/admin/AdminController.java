@@ -21,6 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -225,11 +226,35 @@ public class AdminController {
         groupChallengeService.deleteGroupChallenges(groupChallengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
-    @GetMapping("board/groupChallenge/modify")
-    public void adminGroupChallengeModify() {}
+    @GetMapping("board/groupChallenge/modify/{groupChallengeId}")
+    public String adminGroupChallengeModify(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
+        GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
+
+        model.addAttribute("groupChallengeDTO", groupChallengeDTO);
+        return "/board/groupChallenge/modify";
+    }
+//    @PostMapping("board/groupChallenge/modify/{groupChallengeId}")
+//    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO) {
+//
+//        groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
+//        groupChallengeDTO.setId(boardId);
+//        groupChallengeService.up.update(suggestDTO);
+//        return new RedirectView("/board/suggest/detail/" + boardId);
+//    }
     @GetMapping("board/groupChallenge/write")
-    public void adminGroupChallengeWrite() {
-        
+    public void adminGroupChallengeWrite(Model model) {
+        model.addAttribute("groupChallengeDTO", new GroupChallengeDTO());
+    }
+    @PostMapping("board/groupChallenge/write")
+    public RedirectView write(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO) {
+        LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
+        LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
+
+        groupChallengeDTO.setStartDate(startDate);
+        groupChallengeDTO.setEndDate(endDate);
+
+        groupChallengeService.register(groupChallengeDTO);
+        return new RedirectView("/admin/board/groupChallenge/list");
     }
 
 

@@ -1,10 +1,10 @@
 let page = 0;
 
 replyService.list({
-    page : page,
-    boardId : boardId
-}, function(replies){
-    if(replies.content.length < 1){
+    page: page,
+    boardId: boardId
+}, function (replies) {
+    if (replies.content.length < 1) {
         let text = `
                                                             <div class="none-reply-display">
                                                                 <div class="none-reply-box">
@@ -19,7 +19,7 @@ replyService.list({
         return false;
     }
 
-    if(replies.last){
+    if (replies.last) {
         $(".the-bogi").hide();
     }
 
@@ -39,18 +39,18 @@ $registerButton.click(() => {
     replyRequestDTO.replyContent = $replyContent.val();
     replyRequestDTO.boardId = boardId;
 
-    if(!$replyContent.val()){
+    if (!$replyContent.val()) {
         alert("입력해주세요.");
         return false;
-    }else {
-        replyService.save(replyRequestDTO,function(){
+    } else {
+        replyService.save(replyRequestDTO, function () {
             $(".the-bogi").show();
             page = 0;
-            replyService.list({page: page, boardId : boardId},function(replies){
+            replyService.list({page: page, boardId: boardId}, function (replies) {
                 $replyBox.html(repliesContent(replies));
                 $replyContent.val("");
 
-                if(replies.last) {
+                if (replies.last) {
                     $(".the-bogi").hide();
                 }
             });
@@ -60,8 +60,8 @@ $registerButton.click(() => {
 
 
 // 댓글 수정 버튼
-$replyBox.on("click", "button.modify-button", function(e) {
-    let i = e.target.id.replaceAll("modify","");
+$replyBox.on("click", "button.modify-button", function (e) {
+    let i = e.target.id.replaceAll("modify", "");
     let reply = $($(".reply-content-text")[i]).text();
 
     $($(".reply-modify-content")[i]).val(reply);
@@ -74,8 +74,8 @@ $replyBox.on("click", "button.modify-button", function(e) {
 });
 
 // 취소 버튼
-$replyBox.on("click","button.reply-cancel-button",function(e){
-    let i = e.target.id.replaceAll("cancel","");
+$replyBox.on("click", "button.reply-cancel-button", function (e) {
+    let i = e.target.id.replaceAll("cancel", "");
     $($(".modify-button")[i]).show();
     $($(".reply-cancel-button")[i]).hide();
     $($(".real-reply-text-box")[i]).show();
@@ -83,14 +83,14 @@ $replyBox.on("click","button.reply-cancel-button",function(e){
 });
 
 // 수정 완료 버튼
-$replyBox.on("click","button.confirm-button",function(e){
-    let i = e.target.id.replaceAll("confirm","");
-    let replyContent =  $($(".reply-modify-content")[i]).val();
-    let replyId = $($(".reply-modify-content")[i]).prop("id").replaceAll("reply","");
+$replyBox.on("click", "button.confirm-button", function (e) {
+    let i = e.target.id.replaceAll("confirm", "");
+    let replyContent = $($(".reply-modify-content")[i]).val();
+    let replyId = $($(".reply-modify-content")[i]).prop("id").replaceAll("reply", "");
     replyService.modify({
-        replyId : replyId,
-        replyContent : replyContent
-    },function () {
+        replyId: replyId,
+        replyContent: replyContent
+    }, function () {
         $($(".modify-button")[i]).show();
         $($(".reply-cancel-button")[i]).hide();
         $($(".real-reply-text-box")[i]).show();
@@ -101,32 +101,32 @@ $replyBox.on("click","button.confirm-button",function(e){
 });
 
 // 삭제 버튼
-$replyBox.on("click","button.delete-button", function(e){
-    let i = e.target.id.replaceAll("delete","");
-    let replyId = $($(".reply-modify-content")[i]).prop("id").replaceAll("reply","");
+$replyBox.on("click", "button.delete-button", function (e) {
+    let i = e.target.id.replaceAll("delete", "");
+    let replyId = $($(".reply-modify-content")[i]).prop("id").replaceAll("reply", "");
+    page = 0;
     replyService.deleteReply({
-        replyId : replyId
-    },function(){
+        replyId: replyId
+    }, function () {
         replyService.list({
-            page : page,
-            boardId : boardId
-        },function(replies){
-            $replyBox.html(repliesContent(replies));
+            page: page,
+            boardId: boardId
+        }, function (replies) {
+            replyBox.html(repliesContent(replies));
         })
-    })
-
+    });
 });
 
 // 더보기 버튼
 $(".the-bogi").click(() => {
     page++;
     replyService.list({
-        page : page,
-        boardId : boardId
-    },function(replies){
+        page: page,
+        boardId: boardId
+    }, function (replies) {
         $replyBox.append(repliesContent(replies));
 
-        if(replies.last){
+        if (replies.last) {
             $(".the-bogi").hide();
         }
     });
@@ -134,11 +134,11 @@ $(".the-bogi").click(() => {
 
 
 //    ===================================================== function
-function repliesContent(replies){
+function repliesContent(replies) {
     let text = '';
     let replyDTO = replies.content;
 
-    if(replyDTO.length < 1){
+    if (replyDTO.length < 1) {
         text = `
                                                             <div class="none-reply-display">
                                                                 <div class="none-reply-box">
@@ -162,14 +162,14 @@ function repliesContent(replies){
                                                                                     <picture class="reply-user-picture">
                                                                                     `;
 
-        if(reply.memberDTO.fileDTO == null || reply.memberDTO.fileDTO == undefined){
+        if (reply.memberDTO.fileDTO == null || reply.memberDTO.fileDTO == undefined) {
             text += `<img src="/image/board/default-user.png" sizes="100vw" alt="">`;
-        }else {
+        } else {
             text += `<img src="/file/display?fileName=${reply.memberDTO.fileDTO.filePath}/${reply.memberDTO.fileDTO.fileUuid}_${reply.memberDTO.fileDTO.fileOriginalName}" sizes="100vw" alt="">`;
         }
 
 
-        text+=                                                     `</picture>
+        text += `</picture>
                                                                                 </span>
                                                                             </div>
                                                                             <div class="reply-user-box-info">
@@ -181,21 +181,21 @@ function repliesContent(replies){
                                                                             </div>
                                                                             <div class="trophy-box">
                                                                           `;
-        if(reply.memberDTO.badgeType == 'THREE'){
+        if (reply.memberDTO.badgeType == 'THREE') {
             text += `<img src="/image/mypage/trophy_3.png">`;
-        }else if(reply.memberDTO.badgeType == 'TWO'){
+        } else if (reply.memberDTO.badgeType == 'TWO') {
             text += `<img src="/image/mypage/trophy_2.png">`;
-        }else if(reply.memberDTO.badgeType == 'TWO'){
+        } else if (reply.memberDTO.badgeType == 'TWO') {
             text += `<img src="/image/mypage/trophy_1.png">`;
-        }else {
+        } else {
             text += `<img src="/image/mypage/trophy_1_5.png">`;
         }
 
-        text+=                             `</div>
+        text += `</div>
                                                                         </section>
                                          `;
-        if(reply.memberDTO.id == memberId && memberId != undefined){
-            text+= `<div class="modify-button-box">
+        if (reply.memberDTO.id == memberId && memberId != undefined) {
+            text += `<div class="modify-button-box">
                                                         <button type="button" class="btn reply-cancel-button" id="cancel${i}">취소</button>
                                                         <button type="button" class="btn modify-button" id="modify${i}">수정</button>
                                                         <button type="button" class="btn delete-button" id="delete${i}">삭제</button>
