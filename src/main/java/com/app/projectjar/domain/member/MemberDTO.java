@@ -10,12 +10,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
 @Component
 @NoArgsConstructor
-public class MemberDTO {
+public class MemberDTO implements Serializable {
     private Long id;
     private String memberEmail;
     private String memberPassword;

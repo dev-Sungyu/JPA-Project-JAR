@@ -1,4 +1,4 @@
-package com.app.projectjar.controller.member;
+package com.app.projectjar.controller.OAuth;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.http.HttpStatus;

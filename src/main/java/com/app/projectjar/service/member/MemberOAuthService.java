@@ -28,19 +28,26 @@ public class MemberOAuthService implements OAuth2UserService<OAuth2UserRequest, 
 
         @Override
         public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+//            사용자의 로그인 완료 후의 정보를 담기위한 준비
             OAuth2UserService<OAuth2UserRequest, OAuth2User> delegate = new DefaultOAuth2UserService();
+//            로그인된 사용자의 정보 불러오기
             OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
+//            어떤 OAuth를 사용했는 지의 구분 (naver, kakao 등)
             String registrationId = userRequest.getClientRegistration().getRegistrationId();
             String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails()
                     .getUserInfoEndpoint().getUserNameAttributeName();
             // naver, kakao 로그인 구분
             OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName, oAuth2User.getAttributes());
             log.info(attributes.getName());
-//            log.info(attributes.TZXCWxiqmjgetEmail());
+            log.info(attributes.getNickname());
+            log.info(attributes.getEmail());
             log.info(attributes.getMobile());
             Member member = saveOrUpdate(attributes);
 
+//            OAuth를 통해 전달받은 정보를 DTO로 변환하여 session에 저장
+//            session에 객체를 저장하기 위해 직렬화 사용(다시 가져올 때에는 역질렬화를 통해 원본 객체 생성)
+//           회원 번호를 사용하는 것 보다 OAuth 인증에 작성된 이메일을 사용하는 것이 올바르다.
             session.setAttribute("member", new MemberDTO(member));
 
             return new DefaultOAuth2User(

@@ -100,7 +100,7 @@ public class SecurityConfig  {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
+                .authorizeRequests()        //인가 설정 (권한 설정)
                 .antMatchers(ADMIN_PATH).hasRole(Role.ADMIN.name())
                 .antMatchers(BOARD_SUGGEST_WRITE_PATH).hasRole(Role.MEMBER.name())
                 .antMatchers(BOARD_DIARY_WRITE_PATH).hasRole(Role.MEMBER.name())
@@ -117,24 +117,24 @@ public class SecurityConfig  {
         log.info(userDetailsService.toString());
 
         http
-                .formLogin()
-                .loginPage(LOGIN_PAGE)
-                .usernameParameter("memberEmail")
-                .passwordParameter("memberPassword")
-                .loginProcessingUrl(LOGIN_PROCESSING_URL)
+                .formLogin() // 일반 로그인
+                .loginPage(LOGIN_PAGE) // 로그인하는 페이지 경로
+                .usernameParameter("memberEmail") // 로그인 버튼 클릭 시 전달될 uesrname 파라미터 명 수정
+                .passwordParameter("memberPassword")  // 로그인 버튼 클릭 시 전달될 password 파라미터 명 수정
+                .loginProcessingUrl(LOGIN_PROCESSING_URL) // form에서 submit을 통해 진행될 경로
                 .successHandler(authenticationSuccessHandler) // 로그인 성공 시
                 .failureHandler(authenticationFailureHandler) // 로그인 실패 시
                 .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))
-                .logoutSuccessUrl(LOGOUT_SUCCESS_URL)
-                .invalidateHttpSession(Boolean.TRUE)
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher(LOGOUT_URL))   //로그아웃 시시 이동할 경로
+                .logoutSuccessUrl(LOGOUT_SUCCESS_URL)   //로그아웃 성공
+                .invalidateHttpSession(Boolean.TRUE)    //세션 초기화
                 .and()
                 .rememberMe()
-                .rememberMeParameter("remember-me")
-                .key(REMEMBER_ME_TOKEN_KEY)
+                .rememberMeParameter("remember-me")     // 자동 로그인 부분의 checkbox 파라미터명 설정
+                .key(REMEMBER_ME_TOKEN_KEY)     // 키값
                 .tokenValiditySeconds(REMEMBER_ME_TOKEN_EXPIRED)
                 .userDetailsService(userDetailsService)
-                .authenticationSuccessHandler(authenticationSuccessHandler)
+                .authenticationSuccessHandler(authenticationSuccessHandler) // 인증 성공 (로그인 성공)
                 .and()
                 .oauth2Login()
                 .userInfoEndpoint()

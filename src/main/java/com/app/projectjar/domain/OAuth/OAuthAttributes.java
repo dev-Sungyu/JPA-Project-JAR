@@ -7,12 +7,14 @@ import com.app.projectjar.type.Role;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.Map;
 
 @Getter
 @Builder
 @RequiredArgsConstructor
+@Slf4j
 public class OAuthAttributes {
     private final Map<String, Object> attributes;
     private final String nameAttributeKey;
@@ -23,16 +25,21 @@ public class OAuthAttributes {
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 //        if("naver".equals(registrationId)) {
-        return ofNaver("id", attributes);
+//      userNameAttributeName은 .yml에서 설정해 놓은 user-name-attribute 값이다.
+        log.info("================={}", userNameAttributeName);
+
+        //      registrationId는 네이버 로그인일 경우 naver이고 카카오 로그인일 경우 kakao이다.
+        log.info("================={}", registrationId);
+        return ofNaver(userNameAttributeName, attributes);
 //        }
 //        else {
-//            return ofKakao("id", attributes);
+//            return ofKakao(userNameAttributeName, attributes);
 //        }
     }
 
 
     private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
-        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+        Map<String, Object> response = (Map<String, Object>) attributes.get(userNameAttributeName);
 
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
@@ -40,7 +47,7 @@ public class OAuthAttributes {
                 .email((String) response.get("email"))
                 .mobile((String) response.get("mobile"))
                 .attributes(response)
-                .nameAttributeKey(userNameAttributeName)
+                .nameAttributeKey("id")
                 .build();
     }
 
@@ -54,16 +61,4 @@ public class OAuthAttributes {
                 .build();
     }
 
-//    public Member toEntity(){
-//        return Member.builder()
-//                .memberEmail(email)
-//                .memberName(name)
-//                .memberNickname(nickname)
-//                .memberPhoneNumber(mobile)
-//                .memberType(Role.MEMBER)
-//                .memberStatus(MemberType.ENABLE)
-//                .badgeType(BadgeType.ZERO)
-//                .build();
-//
-//    }
 }
