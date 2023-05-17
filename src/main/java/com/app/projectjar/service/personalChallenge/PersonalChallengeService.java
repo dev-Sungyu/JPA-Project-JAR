@@ -9,6 +9,7 @@ import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,13 +20,19 @@ public interface PersonalChallengeService {
     public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable);
 
     // 어제 insert된 목록
-    public List<PersonalChallenge> getListToYesterday(LocalDateTime yesterday);
+    public List<PersonalChallenge> getListToYesterday(LocalDate yesterday);
 
     // challengeStatus private로 수정
     public void updateChallengeStatus(List<PersonalChallenge> challengeList);
 
     // 상세보기
     public PersonalChallengeDTO getPersonalChallenge(Long personalChallengeId);
+
+    // 등록된 챌린지 목록 전체 조회
+    public List<Challenge> getChallengeList();
+
+    // 챌린지 등록
+    public void insertChallenge(Challenge challenge);
 
 
     default PersonalChallengeDTO toPersonalChallengeDTO(PersonalChallenge personalChallenge) {

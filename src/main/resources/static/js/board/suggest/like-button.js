@@ -1,7 +1,6 @@
 // 좋아요 버튼
 $ul.on("click","button.heart-layout",function(e){
     let boardId = e.currentTarget.id.replaceAll("heart","");
-
     let ul = $(e.currentTarget).parent().parent().parent().parent().parent().parent().parent();
     let li = $(e.currentTarget).parent().parent().parent().parent().parent().parent();
     let i = ul.find("li").index(li);

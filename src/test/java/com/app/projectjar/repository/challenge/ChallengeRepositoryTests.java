@@ -21,15 +21,20 @@ public class ChallengeRepositoryTests {
     @Test
     public void saveTest(){
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 100; i++) {
             Challenge challenge = Challenge.builder()
-                    .boardContent("테스트 내용 " + (i + 10))
-                    .boardTitle("챌린지 테스트 제목 " + (i + 10))
+                    .boardContent("테스트 내용 " + (i + 1))
+                    .boardTitle("챌린지 테스트 제목 " + (i + 1))
                     .build();
 
             challengeRepository.save(challenge);
         }
 
+    }
+
+    @Test
+    public void findAll_QueryDslTest() {
+        challengeRepository.findAll_QueryDsl().stream().map(Challenge::toString).forEach(log::info);
     }
 
 }
