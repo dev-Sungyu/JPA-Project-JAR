@@ -24,6 +24,9 @@ public interface PersonalChallengeService {
     // challengeStatus private로 수정
     public void updateChallengeStatus(List<PersonalChallenge> challengeList);
 
+    // 상세보기
+    public PersonalChallengeDTO getPersonalChallenge(Long personalChallengeId);
+
 
     default PersonalChallengeDTO toPersonalChallengeDTO(PersonalChallenge personalChallenge) {
         return PersonalChallengeDTO.builder()

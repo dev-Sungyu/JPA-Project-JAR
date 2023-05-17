@@ -2,10 +2,12 @@ package com.app.projectjar.repository.personalChallenge;
 
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
+import com.app.projectjar.type.ChallengeType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
@@ -24,11 +26,12 @@ public class PersonalChallengeRepositoryTests {
 
     @Test
     public void saveTest(){
-        for (int i = 149; i < 151; i++) {
+        for (int i = 171; i < 181; i++) {
             challengeRepository.findById(Long.valueOf(i)).ifPresent(
                     challenge -> {
                         PersonalChallenge personalChallenge = PersonalChallenge.builder()
                                 .challenge(challenge)
+                                .challengeStatus(ChallengeType.PRIVATE)
                                 .build();
                         personalChallengeRepository.save(personalChallenge);
                     }
@@ -38,6 +41,6 @@ public class PersonalChallengeRepositoryTests {
 
     @Test
     public void findAllByChallengeStatusToOpenTest(){
-        personalChallengeRepository.findAllByChallengeStatus().stream().map(PersonalChallenge::getChallengeStatus).forEach(challengeType -> log.info(challengeType + ""));
+        personalChallengeRepository.findAllByChallengeStatus("OPEN", PageRequest.of(0,12)).stream().map(PersonalChallenge::getChallengeStatus).forEach(challengeType -> log.info(challengeType + ""));
     }
 }

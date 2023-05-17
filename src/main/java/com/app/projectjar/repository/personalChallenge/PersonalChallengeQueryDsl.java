@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 public interface PersonalChallengeQueryDsl {
 
@@ -13,4 +14,6 @@ public interface PersonalChallengeQueryDsl {
 
     // 어제 insert된 목록 가져오기
     public List<PersonalChallenge> findByCreateDateYesterday(LocalDateTime localDateTime);
+
+    public Optional<PersonalChallenge> findByPersonalChallengeId(Long personalChallengeId);
 }
