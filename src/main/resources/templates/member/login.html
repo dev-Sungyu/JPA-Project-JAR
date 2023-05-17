@@ -109,7 +109,7 @@
                                     <div class="login_gap"></div>
                                     <div class="login"></div>
                                     <div class="login">
-                                        <button class="kakao_btn">
+                                        <button class="kakao_btn" onclick="location.href='/oauth2/authorization/kakao'">
                                             <div class="login_btn_div">
                                                 <div class="wid_hei_second"></div>
                                                 <span style="width: 20px; height: 20px; display: block;">
@@ -127,7 +127,7 @@
                                             </div>
                                         </button>
                                         <div class="hei_gap"></div>
-                                        <button class="kakao_btn">
+                                        <button class="kakao_btn" onclick="location.href='/oauth2/authorization/naver'">
                                             <div class="login_btn_div">
                                                 <div class="wid_hei_second"></div>
                                                 <span style="width: 20px; height: 20px; display: block;">
@@ -149,7 +149,7 @@
                             </div>
                             <div class="gap"></div>
                             <div class="sign_in_login">
-                                <a class="sign_in_a" th:href="@{/member/join}">
+                                <a class="sign_in_a" onclick="location.href='/member/join'">
                                     <div class="sign_in_a_div_login">
                                         <h6 class="sign_in_left">아직 Jar 회원이 아니신가요?</h6>
                                         <div style="width: 8px;"></div>

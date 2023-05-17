@@ -1,4 +1,4 @@
-package com.app.projectjar.controller.member;
+package com.app.projectjar.controller.OAuth;
 
 import com.app.projectjar.exception.CustomAuthenticationException;
 import com.app.projectjar.exception.LoginFailedException;
