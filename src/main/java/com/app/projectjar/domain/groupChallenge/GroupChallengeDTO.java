@@ -28,6 +28,9 @@ public class GroupChallengeDTO {
     private Integer replyCount;
     private LocalDateTime createdDate;
 
+    private String requestStartDate;
+    private String requestEndDate;
+
     private List<FileDTO> fileDTOS;
 
     @Builder
@@ -44,4 +47,5 @@ public class GroupChallengeDTO {
         this.fileDTOS = fileDTOS;
         this.createdDate = createdDate;
     }
+
 }

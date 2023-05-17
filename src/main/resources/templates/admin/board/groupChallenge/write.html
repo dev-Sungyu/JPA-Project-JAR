@@ -56,11 +56,9 @@
                                 <hr>
                                 <div class="info-table">
                                     <form th:action="@{/admin/board/groupChallenge/write}" method="post" enctype="multipart/form-data" name="form">
-                                        <input type="hidden" name="boardId" value="">
-                                        <!-- <input type="hidden" name="page" value=""> -->
                                         <div>
-                                            <input type="text" class="board-title" name="groupChallengeTitle"
-                                                placeholder="제목을 입력해주세요." autocomplete="off" th:value="${groupChallengeDTO.boardTitle}">
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                placeholder="제목을 입력해주세요." autocomplete="off">
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="selection_label is-inline-block" for="">
@@ -71,14 +69,14 @@
                                         </div>
                                         <div class="select_date_wrapper">
                                             <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startDate" th:value="${groupChallengeDTO.startDate}" />
+                                                name="requestStartDate" />
                                             <span> ~ </span>
                                             <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="endDate" th:value="${groupChallengeDTO.endDate}"/>
+                                                name="requestEndDate" th:value="${groupChallengeDTO.endDate}"/>
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
-                                                <input type="file" style="display:none;" class="file" multiple>
+                                                <input type="file" style="display:none;" class="file" name="file" multiple>
                                                 <div class="file-image-box">
                                                     <p style="font-weight: 100">사진 첨부</p>
                                                 </div>
@@ -87,7 +85,7 @@
                                         <hr>
                                         <div>
                                             <textarea class="board-content" name="boardContent"
-                                                placeholder="내용을 입력해주세요." th:text="${groupChallengeDTO.boardContent}"></textarea>
+                                                placeholder="내용을 입력해주세요." ></textarea>
                                         </div>
                                         <section class="img_wrapper_box">
                                             <div class="img_ul_wrapper">
@@ -96,7 +94,7 @@
                                             </div>
                                         </section>
                                         <div>
-                                            <button class="btn_done" style="font-weight: 100">등록</button>
+                                            <button type="button" class="btn_done save-button" style="font-weight: 100">등록</button>
                                         </div>
                                     </form>
                                 </div>
@@ -111,7 +109,6 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/button_change_action.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
-<script src="/js/admin/board/challenge/group/write.js"></script>
 <script th:inline="javascript">
     let fileDTOS = null;
     let groupChallengeDTO = [[${groupChallengeDTO}]];
@@ -119,10 +116,6 @@
     }else {
         fileDTOS = groupChallengeDTO.fileDTOS;
     }
-
-
-
-
 
     // $(document).ready(() => {
     //     $("#header").load("../../main/header.html");
@@ -200,5 +193,5 @@
     //     });
     // });
 </script>
-
+<script src="/js/admin/write.js"></script>
 </html>
