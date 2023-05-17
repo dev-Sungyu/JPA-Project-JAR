@@ -102,6 +102,38 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
         }
     }
 
+    @Override
+    public void update(GroupChallengeDTO groupChallengeDTO) {
+        List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
+
+        groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(
+                groupChallenge -> {
+                    groupChallenge.builder()
+                            .startDate(groupChallengeDTO.getStartDate())
+                            .id(groupChallengeDTO.getId())
+                            .endDate(groupChallengeDTO.getEndDate())
+                            .boardTitle(groupChallengeDTO.getBoardTitle())
+                            .boardContent(groupChallengeDTO.getBoardContent())
+                            .groupChallengeStatus(groupChallengeDTO.getGroupChallengeStatus())
+                            .build();
+                    groupChallengeRepository.save(groupChallenge);
+                }
+        );
+        groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeDTO.getId());
+
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setGroupChallenge(getCurrentSequence());
+                groupChallengeFileRepository.save(toGroupChallengeFileEntity(fileDTOS.get(i)));
+            }
+        }
+    }
+
     // 그룹 챌린지 게시판 등록
     @Override @Transactional
     public void register(GroupChallengeDTO groupChallengeDTO) {

@@ -28,6 +28,9 @@ public interface GroupChallengeService {
     // 삭제
     public void deleteGroupChallenges(List<Long> groupChallengeIds);
 
+    // 수정
+    public void update(GroupChallengeDTO groupChallengeDTO);
+
     // 저장
     public void register(GroupChallengeDTO groupChallengeDTO);
 
@@ -58,6 +61,7 @@ public interface GroupChallengeService {
                 .groupChallengeStatus(groupChallenge.getGroupChallengeStatus())
                 .replyCount(groupChallenge.getGroupChallengeReplyCount())
                 .attendCount(groupChallenge.getGroupChallengeAttendCount())
+                .createdDate(groupChallenge.getCreatedDate())
                 .build();
     }
 
