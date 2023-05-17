@@ -16,4 +16,6 @@ public interface GroupChallengeFileQueryDsl {
 //    public List<GroupChallengeFile> findAllByGroupChallengeFileId_QueryDsl(Long groupChallengeId);
 
     public List<FileDTO> findAllFiles(LocalDateTime date);
+
+    public void deleteByGroupChallengeId(Long groupChallengeId);
 }
