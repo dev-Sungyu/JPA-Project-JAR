@@ -1,6 +1,7 @@
 package com.app.projectjar.controller.board.challenge;
 
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.service.personalChallenge.PersonalChallengeService;
@@ -10,10 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,8 +35,13 @@ public class ChallengeController {
     }
 
 
-    @GetMapping("detail")
-    public void goToDetail(@AuthenticationPrincipal UserDetail userDetail, Model model){
+    @GetMapping("detail/{personalChallengeId}")
+    public String goToDetail(Model model, @PathVariable("personalChallengeId") Long personalChallengeId, @AuthenticationPrincipal UserDetail userDetail) {
+        PersonalChallengeDTO personalChallengeDTO = personalChallengeService.getPersonalChallenge(personalChallengeId);
+
+        model.addAttribute("personalChallengeDTO", personalChallengeDTO);
         model.addAttribute("userDetail", userDetail);
+        return "/board/challenge/personal/detail";
     }
+
 }

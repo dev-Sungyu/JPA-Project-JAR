@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -49,5 +50,11 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
                     personalChallengeRepository.save(personalChallenge);
                 }
         );
+    }
+
+    @Override
+    public PersonalChallengeDTO getPersonalChallenge(Long personalChallengeId) {
+        Optional<PersonalChallenge> personalChallenge = personalChallengeRepository.findByPersonalChallengeId(personalChallengeId);
+        return toPersonalChallengeDTO(personalChallenge.get());
     }
 }

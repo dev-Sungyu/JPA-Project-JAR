@@ -1,6 +1,7 @@
 package com.app.projectjar.repository.personalChallenge;
 
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
+import com.app.projectjar.entity.personalChallenge.QPersonalChallenge;
 import com.app.projectjar.type.ChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.personalChallenge.QPersonalChallenge.personalChallenge;
@@ -48,5 +50,17 @@ public class PersonalChallengeQueryDslImpl implements PersonalChallengeQueryDsl 
                 .fetch();
 
         return personalChallengeList;
+    }
+
+    @Override
+    public Optional<PersonalChallenge> findByPersonalChallengeId(Long personalChallengeId) {
+        PersonalChallenge personalChallenge = query.select(QPersonalChallenge.personalChallenge)
+                .from(QPersonalChallenge.personalChallenge)
+                .leftJoin(QPersonalChallenge.personalChallenge.challenge, challenge)
+                .fetchJoin()
+                .where(QPersonalChallenge.personalChallenge.id.eq(personalChallengeId))
+                .fetchOne();
+
+        return Optional.ofNullable(personalChallenge);
     }
 }
