@@ -228,7 +228,9 @@ public class AdminController {
     @GetMapping("board/groupChallenge/modify")
     public void adminGroupChallengeModify() {}
     @GetMapping("board/groupChallenge/write")
-    public void adminGroupChallengeWrite() {}
+    public void adminGroupChallengeWrite() {
+        
+    }
 
 
 }
