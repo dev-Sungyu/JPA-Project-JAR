@@ -35,4 +35,15 @@ public class ChallengeAttend extends Period {
     @JoinColumn(name = "PERSONAL_CHALLENGE_ID")
     private PersonalChallenge personalChallenge;
 
+    @Builder
+    public ChallengeAttend(Long id, ChallengeAttendType challengeAttendStatus, Member member, PersonalChallenge personalChallenge) {
+        this.id = id;
+        this.challengeAttendStatus = challengeAttendStatus;
+        this.member = member;
+        this.personalChallenge = personalChallenge;
+    }
+
+    public void setChallengeAttendStatus(ChallengeAttendType challengeAttendStatus) {
+        this.challengeAttendStatus = challengeAttendStatus;
+    }
 }
