@@ -16,6 +16,6 @@ public class OAuthController {
         MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
         log.info("==================================================");
         log.info(memberDTO.toString());
-        return new RedirectView("/mypage/main");
+        return new RedirectView("/main/");
     }
 }
