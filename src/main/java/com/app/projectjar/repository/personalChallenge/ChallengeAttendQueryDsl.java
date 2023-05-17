@@ -1,4 +1,4 @@
-package com.app.projectjar.repository.challenge;
+package com.app.projectjar.repository.personalChallenge;
 
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import org.springframework.data.domain.Page;

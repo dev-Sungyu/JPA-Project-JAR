@@ -21,4 +21,15 @@ public class ChallengeReply extends Reply {
     @JoinColumn(name="MEMBER_ID")
     private Member member;
 
+    @Builder
+    public ChallengeReply(Long id, String replyContent, PersonalChallenge personalChallenge, Member member) {
+        super(id, replyContent);
+        this.personalChallenge = personalChallenge;
+        this.member = member;
+    }
+
+
+    public void setChallengeReplyContent(String replyContent) {
+        super.setReplyContent(replyContent);
+    }
 }
