@@ -40,12 +40,15 @@ public class Suggest extends Board {
     private List<SuggestFile> suggestFiles = new ArrayList<>();
 
     @Builder
-    public Suggest(Long id, String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
+    public Suggest(Long id, String boardTitle, String boardContent, Integer suggestLikeCount, Integer suggestReplyCount, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
         super(id, boardTitle, boardContent);
+        this.suggestLikeCount = suggestLikeCount;
+        this.suggestReplyCount = suggestReplyCount;
         this.boardType = boardType;
         this.member = member;
         this.suggestFiles = suggestFiles;
     }
+
 
     public void setSuggestLikeCount(Integer suggestLikeCount) {
         this.suggestLikeCount = suggestLikeCount;
@@ -54,4 +57,5 @@ public class Suggest extends Board {
     public void setSuggestReplyCount(Integer suggestReplyCount) {
         this.suggestReplyCount = suggestReplyCount;
     }
+
 }
