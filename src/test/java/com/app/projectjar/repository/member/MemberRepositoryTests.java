@@ -1,9 +1,14 @@
 package com.app.projectjar.repository.member;
 
+import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
+import com.app.projectjar.type.BadgeType;
+import com.app.projectjar.type.FileType;
+import com.app.projectjar.type.MemberType;
+import com.app.projectjar.type.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +35,13 @@ public class MemberRepositoryTests {
     private GroupChallengeRepository groupChallengeRepository;
 
 //      추가
-//    @Test
-//    public void saveTest() {
-//        MemberFile memberFile = new MemberFile("", "", "", REPRESENTATIVE);
-//        Member member = new Member("user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, memberFile);
-//        memberRepository.save(member);
+    @Test
+    public void saveTest() {
+//        MemberFile memberFile = new MemberFile("", "", "", FileType.REPRESENTATIVE);
+        Member member = new Member(1L, "user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, Role.MEMBER, null);
+        memberRepository.save(member);
 //        memberFIleRepository.save(memberFile);
-//    }
+    }
 
 //      조회
     @Test
