@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Long checkNickName(String memberNickName) { return memberRepository.overlapByNickName_QueryDSL(memberNickName);}
 
-    //    비밀번호 찾기
+//    비밀번호 찾기
     @Override
     public Long findByMemberPassword(String Email) {
         return null;
