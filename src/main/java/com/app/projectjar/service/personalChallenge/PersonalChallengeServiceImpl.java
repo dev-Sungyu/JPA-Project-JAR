@@ -125,4 +125,10 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
         }
     }
 
+    @Override
+    public ChallengeDTO getChallenge(Long challengeId) {
+        ChallengeDTO challengeDTO = challengeRepository.findById(challengeId).map(this::toChallengeDTO).get();
+        return challengeDTO;
+    }
+
 }
