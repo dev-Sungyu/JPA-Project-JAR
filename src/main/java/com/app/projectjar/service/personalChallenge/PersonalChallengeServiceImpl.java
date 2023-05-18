@@ -1,6 +1,7 @@
 package com.app.projectjar.service.personalChallenge;
 
 import com.app.projectjar.domain.challenge.ChallengeDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
@@ -9,6 +10,7 @@ import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.type.FileType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -18,6 +20,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -85,4 +88,5 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
         PersonalChallenge personalChallenge = PersonalChallenge.builder().challenge(challenge).build();
         personalChallengeRepository.save(personalChallenge);
     }
+
 }
