@@ -47,17 +47,17 @@ public class AdminController {
     public void adminChallengeDetail() {}
     @GetMapping("board/challenge/list")
     public String adminChallengeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
-        Page<PersonalChallengeDTO> personalChallengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
+        Page<ChallengeDTO> personalChallengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
         model.addAttribute("pageDTO",new PageDTO(personalChallengePage));
         model.addAttribute("personalChallengeDTOS", personalChallengePage.getContent());
         return "admin/board/challenge/list";
     }
     @DeleteMapping("board/challenge/delete")
     @ResponseBody
-//    public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> personalChallengeIds) {
-//        personalChallengeService.deleteGroupChallenges(personalChallengeIds);
-//        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
-//    }
+    public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> challengeIds) {
+        personalChallengeService.deleteChallenges(challengeIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
     @GetMapping("board/challenge/modify")
     public void adminChallengeModify() {}
     @GetMapping("board/challenge/write")
