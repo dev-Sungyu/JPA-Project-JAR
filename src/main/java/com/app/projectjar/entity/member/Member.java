@@ -41,8 +41,7 @@ public class Member extends Period {
     private Role memberType;
 
     @Builder
-    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
-        this.id = id;
+    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
@@ -54,6 +53,7 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
+
     @Builder
     public Member(String memberEmail, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, Role memberType) {
         this.memberEmail = memberEmail;
@@ -62,6 +62,21 @@ public class Member extends Period {
         this.memberPhoneNumber = memberPhoneNumber;
         this.memberStatus = memberStatus;
         this.memberType = memberType;
+    }
+
+
+    @Builder
+    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
+        this.id = id;
+        this.memberEmail = memberEmail;
+        this.memberPassword = memberPassword;
+        this.memberPhoneNumber = memberPhoneNumber;
+        this.memberName = memberName;
+        this.memberNickname = memberNickname;
+        this.memberStatus = memberStatus;
+        this.badgeType = badgeType;
+        this.memberType = memberType;
+        this.memberFile = memberFile;
     }
 
     public Member update(String memberEmail, String memberName, String memberNickname, String memberPhoneNumber) {

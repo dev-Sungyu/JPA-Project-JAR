@@ -20,7 +20,7 @@ public interface MemberService extends UserDetailsService {
 //    휴대폰 번호 중복 검사
     public Long checkPhoneNumber(String memberPhoneNumber);
 
-//    이메일 중복 검사
+//    닉네임 중복 검사
     public Long checkNickName(String memberNickName);
 
 //    비밀번호 찾기

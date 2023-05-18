@@ -8,10 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Random;
@@ -38,8 +35,27 @@ public class MemberController {
     @GetMapping("login")
     public void goToLoginForm() {;}
 
-    @GetMapping("join-OAuth")
-    public void Oauth(){}
+
+    //   이메일 중복 검사
+    @PostMapping("check-email")
+    @ResponseBody
+    public Long checkEmail(@RequestParam("memberEmail") String memberEmail){
+        return memberService.checkEmail(memberEmail);
+    }
+
+    //  닉네임 중복 검사
+    @PostMapping("check-nickname")
+    @ResponseBody
+    public Long checkNickname(@RequestParam("memberNickname") String memberNickname){
+        return memberService.checkNickName(memberNickname);
+    }
+
+    //  휴대폰 번호 중복 검사
+    @PostMapping("check-phone")
+    @ResponseBody
+    public Long checkPhone(@RequestParam("memberPhoneNumber") String memberPhoneNumber){
+        return memberService.checkPhoneNumber(memberPhoneNumber);
+    }
 
     @GetMapping("password")
     public void password(){}
