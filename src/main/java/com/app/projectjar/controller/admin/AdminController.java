@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -248,19 +249,34 @@ public class AdminController {
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
 
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
-        return "/board/groupChallenge/modify";
+        return "/admin/board/groupChallenge/modify";
     }
+
     @PostMapping("board/groupChallenge/modify")
-    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam Long groupChallengeId) {
+    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam("groupChallengeId") Long groupChallengeId) {
+
+        log.info("groupChallengeId =======================" + groupChallengeId);
+
+        LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
+        LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
+
+        groupChallengeDTO.setStartDate(startDate);
+        groupChallengeDTO.setEndDate(endDate);
+        groupChallengeDTO.setId(groupChallengeId);
+        log.info("=========================================================");
+        log.info(groupChallengeDTO.toString());
 
         groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         groupChallengeService.update(groupChallengeDTO);
-        return new RedirectView("/board/groupChallenge/modify/" + groupChallengeId);
+
+        return new RedirectView("/admin/board/groupChallenge/detail/" + groupChallengeId);
     }
+
     @GetMapping("board/groupChallenge/write")
     public void adminGroupChallengeWrite(Model model) {
         model.addAttribute("groupChallengeDTO", new GroupChallengeDTO());
     }
+
     @PostMapping("board/groupChallenge/write")
     public RedirectView write(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO) {
         LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
@@ -271,6 +287,12 @@ public class AdminController {
 
         groupChallengeService.register(groupChallengeDTO);
         return new RedirectView("/admin/board/groupChallenge/list");
+    }
+
+    @PostMapping("board/groupChallenge/modify/delete/{groupChallengeId}")
+    public RedirectView delete(@PathVariable("groupChallengeId") Long groupChallengeId){
+        groupChallengeService.delete(groupChallengeId);
+        return new RedirectView("admin/board/groupChallenge/list");
     }
 
 
