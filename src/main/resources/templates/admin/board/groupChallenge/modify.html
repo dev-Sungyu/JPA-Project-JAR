@@ -57,56 +57,46 @@
                                 </div>
                                 <hr>
                                 <div class="info-table">
-                                    <form th:action="@{/admin/board/groupChallenge/modify/{groupChallengeId}(groupChallengeId=${groupChallengeDTO.groupChallengeid})}" method="post" enctype="multipart/form-data" name="form">
+                                    <form th:action="@{/admin/board/groupChallenge/modify(groupChallengeId=${groupChallengeDTO.id})}" method="post" enctype="multipart/form-data" name="form">
                                         <div>
-                                            <input type="text" class="board_title" name="boardTitle"
-                                                placeholder="제목을 입력해주세요." autocomplete="off" th:value="${groupChallengeDTO.boardTitle}">
+                                            <input type="text" class="board-title" name="boardTitle"
+                                                   placeholder="제목을 입력해주세요." autocomplete="off" th:value="${groupChallengeDTO.boardTitle}">
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="selection_label is-inline-block">
                                                 <div>
-                                                    <div class="selection" name="group" style="font-weight: 100;">단체 챌린지</div>
+                                                    <div class="selection" name="group" style="font-weight: 100">단체 챌린지</div>
                                                 </div>
                                             </label>
                                         </div>
                                         <div class="select_date_wrapper">
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="startdate" th:value="${groupChallengeDTO.startDate}"/>
+                                            <input type="date" data-placeholder="날짜 선택"
+                                                   th:value="${groupChallengeDTO.startDate}" name="requestStartDate" />
                                             <span> ~ </span>
-                                            <input type="date" data-placeholder="날짜 선택" required aria-required="true"
-                                                name="enddate" th:value="${groupChallengeDTO.endDate}"/>
+                                            <input type="date" data-placeholder="날짜 선택"
+                                                   th:value="${groupChallengeDTO.endDate}" name="requestEndDate" />
                                         </div>
                                         <div style="display: inline-block;">
                                             <label class="file_insert_label">
-                                                <input type="file" style="display:none;" name="file" class="file" multiple>
+                                                <input type="file" style="display:none;" class="file" name="file" multiple>
                                                 <div class="file-image-box">
-                                                    <p style="font-weight: 100;">사진 첨부</p>
+                                                    <p style="font-weight: 100">사진 첨부</p>
                                                 </div>
                                             </label>
                                         </div>
                                         <hr>
                                         <div>
                                             <textarea class="board-content" name="boardContent"
-                                                placeholder="내용을 입력해주세요." th:value="${groupChallengeDTO.boardContent}">수정 전 내용</textarea>
+                                                      placeholder="내용을 입력해주세요." >[[${groupChallengeDTO.boardContent}]]</textarea>
                                         </div>
                                         <section class="img_wrapper_box">
                                             <div class="img_ul_wrapper">
                                                 <ul class="img_ul">
-                                                    <li class="img_list" id="li0">
-                                                        <div class="img_box_wrapper">
-                                                            <article class="img_wrapper">
-<!--                                                                <div class="img_div">-->
-<!--                                                                    <img src="/image/board/board-img.png" alt=""-->
-<!--                                                                        class="inserted_img">-->
-<!--                                                                </div>-->
-                                                            </article>
-                                                        </div>
-                                                    </li>
                                                 </ul>
                                             </div>
                                         </section>
                                         <div>
-                                            <button type="button" class="btn_done save-button modify-button" style="font-weight: 100;">등록</button>
+                                            <button type="button" class="btn_done modify-button" style="font-weight: 100">등록</button>
                                         </div>
                                     </form>
                                 </div>
@@ -132,14 +122,14 @@
 </script>
 <script src="/js/admin/write.js"></script>
 <script>
+
     $(".modify-button").click(() => {
-        console.log(globalThis.uuids);
         const $files = fileDTOS;
         let text = "";
 
         FileList.prototype.forEach = Array.prototype.forEach;
         let count = 0;
-        files.forEach((file, i) => {
+        $files.forEach((file, i) => {
             if(file.fileOriginalName == undefined && file.fileOriginalName == null){
                 text +=
                     `
@@ -163,8 +153,8 @@
     });
 
     imageText(groupChallengeDTO.fileDTOS);
-    function imageText(files){
-        files.forEach((file, i) => {
+    function imageText($files){
+        $files.forEach((file, i) => {
             let text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">

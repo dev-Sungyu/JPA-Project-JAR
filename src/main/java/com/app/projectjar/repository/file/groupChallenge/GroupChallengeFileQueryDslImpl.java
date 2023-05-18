@@ -5,6 +5,7 @@ import com.app.projectjar.domain.file.QFileDTO;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,9 +39,11 @@ public class GroupChallengeFileQueryDslImpl implements GroupChallengeFileQueryDs
     }
 
     @Override
+    @Transactional
     public void deleteByGroupChallengeId(Long groupChallengeId) {
         query.delete(groupChallengeFile)
                 .where(groupChallengeFile.groupChallenge.id.eq(groupChallengeId))
                 .execute();
     }
+
 }

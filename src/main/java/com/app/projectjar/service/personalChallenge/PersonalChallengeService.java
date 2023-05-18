@@ -38,6 +38,9 @@ public interface PersonalChallengeService {
     // 챌린지 등록
     public void insertChallenge(Challenge challenge);
 
+    // 저장
+//    public void register(PersonalChallengeDTO personalChallengeDTO);
+
 
     default PersonalChallengeDTO toPersonalChallengeDTO(PersonalChallenge personalChallenge) {
         return PersonalChallengeDTO.builder()

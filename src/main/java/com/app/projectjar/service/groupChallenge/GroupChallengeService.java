@@ -28,6 +28,9 @@ public interface GroupChallengeService {
     // 삭제
     public void deleteGroupChallenges(List<Long> groupChallengeIds);
 
+    // 삭제
+    public void delete(Long groupChallengeId);
+
     // 수정
     public void update(GroupChallengeDTO groupChallengeDTO);
 
@@ -93,6 +96,7 @@ public interface GroupChallengeService {
                 .groupChallengeStatus(groupChallengeDTO.getGroupChallengeStatus())
                 .build();
     }
+
 
     default GroupChallengeFile toGroupChallengeFileEntity(FileDTO fileDTO){
         return GroupChallengeFile.builder()
