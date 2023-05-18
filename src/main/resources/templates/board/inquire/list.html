@@ -18,12 +18,13 @@
         <div class="row">
             <div class="div_notice">
                 <div class="login">
+
+                    <th:block th:replace="~{main/header :: header}"></th:block>
+
                     <div class="notice_box">
                         <h4 class="notice_h4">문의 게시판</h4>
                         <div style="height: 24px;"></div>
                         <div class="login">
-
-                            <th:block th:replace="~{main/header :: header}"></th:block>
                             <div class="notice_inbox">
                                 <div class="login"><!--  -->
                                     <div class="login"><!-- 공지사항 목록 -->
@@ -237,15 +238,41 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script>
-    let pages = document.querySelectorAll('.second_button');
-    pages.forEach(page => {
-        page.addEventListener('click', function () {
-            pages.forEach(p => {
-                p.classList.remove('first_button');
-            })
-            page.classList.add('first_button');
-        })
-    })
+    // let pages = document.querySelectorAll('.second_button');
+    // pages.forEach(page => {
+    //     page.addEventListener('click', function () {
+    //         pages.forEach(p => {
+    //             p.classList.remove('first_button');
+    //         })
+    //         page.classList.add('first_button');
+    //     })
+    // })
+
+
+
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.second_button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('first_button');
+                } else {
+                    $(element).removeClass('first_button');
+                }
+            });
+        }
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
 
 </script>
 </html>

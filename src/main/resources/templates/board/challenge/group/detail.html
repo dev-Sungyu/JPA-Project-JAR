@@ -104,25 +104,36 @@
                                                                 <strong th:text="${groupChallengeDTO.boardTitle}"></strong>
                                                             </h3>
                                                         </div>
+                                                        <div class="user-container-box-2 end-challenge" size="64" style="display: none;">
+                                                            <div >
+                                                                <p>종료된 챌린지 입니다.</p>
+                                                            </div>
+                                                        </div>
                                                         <th:block th:if="${not #strings.isEmpty(userDetail)}">
-                                                                <div class="user-container-box-2" size="64">
-                                                                    <button class="attend-button challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                                        <span>참여하기</span>
-                                                                    </button>
-                                                                    <div class="challenge-button-box">
-                                                                        <div style="display: flex">
-                                                                            <button style="margin-right: 10px;" class="complete-button challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                                                <span>참여완료</span>
-                                                                            </button>
-                                                                            <button class="attend-cancel challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
-                                                                                <span>참여취소</span>
-                                                                            </button>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="challenge-complete">
-                                                                        <p>이미 완료된 챌린지 입니다.</p>
+                                                            <div class="user-container-box-2 current-challenge" size="64">
+                                                                <button class="attend-button challenge-button-check diary-modify-button"
+                                                                        icon-position="0" color="default" fill="true">
+                                                                    <span>참여하기</span>
+                                                                </button>
+                                                                <div class="challenge-button-box">
+                                                                    <div style="display: flex">
+                                                                        <button style="margin-right: 10px;"
+                                                                                class="complete-button challenge-button-check diary-modify-button"
+                                                                                icon-position="0" color="default"
+                                                                                fill="true">
+                                                                            <span>참여완료</span>
+                                                                        </button>
+                                                                        <button class="attend-cancel challenge-button-check diary-modify-button"
+                                                                                icon-position="0" color="default"
+                                                                                fill="true">
+                                                                            <span>참여취소</span>
+                                                                        </button>
                                                                     </div>
                                                                 </div>
+                                                                <div class="challenge-complete">
+                                                                    <p>이미 완료된 챌린지 입니다.</p>
+                                                                </div>
+                                                            </div>
                                                         </th:block>
                                                     </div>
                                                 </div>
@@ -258,6 +269,11 @@
 
     const fileDTOS = [[${groupChallengeDTO.fileDTOS}]];
     const $mainImage = $(".main-picture");
+
+    if(groupChallengeDTO.groupChallengeStatus == 'PRIVATE'){
+        $(".end-challenge").show();
+        $(".current-challenge").hide();
+    }
 
     $mainImage.attr("src", `/file/display?fileName=${fileDTOS[0].filePath}/${fileDTOS[0].fileUuid}_${fileDTOS[0].fileOriginalName}`)
     const $subImage1 = $(".sub-image1");
