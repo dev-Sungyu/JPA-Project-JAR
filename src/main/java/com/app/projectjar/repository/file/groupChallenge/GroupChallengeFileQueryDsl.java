@@ -18,4 +18,5 @@ public interface GroupChallengeFileQueryDsl {
     public List<FileDTO> findAllFiles(LocalDateTime date);
 
     public void deleteByGroupChallengeId(Long groupChallengeId);
+
 }
