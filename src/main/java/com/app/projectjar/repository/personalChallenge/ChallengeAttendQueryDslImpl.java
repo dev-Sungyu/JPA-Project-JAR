@@ -1,17 +1,52 @@
-package com.app.projectjar.repository.challenge;
+package com.app.projectjar.repository.personalChallenge;
 
 
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
+import com.app.projectjar.entity.personalChallenge.QChallengeAttend;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
+import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
+
 @RequiredArgsConstructor
 public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
     private final JPAQueryFactory query;
-//    개인 챌린지 목록(페이징, 진행중)
 
+    @Override
+    public Integer getAttendCountByPersonalChallengeId_QueryDsl(Long personalChallengeId) {
+        return query.select(challengeAttend.count())
+                .from(challengeAttend)
+                .where(challengeAttend.personalChallenge.id.eq(personalChallengeId))
+                .fetchOne().intValue();
+    }
+
+    @Override
+    public Long findByChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId) {
+        return query.select(challengeAttend.count())
+                .from(challengeAttend)
+                .where(challengeAttend.personalChallenge.id.eq(personalChallengeId).and(challengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
+
+    @Override
+    public void deleteByPersonalChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId) {
+        query.delete(challengeAttend)
+                .where(challengeAttend.personalChallenge.id.eq(personalChallengeId).and(challengeAttend.member.id.eq(memberId)))
+                .execute();
+    }
+
+    @Override
+    public ChallengeAttend findPersonalChallengeAttendByPersonalChallengeIdAndMemberId_QueryDsl(Long personalChallengeId, Long memberId) {
+        return query.select(challengeAttend)
+                .from(challengeAttend)
+                .where(challengeAttend.personalChallenge.id.eq(personalChallengeId).and(challengeAttend.member.id.eq(memberId)))
+                .fetchOne();
+    }
+
+    //    개인 챌린지 목록(페이징, 진행중)
     @Override
     public Page<ChallengeAttend> findAllWithPageAndChallenges_QueryDsl(Long memberId, Pageable pageable) {
 //        List<ChallengeAttend> foundChallengeAttend = query.selectFrom(challengeAttend)

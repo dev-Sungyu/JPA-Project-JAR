@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = {"challenge"})
 @Table(name = "TBL_CHALLENGE_FILE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ChallengeFile extends Files {

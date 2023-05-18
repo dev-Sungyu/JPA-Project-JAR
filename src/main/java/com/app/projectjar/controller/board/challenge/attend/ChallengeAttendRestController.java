@@ -1,40 +1,38 @@
-package com.app.projectjar.controller.board.groupChallenge.attend;
+package com.app.projectjar.controller.board.challenge.attend;
 
-import com.app.projectjar.service.groupChallenge.attend.GroupChallengeAttendService;
+import com.app.projectjar.service.personalChallenge.attend.ChallengeAttendService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/groupChallenge/attend/*")
 @RequiredArgsConstructor
-@Slf4j
-public class GroupChallengeAttendController {
-
-    private final GroupChallengeAttendService groupChallengeAttendService;
+@RequestMapping("/challenge/attend/*")
+public class ChallengeAttendRestController {
+    private final ChallengeAttendService challengeAttendService;
 
     @PostMapping("insert")
     public void insert(@RequestParam("boardId")Long boardId, @RequestParam("memberId") Long memberId){
-        groupChallengeAttendService.insertAttend(boardId,memberId);
+        challengeAttendService.insertAttend(boardId,memberId);
     }
 
     @GetMapping("check")
     public Boolean attendCheck(@RequestParam("boardId")Long boardId, @RequestParam("memberId") Long memberId) {
-        return groupChallengeAttendService.attendCheck(boardId, memberId);
+        return challengeAttendService.attendCheck(boardId, memberId);
     }
 
     @DeleteMapping("delete")
     public void deleteAttend(@RequestParam("boardId")Long boardId, @RequestParam("memberId") Long memberId){
-        groupChallengeAttendService.deleteAttend(boardId, memberId);
+        challengeAttendService.deleteAttend(boardId, memberId);
     }
 
     @PatchMapping("update")
     public void updateAttendStatus(@RequestParam("boardId")Long boardId, @RequestParam("memberId") Long memberId) {
-        groupChallengeAttendService.updateAttendToAttendType(boardId, memberId);
+        challengeAttendService.updateAttendToAttendType(boardId, memberId);
     }
 
     @GetMapping("success-check")
     public Boolean challengeSuccessCheck(@RequestParam("boardId")Long boardId, @RequestParam("memberId") Long memberId){
-        return groupChallengeAttendService.challengeSuccessCheck(boardId, memberId);
+        return challengeAttendService.challengeSuccessCheck(boardId, memberId);
     }
+
 }

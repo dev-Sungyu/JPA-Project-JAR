@@ -1,15 +1,18 @@
 package com.app.projectjar.controller.admin;
 
+import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
+import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
+import com.app.projectjar.service.personalChallenge.PersonalChallengeService;
 import com.app.projectjar.service.suggest.SuggestService;
 import com.app.projectjar.type.MemberType;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +24,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,13 +38,19 @@ public class AdminController {
     private final MemberService memberService;
     private final DiaryService diaryService;
     private final GroupChallengeService groupChallengeService;
+    private final PersonalChallengeService personalChallengeService;
 
 
 
     @GetMapping("board/challenge/detail")
     public void adminChallengeDetail() {}
     @GetMapping("board/challenge/list")
-    public void adminChallengeList() {}
+    public String adminChallengeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        Page<PersonalChallengeDTO> personalChallengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
+        model.addAttribute("pageDTO",new PageDTO(personalChallengePage));
+        model.addAttribute("personalChallengeDTOS", personalChallengePage.getContent());
+        return "admin/board/challenge/list";
+    }
     @GetMapping("board/challenge/modify")
     public void adminChallengeModify() {}
     @GetMapping("board/challenge/write")
@@ -225,10 +235,35 @@ public class AdminController {
         groupChallengeService.deleteGroupChallenges(groupChallengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
-    @GetMapping("board/groupChallenge/modify")
-    public void adminGroupChallengeModify() {}
+    @GetMapping("board/groupChallenge/modify/{groupChallengeId}")
+    public String adminGroupChallengeModify(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
+        GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
+
+        model.addAttribute("groupChallengeDTO", groupChallengeDTO);
+        return "/board/groupChallenge/modify";
+    }
+    @PostMapping("board/groupChallenge/modify")
+    public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam Long groupChallengeId) {
+
+        groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
+        groupChallengeService.update(groupChallengeDTO);
+        return new RedirectView("/board/groupChallenge/modify/" + groupChallengeId);
+    }
     @GetMapping("board/groupChallenge/write")
-    public void adminGroupChallengeWrite() {}
+    public void adminGroupChallengeWrite(Model model) {
+        model.addAttribute("groupChallengeDTO", new GroupChallengeDTO());
+    }
+    @PostMapping("board/groupChallenge/write")
+    public RedirectView write(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO) {
+        LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
+        LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
+
+        groupChallengeDTO.setStartDate(startDate);
+        groupChallengeDTO.setEndDate(endDate);
+
+        groupChallengeService.register(groupChallengeDTO);
+        return new RedirectView("/admin/board/groupChallenge/list");
+    }
 
 
 }

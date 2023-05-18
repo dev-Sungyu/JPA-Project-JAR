@@ -135,6 +135,10 @@
                                                         <div class="login">
                                                             <input type="tel" name="memberPhoneNumber" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
                                                         </div>
+                                                        <div style="height: 4px;"></div>
+                                                        <div class="login">
+                                                            <p id="red_phone" class="waring_email"></p>
+                                                        </div>
                                                     </div>
                                                 </label>
                                             </div>
@@ -297,32 +301,68 @@ $(".next_btn").click(function() {
 // 이메일 정규식
     let emailInput = $("input[name=memberEmail]");
     let emailErrorMsg = $("#red_email");
+    let emailFlag = false;
 
-    emailInput.on("input", function() {
-    let email = emailInput.val().trim();
-    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    emailInput.on("blur", function() {
+        let email = emailInput.val().trim();
+        let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (email === "") {
-        emailErrorMsg.text("이메일을 입력해주세요.").show();
-        emailInput.addClass("error-input");
-    } else if (!emailRegex.test(email)) {
-        emailErrorMsg.text("올바르지 않은 이메일입니다. 이메일 형식에 맞게 입력해주세요.").show();
-        emailInput.addClass("error-input");
-    } else {
-        emailErrorMsg.hide();
-        emailInput.removeClass("error-input");
-        $("#red_email").css('display', 'none');
-        $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    }
-    });
+        $.ajax({
+            url: "/members/checkEmail",
+            data: {"memberEmail": emailInput.val()},
+            success: function (result) {
 
-// 비밀번호 정규식
+                if (result == 1) {
+                    emailErrorMsg.text("중복된 이메일입니다.").show();
+                    emailInput.addClass("error-input");
+                    emailFlag = false;
+                } else if (!emailRegex.test(email)) {
+                    emailErrorMsg.text("올바르지 않은 이메일입니다. 이메일 형식에 맞게 입력해주세요.").show();
+                    emailInput.addClass("error-input");
+                    emailFlag = false;
+                } else {
+                    emailErrorMsg.text("사용 가능한 이메일입니다.").show();
+                    emailErrorMsg.css('color', '#2bb673');
+                    emailInput.removeClass("error-input");
+                    emailFlag = true;
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                        console.log("이메일 플래그")
+                    }
+                }
+
+            }
+        });
+    })
+
+    // if (email === "") {
+    //     emailErrorMsg.text("이메일을 입력해주세요.").show();
+    //     emailInput.addClass("error-input");
+    // } else if (!emailRegex.test(email)) {
+    //     emailErrorMsg.text("올바르지 않은 이메일입니다. 이메일 형식에 맞게 입력해주세요.").show();
+    //     emailInput.addClass("error-input");
+    // } else {
+    //     emailErrorMsg.hide();
+    //     emailInput.removeClass("error-input");
+    //     $("#red_email").css('display', 'none');
+    //     $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    // }
+    // });
+
+
+
+
+
+
+
+    // 비밀번호 정규식
 let passwordInput = $("input[name=memberPassword]");
 let passwordErrorMsg = $("#red_password");
 let confirmPasswordInput = $("input[name=confirmPassword]");
 let confirmPasswordErrorMsg = $("#red_confirm_password");
+let passwordFlag = false;
 
-passwordInput.on("input", function() {
+// passwordInput.on("input", function() {
+passwordInput.on("blur", function() {
   let password = passwordInput.val().trim();
   let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/;
   let passwordContinuity = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/
@@ -330,102 +370,153 @@ passwordInput.on("input", function() {
   if (password === "") {
     passwordErrorMsg.text("비밀번호를 입력해주세요.").show();
     passwordInput.addClass("error-input");
+    passwordFlag = false;
   } else if (!passwordRegex.test(password)) {
     passwordErrorMsg.text("비밀번호는 영문 대소문자, 숫자, 특수문자 중 2가지 이상 조합된 8자 ~ 32자만 가능합니다.").show();
     passwordInput.addClass("error-input");
+    passwordFlag = false;
   } else if (!passwordContinuity.test(password)) {
     passwordErrorMsg.text("3회 이상 연속되거나 동일한 숫자, 문자 등 타인이 쉽게 알아낼 수 있는 비밀번호를 사용할 수 없습니다.").show();
     passwordInput.addClass("error-input");
+    passwordFlag = false;
   } else {
     passwordErrorMsg.hide();
     passwordInput.removeClass("error-input");
     $("#red_password").css('display', 'none');
     $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    passwordFlag = true;
+      if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+          console.log("비밀번호 플래그")
+      }
   }
 });
 
 confirmPasswordInput.on("input", function() {
   let password = passwordInput.val().trim();
   let confirmPassword = confirmPasswordInput.val().trim();
+  let passwordCheckFlag = false;
 
   if (password === confirmPassword) {
     confirmPasswordErrorMsg.hide();
     confirmPasswordInput.removeClass("error-input");
+    passwordCheckFlag = true;
+      if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+          console.log("비밀번호 체크 플래그")
+      }
   } else {
     confirmPasswordErrorMsg.text("비밀번호가 일치하지 않습니다.").show();
     confirmPasswordInput.addClass("error-input");
+    passwordCheckFlag = false;
   }
 });
 
 
-    $("input[name='memberName']").keyup(function() {
-        $("#red_name").css('display', 'none');
-        $("input[name='memberName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    });
-    $("input[name='memberNickName']").keyup(function() {
-        $("#red_nickname").css('display', 'none');
-        $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    });
 
+    let nameInput = $("input[name=memberName]");
+    let nameErrorMsg = $("#red_name");
+    let nameFlag = false;
 
-
-
-
-
-
-
-
-
-
-
-
-    $.ajax({
-        url:"/members/checkEmail" ,
-        data: {"memberEmail": emailInput.val()},
-        success: function(result){
-            let message;
-            if(result == 1){
-                message = "중복된 이메일입니다.";
-                emailInput.css('color', 'red')
-                emailInput.css('display', 'block');
-                emailErrorMsg = false;
-
-            } else if($identificationInput.val().length < 1){
-                $identificationWarning.css('display', 'block');
-                $identificationWarning.css('color', 'red');
-                message = "필수 입력 사항입니다";
-                identificationFlag = false;
-
-            } else if(!emailPattern.test($identificationInput.val())){
-                $identificationWarning.css('display', 'block');
-                $identificationWarning.css('color', 'red');
-                message = "이메일 형식에 맞춰주세요";
-                identificationFlag = false;
-
-            } else{
-                message = "사용 가능한 이메일입니다.";
-                $identificationWarning.css('display', 'block');
-                $identificationWarning.css('color', '#2bb673');
-                identificationFlag = true;
-                if(identificationFlag && passwordFlag && passwordCheckFlag && nicknameFlag  && nameFlag && phoneFlag){
-                    console.log("asdasd")
-                    $(".signup-submit-button").css("opacity","3");
-                    console.log("zz11")
-                }
+    nameInput.on("blur", function() {
+        if (nameInput.val().length < 1) {
+            nameErrorMsg.text("필수 입력 사항입니다.").show();
+            nameErrorMsg.addClass("error-input");
+            nameFlag = false;
+        } else {
+            emailErrorMsg.text("사용 가능한 이메일입니다.").show();
+            nameErrorMsg.css('color', '#2bb673');
+            nameInput.removeClass("error-input");
+            nameFlag = true;
+            if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                console.log("이름 플래그")
             }
-
-            $identificationWarning.text(message);
         }
     });
 
+    // $("input[name='memberName']").keyup(function() {
+    //     $("#red_name").css('display', 'none');
+    //     $("input[name='memberName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    // });
 
 
 
+    let nicknameInput = $("input[name=memberNickname]");
+    let nicknameErrorMsg = $("#red_nickname");
+    let nicknameFlag = false;
+
+    // $("input[name='memberNickName']").keyup(function() {
+    //     $("#red_nickname").css('display', 'none');
+    //     $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    // });
+
+    nicknameInput.on("blur", function() {
+
+        $.ajax({
+            url: "/members/checkNickname",
+            data: {"memberNickname": nicknameInput.val()},
+            success: function (result) {
+
+                if (result == 1) {
+                    nicknameErrorMsg.text("중복된 닉네임입니다.").show();
+                    nicknameInput.addClass("error-input");
+                    nicknameFlag = false;
+                } else if (nicknameInput.length < 2) {
+                    nicknameErrorMsg.text("닉네임은 최소 2자 입니다.").show();
+                    nicknameInput.addClass("error-input");
+                    nicknameFlag = false;
+                } else {
+                    nicknameErrorMsg.text("사용 가능한 닉네임입니다.").show();
+                    nicknameErrorMsg.css('color', '#2bb673');
+                    nicknameInput.removeClass("error-input");
+                    nicknameFlag = true;
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                        console.log("닉네임 플래그")
+                    }
+                }
+
+            }
+        });
+    })
+
+    // $("input[name='memberNickName']").keyup(function() {
+    //     $("#red_nickname").css('display', 'none');
+    //     $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+    // });
 
 
 
+    let phoneInput = $("input[name=memberPhoneNumber]");
+    let phoneErrorMsg = $("#red_phone");
+    let phoneFlag = false;
 
+    phoneInput.on("blur", function(){
+        var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
 
+        $.ajax({
+            url:"/members/checkPhone",
+            data:{"memberPhoneNumber": phoneInput.val()},
+            success: function(result){
+
+                if(result == 1 ){
+                    phoneErrorMsg.text("중복된 핸드폰 번호입니다.").show();
+                    phoneInput.addClass("error-input");
+                    phoneFlag = false;
+                } else if (!isPhoneNum.test(phoneInput.val())){
+                    phoneErrorMsg.text("잘못된 형식입니다. 다시 입력해주세요.");
+                    phoneInput.addClass("error-input");
+                    phoneFlag = false;
+                } else {
+                    phoneErrorMsg.text("사용 가능한 핸드폰 번호입니다.").show();
+                    phoneErrorMsg.css('color', '#2bb673');
+                    phoneInput.removeClass("error-input");
+                    nicknameFlag = true;
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                        console.log("핸드폰 플래그")
+                    }
+                }
+            }
+        })
+    })
+                                                                               
 
 /*휴대폰 번호 버튼 색상 변경*/
     $(".confirm_number").click(function(){
