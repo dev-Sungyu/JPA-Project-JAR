@@ -43,8 +43,14 @@ public class AdminController {
 
 
 
-    @GetMapping("board/challenge/detail")
-    public void adminChallengeDetail() {}
+    @GetMapping("board/challenge/detail/{challengeId}")
+    public String adminChallengeDetail(Model model, @PathVariable("challengeId") Long challengeId) {
+        ChallengeDTO challengeDTO = personalChallengeService.getChallenge(challengeId);
+
+        model.addAttribute("challengeDTO", challengeDTO);
+
+        return "admin/board/challenge/detail";
+    }
     @GetMapping("board/challenge/list")
     public String adminChallengeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
         Page<ChallengeDTO> challengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);

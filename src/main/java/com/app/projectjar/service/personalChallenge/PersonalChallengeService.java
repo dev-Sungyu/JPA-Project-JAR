@@ -49,6 +49,9 @@ public interface PersonalChallengeService {
     // 저장
     public void register(ChallengeDTO challengeDTO);
 
+    // 상세보기
+    public ChallengeDTO getChallenge(Long challengeId);
+
 
     default PersonalChallengeDTO toPersonalChallengeDTO(PersonalChallenge personalChallenge) {
         return PersonalChallengeDTO.builder()
