@@ -78,7 +78,7 @@ public class SuggestController {
     @PostMapping("delete/{boardId}")
     public RedirectView delete(@PathVariable("boardId") Long boardId){
         suggestService.delete(boardId);
-        return new RedirectView("/board/suggest/list/personal");
+        return new RedirectView("/board/suggest/list");
     }
 
 }
