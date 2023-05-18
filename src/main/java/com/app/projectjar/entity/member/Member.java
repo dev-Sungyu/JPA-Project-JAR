@@ -53,8 +53,6 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
-<<<<<<< HEAD
-=======
 
     @Builder
     public Member(String memberEmail, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, Role memberType) {
@@ -81,7 +79,6 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
->>>>>>> member
     public Member update(String memberEmail, String memberName, String memberNickname, String memberPhoneNumber) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
