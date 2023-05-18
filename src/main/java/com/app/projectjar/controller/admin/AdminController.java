@@ -47,23 +47,33 @@ public class AdminController {
     public void adminChallengeDetail() {}
     @GetMapping("board/challenge/list")
     public String adminChallengeList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
-        Page<PersonalChallengeDTO> personalChallengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
-        model.addAttribute("pageDTO",new PageDTO(personalChallengePage));
-        model.addAttribute("personalChallengeDTOS", personalChallengePage.getContent());
+        Page<ChallengeDTO> challengePage = personalChallengeService.getAllChallengesWithPaging(page - 1);
+        model.addAttribute("pageDTO",new PageDTO(challengePage));
+        model.addAttribute("challengeDTOS", challengePage.getContent());
         return "admin/board/challenge/list";
     }
     @DeleteMapping("board/challenge/delete")
     @ResponseBody
-//    public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> personalChallengeIds) {
-//        personalChallengeService.deleteGroupChallenges(personalChallengeIds);
-//        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
-//    }
+    public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> challengeIds) {
+        personalChallengeService.deleteChallenges(challengeIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
+    }
     @GetMapping("board/challenge/modify")
     public void adminChallengeModify() {}
-    @GetMapping("board/challenge/write")
-    public void adminChallengeWrite() {
 
+    @GetMapping("board/challenge/write")
+    public void adminChallengeWrite(Model model) {
+        model.addAttribute("challengeDTO", new ChallengeDTO());
     }
+
+    @PostMapping("board/challenge/write")
+    public RedirectView write(@ModelAttribute("challengeDTO") ChallengeDTO challengeDTO) {
+
+        personalChallengeService.register(challengeDTO);
+        return new RedirectView("/admin/board/challenge/list");
+    }
+
+
     @GetMapping("board/inquiry/answer")
     public void adminInquiryAnswer() {}
     @GetMapping("board/inquiry/detail")

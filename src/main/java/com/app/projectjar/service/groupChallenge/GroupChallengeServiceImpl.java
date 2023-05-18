@@ -2,7 +2,9 @@ package com.app.projectjar.service.groupChallenge;
 
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.type.FileType;
@@ -106,20 +108,18 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     }
 
 
-
     @Override @Transactional
     public void update(GroupChallengeDTO groupChallengeDTO) {
         List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
-        log.info(groupChallengeDTO.getBoardTitle());
-        groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(
-                groupChallenge -> {
-                    groupChallenge.builder()
+
+        groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(groupChallenge -> {
+                GroupChallenge updatedGroupChallenge = GroupChallenge.builder()
                             .boardContent(groupChallengeDTO.getBoardContent())
                             .boardTitle(groupChallengeDTO.getBoardTitle())
                             .startDate(groupChallengeDTO.getStartDate())
                             .endDate(groupChallengeDTO.getEndDate())
                             .build();
-                    groupChallengeRepository.save(groupChallenge);
+                    groupChallengeRepository.save(updatedGroupChallenge);
                 }
         );
 
