@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -22,8 +23,10 @@ public class Challenge extends Board {
     private List<ChallengeFile> challengeFiles;
 
     @Builder
-    public Challenge(Long id, String boardTitle, String boardContent, List<ChallengeFile> challengeFiles) {
+    public Challenge(Long id, String boardTitle, String boardContent, List<ChallengeFile> challengeFiles, LocalDateTime createDate) {
         super(id, boardTitle, boardContent);
         this.challengeFiles = challengeFiles;
+        this.setCreatedDate(createDate);
     }
+
 }
