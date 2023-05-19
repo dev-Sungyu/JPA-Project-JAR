@@ -238,7 +238,9 @@
                             <div class="account_a_div">
                                 <h6 class="have_account">이미 계정이 있으신가요?</h6>
                                 <div style="width: 8px;"></div>
-                                <h6 class="have_account_login">로그인</h6>
+                                <a onclick="location.href='/member/login'">
+                                    <h6 class="have_account_login">로그인</h6>
+                                </a>
                             </div>
                             <div></div>
                         </a>
@@ -256,7 +258,7 @@
 
 
     let userPassword = $("input[name=memberPassword]");
-    let userConfirmPassword = $("input[name=confi4rmPassword]");
+    let userConfirmPassword = $("input[name=confirmPassword]");
 
     // 비밀번호 눈표시 JS
     $(".password_span").click(function(){
@@ -468,8 +470,8 @@
     confirmPasswordInput.on("input", function() {
         let password = passwordInput.val().trim();
         let confirmPassword = confirmPasswordInput.val().trim();
-
-        if (password === confirmPassword) {
+        console.log(password.toString());
+        if (passwordInput.val() === confirmPasswordInput.val()) {
             confirmPasswordErrorMsg.hide();
             confirmPasswordInput.removeClass("error-input");
             confirmPasswordFlag = true;
@@ -664,14 +666,6 @@
             $(".next_btn").prop("disabled",true);
         }
     });
-
-    nameInput
-    nicknameInput
-    emailInput
-    passwordInput
-    confirmPasswordInput
-    phoneInput
-    $confirmPhoneInput
 
 
     function send(){
