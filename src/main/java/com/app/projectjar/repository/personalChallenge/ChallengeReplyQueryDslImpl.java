@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 import static com.app.projectjar.entity.member.QMember.member;
@@ -54,6 +55,14 @@ public class ChallengeReplyQueryDslImpl implements ChallengeReplyQueryDsl {
     public void deleteByPersonalChallengeId(Long personalChallengeId) {
         query.delete(challengeReply)
                 .where(challengeReply.personalChallenge.id.eq(personalChallengeId))
+                .execute();
+    }
+
+    @Transactional
+    @Override
+    public void deleteByChallengeId(Long challengeId) {
+        query.delete(challengeReply)
+                .where(challengeReply.personalChallenge.id.eq(challengeId))
                 .execute();
     }
 }

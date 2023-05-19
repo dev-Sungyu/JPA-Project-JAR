@@ -14,4 +14,6 @@ public interface ChallengeReplyQueryDsl {
 
     // 댓글 삭제
     public void deleteByPersonalChallengeId(Long personalChallengeId);
+
+    public void deleteByChallengeId(Long challengeId);
 }

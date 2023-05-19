@@ -110,7 +110,7 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     @Override
     public void deleteGroupChallenges(List<Long> groupChallengeIds) {
         for (Long groupChallengeId : groupChallengeIds) {
-            groupChallengeReplyRepository.
+            groupChallengeReplyRepository.deleteByGroupChallengeId(groupChallengeId);
             groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeId);
             groupChallengeAttendRepository.deleteByGroupChallengeId(groupChallengeId);
             groupChallengeRepository.deleteById(groupChallengeId);
