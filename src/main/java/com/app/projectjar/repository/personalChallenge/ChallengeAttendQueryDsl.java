@@ -28,4 +28,6 @@ public interface ChallengeAttendQueryDsl {
     public Page<ChallengeAttend> findAllWithPageAndEndChallenges_QueryDsl(Long memberId, Pageable pageable);
 
     public Long getChallengeReplyCount_QueryDsl(Long challengeId);
+
+    public void deleteByChallengeId(Long challengeId);
 }

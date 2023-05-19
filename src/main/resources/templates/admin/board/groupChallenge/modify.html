@@ -120,7 +120,7 @@
     }
 
 </script>
-<script src="/js/admin/write.js"></script>
+<script src="/js/admin/modify.js"></script>
 <script>
 
     $(".modify-button").click(() => {
@@ -129,7 +129,7 @@
 
         FileList.prototype.forEach = Array.prototype.forEach;
         let count = 0;
-        $files.forEach((file, i) => {
+        files.forEach((file, i) => {
             if(file.fileOriginalName == undefined && file.fileOriginalName == null){
                 text +=
                     `

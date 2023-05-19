@@ -7,6 +7,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
@@ -105,4 +106,14 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
 //                .fetchOne();
         return null;
     }
+
+    @Override
+    @Transactional
+    public void deleteByChallengeId(Long challengeId) {
+        query.delete(challengeAttend)
+                .where(challengeAttend.personalChallenge.id.eq(challengeId))
+                .execute();
+    }
+
+
 }

@@ -9,6 +9,8 @@ import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.repository.file.challenge.ChallengeFileRepository;
+import com.app.projectjar.repository.personalChallenge.ChallengeAttendRepository;
+import com.app.projectjar.repository.personalChallenge.ChallengeReplyRepository;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
 import com.app.projectjar.type.FileType;
@@ -39,6 +41,10 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
 
     private final ChallengeFileRepository challengeFileRepository;
 
+    private final ChallengeAttendRepository challengeAttendRepository;
+
+    private final ChallengeReplyRepository challengeReplyRepository;
+
     @Override
     public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable) {
         Page<PersonalChallenge> personalChallenges = personalChallengeRepository.findAllByChallengeStatus(challengeStatus, pageable);
@@ -64,6 +70,9 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     @Override
     public void deleteChallenges(List<Long> challengeIds) {
         for (Long challengeId : challengeIds) {
+            challengeReplyRepository.deleteByChallengeId(challengeId);
+            challengeFileRepository.deleteByChallengeId(challengeId);
+            challengeAttendRepository.deleteByChallengeId(challengeId);
             challengeRepository.deleteById(challengeId);
         }
     }

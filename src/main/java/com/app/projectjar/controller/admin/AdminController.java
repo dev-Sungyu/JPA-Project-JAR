@@ -2,6 +2,7 @@ package com.app.projectjar.controller.admin;
 
 import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
@@ -260,6 +261,7 @@ public class AdminController {
         groupChallengeService.deleteGroupChallenges(groupChallengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
+
     @GetMapping("board/groupChallenge/modify/{groupChallengeId}")
     public String adminGroupChallengeModify(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
@@ -271,7 +273,6 @@ public class AdminController {
     @PostMapping("board/groupChallenge/modify")
     public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam("groupChallengeId") Long groupChallengeId) {
 
-        log.info("groupChallengeId =======================" + groupChallengeId);
 
         LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
         LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
@@ -279,8 +280,6 @@ public class AdminController {
         groupChallengeDTO.setStartDate(startDate);
         groupChallengeDTO.setEndDate(endDate);
         groupChallengeDTO.setId(groupChallengeId);
-        log.info("=========================================================");
-        log.info(groupChallengeDTO.toString());
 
         groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         groupChallengeService.update(groupChallengeDTO);
