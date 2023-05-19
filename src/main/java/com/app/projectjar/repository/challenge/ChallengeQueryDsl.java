@@ -18,4 +18,7 @@ public interface ChallengeQueryDsl {
 
     // 현재 시퀀스 가져오기
     public Challenge getCurrentSequence_QueryDsl();
+
+    // 상세 보기
+    public Optional<Challenge> findByChallengeId_QueryDsl(Long challengeId);
 }

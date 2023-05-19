@@ -31,6 +31,15 @@ public interface PersonalChallengeService {
     // 삭제
     public void deleteChallenges(List<Long> challengeIds);
 
+    // 상세보기
+    public ChallengeDTO getChallengePersonal(Long challengeId);
+
+    // 수정
+    public void update(ChallengeDTO challengeDTO);
+
+    // 삭제
+    public void delete(Long challengeId);
+
     // 현재 시퀀스 가져오기
     public Challenge getCurrentSequence();
 

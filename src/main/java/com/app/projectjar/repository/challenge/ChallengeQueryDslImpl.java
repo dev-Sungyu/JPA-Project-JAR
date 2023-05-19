@@ -5,6 +5,7 @@ import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.challenge.QChallenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.file.challenge.QChallengeFile.challengeFile;
+import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 
 @RequiredArgsConstructor
@@ -57,5 +59,17 @@ public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
                 .orderBy(challenge.id.desc())
                 .limit(1)
                 .fetchOne();
+    }
+
+    @Override
+    public Optional<Challenge> findByChallengeId_QueryDsl(Long challengeId) {
+        Challenge challenge = query.select(QChallenge.challenge)
+                .from(QChallenge.challenge)
+                .leftJoin(QChallenge.challenge.challengeFiles, challengeFile)
+                .fetchJoin()
+                .where(QChallenge.challenge.id.eq(challengeId))
+                .fetchOne();
+
+        return Optional.ofNullable(challenge);
     }
 }
