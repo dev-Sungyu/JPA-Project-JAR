@@ -118,7 +118,13 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
                             .boardTitle(groupChallengeDTO.getBoardTitle())
                             .startDate(groupChallengeDTO.getStartDate())
                             .endDate(groupChallengeDTO.getEndDate())
+                            .id(groupChallenge.getId())
+                            .groupChallengeStatus(groupChallenge.getGroupChallengeStatus())
+                            .groupChallengeAttendCount(groupChallenge.getGroupChallengeAttendCount())
+                            .groupChallengeReplyCount(groupChallenge.getGroupChallengeReplyCount())
                             .build();
+
+            updatedGroupChallenge.setCreatedDate(groupChallengeDTO.getCreatedDate());
                     groupChallengeRepository.save(updatedGroupChallenge);
                 }
         );

@@ -62,4 +62,6 @@ public class GroupChallenge extends Board {
         this.groupChallengeAttendCount = groupChallengeAttendCount;
         this.groupChallengeFiles = groupChallengeFiles;
     }
+
+
 }
