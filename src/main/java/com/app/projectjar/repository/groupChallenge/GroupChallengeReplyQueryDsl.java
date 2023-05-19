@@ -16,4 +16,6 @@ public interface GroupChallengeReplyQueryDsl {
     public Long getReplyCount_QueryDsl(Long groupChallengeId);
     // 삭제
     public void deleteBySuggestId(Long groupChallengeId);
+
+    public void deleteByGroupChallengeId(Long groupChallengeId);
 }

@@ -15,6 +15,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -53,7 +54,7 @@ public class GroupChallenge extends Board {
     }
 
     @Builder
-    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer groupChallengeAttendCount, List<GroupChallengeFile> groupChallengeFiles) {
+    public GroupChallenge(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer groupChallengeAttendCount, List<GroupChallengeFile> groupChallengeFiles, LocalDateTime createDate) {
         super(id, boardTitle, boardContent);
         this.groupChallengeStatus = groupChallengeStatus;
         this.startDate = startDate;
@@ -61,6 +62,7 @@ public class GroupChallenge extends Board {
         this.groupChallengeReplyCount = groupChallengeReplyCount;
         this.groupChallengeAttendCount = groupChallengeAttendCount;
         this.groupChallengeFiles = groupChallengeFiles;
+        this.setCreatedDate(createDate);
     }
 
 

@@ -4,8 +4,11 @@ import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.groupChallenge.GroupChallengeReply;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
+import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
+import com.app.projectjar.repository.groupChallenge.GroupChallengeReplyRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.type.FileType;
 import com.app.projectjar.type.GroupChallengeType;
@@ -32,6 +35,10 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     private final GroupChallengeRepository groupChallengeRepository;
 
     private final GroupChallengeFileRepository groupChallengeFileRepository;
+
+    private final GroupChallengeAttendRepository groupChallengeAttendRepository;
+
+    private final GroupChallengeReplyRepository groupChallengeReplyRepository;
 
     @Override
     public Page<GroupChallengeDTO> getGroupChallengeList(Pageable pageable) {
@@ -103,6 +110,9 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     @Override
     public void deleteGroupChallenges(List<Long> groupChallengeIds) {
         for (Long groupChallengeId : groupChallengeIds) {
+            groupChallengeReplyRepository.
+            groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeId);
+            groupChallengeAttendRepository.deleteByGroupChallengeId(groupChallengeId);
             groupChallengeRepository.deleteById(groupChallengeId);
         }
     }
@@ -113,18 +123,18 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
         List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
 
         groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(groupChallenge -> {
-                GroupChallenge updatedGroupChallenge = GroupChallenge.builder()
+                GroupChallenge updatedGroupChallenge = groupChallenge.builder()
                             .boardContent(groupChallengeDTO.getBoardContent())
                             .boardTitle(groupChallengeDTO.getBoardTitle())
                             .startDate(groupChallengeDTO.getStartDate())
                             .endDate(groupChallengeDTO.getEndDate())
                             .id(groupChallenge.getId())
+                            .createDate(groupChallenge.getCreatedDate())
                             .groupChallengeStatus(groupChallenge.getGroupChallengeStatus())
                             .groupChallengeAttendCount(groupChallenge.getGroupChallengeAttendCount())
                             .groupChallengeReplyCount(groupChallenge.getGroupChallengeReplyCount())
                             .build();
 
-            updatedGroupChallenge.setCreatedDate(groupChallengeDTO.getCreatedDate());
                     groupChallengeRepository.save(updatedGroupChallenge);
                 }
         );
