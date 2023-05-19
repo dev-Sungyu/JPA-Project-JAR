@@ -140,4 +140,49 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
         return challengeDTO;
     }
 
+    @Override
+    public void delete(Long challengeId) {
+        challengeRepository.findById(challengeId).ifPresent(
+                challenge -> challengeRepository.delete(challenge)
+        );
+    }
+
+    @Override
+    public ChallengeDTO getChallengePersonal(Long challengeId) {
+        ChallengeDTO challengeDTO = challengeRepository.findByChallengeId_QueryDsl(challengeId).map(this::toChallengeDTO).get();
+        return challengeDTO;
+    }
+
+
+    @Override @Transactional
+    public void update(ChallengeDTO challengeDTO) {
+        List<FileDTO> fileDTOS = challengeDTO.getFileDTOS();
+
+        challengeRepository.findById(challengeDTO.getId()).ifPresent(challenge -> {
+                    Challenge updatedChallenge = challenge.builder()
+                            .boardContent(challengeDTO.getBoardContent())
+                            .boardTitle(challengeDTO.getBoardTitle())
+                            .id(challenge.getId())
+                            .createDate(challenge.getCreatedDate())
+                            .build();
+
+                    challengeRepository.save(updatedChallenge);
+                }
+        );
+
+        challengeFileRepository.deleteByChallengeId(challengeDTO.getId());
+
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setChallenge(getCurrentSequence());
+                challengeFileRepository.save(toChallengeFileEntity(fileDTOS.get(i)));
+            }
+        }
+    }
+
 }

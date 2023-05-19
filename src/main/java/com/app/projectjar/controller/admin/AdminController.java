@@ -59,14 +59,13 @@ public class AdminController {
         model.addAttribute("challengeDTOS", challengePage.getContent());
         return "admin/board/challenge/list";
     }
+
     @DeleteMapping("board/challenge/delete")
     @ResponseBody
     public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> challengeIds) {
         personalChallengeService.deleteChallenges(challengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
-    @GetMapping("board/challenge/modify")
-    public void adminChallengeModify() {}
 
     @GetMapping("board/challenge/write")
     public void adminChallengeWrite(Model model) {
@@ -78,6 +77,32 @@ public class AdminController {
 
         personalChallengeService.register(challengeDTO);
         return new RedirectView("/admin/board/challenge/list");
+    }
+
+    @GetMapping("board/challenge/modify")
+    public String adminChallengeModify(Model model, @RequestParam("challengeId") Long challengeId) {
+        ChallengeDTO challengeDTO = personalChallengeService.getChallenge(challengeId);
+
+        model.addAttribute("challengeDTO", challengeDTO);
+        return "/admin/board/challenge/modify";
+    }
+
+    @PostMapping("board/challenge/modify")
+    public RedirectView adminPersonalModify(@ModelAttribute("challengeDTO") ChallengeDTO challengeDTO, @RequestParam("challengeId") Long challengeId) {
+
+
+        challengeDTO.setId(challengeId);
+
+        challengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
+        personalChallengeService.update(challengeDTO);
+
+        return new RedirectView("/admin/board/challenge/detail/" + challengeId);
+    }
+
+    @PostMapping("board/challenge/modify/delete/{challengeId}")
+    public RedirectView deletePersonal(@PathVariable("challengeId") Long challengeId){
+        personalChallengeService.delete(challengeId);
+        return new RedirectView("admin/board/challenge/list");
     }
 
 
@@ -234,7 +259,7 @@ public class AdminController {
     }
     @DeleteMapping("board/diary/delete")
     @ResponseBody
-    public ResponseEntity<String> deleteDiarys(@RequestBody List<Long> diaryIds) {
+    public ResponseEntity<String> deleteDiaries(@RequestBody List<Long> diaryIds) {
         suggestService.deleteSuggests(diaryIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
