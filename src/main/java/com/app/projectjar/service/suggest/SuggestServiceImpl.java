@@ -95,9 +95,11 @@ public class SuggestServiceImpl implements SuggestService {
                     .boardContent(suggestDTO.getBoardContent())
                     .boardTitle(suggestDTO.getBoardTitle())
                     .member(suggest.getMember())
+                    .createDate(suggest.getCreatedDate())
                     .suggestLikeCount(suggest.getSuggestLikeCount())
                     .suggestReplyCount(suggest.getSuggestReplyCount())
                     .build();
+
             suggestRepository.save(updatedSuggest);
         });
 
