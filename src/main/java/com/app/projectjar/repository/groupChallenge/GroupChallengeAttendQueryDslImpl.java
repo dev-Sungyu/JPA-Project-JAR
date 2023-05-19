@@ -9,10 +9,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
@@ -111,6 +113,15 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
                 .from(groupChallengeReply)
                 .where(groupChallengeReply.groupChallenge.id.eq(groupChallengeId))
                 .fetchOne();
+    }
+
+
+    @Override
+    @Transactional
+    public void deleteByGroupChallengeId(Long groupChallengeId) {
+        query.delete(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId))
+                .execute();
     }
 
 }

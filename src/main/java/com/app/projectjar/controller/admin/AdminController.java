@@ -2,6 +2,7 @@ package com.app.projectjar.controller.admin;
 
 import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
@@ -58,14 +59,13 @@ public class AdminController {
         model.addAttribute("challengeDTOS", challengePage.getContent());
         return "admin/board/challenge/list";
     }
+
     @DeleteMapping("board/challenge/delete")
     @ResponseBody
     public ResponseEntity<String> deleteChallenges(@RequestBody List<Long> challengeIds) {
         personalChallengeService.deleteChallenges(challengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
-    @GetMapping("board/challenge/modify")
-    public void adminChallengeModify() {}
 
     @GetMapping("board/challenge/write")
     public void adminChallengeWrite(Model model) {
@@ -77,6 +77,32 @@ public class AdminController {
 
         personalChallengeService.register(challengeDTO);
         return new RedirectView("/admin/board/challenge/list");
+    }
+
+    @GetMapping("board/challenge/modify")
+    public String adminChallengeModify(Model model, @RequestParam("challengeId") Long challengeId) {
+        ChallengeDTO challengeDTO = personalChallengeService.getChallenge(challengeId);
+
+        model.addAttribute("challengeDTO", challengeDTO);
+        return "/admin/board/challenge/modify";
+    }
+
+    @PostMapping("board/challenge/modify")
+    public RedirectView adminPersonalModify(@ModelAttribute("challengeDTO") ChallengeDTO challengeDTO, @RequestParam("challengeId") Long challengeId) {
+
+
+        challengeDTO.setId(challengeId);
+
+        challengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
+        personalChallengeService.update(challengeDTO);
+
+        return new RedirectView("/admin/board/challenge/detail/" + challengeId);
+    }
+
+    @PostMapping("board/challenge/modify/delete/{challengeId}")
+    public RedirectView deletePersonal(@PathVariable("challengeId") Long challengeId){
+        personalChallengeService.delete(challengeId);
+        return new RedirectView("admin/board/challenge/list");
     }
 
 
@@ -233,7 +259,7 @@ public class AdminController {
     }
     @DeleteMapping("board/diary/delete")
     @ResponseBody
-    public ResponseEntity<String> deleteDiarys(@RequestBody List<Long> diaryIds) {
+    public ResponseEntity<String> deleteDiaries(@RequestBody List<Long> diaryIds) {
         suggestService.deleteSuggests(diaryIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
@@ -260,6 +286,7 @@ public class AdminController {
         groupChallengeService.deleteGroupChallenges(groupChallengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
+
     @GetMapping("board/groupChallenge/modify/{groupChallengeId}")
     public String adminGroupChallengeModify(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
@@ -271,7 +298,6 @@ public class AdminController {
     @PostMapping("board/groupChallenge/modify")
     public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam("groupChallengeId") Long groupChallengeId) {
 
-        log.info("groupChallengeId =======================" + groupChallengeId);
 
         LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
         LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
@@ -279,8 +305,6 @@ public class AdminController {
         groupChallengeDTO.setStartDate(startDate);
         groupChallengeDTO.setEndDate(endDate);
         groupChallengeDTO.setId(groupChallengeId);
-        log.info("=========================================================");
-        log.info(groupChallengeDTO.toString());
 
         groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         groupChallengeService.update(groupChallengeDTO);

@@ -29,4 +29,6 @@ public interface GroupChallengeAttendQueryDsl {
     //    내가 완료한 그룹 챌린지 전체 조회 (종료)
     public Long getGroupChallengeReplyCount_QueryDsl(Long challengeId);
 
+    public void deleteByGroupChallengeId(Long groupChallengeId);
+
 }

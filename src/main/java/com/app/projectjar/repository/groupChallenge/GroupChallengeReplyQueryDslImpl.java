@@ -8,9 +8,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeReply.groupChallengeReply;
 import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
@@ -50,6 +52,14 @@ public class GroupChallengeReplyQueryDslImpl implements GroupChallengeReplyQuery
 
     @Override
     public void deleteBySuggestId(Long groupChallengeId) {
+        query.delete(groupChallengeReply)
+                .where(groupChallengeReply.groupChallenge.id.eq(groupChallengeId))
+                .execute();
+    }
+
+    @Override
+    @Transactional
+    public void deleteByGroupChallengeId(Long groupChallengeId) {
         query.delete(groupChallengeReply)
                 .where(groupChallengeReply.groupChallenge.id.eq(groupChallengeId))
                 .execute();
