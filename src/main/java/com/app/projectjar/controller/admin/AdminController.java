@@ -261,6 +261,7 @@ public class AdminController {
         groupChallengeService.deleteGroupChallenges(groupChallengeIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
+
     @GetMapping("board/groupChallenge/modify/{groupChallengeId}")
     public String adminGroupChallengeModify(Model model, @PathVariable("groupChallengeId") Long groupChallengeId) {
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
@@ -272,12 +273,6 @@ public class AdminController {
     @PostMapping("board/groupChallenge/modify")
     public RedirectView modify(@ModelAttribute("groupChallengeDTO") GroupChallengeDTO groupChallengeDTO, @RequestParam("groupChallengeId") Long groupChallengeId) {
 
-
-        log.info("=============================================================");
-        log.info("=============================================================");
-        groupChallengeDTO.getFileDTOS().stream().map(FileDTO::getFileOriginalName).forEach(log::info);
-        log.info("=============================================================");
-        log.info("=============================================================");
 
         LocalDate startDate = LocalDate.parse(groupChallengeDTO.getRequestStartDate());
         LocalDate endDate = LocalDate.parse(groupChallengeDTO.getRequestEndDate());
