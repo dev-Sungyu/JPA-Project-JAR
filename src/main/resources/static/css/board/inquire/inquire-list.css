@@ -156,10 +156,33 @@
     color: var(--system-on-color);
     margin: 0px;
     padding: 0px;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    line-height: 1.625rem;
+    line-height: 10.625rem;
+    /*border-width: 0px;*/
+    /*color: var(--system-on-color);*/
+    /*margin: 0px;*/
+    /*padding: 0px;*/
+    /*font-size: 1.25rem;*/
+    /*font-weight: 700;*/
+    /*line-height: 1.625rem;*/
 }
+/*============================================*/
+.write-button-box {
+    display: flex;
+    border-radius: 8px;
+    width: 100px;
+    height: 40px;
+    background-color: #36f;
+    align-items: center;
+    justify-content: center;
+}
+
+.write-button-button-layout {
+    padding:5px;
+    color: #fff;
+}
+/*============================================*/
 .notice_inbox{
     border-radius: 0px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 1px, rgba(0, 0, 0, 0.05) 0px 2px 6px;

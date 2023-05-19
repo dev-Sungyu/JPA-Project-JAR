@@ -48,7 +48,7 @@ public class InquireController {
 
 
     @GetMapping("write")
-    public void inquireWrite(){}
+    public void inquireWrite(Model model){model.addAttribute("inquireDTO", new InquireDTO());}
 
 //    답변
 //    @GetMapping
