@@ -88,17 +88,21 @@ public class SuggestServiceImpl implements SuggestService {
     public void update(SuggestDTO suggestDTO) {
         List<FileDTO> fileDTOS = suggestDTO.getFileDTOS();
 
-        suggestRepository.findById(suggestDTO.getId()).ifPresent(
-                suggest -> {
-                    suggest.builder()
-                            .boardType(suggestDTO.getBoardType())
-                            .boardContent(suggestDTO.getBoardContent())
-                            .boardTitle(suggestDTO.getBoardTitle())
-                            .member(suggest.getMember())
-                            .build();
-                    suggestRepository.save(suggest);
-                }
-        );
+        suggestRepository.findById(suggestDTO.getId()).ifPresent(suggest -> {
+            Suggest updatedSuggest = Suggest.builder()
+                    .id(suggest.getId())
+                    .boardType(suggestDTO.getBoardType())
+                    .boardContent(suggestDTO.getBoardContent())
+                    .boardTitle(suggestDTO.getBoardTitle())
+                    .member(suggest.getMember())
+                    .createDate(suggest.getCreatedDate())
+                    .suggestLikeCount(suggest.getSuggestLikeCount())
+                    .suggestReplyCount(suggest.getSuggestReplyCount())
+                    .build();
+
+            suggestRepository.save(updatedSuggest);
+        });
+
         suggestFileRepository.deleteBySuggestId(suggestDTO.getId());
 
         if(fileDTOS != null){

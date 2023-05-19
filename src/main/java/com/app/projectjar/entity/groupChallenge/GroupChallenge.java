@@ -40,13 +40,6 @@ public class GroupChallenge extends Board {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupChallenge")
     private List<GroupChallengeFile> groupChallengeFiles;
 
-    public GroupChallenge(String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate) {
-        super(boardTitle, boardContent);
-        this.groupChallengeStatus = groupChallengeStatus;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
-
     public void setGroupChallengeReplyCount(Integer groupChallengeReplyCount) {
         this.groupChallengeReplyCount = groupChallengeReplyCount;
     }

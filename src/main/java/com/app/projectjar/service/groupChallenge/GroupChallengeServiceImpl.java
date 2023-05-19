@@ -2,12 +2,15 @@ package com.app.projectjar.service.groupChallenge;
 
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.type.FileType;
 import com.app.projectjar.type.GroupChallengeType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -24,8 +27,10 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 @Qualifier("groupChallenge") @Primary
+@Slf4j
 public class GroupChallengeServiceImpl implements GroupChallengeService {
     private final GroupChallengeRepository groupChallengeRepository;
+
     private final GroupChallengeFileRepository groupChallengeFileRepository;
 
     @Override
@@ -102,23 +107,22 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
         }
     }
 
-    @Override
+
+    @Override @Transactional
     public void update(GroupChallengeDTO groupChallengeDTO) {
         List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
 
-        groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(
-                groupChallenge -> {
-                    groupChallenge.builder()
-                            .startDate(groupChallengeDTO.getStartDate())
-                            .id(groupChallengeDTO.getId())
-                            .endDate(groupChallengeDTO.getEndDate())
-                            .boardTitle(groupChallengeDTO.getBoardTitle())
+        groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(groupChallenge -> {
+                GroupChallenge updatedGroupChallenge = GroupChallenge.builder()
                             .boardContent(groupChallengeDTO.getBoardContent())
-                            .groupChallengeStatus(groupChallengeDTO.getGroupChallengeStatus())
+                            .boardTitle(groupChallengeDTO.getBoardTitle())
+                            .startDate(groupChallengeDTO.getStartDate())
+                            .endDate(groupChallengeDTO.getEndDate())
                             .build();
-                    groupChallengeRepository.save(groupChallenge);
+                    groupChallengeRepository.save(updatedGroupChallenge);
                 }
         );
+
         groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeDTO.getId());
 
         if(fileDTOS != null){
@@ -132,6 +136,13 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
                 groupChallengeFileRepository.save(toGroupChallengeFileEntity(fileDTOS.get(i)));
             }
         }
+    }
+
+    @Override
+    public void delete(Long groupChallengeId) {
+        groupChallengeRepository.findById(groupChallengeId).ifPresent(
+                groupChallenge -> groupChallengeRepository.delete(groupChallenge)
+        );
     }
 
     // 그룹 챌린지 게시판 등록

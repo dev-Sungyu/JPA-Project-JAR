@@ -6,6 +6,8 @@ import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
+import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,7 +26,13 @@ public interface PersonalChallengeService {
     public List<PersonalChallenge> getListToYesterday(LocalDate yesterday);
 
     //    전체 목록 페이징
-    public Page<PersonalChallengeDTO> getAllChallengesWithPaging(int page);
+    public Page<ChallengeDTO> getAllChallengesWithPaging(int page);
+
+    // 삭제
+    public void deleteChallenges(List<Long> challengeIds);
+
+    // 현재 시퀀스 가져오기
+    public Challenge getCurrentSequence();
 
     // challengeStatus private로 수정
     public void updateChallengeStatus(List<PersonalChallenge> challengeList);
@@ -37,6 +45,12 @@ public interface PersonalChallengeService {
 
     // 챌린지 등록
     public void insertChallenge(Challenge challenge);
+
+    // 저장
+    public void register(ChallengeDTO challengeDTO);
+
+    // 상세보기
+    public ChallengeDTO getChallenge(Long challengeId);
 
 
     default PersonalChallengeDTO toPersonalChallengeDTO(PersonalChallenge personalChallenge) {
@@ -76,5 +90,24 @@ public interface PersonalChallengeService {
                 }
         );
         return fileDTOS;
+    }
+
+    default Challenge toChallengeEntity(ChallengeDTO challengeDTO){
+        return Challenge.builder()
+                .id(challengeDTO.getId())
+                .boardTitle(challengeDTO.getBoardTitle())
+                .boardContent(challengeDTO.getBoardContent())
+                .build();
+    }
+
+    default ChallengeFile toChallengeFileEntity(FileDTO fileDTO){
+        return ChallengeFile.builder()
+                .id(fileDTO.getId())
+                .fileOriginalName(fileDTO.getFileOriginalName())
+                .fileUuid(fileDTO.getFileUuid())
+                .filePath(fileDTO.getFilePath())
+                .challenge(fileDTO.getChallenge())
+                .fileType(fileDTO.getFileType())
+                .build();
     }
 }

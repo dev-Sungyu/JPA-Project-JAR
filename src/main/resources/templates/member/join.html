@@ -31,7 +31,7 @@
                     </div>
                     <div class="flex_hei"></div>
                     <div class="login">
-                        <form style="width: auto; height: auto;" th:action="@{/member/join}" method="post" th:object="${memberDTO}">
+                        <form style="width: auto; height: auto;" th:action="@{/member/join}" method="post" th:object="${memberDTO}" name="joinForm">
                             <div class="login">
                                 <label style="display: inline-block;">
                                     <div class="login">
@@ -133,23 +133,23 @@
                                                 <label>
                                                     <div class="login">
                                                         <div class="login">
-                                                            <input type="tel" name="memberPhoneNumber" placeholder="-를 제외한 휴대폰 번호" maxlength="15">
+                                                            <input class="error-input" type="tel" name="memberPhoneNumber" placeholder="-를 제외한 휴대폰 번호" maxlength="11">
                                                         </div>
                                                         <div style="height: 4px;"></div>
                                                         <div class="login">
-                                                            <p id="red_phone" class="waring_email"></p>
+                                                            <p id="red_phone" class="waring_email">test로 써보는 </p>
                                                         </div>
                                                     </div>
                                                 </label>
                                             </div>
                                         </div>
                                         <div style="height: 24px; display: flex;"></div>
-                                        <button type="button" class="confirm_number">
+                                        <button type="button" class="confirm_number" disabled>
                                             <div class="flex_visi">
                                                 <div class="hei_4"></div>
                                                 <span class="confirm_number_span">
-                                            <p class="confirm_number_span_p">인증번호 받기</p>
-                                        </span>
+                                                    <p class="confirm_number_span_p">인증번호 받기</p>
+                                                </span>
                                                 <div class="hei_4"></div>
                                             </div>
                                         </button>
@@ -163,23 +163,26 @@
                                             <div class="login">
                                                 <div class="login">
                                                     <div class="confirm_box">
-                                                        <input type="tel" name="phone_number_confirm" placeholder="인증번호 6자리">
+                                                        <input type="tel" name="phone_number_confirm" placeholder="인증번호 6자리" maxlength="6">
                                                     </div>
+                                                </div>
+                                                <div class="login">
+                                                    <p id="red_confirm_phone" class="waring_email"></p>
                                                 </div>
                                             </div>
                                         </label>
                                         <div style="height: 16px; display: flex;"></div>
-                                        <button class="down_confirm">
+                                        <button class="down_confirm" type="button" disabled>
                                             <div class="flex_visi">
                                                 <div style="width: 4px; display: flex;"></div>
                                                 <span class="confirm_number_span">
-                                            <p class="certification">인증번호 확인</p>
-                                        </span>
+                                                    <p class="certification">인증번호 확인</p>
+                                                </span>
                                                 <div style="width: 4px; display: flex;"></div>
                                             </div>
                                         </button>
                                 </div>
-                                <button type="submit" class="next_btn">
+                                <button type="button" class="next_btn" style="backgroud-color:grey; cursor:auto;" onclick="send()" disabled>
                                     <div class="next_box">
                                         <div class="hei_4flex"></div>
                                         <span class="next_span">회원가입 완료</span>
@@ -191,43 +194,43 @@
                         <div class="hei_16"></div>
                         <div class="next_kakao_gap"></div>
                         <div class="hei_16"></div>
-                        <div class="kakao_box">
-                            <div class="login" style="width: 100%;">
-                                <div class="login">
-                                    <div class="login">
-                                        <button class="kakao_btn">
-                                            <div class="next_box">
-                                                <div class="hei_2"></div>
-                                                <span style="width: 20px; height: 20px;">
-                                                    <svg viewBox="0 0 24 24" class="kakao_svg">
-                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9997 2.5C6.24348 2.5 1 6.32322 1 11.0393c0 2.9316 1.90428 5.5179 4.80469 7.0555l-1.22042 4.4795c-.10756.3967.34284.7126.68935.4828l5.34918-3.5482c.4516.044.9106.0691 1.3769.0691C18.0755 19.578 23 15.7548 23 11.0393 23 6.32322 18.0755 2.5 11.9997 2.5Z" class="kakao_svg_path"></path>
-                                                    </svg>
-                                                </span>
-                                                <div class="hei_2"></div>
-                                                <div class="hei_2"></div>
-                                                <div class="hei_4flex"></div>
-                                                <span class="kakao_start">
-                                                    <p class="kakao_start_p">카카오로 3초 만에 시작하기</p>
-                                                </span>
-                                                <div class="hei_4flex"></div>
-                                            </div>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div style="width: 16px;"></div>
-                            <a class="kakao_right">
-                                <div class="next_box">
-                                    <div class="hei_2"></div>
-                                    <span style="width: 20px; height: 20px; display: block;">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="kakao_right_svg">
-                                            <path d="M4.5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19.5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>
-                                        </svg>
-                                    </span>
-                                    <div class="hei_2"></div>
-                                </div>
-                            </a>
-                        </div>
+<!--                        <div class="kakao_box">-->
+<!--                            <div class="login" style="width: 100%;">-->
+<!--                                <div class="login">-->
+<!--                                    <div class="login">-->
+<!--                                        <button class="kakao_btn">-->
+<!--                                            <div class="next_box">-->
+<!--                                                <div class="hei_2"></div>-->
+<!--                                                <span style="width: 20px; height: 20px;">-->
+<!--                                                    <svg viewBox="0 0 24 24" class="kakao_svg">-->
+<!--                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9997 2.5C6.24348 2.5 1 6.32322 1 11.0393c0 2.9316 1.90428 5.5179 4.80469 7.0555l-1.22042 4.4795c-.10756.3967.34284.7126.68935.4828l5.34918-3.5482c.4516.044.9106.0691 1.3769.0691C18.0755 19.578 23 15.7548 23 11.0393 23 6.32322 18.0755 2.5 11.9997 2.5Z" class="kakao_svg_path"></path>-->
+<!--                                                    </svg>-->
+<!--                                                </span>-->
+<!--                                                <div class="hei_2"></div>-->
+<!--                                                <div class="hei_2"></div>-->
+<!--                                                <div class="hei_4flex"></div>-->
+<!--                                                <span class="kakao_start">-->
+<!--                                                    <p class="kakao_start_p">카카오로 3초 만에 시작하기</p>-->
+<!--                                                </span>-->
+<!--                                                <div class="hei_4flex"></div>-->
+<!--                                            </div>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                            <div style="width: 16px;"></div>-->
+<!--                            <a class="kakao_right">-->
+<!--                                <div class="next_box">-->
+<!--                                    <div class="hei_2"></div>-->
+<!--                                    <span style="width: 20px; height: 20px; display: block;">-->
+<!--                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="kakao_right_svg">-->
+<!--                                            <path d="M4.5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM19.5 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"></path>-->
+<!--                                        </svg>-->
+<!--                                    </span>-->
+<!--                                    <div class="hei_2"></div>-->
+<!--                                </div>-->
+<!--                            </a>-->
+<!--                        </div>-->
                     </div>
                     <div class="flex_hei"></div>
                     <div class="account">
@@ -235,7 +238,9 @@
                             <div class="account_a_div">
                                 <h6 class="have_account">이미 계정이 있으신가요?</h6>
                                 <div style="width: 8px;"></div>
-                                <h6 class="have_account_login">로그인</h6>
+                                <a onclick="location.href='/member/login'">
+                                    <h6 class="have_account_login">로그인</h6>
+                                </a>
                             </div>
                             <div></div>
                         </a>
@@ -246,59 +251,127 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</html>
+
 <script>
+
+
+
     let userPassword = $("input[name=memberPassword]");
     let userConfirmPassword = $("input[name=confirmPassword]");
 
     // 비밀번호 눈표시 JS
     $(".password_span").click(function(){
-    if(userPassword.attr("type") == "password"){
-        $("#eye_close").css('display', 'none');
-        $("#eye_open").css('display', 'block');
-        userPassword.attr("type","text");
-    }else if(userPassword.attr("type") == "text"){
-        $("#eye_close").css('display', 'block');
-        $("#eye_open").css('display', 'none');
-        userPassword.attr("type","password");
-    }
-});
+        if(userPassword.attr("type") == "password"){
+            $("#eye_close").css('display', 'none');
+            $("#eye_open").css('display', 'block');
+            userPassword.attr("type","text");
+        }else if(userPassword.attr("type") == "text"){
+            $("#eye_close").css('display', 'block');
+            $("#eye_open").css('display', 'none');
+            userPassword.attr("type","password");
+        }
+    });
 
     $(".confirm_span").click(function(){
-    if(userConfirmPassword.attr("type") == "password"){
-        $("#eye_close_confirm").css('display', 'none');
-        $("#eye_open_confirm").css('display', 'block');
-        userConfirmPassword.attr("type","text");
-    }else if(userConfirmPassword.attr("type") == "text"){
-        $("#eye_close_confirm").css('display', 'block');
-        $("#eye_open_confirm").css('display', 'none');
-        userConfirmPassword.attr("type","password");
-    }
-});
+        if(userConfirmPassword.attr("type") == "password"){
+            $("#eye_close_confirm").css('display', 'none');
+            $("#eye_open_confirm").css('display', 'block');
+            userConfirmPassword.attr("type","text");
+        }else if(userConfirmPassword.attr("type") == "text"){
+            $("#eye_close_confirm").css('display', 'block');
+            $("#eye_open_confirm").css('display', 'none');
+            userConfirmPassword.attr("type","password");
+        }
+    });
 
-/*  next 버튼 삭제로 인해 없어도됌
-// 로그인 실패시 나오는 빨간줄
-$(".next_btn").click(function() {
-        $("#red_name").css('display', 'block');
-        $("input[name='memberName']").css('border-color', 'rgb(243, 33, 59)');
 
-        $("#red_nickname").css('display', 'block');
-        $("input[name='memberNickName']").css('border-color', 'rgb(243, 33, 59)');
+    let nameInput = $("input[name=memberName]");
+    let nameErrorMsg = $("#red_name");
+    let nameFlag = false;
 
-        $("#red_email").css('display', 'block');
-        $("input[name='memberEamil']").css('border-color', 'rgb(243, 33, 59)');
+    nameInput.on("blur", function() {
+        var name = nameInput.val().search(/^[가-힣a-zA-Z]{2,20}$/);
+        if (nameInput.val().length < 1) {
+            nameErrorMsg.text("이름을 입력해주세요.").show();
+            nameErrorMsg.addClass("error-input");
+            nameFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        } else if (name < 0) {
+            nameErrorMsg.text("다시 확인해주세요.").show();
+            nameErrorMsg.addClass("error-input");
+            nameFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        } else if(nameInput.val().length < 2){
+            nameErrorMsg.text("최소 2자입니다..").show();
+            nameErrorMsg.addClass("error-input");
+            nameFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        } else {
+            nameErrorMsg.removeClass("error-input");
+            nameErrorMsg.hide();
+            nameFlag = true;
+            if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
+                console.log("이름 플래그")
+                $(".next_btn").prop("disabled",false);
+                $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+            }else{
+                $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                $(".next_btn").prop("disabled",true);
+            }
+        }
+    });
 
-        $("#red_password").css('display', 'block');
-        $("input[name='memberPassword']").css('border-color', 'rgb(243, 33, 59)');
 
-        $("#red_confirm_password").css('display', 'block');
-        $("input[name='confirm_password']").css('border-color', 'rgb(243, 33, 59)');
+    let nicknameInput = $("input[name=memberNickname]")
+    let nicknameErrorMsg = $("#red_nickname");
+    let nicknameFlag = false;
 
-    $("#red_phone_number").css('display', 'block');
-    $("input[name='memberPhoneNumber']").css('border-color', 'rgb(243, 33, 59)');
+    nicknameInput.on("blur", function() {
+        console.log(nicknameInput.val())
+        $.ajax({
+            url: "/member/check-nickname",
+            type: "post",
+            data: {"memberNickname": nicknameInput.val()},
+            success: function (result) {
+                console.log(result)
+                if (result != 0) {
+                    nicknameErrorMsg.text("중복된 닉네임입니다.").show();
+                    nicknameInput.addClass("error-input");
+                    nicknameErrorMsg.css('color', 'rgb(243, 33, 59)');
+                    nicknameFlag = false;
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
+                } else if (nicknameInput.length > 20 || nicknameInput.val().length < 2) {
+                    nicknameErrorMsg.text("닉네임은 최소 2자 입니다.").show();
+                    nicknameInput.addClass("error-input");
+                    nicknameErrorMsg.css('color', 'rgb(243, 33, 59)');
+                    nicknameFlag = false;
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
+                } else {
+                    nicknameErrorMsg.text("사용 가능한 닉네임입니다.").show();
+                    nicknameErrorMsg.css('color', '#2bb673');
+                    nicknameInput.removeClass("error-input");
+                    nicknameFlag = true;
 
-    });*/
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
+                        console.log("닉네임 플래그")
+                        $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+                        $(".next_btn").prop("disabled",false);
+                    }else{
+                        $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                        $(".next_btn").prop("disabled",true);
+                    }
+                }
 
-// 이메일 정규식
+            }
+        });
+    })
+
     let emailInput = $("input[name=memberEmail]");
     let emailErrorMsg = $("#red_email");
     let emailFlag = false;
@@ -308,25 +381,37 @@ $(".next_btn").click(function() {
         let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
         $.ajax({
-            url: "/members/checkEmail",
+            url: "/member/check-email",
+            type: "post",
             data: {"memberEmail": emailInput.val()},
             success: function (result) {
 
-                if (result == 1) {
+                if (result != 0) {
                     emailErrorMsg.text("중복된 이메일입니다.").show();
                     emailInput.addClass("error-input");
+                    emailErrorMsg.css('color', 'rgb(243, 33, 59)');
                     emailFlag = false;
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
                 } else if (!emailRegex.test(email)) {
                     emailErrorMsg.text("올바르지 않은 이메일입니다. 이메일 형식에 맞게 입력해주세요.").show();
                     emailInput.addClass("error-input");
+                    emailErrorMsg.css('color', 'rgb(243, 33, 59)');
                     emailFlag = false;
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
                 } else {
                     emailErrorMsg.text("사용 가능한 이메일입니다.").show();
                     emailErrorMsg.css('color', '#2bb673');
                     emailInput.removeClass("error-input");
                     emailFlag = true;
-                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
                         console.log("이메일 플래그")
+                        $(".next_btn").prop("disabled",false);
+                        $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+                    }else{
+                        $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                        $(".next_btn").prop("disabled",true);
                     }
                 }
 
@@ -334,239 +419,273 @@ $(".next_btn").click(function() {
         });
     })
 
-    // if (email === "") {
-    //     emailErrorMsg.text("이메일을 입력해주세요.").show();
-    //     emailInput.addClass("error-input");
-    // } else if (!emailRegex.test(email)) {
-    //     emailErrorMsg.text("올바르지 않은 이메일입니다. 이메일 형식에 맞게 입력해주세요.").show();
-    //     emailInput.addClass("error-input");
-    // } else {
-    //     emailErrorMsg.hide();
-    //     emailInput.removeClass("error-input");
-    //     $("#red_email").css('display', 'none');
-    //     $("input[name='email']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    // }
-    // });
+    let passwordInput = $("input[name=memberPassword]");
+    let passwordErrorMsg = $("#red_password");
+    let passwordFlag = false;
 
+    passwordInput.on("blur", function() {
+        let password = passwordInput.val().trim();
+        let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/;
+        let passwordContinuity = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/
 
-
-
-
-
-
-    // 비밀번호 정규식
-let passwordInput = $("input[name=memberPassword]");
-let passwordErrorMsg = $("#red_password");
-let confirmPasswordInput = $("input[name=confirmPassword]");
-let confirmPasswordErrorMsg = $("#red_confirm_password");
-let passwordFlag = false;
-
-// passwordInput.on("input", function() {
-passwordInput.on("blur", function() {
-  let password = passwordInput.val().trim();
-  let passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/;
-  let passwordContinuity = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,32}$/
-
-  if (password === "") {
-    passwordErrorMsg.text("비밀번호를 입력해주세요.").show();
-    passwordInput.addClass("error-input");
-    passwordFlag = false;
-  } else if (!passwordRegex.test(password)) {
-    passwordErrorMsg.text("비밀번호는 영문 대소문자, 숫자, 특수문자 중 2가지 이상 조합된 8자 ~ 32자만 가능합니다.").show();
-    passwordInput.addClass("error-input");
-    passwordFlag = false;
-  } else if (!passwordContinuity.test(password)) {
-    passwordErrorMsg.text("3회 이상 연속되거나 동일한 숫자, 문자 등 타인이 쉽게 알아낼 수 있는 비밀번호를 사용할 수 없습니다.").show();
-    passwordInput.addClass("error-input");
-    passwordFlag = false;
-  } else {
-    passwordErrorMsg.hide();
-    passwordInput.removeClass("error-input");
-    $("#red_password").css('display', 'none');
-    $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    passwordFlag = true;
-      if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
-          console.log("비밀번호 플래그")
-      }
-  }
-});
-
-confirmPasswordInput.on("input", function() {
-  let password = passwordInput.val().trim();
-  let confirmPassword = confirmPasswordInput.val().trim();
-  let passwordCheckFlag = false;
-
-  if (password === confirmPassword) {
-    confirmPasswordErrorMsg.hide();
-    confirmPasswordInput.removeClass("error-input");
-    passwordCheckFlag = true;
-      if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
-          console.log("비밀번호 체크 플래그")
-      }
-  } else {
-    confirmPasswordErrorMsg.text("비밀번호가 일치하지 않습니다.").show();
-    confirmPasswordInput.addClass("error-input");
-    passwordCheckFlag = false;
-  }
-});
-
-
-
-    let nameInput = $("input[name=memberName]");
-    let nameErrorMsg = $("#red_name");
-    let nameFlag = false;
-
-    nameInput.on("blur", function() {
-        if (nameInput.val().length < 1) {
-            nameErrorMsg.text("필수 입력 사항입니다.").show();
-            nameErrorMsg.addClass("error-input");
-            nameFlag = false;
+        if (password === "") {
+            passwordErrorMsg.text("비밀번호를 입력해주세요.").show();
+            passwordInput.addClass("error-input");
+            passwordFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        } else if (!passwordRegex.test(password)) {
+            passwordErrorMsg.text("비밀번호는 영문 대소문자, 숫자, 특수문자 중 2가지 이상 조합된 8자 ~ 32자만 가능합니다.").show();
+            passwordInput.addClass("error-input");
+            passwordFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        } else if (!passwordContinuity.test(password)) {
+            passwordErrorMsg.text("3회 이상 연속되거나 동일한 숫자, 문자 등 타인이 쉽게 알아낼 수 있는 비밀번호를 사용할 수 없습니다.").show();
+            passwordInput.addClass("error-input");
+            passwordFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
         } else {
-            emailErrorMsg.text("사용 가능한 이메일입니다.").show();
-            nameErrorMsg.css('color', '#2bb673');
-            nameInput.removeClass("error-input");
-            nameFlag = true;
-            if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
-                console.log("이름 플래그")
+            passwordErrorMsg.hide();
+            passwordInput.removeClass("error-input");
+            $("#red_password").css('display', 'none');
+            $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
+            passwordFlag = true;
+            if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
+                console.log("비밀번호 플래그")
+                $(".next_btn").css("background-color", "rgb(255, 93, 0)"); 
+                $(".next_btn").prop("disabled",false);
+            }else{
+                $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                $(".next_btn").prop("disabled",true);
             }
         }
     });
 
-    // $("input[name='memberName']").keyup(function() {
-    //     $("#red_name").css('display', 'none');
-    //     $("input[name='memberName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    // });
+    let confirmPasswordInput = $("input[name=confirmPassword]");
+    let confirmPasswordErrorMsg = $("#red_confirm_password");
+    let confirmPasswordFlag = false;
 
-
-
-    let nicknameInput = $("input[name=memberNickname]");
-    let nicknameErrorMsg = $("#red_nickname");
-    let nicknameFlag = false;
-
-    // $("input[name='memberNickName']").keyup(function() {
-    //     $("#red_nickname").css('display', 'none');
-    //     $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    // });
-
-    nicknameInput.on("blur", function() {
-
-        $.ajax({
-            url: "/members/checkNickname",
-            data: {"memberNickname": nicknameInput.val()},
-            success: function (result) {
-
-                if (result == 1) {
-                    nicknameErrorMsg.text("중복된 닉네임입니다.").show();
-                    nicknameInput.addClass("error-input");
-                    nicknameFlag = false;
-                } else if (nicknameInput.length < 2) {
-                    nicknameErrorMsg.text("닉네임은 최소 2자 입니다.").show();
-                    nicknameInput.addClass("error-input");
-                    nicknameFlag = false;
-                } else {
-                    nicknameErrorMsg.text("사용 가능한 닉네임입니다.").show();
-                    nicknameErrorMsg.css('color', '#2bb673');
-                    nicknameInput.removeClass("error-input");
-                    nicknameFlag = true;
-                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
-                        console.log("닉네임 플래그")
-                    }
-                }
-
+    confirmPasswordInput.on("input", function() {
+        let password = passwordInput.val().trim();
+        let confirmPassword = confirmPasswordInput.val().trim();
+        console.log(password.toString());
+        if (passwordInput.val() === confirmPasswordInput.val()) {
+            confirmPasswordErrorMsg.hide();
+            confirmPasswordInput.removeClass("error-input");
+            confirmPasswordFlag = true;
+            if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
+                console.log("비밀번호 체크 플래그")
+                $(".next_btn").prop("disabled",false);
+                $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+            }else{
+                $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                $(".next_btn").prop("disabled",true);
             }
-        });
-    })
+        } else {
+            confirmPasswordErrorMsg.text("비밀번호가 일치하지 않습니다.").show();
+            confirmPasswordInput.addClass("error-input");
+            confirmPasswordFlag = false;
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
+        }
+    });
 
-    // $("input[name='memberNickName']").keyup(function() {
-    //     $("#red_nickname").css('display', 'none');
-    //     $("input[name='memberNickName']").css('border-color', 'rgba(0, 0, 0, 0.15)');
-    // });
 
 
-
-    let phoneInput = $("input[name=memberPhoneNumber]");
-    let phoneErrorMsg = $("#red_phone");
+    const $phoneInput = $("input[name=memberPhoneNumber]");
+    const phoneInput = $("input[name=memberPhoneNumber]");
+    const $phoneErrorMsg = $("#red_phone");
+    const phoneErrorMsg = $("#red_phone");
     let phoneFlag = false;
 
-    phoneInput.on("blur", function(){
-        var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
+    const inputDown = document.querySelector('input[name="phone_number_confirm"]');
+    const buttonDown = document.querySelector('.down_confirm'); // 인증번호 확인
+    const $buttonDown = $('.down_confirm'); // 인증번호 확인
+    const inputUp = document.querySelector('input[name="memberPhoneNumber"]');
+    const buttonUp = document.querySelector('.confirm_number'); // 인증번호 받기
+    const $buttonUp = $('.confirm_number'); // 인증번호 받기
 
+    $phoneInput.on("keyup", function(){
+        var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
+        var $phoneInputVal = $phoneInput.val();
+        console.log(isPhoneNum.test($phoneInputVal));
         $.ajax({
-            url:"/members/checkPhone",
+            url:"/member/check-phone",
+            type:"post",
             data:{"memberPhoneNumber": phoneInput.val()},
             success: function(result){
+                if(result != 0){
+                    $phoneErrorMsg.text("중복된 핸드폰 번호입니다.").show();
+                    $phoneErrorMsg.addClass("error-input");
+                    $phoneErrorMsg.css('color', 'rgb(243, 33, 59)');
+                    phoneFlag = false;
+                    $buttonUp.css({'cursor': 'auto', 'backgroundColor': 'rgba(0, 0, 0, 0.1)'});
+                    buttonUp.style.disabled = true;
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
+                    $buttonUp.prop("disabled",true);
+                    console.log("중복됨")
 
-                if(result == 1 ){
-                    phoneErrorMsg.text("중복된 핸드폰 번호입니다.").show();
-                    phoneInput.addClass("error-input");
+                } else if (!isPhoneNum.test($phoneInputVal)){
+                    $phoneErrorMsg.text("잘못된 형식입니다. 다시 입력해주세요.");
+                    $phoneErrorMsg.addClass("error-input");
+                    $phoneErrorMsg.css('color', 'rgb(243, 33, 59)');
                     phoneFlag = false;
-                } else if (!isPhoneNum.test(phoneInput.val())){
-                    phoneErrorMsg.text("잘못된 형식입니다. 다시 입력해주세요.");
-                    phoneInput.addClass("error-input");
-                    phoneFlag = false;
+                    $buttonUp.css({'cursor': 'auto', 'backgroundColor': 'rgba(0, 0, 0, 0.1)'});
+                    buttonUp.style.disabled = true;
+                    $buttonUp.prop("disabled",true);
+                    $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                    $(".next_btn").prop("disabled",true);
+                    console.log("잘못된 형식");
+
                 } else {
-                    phoneErrorMsg.text("사용 가능한 핸드폰 번호입니다.").show();
-                    phoneErrorMsg.css('color', '#2bb673');
-                    phoneInput.removeClass("error-input");
-                    nicknameFlag = true;
-                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && passwordCheckFlag && phoneFlag && confirmPhoneFlag) {
+                    $phoneErrorMsg.text("사용 가능한 핸드폰 번호입니다.").show();
+                    $phoneErrorMsg.css('color', '#2bb673');
+                    $phoneErrorMsg.removeClass("error-input");
+                    phoneFlag = true;
+                    $buttonUp.css({'cursor': 'pointer', 'backgroundColor': 'rgb(255, 93, 0)'});
+                    $buttonUp.prop("disabled", false);
+                    $buttonUp.prop("disabled",false);
+                    console.log("잘된 형식");
+                    if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
                         console.log("핸드폰 플래그")
+                        $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+                        $(".next_btn").prop("disabled",false);
+                    }else{
+                        $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                        $(".next_btn").prop("disabled",true);
                     }
+                    phoneOkAfter();
                 }
             }
         })
     })
-                                                                               
 
-/*휴대폰 번호 버튼 색상 변경*/
-    $(".confirm_number").click(function(){
+    const $confirmPhoneInput = $("input[name=phone_number_confirm]");
+    const $confirmPhoneErrorMsg = $("red_confirm_phone")
+    let confirmPhoneFlag = false;
+    globalThis.code;
+
+    function phoneOkAfter(){
+        if(phoneFlag) {
+            $('.confirm_number').css({'cursor': 'pointer'});
+
+            inputDown.addEventListener('keyup', function () {
+                if (inputDown.value.length == 6) {
+                    buttonDown.style.backgroundColor = "rgb(255, 93, 0)";
+                    $buttonDown.css({'cursor': 'pointer'});
+                    $buttonDown.prop("disabled", false);
+                } else {
+                    buttonDown.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                    $buttonDown.css({'cursor': 'auto'});
+                    $buttonDown.prop("disabled", true);
+                }
+            });
+
+
+            inputUp.addEventListener('keyup', function () {
+                if (inputUp.value) {
+                    console.log("기")
+                    buttonUp.style.backgroundColor = "rgb(255, 93, 0)";
+                    $buttonUp.prop("disabled", false);
+                } else {
+                    console.log("여")
+                    buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+                    $buttonUp.prop("disabled", true);
+                }
+            });
+
+        } else {
+            $('.confirm_number').css({'cursor': 'auto'});
+            buttonDown.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+            buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+            $buttonUp.prop("disabled", true);
+            $buttonDown.prop("disabled", true);
+
+        }
+    }
+
+    $('.confirm_number').on('click', function() {
+        /*휴대폰 번호 버튼 색상 변경*/
         $(".semi_modal").css('display', 'block' +
             '');
         $(".confirm_number_span_p").text("인증번호 다시 받기");
+        phoneSend();
+    });
+
+    function phoneSend() {
+        console.log("phonesend")
+        if(phoneFlag) {
+            console.log("phoneFlag")
+            // /* 해당 전화번호로 인증 번호 전송 */
+            let phone = $('input[name=memberPhoneNumber]').val().replaceAll("-", "");
+            console.log(phone);
+            $.ajax({
+                type: "POST",
+                url: "/member/sendCode",
+                data: {memberPhone: phone},
+                success: function (data) {
+                    console.log(data);
+                    globalThis.code = data;
+                }
+            });
+
+        }
+    }
+
+    const $redConfirmPhone = $("#red_confirm_phone");
+
+    $buttonDown.on("click",function(){
+        console.log("click")
 
 
-        // /* 해당 전화번호로 인증 번호 전송 */
-        let phone = $('input[name=memberPhoneNumber]').val().replaceAll("-", "");
-        console.log(phone);
-        $.ajax({
-            type: "POST",
-            url: "/member/sendCode",
-            data: { memberPhone: phone },
-            success: function(data) {
-                console.log(data);
-                code = data;
+        if(globalThis.code == $confirmPhoneInput.val()){
+            console.log("code: "+ globalThis.code);
+            console.log("$confirmPhoneInput: "+ $confirmPhoneInput.val())
+            confirmPhoneFlag=true;
+            $redConfirmPhone.text("인증번호가 확인되었습니다.");
+            $redConfirmPhone.css("display","block");
+            $redConfirmPhone.css('color', '#2bb673');
+            if(nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag){
+                $(".next_btn").css("background-color", "rgb(255, 93, 0)");
+                $(".next_btn").prop("disabled",false);
+            }else{
+                $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+                $(".next_btn").prop("disabled",true);
             }
-        });
-    });
-
-    const inputDown = document.querySelector('input[name="phone_number_confirm"]');
-    const buttonDown = document.querySelector('.down_confirm');
-
-    inputDown.addEventListener('input', function() {
-        if (inputDown.value) {
-            buttonDown.style.backgroundColor = "rgb(255, 93, 0)";
-        }
-        else {
-            buttonDown.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
-        }
-    });
-
-    const inputUp = document.querySelector('input[name="memberPhoneNumber"]');
-    const buttonUp = document.querySelector('.confirm_number');
-
-    inputUp.addEventListener('input', function() {
-        if (inputUp.value) {
-            buttonUp.style.backgroundColor = "rgb(255, 93, 0)";
-        }
-        else {
-            buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
+        }else{
+            console.log("code-false: "+ globalThis.code);
+            console.log("$confirmPhoneInput-false: "+ $confirmPhoneInput.val())
+            confirmPhoneFlag=false;
+            $redConfirmPhone.text("인증번호를 다시 입력해 주세요.");
+            $redConfirmPhone.css("display","block");
+            $redConfirmPhone.css('color', 'rgb(243, 33, 59)');
+            $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
+            $(".next_btn").prop("disabled",true);
         }
     });
 
 
-
-
-
+    function send(){
+    if(nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag){
+        document.joinForm.submit();
+    }else if(!nameFlag){
+        nameInput.focus();
+    }else if(!nicknameFlag){
+        nicknameInput.focus();
+    }else if(!emailInput){
+        emailInput.focus();
+    }else if(!passwordFlag){
+        passwordInput.focus();
+    }else if(!confirmPasswordFlag){
+        confirmPasswordInput.focus();
+    }else if(!phoneFlag){
+        phoneInput.focus();
+    } else if(!confirmPhoneFlag){
+        $confirmPhoneInput.focus();
+    }
+}
 
 </script>
-</html>

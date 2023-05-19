@@ -112,7 +112,7 @@ $replyBox.on("click", "button.delete-button", function (e) {
             page: page,
             boardId: boardId
         }, function (replies) {
-            replyBox.html(repliesContent(replies));
+            $replyBox.html(repliesContent(replies));
         })
     });
 });

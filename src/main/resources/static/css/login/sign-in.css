@@ -255,7 +255,7 @@
     cursor: pointer;
     overflow: hidden;
     z-index: 0;
-    background-color: rgb(255, 93, 0);
+    background-color: rgba(0, 0, 0, 0.1);
     border-width: 0px;
     border-radius: 2px;
     -webkit-box-align: center;
@@ -422,4 +422,8 @@
     font-weight: 400;
     line-height: 1rem;
     display: none;
+}
+
+.error-input {
+    display: block;
 }

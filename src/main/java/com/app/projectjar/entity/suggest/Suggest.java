@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +41,14 @@ public class Suggest extends Board {
     private List<SuggestFile> suggestFiles = new ArrayList<>();
 
     @Builder
-    public Suggest(Long id, String boardTitle, String boardContent, BoardType boardType, Member member, List<SuggestFile> suggestFiles) {
+    public Suggest(Long id, String boardTitle, String boardContent, Integer suggestLikeCount, Integer suggestReplyCount, BoardType boardType, Member member, List<SuggestFile> suggestFiles, LocalDateTime createDate) {
         super(id, boardTitle, boardContent);
+        this.suggestLikeCount = suggestLikeCount;
+        this.suggestReplyCount = suggestReplyCount;
         this.boardType = boardType;
         this.member = member;
         this.suggestFiles = suggestFiles;
+        this.setCreatedDate(createDate);
     }
 
     public void setSuggestLikeCount(Integer suggestLikeCount) {
@@ -54,4 +58,5 @@ public class Suggest extends Board {
     public void setSuggestReplyCount(Integer suggestReplyCount) {
         this.suggestReplyCount = suggestReplyCount;
     }
+
 }

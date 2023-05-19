@@ -1,14 +1,17 @@
 package com.app.projectjar.service.personalChallenge;
 
 import com.app.projectjar.domain.challenge.ChallengeDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
+import com.app.projectjar.repository.file.challenge.ChallengeFileRepository;
 import com.app.projectjar.repository.personalChallenge.PersonalChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
+import com.app.projectjar.type.FileType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
@@ -18,6 +21,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +37,8 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
 
     private final ChallengeRepository challengeRepository;
 
+    private final ChallengeFileRepository challengeFileRepository;
+
     @Override
     public Page<PersonalChallengeDTO> getListByChallengeStatus(String challengeStatus, Pageable pageable) {
         Page<PersonalChallenge> personalChallenges = personalChallengeRepository.findAllByChallengeStatus(challengeStatus, pageable);
@@ -45,13 +51,21 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     }
 
     @Override
-    public Page<PersonalChallengeDTO> getAllChallengesWithPaging(int page) {
-        Page<PersonalChallenge> personalChallenges = personalChallengeRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
-        List<PersonalChallengeDTO> personalChallengeDTOS = personalChallenges.getContent().stream()
-                .map(this::toPersonalChallengeDTO)
+    public Page<ChallengeDTO> getAllChallengesWithPaging(int page) {
+        Page<Challenge> challenges = challengeRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
+        List<ChallengeDTO> challengeDTOS = challenges.getContent().stream()
+                .map(this::toChallengeDTO)
                 .collect(Collectors.toList());
 
-        return new PageImpl<>(personalChallengeDTOS, personalChallenges.getPageable(), personalChallenges.getTotalElements());
+        return new PageImpl<>(challengeDTOS, challenges.getPageable(), challenges.getTotalElements());
+    }
+
+
+    @Override
+    public void deleteChallenges(List<Long> challengeIds) {
+        for (Long challengeId : challengeIds) {
+            challengeRepository.deleteById(challengeId);
+        }
     }
 
     @Override
@@ -85,4 +99,36 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
         PersonalChallenge personalChallenge = PersonalChallenge.builder().challenge(challenge).build();
         personalChallengeRepository.save(personalChallenge);
     }
+
+    @Override
+    public Challenge getCurrentSequence() {
+        return challengeRepository.getCurrentSequence_QueryDsl();
+    }
+
+    // 개인 챌린지 게시판 등록
+    @Override @Transactional
+    public void register(ChallengeDTO challengeDTO) {
+        List<FileDTO> fileDTOS = challengeDTO.getFileDTOS();
+
+
+        challengeRepository.save(toChallengeEntity(challengeDTO));
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setChallenge(getCurrentSequence());
+                challengeFileRepository.save(toChallengeFileEntity(fileDTOS.get(i)));
+            }
+        }
+    }
+
+    @Override
+    public ChallengeDTO getChallenge(Long challengeId) {
+        ChallengeDTO challengeDTO = challengeRepository.findById(challengeId).map(this::toChallengeDTO).get();
+        return challengeDTO;
+    }
+
 }

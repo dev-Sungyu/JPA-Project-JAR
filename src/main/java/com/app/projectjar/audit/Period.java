@@ -25,4 +25,7 @@ public abstract class Period {
         this.updatedDate = LocalDateTime.now();
     }
 
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
+    }
 }
