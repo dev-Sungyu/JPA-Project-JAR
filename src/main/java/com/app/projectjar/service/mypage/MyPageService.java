@@ -25,6 +25,7 @@ public interface MyPageService {
     public DiaryDTO getDiary(Long diaryId);
 
 
+
     default DiaryDTO toDiaryDTO(Diary diary) {
         return DiaryDTO.builder()
                 .memberDTO(toMemberDTO(diary.getMember()))

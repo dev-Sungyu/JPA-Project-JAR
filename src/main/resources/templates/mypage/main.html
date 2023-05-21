@@ -194,8 +194,8 @@
                     <h2 class="diary-main-title space-between">
                         <div style="flex-grow: 1;" class="diary-content-title">다이어리 제목</div>
                         <div class="diary-detail-modify-box">
-                            <p class="modify-button">수정</p>
-                            <p class="delete-button">삭제</p>
+                            <button class="modify-button" type="button"> <!--onclick="location.href='/mypage/resgister'${diaryD TO.id}"-->수정</button>
+                            <button class="delete-button" type="button"> <!--onclick="deleteDiaryMain(${diaryDTO.id})"-->삭제</button>
                         </div>
                     </h2>
                     <div class="diary-detail-date-box">
@@ -536,6 +536,20 @@
         $(".diary-modal-display").show();
         $(".diary-detail-display").hide();
     });
+
+
+    // function deleteDiaryMain(diaryId){
+    //     $.ajax({
+    //         url:`/mypage/delete-main/${diaryId}`,
+    //         tpye: "DELETE",
+    //         contentType: "application/json",
+    //         data: JSON.stringify(diaryId),
+    //         traditional: true,
+    //         success: function(result){
+    //             result.
+    //         }
+    //     })
+    // }
 
 // ================================================
 </script>

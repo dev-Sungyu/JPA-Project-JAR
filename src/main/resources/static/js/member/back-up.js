@@ -1,4 +1,3 @@
-<script>
 let userPassword = $("input[name=password]");
 let userConfirmPassword = $("input[name=confirmPassword]");
 
