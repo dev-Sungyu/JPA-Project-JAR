@@ -25,8 +25,8 @@
                         <h4 class="notice_h4" style="height: 100px">문의 게시판</h4>
 
 <!--                        <a href="board/inquire/write">-->
-                        <a th:href="@{/inquire/write}">
-                            <div class="write-button-box" style="margin-left: auto" >
+                        <a th:href="@{detail(id=${inquireDTO.memberDTO.id})}">
+                            <div class="write-button-box" style="margin-left: auto">
                                 <div class="write-button-button-layout">
                                     <p>작성하기</p>
                                 </div>
