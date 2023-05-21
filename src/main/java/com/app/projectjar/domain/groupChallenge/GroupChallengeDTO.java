@@ -1,6 +1,7 @@
 package com.app.projectjar.domain.groupChallenge;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.type.GroupChallengeAttendType;
 import com.app.projectjar.type.GroupChallengeType;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,8 @@ public class GroupChallengeDTO {
     private Integer attendCount;
     private Integer replyCount;
     private LocalDateTime createdDate;
+    private GroupChallengeAttendType groupChallengeAttendStatus;
+
 
     private String requestStartDate;
     private String requestEndDate;
@@ -34,7 +37,7 @@ public class GroupChallengeDTO {
     private List<FileDTO> fileDTOS;
 
     @Builder
-    public GroupChallengeDTO(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer attendCount, Integer replyCount, List<FileDTO> fileDTOS, LocalDateTime createdDate) {
+    public GroupChallengeDTO(Long id, String boardTitle, String boardContent, GroupChallengeType groupChallengeStatus, LocalDate startDate, LocalDate endDate, Integer groupChallengeReplyCount, Integer attendCount, Integer replyCount, LocalDateTime createdDate, GroupChallengeAttendType groupChallengeAttendStatus, String requestStartDate, String requestEndDate, List<FileDTO> fileDTOS) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -44,8 +47,10 @@ public class GroupChallengeDTO {
         this.groupChallengeReplyCount = groupChallengeReplyCount;
         this.attendCount = attendCount;
         this.replyCount = replyCount;
-        this.fileDTOS = fileDTOS;
         this.createdDate = createdDate;
+        this.groupChallengeAttendStatus = groupChallengeAttendStatus;
+        this.requestStartDate = requestStartDate;
+        this.requestEndDate = requestEndDate;
+        this.fileDTOS = fileDTOS;
     }
-
 }
