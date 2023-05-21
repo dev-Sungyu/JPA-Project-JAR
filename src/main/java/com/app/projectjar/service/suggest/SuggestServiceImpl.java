@@ -164,7 +164,10 @@ public class SuggestServiceImpl implements SuggestService {
     }
 
     @Override
-    public List<Suggest> findSuggestWithSearch_QueryDSL(String search) {
-        return suggestRepository.findSuggestWithSearch_QueryDSL(search);
+    public List<SuggestDTO> findSuggestWithSearch_QueryDSL(String search) {
+        List<Suggest> suggests = suggestRepository.findSuggestWithSearch_QueryDSL(search);
+        return suggests.stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
     }
 }

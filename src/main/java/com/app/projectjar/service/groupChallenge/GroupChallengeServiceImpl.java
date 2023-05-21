@@ -184,7 +184,10 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
 
     // 검색
     @Override
-    public List<GroupChallenge> findBoardSearch(String search) {
-        return groupChallengeRepository.findGroupChallengeWithSearch_QueryDSL(search);
+    public List<GroupChallengeDTO> findBoardSearch(String search) {
+        List<GroupChallenge> groupChallenges = groupChallengeRepository.findGroupChallengeWithSearch_QueryDSL(search);
+        return groupChallenges.stream()
+                .map(this::toGroupChallengeDTO)
+                .collect(Collectors.toList());
     }
 }
