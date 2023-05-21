@@ -1,14 +1,21 @@
 package com.app.projectjar.service.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
+import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
+import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.diary.Diary;
+import com.app.projectjar.entity.file.challenge.ChallengeFile;
 import com.app.projectjar.entity.file.diary.DiaryFile;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.entity.suggest.Suggest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +30,8 @@ public interface MyPageService {
     List<CalendarDTO> getCalendarDTO(Long memberId);
 
     public DiaryDTO getDiary(Long diaryId);
+
+    Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
 
 
     default DiaryDTO toDiaryDTO(Diary diary) {
@@ -98,6 +107,45 @@ public interface MyPageService {
                 .diary(fileDTO.getDiary())
                 .fileType(fileDTO.getFileType())
                 .build();
+    }
+
+    default PersonalChallengeDTO toPersonalChallengeDTO(ChallengeAttend challengeAttend) {
+        return PersonalChallengeDTO.builder()
+                .id(challengeAttend.getPersonalChallenge().getId())
+                .challengeStatus(challengeAttend.getPersonalChallenge().getChallengeStatus())
+                .challengeDTO(toChallengeDTO(challengeAttend.getPersonalChallenge().getChallenge()))
+                .replyCount(challengeAttend.getPersonalChallenge().getChallengeReplyCount())
+                .attendCount(challengeAttend.getPersonalChallenge().getChallengeAttendCount())
+                .challengeAttendStatus(challengeAttend.getChallengeAttendStatus())
+                .build();
+    }
+
+    default ChallengeDTO toChallengeDTO(Challenge challenge) {
+        return ChallengeDTO.builder()
+                .boardContent(challenge.getBoardContent())
+                .boardTitle(challenge.getBoardTitle())
+                .fileDTOS(toFileDTOS(challenge.getChallengeFiles()))
+                .createdDate(challenge.getCreatedDate())
+                .id(challenge.getId())
+                .build();
+    }
+
+    default List<FileDTO> toFileDTOS(List<ChallengeFile> challengeFileList) {
+        List<FileDTO> fileDTOS = new ArrayList<>();
+
+        challengeFileList.forEach(
+                challengeFile -> {
+                    FileDTO fileDTO = FileDTO.builder()
+                            .id(challengeFile.getId())
+                            .fileOriginalName(challengeFile.getFileOriginalName())
+                            .fileUuid(challengeFile.getFileUuid())
+                            .filePath(challengeFile.getFilePath())
+                            .fileType(challengeFile.getFileType())
+                            .build();
+                    fileDTOS.add(fileDTO);
+                }
+        );
+        return fileDTOS;
     }
 
 }
