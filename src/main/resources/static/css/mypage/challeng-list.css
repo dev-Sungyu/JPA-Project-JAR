@@ -238,6 +238,13 @@ picture {
     margin-top: 20px;
 }
 
+.reply-icon{
+    margin-right: 3px;
+    height: 10px;
+    filter: invert(96%) sepia(0%) saturate(16%) hue-rotate(152deg) brightness(95%) contrast(83%);
+}
+
+
 .paging-layout {
     display: flex;
     align-items: center;
@@ -278,6 +285,12 @@ picture {
 .page {
     color: black;
 }
+
+.status-active {
+    background: rgb(255, 86, 0);
+    color: #fff;
+}
+
 
 .human-icon {
     height: 10px;

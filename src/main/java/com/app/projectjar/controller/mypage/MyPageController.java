@@ -4,6 +4,7 @@ import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
@@ -71,7 +72,16 @@ public class MyPageController {
     }
 
     @GetMapping("personal-challenge")
-    public void personal(){}
+    public void personal(Model model, @AuthenticationPrincipal UserDetail userDetail){
+        model.addAttribute("userDetail", userDetail);
+    }
+
+    @GetMapping("challenge-content")
+    @ResponseBody
+    public Page<PersonalChallengeDTO> getPersonalChallengeDTOS(@RequestParam("challengeStatus") String challengeStatus, @RequestParam("memberId") Long memberId, @RequestParam("page") int page){
+        PageRequest pageRequest = PageRequest.of(page, 9);
+        return myPageService.getChallengeList(challengeStatus, memberId, pageRequest);
+    }
 
     @GetMapping("group-challenge")
     public void group(){}

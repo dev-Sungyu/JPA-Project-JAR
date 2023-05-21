@@ -1,21 +1,29 @@
 package com.app.projectjar.service.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
+import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.diary.Diary;
+import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import com.app.projectjar.repository.file.diary.DiaryFileRepository;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.repository.personalChallenge.ChallengeAttendRepository;
 import com.app.projectjar.type.FileType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,6 +35,8 @@ public class MyPageServiceImpl implements MyPageService {
     private final DiaryRepository diaryRepository;
 
     private final DiaryFileRepository diaryFileRepository;
+
+    private final ChallengeAttendRepository challengeAttendRepository;
 
     @Override
     public void registerDiary(DiaryDTO diaryDTO, Long memberId) {
@@ -77,5 +87,13 @@ public class MyPageServiceImpl implements MyPageService {
     @Override
     public DiaryDTO getDiary(Long diaryId) {
         return toDiaryDTO(diaryRepository.findByDiaryId_QueryDsl(diaryId).get());
+    }
+
+    @Override
+    public Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable) {
+
+        Page<ChallengeAttend> challengePageList = challengeAttendRepository.findAllWithPageAndChallenges_QueryDsl(challengeStatus, memberId, pageable);
+        List<PersonalChallengeDTO> personalChallengeDTOS = challengePageList.getContent().stream().map(this::toPersonalChallengeDTO).collect(Collectors.toList());
+        return new PageImpl<>(personalChallengeDTOS, challengePageList.getPageable(), challengePageList.getTotalElements());
     }
 }
