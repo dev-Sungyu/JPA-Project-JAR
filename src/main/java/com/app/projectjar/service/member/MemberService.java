@@ -55,7 +55,7 @@ public interface MemberService extends UserDetailsService {
     public void sendMail(MailDTO mail);
 
     default Member memberDTOToEntity(MemberDTO memberDTO) {
-        return Member.joinMemberBuilder()
+        return Member.builder()
                 .id(memberDTO.getId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberPassword(memberDTO.getMemberPassword())
