@@ -8,6 +8,8 @@ import com.app.projectjar.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -52,6 +54,11 @@ public class DiaryLikeServiceImpl implements DiaryLikeService {
     public Boolean heartCheck(LikeDTO likeDTO) {
         Long member = diaryLikeRepository.findMemberByDiaryLike_QueryDsl(likeDTO.getBoardId(),likeDTO.getMemberId());
         return member == 0;
+    }
+
+    @Override
+    public Page<LikeDTO> getLikeDiaryForMemberIdList(Pageable pageable, Long id) {
+        return null;
     }
 
     // 좋아요 갯수

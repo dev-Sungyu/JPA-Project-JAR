@@ -34,6 +34,7 @@ public interface MyPageService {
     Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
 
 
+
     default DiaryDTO toDiaryDTO(Diary diary) {
         return DiaryDTO.builder()
                 .memberDTO(toMemberDTO(diary.getMember()))

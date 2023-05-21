@@ -1,6 +1,19 @@
 package com.app.projectjar.service.suggest.like;
 
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.like.LikeDTO;
+import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.domain.suggest.SuggestLikeDTO;
+import com.app.projectjar.entity.file.suggest.SuggestFile;
+import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.entity.suggest.SuggestLike;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public interface SuggestLikeService {
 
@@ -12,5 +25,57 @@ public interface SuggestLikeService {
     public void heartDown(LikeDTO likeDTO);
     // 좋아요 한 게시물인지 검사
     public Boolean heartCheck(LikeDTO likeDTO);
+
+
+//    마이 페이지
+//    public Page<SuggestLikeDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id);
+    public Page<SuggestDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id);
+
+
+    default MemberDTO toMemberDTO(Member member) {
+        return MemberDTO.builder()
+                .id(member.getId())
+                .memberEmail(member.getMemberEmail())
+                .memberPassword(member.getMemberPassword())
+                .memberName(member.getMemberName())
+                .memberNickname(member.getMemberNickname())
+                .memberPhoneNumber(member.getMemberPhoneNumber())
+                .memberStatus(member.getMemberStatus())
+                .build();
+    }
+
+    default SuggestDTO toSuggestDTO(Suggest suggest) {
+        return SuggestDTO.builder()
+                .id(suggest.getId())
+                .boardTitle(suggest.getBoardTitle())
+                .boardContent(suggest.getBoardContent())
+                .boardType(suggest.getBoardType())
+                .likeCount(suggest.getSuggestLikeCount())
+                .replyCount(suggest.getSuggestReplyCount())
+                .memberDTO(toMemberDTO(suggest.getMember()))
+                .fileDTOS(FileToDTO(suggest.getSuggestFiles()))
+                .createdDate(suggest.getCreatedDate())
+                .updatedDate(suggest.getUpdatedDate())
+                .build();
+    }
+
+    default List<FileDTO> FileToDTO(List<SuggestFile> suggestFiles) {
+        List<FileDTO> suggestFileList = new ArrayList<>();
+        suggestFiles.forEach(
+                suggestFile -> {
+                    FileDTO fileDTO = FileDTO.builder()
+                            .id(suggestFile.getId())
+                            .fileOriginalName(suggestFile.getFileOriginalName())
+                            .fileUuid(suggestFile.getFileUuid())
+                            .filePath(suggestFile.getFilePath())
+                            .fileType(suggestFile.getFileType())
+                            .build();
+                    suggestFileList.add(fileDTO);
+                }
+        );
+        return suggestFileList;
+    }
+
+
 
 }

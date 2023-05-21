@@ -25,4 +25,11 @@ public class SuggestLike extends Likes {
         this.member = member;
         this.suggest = suggest;
     }
+
+    @Builder
+    public SuggestLike(Long id, Member member, Suggest suggest) {
+        super(id);
+        this.member = member;
+        this.suggest = suggest;
+    }
 }

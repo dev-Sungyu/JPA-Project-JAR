@@ -1,9 +1,12 @@
 package com.app.projectjar.domain.like;
 
+import com.app.projectjar.domain.file.FileDTO;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
 
 @Component
 @Data
