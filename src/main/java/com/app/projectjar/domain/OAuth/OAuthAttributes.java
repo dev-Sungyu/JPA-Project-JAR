@@ -19,7 +19,6 @@ public class OAuthAttributes {
     private final Map<String, Object> attributes;
     private final String nameAttributeKey;
     private final String name;
-    private final String nickname;
     private final String email;
     private final String mobile;
 
@@ -43,7 +42,6 @@ public class OAuthAttributes {
 
         return OAuthAttributes.builder()
                 .name((String) response.get("name"))
-                .nickname((String) response.get("nickname"))
                 .email((String) response.get("email"))
                 .mobile((String) response.get("mobile"))
                 .attributes(response)
@@ -65,7 +63,6 @@ public class OAuthAttributes {
         return Member.builder()
                 .memberEmail(email)
                 .memberName(name)
-                .memberNickname(nickname)
                 .memberPhoneNumber(mobile)
                 .memberStatus(MemberType.ENABLE)
                 .memberType(Role.MEMBER)

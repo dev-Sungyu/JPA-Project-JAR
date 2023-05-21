@@ -185,7 +185,7 @@ function repliesContent(replies) {
             text += `<img src="/image/mypage/trophy_3.png">`;
         } else if (reply.memberDTO.badgeType == 'TWO') {
             text += `<img src="/image/mypage/trophy_2.png">`;
-        } else if (reply.memberDTO.badgeType == 'TWO') {
+        } else if (reply.memberDTO.badgeType == 'ONE') {
             text += `<img src="/image/mypage/trophy_1.png">`;
         } else {
             text += `<img src="/image/mypage/trophy_1_5.png">`;

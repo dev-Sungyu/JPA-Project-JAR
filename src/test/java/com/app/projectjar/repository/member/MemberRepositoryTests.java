@@ -2,9 +2,11 @@ package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.member.MemberRandomKey;
 import com.app.projectjar.repository.file.member.MemberFIleRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
+import com.app.projectjar.service.memberRandomKey.MemberRandomKeyService;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.FileType;
 import com.app.projectjar.type.MemberType;
@@ -33,6 +35,40 @@ public class MemberRepositoryTests {
 
     @Autowired
     private GroupChallengeRepository groupChallengeRepository;
+
+    @Autowired
+    private MemberRandomKeyRepository memberRandomKeyRepository;
+
+    @Autowired
+    private MemberRandomKeyService memberRandomKeyService;
+
+    @Test
+    public void randomkeyTest(){
+        Member member = memberRepository.findMemberById(2L);
+        MemberRandomKey memberRandomKey = memberRandomKeyRepository.getListRandomKey(member.getId());
+
+        if(memberRandomKey == null){
+            log.info("YesNull");
+        }else{
+            log.info("NoNull");
+        }
+
+    }
+
+    @Test
+    public void randomkeyTest2(){
+        Member member = memberRepository.findMemberById(2L);
+        memberRandomKeyService.saveRandomKey(member);
+//        MemberRandomKey memberRandomKey2 = memberRandomKeyRepository.getListRandomKey(member.getId());
+
+//        if(memberRandomKey2 == null){
+//            log.info("YesNull");
+//        }else{
+//            log.info("NoNull");
+//        }
+
+    }
+
 
 //      추가
     @Test

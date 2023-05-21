@@ -18,6 +18,9 @@ public interface GroupChallengeAttendQueryDsl {
     // 챌린지 참여 번호 가져오기
     public GroupChallengeAttend findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(Long groupChallengeId, Long memberId);
 
+    // 참여완료한 갯수 가져오기
+    public Integer getCountByMemberId_QueryDsl(Long memberId);
+
     /* 그룹 챌린지 */
 
     //    내가 완료 중인 그룹 챌린지 전체 조회 (진행 중) (challengeAttend -> memberId 조회 후 참여한 목록 + 날짜 조건) + 페이징 처리

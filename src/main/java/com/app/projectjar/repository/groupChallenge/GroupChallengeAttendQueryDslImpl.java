@@ -3,6 +3,7 @@ package com.app.projectjar.repository.groupChallenge;
 
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.groupChallenge.QGroupChallengeReply;
+import com.app.projectjar.type.GroupChallengeAttendType;
 import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -52,6 +53,15 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
                 .from(groupChallengeAttend)
                 .where(groupChallengeAttend.groupChallenge.id.eq(groupChallengeId).and(groupChallengeAttend.member.id.eq(memberId)))
                 .fetchOne();
+    }
+
+    @Override
+    public Integer getCountByMemberId_QueryDsl(Long memberId) {
+        return query.select(groupChallengeAttend.count())
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.PARTICIPATION))
+                .where(groupChallengeAttend.member.id.eq(memberId))
+                .fetchOne().intValue();
     }
 
     //    그룹 챌린지 목록(페이징, 진행중)

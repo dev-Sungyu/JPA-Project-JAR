@@ -1,5 +1,6 @@
 package com.app.projectjar.service.member;
 
+import com.app.projectjar.domain.member.MailDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.provider.UserDetail;
@@ -11,11 +12,14 @@ import lombok.extern.slf4j.Slf4j;
 import net.nurigo.java_sdk.api.Message;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 import org.json.simple.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -32,6 +36,9 @@ import java.util.stream.Collectors;
 @Slf4j
 public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
+
+    @Autowired
+    private JavaMailSender mailSender;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -67,16 +74,24 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public Long checkPhoneNumber(String memberPhoneNumber) { return memberRepository.overlapByPhoneNumber_QueryDSL(memberPhoneNumber);}
 
+//    닉네임 중복검사
     @Override
     public Long checkNickName(String memberNickName) { return memberRepository.overlapByNickName_QueryDSL(memberNickName);}
 
-//    비밀번호 찾기
+//    이메일 / 비밀번호 찾기
     @Override
-    public Long findByMemberPassword(String Email) {
-        return null;
+    public Member getMemberEmail(String memberEmail) {
+        return memberRepository.findByMemberEmailNoOptional_QueryDSL(memberEmail);
     }
 
-//    회원정보 수정
+//    비밀빈호 변경
+    @Override
+    public void updatePassword(Long id, String memberPassword, PasswordEncoder passwordEncoder) {
+        Member member = memberRepository.findMemberById(id);
+        member.updatePassword(passwordEncoder.encode(memberPassword));
+    }
+
+    //    회원정보 수정
     @Override
     public void updateMember(MemberDTO memberDTO, Long id) {
         Optional<Member> optionalMember = memberRepository.findById(id);
@@ -147,12 +162,33 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public Member findMemberByRandomKey(String randomKey) {
+        return memberRepository.findMemberByRandomKey(randomKey);
+    }
+
+    @Override
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey) {
+        return findMemberByMemberEmailAndRandomKey(memberEmail, randomKey);
+    }
+
+    @Override
+    public void sendMail(MailDTO mail) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(mail.getAddress());
+        message.setFrom("officail.jarjar@gmail.com");
+//        from 값을 설정하지 않으면 application.yml의 username값이 설정됩니다.
+        message.setSubject(mail.getTitle());
+        message.setText(mail.getMessage());
+
+        mailSender.send(message);
+    }
+
+    @Override
     public Page<MemberDTO> getAllMembersWithPaging(int page) {
         Page<Member> members = memberRepository.findAllByMemberId_QueryDsl(PageRequest.of(page, 10));
         List<MemberDTO> memberDTOS = members.getContent().stream()
                 .map(this::toMemberDTO)
                 .collect(Collectors.toList());
-
         return new PageImpl<>(memberDTOS, members.getPageable(), members.getTotalElements());
     }
 

@@ -1,6 +1,7 @@
 package com.app.projectjar.service.member;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.member.MailDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
@@ -23,8 +24,11 @@ public interface MemberService extends UserDetailsService {
 //    닉네임 중복 검사
     public Long checkNickName(String memberNickName);
 
-//    비밀번호 찾기
-    public Long findByMemberPassword(String Email);
+//   이메일 / 비밀번호 찾기
+    public Member getMemberEmail(String memberEmail);
+
+//    비밀 번호 변경
+    public void updatePassword(Long id, String memberPassword, PasswordEncoder passwordEncoder);
 
 //    회원정보 수정
     public void updateMember(MemberDTO memberDTO, Long id);
@@ -40,6 +44,31 @@ public interface MemberService extends UserDetailsService {
 
 //    인증 번호 발급
     public void checkSMS(String memberPhone, String code);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByRandomKey(String randomKey);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey);
+
+    /* 메일보내기 */
+    public void sendMail(MailDTO mail);
+
+    default Member memberDTOToEntity(MemberDTO memberDTO) {
+        return Member.joinMemberBuilder()
+                .id(memberDTO.getId())
+                .memberEmail(memberDTO.getMemberEmail())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberPhoneNumber(memberDTO.getMemberPhoneNumber())
+                .memberName(memberDTO.getMemberName())
+                .memberNickname(memberDTO.getMemberNickname())
+                .memberStatus(memberDTO.getMemberStatus())
+                .badgeType(memberDTO.getBadgeType())
+                .memberType(memberDTO.getMemberType())
+                .userType(memberDTO.getUserType())
+//                .memberFile(memberDTO.getFileDTO())
+                .build();
+    }
 
     /*관리자 페이지*/
 //    회원 전체 조회

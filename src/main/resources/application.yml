@@ -43,6 +43,17 @@ spring:
       location: c:\\upload
       enabled: true
 
+  #mail
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: officail.jarjar@gmail.com
+    password: sbgccwuycgnfuqkv
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
+
   session:
     store-type: redis
 
@@ -58,7 +69,7 @@ spring:
             client-secret: TZXCWxiqmj
             redirect-uri: http://localhost:10000/login/oauth2/code/naver
             authorization-grant-type: authorization_code
-            scope: name,nickname,email,mobile
+            scope: name,email,mobile
 
           #kakao
           kakao:

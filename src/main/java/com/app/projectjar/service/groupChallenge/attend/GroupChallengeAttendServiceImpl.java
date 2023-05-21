@@ -2,9 +2,13 @@ package com.app.projectjar.service.groupChallenge.attend;
 
 
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
+import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.repository.member.MemberRepository;
+import com.app.projectjar.repository.personalChallenge.ChallengeAttendRepository;
+import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.ChallengeAttendType;
 import com.app.projectjar.type.ChallengeType;
 import com.app.projectjar.type.GroupChallengeAttendType;
@@ -14,6 +18,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +27,8 @@ public class GroupChallengeAttendServiceImpl implements GroupChallengeAttendServ
     private final GroupChallengeAttendRepository groupChallengeAttendRepository;
 
     private final GroupChallengeRepository groupChallengeRepository;
+
+    private final ChallengeAttendRepository challengeAttendRepository;
 
     private final MemberRepository memberRepository;
 
@@ -73,10 +80,36 @@ public class GroupChallengeAttendServiceImpl implements GroupChallengeAttendServ
         GroupChallengeAttend groupChallengeAttend = groupChallengeAttendRepository.findGroupChallengeAttendByGroupChallengeIdAndMemberId_QueryDsl(boardId, memberId);
         groupChallengeAttend.setGroupChallengeAttendStatus(GroupChallengeAttendType.PARTICIPATION);
         groupChallengeAttendRepository.save(groupChallengeAttend);
+
+        int count = getAllChallengeAttendCount(memberId);
+        updateBadgeType(memberId, count);
     }
 
     @Override
     public Integer getAttendCount(Long boardId) {
         return groupChallengeAttendRepository.getAttendCountByGroupChallengeId_QueryDsl(boardId);
+    }
+
+    private void updateBadgeType(Long memberId, int count){
+
+        memberRepository.findById(memberId).ifPresent(
+                member ->  {
+                    if(count == 10){
+                        member.setBadgeType(BadgeType.ONE);
+                    }else if(count == 20){
+                        member.setBadgeType(BadgeType.TWO);
+
+                    }else if(count == 30){
+                        member.setBadgeType(BadgeType.THREE);
+                    }
+                    memberRepository.save(member);
+                }
+        );
+    }
+
+    private int getAllChallengeAttendCount(Long memberId) {
+        int groupChallengeAttendCount = groupChallengeAttendRepository.getCountByMemberId_QueryDsl(memberId);
+        int challengeAttendCount = challengeAttendRepository.getCountByMemberId_QueryDsl(memberId);
+        return groupChallengeAttendCount + challengeAttendCount;
     }
 }

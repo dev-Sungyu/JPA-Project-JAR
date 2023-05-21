@@ -1,13 +1,19 @@
 package com.app.projectjar.controller.member;
 
+import com.app.projectjar.domain.member.MailDTO;
 import com.app.projectjar.domain.member.MemberDTO;
+import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.member.MemberRandomKey;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.member.MemberService;
+import com.app.projectjar.service.memberRandomKey.MemberRandomKeyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -20,6 +26,7 @@ import java.util.Random;
 public class MemberController {
     private final MemberService memberService;
     private final PasswordEncoder passwordEncoder;
+    private final MemberRandomKeyService memberRandomKeyService;
 
     @GetMapping("join")
     public String goToJoinForm(MemberDTO memberDTO){
@@ -57,12 +64,6 @@ public class MemberController {
         return memberService.checkPhoneNumber(memberPhoneNumber);
     }
 
-    @GetMapping("password")
-    public void password(){}
-
-    @GetMapping("change-password")
-    public void changePassword(){}
-
     @GetMapping("account-confirm")
     public void account(){}
 
@@ -76,6 +77,7 @@ public class MemberController {
     @PostMapping("sendCode")
     @ResponseBody
     public String sendCode(String memberPhone) {
+        log.info("@@@@@@@@@@@@@@@ sendCode @@@@@@@@@@@@@@@@");
         Random random = new Random();
 
         String code = "";
@@ -87,6 +89,73 @@ public class MemberController {
         memberService.checkSMS(memberPhone, code);
         return code;
     }
+
+    @GetMapping("password")
+    public void password(){}
+
+    @GetMapping("change-password/{memberEmail}/{randomKey}")
+    public String password(@PathVariable("memberEmail") String memberEmail, @PathVariable("randomKey") String randomKey, Model model){
+        log.info("@@@@@@@@@@@ change-password Controller @@@@@@@@@@");
+        log.info("email: " + memberEmail);
+        log.info("randomKey: " + randomKey);
+
+        String latest = memberRandomKeyService.getLatestRandomKey(memberService.getMemberEmail(memberEmail).getId()).getMemberRandomKey();
+        log.info("latest: " + latest);
+        if(latest.equals(randomKey)){
+            model.addAttribute("memberEmail", memberEmail);
+            model.addAttribute("result", true);
+            model.addAttribute("errorMessage", "경로 인증에 성공 했습니다.");
+        }
+        else {
+            model.addAttribute("result", false);
+            model.addAttribute("errorMessage", "만료된 경로 입니다.");
+        }
+        log.info("model: " + model.getAttribute("errorMessage"));
+
+        return "/member/change-password";
+    }
+
+
+    @PostMapping("change-password")
+    @ResponseBody
+    @Transactional(rollbackFor = Exception.class)
+    public Long changePassword(@RequestParam("memberPassword") String memberPassword, @RequestParam("memberEmail") String memberEmail){
+        log.info("@@@@@@@@@@@ change-password Controller @@@@@@@@@@@");
+        Member member = memberService.getMemberEmail(memberEmail);
+        memberService.updatePassword(member.getId(), memberPassword, passwordEncoder);
+        memberRandomKeyService.saveRandomKey(member);
+
+        return 1L;
+    }
+
+    /* 이메일 보내기 */
+    @PostMapping("sendEmail")
+    @ResponseBody
+    @Transactional(rollbackFor = Exception.class)
+    public Long sendEmailToFindPassword(@RequestParam("memberEmail") String memberEmail){
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@ sendEMail Controller @@@@@@@@@@@@@@@@@@@@@@@@@");
+        Member member = memberService.getMemberEmail(memberEmail);
+        log.info(memberEmail);
+        log.info("member: " + member.toString());
+        MemberRandomKey randomKey = memberRandomKeyService.getLatestRandomKey(member.getId());
+        log.info("randomKey controller: " + randomKey.toString());
+        String randomKeyString = randomKey != null ? randomKey.getMemberRandomKey() : memberRandomKeyService.saveRandomKey(member).getMemberRandomKey();
+        log.info("randomKeyString controller: " + randomKeyString);
+
+        MailDTO mailDTO = new MailDTO();
+        mailDTO.setAddress(memberEmail);
+        mailDTO.setTitle("[Jar]새 비밀 번호 설정 링크 입니다.");
+
+        String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://localhost:10000/member/change-password/" + memberEmail + "/" + randomKeyString;
+        log.info("@@@@@@@@@@@@ message @@@@@@@@@@@@@@@@@");
+        log.info(message);
+        mailDTO.setMessage(message);
+
+        memberService.sendMail(mailDTO);
+
+        return 1L;
+    }
+
 
 
 }
