@@ -1,6 +1,7 @@
 package com.app.projectjar.controller.main;
 
 import com.app.projectjar.domain.board.BoardSearchDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.search.board.GroupChallengeSearch;
@@ -9,11 +10,13 @@ import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.groupChallenge.reply.GroupChallengeReplyService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
@@ -21,6 +24,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/main/*")
 @RequiredArgsConstructor
+@Slf4j
 public class MainController {
     private final SuggestService suggestService;
 
@@ -42,8 +46,15 @@ public class MainController {
     }
 
     @GetMapping("search")
-    public void boardSearch(Model model, BoardSearchDTO boardSearchDTO) {
-        model.addAttribute("boardSearchDTO", boardSearchDTO);
+    public void boardSearch(@RequestParam String search) {
+        BoardSearchDTO searchDTO = new BoardSearchDTO();
+
+        searchDTO.getGroupChallengeSearch().setBoardTitle(search);
+        searchDTO.getSuggestSearch().setBoardTitle(search);
+        log.info(searchDTO.toString());
+
+        groupChallengeService.findBoardSearch_QueryDSL((List<BoardSearchDTO>) searchDTO);
+
     }
 
     @GetMapping("service-introduction")
