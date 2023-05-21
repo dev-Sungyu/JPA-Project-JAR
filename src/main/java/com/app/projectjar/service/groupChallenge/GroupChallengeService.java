@@ -56,7 +56,7 @@ public interface GroupChallengeService {
     public void updateGroupChallengeTypeToPrivate(List<GroupChallenge> groupChallengeList);
 
     // 검색
-    public List<GroupChallenge> findBoardSearch(String search);
+    public List<GroupChallengeDTO> findBoardSearch(String search);
 
     default BoardSearchDTO toBoardSearchDTO(GroupChallengeSearch groupChallengeSearch, SuggestSearch suggestSearch){
         return BoardSearchDTO.builder()

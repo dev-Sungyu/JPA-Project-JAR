@@ -30,7 +30,7 @@ public interface SuggestService {
     // 삭제
     public void delete(Long suggestId);
     // 검색
-    List<Suggest> findSuggestWithSearch_QueryDSL(String search);
+    List<SuggestDTO> findSuggestWithSearch_QueryDSL(String search);
 
 
 

@@ -46,8 +46,8 @@ public class MainController {
 
     @GetMapping("search")
     public void boardSearch(@RequestParam String search, Model model) {
-        List<GroupChallenge> groupSearch = groupChallengeService.findBoardSearch(search);
-        List<Suggest> suggestSearch = suggestService.findSuggestWithSearch_QueryDSL(search);
+        List<GroupChallengeDTO> groupSearch = groupChallengeService.findBoardSearch(search);
+        List<SuggestDTO> suggestSearch = suggestService.findSuggestWithSearch_QueryDSL(search);
         model.addAttribute("groupChallengeDTOS", groupSearch);
         model.addAttribute("suggestDTOS", suggestSearch);
 
