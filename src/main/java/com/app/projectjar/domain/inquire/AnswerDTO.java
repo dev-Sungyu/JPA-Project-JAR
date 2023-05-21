@@ -21,6 +21,4 @@ public class AnswerDTO {
         this.answerContent = answerContent;
         this.registerDate = registerDate;
     }
-
-
 }

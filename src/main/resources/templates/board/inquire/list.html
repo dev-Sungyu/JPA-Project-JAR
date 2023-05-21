@@ -19,10 +19,20 @@
             <div class="div_notice">
                 <div class="login">
 
-                    <th:block th:replace="~{main/header :: header}"></th:block>
+                <th:block th:replace="~{main/header :: header}"></th:block>
 
                     <div class="notice_box">
-                        <h4 class="notice_h4">문의 게시판</h4>
+                        <h4 class="notice_h4" style="height: 100px">문의 게시판</h4>
+
+<!--                        <a href="board/inquire/write">-->
+                        <a th:href="@{detail(id=${inquireDTO.memberDTO.id})}">
+                            <div class="write-button-box" style="margin-left: auto">
+                                <div class="write-button-button-layout">
+                                    <p>작성하기</p>
+                                </div>
+                            </div>
+                        </a>
+
                         <div style="height: 24px;"></div>
                         <div class="login">
                             <div class="notice_inbox">

@@ -35,14 +35,13 @@ public class Inquire extends Period {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    @Builder
 //    public Inquire(Long id, String inquireTitle, String inquireContent, Member member){
 //        this.id = id;
 //        this.inquireTitle = inquireTitle;
 //        this.inquireContent = inquireContent;
 //        this.member = member;
 //    }
-
+    @Builder
     public Inquire(Long id, String inquireTitle, String inquireContent, AnswerType answerType, Member member) {
         this.id = id;
         this.inquireTitle = inquireTitle;
