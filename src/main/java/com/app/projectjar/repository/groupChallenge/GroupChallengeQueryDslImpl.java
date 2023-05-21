@@ -1,10 +1,9 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
-import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
-import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
+import com.app.projectjar.search.board.GroupChallengeSearch;
 import com.app.projectjar.type.GroupChallengeType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -115,17 +114,17 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
 
     /*검색*/
     @Override
-    public List<GroupChallenge> findAllWithSearch(BoardSearch boardSearch) {
-        BooleanExpression groupChallengeTitleLike = boardSearch.getBoardTitle() == null ? null : groupChallenge.boardTitle.like(boardSearch.getBoardTitle());
+    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(GroupChallengeSearch groupChallengeSearch) {
+        BooleanExpression groupChallengeTitleEq = groupChallengeSearch.getBoardTitle() == null ? null : groupChallenge.boardTitle.eq(groupChallengeSearch.getBoardTitle());
 
-        List<GroupChallenge> products = query.select(groupChallenge)
+        List<GroupChallenge> groupChallengeSearchs = query.select(groupChallenge)
                 .from(groupChallenge)
-                .leftJoin(groupChallenge.groupChallengeFiles, groupChallengeFile)
-                .where(groupChallengeTitleLike)
+                .where(groupChallengeTitleEq)
+                .leftJoin(groupChallenge.groupChallengeFiles)
                 .orderBy(groupChallenge.id.desc())
                 .fetch();
 
-        return products;
+        return groupChallengeSearchs;
     }
 
     @Override

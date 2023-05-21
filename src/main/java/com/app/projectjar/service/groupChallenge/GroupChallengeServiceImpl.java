@@ -2,10 +2,7 @@ package com.app.projectjar.service.groupChallenge;
 
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
-import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
-import com.app.projectjar.entity.groupChallenge.GroupChallengeReply;
-import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeReplyRepository;
@@ -116,6 +113,7 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
             groupChallengeRepository.deleteById(groupChallengeId);
         }
     }
+
 
 
     @Override @Transactional

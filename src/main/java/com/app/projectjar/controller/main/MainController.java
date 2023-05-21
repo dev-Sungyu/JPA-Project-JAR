@@ -1,7 +1,12 @@
 package com.app.projectjar.controller.main;
 
+import com.app.projectjar.domain.board.BoardSearchDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
+import com.app.projectjar.service.groupChallenge.GroupChallengeService;
+import com.app.projectjar.service.groupChallenge.reply.GroupChallengeReplyService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -19,6 +24,10 @@ import java.util.List;
 public class MainController {
     private final SuggestService suggestService;
 
+    private final GroupChallengeService groupChallengeService;
+
+    private final GroupChallengeReplyService groupChallengeReplyService;
+
     @GetMapping("")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         model.addAttribute("userDetail", userDetail);
@@ -33,7 +42,8 @@ public class MainController {
     }
 
     @GetMapping("search")
-    public void boardSearch() {
+    public void boardSearch(Model model, BoardSearchDTO boardSearchDTO) {
+        model.addAttribute("boardSearchDTO", boardSearchDTO);
     }
 
     @GetMapping("service-introduction")

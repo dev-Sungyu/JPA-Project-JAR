@@ -1,9 +1,11 @@
 package com.app.projectjar.repository.suggest;
 
 
-import com.app.projectjar.entity.board.BoardSearch;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.suggest.QSuggest;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
 import com.app.projectjar.type.BoardType;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -16,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
+import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.suggest.QSuggest.suggest;
 
@@ -115,19 +118,18 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         return foundSuggests;
     }
 
-
     /*검색*/
     @Override
-    public List<Suggest> findAllWithSearch(BoardSearch boardSearch) {
-        BooleanExpression suggestTitleLike = boardSearch.getBoardTitle() == null ? null : suggest.boardTitle.like(boardSearch.getBoardTitle());
+    public List<Suggest> findSuggestWithSearch_QueryDSL(SuggestSearch suggestSearch) {
+        BooleanExpression suggestTitleEq = suggestSearch.getBoardTitle() == null ? null : suggest.boardTitle.eq(suggestSearch.getBoardTitle());
 
-        List<Suggest> products = query.select(suggest)
+        List<Suggest> suggestSearchs = query.select(suggest)
                 .from(suggest)
-                .where(suggestTitleLike)
-                .leftJoin(suggest.suggestFiles, suggestFile)
+                .where(suggestTitleEq)
+                .leftJoin(suggest.suggestFiles)
                 .orderBy(suggest.id.desc())
                 .fetch();
 
-        return products;
+        return suggestSearchs;
     }
 }

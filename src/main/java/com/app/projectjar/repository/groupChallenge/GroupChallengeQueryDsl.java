@@ -1,9 +1,8 @@
 package com.app.projectjar.repository.groupChallenge;
 
 
-import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
-import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.search.board.GroupChallengeSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -31,8 +30,8 @@ public interface GroupChallengeQueryDsl {
     // 목록(페이징 처리 없는 버전)
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl();
 
-    //    검색
-    public List<GroupChallenge> findAllWithSearch(BoardSearch boardSearch);
+    // 검색
+    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(GroupChallengeSearch groupChallengeSearch);
     
     // 시작 날짜가 오늘 날짜 가져오기
     public List<GroupChallenge> findByStartDate(LocalDate startDate);

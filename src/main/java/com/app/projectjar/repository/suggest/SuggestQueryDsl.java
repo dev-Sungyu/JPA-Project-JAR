@@ -1,7 +1,9 @@
 package com.app.projectjar.repository.suggest;
 
-import com.app.projectjar.entity.board.BoardSearch;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -34,8 +36,8 @@ public interface SuggestQueryDsl {
     List<Suggest> findAllWithoutPaging_QueryDsl();
 
 
-    //    검색
-    public List<Suggest> findAllWithSearch(BoardSearch boardSearch);
+    // 검색
+    public List<Suggest> findSuggestWithSearch_QueryDSL(SuggestSearch suggestSearch);
 
 
 }
