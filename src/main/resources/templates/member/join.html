@@ -38,7 +38,9 @@
                                         <p class="email_p">이름</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="text" name="memberName" placeholder="ex) 홍길동" >
+<!--                                            <input class="email_input" type="text" name="memberName" placeholder="ex) 홍길동" >-->
+                                            <input th:if="${member != null && member.memberName != null}" name="memberName" placeholder="ex) 홍길동" type="text" class="email_input"th:value="${member.memberName}" readonly>
+                                            <input th:unless="${member != null && member.memberName != null}" name="memberName" placeholder="ex) 홍길동" type="text" class="email_input">
                                         </div>
                                         <div class="hei_4"></div>
                                         <div class="login">
@@ -52,7 +54,9 @@
                                         <p class="email_p">닉네임</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="text" name="memberNickname" placeholder="사용하실 닉네임을 적어주세요." >
+<!--                                            <input class="email_input" type="text" name="memberNickname" placeholder="사용하실 닉네임을 적어주세요." >-->
+                                            <input th:if="${member != null && member.memberName != null}" name="memberNickname" placeholder="사용하실 닉네임을 적어주세요." type="text" class="email_input" th:value="${member.memberName}" readonly>
+                                            <input th:unless="${member != null && member.memberName != null}" name="memberNickname" placeholder="사용하실 닉네임을 적어주세요." type="text" class="email_input">
                                         </div>
                                         <div class="hei_4"></div>
                                         <div class="login">
@@ -66,7 +70,9 @@
                                         <p class="email_p">이메일</p>
                                         <div class="hei_10"></div>
                                         <div class="login">
-                                            <input class="email_input" type="email" name="memberEmail" placeholder="example@google.com" >
+<!--                                            <input class="email_input" type="email" name="memberEmail" placeholder="example@google.com" >-->
+                                            <input th:if="${member == null}" name="memberEmail" placeholder="example@google.com" type="email" class="email_input" >
+                                            <input th:unless="${member == null}" name="memberEmail" placeholder="example@google.com" type="email" class="email_input" th:value="${member.memberEmail}" readonly>
                                             <div style="height: 4px;"></div>
                                             <div class="login">
                                                 <p id="red_email" class="waring_email">이메일을 입력해주세요.</p>

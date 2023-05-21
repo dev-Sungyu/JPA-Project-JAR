@@ -2,6 +2,7 @@ package com.app.projectjar.repository.member;
 
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
+import com.app.projectjar.entity.member.QMemberRandomKey;
 import com.app.projectjar.type.BadgeType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,19 @@ import java.util.Optional;
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
 import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.member.QMemberRandomKey.memberRandomKey1;
 import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
 
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
 
-//    이메일 중복 검사
+    @Override
+    public Member findById_QueryDSL(Long id) {
+        return query.select(member).from(member).where(member.id.eq(id)).fetchOne();
+    }
+
+    //    이메일 중복 검사
     @Override
     public Long overlapByMemberEmail_QueryDSL(String memberEmail) {
         return query.select(member.count()).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
@@ -67,6 +74,30 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     @Override
     public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail) {
         return Optional.ofNullable(query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne());
+    }
+
+    @Override
+    public Member findByMemberEmailNoOptional_QueryDSL(String memberEmail) {
+        return query.select(member).from(member).where(member.memberEmail.eq(memberEmail)).fetchOne();
+    }
+
+    /* 랜덤키로 회원 찾기 */
+    public Member findMemberByRandomKey(String memberRandomKey){
+        return query.select(member)
+                .from(QMemberRandomKey.memberRandomKey1)
+                .join(memberRandomKey1.member, member)
+                .where(memberRandomKey1.memberRandomKey.eq(memberRandomKey))
+                .fetchOne();
+    }
+
+    /* 랜덤키로 회원 찾기 */
+    @Override
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String memberRandomKey) {
+        return query.select(member)
+                .from(memberRandomKey1)
+                .join(memberRandomKey1.member, member)
+                .where(memberRandomKey1.memberRandomKey.eq(memberRandomKey),memberRandomKey1.member.memberEmail.eq(memberEmail))
+                .fetchOne();
     }
 
     //    회원 정보 수정
