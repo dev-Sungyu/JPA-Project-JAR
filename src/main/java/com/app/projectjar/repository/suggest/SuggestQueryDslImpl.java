@@ -120,8 +120,8 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
 
     /*검색*/
     @Override
-    public List<Suggest> findSuggestWithSearch_QueryDSL(SuggestSearch suggestSearch) {
-        BooleanExpression suggestTitleEq = suggestSearch.getBoardTitle() == null ? null : suggest.boardTitle.eq(suggestSearch.getBoardTitle());
+    public List<Suggest> findSuggestWithSearch_QueryDSL(String search) {
+        BooleanExpression suggestTitleEq = search == null ? null : suggest.boardTitle.like("%" + search + "%");
 
         List<Suggest> suggestSearchs = query.select(suggest)
                 .from(suggest)

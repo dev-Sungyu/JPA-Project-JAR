@@ -69,8 +69,8 @@
                                                                 <div class="header-input-box">
 
                                                                     <!-- 검색 -->
-                                                                    <form action="">
-                                                                        <input type="text" placeholder="찾으시는 챌린지가 있으신가요?" class="search-input">
+                                                                    <form th:action="@{/main/search}" method="get" name="form">
+                                                                        <input name="search" type="text" placeholder="찾으시는 챌린지가 있으신가요?" class="search-input">
 
                                                                 </div>
                                                                         <button class="search-icon">

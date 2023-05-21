@@ -4,6 +4,8 @@ import com.app.projectjar.domain.member.MemberDTO;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.management.Query;
+
 
 @Data
 public class SuggestSearch {

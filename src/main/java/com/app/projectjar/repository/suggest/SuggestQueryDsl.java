@@ -37,7 +37,7 @@ public interface SuggestQueryDsl {
 
 
     // 검색
-    public List<Suggest> findSuggestWithSearch_QueryDSL(SuggestSearch suggestSearch);
+    public List<Suggest> findSuggestWithSearch_QueryDSL(String search);
 
 
 }

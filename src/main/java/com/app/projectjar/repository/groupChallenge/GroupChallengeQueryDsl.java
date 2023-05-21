@@ -31,7 +31,7 @@ public interface GroupChallengeQueryDsl {
     public List<GroupChallenge> findAllGroupChallenge_QueryDsl();
 
     // 검색
-    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(GroupChallengeSearch groupChallengeSearch);
+    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(String search);
     
     // 시작 날짜가 오늘 날짜 가져오기
     public List<GroupChallenge> findByStartDate(LocalDate startDate);
