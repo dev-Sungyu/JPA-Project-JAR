@@ -107,15 +107,15 @@
     // 진행중인 챌린지 클릭
     $(".proceed-challenge").click(() => {
         page = 0;
-        boardStatus = "NONPARTICIPANT";
-        getNewList(boardStatus, page);
+        challengeStatus = "NONPARTICIPANT";
+        getNewList(challengeStatus, page);
     });
 
     // 완료된 챌린지
     $(".end-challenge").click(() => {
         page = 0;
-        boardStatus = "PARTICIPATION";
-        getNewList(boardStatus, page);
+        challengeStatus = "PARTICIPATION";
+        getNewList(challengeStatus, page);
     });
 
     // 페이지 번호
