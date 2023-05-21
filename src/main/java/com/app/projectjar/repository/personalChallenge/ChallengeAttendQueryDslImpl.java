@@ -3,6 +3,7 @@ package com.app.projectjar.repository.personalChallenge;
 
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.entity.personalChallenge.QChallengeAttend;
+import com.app.projectjar.type.ChallengeAttendType;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -45,6 +46,15 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
                 .from(challengeAttend)
                 .where(challengeAttend.personalChallenge.id.eq(personalChallengeId).and(challengeAttend.member.id.eq(memberId)))
                 .fetchOne();
+    }
+
+    @Override
+    public Integer getCountByMemberId_QueryDsl(Long memberId) {
+        return query.select(challengeAttend.count())
+                .from(challengeAttend)
+                .where(challengeAttend.challengeAttendStatus.eq(ChallengeAttendType.PARTICIPATION))
+                .where(challengeAttend.member.id.eq(memberId))
+                .fetchOne().intValue();
     }
 
     //    개인 챌린지 목록(페이징, 진행중)
