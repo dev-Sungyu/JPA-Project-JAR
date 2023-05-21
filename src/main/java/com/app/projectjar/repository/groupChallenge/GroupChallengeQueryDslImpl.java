@@ -114,8 +114,8 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
 
     /*검색*/
     @Override
-    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(GroupChallengeSearch groupChallengeSearch) {
-        BooleanExpression groupChallengeTitleEq = groupChallengeSearch.getBoardTitle() == null ? null : groupChallenge.boardTitle.eq(groupChallengeSearch.getBoardTitle());
+    public List<GroupChallenge> findGroupChallengeWithSearch_QueryDSL(String search) {
+        BooleanExpression groupChallengeTitleEq = search == null ? null : groupChallenge.boardTitle.like("%" + search +"%");
 
         List<GroupChallenge> groupChallengeSearchs = query.select(groupChallenge)
                 .from(groupChallenge)
