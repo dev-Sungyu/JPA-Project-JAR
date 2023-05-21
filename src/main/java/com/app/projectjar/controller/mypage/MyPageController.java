@@ -88,6 +88,7 @@ public class MyPageController {
     public void group(Model model, @AuthenticationPrincipal UserDetail userDetail){model.addAttribute("userDetail", userDetail);}
 
     @GetMapping("group-challenge-content")
+    @ResponseBody
     public Page<GroupChallengeDTO> getGroupChallengeDTOS(@RequestParam("challengeStatus") String challengeStatus, @RequestParam("memberId") Long memberId, @RequestParam("page") int page){
         PageRequest pageRequest = PageRequest.of(page, 9);
         return myPageService.getGroupChallengeList(challengeStatus, memberId, pageRequest);
