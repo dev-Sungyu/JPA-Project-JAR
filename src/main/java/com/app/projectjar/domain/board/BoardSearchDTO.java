@@ -1,5 +1,7 @@
 package com.app.projectjar.domain.board;
 
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,14 +11,12 @@ import org.springframework.stereotype.Component;
 @Component
 @NoArgsConstructor
 public class BoardSearchDTO {
-    private Long challengeTitle;
-    private Long groupChallengeTitle;
-    private Long suggestTitle;
+    private GroupChallengeSearch groupChallengeSearch;
+    private SuggestSearch suggestSearch;
 
     @Builder
-    public BoardSearchDTO(Long challengeTitle, Long groupChallengeTitle, Long suggestTitle) {
-        this.challengeTitle = challengeTitle;
-        this.groupChallengeTitle = groupChallengeTitle;
-        this.suggestTitle = suggestTitle;
+    public BoardSearchDTO(GroupChallengeSearch groupChallengeSearch, SuggestSearch suggestSearch) {
+        this.groupChallengeSearch = groupChallengeSearch;
+        this.suggestSearch = suggestSearch;
     }
 }

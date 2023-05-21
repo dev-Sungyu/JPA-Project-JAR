@@ -4,6 +4,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.entity.member.QMemberRandomKey;
 import com.app.projectjar.type.BadgeType;
+import com.app.projectjar.type.Role;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -190,6 +191,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
                 .from(member)
                 .leftJoin(member.memberFile, memberFile)
                 .fetchJoin()
+                .where(member.memberType.eq(Role.MEMBER))
                 .orderBy(member.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

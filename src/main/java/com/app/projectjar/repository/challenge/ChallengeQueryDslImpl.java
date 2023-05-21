@@ -1,12 +1,8 @@
 package com.app.projectjar.repository.challenge;
 
 
-import com.app.projectjar.entity.board.BoardSearch;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.challenge.QChallenge;
-import com.app.projectjar.entity.groupChallenge.GroupChallenge;
-import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
-import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -18,8 +14,6 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.challenge.QChallenge.challenge;
 import static com.app.projectjar.entity.file.challenge.QChallengeFile.challengeFile;
-import static com.app.projectjar.entity.file.groupChallenge.QGroupChallengeFile.groupChallengeFile;
-import static com.app.projectjar.entity.groupChallenge.QGroupChallenge.groupChallenge;
 
 @RequiredArgsConstructor
 public class ChallengeQueryDslImpl implements ChallengeQueryDsl {
