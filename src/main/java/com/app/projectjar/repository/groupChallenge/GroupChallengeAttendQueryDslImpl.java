@@ -2,6 +2,7 @@ package com.app.projectjar.repository.groupChallenge;
 
 
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
+import com.app.projectjar.entity.groupChallenge.QGroupChallenge;
 import com.app.projectjar.entity.groupChallenge.QGroupChallengeReply;
 import com.app.projectjar.type.GroupChallengeAttendType;
 import com.app.projectjar.type.GroupChallengeType;
@@ -66,15 +67,16 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
 
     //    그룹 챌린지 목록(페이징, 진행중)
     @Override
-    public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
+    public Page<GroupChallengeAttend> findAllWithPageAndGroupChallenges_QueryDsl(String challengeStatus, Long memberId, Pageable pageable) {
 
-        List<GroupChallengeAttend> foundGroupChallengeAttend = query.selectFrom(groupChallengeAttend)
-                .join(groupChallengeAttend.member, member)
+        List<GroupChallengeAttend> foundGroupChallengeAttend = query.select(groupChallengeAttend)
+                .from(groupChallengeAttend)
+                .where(groupChallengeAttend.member.id.eq(memberId).and(
+                        challengeStatus.equals("NONPARTICIPANT") ? groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.NONPARTICIPANT)
+                                : groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.PARTICIPATION)
+                ))
                 .leftJoin(groupChallengeAttend.groupChallenge, groupChallenge)
-                .where(groupChallengeAttend.member.id.eq(memberId))
-                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("OPEN")))
-                .where(groupChallenge.startDate.before(LocalDate.now()))
-                .where(groupChallenge.endDate.after(LocalDate.now()))
+                .fetchJoin()
                 .orderBy(groupChallengeAttend.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
@@ -82,47 +84,12 @@ public class GroupChallengeAttendQueryDslImpl implements GroupChallengeAttendQue
 
         Long count = query.select(groupChallengeAttend.count())
                 .from(groupChallengeAttend)
-                .join(groupChallengeAttend.member, member)
-                .where(member.id.eq(memberId))
+                .where(groupChallengeAttend.member.id.eq(memberId).and(
+                        challengeStatus.equals("NONPARTICIPANT") ? groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.NONPARTICIPANT)
+                                : groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.PARTICIPATION)))
                 .fetchOne();
 
         return new PageImpl<>(foundGroupChallengeAttend, pageable, count);
-    }
-
-    //    그룹 챌린지 목록(페이징, 종료된)
-    @Override
-    public Page<GroupChallengeAttend> findAllWithPageAndEndGroupChallenges_QueryDsl(Long memberId, Pageable pageable) {
-
-        List<GroupChallengeAttend> foundGroupChallengeAttend = query.selectFrom(groupChallengeAttend)
-                .join(groupChallengeAttend.member, member)
-                .leftJoin(groupChallengeAttend.groupChallenge, groupChallenge)
-                .where(groupChallengeAttend.member.id.eq(memberId))
-                .where(groupChallenge.groupChallengeStatus.eq(GroupChallengeType.valueOf("PRIVATE")))
-                .where(groupChallenge.startDate.before(LocalDate.now()))
-                .where(groupChallenge.endDate.after(LocalDate.now()))
-                .orderBy(groupChallengeAttend.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        Long count = query.select(groupChallengeAttend.count())
-                .from(groupChallengeAttend)
-                .join(groupChallengeAttend.member, member)
-                .where(member.id.eq(memberId))
-                .fetchOne();
-
-        return new PageImpl<>(foundGroupChallengeAttend, pageable, count);
-    }
-
-    //    그룹 챌린지 목록(댓글 갯수)
-    @Override
-    public Long getGroupChallengeReplyCount_QueryDsl(Long groupChallengeId) {
-        QGroupChallengeReply groupChallengeReply = QGroupChallengeReply.groupChallengeReply;
-
-        return query.select(groupChallengeReply.count())
-                .from(groupChallengeReply)
-                .where(groupChallengeReply.groupChallenge.id.eq(groupChallengeId))
-                .fetchOne();
     }
 
 

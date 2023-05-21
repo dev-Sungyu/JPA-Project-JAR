@@ -83,7 +83,7 @@ public class ChallengeAttendQueryDslImpl implements ChallengeAttendQueryDsl {
 
         Long count = query.select(challengeAttend.count())
                 .from(challengeAttend)
-                .where(challengeAttend.member.id.eq(memberId))
+                .where(challengeAttend.member.id.eq(memberId).and(challengeStatus.equals("NONPARTICIPANT") ? challengeAttend.challengeAttendStatus.eq(ChallengeAttendType.NONPARTICIPANT) : challengeAttend.challengeAttendStatus.eq(ChallengeAttendType.PARTICIPATION)))
                 .fetchOne();
 
         return new PageImpl<>(foundChallengeAttend, pageable, count);
