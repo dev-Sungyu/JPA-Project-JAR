@@ -207,14 +207,14 @@
         $(".suggest_img").append(text);
     });
 
-    if (groupChallengeDTO.boardTitle === null) {
+    if (groupChallengeDTO == null) {
         const notSearchElement = document.querySelector('[name="groupChallengeNotSearch"]');
         if (notSearchElement) {
             notSearchElement.style.display = 'block';
         }
     }
 
-    if (suggestDTO.boardTitle === null) {
+    if (suggestDTO == null) {
         const notSearchElement = document.querySelector('[name="suggestNotSearch"]');
         if (notSearchElement) {
             notSearchElement.style.display = 'block';
