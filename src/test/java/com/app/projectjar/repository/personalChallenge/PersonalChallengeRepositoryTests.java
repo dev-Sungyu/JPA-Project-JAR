@@ -1,5 +1,6 @@
 package com.app.projectjar.repository.personalChallenge;
 
+import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 import com.app.projectjar.repository.challenge.ChallengeRepository;
 import com.app.projectjar.type.ChallengeType;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.annotation.Rollback;
 
 import javax.transaction.Transactional;
+import java.awt.print.Pageable;
 import java.time.LocalDate;
 
 @SpringBootTest
@@ -24,6 +26,9 @@ public class PersonalChallengeRepositoryTests {
 
     @Autowired
     private ChallengeRepository challengeRepository;
+
+    @Autowired
+    private ChallengeAttendRepository challengeAttendRepository;
 
     @Test
     public void saveTest(){
@@ -48,5 +53,11 @@ public class PersonalChallengeRepositoryTests {
     @Test
     public void findByCreateDateYesterdayTest(){
         personalChallengeRepository.findByCreateDateYesterday(LocalDate.now().minusDays(1)).stream().map(PersonalChallenge::toString).forEach(log::info);
+    }
+
+    @Test
+    public void findAllWithPageAndChallenges_QueryDslTest() {
+        challengeAttendRepository.findAllWithPageAndChallenges_QueryDsl(233L, PageRequest.of(0,10)).stream()
+                .map(ChallengeAttend::toString).forEach(log::info);
     }
 }
