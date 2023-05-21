@@ -147,7 +147,7 @@ picture {
 .content-image-layout img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     opacity: 1;
 }
 
