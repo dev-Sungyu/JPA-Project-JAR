@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Entity
 @Getter @ToString(exclude = {"member"})
-@Table(name = "TBL_RANDOM_KEY")
+@Table(name = "TBL_MEMBER_RANDOM_KEY")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class MemberRandomKey {
     @Id @GeneratedValue
@@ -14,10 +14,9 @@ public class MemberRandomKey {
     private Long id;
 
     @NotNull
-    private String randomKey;
+    private String memberRandomKey;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
     public String getTmpPassword() {
@@ -39,13 +38,13 @@ public class MemberRandomKey {
 
     public MemberRandomKey(Long id, String randomKey, Member member) {
         this.id = id;
-        this.randomKey = randomKey;
+        this.memberRandomKey = memberRandomKey;
         this.member = member;
     }
 
     public MemberRandomKey(Member member) {
         this.id = getId();
-        this.randomKey = getTmpPassword();
+        this.memberRandomKey = getTmpPassword();
         this.member = member;
     }
 

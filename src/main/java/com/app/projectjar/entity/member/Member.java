@@ -5,6 +5,7 @@ import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.type.BadgeType;
 import com.app.projectjar.type.MemberType;
 import com.app.projectjar.type.Role;
+import com.app.projectjar.type.UserType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
@@ -12,6 +13,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @ToString(callSuper = true)
@@ -39,9 +41,11 @@ public class Member extends Period {
     private BadgeType badgeType;
     @Enumerated(EnumType.STRING)
     private Role memberType;
+    @Enumerated(EnumType.STRING)
+    private UserType userType;
 
     @Builder
-    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, MemberFile memberFile) {
+    public Member(String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, UserType userType, MemberFile memberFile) {
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
         this.memberPhoneNumber = memberPhoneNumber;
@@ -50,6 +54,7 @@ public class Member extends Period {
         this.memberStatus = memberStatus;
         this.badgeType = badgeType;
         this.memberType = memberType;
+        this.userType = userType;
         this.memberFile = memberFile;
     }
 
@@ -79,13 +84,32 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
-    public Member update(String memberEmail, String memberName, String memberNickname, String memberPhoneNumber) {
+    @Builder(builderClassName = "joinMemberBuilder", builderMethodName = "joinMemberBuilder") /* 회원 가입 용 */
+    public Member(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, UserType userType, MemberFile memberFile) {
+        this.id = id;
         this.memberEmail = memberEmail;
+        this.memberPassword = memberPassword;
+        this.memberPhoneNumber = memberPhoneNumber;
         this.memberName = memberName;
         this.memberNickname = memberNickname;
+        this.memberStatus = memberStatus;
+        this.badgeType = badgeType;
+        this.memberType = memberType;
+        this.userType = userType;
+        this.memberFile = memberFile;
+    }
+
+
+    public Member update(String memberEmail, String memberName, String memberPhoneNumber) {
+        this.memberEmail = memberEmail;
+        this.memberName = memberName;
         this.memberPhoneNumber = memberPhoneNumber;
 
         return this;
+    }
+
+    public void updatePassword(String memberPassword){
+        this.memberPassword = memberPassword;
     }
 
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")

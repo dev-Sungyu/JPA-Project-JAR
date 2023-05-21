@@ -11,23 +11,18 @@ import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.suggest.SuggestService;
-import com.app.projectjar.type.BadgeType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.util.HashMap;
+import javax.servlet.http.HttpSession;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/mypage/*")
@@ -41,11 +36,14 @@ public class MyPageController {
     private final DiaryService diaryService;
 
     @GetMapping("main")
-    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(userDetail.getId());
-
+    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model, HttpSession session){
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        log.info("@@@@@@@@@@@@@@@@@@@@@@@");
+        memberDTO = memberService.getMember(memberDTO.getId());
+        model.addAttribute("member", memberDTO);
+        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberDTO.getId());
         model.addAttribute("calendarDTOS",calendarDTOS);
-        model.addAttribute("userDetail", userDetail);
+//        model.addAttribute("userDetail", userDetail);
     }
 
     @PostMapping("register")

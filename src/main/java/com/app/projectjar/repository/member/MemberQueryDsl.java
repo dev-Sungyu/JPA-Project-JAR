@@ -10,6 +10,8 @@ public interface MemberQueryDsl {
 
     /* 로그인 */
 
+    public Member findById_QueryDSL(Long id);
+
 //    이메일 중복 검사
     public Long overlapByMemberEmail_QueryDSL(String memberEmail);
 
@@ -30,6 +32,15 @@ public interface MemberQueryDsl {
 
 //    이메일로 회원 조회
     public Optional<Member> findByMemberEmail_QueryDSL(String memberEmail);
+
+//    그냥 이메일 조회
+    public Member findByMemberEmailNoOptional_QueryDSL(String memberEmail);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByRandomKey(String randomKey);
+
+    /* 랜덤키로 계정 찾기 */
+    public Member findMemberByMemberEmailAndRandomKey(String memberEmail, String randomKey);
 
     /* 마이 페이지 */
 
