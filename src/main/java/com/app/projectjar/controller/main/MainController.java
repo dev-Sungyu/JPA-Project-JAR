@@ -38,26 +38,24 @@ public class MainController {
     private final HttpSession session;
 
     @GetMapping("")
-<<<<<<< HEAD
     public void main(@AuthenticationPrincipal UserDetail userDetail) {
-        if(userDetail != null){
+        if (userDetail != null) {
             session.invalidate();
-            session.setAttribute("member",userDetail);
+            session.setAttribute("member", userDetail);
         }
-        MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
         log.info("==================================================");
         log.info(memberDTO.toString());
-=======
-    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
-
-        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
-        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
-
-        model.addAttribute("userDetail", userDetail);
-        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
-        model.addAttribute("calendarDTOS", calendarDTOS);
->>>>>>> master
     }
+//    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+//
+//        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
+//        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
+//
+//        model.addAttribute("userDetail", userDetail);
+//        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
+//        model.addAttribute("calendarDTOS", calendarDTOS);
+//    }
 
     @GetMapping("/list-content")
     @ResponseBody
