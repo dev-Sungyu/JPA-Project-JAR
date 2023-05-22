@@ -37,7 +37,7 @@
                                     </div>
                                     <div class="organize-button-box">
                                         <div class="organize-button-layout">
-                                            <button class="btn proceed-challenge" type="button">진행 중인 챌린지</button>
+                                            <button class="btn proceed-challenge status-active" type="button">진행 중인 챌린지</button>
                                             <button class="btn end-challenge" type="button">종료된 챌린지</button>
                                         </div>
                                     </div>
@@ -52,56 +52,7 @@
                                         <div style="overflow:hidden">
                                             <ul class="content-ul">
                                                 <!-- 여기서 부터 -->
-                                                <li class="content-li">
-                                                    <div class="content-flex">
-                                                        <a href="javascript:void(0)">
-                                                            <div class="content-box">
-                                                                <div class="content-image-box">
-                                                                    <span class="content-image-layout">
-                                                                        <picture>
-                                                                            <img
-                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">
-                                                                        </picture>
-                                                                    </span>
-                                                                </div>
-                                                                <div class="content-title">
-                                                                    게임업계에 관심 있다면?
-                                                                </div>
-                                                                <div class="content2">
-                                                                    상시 이벤트
-                                                                </div>
-                                                                <div class="liked-box">
-                                                                    <div class="between">
-                                                                        <div class="flex">
-                                                                            <div class="liked-layout">
-                                                                                <div class="icon-box">
-                                                                                    <img src="/image/board/human-icon.png" class="human-icon">
-                                                                                </div>
-                                                                                <p class="like-count">5771</p>
-                                                                            </div>
-                                                                            <div class="liked-layout">
-                                                                                <div class="icon-box">
-                                                                                    <svg xmlns="http://www.w3.org/2000/svg"
-                                                                                        width="12" height="12"
-                                                                                        fill="none" viewBox="0 0 24 24">
-                                                                                        <path fill-rule="evenodd"
-                                                                                            d="M2 10.68c0-.691.503-1.251 1.135-1.251h2.273V22H3.135C2.508 22 2 21.427 2 20.749V10.68zm11.361-2.508h6.366c1.255 0 2.272 1.126 2.272 2.514 0 .151-.012.301-.037.45l-1.616 9.832C20.25 21.566 19.779 22 19.23 22H7.681V9.429L11.089 0c1.704 0 2.84 1.257 2.84 3.143 0 1.257-.189 2.933-.568 5.029z"
-                                                                                            fill="#d7d7d7"></path>
-                                                                                    </svg>
-                                                                                </div>
-                                                                                <p class="reply-count">97</p>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <p class="proceed-status no-proceed-status">
-                                                                                진행 중</p>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </li>
+
                                             </ul>
                                         </div>
                                     </div>
@@ -109,27 +60,7 @@
                             </section>
                             <div class="paging-box">
                                 <div class="paging-layout">
-                                    <a href="javascript:void(0)">
-                                        <img src="/image/mypage/arrow.png" class="prev">
-                                    </a>
-                                    <div class="paging-border-none paging-active">
-                                        <a href="javascript:void(0)">
-                                            <span class="page">1</span>
-                                        </a>
-                                    </div>
-                                    <div class="paging-border-none">
-                                        <a href="javascript:void(0)">
-                                            <span class="page">2</span>
-                                        </a>
-                                    </div>
-                                    <div class="paging-border-none">
-                                        <a href="javascript:void(0)">
-                                            <span class="page">3</span>
-                                        </a>
-                                    </div>
-                                    <a href="javascript:void(0)">
-                                        <img src="/image/mypage/arrow.png" class="next">
-                                    </a>
+
                                 </div>
                             </div>
                         </div>
@@ -141,7 +72,195 @@
     </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let userDetail = [[${userDetail}]];
+    let memberId;
+    if (userDetail) {
+        memberId = userDetail.id;
+    }
+</script>
 <script>
+    let $ul = $(".content-ul");
+    let page = 0;
+    let challengeStatus = "NONPARTICIPANT";
+
+    let groupChallengeListService = (function(){
+
+        function list(data, callback) {
+            $.ajax({
+                url : '/mypage/group-challenge-content',
+                type : 'get',
+                data : data,
+                success : function (list) {
+                    if(callback){
+                        callback(list);
+                    }
+                }
+            })
+        }
+        return {
+            list : list,
+        }
+    })();
+    getList(challengeStatus, page);
+
+    // 진행중인 챌린지 클릭
+    $(".proceed-challenge").click(() => {
+        page = 0;
+        challengeStatus = "NONPARTICIPANT";
+        getNewList(challengeStatus, page);
+    });
+
+    // 완료된 챌린지
+    $(".end-challenge").click(() => {
+        page = 0;
+        challengeStatus = "PARTICIPATION";
+        getNewList(challengeStatus, page);
+    });
+
+    // 페이지 번호
+    $(".paging-layout").on("click", "a", function(e) {
+        e.preventDefault();
+        $ul.empty();
+        const targetPage = $(this).text();
+
+        if ($(this).hasClass("arrow")) {
+            // 화살표 클릭 시 이전 페이지 또는 다음 페이지로 이동
+            if ($(this).attr("id") === "prev") {
+                page--;
+            } else if ($(this).attr("id") === "next") {
+                page++;
+            }
+        } else {
+            // 페이지 번호 클릭 시 해당 페이지로 이동
+            page = parseInt(targetPage) - 1;
+        }
+
+        getList(challengeStatus, page);
+    });
+
+    $(".btn").each((i, e) => {
+        $(e).click(() => {
+            if(!$(e).hasClass("status-active")){
+                $(".btn").removeClass("status-active");
+                $(e).addClass("status-active");
+            }
+        });
+    });
+
+
+    //    ==============================================================================
+    function displayPagination(totalPages) {
+        const $pagination = $(".paging-layout");
+        $pagination.empty();
+
+        if (page > 0) {
+            $pagination.append("<a href='#' class='arrow' id='prev'><img class='prev'  src='/image/mypage/arrow.png'></a>");
+        }
+
+        for (let i = 1; i <= totalPages; i++) {
+            if (i === page + 1) {
+                // 현재 페이지를 텍스트로 표시
+                $pagination.append(
+                    "<div class='paging-border-none paging-active'><span class='page'>" + i + "</span></div>"
+                );
+            } else {
+                // 다른 페이지는 a 태그로 표시
+                $pagination.append("<div class='paging-border-none'><a href='#' class='page'>" + i + "</a></div>");
+            }
+        }
+        if (page < totalPages - 1) {
+            $pagination.append("<a href='#' class='arrow' id='next'><img class='next' src='/image/mypage/arrow.png'></a>");
+        }
+    }
+
+    function listText(list){
+        let groupChallengeDTOS = list.content;
+        let text = '';
+        groupChallengeDTOS.forEach((groupChallengeDTO, i) => {
+            text += `
+                                        <li class="content-li">
+                                                    <div class="content-flex">
+                                                        <a href="/board/challenge/personal/detail/${groupChallengeDTO.id}">
+                                                            <div class="content-box">
+                                                                <div class="content-image-box">
+                                                                    <span class="content-image-layout">
+                                                                        <picture>
+                    `;
+
+            if(groupChallengeDTO.fileDTOS.length == 0 || groupChallengeDTO.fileDTOS == null || groupChallengeDTO.fileDTOS == undefined){
+                text += `<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png" class="no-image">`;
+            }else {
+                for (let  j= 0; j < groupChallengeDTO.fileDTOS.length; j++){
+                    if(groupChallengeDTO.fileDTOS[j].fileType === "REPRESENTATIVE"){
+                        text += `<img class="list-image"  src="/file/display?fileName=${groupChallengeDTO.fileDTOS[j].filePath}/${groupChallengeDTO.fileDTOS[j].fileUuid}_${groupChallengeDTO.fileDTOS[j].fileOriginalName}">`;
+                    }
+                }
+            }
+            text +=  `                                                    </picture>
+                                                                    </span>
+                                                                </div>
+                                                                <div class="content-title">${groupChallengeDTO.boardTitle}</div>
+                                                                <div class="content2">${groupChallengeDTO.boardContent}</div>
+                                                                <div class="liked-box">
+                                                                    <div class="between">
+                                                                        <div class="flex">
+                                                                            <div class="liked-layout">
+                                                                                <div class="icon-box">
+                                                                                    <img src="/image/board/human-icon.png"class="human-icon">
+                                                                                </div>
+                                                                                <p class="like-count">${groupChallengeDTO.attendCount}</p>
+                                                                            </div>
+                                                                            <div class="liked-layout">
+                                                                                <div class="icon-box">
+                                                                                    <img src="/image/board/reply-icon.png" style="margin-top: 1px;" class="reply-icon">
+                                                                                </div>
+                                                                                <p class="reply-count">${groupChallengeDTO.replyCount}</p>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                       `;
+
+            if(groupChallengeDTO.groupChallengeAttendStatus == 'NONPARTICIPANT'){
+                text += `<p class="proceed-status no-proceed-status">진행 중</p>`;
+            }else {
+                text += `<p class="proceed-status" style="color:#39f;">도전 완료</p>`;
+            }
+
+            text += `                                                            </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </li>
+
+            `;
+        });
+        return text;
+    }
+
+    function getList(challengeStatus, page){
+        groupChallengeListService.list({
+            challengeStatus : challengeStatus,
+            memberId : memberId,
+            page : page
+        }, function(list){
+            $ul.append(listText(list));
+            displayPagination(list.totalPages);
+        });
+    }
+
+    function getNewList(challengeStatus, page){
+        groupChallengeListService.list({
+            challengeStatus : challengeStatus,
+            memberId : memberId,
+            page : page
+        }, function(list){
+            $ul.html(listText(list));
+            displayPagination(list.totalPages);
+        });
+    }
 </script>
 <script>
     const $page = $(".paging-border-none");
@@ -153,5 +272,4 @@
         });
     });
 </script>
-
 </html>

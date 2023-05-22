@@ -1,9 +1,12 @@
 package com.app.projectjar.service.groupChallenge;
 
+import com.app.projectjar.domain.board.BoardSearchDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -51,6 +54,16 @@ public interface GroupChallengeService {
 
     // status PRIVATE로 변경
     public void updateGroupChallengeTypeToPrivate(List<GroupChallenge> groupChallengeList);
+
+    // 검색
+    public List<GroupChallengeDTO> findBoardSearch(String search);
+
+    default BoardSearchDTO toBoardSearchDTO(GroupChallengeSearch groupChallengeSearch, SuggestSearch suggestSearch){
+        return BoardSearchDTO.builder()
+                .groupChallengeSearch(groupChallengeSearch)
+                .suggestSearch(suggestSearch)
+                .build();
+    }
 
     default GroupChallengeDTO toGroupChallengeDTO(GroupChallenge groupChallenge) {
         return GroupChallengeDTO.builder()

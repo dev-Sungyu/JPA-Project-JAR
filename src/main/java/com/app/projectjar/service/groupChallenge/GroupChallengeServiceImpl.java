@@ -1,15 +1,15 @@
 package com.app.projectjar.service.groupChallenge;
 
+import com.app.projectjar.domain.board.BoardSearchDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
-import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
-import com.app.projectjar.entity.groupChallenge.GroupChallengeReply;
-import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.file.groupChallenge.GroupChallengeFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeReplyRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
+import com.app.projectjar.search.board.GroupChallengeSearch;
+import com.app.projectjar.search.board.SuggestSearch;
 import com.app.projectjar.type.FileType;
 import com.app.projectjar.type.GroupChallengeType;
 import lombok.RequiredArgsConstructor;
@@ -118,6 +118,7 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     }
 
 
+
     @Override @Transactional
     public void update(GroupChallengeDTO groupChallengeDTO) {
         List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
@@ -179,5 +180,14 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
                 groupChallengeFileRepository.save(toGroupChallengeFileEntity(fileDTOS.get(i)));
             }
         }
+    }
+
+    // 검색
+    @Override
+    public List<GroupChallengeDTO> findBoardSearch(String search) {
+        List<GroupChallenge> groupChallenges = groupChallengeRepository.findGroupChallengeWithSearch_QueryDSL(search);
+        return groupChallenges.stream()
+                .map(this::toGroupChallengeDTO)
+                .collect(Collectors.toList());
     }
 }
