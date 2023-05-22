@@ -2,13 +2,9 @@ package com.app.projectjar.controller.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
-<<<<<<< HEAD
 import com.app.projectjar.domain.diary.DiaryLikeDTO;
-=======
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
->>>>>>> master
 import com.app.projectjar.domain.inquire.InquireDTO;
-import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
@@ -24,9 +20,7 @@ import com.app.projectjar.service.suggest.like.SuggestLikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

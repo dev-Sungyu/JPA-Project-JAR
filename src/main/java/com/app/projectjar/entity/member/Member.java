@@ -59,12 +59,8 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
-<<<<<<< HEAD
 
     public Member update(String memberEmail, String memberName, String memberPhoneNumber, UserType userType) {
-=======
-    public Member update(String memberEmail, String memberName, String memberPhoneNumber) {
->>>>>>> master
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberPhoneNumber = memberPhoneNumber;
