@@ -1,6 +1,7 @@
 package com.app.projectjar.controller.main;
 
 import com.app.projectjar.domain.board.BoardSearchDTO;
+import com.app.projectjar.domain.calendar.GroupCalendarDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
@@ -13,6 +14,7 @@ import com.app.projectjar.service.groupChallenge.reply.GroupChallengeReplyServic
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,7 +35,13 @@ public class MainController {
 
     @GetMapping("")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+
+        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
+        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
+
         model.addAttribute("userDetail", userDetail);
+        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
+        model.addAttribute("calendarDTOS", calendarDTOS);
     }
 
     @GetMapping("/list-content")

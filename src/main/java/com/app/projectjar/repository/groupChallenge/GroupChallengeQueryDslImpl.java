@@ -60,6 +60,14 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
     }
 
     @Override
+    public List<GroupChallenge> findAllCalendar() {
+        return query.select(groupChallenge)
+                .from(groupChallenge)
+                .distinct()
+                .fetch();
+    }
+
+    @Override
     public Page<GroupChallenge> findAllGroupChallengeByPrivateWithPaging_QueryDsl(Pageable pageable) {
         List<GroupChallenge> foundGroupChallenge = query.select(groupChallenge)
                 .from(groupChallenge)

@@ -35,6 +35,11 @@ theme: {
       },
 calendars: [
   {
+    id: 'cal0',
+    name: '관리자',
+    backgroundColor: '#03bd9e',
+  },
+  {
     id: 'cal1',
     name: '관리자',
     backgroundColor: '#03bd9e',
@@ -56,6 +61,26 @@ calendars: [
   },
   {
     id: 'cal5',
+    name: '관리자',
+    backgroundColor: '#e1e1e1',
+  },
+  {
+    id: 'cal6',
+    name: '관리자',
+    backgroundColor: '#e1e1e1',
+  },
+  {
+    id: 'cal7',
+    name: '관리자',
+    backgroundColor: '#e1e1e1',
+  },
+  {
+    id: 'cal8',
+    name: '관리자',
+    backgroundColor: '#e1e1e1',
+  },
+  {
+    id: 'cal9',
     name: '관리자',
     backgroundColor: '#e1e1e1',
   },
@@ -123,9 +148,19 @@ let datas = [
     isAllday: true,
     category: 'allday',
     },
+    {
+    id: '6',
+    calendarId: 'cal3',
+    title: '남한산성 한 바퀴',
+    start: '2023-04-05',
+    end: '2023-04-08',
+    isAllday: true,
+    category: 'allday',
+    },
 ];
 
-datas.forEach((e, i) => {
+console.log(calendarDTOS)
+calendarDTOS.forEach((e, i) => {
   calendar.createEvents([
         e
   ]);
@@ -134,10 +169,10 @@ datas.forEach((e, i) => {
 
 
 // 추가 이벤트
-calendar.on('beforeCreateEvent', (eventObj) => {
+calendar.on('beforeCreateEvent', (calendarDTOS) => {
 calendar.createEvents([
   {
-    ...eventObj,
+    ...calendarDTOS,
   },
 ]);
 });

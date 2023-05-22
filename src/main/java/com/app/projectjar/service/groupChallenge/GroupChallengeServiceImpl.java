@@ -1,6 +1,7 @@
 package com.app.projectjar.service.groupChallenge;
 
 import com.app.projectjar.domain.board.BoardSearchDTO;
+import com.app.projectjar.domain.calendar.GroupCalendarDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
@@ -20,6 +21,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -47,6 +49,7 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
         return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable() , groupChallenges.getTotalElements());
     }
 
+
     @Override
     public Page<GroupChallengeDTO> getAllGroupChallengesWithPaging(int page) {
         Page<GroupChallenge> groupChallenges = groupChallengeRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
@@ -55,6 +58,12 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
                 .collect(Collectors.toList());
 
         return new PageImpl<>(groupChallengeDTOS, groupChallenges.getPageable(), groupChallenges.getTotalElements());
+    }
+
+    @Override
+    public List<GroupCalendarDTO> findAllCalendar() {
+        List<GroupCalendarDTO> calendarDTOS = groupChallengeRepository.findAllCalendar().stream().map(this::toCalendarDTO).collect(Collectors.toList());
+        return calendarDTOS;
     }
 
     @Override
