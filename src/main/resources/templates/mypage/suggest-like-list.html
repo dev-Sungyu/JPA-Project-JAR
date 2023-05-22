@@ -16,7 +16,7 @@
 <body>
     <div>
         <!-- main/header.html -->
-        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
+        <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{main/header :: header}"></div>
 
         <div>
             <div class="mypage-all-wrap">
@@ -66,8 +66,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let memberId = [[${session.member.id}]];
-    console.log(memberId);
+    let badgeType = [[${session.member.badgeType}]];
+    let member = [[${session.member}]];
 </script>
 <script src="/js/mypage/suggest-like-list.js"></script>
 <script src="/js/board/suggest/like-service.js"></script>

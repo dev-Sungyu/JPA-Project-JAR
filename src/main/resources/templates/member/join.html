@@ -31,7 +31,7 @@
                     </div>
                     <div class="flex_hei"></div>
                     <div class="login">
-                        <form style="width: auto; height: auto;" th:action="@{/member/join}" method="post" th:object="${memberDTO}" name="joinForm">
+                        <form style="width: auto; height: auto;" th:action="@{/member/join}" th:method="post" th:object="${memberDTO}" name="joinForm">
                             <input th:if="${member != null && member.userType != null}" type="hidden" name="userType" th:value="member.userType">
                             <input th:unless="${member != null && member.userType != null}" type="hidden" name="userType" th:value="Jar">
                             <div class="login"><input th:if="${member != null && member.memberType != null}" type="hidden" name="memberType" th:value="member.memberType">
