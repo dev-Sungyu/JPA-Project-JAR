@@ -97,8 +97,8 @@
                                         </dl>
                                     </div>
                                     <div class="user-container-box-2" size="64" style="display: flex; align-items: flex-end;">
-                                        <th:block th:if="${not #strings.isEmpty(userDetail)}">
-                                            <th:block th:if="${userDetail.id == suggestDTO.memberDTO.id}">
+                                        <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                            <th:block th:if="${session.member.id == suggestDTO.memberDTO.id}">
                                                 <button style="margin-right: 10px;" class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
                                                     <span>수정</span>
                                                 </button>
@@ -152,7 +152,7 @@
 
                                                         </div>
                                                     </div>
-                                                    <th:block th:if="${not #strings.isEmpty(userDetail)}">
+                                                    <th:block th:if="${not #strings.isEmpty(session.member)}">
                                                     <div class="reply-container-box-layout">
                                                         <div>
                                                             <div class="reply-form">
@@ -245,10 +245,10 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
 <script th:inline="javascript">
-    let userDetail = [[${userDetail}]];
+    let member = [[${session.member}]];
     let memberId;
-    if(userDetail){
-        memberId = userDetail.id;
+    if(member){
+        memberId = member.id;
     }
     const suggestDTO = [[${suggestDTO}]];
     const boardId = suggestDTO.id;

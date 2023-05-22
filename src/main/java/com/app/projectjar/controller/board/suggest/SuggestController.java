@@ -1,6 +1,6 @@
 package com.app.projectjar.controller.board.suggest;
 
-import com.app.projectjar.domain.page.PageDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.suggest.SuggestService;
@@ -8,16 +8,12 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/board/suggest/*")
@@ -30,16 +26,16 @@ public class SuggestController {
     public void goToWriteForm(SuggestDTO suggestDTO) { }
 
     @PostMapping("write")
-    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, @AuthenticationPrincipal UserDetail userDetail) {
+    public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, HttpSession session) {
 
-        Long memberId = userDetail.getId();
+        UserDetail member = (UserDetail) session.getAttribute("member");
+        Long memberId = member.getId();
         suggestService.register(suggestDTO, memberId);
         return new RedirectView("/board/suggest/list");
     }
 
     @GetMapping("list")
-    public void goToList(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        model.addAttribute("userDetail",userDetail);
+    public void goToList(){
     }
 
     @GetMapping("list-content")
@@ -50,11 +46,10 @@ public class SuggestController {
     }
 
     @GetMapping("detail/{boardId}")
-    public String goToDetail(Model model, @PathVariable("boardId") Long boardId, @AuthenticationPrincipal UserDetail userDetail) {
+    public String goToDetail(Model model, @PathVariable("boardId") Long boardId) {
         SuggestDTO suggestDTO = suggestService.getSuggest(boardId);
 
         model.addAttribute("suggestDTO", suggestDTO);
-        model.addAttribute("userDetail", userDetail);
         return "/board/suggest/detail";
     }
 
