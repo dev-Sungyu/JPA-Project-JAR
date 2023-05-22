@@ -9,6 +9,7 @@ import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
+import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import com.app.projectjar.repository.file.diary.DiaryFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
@@ -23,6 +24,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +94,38 @@ public class MyPageServiceImpl implements MyPageService {
     @Override
     public DiaryDTO getDiary(Long diaryId) {
         return toDiaryDTO(diaryRepository.findByDiaryId_QueryDsl(diaryId).get());
+    }
+
+    @Override @Transactional
+    public void modifyDiary(DiaryDTO diaryDTO) {
+        List<FileDTO> fileDTOS = diaryDTO.getFileDTOS();
+
+        diaryRepository.findById(diaryDTO.getId()).ifPresent(diary -> {
+            Diary updatedDiary = Diary.builder()
+                    .id(diary.getId())
+                    .diaryStatus(diaryDTO.getDiaryStatus())
+                    .member(diary.getMember())
+                    .diaryLikeCount(diary.getDiaryLikeCount())
+                    .diaryReplyCount(diary.getDiaryReplyCount())
+                    .createDate(diary.getCreatedDate())
+                    .boardContent(diaryDTO.getBoardContent())
+                    .boardTitle(diaryDTO.getBoardTitle())
+                    .build();
+
+            diaryRepository.save(updatedDiary);
+        });
+        diaryFileRepository.deleteByDiaryId(diaryDTO.getId());
+        if(fileDTOS != null){
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if(i == 0){
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                }else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setDiary(getCurrentSequence());
+                diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
+            }
+        }
     }
 
     @Override
