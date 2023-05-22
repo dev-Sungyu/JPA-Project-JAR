@@ -74,6 +74,7 @@ public interface SuggestService {
                 .memberNickname(member.getMemberNickname())
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
+                .userType(member.getUserType())
                 .build();
     }
 

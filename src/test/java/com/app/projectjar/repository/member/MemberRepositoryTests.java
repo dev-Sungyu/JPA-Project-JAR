@@ -44,7 +44,7 @@ public class MemberRepositoryTests {
 
     @Test
     public void randomkeyTest(){
-        Member member = memberRepository.findMemberById(2L);
+        Member member = memberRepository.findMemberById(108L);
         MemberRandomKey memberRandomKey = memberRandomKeyRepository.getListRandomKey(member.getId());
 
         if(memberRandomKey == null){
@@ -57,7 +57,7 @@ public class MemberRepositoryTests {
 
     @Test
     public void randomkeyTest2(){
-        Member member = memberRepository.findMemberById(2L);
+        Member member = memberRepository.findMemberById(108L);
         memberRandomKeyService.saveRandomKey(member);
 //        MemberRandomKey memberRandomKey2 = memberRandomKeyRepository.getListRandomKey(member.getId());
 

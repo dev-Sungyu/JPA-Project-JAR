@@ -59,10 +59,12 @@ public class Member extends Period {
         this.memberFile = memberFile;
     }
 
-    public Member update(String memberEmail, String memberName, String memberPhoneNumber) {
+
+    public Member update(String memberEmail, String memberName, String memberPhoneNumber, UserType userType) {
         this.memberEmail = memberEmail;
         this.memberName = memberName;
         this.memberPhoneNumber = memberPhoneNumber;
+        this.userType = userType;
 
         return this;
     }

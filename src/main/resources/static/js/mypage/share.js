@@ -87,7 +87,7 @@ function listText(list) {
                                                 <p class="date">${createDate}</p>
                                                 <div>
                                                     <button type="button" class="btn modify-btn" onclick="location.href='/board/dairy/modify'${diaryDTO.id}">수정</button>
-                                                    <button type="button" class="btn delete-btn" onclick="deleteDiaray(${diaryDTO.id})">삭제</button>
+                                                    <button type="button" class="btn delete-btn" onclick="deleteDiary(${diaryDTO.id})">삭제</button>
                                                 </div>
                                             </div>
                                             <a href="/board/diary/detail/${diaryDTO.id}">
@@ -141,8 +141,7 @@ function getDate(register){
     // 2021-01-01
 }
 
-function deleteDiaray(boardId) {
-    console.log("들어옴6")
+function deleteDiary(boardId) {
     $.ajax({
         url: `/mypage/delete-diary/${boardId}`,
         type: "DELETE",

@@ -2,17 +2,21 @@ package com.app.projectjar.controller.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.diary.DiaryLikeDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.domain.suggest.SuggestLikeDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
+import com.app.projectjar.service.diary.like.DiaryLikeService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.suggest.SuggestService;
+import com.app.projectjar.service.suggest.like.SuggestLikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -36,28 +40,34 @@ public class MyPageController {
     private final InquireService inquireService;
     private final SuggestService suggestService;
     private final DiaryService diaryService;
+    private final SuggestLikeService suggestLikeService;
+    private final DiaryLikeService diaryLikeService;
 
     @GetMapping("main")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model, HttpSession session){
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@");
-        memberDTO = memberService.getMember(memberDTO.getId());
-        model.addAttribute("member", memberDTO);
-        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberDTO.getId());
+//        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+//        MemberDTO memberDTO = (MemberDTO) userDetail.("member");
+        log.info("@@@@@@@@@@@@ main Controller @@@@@@@@@@@@@");
+        log.info("@@@@@@@@@@@@" + userDetail);
+//        memberDTO = memberService.getMember(memberDTO.getId());
+//        model.addAttribute("member", memberDTO);
+//        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberDTO.getId());
+        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(userDetail.getId());
         model.addAttribute("calendarDTOS",calendarDTOS);
-//        model.addAttribute("userDetail", userDetail);
+        model.addAttribute("userDetail", userDetail);
     }
 
     @PostMapping("register")
     public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail){
+        log.info("@@@@@@@@ register Controller @@@@@@@@");
         Long memberId = userDetail.getId();
         myPageService.registerDiary(diaryDTO, memberId);
         return new RedirectView("/mypage/main?check=true");
     }
 
-    @GetMapping("diary-detail")
+    @DeleteMapping("diary-detail")
     @ResponseBody
-    public DiaryDTO getDiaryDTO(@RequestParam("boardId")Long diaryId) {
+    public DiaryDTO getDiaryDTO(@RequestParam("diaryId")Long diaryId) {
         return myPageService.getDiary(diaryId);
     }
 
@@ -71,6 +81,10 @@ public class MyPageController {
         log.info(memberId.toString());
         memberService.updateBadge(memberId);
     }
+
+    @DeleteMapping("delete-main/{boardId}")
+    @ResponseBody
+    public void deleteMain(@PathVariable("boarId") Long diaryId){ diaryService.delete(diaryId);}
 
     @GetMapping("personal-challenge")
     public void personal(Model model, @AuthenticationPrincipal UserDetail userDetail){
@@ -158,10 +172,30 @@ public class MyPageController {
     }
 
     @GetMapping("suggest-like-list")
-    public void suggestLikelist(){}
+    public void goToSuggestLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
+
+    @GetMapping("suggest-like-list-content")
+    @ResponseBody
+    public Page<SuggestLikeDTO> suggestLikeList(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<SuggestLikeDTO> suggestLikeDTOS = suggestLikeService.getLikeSuggestForMemberIdList(pageable, id);
+        return suggestLikeDTOS;
+    }
 
     @GetMapping("diary-like-list")
-    public void diarylikelist(){}
+    public void goToDiaryLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
+
+    @GetMapping("diary-like-list-content")
+    @ResponseBody
+    public Page<DiaryLikeDTO> diaryLikeList(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<DiaryLikeDTO> diaryLikeDTOS = diaryLikeService.getLikeDiaryForMemberIdList(pageable, id);
+        return diaryLikeDTOS;
+    }
 
 
     @GetMapping("modify")
