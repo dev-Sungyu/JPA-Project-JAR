@@ -52,8 +52,8 @@
                                                                 <strong th:text="${diaryDTO.boardTitle}"></strong>
                                                             </h3>
                                                         </div>
-                                                        <th:block th:if="${not #strings.isEmpty(userDetail)}">
-                                                            <th:block th:if="${userDetail.id == diaryDTO.memberDTO.id}">
+                                                        <th:block th:if="${not #strings.isEmpty(session.member)}">
+                                                            <th:block th:if="${session.member.id == diaryDTO.memberDTO.id}">
                                                                 <div class="user-container-box-2" size="64">
                                                                     <button class="challenge-button-check diary-modify-button" icon-position="0" color="default" fill="true">
                                                                         <span>수정</span>
@@ -92,7 +92,7 @@
 
                                                                 </div>
                                                             </div>
-                                                            <th:block th:if="${not #strings.isEmpty(userDetail)}">
+                                                            <th:block th:if="${not #strings.isEmpty(session.member)}">
                                                                 <div class="reply-container-box-layout">
                                                                     <div>
                                                                         <div class="reply-form">
@@ -186,13 +186,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let userDetail = [[${userDetail}]];
+    let member = [[${session.member}]];
     let memberId;
-    if(userDetail){
-        memberId = userDetail.id;
+    if(member){
+        memberId = member.id;
     }
-
-    console.log(userDetail);
 
     const diaryDTO = [[${diaryDTO}]];
     const boardId = diaryDTO.id;
