@@ -195,7 +195,9 @@
                         <div style="flex-grow: 1;" class="diary-content-title">다이어리 제목</div>
                         <div class="diary-detail-modify-box">
                             <button class="modify-button" style="font-size: 15px; margin-right: 10px; font-weight: bold;" type="button">수정</button>
-                            <button class="delete-button"style="font-size: 15px;  font-weight: bold;" type="button">삭제</button>
+                            <form action="" class="delete-form" style="display: flex; align-items: center;" method="post">
+                                <button class="delete-button"style="font-size: 15px;  font-weight: bold;" type="submit">삭제</button>
+                            </form>
                         </div>
                     </h2>
                     <div class="diary-detail-date-box">
@@ -398,12 +400,13 @@
         },function(diaryDTO){
             $(".diary-content-title").text(diaryDTO.boardTitle);
             $(".modify-button").attr("id", 'modify' + boardId);
+            $(".delete-form").attr("action", "/mypage/diary-delete?boardId=" + boardId);
             let content = diaryDTO.boardContent;
             contentPrint(content);
 
 
             let fileDTOS = diaryDTO.fileDTOS;
-            let text
+            let text = '';
             fileDTOS.forEach((file, i) => {
                  text += `
                                 <li>

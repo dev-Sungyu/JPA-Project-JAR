@@ -42,6 +42,13 @@ public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
     }
 
     @Override
+    public void deleteByDiaryId(Long diaryId) {
+        query.delete(diaryLike)
+                .where(diaryLike.diary.id.eq(diaryId))
+                .execute();
+    }
+
+    @Override
     public Page<DiaryLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long memberId) {
         List<DiaryLike> foundDiaries = query.select(diaryLike)
                 .from(diaryLike)
