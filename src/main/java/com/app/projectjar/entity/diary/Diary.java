@@ -11,6 +11,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -48,10 +49,13 @@ public class Diary extends Board {
     }
 
     @Builder
-    public Diary(Long id, String boardTitle, String boardContent, DiaryType diaryStatus, Member member, List<DiaryFile> diaryFiles) {
+    public Diary(Long id, String boardTitle, String boardContent, Integer diaryLikeCount, Integer diaryReplyCount, DiaryType diaryStatus, Member member, List<DiaryFile> diaryFiles, LocalDateTime createDate) {
         super(id, boardTitle, boardContent);
+        this.diaryLikeCount = diaryLikeCount;
+        this.diaryReplyCount = diaryReplyCount;
         this.diaryStatus = diaryStatus;
         this.member = member;
         this.diaryFiles = diaryFiles;
+        this.setCreatedDate(createDate);
     }
 }
