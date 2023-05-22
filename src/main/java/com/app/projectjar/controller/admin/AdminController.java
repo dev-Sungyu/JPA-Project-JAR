@@ -4,6 +4,7 @@ import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
@@ -11,6 +12,7 @@ import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
+import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.personalChallenge.PersonalChallengeService;
@@ -41,6 +43,7 @@ public class AdminController {
     private final DiaryService diaryService;
     private final GroupChallengeService groupChallengeService;
     private final PersonalChallengeService personalChallengeService;
+    private final InquireService inquireService;
 
 
 
@@ -106,14 +109,29 @@ public class AdminController {
     }
 
 
-    @GetMapping("board/inquiry/answer")
-    public void adminInquiryAnswer() {}
-    @GetMapping("board/inquiry/detail")
-    public void adminInquiryDetail() {}
-    @GetMapping("board/inquiry/list")
-    public void adminInquiryList() {}
-    @GetMapping("board/inquiry/modify")
-    public void adminInquiryModify() {}
+    @GetMapping("board/inquire/answer")
+    public void adminInquireAnswer() {
+
+    }
+    @GetMapping("board/inquire/detail/{inquireId}")
+    public String adminInquireDetail(Model model, @PathVariable("inquireId") Long inquireId) {
+        InquireDTO inquireDTO = inquireService.getInquire(inquireId);
+
+        model.addAttribute("inquireDTO", inquireDTO);
+
+        return "admin/board/inquire/detail";
+    }
+    @GetMapping("board/inquire/list")
+    public String adminInquireList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
+        Page<InquireDTO> inquirePage = inquireService.getAllInquiresWithPaging(page - 1);
+        model.addAttribute("pageDTO", new PageDTO(inquirePage));
+        model.addAttribute("inquireDTOS", inquirePage.getContent());
+        return "admin/board/inquire/list";
+    }
+    @GetMapping("board/inquire/modify")
+    public void adminInquireModify(){
+
+    }
 
     @GetMapping("member/list")
     public String adminMemberList(Model model, @RequestParam(value="page", defaultValue="1") int page) {
