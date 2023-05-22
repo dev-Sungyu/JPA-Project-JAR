@@ -3,6 +3,7 @@ package com.app.projectjar.controller.main;
 import com.app.projectjar.domain.board.BoardSearchDTO;
 import com.app.projectjar.domain.calendar.GroupCalendarDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.suggest.Suggest;
@@ -20,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -33,16 +35,27 @@ public class MainController {
 
     private final GroupChallengeReplyService groupChallengeReplyService;
 
+    private final HttpSession session;
+
     @GetMapping("")
-    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
-
-        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
-        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
-
-        model.addAttribute("userDetail", userDetail);
-        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
-        model.addAttribute("calendarDTOS", calendarDTOS);
+    public void main(@AuthenticationPrincipal UserDetail userDetail) {
+        if (userDetail != null) {
+            session.invalidate();
+            session.setAttribute("member", userDetail);
+        }
+        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+        log.info("==================================================");
+        log.info(memberDTO.toString());
     }
+//    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+//
+//        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
+//        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
+//
+//        model.addAttribute("userDetail", userDetail);
+//        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
+//        model.addAttribute("calendarDTOS", calendarDTOS);
+//    }
 
     @GetMapping("/list-content")
     @ResponseBody

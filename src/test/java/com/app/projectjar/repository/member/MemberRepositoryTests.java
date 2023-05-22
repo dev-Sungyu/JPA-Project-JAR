@@ -74,8 +74,8 @@ public class MemberRepositoryTests {
     @Test
     public void saveTest() {
 //        MemberFile memberFile = new MemberFile("", "", "", FileType.REPRESENTATIVE);
-        Member member = new Member(1L, "user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, Role.MEMBER, null);
-        memberRepository.save(member);
+//        Member member = new Member(1L, "user03@naver.com", "qwer1234!", "010-5634-1278", "정용준", "대구시민", MemberType.ENABLE, BadgeType.ONE, Role.MEMBER, null);
+//        memberRepository.save(member);
 //        memberFIleRepository.save(memberFile);
     }
 

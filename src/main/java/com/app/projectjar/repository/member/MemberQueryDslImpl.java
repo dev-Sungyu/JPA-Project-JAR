@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import static com.app.projectjar.entity.file.member.QMemberFile.memberFile;
 import static com.app.projectjar.entity.groupChallenge.QGroupChallengeAttend.groupChallengeAttend;
+import static com.app.projectjar.entity.member.QMember.*;
 import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.member.QMemberRandomKey.memberRandomKey1;
 import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.challengeAttend;
@@ -189,7 +190,7 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     //    관리자 페이지 회원 전체 조회
     @Override
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable) {
-        List<Member> foundMembers = query.select(QMember.member)
+        List<Member> foundMembers = query.select(member)
                 .from(member)
                 .leftJoin(member.memberFile, memberFile)
                 .fetchJoin()

@@ -66,12 +66,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let userDetail = [[${userDetail}]];
-    let memberId;
-    console.log(userDetail);
-    if (userDetail) {
-        memberId = userDetail.id;
-    }
+    let memberId = [[${session.member.id}]];
+    console.log(memberId);
 </script>
 <script src="/js/mypage/suggest-like-list.js"></script>
 <script src="/js/board/suggest/like-service.js"></script>
