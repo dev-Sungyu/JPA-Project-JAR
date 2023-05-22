@@ -11,11 +11,11 @@
     <link rel="icon" href="/image/logo/favicon.png">
     <link rel="stylesheet" href="/css/board/proposal/modify-list.css">
     <style>
-        @media (min-width: 1024px){
+        @media (min-width: 1024px) {
             .content-li {
                 width: 33.333333%;
             }
-        }    
+        }
     </style>
 </head>
 
@@ -35,7 +35,7 @@
                 <div class="list-content-box">
                     <section class="list-content-wrap">
                         <div class="popularity-button-box">
-                            <button class="btn recent active" th:href="@{/board/challenge/group/list}">더보기</button>
+                            <a class="btn recent active" th:href="@{/board/challenge/group/list}">더보기</a>
                         </div>
                         <div>
                             <div style="height:auto; overflow:auto" th:each="groupChallengeDTO : ${groupChallengeDTOS}">
@@ -50,29 +50,36 @@
                                                                 <span class="content-image-layout">
                                                                     <picture class="groupChallenge_img">
 <!--                                                                        <img-->
-<!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
+                                                                        <!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
                                                                     </picture>
                                                                 </span>
                                                         </div>
-                                                        <div class="content-title" th:text="${groupChallengeDTO.boardTitle}">
+                                                        <div class="content-title"
+                                                             th:text="${groupChallengeDTO.boardTitle}">
                                                             임종욱
                                                         </div>
-                                                        <div class="content2" th:text="${groupChallengeDTO.boardContent}">
+                                                        <div class="content2"
+                                                             th:text="${groupChallengeDTO.boardContent}">
                                                             상시 이벤트
                                                         </div>
                                                         <div class="liked-box">
                                                             <div class="flex">
                                                                 <div class="liked-layout">
                                                                     <div class="icon-box">
-                                                                        <img src="/image/board/human-icon.png"class="human-icon">
+                                                                        <img src="/image/board/human-icon.png"
+                                                                             class="human-icon">
                                                                     </div>
-                                                                    <p class="like-count" th:text="${groupChallengeDTO.attendCount}">5771</p>
+                                                                    <p class="like-count"
+                                                                       th:text="${groupChallengeDTO.attendCount}">
+                                                                        5771</p>
                                                                 </div>
                                                                 <div class="liked-layout">
                                                                     <div class="icon-box">
-                                                                        <img src="/image/board/reply-icon.png" class="reply-icon">
+                                                                        <img src="/image/board/reply-icon.png"
+                                                                             class="reply-icon">
                                                                     </div>
-                                                                    <p class="reply-count" th:text="${groupChallengeDTO.replyCount}">97</p>
+                                                                    <p class="reply-count"
+                                                                       th:text="${groupChallengeDTO.replyCount}">97</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -103,7 +110,7 @@
                 <div class="list-content-box">
                     <section class="list-content-wrap">
                         <div class="popularity-button-box">
-                            <button class="btn recent active" th:href="@{/board/suggest/list}">더보기</button>
+                            <a class="btn recent active" th:href="@{/board/suggest/list}">더보기</a>
                         </div>
                         <div th:each="suggestDTO : ${suggestDTOS}">
                             <div style="height:auto; overflow:auto">
@@ -118,7 +125,7 @@
                                                                 <span class="content-image-layout">
                                                                     <picture class="suggest_img">
 <!--                                                                        <img-->
-<!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
+                                                                        <!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
                                                                     </picture>
                                                                 </span>
                                                         </div>
@@ -132,15 +139,19 @@
                                                             <div class="flex">
                                                                 <div class="liked-layout">
                                                                     <div class="icon-box">
-                                                                        <img src="/image/board/human-icon.png"class="human-icon">
+                                                                        <img src="/image/board/human-icon.png"
+                                                                             class="human-icon">
                                                                     </div>
-                                                                    <p class="like-count" th:text="${suggestDTO.likeCount}">5771</p>
+                                                                    <p class="like-count"
+                                                                       th:text="${suggestDTO.likeCount}">5771</p>
                                                                 </div>
                                                                 <div class="liked-layout">
                                                                     <div class="icon-box">
-                                                                        <img src="/image/board/reply-icon.png" class="reply-icon">
+                                                                        <img src="/image/board/reply-icon.png"
+                                                                             class="reply-icon">
                                                                     </div>
-                                                                    <p class="reply-count" th:text="${suggestDTO.replyCount}">97</p>
+                                                                    <p class="reply-count"
+                                                                       th:text="${suggestDTO.replyCount}">97</p>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -173,52 +184,65 @@
     $(".btn").each((i, e) => {
 
         $(e).click(() => {
-            if(!$(e).hasClass("active")){
+            if (!$(e).hasClass("active")) {
                 $(".btn").removeClass("active");
                 $(e).addClass("active");
-            }else {
+            } else {
                 $(e).removeClass("active");
             }
         });
     });
 
-    const groupChallengeDTO = [[${groupChallengeDTO}]];
-    const suggestDTO = [[${suggestDTO}]];
+    const groupChallengeDTO = [[${groupChallengeDTOS}]];
+    const suggestDTO = [[${suggestDTOS}]];
 
-    let fileDTOSGroup = groupChallengeDTO.fileDTOS;
-    let fileDTOSSuggest = suggestDTO.fileDTOS;
+    groupChallengeDTO.forEach((groupChallengeDTO, i) => {
+        let groupChallengeFileDTOS = groupChallengeDTO.fileDTOS;
+        if (groupChallengeFileDTOS != null || groupChallengeFileDTOS != undefined) {
+            groupChallengeFileDTOS.forEach((fileDTO, i) => {
+                if (fileDTO.fileType === "REPRESENTATIVE") {
+                    let text = `
+                            <li class="img_div" style="width: 100%; height: 100%;">
+                                <img style="object-fit: cover;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+                            </li>
+                    `;
+                    $(".groupChallenge_img").append(text);
+                }
 
-    fileDTOSGroup.forEach((fileDTO, i) => {
-        let text = `
-        <li class="img_div">
-            <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
-        </li>
-   `;
-
-        $(".groupChallenge_img").append(text);
-    });
-    fileDTOSSuggest.forEach((fileDTO, i) => {
-        let text = `
-        <li class="img_div">
-            <img src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
-        </li>
-   `;
-
-        $(".suggest_img").append(text);
+            });
+        }
     });
 
-    if (groupChallengeDTO == null) {
+    suggestDTO.forEach((suggestDTO, i) => {
+        let suggestFileDTOS = suggestDTO.fileDTOS;
+        if (suggestFileDTOS != null || suggestFileDTOS != undefined) {
+            suggestFileDTOS.forEach((fileDTO, i) => {
+                if (fileDTO.fileType === "REPRESENTATIVE") {
+                    let text = `
+                         <li class="img_div" style="width: 100%; height: 100%;">
+                             <img style="object-fit: cover;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+                         </li>
+                    `;
+
+                    $(".suggest_img").append(text);
+                }
+            });
+        }
+    });
+
+    if (groupChallengeDTO.length == 0) {
         const notSearchElement = document.querySelector('[name="groupChallengeNotSearch"]');
         if (notSearchElement) {
             notSearchElement.style.display = 'block';
         }
     }
 
-    if (suggestDTO == null) {
+    if (suggestDTO.length == 0) {
         const notSearchElement = document.querySelector('[name="suggestNotSearch"]');
         if (notSearchElement) {
             notSearchElement.style.display = 'block';
         }
     }
+
 </script>
 </html>

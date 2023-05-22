@@ -120,6 +120,8 @@ public class GroupChallengeQueryDslImpl implements GroupChallengeQueryDsl {
         List<GroupChallenge> groupChallengeSearchs = query.select(groupChallenge)
                 .from(groupChallenge)
                 .where(groupChallengeTitleEq)
+                .distinct()
+                .limit(3)
                 .leftJoin(groupChallenge.groupChallengeFiles)
                 .orderBy(groupChallenge.id.desc())
                 .fetch();
