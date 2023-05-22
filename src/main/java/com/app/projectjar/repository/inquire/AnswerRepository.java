@@ -7,6 +7,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
-    @Query("SELECT a FROM Answer a WHERE a.inquire = :adminId AND a.id = :answerId")
-    Answer findAnswerByAdminNameAndAnswerId(@Param("adminName") String adminName, @Param("answerId") Long answerId);
+//    @Query("SELECT a FROM Answer a WHERE a.inquire = :adminId AND a.id = :answerId")
+//    Answer findAnswerByAdminNameAndAnswerId(@Param("adminName") String adminName, @Param("answerId") Long answerId);
 }
