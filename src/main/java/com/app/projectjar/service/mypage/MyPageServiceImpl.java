@@ -10,6 +10,8 @@ import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.repository.diary.DiaryLikeRepository;
+import com.app.projectjar.repository.diary.DiaryReplyRepository;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import com.app.projectjar.repository.file.diary.DiaryFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
@@ -40,6 +42,10 @@ public class MyPageServiceImpl implements MyPageService {
     private final DiaryRepository diaryRepository;
 
     private final DiaryFileRepository diaryFileRepository;
+
+    private final DiaryLikeRepository diaryLikeRepository;
+
+    private final DiaryReplyRepository diaryReplyRepository;
 
     private final ChallengeAttendRepository challengeAttendRepository;
 
@@ -126,6 +132,18 @@ public class MyPageServiceImpl implements MyPageService {
                 diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
             }
         }
+    }
+
+    @Override @Transactional
+    public void deleteDiary(Long diaryId) {
+        diaryRepository.findById(diaryId).ifPresent(
+                diary -> {
+                    diaryFileRepository.deleteByDiaryId(diaryId);
+                    diaryLikeRepository.deleteByDiaryId(diaryId);
+                    diaryReplyRepository.deleteByDiaryId(diaryId);
+                    diaryRepository.delete(diary);
+                }
+        );
     }
 
     @Override

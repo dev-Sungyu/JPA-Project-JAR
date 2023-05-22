@@ -79,7 +79,13 @@ public class MyPageController {
 
         diaryDTO.setId(diaryId);
         myPageService.modifyDiary(diaryDTO);
-        return new RedirectView("/mypage/main?modifyCheck=true");
+        return new RedirectView("/mypage/main");
+    }
+
+    @PostMapping("diary-delete")
+    public RedirectView deleteDiary(@RequestParam("boardId") Long diaryId){
+        myPageService.deleteDiary(diaryId);
+        return new RedirectView("/mypage/main");
     }
 
     @GetMapping("badge")
