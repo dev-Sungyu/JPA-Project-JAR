@@ -12,6 +12,7 @@ import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
 import com.app.projectjar.entity.file.diary.DiaryFile;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
+import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
@@ -35,9 +36,19 @@ public interface MyPageService {
 
     public DiaryDTO getDiary(Long diaryId);
 
+    public void modifyDiary(DiaryDTO diaryDTO);
+
+    public void deleteDiary(Long diaryId);
+
     public Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
 
     public Page<GroupChallengeDTO> getGroupChallengeList(String challengeStatus, Long memberId, Pageable pageable);
+
+    public MemberDTO getMemberDTO(Long memberId);
+
+    public void modifyMember(MemberDTO memberDTO);
+
+    public void withDrawMember(Long memberId);
 
 
 
@@ -63,6 +74,32 @@ public interface MyPageService {
                 .memberNickname(member.getMemberNickname())
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
+                .badgeType(member.getBadgeType())
+                .fileDTO(toFileDTO(member.getMemberFile()))
+                .build();
+    }
+
+
+    default FileDTO toFileDTO(MemberFile memberFile) {
+        if(memberFile == null){
+            return null;
+        }else {
+            return FileDTO.builder()
+                    .fileType(memberFile.getFileType())
+                    .fileOriginalName(memberFile.getFileOriginalName())
+                    .filePath(memberFile.getFilePath())
+                    .fileUuid(memberFile.getFileUuid())
+                    .build();
+        }
+    }
+
+    default MemberFile toMemberFileEntity(FileDTO fileDTO) {
+        return MemberFile.builder()
+                .fileUuid(fileDTO.getFileUuid())
+                .fileType(fileDTO.getFileType())
+                .member(fileDTO.getMember())
+                .filePath(fileDTO.getFilePath())
+                .fileOriginalName(fileDTO.getFileOriginalName())
                 .build();
     }
 

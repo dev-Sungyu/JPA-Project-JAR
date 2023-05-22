@@ -1,21 +1,26 @@
 package com.app.projectjar.service.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
-import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
+import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
+import com.app.projectjar.repository.diary.DiaryLikeRepository;
+import com.app.projectjar.repository.diary.DiaryReplyRepository;
 import com.app.projectjar.repository.diary.DiaryRepository;
 import com.app.projectjar.repository.file.diary.DiaryFileRepository;
+import com.app.projectjar.repository.file.member.MemberFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.personalChallenge.ChallengeAttendRepository;
 import com.app.projectjar.type.FileType;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -23,14 +28,16 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Qualifier("myPage") @Primary
+@Qualifier("myPage")
+@Primary
+@Slf4j
 public class MyPageServiceImpl implements MyPageService {
 
     private final MemberRepository memberRepository;
@@ -39,9 +46,15 @@ public class MyPageServiceImpl implements MyPageService {
 
     private final DiaryFileRepository diaryFileRepository;
 
+    private final DiaryLikeRepository diaryLikeRepository;
+
+    private final DiaryReplyRepository diaryReplyRepository;
+
     private final ChallengeAttendRepository challengeAttendRepository;
 
     private final GroupChallengeAttendRepository groupChallengeAttendRepository;
+
+    private final MemberFileRepository memberFileRepository;
 
     @Override
     public void registerDiary(DiaryDTO diaryDTO, Long memberId) {
@@ -52,11 +65,11 @@ public class MyPageServiceImpl implements MyPageService {
         );
         diaryRepository.save(toDiaryEntity(diaryDTO));
 
-        if(fileDTOS != null){
+        if (fileDTOS != null) {
             for (int i = 0; i < fileDTOS.size(); i++) {
-                if(i == 0){
+                if (i == 0) {
                     fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
-                }else {
+                } else {
                     fileDTOS.get(i).setFileType(FileType.NORMAL);
                 }
                 fileDTOS.get(i).setDiary(getCurrentSequence());
@@ -95,6 +108,52 @@ public class MyPageServiceImpl implements MyPageService {
     }
 
     @Override
+    @Transactional
+    public void modifyDiary(DiaryDTO diaryDTO) {
+        List<FileDTO> fileDTOS = diaryDTO.getFileDTOS();
+
+        diaryRepository.findById(diaryDTO.getId()).ifPresent(diary -> {
+            Diary updatedDiary = Diary.builder()
+                    .id(diary.getId())
+                    .diaryStatus(diaryDTO.getDiaryStatus())
+                    .member(diary.getMember())
+                    .diaryLikeCount(diary.getDiaryLikeCount())
+                    .diaryReplyCount(diary.getDiaryReplyCount())
+                    .createDate(diary.getCreatedDate())
+                    .boardContent(diaryDTO.getBoardContent())
+                    .boardTitle(diaryDTO.getBoardTitle())
+                    .build();
+
+            diaryRepository.save(updatedDiary);
+        });
+        diaryFileRepository.deleteByDiaryId(diaryDTO.getId());
+        if (fileDTOS != null) {
+            for (int i = 0; i < fileDTOS.size(); i++) {
+                if (i == 0) {
+                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                } else {
+                    fileDTOS.get(i).setFileType(FileType.NORMAL);
+                }
+                fileDTOS.get(i).setDiary(getCurrentSequence());
+                diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
+            }
+        }
+    }
+
+    @Override
+    @Transactional
+    public void deleteDiary(Long diaryId) {
+        diaryRepository.findById(diaryId).ifPresent(
+                diary -> {
+                    diaryFileRepository.deleteByDiaryId(diaryId);
+                    diaryLikeRepository.deleteByDiaryId(diaryId);
+                    diaryReplyRepository.deleteByDiaryId(diaryId);
+                    diaryRepository.delete(diary);
+                }
+        );
+    }
+
+    @Override
     public Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable) {
 
         Page<ChallengeAttend> challengePageList = challengeAttendRepository.findAllWithPageAndChallenges_QueryDsl(challengeStatus, memberId, pageable);
@@ -108,5 +167,36 @@ public class MyPageServiceImpl implements MyPageService {
         Page<GroupChallengeAttend> groupChallengeAttendList = groupChallengeAttendRepository.findAllWithPageAndGroupChallenges_QueryDsl(challengeStatus, memberId, pageable);
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeAttendList.getContent().stream().map(this::toGroupChallengeDTO).collect(Collectors.toList());
         return new PageImpl<>(groupChallengeDTOS, groupChallengeAttendList.getPageable(), groupChallengeAttendList.getTotalElements());
+    }
+
+    @Override
+    public MemberDTO getMemberDTO(Long memberId) {
+        return toMemberDTO(memberRepository.findById(memberId).get());
+    }
+
+    @Override @Transactional
+    public void modifyMember(MemberDTO memberDTO) {
+        FileDTO fileDTO = memberDTO.getFileDTO();
+
+        memberRepository.findById(memberDTO.getId()).ifPresent(
+                member -> {
+                    member.setMemberName(memberDTO.getMemberName());
+                    member.setMemberNickname(memberDTO.getMemberNickname());
+                    member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
+                    memberRepository.save(member);
+
+                    memberFileRepository.deleteByMemberId(memberDTO.getId());
+                    if (fileDTO != null) {
+                        fileDTO.setFileType(FileType.REPRESENTATIVE);
+                        fileDTO.setMember(member);
+                        memberFileRepository.save(toMemberFileEntity(fileDTO));
+                    }
+                }
+        );
+    }
+
+    @Override @Transactional
+    public void withDrawMember(Long memberId) {
+        memberRepository.withDraw_QueryDsl(memberId);
     }
 }

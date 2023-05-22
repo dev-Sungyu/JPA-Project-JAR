@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지-메인</title>
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/mypage/header.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
@@ -15,11 +17,13 @@
     <link rel="icon" href="/image/logo/favicon.png">
     <link rel="stylesheet" href="/css/mypage/alert.css">
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
-    <link rel="stylesheet" href="/css/mypage/user-header.css">
-    <link rel="stylesheet" href="/css/mypage/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <style>
+        .toastui-calendar-weekday-event {
+            height: 80px!important;
+        }
+    </style>
 </head>
-
 <body>
     <div>
         <!-- main/header.html -->
@@ -194,8 +198,10 @@
                     <h2 class="diary-main-title space-between">
                         <div style="flex-grow: 1;" class="diary-content-title">다이어리 제목</div>
                         <div class="diary-detail-modify-box">
-                            <button class="modify-button" type="button"> <!--onclick="location.href='/mypage/resgister'${diaryD TO.id}"-->수정</button>
-                            <button class="delete-button" type="button"> <!--onclick="deleteDiaryMain(${diaryDTO.id})"-->삭제</button>
+                            <button class="modify-button" style="font-size: 15px; margin-right: 10px; font-weight: bold;" type="button">수정</button>
+                            <form action="" class="delete-form" style="display: flex; align-items: center;" method="post">
+                                <button class="delete-button"style="font-size: 15px;  font-weight: bold;" type="submit">삭제</button>
+                            </form>
                         </div>
                     </h2>
                     <div class="diary-detail-date-box">
@@ -228,7 +234,6 @@
 <script th:inline="javascript">
     // const userDetail = [[${userDetail}]];
     const calendarDTOS = [[${calendarDTOS}]];
-
     const urlParams = new URL(location.href).searchParams;
     const check = urlParams.get('check');
 
@@ -362,26 +367,26 @@
             let errorMsg = "오늘 날짜의 일기만 작성이 가능합니다.";
 
             $(e).click(() => {
+                console.log(e);
                 currentDate = calendar.getDate();
                 let calendarYear = currentDate.getFullYear();
 
                 let calendarMonth = currentDate.getMonth() + 1;
                 calendarMonth = calendarMonth < 10 ? "0" + calendarMonth : calendarMonth;
 
-                let calendarDay = $($(".toastui-calendar-daygrid-cell")[i]).text();
+                let calendarDay = $($(".toastui-calendar-weekday-grid-date")[i]).text();
                 calendarDay = calendarDay < 10 ? "0" + calendarDay : calendarDay;
 
                 var date = calendarYear + "-" + calendarMonth + "-" + calendarDay;
-
                 if (calendarMonth != month || calendarDay != day) {
                     alertModal(errorMsg);
-
                     return false;
                 }
 
                 $(".title").text("다이어리 작성하기");
                 $(".diary-modal-display").show();
                 $(".date").text(date);
+                $("form[name=form]").attr("action", "/mypage/register")
             });
         });
 
@@ -398,21 +403,24 @@
             boardId : boardId,
         },function(diaryDTO){
             $(".diary-content-title").text(diaryDTO.boardTitle);
-
+            $(".modify-button").attr("id", 'modify' + boardId);
+            $(".delete-form").attr("action", "/mypage/diary-delete?boardId=" + boardId);
             let content = diaryDTO.boardContent;
             contentPrint(content);
-            let fileDTOS = diaryDTO.fileDTOS;
 
+
+            let fileDTOS = diaryDTO.fileDTOS;
+            let text = '';
             fileDTOS.forEach((file, i) => {
-                let text = `
+                 text += `
                                 <li>
                                     <div style="position:relative;">
                                         <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}">
                                     </div>
                                 </li>
                 `;
-                $(".sumnail-layout").append(text);
             });
+            $(".sumnail-layout").html(text);
         })
         date = dateFomat(date);
         // 날짜 담아주기
@@ -522,17 +530,44 @@
         $(".diary-modal-display").hide();
     });
 
-    $(".modify-button").click(() => {
+    // 다이어리 수정 버튼
+    $(".modify-button").click((e) => {
+        let boardId = e.currentTarget.id.replaceAll("modify", "");
         $checkbox.addClass("check-active");
         $diaryButton.addClass("save-active");
         $checkText.text("공개");
 
-        $(".title").text("다이어리 수정하기");
-        $(".date").text($(".diary-detail-date").text());
+        diaryService.diary({
+            boardId : boardId,
+        },function(diaryDTO){
+            $("form[name=form]").attr("action", "/mypage/diary-modify?boardId=" + diaryDTO.id);
+            $(".title").text("다이어리 수정하기");
+            $(".date").text($(".diary-detail-date").text());
+            let content = diaryDTO.boardContent;
+            let title = diaryDTO.boardTitle;
+            $(".diary-title").val(title);
+            $(".diary-content").text(content);
 
-        $(".diary-content").val(content());
-        $(".diary-title").val($(".diary-content-title").text());
-
+            let fileDTOS = diaryDTO.fileDTOS;
+            files = fileDTOS;
+            let text = '';
+            fileDTOS.forEach((file, i) => {
+                text += `
+                                <li id="${i}">
+                                    <div style="position:relative;">
+                                        <div class="image-cancel-box close-button">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
+                                                <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                    fill="#cacaca"></path>
+                                            </svg>
+                                        </div>
+                                    <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}" class="inserted_img">
+                                    </div>
+                                </li>
+                `;
+            });
+            $(".sumnail-box").html(text);
+        });
         $(".diary-modal-display").show();
         $(".diary-detail-display").hide();
     });

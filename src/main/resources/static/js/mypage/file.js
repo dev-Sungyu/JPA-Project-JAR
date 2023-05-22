@@ -32,6 +32,7 @@ $("input[type=file]").on("change", function () {
 
     if($files.length > 8) {
         alertModal("이미지는 8장까지 넣을 수 있습니다.");
+        return false;
     }
 
     $($files).each((i, file) => {
@@ -51,7 +52,6 @@ $("input[type=file]").on("change", function () {
         processData: false,
         success: function (uuids) {
             globalThis.uuids = uuids;
-            console.log(uuids);
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
                     let text = `
@@ -98,8 +98,6 @@ $ul.on("click",".close-button", function(e){
     dataTransfer.files.forEach((file, i) =>{
         files.push(file);
     });
-
-    console.log(files);
 });
 
 $(".save-button").click(() => {
@@ -109,7 +107,7 @@ $(".save-button").click(() => {
     let boardTitle = $("input[name='boardTitle']").val();
     let boardContent = $(".diary-content").val();
 
-    if ($files.length < 1) {
+    if (files.length < 1) {
         alertModal(alertMsg[0]);
         return false;
     } else if (!boardTitle) {
@@ -122,14 +120,27 @@ $(".save-button").click(() => {
 
 
     FileList.prototype.forEach = Array.prototype.forEach;
+    let count = 0;
     files.forEach((file, i) => {
-        text +=
-            `
-                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
-                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
-                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+        if(file.fileOriginalName == undefined && file.fileOriginalName == null){
+            text +=
+                `
+                        <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                        <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[count]}">
+                        <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                        `;
+            count++;
+        }else {
+            text +=
+                `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.fileOriginalName}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${file.fileUuid}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${file.filePath}">
                 `;
+        }
+
     });
+    console.log(text);
     $("form[name=form]").append(text);
     $("form[name=form]").submit();
 })
@@ -152,8 +163,29 @@ function toStringByFormatting(source, delimiter = '/') {
 
 // 이미지 제거
 $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
-    let index = $(e.target).closest("li").attr("id");
-    deleteImage(index);
+    const dataTransfer = new DataTransfer();
+
+    let target = $(e.currentTarget).parent().parent().parent();
+    let fileArray = Array.from(files);
+    let ul = target.parent();
+    console.log(ul);
+    let i = ul.find("li").index(target);
+    files = [];
+
+    fileArray.splice(i, 1);
+    fileArray.forEach(file => {
+        if(file.fileOriginalName == null && file.fileOriginalName == undefined){
+            dataTransfer.items.add(file);
+        }else {
+            files.push(file);
+        }
+    })
+
+    target.remove();
+    dataTransfer.files.forEach((file, i) =>{
+        files.push(file);
+    });
+
 });
 
 function alertModal(errorMsg) {

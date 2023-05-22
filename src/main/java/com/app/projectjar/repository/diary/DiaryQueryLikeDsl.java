@@ -15,5 +15,7 @@ public interface DiaryQueryLikeDsl {
 
     public void deleteByMemberIdAndDiaryId_QueryDsl(Long diaryId, Long memberId);
 
+    public void deleteByDiaryId(Long diaryId);
+
     public Page<DiaryLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long memberId);
 }

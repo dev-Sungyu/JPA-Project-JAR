@@ -3,6 +3,7 @@ package com.app.projectjar.controller.mypage;
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.diary.DiaryLikeDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -45,13 +46,6 @@ public class MyPageController {
 
     @GetMapping("main")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model, HttpSession session){
-//        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-//        MemberDTO memberDTO = (MemberDTO) userDetail.("member");
-        log.info("@@@@@@@@@@@@ main Controller @@@@@@@@@@@@@");
-        log.info("@@@@@@@@@@@@" + userDetail);
-//        memberDTO = memberService.getMember(memberDTO.getId());
-//        model.addAttribute("member", memberDTO);
-//        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberDTO.getId());
         List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(userDetail.getId());
         model.addAttribute("calendarDTOS",calendarDTOS);
         model.addAttribute("userDetail", userDetail);
@@ -59,16 +53,31 @@ public class MyPageController {
 
     @PostMapping("register")
     public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail){
-        log.info("@@@@@@@@ register Controller @@@@@@@@");
         Long memberId = userDetail.getId();
         myPageService.registerDiary(diaryDTO, memberId);
         return new RedirectView("/mypage/main?check=true");
     }
 
-    @DeleteMapping("diary-detail")
+    @GetMapping("diary-detail")
     @ResponseBody
-    public DiaryDTO getDiaryDTO(@RequestParam("diaryId")Long diaryId) {
+    public DiaryDTO getDiaryDTO(@RequestParam("boardId")Long diaryId) {
         return myPageService.getDiary(diaryId);
+    }
+
+    @PostMapping("diary-modify")
+    public RedirectView modifyDiary(@RequestParam("boardId") Long diaryId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
+
+        diaryDTO.getFileDTOS().stream().map(FileDTO::toString).forEach(log::info);
+
+        diaryDTO.setId(diaryId);
+        myPageService.modifyDiary(diaryDTO);
+        return new RedirectView("/mypage/main");
+    }
+
+    @PostMapping("diary-delete")
+    public RedirectView deleteDiary(@RequestParam("boardId") Long diaryId){
+        myPageService.deleteDiary(diaryId);
+        return new RedirectView("/mypage/main");
     }
 
     @GetMapping("badge")
@@ -198,8 +207,30 @@ public class MyPageController {
 
 
     @GetMapping("modify")
-    public void modify(){}
+    public void modify(HttpSession session, Model model){
+        UserDetail member = (UserDetail) session.getAttribute("member");
+        Long memberId = member.getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
+    }
 
+    @PostMapping("modify-member")
+    public RedirectView modifyMember(HttpSession session,@ModelAttribute("memberDTO") MemberDTO memberDTO){
+        UserDetail member = (UserDetail) session.getAttribute("member");
+        Long memberId = member.getId();
+        memberDTO.setId(memberId);
+        log.info(memberDTO.getMemberPhoneNumber());
+        myPageService.modifyMember(memberDTO);
 
-   
+        return new RedirectView("/mypage/main");
+    }
+
+    @PostMapping("withdraw")
+    public RedirectView withdraw(HttpSession session){
+        UserDetail member = (UserDetail) session.getAttribute("member");
+        myPageService.withDrawMember(member.getId());
+
+        return new RedirectView("/member/logout");
+    }
+
 }
