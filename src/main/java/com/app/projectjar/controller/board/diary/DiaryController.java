@@ -1,13 +1,10 @@
 package com.app.projectjar.controller.board.diary;
 
 import com.app.projectjar.domain.diary.DiaryDTO;
-import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +18,7 @@ public class DiaryController {
 
 
     @GetMapping("list")
-    public void goToList(Model model, @AuthenticationPrincipal UserDetail userDetail){
-        model.addAttribute("userDetail", userDetail);
+    public void goToList(){
     }
 
     @GetMapping("list-content")
@@ -33,11 +29,10 @@ public class DiaryController {
     }
 
     @GetMapping("detail/{diaryId}")
-    public String goToDetail(Model model, @AuthenticationPrincipal UserDetail userDetail, @PathVariable("diaryId") Long diaryId) {
+    public String goToDetail(Model model, @PathVariable("diaryId") Long diaryId) {
 
         DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
         model.addAttribute("diaryDTO", diaryDTO);
-        model.addAttribute("userDetail", userDetail);
         return "/board/diary/detail";
     }
 
