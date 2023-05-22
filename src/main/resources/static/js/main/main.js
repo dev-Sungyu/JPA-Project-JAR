@@ -9,14 +9,17 @@ if(isMobileDevice()){
     firstWidth = 336;
 }
 
+if(groupChallengeDTOS.length == 1){
+    $contentNext.hide();
+}
+
 $contentNext.click(() => {
 
     $firstContent.css("transition", "transform 0.3s");
     $firstContent.css("transform", `translate(-${firstWidth * checkCount++}px)`);
 
     $contentPrev.show();
-
-    if(checkCount == $firstContentAll.length) {
+    if(checkCount == groupChallengeDTOS.length - 1) {
         $contentNext.hide();
     }
 });

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -105,9 +106,10 @@
                                     <!-- 로그인 안되 잇을 때 display block -->
                                     <!-- <a th:href="@{/member/login}">
                                         <p class="header-menu">로그인</p>
-                                    </a> -->
-
-                                    <!-- 로그인 되잇을 때 경우 -->
+                                    </a>
+                                    <li sec:authorize="!isAuthenticated()"><a href="/login">로그인</a></li>
+                                    <li sec:authorize="isAuthenticated()"><a href="/logout">로그아웃</a></li>
+                                     로그인 되잇을 때 경우 -->
                                     <div class="login-active">
                                         <div class="header-profile">
                                             <a href="javascript:void(0)">
