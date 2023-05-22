@@ -125,12 +125,14 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.findById(id).ifPresent(member -> {
             int totalCount = memberRepository.findByIdWithAttendCount_QueryDsl(member.getId());
 
-            if (totalCount == 10) {
+            if (totalCount >= 10) {
                 member.setBadgeType(BadgeType.ONE);
-            } else if (totalCount == 20) {
+            } else if (totalCount >= 20) {
                 member.setBadgeType(BadgeType.TWO);
-            } else if (totalCount == 30) {
+            } else if (totalCount >= 30) {
                 member.setBadgeType(BadgeType.THREE);
+            } else {
+                member.setBadgeType(BadgeType.ZERO);
             }
             memberRepository.save(member);
 

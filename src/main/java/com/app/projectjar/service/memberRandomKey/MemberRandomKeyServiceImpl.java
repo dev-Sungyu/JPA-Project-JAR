@@ -21,8 +21,6 @@ public class MemberRandomKeyServiceImpl implements MemberRandomKeyService {
     @Override
     public MemberRandomKey saveRandomKey(Member member) {
         MemberRandomKey randomKey = new MemberRandomKey(member);
-//        log.info(member.toString());
-//        log.info(randomKey.toString());
         randomKeyRepository.save(randomKey);
         return randomKey;
     }

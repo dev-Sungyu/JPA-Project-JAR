@@ -17,7 +17,7 @@
 <body>
 <div>
     <!-- main/header.html -->
-    <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{mypage/header :: header}"></div>
+    <div id="header" style="position: sticky; top: 0; z-index: 100;" th:insert="~{main/header :: header}"></div>
 
     <div>
         <div class="mypage-all-wrap">
@@ -81,7 +81,7 @@
                                 </div>
                                 <div class="badge-image-box">
                                     <div class="my-badge-image">
-
+                                        <!-- 뱃지 -->
                                     </div>
                                 </div>
                             </div>
@@ -98,22 +98,25 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let badgeType = [[${session.member.badgeType}]];
+    let member = [[${session.member}]];
 </script>
 <script>
     let badgeBox = $(".my-badge-image");
     badgeTypeCheck(badgeType);
 
     function badgeTypeCheck(badgeType) {
+        console.log(badgeType);
         let text = '';
         if(badgeType == 'ONE'){
-            text +=`<img src=" ">`;
+            text +=`<img src="/image/mypage/trophy_1.png">`;
         }else if(badgeType == 'TWO'){
-
+            text +=`<img src="/image/mypage/trophy_2.png">`;
         }else if(badgeType == 'THREE'){
-
+            text +=`<img src="/image/mypage/trophy_3.png">`;
         }else {
-
+            text +=`<img src="/image/mypage/trophy_1_5.png">`;
         }
+
         badgeBox.html(text);
     }
 

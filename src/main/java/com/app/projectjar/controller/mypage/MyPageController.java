@@ -77,9 +77,8 @@ public class MyPageController {
         MemberDTO memberDTO = memberService.getMember(memberId);
         int totalCount = memberService.getMemberBadgeCount(memberId);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("memberDTO", memberDTO);
+        model.addAttribute("mem3berDTO", memberDTO);
         log.info(memberId.toString());
-        memberService.updateBadge(memberId);
     }
 
     @DeleteMapping("delete-main/{boardId}")
