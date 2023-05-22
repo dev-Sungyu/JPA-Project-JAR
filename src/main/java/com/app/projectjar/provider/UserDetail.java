@@ -34,12 +34,14 @@ public class UserDetail implements UserDetails {
     private String memberNickName;
     private BadgeType badgeType;
     private Role memberType;
+    private MemberType memberStatus;
     private UserType userType;
 
     private Collection<? extends GrantedAuthority> authorities;
 
+
     @Builder
-    public UserDetail(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickName, BadgeType badgeType, Role memberType, UserType userType, Collection<? extends GrantedAuthority> authorities) {
+    public UserDetail(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickName, BadgeType badgeType, Role memberType, UserType userType, MemberType memberStatus, Collection<? extends GrantedAuthority> authorities) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -49,6 +51,7 @@ public class UserDetail implements UserDetails {
         this.badgeType = badgeType;
         this.memberType = memberType;
         this.userType = userType;
+        this.memberStatus = memberStatus;
         this.authorities = authorities;
     }
 

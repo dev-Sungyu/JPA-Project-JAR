@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-@Qualifier("randomKey") @Primary
+@Qualifier("memberRandomKey") @Primary
 @Slf4j
 public class MemberRandomKeyServiceImpl implements MemberRandomKeyService {
     private final MemberRepository memberRepository;
@@ -20,13 +20,15 @@ public class MemberRandomKeyServiceImpl implements MemberRandomKeyService {
 
     @Override
     public MemberRandomKey saveRandomKey(Member member) {
-        MemberRandomKey randomKey = new MemberRandomKey(member);
-        randomKeyRepository.save(randomKey);
-        return randomKey;
+        log.info("@@@@@@@@@@@@@@ save Random Key @@@@@@@@@@@@@@@@@@@");
+        MemberRandomKey memberRandomKey = new MemberRandomKey(member);
+        randomKeyRepository.save(memberRandomKey);
+        return memberRandomKey;
     }
 
     @Override
     public MemberRandomKey getLatestRandomKey(Long id) {
+        log.info("@@@@@@@ get @@@@@@@@");
         return randomKeyRepository.getListRandomKey(id);
     }
 }
