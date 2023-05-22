@@ -8,12 +8,12 @@ import com.app.projectjar.repository.inquire.AnswerRepository;
 import com.app.projectjar.repository.inquire.InquireRepository;
 import org.springframework.stereotype.Service;
 
-//@Service
-//public class AnswerServiceImpl implements AnswerService {
-//
-//    private final AnswerRepository answerRepository;
-//    private final InquireRepository inquireRepository;
-//
+@Service
+public class AnswerServiceImpl implements AnswerService {
+
+    private final AnswerRepository answerRepository;
+    private final InquireRepository inquireRepository;
+
 //    public AnswerServiceImpl(AnswerRepository answerRepository, InquireRepository inquireRepository) {
 //        this.answerRepository = answerRepository;
 //        this.inquireRepository = inquireRepository;
