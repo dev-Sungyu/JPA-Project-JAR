@@ -34,10 +34,7 @@ public class InquireController {
 
         log.info("들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가");
         return "board/inquire/detail";
-
-
     }
-
 
     @GetMapping("list")
     public String getAllInquires(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
@@ -62,10 +59,8 @@ public class InquireController {
         return new RedirectView("/board/inquire/list");
     }
 
+    @GetMapping("answer")
+    public void adminInquireAnswer() {
+
+    }
 }
-
-
-
-//    답변
-//    @GetMapping
-//}
