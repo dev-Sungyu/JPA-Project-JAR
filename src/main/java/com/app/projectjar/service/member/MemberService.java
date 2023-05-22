@@ -59,7 +59,7 @@ public interface MemberService extends UserDetailsService {
     Long findGroupAttendCountByMemberId(Long id);
 
     default Member memberDTOToEntity(MemberDTO memberDTO) {
-        return Member.joinMemberBuilder()
+        return Member.builder()
                 .id(memberDTO.getId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberPassword(memberDTO.getMemberPassword())
