@@ -28,9 +28,7 @@ public interface SuggestLikeService {
 
 
 //    마이 페이지
-//    public Page<SuggestLikeDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id);
-    public Page<SuggestDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id);
-
+    public Page<SuggestLikeDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id);
 
     default MemberDTO toMemberDTO(Member member) {
         return MemberDTO.builder()
@@ -41,6 +39,8 @@ public interface SuggestLikeService {
                 .memberNickname(member.getMemberNickname())
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
+                .userType(member.getUserType())
+                .memberType(member.getMemberType())
                 .build();
     }
 
@@ -52,10 +52,10 @@ public interface SuggestLikeService {
                 .boardType(suggest.getBoardType())
                 .likeCount(suggest.getSuggestLikeCount())
                 .replyCount(suggest.getSuggestReplyCount())
-                .memberDTO(toMemberDTO(suggest.getMember()))
                 .fileDTOS(FileToDTO(suggest.getSuggestFiles()))
                 .createdDate(suggest.getCreatedDate())
                 .updatedDate(suggest.getUpdatedDate())
+                .memberDTO(toMemberDTO(suggest.getMember()))
                 .build();
     }
 
@@ -76,6 +76,22 @@ public interface SuggestLikeService {
         return suggestFileList;
     }
 
+    default LikeDTO toLikeDTO(SuggestLike suggestLike){
+        return LikeDTO.builder()
+                .boardId(suggestLike.getSuggest().getId())
+                .memberId(suggestLike.getMember().getId())
+                .likeId(suggestLike.getId())
+                .build();
+    }
 
+    default SuggestLikeDTO toSuggestLikeDTO(SuggestLike suggestLike){
+        return SuggestLikeDTO.builder()
+                .suggestLikeId(suggestLike.getId())
+                .memberId(suggestLike.getMember().getId())
+                .boardId(suggestLike.getSuggest().getId())
+                .suggestDTO(toSuggestDTO(suggestLike.getSuggest()))
+                .memberDTO(toMemberDTO(suggestLike.getMember()))
+                .build();
+    }
 
 }

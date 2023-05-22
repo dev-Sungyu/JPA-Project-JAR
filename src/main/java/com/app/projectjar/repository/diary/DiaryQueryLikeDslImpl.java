@@ -58,24 +58,5 @@ public class DiaryQueryLikeDslImpl implements DiaryQueryLikeDsl {
         return new PageImpl<>(foundDiaries, pageable, count);
 
     }
-//    @Override
-//    public Page<SuggestLike> findByLikeMemberIdWithPaging_QueryDsl(Pageable pageable, Long id) {
-//        List<Suggest> foundSuggest = query.select(suggestLike.suggest)
-//                .from(suggestLike)
-//                .leftJoin(suggestLike.suggest)
-//                .fetchJoin()
-////                .where(suggestLike.suggest.id.eq(id))
-//                .where(suggestLike.member.id.eq(id))
-//                .orderBy(suggestLike.suggest.createdDate.desc())
-//                .offset(pageable.getOffset() -1)
-//                .limit(pageable.getPageSize())
-//                .fetch();
-//
-//        Long count = query.select(suggestLike.count())
-//                .from(suggestLike)
-//                .where(suggestLike.member.id.eq(id))
-//                .fetchOne();
-//        return new PageImpl<SuggestLike>(foundSuggest, pageable, count);
-//    }
 
 }

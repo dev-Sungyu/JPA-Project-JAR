@@ -1,13 +1,13 @@
 package com.app.projectjar.service.suggest.like;
 
 import com.app.projectjar.domain.like.LikeDTO;
-import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.domain.suggest.SuggestLikeDTO;
 import com.app.projectjar.entity.suggest.SuggestLike;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestLikeRepository;
 import com.app.projectjar.repository.suggest.SuggestRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -21,6 +21,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 @Qualifier("suggestLike") @Primary
+@Slf4j
 public class SuggestLikeServiceImpl implements SuggestLikeService {
 
     private final SuggestRepository suggestRepository;
@@ -71,15 +72,12 @@ public class SuggestLikeServiceImpl implements SuggestLikeService {
 
 //      마이 페이지
     @Override
-    public Page<SuggestDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id) {
+    public Page<SuggestLikeDTO> getLikeSuggestForMemberIdList(Pageable pageable, Long id) {
         Page<SuggestLike> suggestLikes = suggestLikeRepository.findByLikeMemberIdWithPaging_QueryDsl(pageable, id);
         List<SuggestLikeDTO> suggestLikeDTOS = suggestLikes.stream().map(this::toSuggestLikeDTO).collect(Collectors.toList());
         return new PageImpl<>(suggestLikeDTOS, suggestLikes.getPageable(), suggestLikes.getTotalElements());
+
     }
 
-//    suggestLikeRepository.getLikeSuggestForMemberIdList().stream().forEach(suggestLike -> {
-//        SuggestDTO suggestDTO = SuggestDTO.builder()
-//                .boardContent(suggestLike.getSuggest().getBoardContent())
-//                .build()
-//    });
-}
+    }
+

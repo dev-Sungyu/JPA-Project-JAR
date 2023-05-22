@@ -92,8 +92,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    // let userDetail = [[${userDetail}]];
-    // let memberId = userDetail.id;
+    let userDetail = [[${userDetail}]];
+    let memberId;
+    if (userDetail) {
+        memberId = userDetail.id;
+    }
 </script>
 <script>
     const $page = $(".paging-border-none");

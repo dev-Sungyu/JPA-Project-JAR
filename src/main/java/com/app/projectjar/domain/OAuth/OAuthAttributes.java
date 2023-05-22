@@ -22,6 +22,7 @@ public class OAuthAttributes {
     private final String name;
     private final String email;
     private final String mobile;
+    private final UserType userType;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
 //      userNameAttributeName은 .yml에서 설정해 놓은 user-name-attribute 값이다.
@@ -47,6 +48,7 @@ public class OAuthAttributes {
                 .mobile((String) response.get("mobile"))
                 .attributes(response)
                 .nameAttributeKey("id")
+                .userType(UserType.NAVER)
                 .build();
     }
 
@@ -56,6 +58,7 @@ public class OAuthAttributes {
         return OAuthAttributes.builder()
                 .email((String) kakaoAccount.get("email"))
                 .nameAttributeKey("id")
+                .userType(UserType.KAKAO)
                 .attributes(attributes)
                 .build();
     }
@@ -67,6 +70,7 @@ public class OAuthAttributes {
                 .memberPhoneNumber(mobile)
                 .memberStatus(MemberType.ENABLE)
                 .memberType(Role.MEMBER)
+                .userType(userType)
                 .build();
     }
 

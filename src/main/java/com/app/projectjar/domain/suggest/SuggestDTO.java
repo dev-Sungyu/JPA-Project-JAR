@@ -1,6 +1,7 @@
 package com.app.projectjar.domain.suggest;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.type.BoardType;
 import com.app.projectjar.domain.member.MemberDTO;
 import lombok.*;
@@ -25,13 +26,14 @@ public class SuggestDTO {
     private List<FileDTO> fileDTOS;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+    private LikeDTO likeDTO;
 
     public SuggestDTO() {
         this.fileDTOS = new ArrayList<>();
     }
 
     @Builder
-    public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS, LocalDateTime createdDate, LocalDateTime updatedDate) {
+    public SuggestDTO(Long id, String boardTitle, String boardContent, BoardType boardType, Integer likeCount, Integer replyCount, MemberDTO memberDTO, List<FileDTO> fileDTOS, LocalDateTime createdDate, LocalDateTime updatedDate, LikeDTO likeDTO) {
         this.id = id;
         this.boardTitle = boardTitle;
         this.boardContent = boardContent;
@@ -42,5 +44,6 @@ public class SuggestDTO {
         this.fileDTOS = fileDTOS;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
+        this.likeDTO = likeDTO;
     }
 }

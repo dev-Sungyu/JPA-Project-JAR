@@ -2,6 +2,7 @@ package com.app.projectjar.controller.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.diary.DiaryLikeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -10,6 +11,7 @@ import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.domain.suggest.SuggestLikeDTO;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
+import com.app.projectjar.service.diary.like.DiaryLikeService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.mypage.MyPageService;
@@ -18,6 +20,7 @@ import com.app.projectjar.service.suggest.like.SuggestLikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -40,12 +43,14 @@ public class MyPageController {
     private final SuggestService suggestService;
     private final DiaryService diaryService;
     private final SuggestLikeService suggestLikeService;
+    private final DiaryLikeService diaryLikeService;
 
     @GetMapping("main")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model, HttpSession session){
 //        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 //        MemberDTO memberDTO = (MemberDTO) userDetail.("member");
         log.info("@@@@@@@@@@@@ main Controller @@@@@@@@@@@@@");
+        log.info("@@@@@@@@@@@@" + userDetail);
 //        memberDTO = memberService.getMember(memberDTO.getId());
 //        model.addAttribute("member", memberDTO);
 //        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberDTO.getId());
@@ -161,23 +166,31 @@ public class MyPageController {
         diaryService.delete(boardId);
     }
 
-    @GetMapping("suggest-like")
+    @GetMapping("suggest-like-list")
     public void goToSuggestLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
         model.addAttribute("userDetail", userDetail);
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@ suggest-like Controller @@@@@@@@@@@@@@@@@@@@@@@");
     }
 
-    @GetMapping("suggest-like-list")
+    @GetMapping("suggest-like-list-content")
     @ResponseBody
     public Page<SuggestLikeDTO> suggestLikeList(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@ suggest-like-list Controller @@@@@@@@@@@@@@@@@@@@@@@");
-        PageRequest pageable = PageRequest.of(page, 9);
+        PageRequest pageable = PageRequest.of(page, 6);
         Page<SuggestLikeDTO> suggestLikeDTOS = suggestLikeService.getLikeSuggestForMemberIdList(pageable, id);
         return suggestLikeDTOS;
     }
 
     @GetMapping("diary-like-list")
-    public void diaryLikeList(){}
+    public void goToDiaryLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
+        model.addAttribute("userDetail", userDetail);
+    }
+
+    @GetMapping("diary-like-list-content")
+    @ResponseBody
+    public Page<DiaryLikeDTO> diaryLikeList(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
+        PageRequest pageable = PageRequest.of(page, 6);
+        Page<DiaryLikeDTO> diaryLikeDTOS = diaryLikeService.getLikeDiaryForMemberIdList(pageable, id);
+        return diaryLikeDTOS;
+    }
 
 
     @GetMapping("modify")
