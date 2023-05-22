@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/css/admin/admin_board_detail.css">
     <link rel="stylesheet" href="/css/admin/admin_inquire_detail.css">
+    <link rel="stylesheet" href="/css/board/inquire/inquire.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
 
@@ -78,7 +79,32 @@
                                     <!-- 게시판 내용 -->
                                     문의글 내용
                                 </div>
-                                <div th:text=""></div>
+                                <!--답변 부분-->
+                                <div class="notice_wrap_div">
+                                    <div class="notice_box">
+                                        <div class="login">
+                                            <div class="notice_text">
+                                                <h4 class="notice_text_h4">문의사항 답변</h4>
+                                            </div>
+                                            <div style="height: 6px;"></div>
+                                            <div class="important">
+                                                <div class="important_div">
+                                                    <div class="login_row">
+                                                        <div style="width: 6px;"></div>
+                                                        <div class="new_101">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</div>
+                                                    </div>
+                                                    <p class="year_month_day">2023. 4. 3.</p>
+                                                </div>
+                                            </div>
+                                            <div class="content">
+                                                <div>
+                                                    <p class="content_p">답변 내용</p>
+                                                </div>
+                                            </div>
+                                            <div style="height: 6px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <hr>
                                 <div class="answer_button_wrapper modify_button_wrapper">
                                     <a th:href="@{admin/board/inquire/answer(inquireId=${inquireDTO.id})}">답변하기</a>
