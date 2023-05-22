@@ -126,6 +126,8 @@ public class SuggestQueryDslImpl implements SuggestQueryDsl {
         List<Suggest> suggestSearchs = query.select(suggest)
                 .from(suggest)
                 .where(suggestTitleEq)
+                .distinct()
+                .limit(3)
                 .leftJoin(suggest.suggestFiles)
                 .orderBy(suggest.id.desc())
                 .fetch();
