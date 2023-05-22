@@ -199,4 +199,14 @@ public class MemberServiceImpl implements MemberService {
         }
     }
 
+    @Override
+    public Long findPersonalAttendCountByMemberId(Long id) {
+        return memberRepository.findPersonalAttendCountByMemberId(id);
+    }
+
+    @Override
+    public Long findGroupAttendCountByMemberId(Long id) {
+        return memberRepository.findGroupAttendCountByMemberId(id);
+    }
+
 }

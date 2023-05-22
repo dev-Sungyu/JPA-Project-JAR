@@ -43,9 +43,4 @@ public class MainRepositoryTests {
         groupChallengeRepository.findAll().forEach(groupChallenge -> log.info(String.valueOf(groupChallenge)));
     }
 
-    @Test
-    public void testFindAllWithSearch() {
-        // 검색 조건을 설정합니다.
-        BoardSearch boardSearch = new BoardSearch();
-        boardSearch.setBoardTitle("개인"); // 검색어 설정 (필요에 따라 다른 조건도 추가 가능)
-}}
+}
