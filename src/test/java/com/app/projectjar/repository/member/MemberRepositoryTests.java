@@ -1,16 +1,11 @@
 package com.app.projectjar.repository.member;
 
-import com.app.projectjar.entity.file.member.MemberFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.MemberRandomKey;
-import com.app.projectjar.repository.file.member.MemberFIleRepository;
+import com.app.projectjar.repository.file.member.MemberFileRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeAttendRepository;
 import com.app.projectjar.repository.groupChallenge.GroupChallengeRepository;
 import com.app.projectjar.service.memberRandomKey.MemberRandomKeyService;
-import com.app.projectjar.type.BadgeType;
-import com.app.projectjar.type.FileType;
-import com.app.projectjar.type.MemberType;
-import com.app.projectjar.type.Role;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +23,7 @@ public class MemberRepositoryTests {
     private MemberRepository memberRepository;
 
     @Autowired
-    private MemberFIleRepository memberFIleRepository;
+    private MemberFileRepository memberFIleRepository;
 
     @Autowired
     private GroupChallengeAttendRepository groupChallengeAttendRepository;

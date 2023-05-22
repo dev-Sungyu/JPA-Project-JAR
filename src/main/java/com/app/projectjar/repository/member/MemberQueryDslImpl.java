@@ -5,10 +5,7 @@ import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.entity.member.QMemberRandomKey;
 import com.app.projectjar.entity.personalChallenge.QChallengeAttend;
-import com.app.projectjar.type.BadgeType;
-import com.app.projectjar.type.ChallengeAttendType;
-import com.app.projectjar.type.GroupChallengeAttendType;
-import com.app.projectjar.type.Role;
+import com.app.projectjar.type.*;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -28,6 +25,14 @@ import static com.app.projectjar.entity.personalChallenge.QChallengeAttend.chall
 @RequiredArgsConstructor
 public class MemberQueryDslImpl implements MemberQueryDsl {
     private final JPAQueryFactory query;
+
+    @Override
+    public void withDraw_QueryDsl(Long memberId) {
+        query.update(member)
+                .set(member.memberStatus, MemberType.DISABLE)
+                .where(member.id.eq(memberId))
+                .execute();
+    }
 
     @Override
     public Member findById_QueryDSL(Long id) {

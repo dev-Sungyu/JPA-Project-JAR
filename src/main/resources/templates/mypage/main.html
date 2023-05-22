@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지-메인</title>
+    <link rel="stylesheet" href="/css/mypage/user-header.css">
+    <link rel="stylesheet" href="/css/mypage/header.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.time-picker/latest/tui-time-picker.css" />
     <link rel="stylesheet" href="https://uicdn.toast.com/tui.date-picker/latest/tui-date-picker.css" />
@@ -15,8 +17,6 @@
     <link rel="icon" href="/image/logo/favicon.png">
     <link rel="stylesheet" href="/css/mypage/alert.css">
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
-    <link rel="stylesheet" href="/css/mypage/user-header.css">
-    <link rel="stylesheet" href="/css/mypage/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <style>
         .toastui-calendar-weekday-event {
@@ -234,7 +234,6 @@
 <script th:inline="javascript">
     // const userDetail = [[${userDetail}]];
     const calendarDTOS = [[${calendarDTOS}]];
-
     const urlParams = new URL(location.href).searchParams;
     const check = urlParams.get('check');
 

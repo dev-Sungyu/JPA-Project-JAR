@@ -8,6 +8,9 @@ import java.util.Optional;
 
 public interface MemberQueryDsl {
 
+    // 회원탈퇴
+    public void withDraw_QueryDsl(Long memberId);
+
     /* 로그인 */
 
     public Member findById_QueryDSL(Long id);
