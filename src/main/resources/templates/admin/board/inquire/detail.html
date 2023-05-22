@@ -39,7 +39,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
+                            <a th:href="@{/admin/board/inquire/list}">
                                 <img src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -57,12 +57,12 @@
                                 <div class="board_title">
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
-                                    <span>제목</span>
+                                    <span th:text="${inquireDTO.inquireTitle}">제목</span>
                                 </div>
                                 <div class="board_info board_writer">
                                     <span class="span-bold">작성자 :</span>
                                     <!-- 작성자 명  -->
-                                    <span>닉네임</span>
+                                    <span th:text="${inquireDTO.memberDTO.memberNickname}">닉네임</span>
                                 </div>
                                 <!-- <div class="info-member">
 									<span class="span-bold">좋아요 :</span>
@@ -71,20 +71,17 @@
                                 <div class="board_info board_register_date">
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
-                                    <span>2023.04.23 11:01</span>
+                                    <span th:text="${#temporals.format(inquireDTO.createDate, 'yyyy/MM/dd')}">2023.04.23 11:01</span>
                                 </div>
                                 <hr>
-                                <div class="board_content">
+                                <div class="board_content" th:text="${inquireDTO.inquireContent}">
                                     <!-- 게시판 내용 -->
                                     문의글 내용
-                                    <br>
-                                    문의글 내용
-                                    <br>
-                                    문의글 내용
                                 </div>
+                                <div th:text=""></div>
                                 <hr>
                                 <div class="answer_button_wrapper modify_button_wrapper">
-                                    <button>답변하기</button>
+                                    <a th:href="@{admin/board/inquire/answer(inquireId=${inquireDTO.id})}">답변하기</a>
                                 </div>
                             </div>
                         </div>
