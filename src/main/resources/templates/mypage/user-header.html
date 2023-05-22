@@ -15,15 +15,16 @@
             <header class="mypage-header">
                 <div class="mypage-header-layout">
                     <div class="mypage-header-profile-box">
-                        <a href="javascript:void(0)">
+                        <a th:href="@{/mypage/main}">
                             <h2 class="profile-name">
                                 NickNAME
                                 <div class="my-badge-image-box">
-                                    <img class="my-badge" src="/image/mypage/trophy_3.png">
+<!--                                    <img class="my-badge" src="/image/mypage/trophy_3.png">-->
+
                                 </div>
                             </h2>
                             <div class="memberEmail-box normal-font">
-                                <span>hds1234@naver.com</span>
+                                <span th:text="${session.member.memberEmail}"></span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M8.5 18.5l6-6.5-6-6.5L10 4l7.5 8-7.5 8-1.5-1.5z" fill="#a2a2a2"></path></svg>
                             </div>
                         </a>

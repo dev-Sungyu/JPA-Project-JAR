@@ -53,8 +53,6 @@ public interface MemberQueryDsl {
 //    회원 삭제
     public void deleteMemberById_QueryDSL(Long id);
 
-    /* 다이어리 */
-
     /* 뱃지 */
 
 //    챌린지 횟수 조회
