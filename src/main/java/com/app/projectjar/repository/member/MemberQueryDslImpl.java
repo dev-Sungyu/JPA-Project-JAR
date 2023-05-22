@@ -6,6 +6,8 @@ import com.app.projectjar.entity.member.QMember;
 import com.app.projectjar.entity.member.QMemberRandomKey;
 import com.app.projectjar.entity.personalChallenge.QChallengeAttend;
 import com.app.projectjar.type.BadgeType;
+import com.app.projectjar.type.ChallengeAttendType;
+import com.app.projectjar.type.GroupChallengeAttendType;
 import com.app.projectjar.type.Role;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
@@ -126,12 +128,12 @@ public class MemberQueryDslImpl implements MemberQueryDsl {
     public int findByIdWithAttendCount_QueryDsl(Long id) {
         Long countPersonal = query.select(challengeAttend.member.count())
                 .from(challengeAttend).
-                where(challengeAttend.member.id.eq(id)).
+                where(challengeAttend.member.id.eq(id).and(challengeAttend.challengeAttendStatus.eq(ChallengeAttendType.PARTICIPATION))).
                 fetchOne();
 
         Long countGroup = query.select(groupChallengeAttend.member.count()).
                 from(groupChallengeAttend).
-                where(groupChallengeAttend.member.id.eq(id)).
+                where(groupChallengeAttend.member.id.eq(id).and(groupChallengeAttend.groupChallengeAttendStatus.eq(GroupChallengeAttendType.PARTICIPATION))).
                 fetchOne();
 
         int totalCount = countPersonal.intValue() + countGroup.intValue();

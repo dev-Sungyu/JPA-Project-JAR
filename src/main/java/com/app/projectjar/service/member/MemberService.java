@@ -90,6 +90,8 @@ public interface MemberService extends UserDetailsService {
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
                 .createdDate(member.getCreatedDate())
+                .userType(member.getUserType())
+                .memberType(member.getMemberType())
                 .build();
     }
 

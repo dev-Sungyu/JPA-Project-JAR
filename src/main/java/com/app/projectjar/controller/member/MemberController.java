@@ -36,12 +36,12 @@ public class MemberController {
     @PostMapping("join")
     public RedirectView join(MemberDTO memberDTO){
         memberService.join(memberDTO, passwordEncoder);
+        log.info(memberDTO.toString());
         return new RedirectView("/member/login");
     }
 
     @GetMapping("login")
     public void goToLoginForm() {;}
-
 
     //   이메일 중복 검사
     @PostMapping("check-email")
