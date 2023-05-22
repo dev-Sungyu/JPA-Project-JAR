@@ -6,12 +6,14 @@ import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.search.board.GroupChallengeSearch;
 import com.app.projectjar.search.board.SuggestSearch;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.groupChallenge.reply.GroupChallengeReplyService;
+import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,16 +39,18 @@ public class MainController {
 
     private final HttpSession session;
 
+    private final MemberService memberService;
+
     @GetMapping("")
     public void main(@AuthenticationPrincipal UserDetail userDetail) {
-        if (userDetail != null) {
-            session.invalidate();
-            session.setAttribute("member", userDetail);
-        }
-        MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-        log.info("==================================================");
-        log.info(memberDTO.toString());
-    }
+
+        if(session.getAttribute("member")==null){
+            Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
+            MemberDTO memberDTO = memberService.toMemberDTO(member);
+            session.setAttribute("member", memberDTO);
+            log.info("member: " + memberDTO.toString());
+        }}
+
 //    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
 //
 //        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();

@@ -36,7 +36,7 @@ public class MemberRandomKey {
         return pwd;
     }
 
-    public MemberRandomKey(Long id, String randomKey, Member member) {
+    public MemberRandomKey(Long id, String memberRandomKey, Member member) {
         this.id = id;
         this.memberRandomKey = memberRandomKey;
         this.member = member;

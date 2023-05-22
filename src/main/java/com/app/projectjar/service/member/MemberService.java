@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface MemberService extends UserDetailsService {
 //    회원가입
@@ -35,6 +36,8 @@ public interface MemberService extends UserDetailsService {
 
 //    ID로 회원정보 조회
     public MemberDTO getMember(Long id);
+
+    public Optional<Member> getOptionalMember(Long id);
 
 //    뱃지 조회
     public int getMemberBadgeCount(Long id);
@@ -117,6 +120,7 @@ public interface MemberService extends UserDetailsService {
                 .memberStatus(memberDTO.getMemberStatus())
                 .badgeType(memberDTO.getBadgeType())
                 .memberType(memberDTO.getMemberType())
+                .userType(memberDTO.getUserType())
                 .build();
     }
 

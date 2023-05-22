@@ -113,6 +113,11 @@ public class MemberServiceImpl implements MemberService {
         return toMemberDTO(member.get());
     }
 
+    @Override
+    public Optional<Member> getOptionalMember(Long id) {
+        return memberRepository.findByMemberId_QueryDSL(id);
+    }
+
     //    뱃지 횟수 조회
     @Override
     public int getMemberBadgeCount(Long id) {

@@ -14,6 +14,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter @ToString(callSuper = true)
@@ -69,12 +70,15 @@ public class Member extends Period {
         return this;
     }
 
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
+    private MemberFile memberFile;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+    private List<MemberRandomKey> memberRandomKeys;
+
     public void updatePassword(String memberPassword){
         this.memberPassword = memberPassword;
     }
-
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "member")
-    private MemberFile memberFile;
 
     public void setMemberPassword(String memberPassword) {
         this.memberPassword = memberPassword;
