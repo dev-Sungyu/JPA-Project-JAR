@@ -68,4 +68,8 @@ public interface MemberQueryDsl {
     public Page<Member> findAllByMemberId_QueryDsl(Pageable pageable);
 //  회원 정보 수정
     public void updateMemberAdmin_QueryDSL(Member memberInfo);
+
+    public Long findPersonalAttendCountByMemberId(Long id);
+
+    public Long findGroupAttendCountByMemberId(Long id);
 }

@@ -55,9 +55,9 @@ public class PersonalChallengeRepositoryTests {
         personalChallengeRepository.findByCreateDateYesterday(LocalDate.now().minusDays(1)).stream().map(PersonalChallenge::toString).forEach(log::info);
     }
 
-    @Test
-    public void findAllWithPageAndChallenges_QueryDslTest() {
-        challengeAttendRepository.findAllWithPageAndChallenges_QueryDsl(233L, PageRequest.of(0,10)).stream()
-                .map(ChallengeAttend::toString).forEach(log::info);
-    }
+//    @Test
+//    public void findAllWithPageAndChallenges_QueryDslTest() {
+//        challengeAttendRepository.findAllWithPageAndChallenges_QueryDsl(233L, PageRequest.of(0,10)).stream()
+//                .map(ChallengeAttend::toString).forEach(log::info);
+//    }
 }

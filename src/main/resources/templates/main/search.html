@@ -35,7 +35,7 @@
                 <div class="list-content-box">
                     <section class="list-content-wrap">
                         <div class="popularity-button-box">
-                            <button class="btn recent active">더보기</button>
+                            <button class="btn recent active" th:href="@{/board/challenge/group/list}">더보기</button>
                         </div>
                         <div>
                             <div style="height:auto; overflow:auto" th:each="groupChallengeDTO : ${groupChallengeDTOS}">
@@ -103,7 +103,7 @@
                 <div class="list-content-box">
                     <section class="list-content-wrap">
                         <div class="popularity-button-box">
-                            <button class="btn recent active">더보기</button>
+                            <button class="btn recent active" th:href="@{/board/suggest/list}">더보기</button>
                         </div>
                         <div th:each="suggestDTO : ${suggestDTOS}">
                             <div style="height:auto; overflow:auto">
