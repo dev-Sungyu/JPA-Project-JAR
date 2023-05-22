@@ -39,7 +39,7 @@ public class InquireServiceImpl implements InquireService {
 
 
     @Override
-    public void register(InquireDTO inquireDTO) {
+    public void register(InquireDTO inquireDTO, Long memberId) {
         inquireRepository.save(toInquireEntity(inquireDTO));
     }
 

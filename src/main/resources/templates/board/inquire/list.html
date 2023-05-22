@@ -24,8 +24,8 @@
                     <div class="notice_box">
                         <h4 class="notice_h4" style="height: 100px">문의 게시판</h4>
 
-<!--                        <a href="board/inquire/write">-->
-                        <a th:href="@{detail(id=${inquireDTO.memberDTO.id})}">
+                        <a th:href="@{write}">
+<!--                        <a href="/board/inquire/write">-->
                             <div class="write-button-box" style="margin-left: auto">
                                 <div class="write-button-button-layout">
                                     <p>작성하기</p>
@@ -247,6 +247,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/main/header.js"></script>
+<script>
+<!--    dto 출력해보기-->
+</script>
 <script>
     // let pages = document.querySelectorAll('.second_button');
     // pages.forEach(page => {

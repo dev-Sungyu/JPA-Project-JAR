@@ -4,6 +4,7 @@ import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.page.PageDTO;
+import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.inquire.InquireService;
@@ -49,44 +50,19 @@ public class InquireController {
         return "board/inquire/list";
     }
 
-
-//    @GetMapping("write")
-//    public String inquireWrite(Model model){
-//        model.addAttribute("inquireDTO", new InquireDTO());
-//    return "board/inquire/wirte"; }
-//    }
-
-//    @GetMapping("write/{memberId}")
-//    public String goToWrite(Model model, @AuthenticationPrincipal Inquire inquire, @PathVariable("memberId") Long memberId) {
-//
-//        InquireDTO inquireDTO = inquireService.getInquire(memberId);
-//        model.addAttribute("inquireDTO", inquireDTO);
-//        model.addAttribute("inquire", inquire);
-//        return "/board/inquire/write";
-//    }
+    @GetMapping("write")
+    public void goToWriteForm(InquireDTO inquireDTO) {
+    }
 
     @PostMapping("write")
-    public RedirectView write(@ModelAttribute("inquireDTO") InquireDTO inquireDTO) {
+    public RedirectView write(@ModelAttribute("inquireDTO") InquireDTO inquireDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
-        inquireService.register(inquireDTO);
+        Long memberId = userDetail.getId();
+        inquireService.register(inquireDTO, memberId);
         return new RedirectView("/board/inquire/list");
     }
 
-//    @GetMapping("detail/{diaryId}")
-//    public String goToDetail(Model model, @AuthenticationPrincipal UserDetail userDetail, @PathVariable("diaryId") Long diaryId) {
-//
-//        DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
-//        model.addAttribute("diaryDTO", diaryDTO);
-//        model.addAttribute("userDetail", userDetail);
-//        return "/board/diary/detail";
-//    }
 }
-
-
-//        @GetMapping("write")
-//    public String inquireWrite(){
-//    return "board/inquire/write";
-//    }
 
 
 
