@@ -1,6 +1,8 @@
 package com.app.projectjar.service.groupChallenge;
 
 import com.app.projectjar.domain.board.BoardSearchDTO;
+import com.app.projectjar.domain.calendar.CalendarDTO;
+import com.app.projectjar.domain.calendar.GroupCalendarDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
@@ -21,6 +23,9 @@ public interface GroupChallengeService {
 
     //    전체 목록 페이징
     public Page<GroupChallengeDTO> getAllGroupChallengesWithPaging(int page);
+
+    // 캘린더
+    public List<GroupCalendarDTO> findAllCalendar();
 
     // 종료된 목록
     public Page<GroupChallengeDTO> getEndGroupChallengeList(Pageable pageable);
@@ -62,6 +67,15 @@ public interface GroupChallengeService {
         return BoardSearchDTO.builder()
                 .groupChallengeSearch(groupChallengeSearch)
                 .suggestSearch(suggestSearch)
+                .build();
+    }
+
+    default GroupCalendarDTO toCalendarDTO(GroupChallenge groupChallenge){
+        return GroupCalendarDTO.builder()
+                .id(groupChallenge.getId())
+                .title(groupChallenge.getBoardTitle())
+                .start(groupChallenge.getStartDate())
+                .end(groupChallenge.getEndDate())
                 .build();
     }
 

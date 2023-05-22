@@ -18,6 +18,9 @@ public interface GroupChallengeQueryDsl {
     // 전체 조회
     public Page<GroupChallenge> findAllWithPaging_QueryDSL(Pageable pageable);
 
+    // 캘린더
+    public List<GroupChallenge> findAllCalendar();
+
     // 종료된 챌린지
     public Page<GroupChallenge> findAllGroupChallengeByPrivateWithPaging_QueryDsl(Pageable pageable);
 
