@@ -24,7 +24,7 @@ public interface MemberService extends UserDetailsService {
 //    닉네임 중복 검사
     public Long checkNickName(String memberNickName);
 
-//   이메일 / 비밀번호 찾기
+//   비밀번호 찾기
     public Member getMemberEmail(String memberEmail);
 
 //    비밀 번호 변경
@@ -33,7 +33,7 @@ public interface MemberService extends UserDetailsService {
 //    회원정보 수정
     public void updateMember(MemberDTO memberDTO, Long id);
 
-//    회원정보 조회
+//    ID로 회원정보 조회
     public MemberDTO getMember(Long id);
 
 //    뱃지 조회
