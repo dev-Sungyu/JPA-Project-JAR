@@ -42,6 +42,25 @@ public class FileRestController {
         return uuids;
     }
 
+    @PostMapping("upload-file")
+    public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
+        String path = "C:/upload/" + getPath();
+        File file = new File(path);
+        if(!file.exists()) {file.mkdirs();}
+
+        String uuid = UUID.randomUUID().toString();
+        multipartFile.transferTo(new File(path, uuid + "_" + multipartFile.getOriginalFilename()));
+        InputStream inputStream = new FileInputStream("C:\\upload\\" + getPath() + "\\" + uuid+ "_" + multipartFile.getOriginalFilename());
+
+        if(multipartFile.getContentType().startsWith("image")){
+            FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuid + "_" + multipartFile.getOriginalFilename()));
+            Thumbnailator.createThumbnail(inputStream, out, 400, 400);
+            out.close();
+        }
+
+        return uuid;
+    }
+
 
     //    파일 불러오기
     @GetMapping("display")
