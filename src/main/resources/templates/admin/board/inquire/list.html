@@ -40,7 +40,7 @@
                     <!-- 헤더 -->
                     <div class="delete-box-layout">
                         <div class="delete-box">
-                            <button class="delete-button">선택 게시물 삭제</button>
+                            <button class="delete-button deleteButton" onclick="deleteInquires(getSelectedInquireIds())">선택 게시물 삭제</button>
                         </div>
                     </div>
 
@@ -67,75 +67,27 @@
                                             <th>답변</th>
                                         </tr>
                                     </thead>
-                                    <tr>
+                                    <tr th:each="inquireDTO : ${inquireDTOS}">
                                         <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
+                                            <input type="checkbox" class="inquireCheckbox" name="check" th:value="${inquireDTO.id}">
                                         </td>
-                                        <td class="noticeId">
+                                        <td class="noticeId" th:text="${inquireDTO.id}">
                                             1
                                         </td>
                                         <!-- <td>자유 게시판</td> -->
                                         <td>
-                                            <a href="">
+                                            <a th:href="@{/admin/board/inquire/detail/{inquireId}(inquireId=${inquireDTO.id})}" th:text="${inquireDTO.inquireTitle}">
                                                 게시판 제목
                                             </a>
                                         </td>
-                                        <td>
+                                        <td th:text="${inquireDTO.memberDTO.memberNickname}">
                                             닉네임
                                         </td>
-                                        <td>
+                                        <td th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy-MM-dd')}">
                                             2023.04.23 10:55
                                         </td>
-                                        <td class="is_answer is_warning">
+                                        <td class="is_answer is_warning" th:text="${inquireDTO.answerType}">
                                             미답변
-                                            <hr>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            2
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_warning">
-                                            미답변
-                                            <hr>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" name="check">
-                                        </td>
-                                        <td class="noticeId">
-                                            3
-                                        </td>
-                                        <!-- <td>자유 게시판</td> -->
-                                        <td>
-                                            <a href="">
-                                                게시판 제목
-                                            </a>
-                                        </td>
-                                        <td>
-                                            닉네임
-                                        </td>
-                                        <td>
-                                            2023.04.23 10:55
-                                        </td>
-                                        <td class="is_answer is_active">
-                                            답변완료
                                             <hr>
                                         </td>
                                     </tr>
@@ -185,27 +137,12 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="page-button-active page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>1</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>2</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="page-button">
-                                <div class="page-button-margin">
-                                    <div>
-                                        <span>3</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <th:block th:each="num : ${#numbers.sequence(pageDTO.startPage, pageDTO.endPage + 1)}">
+                                <a th:class="${(num == pageDTO.startPage) ? 'page-button-active page-button changePage' : 'page-button changePage'}" th:href="${num}">
+                                    <span class="page-button" th:text="${num}"></span>
+                                </a>
+                                <div style="width: 2px;"></div>
+                            </th:block>
                             <div class="">
                                 <div class="page-button-margin">
                                     <div>
@@ -216,6 +153,11 @@
                             </div>
                         </div>
                     </div>
+                    <th:block>
+                        <form action="list" name="pageForm">
+                            <input type="hidden" name="page">
+                        </form>
+                    </th:block>
                     <!-- 페이지 버튼 끝 -->
                 </div>
             </div>
@@ -226,5 +168,86 @@
 <script src="/js/admin/checkbox.js"></script>
 <script src="/js/admin/board_proposal.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script>
+    const inquireId = '${inquireDTO.inquireId}';
 
+    function getSelectedInquireIds() {
+        const inquireIds = [];
+        $(".inquireCheckbox:checked").each(function() {
+            inquireIds.push($(this).val());
+        });
+        return inquireIds;
+    }
+
+    function deleteInquires(inquireIds) {
+        $.ajax({
+            url: "/admin/board/inquire/delete",
+            type: "DELETE",
+            contentType: "application/json",
+            data: JSON.stringify(inquireIds),
+            traditional: true,
+            success: function() {
+                location.reload();
+            },
+            error: function() {
+                alert("게시물 삭제에 실패했습니다.");
+            }
+        });
+    }
+
+
+    /* url에 있는 페이지 번호를 가져와서 css 수정하는 코드*/
+    $(document).ready(function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const currentPage = parseInt(urlParams.get('page'));
+
+        if (currentPage) {
+            $('.page-button').each(function(index, element) {
+                if (parseInt($(element).text()) === currentPage) {
+                    $(element).addClass('page-button-active');
+                } else {
+                    $(element).removeClass('page-button-active');
+                }
+            });
+        }
+    });
+
+
+    $(document).ready(function() {
+        // 삭제 버튼 클릭 이벤트 핸들러
+        $("#deleteButton").on("click", function() {
+            const checkedItems = $(".inquireCheckbox:checked");
+            const inquireIds = [];
+            checkedItems.each(function() {
+                inquireIds.push($(this).val());
+            });
+
+            if (inquireIds.length > 0) {
+                if (confirm("선택한 게시물을 삭제하시겠습니까?")) {
+                    deleteInquires(inquireIds);
+                }
+            } else {
+                alert("삭제할 게시물을 선택해주세요.");
+            }
+        });
+    });
+
+    //페이지 번호 링크로 가져오는 코드
+    let $pageForm = $("form[name='pageForm']");
+
+    $("a.changePage").on("click", function (e) {
+        e.preventDefault();
+        $pageForm.find("input[name='page']").val($(this).attr("href"));
+        $pageForm.submit();
+    });
+
+    $(".inquireStatus").each((i, e) => {
+
+        if($(e).text() == 'OPEN'){
+            $(e).text("공개");
+        }else {
+            $(e).text("비공개");
+        }
+    })
+</script>
 </html>
