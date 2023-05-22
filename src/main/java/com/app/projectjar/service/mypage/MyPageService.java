@@ -4,13 +4,17 @@ import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.entity.challenge.Challenge;
 import com.app.projectjar.entity.diary.Diary;
 import com.app.projectjar.entity.file.challenge.ChallengeFile;
 import com.app.projectjar.entity.file.diary.DiaryFile;
+import com.app.projectjar.entity.file.groupChallenge.GroupChallengeFile;
 import com.app.projectjar.entity.file.suggest.SuggestFile;
+import com.app.projectjar.entity.groupChallenge.GroupChallenge;
+import com.app.projectjar.entity.groupChallenge.GroupChallengeAttend;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.personalChallenge.ChallengeAttend;
 import com.app.projectjar.entity.suggest.Suggest;
@@ -31,7 +35,9 @@ public interface MyPageService {
 
     public DiaryDTO getDiary(Long diaryId);
 
-    Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
+    public Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
+
+    public Page<GroupChallengeDTO> getGroupChallengeList(String challengeStatus, Long memberId, Pageable pageable);
 
 
 
@@ -149,4 +155,34 @@ public interface MyPageService {
         return fileDTOS;
     }
 
+    default List<FileDTO> toGroupChallengeFileDTOS(List<GroupChallengeFile> groupChallengeFiles) {
+        List<FileDTO> fileDTOS = new ArrayList<>();
+
+        groupChallengeFiles.forEach(
+                groupChallengeFile -> {
+                    FileDTO fileDTO = FileDTO.builder()
+                            .id(groupChallengeFile.getId())
+                            .fileOriginalName(groupChallengeFile.getFileOriginalName())
+                            .fileUuid(groupChallengeFile.getFileUuid())
+                            .filePath(groupChallengeFile.getFilePath())
+                            .fileType(groupChallengeFile.getFileType())
+                            .build();
+                    fileDTOS.add(fileDTO);
+                }
+        );
+        return fileDTOS;
+    }
+
+
+    default GroupChallengeDTO toGroupChallengeDTO(GroupChallengeAttend groupChallengeAttend) {
+        return GroupChallengeDTO.builder()
+                .attendCount(groupChallengeAttend.getGroupChallenge().getGroupChallengeAttendCount())
+                .replyCount(groupChallengeAttend.getGroupChallenge().getGroupChallengeReplyCount())
+                .fileDTOS(toGroupChallengeFileDTOS(groupChallengeAttend.getGroupChallenge().getGroupChallengeFiles()))
+                .boardContent(groupChallengeAttend.getGroupChallenge().getBoardContent())
+                .boardTitle(groupChallengeAttend.getGroupChallenge().getBoardTitle())
+                .groupChallengeAttendStatus(groupChallengeAttend.getGroupChallengeAttendStatus())
+                .groupChallengeStatus(groupChallengeAttend.getGroupChallenge().getGroupChallengeStatus())
+                .build();
+    }
 }

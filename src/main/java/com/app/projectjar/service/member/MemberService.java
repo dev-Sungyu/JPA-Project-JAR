@@ -54,8 +54,12 @@ public interface MemberService extends UserDetailsService {
     /* 메일보내기 */
     public void sendMail(MailDTO mail);
 
+    Long findPersonalAttendCountByMemberId(Long id);
+
+    Long findGroupAttendCountByMemberId(Long id);
+
     default Member memberDTOToEntity(MemberDTO memberDTO) {
-        return Member.joinMemberBuilder()
+        return Member.builder()
                 .id(memberDTO.getId())
                 .memberEmail(memberDTO.getMemberEmail())
                 .memberPassword(memberDTO.getMemberPassword())

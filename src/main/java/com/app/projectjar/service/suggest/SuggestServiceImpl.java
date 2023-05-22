@@ -7,7 +7,9 @@ import com.app.projectjar.repository.file.suggest.SuggestFileRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import com.app.projectjar.repository.suggest.SuggestReplyRepository;
 import com.app.projectjar.repository.suggest.SuggestRepository;
+import com.app.projectjar.search.board.SuggestSearch;
 import com.app.projectjar.type.FileType;
+import com.querydsl.core.types.dsl.BooleanExpression;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -159,5 +161,13 @@ public class SuggestServiceImpl implements SuggestService {
         Page<Suggest> suggests = suggestRepository.findAllByMemberIdWithPaging_QueryDsl(pageable, id);
         List<SuggestDTO> suggestDTOS = suggests.stream().map(this::toSuggestDTO).collect(Collectors.toList());
         return new PageImpl<>(suggestDTOS, suggests.getPageable(), suggests.getTotalElements());
+    }
+
+    @Override
+    public List<SuggestDTO> findSuggestWithSearch_QueryDSL(String search) {
+        List<Suggest> suggests = suggestRepository.findSuggestWithSearch_QueryDSL(search);
+        return suggests.stream()
+                .map(this::toSuggestDTO)
+                .collect(Collectors.toList());
     }
 }

@@ -139,11 +139,34 @@
 function getList(){
     suggestService.list(function(list){
         globalThis.suggestLength = list.length;
-
         if(globalThis.suggestLength  < 5){
             $secondNext.hide();
         }
 
         $secondContentSlide.append(listText(list));
+        heartCheck(list);
+    })
+}
+
+function heartCheck(list) {
+
+    let suggestDTOS = list;
+    console.log(suggestDTOS);
+    suggestDTOS.forEach((suggestDTO, i) => {
+        let likeDTO = new Object();
+        likeDTO.memberId = memberId;
+        likeDTO.boardId = suggestDTO.id;
+
+        likeService.heartCheck(likeDTO,function(result){
+            if(result){
+                $($(".heart-up")[i]).hide();
+                $($(".no-heart")[i]).show();
+                $($(".no-heart")[i]).removeClass("heart-active");
+            }else {
+                $($(".no-heart")[i]).addClass("heart-active");
+                $($(".heart-up")[i]).show();
+                $($(".no-heart")[i]).hide();
+            }
+        });
     })
 }

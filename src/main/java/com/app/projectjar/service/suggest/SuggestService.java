@@ -8,6 +8,7 @@ import com.app.projectjar.entity.file.suggest.SuggestFile;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.suggest.Suggest;
 import com.app.projectjar.entity.suggest.SuggestLike;
+import com.app.projectjar.search.board.SuggestSearch;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -28,6 +29,8 @@ public interface SuggestService {
     public void update(SuggestDTO suggestDTO);
     // 삭제
     public void delete(Long suggestId);
+    // 검색
+    List<SuggestDTO> findSuggestWithSearch_QueryDSL(String search);
 
 
 

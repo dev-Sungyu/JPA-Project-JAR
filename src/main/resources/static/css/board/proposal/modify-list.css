@@ -318,3 +318,8 @@ div.paging-active .page {
         width: 25%;
     }
 }
+.not-search{
+    font-size: 30px;
+    margin-top: 40px;
+    display: none;
+}

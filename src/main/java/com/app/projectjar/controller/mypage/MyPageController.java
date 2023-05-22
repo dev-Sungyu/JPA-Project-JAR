@@ -2,6 +2,7 @@ package com.app.projectjar.controller.mypage;
 
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
+import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.like.LikeDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -96,7 +97,14 @@ public class MyPageController {
     }
 
     @GetMapping("group-challenge")
-    public void group(){}
+    public void group(Model model, @AuthenticationPrincipal UserDetail userDetail){model.addAttribute("userDetail", userDetail);}
+
+    @GetMapping("group-challenge-content")
+    @ResponseBody
+    public Page<GroupChallengeDTO> getGroupChallengeDTOS(@RequestParam("challengeStatus") String challengeStatus, @RequestParam("memberId") Long memberId, @RequestParam("page") int page){
+        PageRequest pageRequest = PageRequest.of(page, 9);
+        return myPageService.getGroupChallengeList(challengeStatus, memberId, pageRequest);
+    }
 
     @GetMapping("inquire")
     public void goToInquire(@AuthenticationPrincipal UserDetail userDetail,Model model){

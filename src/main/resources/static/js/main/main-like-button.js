@@ -1,11 +1,11 @@
 // 좋아요 버튼
-$("div.content-slide-box-container.first-content-slide").on("click","button.heart-layout",function(e){
+$("div.second-content-slide ").on("click","button.heart-layout",function(e){
     let boardId = e.currentTarget.id.replaceAll("heart","");
 
-    let ul = $(e.currentTarget).parent().parent().parent().parent().parent().parent().parent();
-    let li = $(e.currentTarget).parent().parent().parent().parent().parent().parent();
-    let i = ul.find("li").index(li);
-
+    let ul = $(e.currentTarget).parent().parent().parent().parent().parent();
+    let li = $(e.currentTarget).parent().parent().parent().parent();
+    let i = ul.find("div.content-image-box2").index(li);
+    console.log(i);
     let likeDTO = new Object();
     likeDTO.memberId = memberId;
     likeDTO.boardId = boardId;
@@ -33,5 +33,4 @@ $("div.content-slide-box-container.first-content-slide").on("click","button.hear
             });
         }
     });
-
 });
