@@ -29,11 +29,13 @@ public class MemberDTO implements Serializable {
     private Role memberType;
     private UserType userType;
     private LocalDateTime createdDate;
+    private Long personalAttendCount;
+    private Long groupAttendCount;
 
     private FileDTO fileDTO;
 
     @Builder
-    public MemberDTO(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, UserType userType, FileDTO fileDTO, LocalDateTime createdDate) {
+    public MemberDTO(Long id, String memberEmail, String memberPassword, String memberPhoneNumber, String memberName, String memberNickname, MemberType memberStatus, BadgeType badgeType, Role memberType, UserType userType, FileDTO fileDTO, LocalDateTime createdDate, Long personalAttendCount, Long groupAttendCount) {
         this.id = id;
         this.memberEmail = memberEmail;
         this.memberPassword = memberPassword;
@@ -46,6 +48,8 @@ public class MemberDTO implements Serializable {
         this.memberType = memberType;
         this.fileDTO = fileDTO;
         this.createdDate = createdDate;
+        this.personalAttendCount = personalAttendCount;
+        this.groupAttendCount = groupAttendCount;
     }
 
     public MemberDTO(Member member) {

@@ -160,6 +160,12 @@ public class AdminController {
     public String adminMemberDetail(Model model, @PathVariable("id") Long memberId) {
         MemberDTO memberDTO = memberService.getMember(memberId);
 
+        Long personalAttendCount = memberService.findPersonalAttendCountByMemberId(memberId);
+        Long groupAttendCount = memberService.findGroupAttendCountByMemberId(memberId);
+
+        memberDTO.setPersonalAttendCount(personalAttendCount);
+        memberDTO.setGroupAttendCount(groupAttendCount);
+
         model.addAttribute("memberDTO", memberDTO);
 
         return "admin/member/detail";
