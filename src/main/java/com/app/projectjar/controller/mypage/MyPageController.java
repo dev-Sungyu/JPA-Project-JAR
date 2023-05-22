@@ -3,6 +3,7 @@ package com.app.projectjar.controller.mypage;
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.diary.DiaryLikeDTO;
+import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
@@ -65,10 +66,20 @@ public class MyPageController {
         return new RedirectView("/mypage/main?check=true");
     }
 
-    @DeleteMapping("diary-detail")
+    @GetMapping("diary-detail")
     @ResponseBody
-    public DiaryDTO getDiaryDTO(@RequestParam("diaryId")Long diaryId) {
+    public DiaryDTO getDiaryDTO(@RequestParam("boardId")Long diaryId) {
         return myPageService.getDiary(diaryId);
+    }
+
+    @PostMapping("diary-modify")
+    public RedirectView modifyDiary(@RequestParam("boardId") Long diaryId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
+
+        diaryDTO.getFileDTOS().stream().map(FileDTO::toString).forEach(log::info);
+
+        diaryDTO.setId(diaryId);
+        myPageService.modifyDiary(diaryDTO);
+        return new RedirectView("/mypage/main?modifyCheck=true");
     }
 
     @GetMapping("badge")

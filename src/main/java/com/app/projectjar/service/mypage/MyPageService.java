@@ -35,6 +35,8 @@ public interface MyPageService {
 
     public DiaryDTO getDiary(Long diaryId);
 
+    public void modifyDiary(DiaryDTO diaryDTO);
+
     public Page<PersonalChallengeDTO> getChallengeList(String challengeStatus, Long memberId, Pageable pageable);
 
     public Page<GroupChallengeDTO> getGroupChallengeList(String challengeStatus, Long memberId, Pageable pageable);
