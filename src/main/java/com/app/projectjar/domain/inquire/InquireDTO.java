@@ -14,6 +14,9 @@ import java.time.LocalDateTime;
 @Component
 @NoArgsConstructor
 public class InquireDTO {
+
+    private AnswerDTO answerDTO;
+
     private Long id;
     private String inquireTitle;
     private String inquireContent;
@@ -26,17 +29,30 @@ public class InquireDTO {
     private MemberDTO memberDTO;
 
     @Builder
-    public InquireDTO(Long id, String inquireTitle, String inquireContent, MemberDTO memberDTO, AnswerType answerType, LocalDateTime createDate, LocalDateTime updateDate) {
-
+    public InquireDTO(AnswerDTO answerDTO, Long id, String inquireTitle, String inquireContent, AnswerType answerType, LocalDateTime createdDate, LocalDateTime updatedDate, LocalDateTime createDate, MemberDTO memberDTO) {
+        this.answerDTO = answerDTO;
         this.id = id;
         this.inquireTitle = inquireTitle;
         this.inquireContent = inquireContent;
-        this.memberDTO = memberDTO;
-        this.createdDate = createDate;
-        this.updatedDate = updateDate;
-
         this.answerType = answerType;
-
+        this.createdDate = createdDate;
+        this.updatedDate = updatedDate;
         this.createDate = createDate;
+        this.memberDTO = memberDTO;
     }
+
+//    @Builder
+//    public InquireDTO(Long id, String inquireTitle, String inquireContent, MemberDTO memberDTO, AnswerType answerType, LocalDateTime createDate, LocalDateTime updateDate) {
+//
+//        this.id = id;
+//        this.inquireTitle = inquireTitle;
+//        this.inquireContent = inquireContent;
+//        this.memberDTO = memberDTO;
+//        this.createdDate = createDate;
+//        this.updatedDate = updateDate;
+//
+//        this.answerType = answerType;
+//
+//        this.createDate = createDate;
+//    }
 }
