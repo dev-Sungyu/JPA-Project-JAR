@@ -37,12 +37,6 @@
             <div class="container">
                 <div class="container-margin">
                     <!-- 헤더 -->
-                    <div class="delete-box-layout">
-                        <div class="delete-box">
-                            <button class="deleteButton delete-button" onclick="deleteMembers(getSelectedMemberIds())">선택 게시물 삭제</button>
-                        </div>
-                    </div>
-
                     <!-- 내용 섹션 -->
                     <section class="board-info-box-layout">
 
@@ -55,9 +49,6 @@
                                 <table>
                                     <thead>
                                         <tr>
-                                            <th class="checkbox-line">
-                                                <input type="checkbox" id="allSelect">
-                                            </th>
                                             <th>No</th>
                                             <th>회원상태</th>
                                             <th>이메일</th>
@@ -68,9 +59,6 @@
                                         </tr>
                                     </thead>
                                     <tr th:each="memberDTO : ${memberDTOS}">
-                                        <td class="checkbox-line">
-                                            <input type="checkbox" class="memberCheckbox" name="check" th:value="${memberDTO.id}">
-                                        </td>
                                         <td th:text="${memberDTO.id}">
                                             1
                                         </td>
