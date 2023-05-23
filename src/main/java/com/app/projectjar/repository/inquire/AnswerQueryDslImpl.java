@@ -39,11 +39,11 @@ public class AnswerQueryDslImpl implements AnswerQueryDsl {
 //    }
 
     @Override
-    public Optional<Answer> findByIdAnswer_QueryDsl(Long inquireId) {
+    public Optional<Answer> findByIdAnswer_QueryDsl(Long answerId) {
         Answer foundAnswer = query.select(answer)
                 .from(answer)
                 .fetchJoin()
-                .where(answer.id.eq(inquireId))
+                .where(answer.id.eq(answerId))
                 .fetchOne();
 
         return Optional.ofNullable(foundAnswer);
