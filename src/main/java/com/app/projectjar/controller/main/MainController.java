@@ -74,21 +74,29 @@ public class MainController {
     }
 
     @GetMapping("search")
-    public void boardSearch(@RequestParam String search, Model model) {
+    public void boardSearch(@RequestParam String search, Model model, HttpSession session) {
         List<GroupChallengeDTO> groupSearch = groupChallengeService.findBoardSearch(search);
         List<SuggestDTO> suggestSearch = suggestService.findSuggestWithSearch_QueryDSL(search);
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
+        model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("groupChallengeDTOS", groupSearch);
         model.addAttribute("suggestDTOS", suggestSearch);
 
     }
 
     @GetMapping("service-introduction")
-    public void serviceIntroduce(){
-
+    public void serviceIntroduce(Model model, HttpSession session){
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
     @GetMapping("faq")
-    public void faq(){
-
+    public void faq(Model model, HttpSession session){
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
 }
