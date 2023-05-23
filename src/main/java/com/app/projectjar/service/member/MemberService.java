@@ -16,6 +16,9 @@ public interface MemberService extends UserDetailsService {
 //    회원가입
     public void join(MemberDTO memberDTO, PasswordEncoder passwordEncoder);
 
+//    회원정보 조회
+    public MemberDTO getMemberInfo(Long id);
+
 //    이메일 중복 검사
     public Long checkEmail(String memberEmail);
 

@@ -140,7 +140,7 @@ public class MemberController {
         log.info("member: " + member.toString());
 
         MemberRandomKey memberRandomKey = memberRandomKeyService.getLatestRandomKey(member.getId());
-        log.info("randomKey controller: " + memberRandomKey.toString());
+//        log.info("randomKey controller: " + memberRandomKey.toString());
 
         String randomKeyString = memberRandomKey != null ? memberRandomKey.getMemberRandomKey() : memberRandomKeyService.saveRandomKey(member).getMemberRandomKey();
 
