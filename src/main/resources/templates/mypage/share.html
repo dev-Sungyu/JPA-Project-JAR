@@ -92,8 +92,9 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let badgeType = [[${session.member.badgeType}]];
     let member = [[${session.member}]];
+    let memberFile = member.fileDTO;
+    let badgeType = [[${session.member.badgeType}]];
 </script>
 <script>
     const $page = $(".paging-border-none");
@@ -107,4 +108,5 @@
 </script>
 <script src="/js/mypage/share.js">
 </script>
+<script src="/js/main/header.js"></script>
 </html>

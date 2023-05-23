@@ -3,6 +3,7 @@ package com.app.projectjar.controller.board.suggest;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.provider.UserDetail;
+import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpSession;
 @Slf4j
 public class SuggestController {
     private final SuggestService suggestService;
+    private final MyPageService myPageService;
 
     @GetMapping("write")
     public void goToWriteForm(SuggestDTO suggestDTO) { }
@@ -34,7 +36,10 @@ public class SuggestController {
     }
 
     @GetMapping("list")
-    public void goToList(){
+    public void goToList(Model model, HttpSession session){
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("list-content")
