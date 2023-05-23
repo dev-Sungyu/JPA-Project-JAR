@@ -302,7 +302,7 @@ public class AdminController {
     @DeleteMapping("board/diary/delete")
     @ResponseBody
     public ResponseEntity<String> deleteDiaries(@RequestBody List<Long> diaryIds) {
-        suggestService.deleteSuggests(diaryIds);
+        diaryService.deleteDiaries(diaryIds);
         return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
 

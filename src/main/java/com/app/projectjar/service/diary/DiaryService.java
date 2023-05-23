@@ -30,6 +30,9 @@ public interface DiaryService {
 //    삭제
     public void delete(Long diaryId);
 
+    // 삭제
+    public void deleteDiaries(List<Long> diaryIds);
+
     // 현재 시퀀스 가져오기
     public Diary getCurrentSequence();
 
