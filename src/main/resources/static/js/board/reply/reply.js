@@ -40,7 +40,6 @@ $registerButton.click(() => {
     replyRequestDTO.boardId = boardId;
 
     if (!$replyContent.val()) {
-        alert("입력해주세요.");
         return false;
     } else {
         replyService.save(replyRequestDTO, function () {
