@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지-뱃지</title>
-    <link rel="stylesheet" href="/css/common.css">
-    <link rel="icon" href="/image/logo/favicon.png">
-    <link rel="stylesheet" href="/css/mypage/badge.css">
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
     <link rel="stylesheet" href="/css/mypage/user-header.css">
     <link rel="stylesheet" href="/css/mypage/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="icon" href="/image/logo/favicon.png">
+    <link rel="stylesheet" href="/css/mypage/badge.css">
 </head>
 
 <body>
@@ -97,7 +97,8 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let badgeType = [[${session.member.badgeType}]];
+    let badgeType = [[${memberDTO.badgeType}]];
+    console.log(badgeType);
     let member = [[${session.member}]];
 </script>
 <script>
