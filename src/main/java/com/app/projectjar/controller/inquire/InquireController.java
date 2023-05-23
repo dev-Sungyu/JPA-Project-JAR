@@ -44,7 +44,11 @@ public class InquireController {
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("inquireDTO", inquireDTO);
 
+<<<<<<< HEAD
         return "/board/inquire/detail";
+=======
+        return "board/inquire/detail";
+>>>>>>> 20f5de878265a8ae0f6277ba21c5d411483ad5df
     }
 
     @GetMapping("list")
@@ -62,7 +66,11 @@ public class InquireController {
         model.addAttribute("pageDTO", new PageDTO(inquirePage));
         model.addAttribute("inquireDTOS", inquirePage.getContent());
 
+<<<<<<< HEAD
         return "/board/inquire/list";
+=======
+        return "board/inquire/list";
+>>>>>>> 20f5de878265a8ae0f6277ba21c5d411483ad5df
     }
 
     @GetMapping("write")
