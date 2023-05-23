@@ -35,12 +35,9 @@ public class Inquire extends Period {
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-//    public Inquire(Long id, String inquireTitle, String inquireContent, Member member){
-//        this.id = id;
-//        this.inquireTitle = inquireTitle;
-//        this.inquireContent = inquireContent;
-//        this.member = member;
-//    }
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "inquire")
+    private Answer answer;
+
     @Builder
     public Inquire(Long id, String inquireTitle, String inquireContent, AnswerType answerType, Member member) {
         this.id = id;
