@@ -25,8 +25,12 @@ public class DiaryController {
 
     @GetMapping("list")
     public void goToList(Model model, HttpSession session){
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         model.addAttribute("memberDTO",memberDTO);
     }
@@ -40,8 +44,12 @@ public class DiaryController {
 
     @GetMapping("detail/{diaryId}")
     public String goToDetail(Model model, @PathVariable("diaryId") Long diaryId, HttpSession session) {
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
 
@@ -52,8 +60,12 @@ public class DiaryController {
 
     @GetMapping("modify/{diaryId}")
     public String goToModify(Model model, @PathVariable("diaryId") Long diaryId, HttpSession session) {
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
         model.addAttribute("memberDTO",memberDTO);

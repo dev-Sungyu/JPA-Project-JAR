@@ -246,23 +246,16 @@
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberDTO = [[${memberDTO}]];
+    let memberFile;
+    if(memberDTO){
+        memberFile = memberDTO.fileDTO;
+    }
+</script>
 <script src="/js/main/header.js"></script>
 <script>
-<!--    dto 출력해보기-->
-</script>
-<script>
-    // let pages = document.querySelectorAll('.second_button');
-    // pages.forEach(page => {
-    //     page.addEventListener('click', function () {
-    //         pages.forEach(p => {
-    //             p.classList.remove('first_button');
-    //         })
-    //         page.classList.add('first_button');
-    //     })
-    // })
-
-
-
     $(document).ready(function() {
         const urlParams = new URLSearchParams(window.location.search);
         const currentPage = parseInt(urlParams.get('page'));

@@ -22,8 +22,12 @@ public class ChallengeController {
 
     @GetMapping("list")
     public void goToList(Model model, HttpSession session){
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         model.addAttribute("memberDTO",memberDTO);
     }
@@ -38,8 +42,12 @@ public class ChallengeController {
 
     @GetMapping("detail/{personalChallengeId}")
     public String goToDetail(Model model, @PathVariable("personalChallengeId") Long personalChallengeId,HttpSession session) {
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         PersonalChallengeDTO personalChallengeDTO = personalChallengeService.getPersonalChallenge(personalChallengeId);
         model.addAttribute("memberDTO",memberDTO);

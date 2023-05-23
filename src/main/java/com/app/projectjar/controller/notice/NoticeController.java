@@ -29,8 +29,13 @@ public class NoticeController {
     @GetMapping("detail/{noticeId}")
     public String noticeDetail(Model model, @PathVariable("noticeId") Long noticeId, HttpSession session) {
         NoticeDTO noticeDTO = noticeService.getNotice(noticeId);
-        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
+
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("noticeDTO", noticeDTO);
 
@@ -41,8 +46,12 @@ public class NoticeController {
     public String getAllNotices(Model model, @RequestParam(value="page", defaultValue="1") int page, HttpSession session) {
         Page<NoticeDTO> noticePage = noticeService.getAllNoticesWithPaging(page - 1);
         List<String> noticeTitles = noticePage.stream().map(NoticeDTO::getNoticeTitle).collect(Collectors.toList());
-        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("pageDTO",new PageDTO(noticePage));

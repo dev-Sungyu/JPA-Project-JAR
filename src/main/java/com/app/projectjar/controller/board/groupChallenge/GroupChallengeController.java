@@ -37,17 +37,24 @@ public class GroupChallengeController {
 
     @GetMapping("list")
     public void goToList(Model model, HttpSession session){
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         model.addAttribute("memberDTO",memberDTO);
     }
 
     @GetMapping("detail/{boardId}")
     public String goToDetail(Model model,  @PathVariable("boardId") Long boardId, HttpSession session) {
-        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
-
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(boardId);
 
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
