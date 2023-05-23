@@ -108,7 +108,7 @@ public class AdminController {
 
     @PostMapping("board/challenge/modify/delete/{challengeId}")
     public RedirectView deletePersonal(@PathVariable("challengeId") Long challengeId){
-        personalChallengeService.delete(challengeId);
+        inquireService.delete(challengeId);
         return new RedirectView("admin/board/challenge/list");
     }
 
