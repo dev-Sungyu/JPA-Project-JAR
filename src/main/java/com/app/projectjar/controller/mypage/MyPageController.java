@@ -56,7 +56,7 @@ public class MyPageController {
     }
 
     @PostMapping("register")
-    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO, HttpSession session){
+    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO, HttpSession session, Model model){
         Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         myPageService.registerDiary(diaryDTO, memberId);
         return new RedirectView("/mypage/main?check=true");
