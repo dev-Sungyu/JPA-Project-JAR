@@ -131,6 +131,10 @@
     let member = [[${session.member}]];
     let memberFile = [[${memberDTO.fileDTO}]];
     let badgeType = [[${session.member.badgeType}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
 </script>
 <script src="/js/mypage/diary-like-list.js"></script>
 <script src="/js/board/suggest/like-service.js"></script>

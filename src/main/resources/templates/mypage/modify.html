@@ -229,6 +229,10 @@
     const memberDTO = [[${memberDTO}]];
     const fileDTO = memberDTO.fileDTO;
     let profile;
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
     if(fileDTO != null ){
         profile = fileDTO;
     }

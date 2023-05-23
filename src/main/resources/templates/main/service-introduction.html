@@ -314,9 +314,10 @@
 <th:block th:replace="~{main/footer :: footer}"></th:block>
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-<script src="/js/main/header.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
+<script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
     $.ajax({
         url: 'http://openapi.seoul.go.kr:8088/7767787441646e7235357043646163/xml/F60OpenTbl/1/200/',
         type: 'GET',
@@ -367,4 +368,5 @@
         }
     });
 </script>
+<script src="/js/main/header.js"></script>
 </html>

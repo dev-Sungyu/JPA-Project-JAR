@@ -77,6 +77,10 @@
     let member = [[${session.member}]];
     let memberFile = [[${memberDTO.fileDTO}]];
     let badgeType = [[${session.member.badgeType}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
 </script>
 <script src="/js/main/header.js"></script>
 <script>
