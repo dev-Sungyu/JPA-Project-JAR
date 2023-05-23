@@ -69,7 +69,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let member = [[${session.member}]];
-    let memberFile = member.fileDTO;
+    let memberFile = [[${memberDTO.fileDTO}]];
 </script>
 <script>
     let $selectButton = $(".select-button");
@@ -81,7 +81,6 @@
         });
     });
 </script>
-<script src="/js/board/challenge/group/list.js">
-</script>
+<script src="/js/board/challenge/group/list.js"></script>
 <script src="/js/main/header.js"></script>
 </html>

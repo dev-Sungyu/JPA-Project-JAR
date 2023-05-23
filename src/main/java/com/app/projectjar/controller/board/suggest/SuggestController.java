@@ -25,7 +25,12 @@ public class SuggestController {
     private final MyPageService myPageService;
 
     @GetMapping("write")
-    public void goToWriteForm(SuggestDTO suggestDTO) { }
+    public void goToWriteForm(Model model, HttpSession session) {
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
+        model.addAttribute("memberDTO",memberDTO);
+    }
 
     @PostMapping("write")
     public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, HttpSession session) {
@@ -50,9 +55,12 @@ public class SuggestController {
     }
 
     @GetMapping("detail/{boardId}")
-    public String goToDetail(Model model, @PathVariable("boardId") Long boardId) {
+    public String goToDetail(Model model, @PathVariable("boardId") Long boardId, HttpSession session) {
         SuggestDTO suggestDTO = suggestService.getSuggest(boardId);
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
 
+        model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("suggestDTO", suggestDTO);
         return "/board/suggest/detail";
     }

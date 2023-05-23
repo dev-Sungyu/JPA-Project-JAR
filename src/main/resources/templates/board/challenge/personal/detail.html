@@ -267,7 +267,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let member = [[${session.member}]];
-    let memberFile = member.fileDTO;
+    let memberFile = [[${memberDTO.fileDTO}]];
     let memberId;
     if (member) {
         memberId = member.id;
