@@ -1,8 +1,13 @@
 package com.app.projectjar.service.inquire;
 
+import com.app.projectjar.domain.inquire.AnswerDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
+import com.app.projectjar.domain.reply.ReplyRequestDTO;
+import com.app.projectjar.entity.inquire.Answer;
 import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.member.Member;
+import com.app.projectjar.entity.suggest.SuggestReply;
+import com.app.projectjar.repository.inquire.AnswerRepository;
 import com.app.projectjar.repository.inquire.InquireRepository;
 import com.app.projectjar.repository.member.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +20,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
 @Service
 @Qualifier("inquire") @Primary
@@ -26,6 +34,7 @@ import java.util.stream.Collectors;
 public class InquireServiceImpl implements InquireService {
     private final InquireRepository inquireRepository;
     private final MemberRepository memberRepository;
+    private final AnswerRepository answerRepository;
 
     @Override
     public Page<InquireDTO> getAllInquiresWithPaging(int page) {
@@ -73,5 +82,31 @@ public class InquireServiceImpl implements InquireService {
         List<InquireDTO> inquireDTOS = inquires.stream().map(this::toInquireDTO).collect(Collectors.toList());
         return new PageImpl<>(inquireDTOS, inquires.getPageable(), inquires.getTotalElements());
     }
+
+    @Override
+    public void deleteInquires(List<Long> inquireIds) {
+        for (Long inquireId : inquireIds) {
+            answerRepository.deleteByAnswerId(inquireId);
+            inquireRepository.deleteByInquireId(inquireId);
+        }
+    }
+
+//    @Override @Transactional
+//    public void insertAnswer(AnswerDTO answerDTO) {
+//        memberRepository.findById(answerDTO.getId()).ifPresent(
+//                member ->
+//                        inquireRepository.findById(answerDTO.getId()).ifPresent(
+//                                inquire -> {
+//                                    Answer answer = Answer.builder()
+//                                            .answerContent(answerDTO.getAnswerContent())
+//                                            .inquire(getInquire(inquireId))
+//                                            .member(member)
+//                                            .build();
+//                                    answerRepository.save(answer);
+//                                    inquireRepository.save(inquire);
+//                                }
+//                        )
+//        );
+//    }
 
 }

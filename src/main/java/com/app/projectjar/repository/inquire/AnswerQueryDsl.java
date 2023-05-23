@@ -21,5 +21,6 @@ public interface AnswerQueryDsl {
     // 상세보기
     public Optional<Answer> findByIdAnswer_QueryDsl(Long answerId);
 
+    public void deleteByAnswerId(Long answerId);
     
 }

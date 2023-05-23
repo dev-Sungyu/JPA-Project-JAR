@@ -11,6 +11,8 @@ import com.app.projectjar.entity.member.Member;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface InquireService {
     //    전체 목록 페이징
     public Page<InquireDTO> getAllInquiresWithPaging(int page);
@@ -29,6 +31,10 @@ public interface InquireService {
 
     // 마이 페이지 문의 사항 목록 조회
     public Page<InquireDTO> getInquireForMemberIdList(Pageable pageable, Long id);
+
+    public void deleteInquires(List<Long> inquireIds);
+
+//    public void insertAnswer(AnswerDTO answerDTO);
 
 
 

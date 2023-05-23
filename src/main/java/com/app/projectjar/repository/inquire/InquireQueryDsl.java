@@ -13,5 +13,6 @@ public interface InquireQueryDsl {
 //   내가 작성한 문의 게시글 전체 조회
     public Page<Inquire> findAllByMemberIdWithPaging_QueryDsl(Pageable pageable, Long id);
 
+    public void deleteByInquireId(Long inquireId);
 
 }

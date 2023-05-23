@@ -108,22 +108,28 @@ public class AdminController {
 
     @PostMapping("board/challenge/modify/delete/{challengeId}")
     public RedirectView deletePersonal(@PathVariable("challengeId") Long challengeId){
-//        inquireService.delete(challengeId);
+        personalChallengeService.delete(challengeId);
         return new RedirectView("admin/board/challenge/list");
     }
 
 
     @GetMapping("board/inquire/answer")
-    public void adminInquireAnswer() {
-
-    }
-    @GetMapping("board/inquire/detail/{inquireId}")
-    public String adminInquireDetail(Model model, @PathVariable("inquireId") Long inquireId, Long answerId) {
+    public void adminInquireAnswer(Model model, Long inquireId) {
         InquireDTO inquireDTO = inquireService.getInquire(inquireId);
-        AnswerDTO answerDTO = answerService.getAnswer(answerId);
-
         model.addAttribute("inquireDTO", inquireDTO);
-        model.addAttribute("answerDTO", answerDTO);
+    }
+    @PostMapping("board/inquire/answer")
+    public String adminPostAnswer(@RequestParam("inquireId")Long inquireId, @ModelAttribute("answerDTO") AnswerDTO answerDTO) {
+
+        answerService.register(inquireId, answerDTO);
+        return "redirect:/admin/board/inquire/list";
+    }
+
+
+    @GetMapping("board/inquire/detail/{inquireId}")
+    public String adminInquireDetail(Model model, @PathVariable("inquireId") Long inquireId) {
+        InquireDTO inquireDTO = inquireService.getInquire(inquireId);
+        model.addAttribute("inquireDTO", inquireDTO);
 
         return "admin/board/inquire/detail";
     }
@@ -133,6 +139,12 @@ public class AdminController {
         model.addAttribute("pageDTO", new PageDTO(inquirePage));
         model.addAttribute("inquireDTOS", inquirePage.getContent());
         return "admin/board/inquire/list";
+    }
+    @DeleteMapping("board/inquire/delete")
+    @ResponseBody
+    public ResponseEntity<String> deleteInquires(@RequestBody List<Long> inquireIds) {
+        inquireService.deleteInquires(inquireIds);
+        return ResponseEntity.ok("게시물 삭제에 성공했습니다.");
     }
     @GetMapping("board/inquire/modify")
     public void adminInquireModify(){

@@ -38,7 +38,7 @@
                     <!-- 헤더 -->
                     <div class="prev-button-layout">
                         <div>
-                            <a href="">
+                            <a th:href="@{/admin/board/inquire/list}">
                                 <img style="top: 2px;" src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
@@ -49,36 +49,36 @@
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
                             <div class="board-info-title-box">
-                                <span>문의글</span>
+                                <span>문의글 상세보기</span>
                             </div>
+                            <hr>
                             <div class="info-table">
                                 <div class="board_title">
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
-                                    <span>문의 제목</span>
+                                    <span th:text="${inquireDTO.inquireTitle}">제목</span>
                                 </div>
                                 <div class="board_info board_writer">
                                     <span class="span-bold">작성자 :</span>
                                     <!-- 작성자 명  -->
-                                    <span>문의자닉네임</span>
+                                    <span th:text="${inquireDTO.memberDTO.memberNickname}">닉네임</span>
                                 </div>
                                 <!-- <div class="info-member">
-									<span class="span-bold">좋아요 :</span>
-									<span>3</span>
-								</div> -->
+                                    <span class="span-bold">좋아요 :</span>
+                                    <span>3</span>
+                                </div> -->
                                 <div class="board_info board_register_date">
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
-                                    <span>2023.04.23 11:01</span>
+                                    <span th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy/MM/dd')}">2023.04.23 11:01</span>
                                 </div>
                                 <hr>
-                                <div class="board_content">
+                                <div class="board_content" th:text="${inquireDTO.inquireContent}">
                                     <!-- 게시판 내용 -->
-                                    문의글 내용
-                                    문의글 내용
                                     문의글 내용
                                 </div>
                             </div>
+                        </div>
                     </section>
                     <section class="board-info-box-layout">
                         <div class="board-info-box">
@@ -86,21 +86,14 @@
                                 <span>문의 답변하기</span>
                             </div>
                             <div class="info-table">
-                                <form action="">
-                                    <input type="hidden" name="boardId" value="">
-                                    <!-- <input type="hidden" name="page" value=""> -->
+                                <form th:action="@{/admin/board/inquire/answer(inquireId=${inquireDTO.id})}" method="post">
                                     <div>
-                                        <input type="text" class="board-title" name="boardTitle"
-                                            placeholder="제목을 입력해주세요." autocomplete="off" value="">
-                                    </div>
-                                    <hr>
-                                    <div>
-                                        <textarea class="board-content" name="boardContent"
+                                        <textarea class="board-content" name="answerContent"
                                             placeholder="내용을 입력해주세요."></textarea>
                                     </div>
                                     <hr>
                                     <div>
-                                        <button class="btn_done">등록</button>
+                                        <button class="btn_done" type="submit">등록</button>
                                     </div>
                                 </form>
                             </div>

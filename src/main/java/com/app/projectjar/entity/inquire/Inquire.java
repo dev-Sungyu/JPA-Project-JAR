@@ -38,6 +38,10 @@ public class Inquire extends Period {
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, mappedBy = "inquire")
     private Answer answer;
 
+    public void setAnswerType(AnswerType answerType) {
+        this.answerType = answerType;
+    }
+
     @Builder
     public Inquire(Long id, String inquireTitle, String inquireContent, AnswerType answerType, Member member) {
         this.id = id;
