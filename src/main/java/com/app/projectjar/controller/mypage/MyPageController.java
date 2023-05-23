@@ -10,6 +10,7 @@ import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.domain.suggest.SuggestLikeDTO;
+import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.diary.like.DiaryLikeService;
@@ -44,11 +45,14 @@ public class MyPageController {
     private final SuggestLikeService suggestLikeService;
     private final DiaryLikeService diaryLikeService;
 
+    private final HttpSession session;
+
     @GetMapping("main")
-    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model, HttpSession session){
-        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(userDetail.getId());
+    public void main(HttpSession session, Model model){
+
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberId);
         model.addAttribute("calendarDTOS",calendarDTOS);
-        model.addAttribute("userDetail", userDetail);
     }
 
     @PostMapping("register")
