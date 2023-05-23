@@ -23,6 +23,7 @@
                     <div class="list-title-layout">
                         <div style="display: flex; justify-content: space-between">
                             <h2 class="list-title">제안 게시판 목록</h2>
+                            <th:block th:if="${!#strings.isEmpty(memberDTO)}">
                             <a href="/board/suggest/write">
                                 <div class="write-button-box">
                                     <div class="write-button-button-layout">
@@ -30,6 +31,7 @@
                                     </div>
                                 </div>
                             </a>
+                            </th:block>
                         </div>
                         <div class="list-sub-title">하고싶은 챌린지를 제안해보세요.</div>
                     </div>
@@ -69,6 +71,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
     let memberId;
     if (member) {
         memberId = member.id;
