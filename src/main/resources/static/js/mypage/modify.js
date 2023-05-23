@@ -1,9 +1,9 @@
 globalThis.code;
 
 $(".toggle-box").click(() => {
-    if($(".accept").is(':checked')){
+    if ($(".accept").is(':checked')) {
         $(".toggle-box").removeClass("toggle-active");
-    }else {
+    } else {
         $(".toggle-box").addClass("toggle-active");
     }
 });
@@ -13,11 +13,11 @@ const $nameInput = $("input[name=memberName]");
 let nameCheck = false;
 
 $nameInput.blur(() => {
-    if(!$nameInput.val()) {
+    if (!$nameInput.val()) {
         nameCheck = false;
         $(".name-error").show();
         $(".name-error").text("이름을 입력해주세요.");
-    }else {
+    } else {
         $(".name-error").hide();
         nameCheck = true;
     }
@@ -29,7 +29,7 @@ let nickNameCheck = false;
 let nicknameInput = $("input[name=memberNickname]")
 let nicknameErrorMsg = $(".nick-name-error");
 
-nicknameInput.on("blur", function() {
+nicknameInput.on("blur", function () {
     $.ajax({
         url: "/member/check-nickname",
         type: "post",
@@ -42,14 +42,14 @@ nicknameInput.on("blur", function() {
                 nicknameErrorMsg.css('color', 'rgb(243, 33, 59)');
                 nickNameCheck = false;
                 $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
-                $(".next_btn").prop("disabled",true);
+                $(".next_btn").prop("disabled", true);
             } else if (nicknameInput.length > 20 || nicknameInput.val().length < 2) {
                 nicknameErrorMsg.text("닉네임은 최소 2자 입니다.").show();
                 nicknameInput.addClass("error-input");
                 nicknameErrorMsg.css('color', 'rgb(243, 33, 59)');
                 nickNameCheck = false;
                 $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
-                $(".next_btn").prop("disabled",true);
+                $(".next_btn").prop("disabled", true);
             } else {
                 nicknameErrorMsg.text("").show();
                 nicknameErrorMsg.css('color', '#2bb673');
@@ -76,7 +76,7 @@ $(".exit").each((i, e) => {
         $sendAuthButton.attr("disabled", true);
         $phoneNumberInput.attr("disabled", false);
         $phoneErrorMsg.text("");
-        $phoneNumberInput.val(""); 
+        $phoneNumberInput.val("");
         $(".auth-box").hide();
         $("auth-msg").text("");
         $codeInput.val("");
@@ -92,18 +92,18 @@ const $sendAuthButton = $(".send-auth-button");
 $phoneNumberInput.blur(() => {
 
     $.ajax({
-        url:"/member/check-phone",
-        type:"post",
-        data:{"memberPhoneNumber": $phoneNumberInput.val()},
-        success: function(result){
-            if(result == 1) {
+        url: "/member/check-phone",
+        type: "post",
+        data: {"memberPhoneNumber": $phoneNumberInput.val()},
+        success: function (result) {
+            if (result == 1) {
                 $sendAuthButton.attr("disabled", true);
                 $phoneErrorMsg.text("중복된 핸드폰 번호입니다.");
-            }else if(!$phoneNumberInput.val()){
+            } else if (!$phoneNumberInput.val()) {
                 $sendAuthButton.attr("disabled", true);
                 $phoneErrorMsg.text("핸드폰 번호를 입력해주세요.");
 
-            } else if(!regPhone.test($phoneNumberInput.val())){
+            } else if (!regPhone.test($phoneNumberInput.val())) {
                 $sendAuthButton.attr("disabled", true);
                 $phoneErrorMsg.text("형식에 맞게 입력해주세요.");
 
@@ -133,17 +133,18 @@ $sendAuthButton.click(() => {
 
 // 인증번호 검사
 const $codeInput = $("input[name=code]");
-const $codeCheckButton = $(".auth-check-button");4
+const $codeCheckButton = $(".auth-check-button");
+4
 
 $codeInput.blur(() => {
 
-    if(!$codeInput.val()){
+    if (!$codeInput.val()) {
         $codeCheckButton.attr("disabled", true);
-        $(".auth-msg").css("color","red");
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").text("인증번호를 입력해주세요.");
-    }else {
+    } else {
         $(".auth-msg").text("");
-        $(".auth-msg").css("color","#36f");
+        $(".auth-msg").css("color", "#36f");
         $codeInput.attr("disabled", false);
         $codeCheckButton.attr("disabled", false);
     }
@@ -151,13 +152,13 @@ $codeInput.blur(() => {
 
 // 인증번호 검사 버튼
 $codeCheckButton.click(() => {
-    if($codeInput.val() == globalThis.code){
+    if ($codeInput.val() == globalThis.code) {
         $(".phone-number-change-button").attr("disabled", false);
-        $(".auth-msg").css("color","#36f");
+        $(".auth-msg").css("color", "#36f");
         $(".auth-msg").text("인증번호가 일치합니다.");
-    }else {
+    } else {
         $(".phone-number-change-button").attr("disabled", true);
-        $(".auth-msg").css("color","red");
+        $(".auth-msg").css("color", "red");
         $(".auth-msg").text("인증번호가 일치하지 않습니다.");
     }
 });
@@ -171,10 +172,10 @@ $phoneConfirmButton.click(() => {
     $(".phone-modal-display").hide();
 });
 
-function check(){
-    if(nameCheck && nickNameCheck) {
+function check() {
+    if (nameCheck && nickNameCheck) {
         $(".modify-button").attr("disabled", false);
-    }else {
+    } else {
         $(".modify-button").attr("disabled", true);
     }
 }
@@ -188,7 +189,7 @@ $withdrawModal.click(() => {
 
 $(".exit-withdraw").each((i, e) => {
     $(e).click(() => {
-        $(".withdraw-display").hide(); 
+        $(".withdraw-display").hide();
         $(".reson-textarea").val("");
     });
 });
@@ -197,20 +198,24 @@ $(".exit-withdraw").each((i, e) => {
 $(".modify-accept").click(() => {
     let phoneNumber = $(".phone_number").val();
     let text = '';
-    if(profile.fileOriginalName == undefined && profile.fileOriginalName == null){
-        text =
-            `
+    if (profile != null || profile != undefined) {
+
+
+        if (profile.fileOriginalName == undefined && profile.fileOriginalName == null) {
+            text =
+                `
                         <input type="hidden" name="fileDTO.fileOriginalName" value="${profile.name}">
                         <input type="hidden" name="fileDTO.fileUuid" value="${globalThis.uuid}">
                         <input type="hidden" name="fileDTO.filePath" value="${toStringByFormatting(new Date())}">
                         `;
-    }else {
-        text =
-            `
+        } else {
+            text =
+                `
                 <input type="hidden" name="fileDTO.fileOriginalName" value="${profile.fileOriginalName}">
                 <input type="hidden" name="fileDTO.fileUuid" value="${profile.fileUuid}">
                 <input type="hidden" name="fileDTO.filePath" value="${profile.filePath}">
                 `;
+        }
     }
     text += `<input type="hidden" name="memberPhoneNumber" value="${phoneNumber}">`;
     $("form[name=form]").append(text);

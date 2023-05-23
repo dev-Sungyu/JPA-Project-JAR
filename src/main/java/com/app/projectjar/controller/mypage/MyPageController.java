@@ -3,15 +3,12 @@ package com.app.projectjar.controller.mypage;
 import com.app.projectjar.domain.calendar.CalendarDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.diary.DiaryLikeDTO;
-import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.domain.suggest.SuggestLikeDTO;
-import com.app.projectjar.entity.member.Member;
-import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.diary.like.DiaryLikeService;
 import com.app.projectjar.service.inquire.InquireService;
@@ -23,7 +20,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,16 +44,20 @@ public class MyPageController {
     private final HttpSession session;
 
     @GetMapping("main")
-    public void main(HttpSession session, Model model){
+    public void main(Model model){
 
         Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberId);
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
+        log.info(memberDTO.toString());
+        model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("calendarDTOS",calendarDTOS);
     }
 
     @PostMapping("register")
-    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO,@AuthenticationPrincipal UserDetail userDetail){
-        Long memberId = userDetail.getId();
+    public RedirectView register(@ModelAttribute("diaryDTO") DiaryDTO diaryDTO, HttpSession session){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         myPageService.registerDiary(diaryDTO, memberId);
         return new RedirectView("/mypage/main?check=true");
     }
@@ -70,9 +70,6 @@ public class MyPageController {
 
     @PostMapping("diary-modify")
     public RedirectView modifyDiary(@RequestParam("boardId") Long diaryId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
-
-        diaryDTO.getFileDTOS().stream().map(FileDTO::toString).forEach(log::info);
-
         diaryDTO.setId(diaryId);
         myPageService.modifyDiary(diaryDTO);
         return new RedirectView("/mypage/main");
@@ -85,14 +82,13 @@ public class MyPageController {
     }
 
     @GetMapping("badge")
-    public void badge(HttpSession session, Model model){
-        UserDetail member = (UserDetail)session.getAttribute("member");
-        Long memberId = member.getId();
-
+    public void badge(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
+        model.addAttribute("memberDTO", memberDTO);
         int totalCount = memberService.getMemberBadgeCount(memberId);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("memberDTO", memberDTO);
     }
 
     @DeleteMapping("delete-main/{boardId}")
@@ -100,8 +96,10 @@ public class MyPageController {
     public void deleteMain(@PathVariable("boarId") Long diaryId){ diaryService.delete(diaryId);}
 
     @GetMapping("personal-challenge")
-    public void personal(Model model, @AuthenticationPrincipal UserDetail userDetail){
-        model.addAttribute("userDetail", userDetail);
+    public void personal(Model model, HttpSession session){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("challenge-content")
@@ -112,7 +110,11 @@ public class MyPageController {
     }
 
     @GetMapping("group-challenge")
-    public void group(Model model, @AuthenticationPrincipal UserDetail userDetail){model.addAttribute("userDetail", userDetail);}
+    public void group(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
+    }
 
     @GetMapping("group-challenge-content")
     @ResponseBody
@@ -122,8 +124,10 @@ public class MyPageController {
     }
 
     @GetMapping("inquire")
-    public void goToInquire(@AuthenticationPrincipal UserDetail userDetail,Model model){
-        model.addAttribute("userDetail", userDetail);
+    public void goToInquire(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("inquire-list")
@@ -141,8 +145,10 @@ public class MyPageController {
     }
 
     @GetMapping("propsal")
-    public void goToPropsal(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        model.addAttribute("userDetail", userDetail);
+    public void goToPropsal(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("propsal-list")
@@ -161,8 +167,10 @@ public class MyPageController {
 
 
     @GetMapping("share")
-    public void goToShare(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        model.addAttribute("userDetail", userDetail);
+    public void goToShare(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("share-list")
@@ -170,11 +178,7 @@ public class MyPageController {
     public Page<DiaryDTO> share(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
         Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, id);
-        log.info("================");
-        log.info(String.valueOf(id));
-        log.info(String.valueOf(page));
         diaryDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
-        log.info("================");
         return diaryDTOS;
     }
 
@@ -185,8 +189,10 @@ public class MyPageController {
     }
 
     @GetMapping("suggest-like-list")
-    public void goToSuggestLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        model.addAttribute("userDetail", userDetail);
+    public void goToSuggestLike(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("suggest-like-list-content")
@@ -198,8 +204,10 @@ public class MyPageController {
     }
 
     @GetMapping("diary-like-list")
-    public void goToDiaryLike(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        model.addAttribute("userDetail", userDetail);
+    public void goToDiaryLike(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @GetMapping("diary-like-list-content")
@@ -212,29 +220,24 @@ public class MyPageController {
 
 
     @GetMapping("modify")
-    public void modify(HttpSession session, Model model){
-        UserDetail member = (UserDetail) session.getAttribute("member");
-        Long memberId = member.getId();
+    public void modify(Model model){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
         model.addAttribute("memberDTO", memberDTO);
     }
 
     @PostMapping("modify-member")
-    public RedirectView modifyMember(HttpSession session,@ModelAttribute("memberDTO") MemberDTO memberDTO){
-        UserDetail member = (UserDetail) session.getAttribute("member");
-        Long memberId = member.getId();
+    public RedirectView modifyMember(@ModelAttribute("memberDTO") MemberDTO memberDTO){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
         memberDTO.setId(memberId);
-        log.info(memberDTO.getMemberPhoneNumber());
         myPageService.modifyMember(memberDTO);
-
         return new RedirectView("/mypage/main");
     }
 
     @PostMapping("withdraw")
-    public RedirectView withdraw(HttpSession session){
-        UserDetail member = (UserDetail) session.getAttribute("member");
-        myPageService.withDrawMember(member.getId());
-
+    public RedirectView withdraw(){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        myPageService.withDrawMember(memberId);
         return new RedirectView("/member/logout");
     }
 
