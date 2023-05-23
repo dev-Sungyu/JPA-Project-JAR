@@ -3,15 +3,12 @@ let page = 0;
 // page = $('.paging-active div').text();
 
 suggestService = (function () {
-    console.log("들어옴1");
     function list(page, callback) {
-        console.log("들어옴2");
         $.ajax({
             url: '/mypage/propsal-list',
             type: 'get',
             data: page,
             success: function(list){
-                console.log("들어옴3");
                 if(callback){
                     callback(list);
                     console.log(list);
@@ -109,7 +106,6 @@ function listText(list) {
 
 
 function getList(page, memberId) {
-    console.log("들어옴4");
     suggestService.list({
         page: page,
         memberId : memberId
@@ -128,7 +124,6 @@ function getNewList(page, memberId) {
     }, function (list) {
         $ul.html(listText(list));
         displayPagination(list.totalPages);
-        console.log("들어옴5");
 
     });
 }
@@ -148,7 +143,6 @@ function getDate(register){
 
 
 function deleteSuggest(boardId) {
-    console.log("들어옴6")
     $.ajax({
         url: `/mypage/delete-suggest/${boardId}`,
         type: "DELETE",

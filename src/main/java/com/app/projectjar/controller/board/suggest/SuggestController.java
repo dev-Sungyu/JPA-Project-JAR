@@ -28,8 +28,7 @@ public class SuggestController {
     @PostMapping("write")
     public RedirectView write(@ModelAttribute("suggestDTO") SuggestDTO suggestDTO, HttpSession session) {
 
-        UserDetail member = (UserDetail) session.getAttribute("member");
-        Long memberId = member.getId();
+        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
         suggestService.register(suggestDTO, memberId);
         return new RedirectView("/board/suggest/list");
     }
