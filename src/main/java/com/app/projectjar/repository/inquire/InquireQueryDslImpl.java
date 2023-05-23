@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,6 +50,14 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
                 .where(inquire.member.id.eq(id))
                 .fetchOne();
         return new PageImpl<>(foundInquire, pageable, count);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByInquireId(Long inquireId) {
+        query.delete(inquire)
+                .where(inquire.id.eq(inquireId))
+                .execute();
     }
 
 }

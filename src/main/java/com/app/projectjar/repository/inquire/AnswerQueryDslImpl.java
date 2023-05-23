@@ -10,6 +10,7 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,5 +48,13 @@ public class AnswerQueryDslImpl implements AnswerQueryDsl {
                 .fetchOne();
 
         return Optional.ofNullable(foundAnswer);
+    }
+
+    @Transactional
+    @Override
+    public void deleteByAnswerId(Long answerId) {
+        query.delete(answer)
+                .where(answer.id.eq(answerId))
+                .execute();
     }
 }
