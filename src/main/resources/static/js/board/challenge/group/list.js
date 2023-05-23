@@ -1,4 +1,3 @@
-
 const $ul = $(".challenge-wrapper-list");
 let page = 0;
 let boardStatus = "OPEN";
