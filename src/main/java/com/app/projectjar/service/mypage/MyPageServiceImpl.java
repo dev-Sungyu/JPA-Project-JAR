@@ -178,11 +178,16 @@ public class MyPageServiceImpl implements MyPageService {
     public void modifyMember(MemberDTO memberDTO) {
         FileDTO fileDTO = memberDTO.getFileDTO();
 
+
         memberRepository.findById(memberDTO.getId()).ifPresent(
                 member -> {
+                    if(!member.getMemberPhoneNumber().equals(memberDTO.getMemberPhoneNumber())){
+                        member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
+                    }
+                    if(!member.getMemberNickname().equals(memberDTO.getMemberNickname())){
+                        member.setMemberNickname(memberDTO.getMemberNickname());
+                    }
                     member.setMemberName(memberDTO.getMemberName());
-                    member.setMemberNickname(memberDTO.getMemberNickname());
-                    member.setMemberPhoneNumber(memberDTO.getMemberPhoneNumber());
                     memberRepository.save(member);
 
                     memberFileRepository.deleteByMemberId(memberDTO.getId());
