@@ -81,13 +81,14 @@ public class MyPageController {
     }
 
     @GetMapping("badge")
-    public void badge(@AuthenticationPrincipal UserDetail userDetail, Model model){
-        Long memberId = userDetail.getId();
-        MemberDTO memberDTO = memberService.getMember(memberId);
+    public void badge(HttpSession session, Model model){
+        UserDetail member = (UserDetail)session.getAttribute("member");
+        Long memberId = member.getId();
+
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
         int totalCount = memberService.getMemberBadgeCount(memberId);
         model.addAttribute("totalCount", totalCount);
-        model.addAttribute("mem3berDTO", memberDTO);
-        log.info(memberId.toString());
+        model.addAttribute("memberDTO", memberDTO);
     }
 
     @DeleteMapping("delete-main/{boardId}")
