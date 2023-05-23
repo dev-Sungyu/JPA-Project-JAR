@@ -4,6 +4,7 @@ import com.app.projectjar.domain.inquire.AnswerDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.inquire.Answer;
 import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.repository.inquire.AnswerRepository;
 import com.app.projectjar.service.mypage.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +19,13 @@ import java.util.Optional;
 @Slf4j
 @RequiredArgsConstructor
 public class AnswerServiceImpl implements AnswerService {
+    private final AnswerRepository answerRepository;
 
     //    상세보기
     @Override
-    public AnswerDTO getAnswer(Long answerId) {
-        Optional<Answer> answer = .findByIdSuggest_QueryDsl(suggestId);
-        return toSuggestDTO(suggest.get());
+    public AnswerDTO getAnswer(Long inquireId) {
+        Optional<Answer> answer = answerRepository.findByIdAnswer_QueryDsl(inquireId);
+        return toAnswerDTO(answer.get());
     }
 
 }

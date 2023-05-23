@@ -2,14 +2,23 @@ package com.app.projectjar.repository.inquire;
 
 
 import com.app.projectjar.entity.inquire.Answer;
+import com.app.projectjar.entity.inquire.QAnswer;
+import com.app.projectjar.entity.suggest.QSuggest;
+import com.app.projectjar.entity.suggest.Suggest;
+import com.app.projectjar.entity.suggest.SuggestReply;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 
 import java.util.List;
+import java.util.Optional;
 
+import static com.app.projectjar.entity.file.suggest.QSuggestFile.suggestFile;
 import static com.app.projectjar.entity.inquire.QAnswer.answer;
+import static com.app.projectjar.entity.member.QMember.member;
+import static com.app.projectjar.entity.suggest.QSuggest.suggest;
+import static com.app.projectjar.entity.suggest.QSuggestReply.suggestReply;
 
 @RequiredArgsConstructor
 public class AnswerQueryDslImpl implements AnswerQueryDsl {
@@ -28,4 +37,15 @@ public class AnswerQueryDslImpl implements AnswerQueryDsl {
 //                .fetch();
 //
 //    }
+
+    @Override
+    public Optional<Answer> findByIdAnswer_QueryDsl(Long inquireId) {
+        Answer foundAnswer = query.select(answer)
+                .from(answer)
+                .fetchJoin()
+                .where(answer.id.eq(inquireId))
+                .fetchOne();
+
+        return Optional.ofNullable(foundAnswer);
+    }
 }
