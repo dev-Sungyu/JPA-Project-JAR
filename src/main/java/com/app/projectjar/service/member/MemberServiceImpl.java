@@ -66,7 +66,17 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(toMemberEntity(memberDTO));
     }
 
-//    이메일 중복검사
+//    회원정보 조회
+    @Override
+    public MemberDTO getMemberInfo(Long id) {
+        Optional<Member> foundMember = memberRepository.findById(id);
+        if (foundMember.isPresent()) {
+            return toMemberDTO(foundMember.get());
+        }
+        return null;
+    }
+
+    //    이메일 중복검사
     @Override
     public Long checkEmail(String memberEmail) { return memberRepository.overlapByMemberEmail_QueryDSL(memberEmail);}
 
