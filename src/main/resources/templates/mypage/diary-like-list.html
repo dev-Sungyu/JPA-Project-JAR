@@ -128,11 +128,14 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
+    let member = [[${session.member}]];
+    let memberFile = member.fileDTO;
     let badgeType = [[${session.member.badgeType}]];
     let member = [[${session.member}]];
 </script>
 <script src="/js/mypage/diary-like-list.js"></script>
 <script src="/js/board/suggest/like-service.js"></script>
+<script src="/js/main/header.js"></script>
 <script>
     // 좋아요 버튼
     $ul.on("click","button.heart-layout",function(e){
