@@ -4,6 +4,7 @@ import com.app.projectjar.domain.challenge.ChallengeDTO;
 import com.app.projectjar.domain.diary.DiaryDTO;
 import com.app.projectjar.domain.file.FileDTO;
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.inquire.AnswerDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.domain.notice.NoticeDTO;

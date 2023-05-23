@@ -42,24 +42,22 @@ public class MainController {
     private final MemberService memberService;
 
     @GetMapping("")
-    public void main(@AuthenticationPrincipal UserDetail userDetail) {
+    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
 
         if(session.getAttribute("member")==null){
             Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
             MemberDTO memberDTO = memberService.toMemberDTO(member);
             session.setAttribute("member", memberDTO);
             log.info("member: " + memberDTO.toString());
-        }}
+        }
 
-//    public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
-//
-//        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
-//        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
-//
-//        model.addAttribute("userDetail", userDetail);
-//        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
-//        model.addAttribute("calendarDTOS", calendarDTOS);
-//    }
+        List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
+        List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
+
+        model.addAttribute("userDetail", userDetail);
+        model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
+        model.addAttribute("calendarDTOS", calendarDTOS);
+    }
 
     @GetMapping("/list-content")
     @ResponseBody
