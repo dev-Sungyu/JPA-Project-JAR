@@ -74,12 +74,13 @@ function listText(list) {
     let text = '';
     $(inquireDTOS).each((i, inquireDTO) => {
         var answertype = inquireDTO.answerType == 'ANSWER' ? '답변 완료' : '미답변';
-        var createDate = getDate(inquireDTO.createDate);
+        var createdDate = getDate(inquireDTO.createdDate);
+        console.log(createdDate);
 
         text += `
       <div class="inquire-list-layout">
         <div class="flex-between">
-          <p class="date">${createDate}</p>
+          <p class="date">${createdDate}</p>
           <div>
             <button type="button" class="btn modify-btn" onclick="location.href='/board/inquire/modify/${inquireDTO.id}'">수정</button>
             <button type="button" class="btn delete-btn" onclick="deleteInquire(${inquireDTO.id})">삭제</button>
@@ -154,7 +155,6 @@ function getDate(register){
 
 
 function deleteInquire(boardId) {
-    console.log("들어옴6")
     $.ajax({
         url: `/mypage/delete-inquire/${boardId}`,
         type: "DELETE",
