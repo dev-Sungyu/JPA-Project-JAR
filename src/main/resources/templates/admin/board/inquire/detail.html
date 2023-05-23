@@ -12,6 +12,24 @@
     <link rel="stylesheet" href="/css/board/inquire/inquire.css">
     <link rel="icon" href="/image/logo/favicon.png">
 </head>
+<style>
+    .important{
+        border-radius: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(229, 229, 229);
+        box-shadow: none;
+    }
+    .content {
+        border-radius: 0px;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(255, 255, 255);
+        border-color: rgb(229, 229, 229);
+        box-shadow: none;
+    }
+</style>
 
 <body>
     <div>
@@ -72,7 +90,7 @@
                                 <div class="board_info board_register_date">
                                     <span class="span-bold">작성 날짜 :</span>
                                     <!-- 작성 날짜  -->
-                                    <span th:text="${#temporals.format(inquireDTO.createDate, 'yyyy/MM/dd')}">2023.04.23 11:01</span>
+                                    <span th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy/MM/dd')}">2023.04.23 11:01</span>
                                 </div>
                                 <hr>
                                 <div class="board_content" th:text="${inquireDTO.inquireContent}">
@@ -80,34 +98,43 @@
                                     문의글 내용
                                 </div>
                                 <!--답변 부분-->
+                                <th:block th:if="${!#strings.isEmpty(inquireDTO.answerDTO)}">
                                 <div class="notice_wrap_div">
                                     <div class="notice_box">
                                         <div class="login">
-                                            <div class="notice_text">
-                                                <h4 class="notice_text_h4">문의사항 답변</h4>
-                                            </div>
                                             <div style="height: 6px;"></div>
                                             <div class="important">
-                                                <div class="important_div">
+                                                <div class="important_div" th:if="${inquireDTO.answerType != null}">
                                                     <div class="login_row">
                                                         <div style="width: 6px;"></div>
-                                                        <div class="new_101">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</div>
                                                     </div>
-                                                    <p class="year_month_day">2023. 4. 3.</p>
+                                                    <p class="year_month_day" th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy/MM/dd')}">2023. 4. 3.</p>
                                                 </div>
                                             </div>
                                             <div class="content">
                                                 <div>
-                                                    <p class="content_p">답변 내용</p>
+                                                    <p class="content_p" th:text="${inquireDTO.answerDTO.answerContent}">답변 내용</p>
                                                 </div>
                                             </div>
                                             <div style="height: 6px;"></div>
                                         </div>
                                     </div>
                                 </div>
+                                </th:block>
+                                <th:block th:unless="${!#strings.isEmpty(inquireDTO.answerDTO)}">
+                                    <div class="notice_wrap_div">
+                                        <div class="notice_box">
+                                            <div class="login">
+                                                <div style="display: flex; justify-content: center; align-content: center;">
+                                                    <p>아직 답변이 되지않았습니다.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </th:block>
                                 <hr>
                                 <div class="answer_button_wrapper modify_button_wrapper">
-                                    <a th:href="@{admin/board/inquire/answer(inquireId=${inquireDTO.id})}">답변하기</a>
+                                    <a th:href="@{/admin/board/inquire/answer(inquireId=${inquireDTO.id})}">답변하기</a>
                                 </div>
                             </div>
                         </div>

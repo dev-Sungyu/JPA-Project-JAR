@@ -11,7 +11,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import javax.persistence.*;
 
 @Entity
-@Getter @ToString(callSuper = true)
+@Getter @ToString(callSuper = true, exclude = "inquire")
 @Table(name ="TBL_ANSWER")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @DynamicInsert
@@ -26,4 +26,11 @@ public class Answer extends Period {
 
     @OneToOne(fetch = FetchType.LAZY)
     private Inquire inquire;
+
+    @Builder
+    public Answer(Long id, String answerContent, Inquire inquire) {
+        this.id = id;
+        this.answerContent = answerContent;
+        this.inquire = inquire;
+    }
 }
