@@ -14,7 +14,7 @@ public interface InquireService {
     public Page<InquireDTO> getAllInquiresWithPaging(int page);
 
     // 저장
-    public void register(InquireDTO InquireDTO, Long memberd);
+    public void register(InquireDTO InquireDTO, Long id);
 
     // 상세 보기
     public InquireDTO getInquire(Long inquireId);
