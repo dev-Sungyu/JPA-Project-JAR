@@ -9,13 +9,12 @@ $("input[type=radio]").each((i, e) => {
 });
 
 $(".modify-button").click(() => {
-    const $files = fileDTOS;
     let text = "";
 
     let boardTitle = $("input[name='boardTitle']").val();
     let boardContent = $(".proposal_content").val();
 
-    if ($files.length < 4) {
+    if (files.length < 4) {
         alertModal(alertMsg[0]);
         return false;
     } else if (!boardTitle) {

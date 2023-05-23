@@ -1,4 +1,4 @@
-globalThis.uuids;
+globalThis.uuids = [];
 
 // 개인, 그룹 선택
 let $radioButton = $("input[type=radio]");
@@ -35,7 +35,7 @@ $("input[type=file]").on("change", function () {
         files.push(file);
     })
 
-    files.forEach((file, e) => {
+    $files.forEach((file, e) => {
         formData.append("file", file);
     })
 
@@ -47,9 +47,13 @@ $("input[type=file]").on("change", function () {
         contentType: false,
         processData: false,
         success: function (uuids) {
-            globalThis.uuids = uuids;
+            $(uuids).each((i, uuid) => {
+                globalThis.uuids.push(uuid);
+            });
+            console.log(globalThis.uuids);
             let text = '';
             $files.forEach((file, i) => {
+                console.log(uuids[i]);
                 if (file.type.startsWith("image")) {
                     text = `
                         <li class="img_list" id="li${i}">
@@ -96,7 +100,7 @@ $ul.on("click",".close-button", function(e){
     let ul = target.parent();
     let i = ul.find("li").index(target);
     files = [];
-
+        globalThis.uuids.splice(i, 1);
         fileArray.splice(i, 1);
         fileArray.forEach(file => {
             if(file.fileOriginalName == null && file.fileOriginalName == undefined){
@@ -110,7 +114,7 @@ $ul.on("click",".close-button", function(e){
         dataTransfer.files.forEach((file, i) =>{
             files.push(file);
         });
-
+    console.log(globalThis.uuids);
     console.log(files);
 });
 
