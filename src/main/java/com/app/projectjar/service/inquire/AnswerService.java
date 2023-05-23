@@ -1,10 +1,7 @@
 package com.app.projectjar.service.inquire;
 
 import com.app.projectjar.domain.inquire.AnswerDTO;
-import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
-import com.app.projectjar.domain.suggest.SuggestDTO;
 import com.app.projectjar.entity.inquire.Answer;
-import com.app.projectjar.entity.personalChallenge.PersonalChallenge;
 
 public interface AnswerService {
 

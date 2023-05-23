@@ -21,6 +21,8 @@ public class InquireQueryDslImpl implements InquireQueryDsl {
     public Page<Inquire> findAllWithPaging_QueryDSL(Pageable pageable){
         List<Inquire> foundInquire = query.select(inquire)
                 .from(inquire)
+                .join(inquire.member)
+                .fetchJoin()
                 .orderBy(inquire.id.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())
