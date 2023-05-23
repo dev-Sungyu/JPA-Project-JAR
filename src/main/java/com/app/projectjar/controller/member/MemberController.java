@@ -134,12 +134,16 @@ public class MemberController {
     @Transactional(rollbackFor = Exception.class)
     public Long sendEmailToFindPassword(@RequestParam("memberEmail") String memberEmail){
         log.info("@@@@@@@@@@@@@@@@@@@@@@@@@ sendEMail Controller @@@@@@@@@@@@@@@@@@@@@@@@@");
+
         Member member = memberService.getMemberEmail(memberEmail);
         log.info(memberEmail);
         log.info("member: " + member.toString());
-        MemberRandomKey randomKey = memberRandomKeyService.getLatestRandomKey(member.getId());
-        log.info("randomKey controller: " + randomKey.toString());
-        String randomKeyString = randomKey != null ? randomKey.getMemberRandomKey() : memberRandomKeyService.saveRandomKey(member).getMemberRandomKey();
+
+        MemberRandomKey memberRandomKey = memberRandomKeyService.getLatestRandomKey(member.getId());
+        log.info("randomKey controller: " + memberRandomKey.toString());
+
+        String randomKeyString = memberRandomKey != null ? memberRandomKey.getMemberRandomKey() : memberRandomKeyService.saveRandomKey(member).getMemberRandomKey();
+
         log.info("randomKeyString controller: " + randomKeyString);
 
         MailDTO mailDTO = new MailDTO();
@@ -155,6 +159,7 @@ public class MemberController {
 
         return 1L;
     }
+
 
 
 

@@ -343,13 +343,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let userDetail = [[${userDetail}]];
+    let member = [[${session.member}]];
     const groupChallengeDTOS = [[${groupChallengeDTOS}]];
     const calendarDTOS = [[${calendarDTOS}]];
 
     let memberId;
-    if (userDetail) {
-        memberId = userDetail.id;
+    if (member) {
+        memberId = member.id;
     }
 </script>
 <script>
