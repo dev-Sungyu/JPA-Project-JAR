@@ -19,7 +19,7 @@ public interface AnswerQueryDsl {
 //    public void deleteByAnswerId(Long id);
 
     // 상세보기
-    public Optional<Answer> findByIdAnswer_QueryDsl(Long inquireId);
+    public Optional<Answer> findByIdAnswer_QueryDsl(Long answerId);
 
     
 }
