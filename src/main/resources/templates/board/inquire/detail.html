@@ -78,15 +78,14 @@
                     <div class="notice_wrap_div">
                         <div class="notice_box">
                             <div class="login">
-                                <div class="notice_text" th:if="${inquireDTO.answerType != null}">
+                                <div class="notice_text">
                                     <h4 class="notice_text_h4">문의사항 답변</h4>
                                 </div>
                                 <div style="height: 6px;"></div>
-                                <div class="important" th:if="${inquireDTO.answerType != null}">
+                                <div class="important">
                                     <div class="important_div">
                                         <div class="login_row">
                                             <div style="width: 6px;"></div>
-                                            <div class="new_101" th:text="${inquireDTO.answerDTO.answerTitle}">매월 새로운 준비물, 지금 바로 101 서랍에 참여하세요!</div>
                                         </div>
                                         <p class="year_month_day" th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy/MM/dd')}">2023. 4. 3.</p>
                                     </div>
@@ -156,7 +155,7 @@
 <script th:inline="javascript">
     let member = [[${session.member}]];
     let memberDTO = [[${memberDTO}]];
-    let memberFile;
+    let memberFile = null;
     if(memberDTO){
         memberFile = memberDTO.fileDTO;
     }

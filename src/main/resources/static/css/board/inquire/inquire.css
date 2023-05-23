@@ -164,6 +164,7 @@
     height: 100%;
     background-color: rgb(255, 255, 255);
     border-color: rgb(229, 229, 229);
+    padding: 20px 40px;
 }
 .important_div{
     -webkit-box-pack: justify;
@@ -225,7 +226,7 @@
     line-height: 1.875rem;
     font-weight: 400;
     color: rgb(12, 12, 12);
-    padding-top: 8px;
+    padding: 8px 43px;
 }
 .content_ul{
     font-size: 1rem;
