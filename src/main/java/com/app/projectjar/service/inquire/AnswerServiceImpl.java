@@ -23,8 +23,8 @@ public class AnswerServiceImpl implements AnswerService {
 
     //    상세보기
     @Override
-    public AnswerDTO getAnswer(Long inquireId) {
-        Optional<Answer> answer = answerRepository.findByIdAnswer_QueryDsl(inquireId);
+    public AnswerDTO getAnswer(Long answerId) {
+        Optional<Answer> answer = answerRepository.findByIdAnswer_QueryDsl(answerId);
         return toAnswerDTO(answer.get());
     }
 

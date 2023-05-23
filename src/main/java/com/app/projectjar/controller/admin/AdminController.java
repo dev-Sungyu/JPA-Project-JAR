@@ -11,8 +11,10 @@ import com.app.projectjar.domain.notice.NoticeDTO;
 import com.app.projectjar.domain.page.PageDTO;
 import com.app.projectjar.domain.personalChallenge.PersonalChallengeDTO;
 import com.app.projectjar.domain.suggest.SuggestDTO;
+import com.app.projectjar.entity.inquire.Answer;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
+import com.app.projectjar.service.inquire.AnswerService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.notice.NoticeService;
@@ -45,6 +47,7 @@ public class AdminController {
     private final GroupChallengeService groupChallengeService;
     private final PersonalChallengeService personalChallengeService;
     private final InquireService inquireService;
+    private final AnswerService answerService;
 
 
 
@@ -115,10 +118,12 @@ public class AdminController {
 
     }
     @GetMapping("board/inquire/detail/{inquireId}")
-    public String adminInquireDetail(Model model, @PathVariable("inquireId") Long inquireId) {
+    public String adminInquireDetail(Model model, @PathVariable("inquireId") Long inquireId, Long answerId) {
         InquireDTO inquireDTO = inquireService.getInquire(inquireId);
+        AnswerDTO answerDTO = answerService.getAnswer(answerId);
 
         model.addAttribute("inquireDTO", inquireDTO);
+        model.addAttribute("answerDTO", answerDTO);
 
         return "admin/board/inquire/detail";
     }
