@@ -1,7 +1,9 @@
 package com.app.projectjar.controller.board.groupChallenge;
 
 import com.app.projectjar.domain.groupChallenge.GroupChallengeDTO;
+import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
+import com.app.projectjar.service.mypage.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/board/challenge/group/*")
 @RequiredArgsConstructor
@@ -17,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 public class GroupChallengeController {
 
     private final GroupChallengeService groupChallengeService;
+    private final MyPageService myPageService;
 
 
     @GetMapping("content-list")
@@ -31,14 +36,22 @@ public class GroupChallengeController {
     }
 
     @GetMapping("list")
-    public void goToList(){
+    public void goToList(Model model, HttpSession session){
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
+        model.addAttribute("memberDTO",memberDTO);
     }
 
     @GetMapping("detail/{boardId}")
-    public String goToDetail(Model model,  @PathVariable("boardId") Long boardId) {
+    public String goToDetail(Model model,  @PathVariable("boardId") Long boardId, HttpSession session) {
+        Long memberId = ((MemberDTO)session.getAttribute("member")).getId();
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(boardId);
 
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
+        model.addAttribute("memberDTO",memberDTO);
         return "/board/challenge/group/detail";
     }
 }

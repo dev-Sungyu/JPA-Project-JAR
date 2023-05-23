@@ -73,8 +73,13 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
-    let badgeType = [[${session.member.badgeType}]];
     let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
+    let badgeType = [[${session.member.badgeType}]];
+    let memberId;
+    if (member) {
+        memberId = member.id;
+    }
 </script>
 <script>
     let $ul = $(".content-ul");
@@ -269,4 +274,5 @@
         });
     });
 </script>
+<script src="/js/main/header.js"></script>
 </html>

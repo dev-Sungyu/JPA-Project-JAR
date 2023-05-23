@@ -187,6 +187,7 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script th:inline="javascript">
     let member = [[${session.member}]];
+    let memberFile = [[${memberDTO.fileDTO}]];
     let memberId;
     if(member){
         memberId = member.id;
@@ -203,9 +204,9 @@
     });
 
 </script>
+<script src="/js/main/header.js"></script>
 <script src="/js/board/suggest/slide.js"></script>
 <script src="/js/board/diary/image-function.js"></script>
 <script src="/js/board/diary/reply-service.js"></script>
 <script src="/js/board/reply/reply.js"></script>
-<script src="/js/main/header.js"></script>
 </html>

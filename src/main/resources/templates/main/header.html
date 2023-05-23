@@ -111,24 +111,19 @@
                                      <li sec:authorize="isAuthenticated()"><a href="/logout">로그아웃</a></li>
                                       로그인 되잇을 때 경우 -->
                                     <div class="login-active" sec:authorize="isAuthenticated()">
+                                        <th:block th:if="${!#strings.isEmpty(memberDTO)}">
                                         <div class="header-profile" >
-                                            <a href="javascript:void(0)">
+                                            <a href="/mypage/suggest-like-list">
                                                 <span class="search-icon">
                                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21.141 3.91A6.262 6.262 0 0 0 16.654 2c-1.621 0-3.252.635-4.488 1.91-.06.06-.11.125-.165.19-.055-.06-.105-.13-.165-.19A6.263 6.263 0 0 0 7.35 2c-1.621 0-3.252.635-4.488 1.91-2.481 2.545-2.481 6.67 0 9.21l8.935 8.79c.06.06.135.09.21.09.075 0 .15-.03.21-.09l8.935-8.79c2.467-2.54 2.467-6.665-.01-9.21Zm-1.78 7.35-7.37 7.245-7.369-7.245c-1.47-1.525-1.466-3.99.015-5.51A3.73 3.73 0 0 1 7.33 4.605c1.005 0 2.19.505 2.996 1.25.73.68 1.066 1.235 1.361 1.655.03.045.125.215.3.215s.27-.175.305-.22c.296-.425.63-.975 1.356-1.655.806-.75 1.991-1.25 2.997-1.25a3.74 3.74 0 0 1 2.696 1.145c1.486 1.525 1.491 3.99.02 5.514Z"></path></svg>
-                                                </span>
-                                            </a>
-                                            <div class="none-div"></div>
-                                            <a href="javascript:void(0)">
-                                                <span class="search-icon">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.5 6.001v2.257a4.5 4.5 0 0 0-2 3.747c0 1.55.785 2.932 2 3.747v2.257h-15v-2.257a4.5 4.5 0 0 0 2-3.747c0-1.55-.785-2.932-2-3.747V6h15ZM21.905 3.5H2.095A.095.095 0 0 0 2 3.595v6.174c0 .13.105.23.235.245C3.23 10.129 4 10.974 4 12s-.77 1.871-1.765 1.986c-.13.015-.235.115-.235.245v6.174c0 .055.045.095.095.095h19.81a.095.095 0 0 0 .095-.095v-6.174c0-.13-.105-.23-.235-.245A1.998 1.998 0 0 1 20 12c0-1.026.77-1.871 1.765-1.986.13-.015.235-.115.235-.245V3.595a.098.098 0 0 0-.095-.095Z"></path></svg>
                                                 </span>
                                             </a>
                                             <div class="none-div"></div>
                                             <div class="login-flex">
                                                 <div class="header-login-box">
                                                     <div class="header-profile-image-box">
-                                                        <div class="header-profile-background">
-                                                            <img src="/image/logo/normal_profile.png" class="header-profile-image">
+                                                        <div class="header-profile-background profile">
+<!--                                                            <img src="/image/logo/normal_profile.png" class="header-profile-image">-->
                                                         </div>
                                                     </div>
                                                     <div style="width: 4px;"></div>
@@ -151,13 +146,13 @@
                                                                     <div class="flex-stretch">
                                                                         <div class="header-profile-modal-image-box">
                                                                             <div class="header-profile-modal-image-layout">
-                                                                                <div class="header-profile-image-background">
-                                                                                    <img src="/image/logo/normal_profile.png" class="header-profile-image" style="width:100%; height: 100%;">
+                                                                                <div class="header-profile-image-background profile">
+<!--                                                                                    <img src="/image/logo/normal_profile.png" class="header-profile-image" style="width:100%; height: 100%;">-->
                                                                                 </div>
                                                                             </div>
                                                                         </div>
                                                                         <div class="header-profile-name-box">
-                                                                            <p class="member-name">Classmate</p>
+                                                                            <p class="member-name" th:text="${memberDTO.memberNickname}">Classmate</p>
                                                                             <button type="button" class="header-myPage-button">
                                                                                 <div class="header-myPage">
                                                                                     <span class="myPage-arrow">
@@ -173,9 +168,6 @@
                                                                 <div class="header-profile-border"></div>
                                                                 <div class="login-flex">
                                                                     <!-- 카테고리 나열 -->
-                                                                    <a href="javascript:void(0)">
-                                                                        <p class="header-menu">참여 중인 챌린지</p>
-                                                                    </a>
                                                                     <div style="height: 12px;"></div>
                                                                     <a th:href="@{/member/logout}" >
                                                                         <p class="header-menu">로그아웃</p>
@@ -187,6 +179,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        </th:block>
                                     </div>
 
                                 </div>
