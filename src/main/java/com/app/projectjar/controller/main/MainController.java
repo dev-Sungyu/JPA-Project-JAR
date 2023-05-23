@@ -14,6 +14,7 @@ import com.app.projectjar.search.board.SuggestSearch;
 import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.groupChallenge.reply.GroupChallengeReplyService;
 import com.app.projectjar.service.member.MemberService;
+import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.suggest.SuggestService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -41,20 +42,23 @@ public class MainController {
 
     private final MemberService memberService;
 
+    private final MyPageService myPageService;
+
     @GetMapping("")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
+        MemberDTO memberDTO = null;
 
-        if(session.getAttribute("member")==null){
+        if(session.getAttribute("member")==null && userDetail != null){
             Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
-            MemberDTO memberDTO = memberService.toMemberDTO(member);
+            if(member != null){
+                memberDTO = memberService.toMemberDTO(member);
+            }
             session.setAttribute("member", memberDTO);
-            log.info("member: " + memberDTO.toString());
         }
 
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
         List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
-
-        model.addAttribute("userDetail", userDetail);
+        model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
         model.addAttribute("calendarDTOS", calendarDTOS);
     }
