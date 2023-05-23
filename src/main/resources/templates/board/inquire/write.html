@@ -37,6 +37,7 @@
                                             <div class="real-wrap-box">
                                                 <div class="real-wrap-box-box">
                                                     <div class="pasing-wrapper">
+                                                       <a th:href="@{/board/inquire/list}" >
                                                         <button icon-position="0" color="white" fill="false"
                                                             class="pasing-button-1 pasing-no-select">
                                                             <span class="pasing-button-span"><svg
@@ -47,13 +48,14 @@
                                                                         fill="#cacaca"></path>
                                                                 </svg></span>
                                                         </button>
+                                                       </a>
                                                     </div>
                                                     <div class="box-header">
                                                         <h3>문의 작성하기 </h3>
                                                     </div>
                                                     <div class="box-main">
                                                         <div class="box-main-wrap">
-                                                            <form action="">
+                                                            <form th:action="@{/board/inquire/write}" method="post">
                                                                 <div class="box-main-wrpa-list">
                                                                     <p></p>
                                                                     <!-- <div class="box-line file_insert_wrapper is-flex">
@@ -67,9 +69,9 @@
                                                                     </div> -->
                                                                     <label>
                                                                         <div class="box-main-title">
-                                                                            <input type="text" name="title"
+                                                                            <input type="text" name="inquireTitle"
                                                                                 class="main-title"
-                                                                                placeholder="제목을 입력해주세요." >
+                                                                                placeholder="제목을 입력해주세요." th:value="${inquireDTO.inquireTitle}">
                                                                         </div>
                                                                     </label>
                                                                     <div class="box-line"></div>
@@ -80,9 +82,9 @@
                                                                     <div class="box-main-body">
                                                                         <span class="box-main-body-span"></span>
                                                                         <div class="editor-wrap">
-                                                                            <textarea name="" id="" cols="30" rows="10"
+                                                                            <textarea name="inquireContent" cols="30" rows="10"
                                                                                 class="proposal_content is-no-scroll"
-                                                                                placeholder="내용을 입력해주세요."></textarea>
+                                                                                placeholder="내용을 입력해주세요." th:text="${inquireDTO.inquireContent}"></textarea>
                                                                                 <section class="img_wrapper_box">
                                                                                     <div class="img_ul_wrapper">
                                                                                         <ul class="img_ul">
