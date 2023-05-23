@@ -40,8 +40,9 @@ public class InquireServiceImpl implements InquireService {
 
     /*여기 여기 여기*/
     @Override
-    public void register(InquireDTO inquireDTO, Long memberId) {
-        inquireDTO.getMemberDTO().setId(memberId);
+    public void register(InquireDTO inquireDTO, Long id) {
+        log.info("=============={}", id);
+        inquireDTO.setMemberDTO(toMemberDTO(memberRepository.findById(id).get()));
         inquireRepository.save(toInquireEntity(inquireDTO));
     }
 

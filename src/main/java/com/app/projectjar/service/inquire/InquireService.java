@@ -14,7 +14,7 @@ public interface InquireService {
     public Page<InquireDTO> getAllInquiresWithPaging(int page);
 
     // 저장
-    public void register(InquireDTO InquireDTO, Long memberd);
+    public void register(InquireDTO InquireDTO, Long id);
 
     // 상세 보기
     public InquireDTO getInquire(Long inquireId);
@@ -35,6 +35,7 @@ public interface InquireService {
                 .id(inquireDTO.getId())
                 .inquireTitle(inquireDTO.getInquireTitle())
                 .inquireContent(inquireDTO.getInquireContent())
+                .member(toMember(inquireDTO.getMemberDTO()))
                 .build();
     }
 
@@ -58,6 +59,21 @@ public interface InquireService {
                 .memberNickname(member.getMemberNickname())
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
+                .build();
+    }
+
+    default Member toMember(MemberDTO memberDTO){
+        return Member.builder()
+                .id(memberDTO.getId())
+                .memberEmail(memberDTO.getMemberEmail())
+                .badgeType(memberDTO.getBadgeType())
+//                .memberFile(memberDTO.getFileDTO())
+                .memberName(memberDTO.getMemberName())
+                .memberNickname(memberDTO.getMemberNickname())
+                .memberPassword(memberDTO.getMemberPassword())
+                .memberPhoneNumber(memberDTO.getMemberPhoneNumber())
+                .memberStatus(memberDTO.getMemberStatus())
+                .memberType(memberDTO.getMemberType())
                 .build();
     }
 

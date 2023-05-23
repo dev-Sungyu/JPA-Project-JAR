@@ -54,8 +54,8 @@ public class InquireController {
     @PostMapping("write")
     public RedirectView write(@ModelAttribute("inquireDTO") InquireDTO inquireDTO, @AuthenticationPrincipal UserDetail userDetail) {
 
-        Long memberId = userDetail.getId();
-        inquireService.register(inquireDTO, memberId);
+        Long id = userDetail.getId();
+        inquireService.register(inquireDTO, id);
         return new RedirectView("/board/inquire/list");
     }
 
@@ -63,4 +63,5 @@ public class InquireController {
     public void adminInquireAnswer() {
 
     }
+
 }
