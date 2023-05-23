@@ -104,4 +104,13 @@ public class DiaryServiceImpl implements DiaryService {
     public Diary getCurrentSequence() {
         return diaryRepository.getCurrentSequence_QueryDsl();
     }
+
+    @Override
+    public void deleteDiaries(List<Long> diaryIds) {
+        for (Long diaryId : diaryIds) {
+            diaryFileRepository.deleteByDiaryId(diaryId);
+            diaryReplyRepository.deleteByDiaryId(diaryId);
+            diaryRepository.deleteByDiaryId_QueryDsl(diaryId);
+        }
+    }
 }
