@@ -55,7 +55,7 @@
                                 <a th:href="@{/admin/board/notice/modify/{noticeId}(noticeId=${noticeDTO.id})}" class="btn_done">수정</a>
                             </div>
                             <div class="info-table">
-                                <div class="info-member">
+                                <div class="info-member" span class="to_list" toMember>목록으로</span>
                                     <span class="span-bold">제목 :</span>
                                     <!-- 제목  -->
                                     <span th:text="${noticeDTO.noticeTitle}">[공지]

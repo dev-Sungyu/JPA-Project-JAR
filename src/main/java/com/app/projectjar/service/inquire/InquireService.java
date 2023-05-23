@@ -1,9 +1,11 @@
 package com.app.projectjar.service.inquire;
 
 import com.app.projectjar.domain.file.FileDTO;
+import com.app.projectjar.domain.inquire.AnswerDTO;
 import com.app.projectjar.domain.inquire.InquireDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.file.member.MemberFile;
+import com.app.projectjar.entity.inquire.Answer;
 import com.app.projectjar.entity.inquire.Inquire;
 import com.app.projectjar.entity.member.Member;
 import org.springframework.data.domain.Page;
@@ -42,12 +44,26 @@ public interface InquireService {
     default InquireDTO toInquireDTO(Inquire inquire) {
         return InquireDTO.builder()
                 .id(inquire.getId())
-                .inquireTitle(inquire.getInquireTitle())
+                .answerDTO(toAnswerDTO(inquire.getAnswer()))
+                .answerType(inquire.getAnswerType())
+                .createdDate(inquire.getCreatedDate())
+                .updatedDate(inquire.getUpdatedDate())
                 .inquireContent(inquire.getInquireContent())
-                .answerType((inquire.getAnswerType()))
+                .inquireTitle(inquire.getInquireTitle())
                 .memberDTO(toMemberDTO(inquire.getMember()))
-                .createDate(inquire.getCreatedDate())
                 .build();
+    }
+
+    default AnswerDTO toAnswerDTO (Answer answer){
+        if(answer == null){
+            return null;
+        }else {
+            return AnswerDTO.builder()
+                    .answerContent(answer.getAnswerContent())
+                    .registerDate(answer.getCreatedDate())
+                    .build();
+        }
+
     }
 
     default MemberDTO toMemberDTO(Member member) {

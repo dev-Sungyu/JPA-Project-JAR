@@ -28,13 +28,10 @@ public class InquireDTO {
     private AnswerType answerType;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-
-    private LocalDateTime createDate;
-
     private MemberDTO memberDTO;
 
     @Builder
-    public InquireDTO(AnswerDTO answerDTO, Long id, String inquireTitle, String inquireContent, AnswerType answerType, LocalDateTime createdDate, LocalDateTime updatedDate, LocalDateTime createDate, MemberDTO memberDTO) {
+    public InquireDTO(AnswerDTO answerDTO, Long id, String inquireTitle, String inquireContent, AnswerType answerType, LocalDateTime createdDate, LocalDateTime updatedDate, MemberDTO memberDTO) {
         this.answerDTO = answerDTO;
         this.id = id;
         this.inquireTitle = inquireTitle;
@@ -42,23 +39,6 @@ public class InquireDTO {
         this.answerType = answerType;
         this.createdDate = createdDate;
         this.updatedDate = updatedDate;
-        this.createDate = createDate;
         this.memberDTO = memberDTO;
     }
-
-
-//    @Builder
-//    public InquireDTO(Long id, String inquireTitle, String inquireContent, MemberDTO memberDTO, AnswerType answerType, LocalDateTime createDate, LocalDateTime updateDate) {
-//
-//        this.id = id;
-//        this.inquireTitle = inquireTitle;
-//        this.inquireContent = inquireContent;
-//        this.memberDTO = memberDTO;
-//        this.createdDate = createDate;
-//        this.updatedDate = updateDate;
-//
-//        this.answerType = answerType;
-//
-//        this.createDate = createDate;
-//    }
 }

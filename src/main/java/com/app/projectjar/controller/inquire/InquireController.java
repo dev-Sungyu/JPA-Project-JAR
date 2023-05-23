@@ -32,7 +32,6 @@ public class InquireController {
         InquireDTO inquireDTO = inquireService.getInquire(inquireId);
         model.addAttribute("inquireDTO", inquireDTO);
 
-        log.info("들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가들어가");
         return "board/inquire/detail";
     }
 
@@ -43,7 +42,6 @@ public class InquireController {
         model.addAttribute("pageDTO", new PageDTO(inquirePage));
         model.addAttribute("inquireDTOS", inquirePage.getContent());
 
-        log.info("노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답노답");
         return "board/inquire/list";
     }
 
