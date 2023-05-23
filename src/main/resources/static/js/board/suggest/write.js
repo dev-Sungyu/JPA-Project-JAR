@@ -48,10 +48,10 @@ $("input[type=file]").on("change", function () {
         processData: false,
         success: function (uuids) {
             globalThis.uuids = uuids;
-            console.log(uuids);
+            let text = '';
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
-                    let text = `
+                    text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
@@ -78,9 +78,10 @@ $("input[type=file]").on("change", function () {
                             </div>
                         </li>
                 `;
-                    $ul.append(text);
                 }
+                $ul.append(text);
             });
+
         }
     });
 });
@@ -115,13 +116,12 @@ $ul.on("click",".close-button", function(e){
 
 
 $(".save-button").click(() => {
-    const $files = $("input[type=file]")[0].files;
     let text = "";
 
     let boardTitle = $("input[name='boardTitle']").val();
     let boardContent = $(".proposal_content").val();
 
-    if ($files.length < 4) {
+    if (files.length < 4) {
         alertModal(alertMsg[0]);
         return false;
     } else if (!boardTitle) {
