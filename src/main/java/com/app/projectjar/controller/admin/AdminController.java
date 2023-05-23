@@ -224,9 +224,9 @@ public class AdminController {
     }
     @GetMapping("board/notice/modify/{noticeId}")
     public String adminNoticeModify(Model model, @PathVariable("noticeId") Long noticeId) {
-        NoticeDTO noticeModifyDTO = noticeService.getNotice(noticeId);
+        NoticeDTO noticeDTO = noticeService.getNotice(noticeId);
 
-        model.addAttribute("noticeDTO", noticeModifyDTO);
+        model.addAttribute("noticeDTO", noticeDTO);
         return "/admin/board/notice/modify";
     }
 
