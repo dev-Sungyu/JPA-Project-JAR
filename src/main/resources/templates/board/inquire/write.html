@@ -131,7 +131,7 @@
 <script th:inline="javascript">
     let member = [[${session.member}]];
     let memberDTO = [[${memberDTO}]];
-    let memberFile;
+    let memberFile = null;
     if(memberDTO){
         memberFile = memberDTO.fileDTO;
     }
