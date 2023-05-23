@@ -7,11 +7,15 @@ import com.app.projectjar.type.AnswerType;
 import com.sun.istack.NotNull;
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 
 @Entity
 @Getter @ToString(callSuper = true)
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "TBL_INQUIRE")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Inquire extends Period {
