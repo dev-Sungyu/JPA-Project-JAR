@@ -59,6 +59,6 @@ public class GroupChallengeController {
 
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
         model.addAttribute("memberDTO",memberDTO);
-        return "/board/challenge/group/detail";
+        return "/\board/challenge/group/detail";
     }
 }
