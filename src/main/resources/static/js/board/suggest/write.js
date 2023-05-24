@@ -50,10 +50,8 @@ $("input[type=file]").on("change", function () {
             $(uuids).each((i, uuid) => {
                 globalThis.uuids.push(uuid);
             });
-            console.log(globalThis.uuids);
             let text = '';
             $files.forEach((file, i) => {
-                console.log(uuids[i]);
                 if (file.type.startsWith("image")) {
                     text = `
                         <li class="img_list" id="li${i}">
@@ -114,8 +112,6 @@ $ul.on("click",".close-button", function(e){
         dataTransfer.files.forEach((file, i) =>{
             files.push(file);
         });
-    console.log(globalThis.uuids);
-    console.log(files);
 });
 
 

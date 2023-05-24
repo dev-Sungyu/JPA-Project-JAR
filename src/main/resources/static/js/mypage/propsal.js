@@ -11,7 +11,6 @@ suggestService = (function () {
             success: function(list){
                 if(callback){
                     callback(list);
-                    // console.log(list);
                 }
             }
         });
@@ -72,7 +71,6 @@ function displayPagination(totalPages) {
 
 function listText(list) {
     let suggestDTOS = list.content;
-    // console.log(suggestDTOS);
     let text = '';
 
     $(suggestDTOS).each((i, suggestDTO) => {
@@ -134,9 +132,6 @@ function getDate(register){
     const month = newDate.getMonth() + 1;
     const date = newDate.getDate();
 
-    // console.log(`${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`);
-
-
     return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
     // 2021-01-01
 }
@@ -150,10 +145,8 @@ function deleteSuggest(boardId) {
         data: JSON.stringify(boardId),
         traditional: true,
         success: function() {
-            // console.log(page);
             suggestService;
             getNewList(page, memberId);
-            // console.log("success");
         }
     });
 }

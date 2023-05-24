@@ -10,7 +10,6 @@ diaryService = (function () {
             success: function (list) {
                 if (callback) {
                     callback(list);
-                    // console.log(list);
                 }
             }
         });
@@ -73,7 +72,6 @@ function displayPagination(totalPages) {
 
 function listText(list) {
     let diaryDTOS = list.content;
-    // console.log(diaryDTOS);
 
     let text = '';
     $(diaryDTOS).each((i, diaryDTO) => {
@@ -129,9 +127,6 @@ function getDate(register){
     const month = newDate.getMonth() + 1;
     const date = newDate.getDate();
 
-    // console.log(`${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`);
-
-
     return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
     // 2021-01-01
 }
@@ -144,10 +139,8 @@ function deleteDiary(boardId) {
         data: JSON.stringify(boardId),
         traditional: true,
         success: function() {
-            // console.log(page);
             diaryService;
             getNewList(page, memberId);
-            // console.log("success");
         }
     });
 }

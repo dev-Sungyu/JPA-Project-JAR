@@ -8,7 +8,6 @@
                 url: '/main/list-content',
                 type: 'get',
                 success: function (list) {
-                    console.log(list);
                     if (callback) {
                         callback(list);
                     }
@@ -151,7 +150,6 @@ function getList(){
 function heartCheck(list) {
 
     let suggestDTOS = list;
-    console.log(suggestDTOS);
     suggestDTOS.forEach((suggestDTO, i) => {
         let likeDTO = new Object();
         likeDTO.memberId = memberId;

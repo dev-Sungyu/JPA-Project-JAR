@@ -2,7 +2,6 @@
 let $selectType = $($('.selection_label')[0]);
 let $select_button = $('.selection_button');
 $selectType.on("click", (e) => {
-    console.log("버튼 누름");
     var $target = $(e.currentTarget);
     var $selected = $('div.selection.selected');
     var $hiddened = $('div.selection.is-hidden');

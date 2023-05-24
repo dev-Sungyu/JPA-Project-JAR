@@ -140,7 +140,6 @@ $(".save-button").click(() => {
         }
 
     });
-    // console.log(text);
     $("form[name=form]").append(text);
     $("form[name=form]").submit();
 })
@@ -168,7 +167,6 @@ $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
     let target = $(e.currentTarget).parent().parent().parent();
     let fileArray = Array.from(files);
     let ul = target.parent();
-    // console.log(ul);
     let i = ul.find("li").index(target);
     files = [];
 

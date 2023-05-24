@@ -5,7 +5,6 @@ $("div.second-content-slide ").on("click","button.heart-layout",function(e){
     let ul = $(e.currentTarget).parent().parent().parent().parent().parent();
     let li = $(e.currentTarget).parent().parent().parent().parent();
     let i = ul.find("div.content-image-box2").index(li);
-    console.log(i);
     let likeDTO = new Object();
     likeDTO.memberId = memberId;
     likeDTO.boardId = boardId;

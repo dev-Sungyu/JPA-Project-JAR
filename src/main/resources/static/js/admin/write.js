@@ -35,7 +35,6 @@ $("input[type=file]").on("change", function () {
         processData: false,
         success: function (uuids) {
             globalThis.uuids = uuids;
-            console.log(uuids);
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
                     let text = `
@@ -97,7 +96,6 @@ $ul.on("click",".close-button", function(e){
         files.push(file);
     });
 
-    console.log(files);
 });
 
 $(".save-button").click(() => {

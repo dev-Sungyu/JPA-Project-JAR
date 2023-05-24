@@ -10,7 +10,6 @@ inquireService = (function () {
             success: function (list) {
                 if (callback) {
                     callback(list);
-                    // console.log(list);
                 }
             }
         });
@@ -70,12 +69,10 @@ function displayPagination(totalPages) {
 
 function listText(list) {
     let inquireDTOS = list.content;
-    // console.log(inquireDTOS);
     let text = '';
     $(inquireDTOS).each((i, inquireDTO) => {
         var answertype = inquireDTO.answerType == 'ANSWER' ? '답변 완료' : '미답변';
         var createdDate = getDate(inquireDTO.createdDate);
-        // console.log(createdDate);
 
         text += `
       <div class="inquire-list-layout">
@@ -146,9 +143,6 @@ function getDate(register){
     const month = newDate.getMonth() + 1;
     const date = newDate.getDate();
 
-    // console.log(`${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`);
-
-
     return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
     // 2021-01-01
 }
@@ -162,10 +156,8 @@ function deleteInquire(boardId) {
         data: JSON.stringify(boardId),
         traditional: true,
         success: function() {
-            // console.log(page);
             inquireService;
             getNewList(page , memberId);
-           // console.log("success");
         }
     });
 }

@@ -151,7 +151,6 @@ function repliesContent(replies) {
     }
 
     $(replyDTO).each((i, reply) => {
-        console.log(reply.memberDTO);
         text += `
                                                                 <div class="reply-text-box">
                                                                     <div class="reply-text-box-user">
