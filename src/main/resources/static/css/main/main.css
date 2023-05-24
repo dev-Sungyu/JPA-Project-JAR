@@ -860,11 +860,6 @@ div.toastui-calendar-template-monthDayName {
     margin: 0px;
 }
 
-.main-info-display {
-    display: none;
-}
-
-
 @media (max-width:1023px) {
     #calendar {
         font-size: 10px!important;
