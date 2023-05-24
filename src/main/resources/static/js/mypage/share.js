@@ -2,18 +2,15 @@ const $ul = $(".list-box");
 let page = 0;
 
 diaryService = (function () {
-    console.log("들어옴1");
     function list(page, callback) {
-        console.log("들어옴2");
         $.ajax({
             url: '/mypage/share-list',
             type: 'get',
             data: page,
             success: function (list) {
-                console.log("들어옴3");
                 if (callback) {
                     callback(list);
-                    console.log(list);
+                    // console.log(list);
                 }
             }
         });
@@ -76,7 +73,7 @@ function displayPagination(totalPages) {
 
 function listText(list) {
     let diaryDTOS = list.content;
-    console.log(diaryDTOS);
+    // console.log(diaryDTOS);
 
     let text = '';
     $(diaryDTOS).each((i, diaryDTO) => {
@@ -105,7 +102,6 @@ function listText(list) {
 }
 
 function getList(page, memberId) {
-    console.log("들어옴4");
     diaryService.list({
         page: page,
         memberId : memberId
@@ -123,7 +119,6 @@ function getNewList(page, memberId) {
     }, function (list) {
         $ul.html(listText(list));
         displayPagination(list.totalPages);
-        console.log("들어옴5");
 
     });
 }
@@ -134,7 +129,7 @@ function getDate(register){
     const month = newDate.getMonth() + 1;
     const date = newDate.getDate();
 
-    console.log(`${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`);
+    // console.log(`${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`);
 
 
     return `${year}-${month >= 10 ? month : '0' + month}-${date >= 10 ? date : '0' + date}`;
@@ -149,10 +144,10 @@ function deleteDiary(boardId) {
         data: JSON.stringify(boardId),
         traditional: true,
         success: function() {
-            console.log(page);
+            // console.log(page);
             diaryService;
             getNewList(page, memberId);
-            console.log("success");
+            // console.log("success");
         }
     });
 }

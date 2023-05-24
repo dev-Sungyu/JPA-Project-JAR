@@ -10,7 +10,6 @@ import static com.app.projectjar.entity.member.QMember.member;
 import static com.app.projectjar.entity.member.QMemberRandomKey.memberRandomKey1;
 
 @RequiredArgsConstructor
-@Slf4j
 public class MemberRandomKeyQueryDslImpl implements MemberRandomKeyQueryDsl {
     private final JPAQueryFactory query;
 

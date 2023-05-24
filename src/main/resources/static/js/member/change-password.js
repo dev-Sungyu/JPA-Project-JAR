@@ -63,7 +63,7 @@ passwordInput.on("blur", function() {
         $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
         passwordFlag = true;
         if (passwordFlag && confirmPasswordFlag) {
-            console.log("비밀번호 플래그")
+            // console.log("비밀번호 플래그")
             $(".link_btn").css("background-color", "rgb(255, 93, 0)");
             $(".link_btn").prop("disabled",false);
         }else{
@@ -80,13 +80,13 @@ let confirmPasswordFlag = false;
 confirmPasswordInput.on("input", function() {
     let password = passwordInput.val().trim();
     let confirmPassword = confirmPasswordInput.val().trim();
-    console.log(password.toString());
+    // console.log(password.toString());
     if (passwordInput.val() === confirmPasswordInput.val()) {
         confirmPasswordErrorMsg.hide();
         confirmPasswordInput.removeClass("error-input");
         confirmPasswordFlag = true;
         if (passwordFlag && confirmPasswordFlag) {
-            console.log("비밀번호 체크 플래그")
+            // console.log("비밀번호 체크 플래그")
             $(".link_btn").prop("disabled",false);
             $(".link_btn").css("background-color", "rgb(255, 93, 0)");
         }else{
@@ -121,7 +121,7 @@ let $confirmBtn = $(".link_btn");
 
 $confirmBtn.on("click", function(){
     if(passwordFlag && confirmPasswordFlag){
-        console.log()
+        // console.log()
         $.ajax({
             url:"/member/change-password",
             method:'post',

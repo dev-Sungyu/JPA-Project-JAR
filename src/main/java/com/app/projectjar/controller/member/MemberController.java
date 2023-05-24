@@ -4,12 +4,10 @@ import com.app.projectjar.domain.member.MailDTO;
 import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.entity.member.Member;
 import com.app.projectjar.entity.member.MemberRandomKey;
-import com.app.projectjar.provider.UserDetail;
 import com.app.projectjar.service.member.MemberService;
 import com.app.projectjar.service.memberRandomKey.MemberRandomKeyService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,9 +63,6 @@ public class MemberController {
 
     @GetMapping("account-confirm")
     public void account(){}
-
-//    @GetMapping("phone-certification")
-//    public void phone(){}
 
     @GetMapping("logout")
     public void goToLogOut(){;}
@@ -144,8 +139,6 @@ public class MemberController {
 
         return 1L;
     }
-
-
 
 
 }
