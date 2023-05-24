@@ -1,49 +1,42 @@
-globalThis.uuids;
+$(".modify-button").click(() => {
+    let text = "";
 
-//===========================================
-FileList.prototype.forEach = Array.prototype.forEach;
+    FileList.prototype.forEach = Array.prototype.forEach;
 
-const $alertModal = $(".alert-modal-display");
-const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
+    let count = 0;
+    files.forEach((file, i) => {
+        if(file.fileOriginalName == undefined && file.fileOriginalName == null){
+            text +=
+                `
+                        <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
+                        <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[count]}">
+                        <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
+                        `;
+            count++;
+        }else {
+            text +=
+                `
+                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.fileOriginalName}">
+                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${file.fileUuid}">
+                <input type="hidden" name="fileDTOS[${i}].filePath" value="${file.filePath}">
+                `;
+        }
 
-let $ul = $(".img_ul");
-let files = [];
-if(fileDTOS != null && fileDTOS != undefined){
-    fileDTOS.forEach((file, i) => {
-        files.push(file);
     });
-}
+    $("form[name=form]").append(text);
+    $("form[name=form]").submit();
+});
 
-$("input[type=file]").on("change", function () {
-    const $files = $("input[type=file]")[0].files;
-    let formData = new FormData();
-
-    $($files).each((i, file) => {
-        files.push(file);
-    })
-
-    $files.forEach((file, e) => {
-        formData.append("file", file);
-    })
-
-
-    $.ajax({
-        url: "/file/upload",
-        type: "post",
-        data: formData,
-        contentType: false,
-        processData: false,
-        success: function (uuids) {
-            globalThis.uuids = uuids;
-            $files.forEach((file, i) => {
-                if (file.type.startsWith("image")) {
-                    let text = `
+imageText(challengeDTO.fileDTOS);
+function imageText(files){
+    files.forEach((file, i) => {
+        let text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
-                                    <label class="close-button" id="button${i}">
+                                    <label class="close-button">
                                         <button icon-position="0" color="white" fill="false" type="button"
-                                            class="pasing-button-1 pasing-no-select">
+                                            class="pasing-button-1 pasing-no-select" id="button${i}">
                                             <span class="pasing-button-span">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     width="24" height="24" fill="none"
@@ -58,92 +51,12 @@ $("input[type=file]").on("change", function () {
                                 </header>
                                 <article class="img_wrapper">
                                     <div class="img_div">
-                                        <img src="/file/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
+                                        <img src="/file/display?fileName=${file.filePath}/${file.fileUuid}_${file.fileOriginalName}" class="inserted_img">
                                     </div>
                                 </article>
                             </div>
                         </li>
                 `;
-                    $ul.append(text);
-                }
-            });
-        }
-    });
-});
-
-
-// 이미지 지울 때
-$ul.on("click",".close-button", function(e){
-    const dataTransfer = new DataTransfer();
-
-    let target = $(e.currentTarget).parent().parent().parent();
-    let fileArray = Array.from(files);
-    let ul = target.parent();
-    let i = ul.find("li").index(target);
-    files = [];
-
-    fileArray.splice(i, 1);
-    fileArray.forEach(file => {
-        if(file.fileOriginalName == null && file.fileOriginalName == undefined){
-            dataTransfer.items.add(file);
-        }else {
-            files.push(file);
-        }
+        $ul.append(text);
     })
-
-    target.remove();
-    dataTransfer.files.forEach((file, i) =>{
-        files.push(file);
-    });
-
-});
-
-$(".save-button").click(() => {
-    const $files = $("input[type=file]")[0].files;
-    let text = "";
-
-    let boardTitle = $("input[name='boardTitle']").val();
-    let boardContent = $(".proposal_content").val();
-
-    const startDate = $("input[name='startDate']").val(); // 시작 날짜 값 가져오기
-    const endDate = $("input[name='endDate']").val(); // 종료 날짜 값 가져오기
-
-    FileList.prototype.forEach = Array.prototype.forEach;
-    files.forEach((file, i) => {
-        text +=
-            `
-                <input type="hidden" name="fileDTOS[${i}].fileOriginalName" value="${file.name}">
-                <input type="hidden" name="fileDTOS[${i}].fileUuid" value="${globalThis.uuids[i]}">
-                <input type="hidden" name="fileDTOS[${i}].filePath" value="${toStringByFormatting(new Date())}">
-                `;
-    });
-    $("form[name=form]").append(text);
-    $("form[name=form]").submit();
-})
-/*****************************************************/
-function leftPad(value) {
-    if (value >= 10) {
-        return value;
-    }
-
-    return `0${value}`;
-}
-
-function toStringByFormatting(source, delimiter = '/') {
-    const year = source.getFullYear();
-    const month = leftPad(source.getMonth() + 1);
-    const day = leftPad(source.getDate());
-
-    return [year, month, day].join(delimiter);
-}
-
-
-function alertModal(errorMsg) {
-
-    $(".alert").text(errorMsg);
-    $alertModal.fadeIn();
-    setTimeout(function () {
-        $alertModal.fadeOut();
-    }, 2000);
-
 }
