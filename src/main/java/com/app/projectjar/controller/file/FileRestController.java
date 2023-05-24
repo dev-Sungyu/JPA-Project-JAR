@@ -41,8 +41,6 @@ public class FileRestController {
                 out.close();
             }
         }
-        log.info("==================================================");
-        uuids.stream().forEach(s ->  log.info(s));
         return uuids;
     }
 

@@ -50,7 +50,6 @@ public class MyPageController {
         List<CalendarDTO> calendarDTOS = myPageService.getCalendarDTO(memberId);
         MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
 
-        log.info(memberDTO.toString());
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("calendarDTOS",calendarDTOS);
     }
@@ -178,7 +177,6 @@ public class MyPageController {
     public Page<DiaryDTO> share(@RequestParam("memberId") Long id, @RequestParam(defaultValue = "0", name = "page") int page){
         PageRequest pageable = PageRequest.of(page, 6);
         Page<DiaryDTO> diaryDTOS = diaryService.getDiaryForMemberIdList(pageable, id);
-        diaryDTOS.forEach(suggestDTO -> log.info(suggestDTO.toString())); // 잘 찍힘
         return diaryDTOS;
     }
 

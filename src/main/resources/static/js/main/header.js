@@ -42,7 +42,7 @@ function profileImageCheck(memberFile){
         `;
     }else {
         text = `
-                      <img style="width:24px; object-fit: cover; height:24px; border-radius: 50%;" src="/file/display?fileName=${memberFile.filePath}/${memberFile.fileUuid}_${memberFile.fileOriginalName}">
+                      <img class="header-profile-img" src="/file/display?fileName=${memberFile.filePath}/${memberFile.fileUuid}_${memberFile.fileOriginalName}">
                   `;
     }
     $(".profile").html(text);

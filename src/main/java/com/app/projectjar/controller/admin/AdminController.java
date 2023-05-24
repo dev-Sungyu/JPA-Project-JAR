@@ -100,7 +100,6 @@ public class AdminController {
 
         challengeDTO.setId(challengeId);
 
-        challengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         personalChallengeService.update(challengeDTO);
 
         return new RedirectView("/admin/board/challenge/detail/" + challengeId);
@@ -348,7 +347,6 @@ public class AdminController {
         groupChallengeDTO.setEndDate(endDate);
         groupChallengeDTO.setId(groupChallengeId);
 
-        groupChallengeDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         groupChallengeService.update(groupChallengeDTO);
 
         return new RedirectView("/admin/board/groupChallenge/detail/" + groupChallengeId);

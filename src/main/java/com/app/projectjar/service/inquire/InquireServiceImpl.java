@@ -39,7 +39,6 @@ public class InquireServiceImpl implements InquireService {
     @Override
     public Page<InquireDTO> getAllInquiresWithPaging(int page) {
         Page<Inquire> inquires = inquireRepository.findAllWithPaging_QueryDSL(PageRequest.of(page, 10));
-        log.info(inquires.getContent().toString());
         List<InquireDTO> inquireDTOS = inquires.getContent().stream()
                 .map(this::toInquireDTO)
                 .collect(Collectors.toList());
@@ -50,7 +49,6 @@ public class InquireServiceImpl implements InquireService {
     /*여기 여기 여기*/
     @Override
     public void register(InquireDTO inquireDTO, Long id) {
-        log.info("=============={}", id);
         inquireDTO.setMemberDTO(toMemberDTO(memberRepository.findById(id).get()));
         inquireRepository.save(toInquireEntity(inquireDTO));
     }
