@@ -91,7 +91,7 @@ public class SuggestController {
 
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("suggestDTO", suggestDTO);
-        return "/board/suggest/modify";
+        return "board/suggest/modify";
     }
 
     @PostMapping("modify")

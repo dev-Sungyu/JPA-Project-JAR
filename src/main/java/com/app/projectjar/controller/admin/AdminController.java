@@ -91,7 +91,7 @@ public class AdminController {
         ChallengeDTO challengeDTO = personalChallengeService.getChallenge(challengeId);
 
         model.addAttribute("challengeDTO", challengeDTO);
-        return "/admin/board/challenge/modify";
+        return "admin/board/challenge/modify";
     }
 
     @PostMapping("board/challenge/modify")
@@ -109,7 +109,7 @@ public class AdminController {
     @PostMapping("board/challenge/modify/delete/{challengeId}")
     public RedirectView deletePersonal(@PathVariable("challengeId") Long challengeId){
         personalChallengeService.delete(challengeId);
-        return new RedirectView("admin/board/challenge/list");
+        return new RedirectView("/admin/board/challenge/list");
     }
 
 
@@ -163,7 +163,7 @@ public class AdminController {
         MemberDTO memberModifyDTO = memberService.getMember(memberId);
 
         model.addAttribute("memberDTO", memberModifyDTO);
-        return "/admin/member/modify";
+        return "admin/member/modify";
     }
 
     @PostMapping("member/modify/{id}")
@@ -227,7 +227,7 @@ public class AdminController {
         NoticeDTO noticeDTO = noticeService.getNotice(noticeId);
 
         model.addAttribute("noticeDTO", noticeDTO);
-        return "/admin/board/notice/modify";
+        return "admin/board/notice/modify";
     }
 
     @PostMapping("board/notice/modify/{noticeId}")
@@ -334,7 +334,7 @@ public class AdminController {
         GroupChallengeDTO groupChallengeDTO = groupChallengeService.getGroupChallenge(groupChallengeId);
 
         model.addAttribute("groupChallengeDTO", groupChallengeDTO);
-        return "/admin/board/groupChallenge/modify";
+        return "admin/board/groupChallenge/modify";
     }
 
     @PostMapping("board/groupChallenge/modify")

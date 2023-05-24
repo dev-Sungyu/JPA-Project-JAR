@@ -112,7 +112,7 @@ public class MemberController {
         }
         log.info("model: " + model.getAttribute("errorMessage"));
 
-        return "/member/change-password";
+        return "member/change-password";
     }
 
 
