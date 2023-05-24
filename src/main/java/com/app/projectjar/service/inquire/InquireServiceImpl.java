@@ -50,7 +50,6 @@ public class InquireServiceImpl implements InquireService {
     /*여기 여기 여기*/
     @Override
     public void register(InquireDTO inquireDTO, Long id) {
-        log.info("=============={}", id);
         inquireDTO.setMemberDTO(toMemberDTO(memberRepository.findById(id).get()));
         inquireRepository.save(toInquireEntity(inquireDTO));
     }
@@ -91,22 +90,5 @@ public class InquireServiceImpl implements InquireService {
         }
     }
 
-//    @Override @Transactional
-//    public void insertAnswer(AnswerDTO answerDTO) {
-//        memberRepository.findById(answerDTO.getId()).ifPresent(
-//                member ->
-//                        inquireRepository.findById(answerDTO.getId()).ifPresent(
-//                                inquire -> {
-//                                    Answer answer = Answer.builder()
-//                                            .answerContent(answerDTO.getAnswerContent())
-//                                            .inquire(getInquire(inquireId))
-//                                            .member(member)
-//                                            .build();
-//                                    answerRepository.save(answer);
-//                                    inquireRepository.save(inquire);
-//                                }
-//                        )
-//        );
-//    }
 
 }
