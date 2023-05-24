@@ -6,7 +6,6 @@ const allSearch = {
 };
 
 function getList() {
-    console.log("ajax 들어옴");
     let url = "/main/search";
     // 검색 조건이 비어있을 때에만 allSearch 객체를 전송.
     if (allSearch.inquiryEmail || allSearch.inquiryPhoneNumber || allSearch.inquiryContent) {
@@ -14,7 +13,6 @@ function getList() {
             url: url,
             data: allSearch,
             success: function(data) {
-                console.log(data);
                 if (data.content.length > 0) {
                     showList(data);
                 } else { //검색 결과가 없을 때
@@ -28,7 +26,6 @@ function getList() {
         $.ajax({
             url: url,
             success: function(data) {
-                console.log(data);
                 showList(data);
 
                 if (data.content.length === 0) {
@@ -45,7 +42,6 @@ function getList() {
 $(".search__searchbox__button").on("click", function (e) {
     e.preventDefault();
     $listResults.empty();
-    console.log("검색 들어옴");
     let $search = $("#searchbox").val(); //input 입력값
     allSearch.inquiryEmail = $search;
     allSearch.inquiryPhoneNumber = $search;

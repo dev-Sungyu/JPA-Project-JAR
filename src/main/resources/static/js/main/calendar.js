@@ -159,7 +159,6 @@ let datas = [
     },
 ];
 
-console.log(calendarDTOS)
 calendarDTOS.forEach((e, i) => {
   calendar.createEvents([
         e
