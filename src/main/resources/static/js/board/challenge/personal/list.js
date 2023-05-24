@@ -86,6 +86,19 @@ function displayPagination(totalPages) {
     }
 }
 
+function contentPrint(content) {
+    let test = content.replaceAll("\n", "<br/>").split("<br/>");
+    let text = "";
+
+    test.forEach((e, i) => {
+
+        text += `
+                        <p>${e}</p>
+            `;
+    });
+    return text;
+}
+
 function listText(list) {
     let personalChallengeDTOS = list.content;
 
@@ -116,7 +129,9 @@ function listText(list) {
                                                                         <div class="board-container-1">
                                                                             <p class="board-container-name">${personalChallengeDTO.challengeDTO.boardTitle}</p>
                                                                         </div>
-                                                                        <div class="board-container-2">${personalChallengeDTO.challengeDTO.boardContent}</div>
+                                                                        <div class="board-container-2">`;
+                                       text +=       contentPrint(personalChallengeDTO.challengeDTO.boardContent);
+                                       text +=                          `</div>
                                                                         <div class="board-container-3">
                                                                             <div class="board-container-set">
                                                                                 <div class="board-container-set-wrap">

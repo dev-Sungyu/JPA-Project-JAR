@@ -170,11 +170,18 @@
 }
 .login_margin{
     display: flex;
-    margin: 17px;
+    margin: 0 17px 17px;
+    padding-top: 18px;
     -webkit-box-align: stretch;
     align-items: stretch;
     flex-direction: column;
+    border-top: 1px solid #f1f1f1;
 }
+
+.login_margin:first-child {
+    border-top : 0px;
+}
+
 .notice_list{
     -webkit-box-pack: justify;
     justify-content: space-between;

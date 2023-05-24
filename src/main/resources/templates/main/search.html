@@ -38,68 +38,15 @@
                             <a class="btn recent active" th:href="@{/board/challenge/group/list}">더보기</a>
                         </div>
                         <div>
-                            <div style="height:auto; overflow:auto" th:each="groupChallengeDTO : ${groupChallengeDTOS}">
+                            <div style="height:auto; overflow:auto" >
                                 <div style="overflow:hidden">
-                                    <ul class="content-ul">
-                                        <!-- 여기서 부터 -->
-                                        <li class="content-li">
-                                            <div class="content-flex">
-                                                <a th:href="@{/board/challenge/group/detail/{groupChallengeId}(groupChallengeId=${groupChallengeDTO.id})}">
-                                                    <div class="content-box">
-                                                        <div class="content-image-box">
-                                                                <span class="content-image-layout">
-                                                                    <picture class="groupChallenge_img">
-<!--                                                                        <img-->
-                                                                        <!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
-                                                                    </picture>
-                                                                </span>
-                                                        </div>
-                                                        <div class="content-title"
-                                                             th:text="${groupChallengeDTO.boardTitle}">
-                                                            임종욱
-                                                        </div>
-                                                        <div class="content2"
-                                                             th:text="${groupChallengeDTO.boardContent}">
-                                                            상시 이벤트
-                                                        </div>
-                                                        <div class="liked-box">
-                                                            <div class="flex">
-                                                                <div class="liked-layout">
-                                                                    <div class="icon-box">
-                                                                        <img src="/image/board/human-icon.png"
-                                                                             class="human-icon">
-                                                                    </div>
-                                                                    <p class="like-count"
-                                                                       th:text="${groupChallengeDTO.attendCount}">
-                                                                        5771</p>
-                                                                </div>
-                                                                <div class="liked-layout">
-                                                                    <div class="icon-box">
-                                                                        <img src="/image/board/reply-icon.png"
-                                                                             class="reply-icon">
-                                                                    </div>
-                                                                    <p class="reply-count"
-                                                                       th:text="${groupChallengeDTO.replyCount}">97</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <!--  -->
-                                        <!--  -->
+                                    <ul class="content-ul group-challenge-ul">
+
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <!--아무것도 없을때 나오는 곳-->
-                    <div class="not-search" name="groupChallengeNotSearch">
-                        <span class="not-search-span">
-                            검색 결과가 없습니다.
-                        </span>
-                    </div>
                 </div>
                 <div class="list-title-box">
                     <div class="list-title-layout">
@@ -112,65 +59,16 @@
                         <div class="popularity-button-box">
                             <a class="btn recent active" th:href="@{/board/suggest/list}">더보기</a>
                         </div>
-                        <div th:each="suggestDTO : ${suggestDTOS}">
+                        <div>
                             <div style="height:auto; overflow:auto">
                                 <div style="overflow:hidden">
-                                    <ul class="content-ul">
-                                        <!-- 여기서 부터 -->
-                                        <li class="content-li">
-                                            <div class="content-flex">
-                                                <a th:href="@{/board/suggest/detail/{suggestId}(suggestId=${suggestDTO.id})}">
-                                                    <div class="content-box">
-                                                        <div class="content-image-box">
-                                                                <span class="content-image-layout">
-                                                                    <picture class="suggest_img">
-<!--                                                                        <img-->
-                                                                        <!--                                                                                src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/480px-No_image_available.svg.png">-->
-                                                                    </picture>
-                                                                </span>
-                                                        </div>
-                                                        <div class="content-title" th:text="${suggestDTO.boardTitle}">
-                                                            임종욱
-                                                        </div>
-                                                        <div class="content2" th:text="${suggestDTO.boardContent}">
-                                                            상시 이벤트
-                                                        </div>
-                                                        <div class="liked-box">
-                                                            <div class="flex">
-                                                                <div class="liked-layout">
-                                                                    <div class="icon-box">
-                                                                        <img src="/image/board/human-icon.png"
-                                                                             class="human-icon">
-                                                                    </div>
-                                                                    <p class="like-count"
-                                                                       th:text="${suggestDTO.likeCount}">5771</p>
-                                                                </div>
-                                                                <div class="liked-layout">
-                                                                    <div class="icon-box">
-                                                                        <img src="/image/board/reply-icon.png"
-                                                                             class="reply-icon">
-                                                                    </div>
-                                                                    <p class="reply-count"
-                                                                       th:text="${suggestDTO.replyCount}">97</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </li>
-                                        <!--  -->
+                                    <ul class="content-ul suggest-ul">
+                                        <!--suggestDTO-->
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </section>
-                    <!--아무것도 없을때 나오는 곳-->
-                    <div class="not-search" name="suggestNotSearch">
-                        <span class="not-search-span">
-                            검색 결과가 없습니다.
-                        </span>
-                    </div>
                 </div>
 
             </div>
@@ -187,6 +85,7 @@
     if (member) {
         memberId = member.id;
     }
+
     $(".btn").each((i, e) => {
 
         $(e).click(() => {
@@ -198,58 +97,35 @@
             }
         });
     });
-
+    const $ul = $(".suggest-ul");
     const groupChallengeDTO = [[${groupChallengeDTOS}]];
     const suggestDTO = [[${suggestDTOS}]];
 
-    groupChallengeDTO.forEach((groupChallengeDTO, i) => {
-        let groupChallengeFileDTOS = groupChallengeDTO.fileDTOS;
-        if (groupChallengeFileDTOS != null || groupChallengeFileDTOS != undefined) {
-            groupChallengeFileDTOS.forEach((fileDTO, i) => {
-                if (fileDTO.fileType === "REPRESENTATIVE") {
-                    let text = `
-                            <li class="img_div" style="width: 100%; height: 100%;">
-                                <img style="object-fit: cover;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
-                            </li>
-                    `;
-                    $(".groupChallenge_img").append(text);
-                }
+</script>
+<script src="/js/main/search-list.js"></script>
+<script src="/js/board/suggest/like-service.js"></script>
+<script src="/js/board/suggest/like-button.js"></script>
+<script>
+    heartCheck(suggestDTO);
+    function heartCheck(suggestDTOS) {
+        suggestDTOS.forEach((suggestDTO, i) => {
+            let likeDTO = new Object();
+            likeDTO.memberId = memberId;
+            likeDTO.boardId = suggestDTO.id;
 
-            });
-        }
-    });
-
-    suggestDTO.forEach((suggestDTO, i) => {
-        let suggestFileDTOS = suggestDTO.fileDTOS;
-        if (suggestFileDTOS != null || suggestFileDTOS != undefined) {
-            suggestFileDTOS.forEach((fileDTO, i) => {
-                if (fileDTO.fileType === "REPRESENTATIVE") {
-                    let text = `
-                         <li class="img_div" style="width: 100%; height: 100%;">
-                             <img style="object-fit: cover;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
-                         </li>
-                    `;
-
-                    $(".suggest_img").append(text);
+            likeService.heartCheck(likeDTO,function(result){
+                if(result){
+                    $($(".heart-up")[i]).hide();
+                    $($(".no-heart")[i]).show();
+                    $($(".no-heart")[i]).removeClass("heart-active");
+                }else {
+                    $($(".no-heart")[i]).addClass("heart-active");
+                    $($(".heart-up")[i]).show();
+                    $($(".no-heart")[i]).hide();
                 }
             });
-        }
-    });
-
-    if (groupChallengeDTO.length == 0) {
-        const notSearchElement = document.querySelector('[name="groupChallengeNotSearch"]');
-        if (notSearchElement) {
-            notSearchElement.style.display = 'block';
-        }
+        })
     }
-
-    if (suggestDTO.length == 0) {
-        const notSearchElement = document.querySelector('[name="suggestNotSearch"]');
-        if (notSearchElement) {
-            notSearchElement.style.display = 'block';
-        }
-    }
-
 </script>
 <script src="/js/main/header.js"></script>
 </html>

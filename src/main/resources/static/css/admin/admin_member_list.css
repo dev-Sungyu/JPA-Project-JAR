@@ -114,6 +114,7 @@ table {
 .page-button {
 	width: 20px;
 	cursor: pointer;
+	padding: 4px;
 } 
 
 .page-button-box {
