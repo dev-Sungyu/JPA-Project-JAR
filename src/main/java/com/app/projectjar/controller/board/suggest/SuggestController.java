@@ -97,7 +97,6 @@ public class SuggestController {
     @PostMapping("modify")
     public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("suggestDTO") SuggestDTO suggestDTO) {
 
-        suggestDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         suggestDTO.setId(boardId);
         suggestService.update(suggestDTO);
         return new RedirectView("/board/suggest/detail/" + boardId);

@@ -44,7 +44,6 @@ public class MemberServiceImpl implements MemberService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 //        화면에서 이볅한 회원 아이디를 통해 조회된 정보 (로그인 검사에 사용된다)
         Member member = memberRepository.findByMemberEmail_QueryDSL(username).orElseThrow(() -> new UsernameNotFoundException(username + " not found"));
-        log.info("@@@@@@@@@@@@@@@@@@@" + member.getMemberType().name());
 
         return UserDetail.builder()
                 .id(member.getId())

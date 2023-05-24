@@ -7,7 +7,7 @@
     <title>마이페이지- 다이어리 게시물 좋아요</title>
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
     <link rel="stylesheet" href="/css/mypage/user-header.css">
-    <link rel="stylesheet" href="/css/mypage/header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="icon" href="/image/logo/favicon.png">
@@ -144,9 +144,7 @@
     $ul.on("click","button.heart-layout",function(e){
         let boardId = e.currentTarget.id.replaceAll("heart","");
         let ul = $(e.currentTarget).parent().parent().parent().parent().parent().parent();
-        console.log(ul);
         let li = $(e.currentTarget).parent().parent().parent().parent().parent();
-        console.log(li);
         let i = ul.find("li").index(li);
 
         let likeDTO = new Object();
