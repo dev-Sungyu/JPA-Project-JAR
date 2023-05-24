@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 문의 게시판 상세보기</title>
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/admin/admin_common.css">
     <link rel="stylesheet" href="/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/css/admin/admin_board_detail.css">
     <link rel="stylesheet" href="/css/admin/admin_inquire_detail.css">
@@ -60,7 +62,7 @@
                     <div class="prev-button-layout">
                         <div>
                             <a th:href="@{/admin/board/inquire/list}">
-                                <img src="/image/admin/prev_icon.png" class="prev-icon">
+                                <img style="top: -2px;" src="/image/admin/prev_icon.png" class="prev-icon">
                                 <span class="prev-title">리스트로 돌아가기</span>
                             </a>
                         </div>
@@ -122,6 +124,7 @@
                                     </div>
                                 </div>
                                 </th:block>
+                                <hr>
                                 <th:block th:unless="${!#strings.isEmpty(inquireDTO.answerDTO)}">
                                     <div class="notice_wrap_div">
                                         <div class="notice_box">

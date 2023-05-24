@@ -11,6 +11,7 @@
 	justify-content: space-between;
 }
 
+
 .board-info-box-layout {
 	border: 0.0625rem solid #f2f2f2;
     box-shadow: 11px 13px 11px -14px grey;
@@ -43,6 +44,10 @@
 .board-info-title-box {
 	font-size: 15px;
 	font-weight: bold;
+}
+
+.img_div {
+	width: 33.33333%;
 }
 
 .select-name {
@@ -155,7 +160,7 @@ div.info-table>div.board_info {
 }
 
 div.board_content {
-    min-height: 320px;
+	min-height: 50px;
 }
 
 .board-info-box {

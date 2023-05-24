@@ -77,8 +77,12 @@ public class MainController {
     public void boardSearch(@RequestParam String search, Model model, HttpSession session) {
         List<GroupChallengeDTO> groupSearch = groupChallengeService.findBoardSearch(search);
         List<SuggestDTO> suggestSearch = suggestService.findSuggestWithSearch_QueryDSL(search);
-        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
 
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("groupChallengeDTOS", groupSearch);
@@ -88,15 +92,36 @@ public class MainController {
 
     @GetMapping("service-introduction")
     public void serviceIntroduce(Model model, HttpSession session){
-        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
         model.addAttribute("memberDTO", memberDTO);
     }
     @GetMapping("faq")
     public void faq(Model model, HttpSession session){
-        Long memberId = ((MemberDTO) session.getAttribute("member")).getId();
-        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
         model.addAttribute("memberDTO", memberDTO);
+    }
+
+    @GetMapping("terms")
+    public String goToTerms(Model model, HttpSession session){
+        MemberDTO member = (MemberDTO) session.getAttribute("member");
+        MemberDTO memberDTO = null;
+        if(member != null){
+            Long memberId = member.getId();
+            memberDTO = myPageService.getMemberDTO(memberId);
+        }
+        model.addAttribute("memberDTO", memberDTO);
+
+        return "/terms/terms-of-service";
     }
 
 }

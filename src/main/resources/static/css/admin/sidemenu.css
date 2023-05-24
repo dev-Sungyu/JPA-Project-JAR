@@ -31,6 +31,10 @@ button {
 	cursor: pointer;
 }
 
+.menus {
+	margin-top : 10px;
+}
+
 .wrap {
 	display: flex;
 	justify-content: flex-start;

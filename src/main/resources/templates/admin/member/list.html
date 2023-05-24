@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 페이지- 회원 정보 목록</title>
+    <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/admin/admin_common.css">
     <link rel="stylesheet" href="/css/admin/sidemenu.css">
     <link rel="stylesheet" href="/css/admin/admin_member_list.css">
@@ -67,7 +68,7 @@
                                             <hr>
                                         </td>
                                         <td>
-                                            <a th:href="@{detail/{id}(id=${memberDTO.id})}" th:text="${memberDTO.memberEmail}">
+                                            <a style="font-weight: 500;" th:href="@{detail/{id}(id=${memberDTO.id})}" th:text="${memberDTO.memberEmail}">
                                                 ljs1234@gmail.com
                                             </a> <!-- 디테일 컨트롤러 제작하고 연결  -->
                                         </td>
