@@ -75,7 +75,7 @@ public class SuggestController {
 
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("suggestDTO", suggestDTO);
-        return "/board/suggest/detail";
+        return "board/suggest/detail";
     }
 
     @GetMapping("modify/{boardId}")

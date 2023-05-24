@@ -374,7 +374,7 @@ public class AdminController {
     @PostMapping("board/groupChallenge/modify/delete/{groupChallengeId}")
     public RedirectView delete(@PathVariable("groupChallengeId") Long groupChallengeId){
         groupChallengeService.delete(groupChallengeId);
-        return new RedirectView("admin/board/groupChallenge/list");
+        return new RedirectView("/admin/board/groupChallenge/list");
     }
 
 

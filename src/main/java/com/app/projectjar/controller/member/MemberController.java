@@ -30,7 +30,7 @@ public class MemberController {
 
     @GetMapping("join")
     public String goToJoinForm(MemberDTO memberDTO){
-        return "/member/join";
+        return "member/join";
     }
 
     @PostMapping("join")
