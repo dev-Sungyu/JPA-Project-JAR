@@ -35,7 +35,7 @@ nicknameInput.on("blur", function () {
         type: "post",
         data: {"memberNickname": nicknameInput.val()},
         success: function (result) {
-            console.log(result)
+            // console.log(result)
             if (result != 0) {
                 nicknameErrorMsg.text("중복된 닉네임입니다.").show();
                 nicknameInput.addClass("error-input");
@@ -121,7 +121,7 @@ $sendAuthButton.click(() => {
         url: "/member/sendCode",
         data: {memberPhone: $phoneNumberInput.val()},
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             globalThis.code = data;
             $(".auth-box").show();
             $sendAuthButton.attr("disabled", true);
