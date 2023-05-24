@@ -170,7 +170,7 @@ $(".paging-layout").on("click", "a", function(e) {
         page = parseInt(targetPage) - 1;
     }
 
-    getList(challengeStatus, page);
+    getList(boardType, page);
 });
 
 function displayPagination(totalPages) {

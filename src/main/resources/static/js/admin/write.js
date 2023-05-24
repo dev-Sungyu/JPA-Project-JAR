@@ -1,12 +1,10 @@
-globalThis.uuids;
+globalThis.uuids = [];
 
 //===========================================
 FileList.prototype.forEach = Array.prototype.forEach;
 
-const $alertModal = $(".alert-modal-display");
-const alertMsg = ['사진은 최소 4개이상 넣어 주세요.', '제목을 입력해주세요.', '내용을 입력해주세요.'];
+const $ul = $(".img_ul");
 
-let $ul = $(".img_ul");
 let files = [];
 if(fileDTOS != null && fileDTOS != undefined){
     fileDTOS.forEach((file, i) => {
@@ -22,7 +20,7 @@ $("input[type=file]").on("change", function () {
         files.push(file);
     })
 
-    files.forEach((file, e) => {
+    $files.forEach((file, e) => {
         formData.append("file", file);
     })
 
@@ -34,10 +32,13 @@ $("input[type=file]").on("change", function () {
         contentType: false,
         processData: false,
         success: function (uuids) {
-            globalThis.uuids = uuids;
+            $(uuids).each((i, uuid) => {
+                globalThis.uuids.push(uuid);
+            });
+            let text = '';
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
-                    let text = `
+                    text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
                                 <header class="delete_button_wrapper">
@@ -64,9 +65,10 @@ $("input[type=file]").on("change", function () {
                             </div>
                         </li>
                 `;
-                    $ul.append(text);
                 }
+                $ul.append(text);
             });
+
         }
     });
 });
@@ -81,7 +83,7 @@ $ul.on("click",".close-button", function(e){
     let ul = target.parent();
     let i = ul.find("li").index(target);
     files = [];
-
+    globalThis.uuids.splice(i, 1);
     fileArray.splice(i, 1);
     fileArray.forEach(file => {
         if(file.fileOriginalName == null && file.fileOriginalName == undefined){
@@ -95,18 +97,11 @@ $ul.on("click",".close-button", function(e){
     dataTransfer.files.forEach((file, i) =>{
         files.push(file);
     });
-
 });
 
+
 $(".save-button").click(() => {
-    const $files = $("input[type=file]")[0].files;
     let text = "";
-
-    let boardTitle = $("input[name='boardTitle']").val();
-    let boardContent = $(".proposal_content").val();
-
-    const startDate = $("input[name='startDate']").val(); // 시작 날짜 값 가져오기
-    const endDate = $("input[name='endDate']").val(); // 종료 날짜 값 가져오기
 
     FileList.prototype.forEach = Array.prototype.forEach;
     files.forEach((file, i) => {
@@ -137,13 +132,3 @@ function toStringByFormatting(source, delimiter = '/') {
     return [year, month, day].join(delimiter);
 }
 
-
-function alertModal(errorMsg) {
-
-    $(".alert").text(errorMsg);
-    $alertModal.fadeIn();
-    setTimeout(function () {
-        $alertModal.fadeOut();
-    }, 2000);
-
-}

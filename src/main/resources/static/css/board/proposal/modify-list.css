@@ -140,9 +140,6 @@ picture {
 }
 
 .heart-layout {
-    display: inline-flex;
-    flex: 0 0 auto;
-    vertical-align: middle;
     padding: 0px;
     color: rgb(26, 26, 26);
     background-color: transparent;
@@ -155,6 +152,10 @@ picture {
     border-radius: 100%;
     z-index: 50;
     cursor: pointer;
+}
+
+.heart-layout:hover {
+    background-color: rgba( 202, 202, 202, 0.6 );
 }
 
 .auto-flex {
