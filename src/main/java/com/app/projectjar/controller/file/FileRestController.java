@@ -1,6 +1,7 @@
 package com.app.projectjar.controller.file;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.coobird.thumbnailator.Thumbnailator;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/file/*")
 @RequiredArgsConstructor
+@Slf4j
 public class FileRestController {
 
     //    파일 업로드

@@ -158,6 +158,8 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
     public void update(ChallengeDTO challengeDTO) {
         List<FileDTO> fileDTOS = challengeDTO.getFileDTOS();
 
+        challengeFileRepository.deleteByChallengeId(challengeDTO.getId());
+
         challengeRepository.findById(challengeDTO.getId()).ifPresent(challenge -> {
                     Challenge updatedChallenge = challenge.builder()
                             .boardContent(challengeDTO.getBoardContent())
@@ -167,22 +169,19 @@ public class PersonalChallengeServiceImpl implements PersonalChallengeService {
                             .build();
 
                     challengeRepository.save(updatedChallenge);
+
+                    if(fileDTOS != null){
+                        for (int i = 0; i < fileDTOS.size(); i++) {
+                            if(i == 0){
+                                fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                            }else {
+                                fileDTOS.get(i).setFileType(FileType.NORMAL);
+                            }
+                            fileDTOS.get(i).setChallenge(updatedChallenge);
+                            challengeFileRepository.save(toChallengeFileEntity(fileDTOS.get(i)));
+                        }
+                    }
                 }
         );
-
-        challengeFileRepository.deleteByChallengeId(challengeDTO.getId());
-
-        if(fileDTOS != null){
-            for (int i = 0; i < fileDTOS.size(); i++) {
-                if(i == 0){
-                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
-                }else {
-                    fileDTOS.get(i).setFileType(FileType.NORMAL);
-                }
-                fileDTOS.get(i).setChallenge(getCurrentSequence());
-                challengeFileRepository.save(toChallengeFileEntity(fileDTOS.get(i)));
-            }
-        }
     }
-
 }

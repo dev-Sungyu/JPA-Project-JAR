@@ -62,7 +62,7 @@ public class InquireController {
         model.addAttribute("pageDTO", new PageDTO(inquirePage));
         model.addAttribute("inquireDTOS", inquirePage.getContent());
 
-        return "/board/inquire/list";
+        return "board/inquire/list";
     }
 
     @GetMapping("write")

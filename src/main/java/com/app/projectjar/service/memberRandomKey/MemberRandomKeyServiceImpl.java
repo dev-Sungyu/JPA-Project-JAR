@@ -20,7 +20,6 @@ public class MemberRandomKeyServiceImpl implements MemberRandomKeyService {
 
     @Override
     public MemberRandomKey saveRandomKey(Member member) {
-        log.info("@@@@@@@@@@@@@@ save Random Key @@@@@@@@@@@@@@@@@@@");
         MemberRandomKey memberRandomKey = new MemberRandomKey(member);
         randomKeyRepository.save(memberRandomKey);
         return memberRandomKey;
@@ -28,7 +27,6 @@ public class MemberRandomKeyServiceImpl implements MemberRandomKeyService {
 
     @Override
     public MemberRandomKey getLatestRandomKey(Long id) {
-        log.info("@@@@@@@ get @@@@@@@@");
         return randomKeyRepository.getListRandomKey(id);
     }
 }

@@ -30,13 +30,12 @@ public class MemberController {
 
     @GetMapping("join")
     public String goToJoinForm(MemberDTO memberDTO){
-        return "/member/join";
+        return "member/join";
     }
 
     @PostMapping("join")
     public RedirectView join(MemberDTO memberDTO){
         memberService.join(memberDTO, passwordEncoder);
-        log.info(memberDTO.toString());
         return new RedirectView("/member/login");
     }
 
@@ -77,7 +76,6 @@ public class MemberController {
     @PostMapping("sendCode")
     @ResponseBody
     public String sendCode(String memberPhone) {
-        log.info("@@@@@@@@@@@@@@@ sendCode @@@@@@@@@@@@@@@@");
         Random random = new Random();
 
         String code = "";
@@ -95,12 +93,8 @@ public class MemberController {
 
     @GetMapping("change-password/{memberEmail}/{randomKey}")
     public String password(@PathVariable("memberEmail") String memberEmail, @PathVariable("randomKey") String randomKey, Model model){
-        log.info("@@@@@@@@@@@ change-password Controller @@@@@@@@@@");
-        log.info("email: " + memberEmail);
-        log.info("randomKey: " + randomKey);
 
         String latest = memberRandomKeyService.getLatestRandomKey(memberService.getMemberEmail(memberEmail).getId()).getMemberRandomKey();
-        log.info("latest: " + latest);
         if(latest.equals(randomKey)){
             model.addAttribute("memberEmail", memberEmail);
             model.addAttribute("result", true);
@@ -110,9 +104,8 @@ public class MemberController {
             model.addAttribute("result", false);
             model.addAttribute("errorMessage", "만료된 경로 입니다.");
         }
-        log.info("model: " + model.getAttribute("errorMessage"));
 
-        return "/member/change-password";
+        return "member/change-password";
     }
 
 
@@ -120,7 +113,6 @@ public class MemberController {
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
     public Long changePassword(@RequestParam("memberPassword") String memberPassword, @RequestParam("memberEmail") String memberEmail){
-        log.info("@@@@@@@@@@@ change-password Controller @@@@@@@@@@@");
         Member member = memberService.getMemberEmail(memberEmail);
         memberService.updatePassword(member.getId(), memberPassword, passwordEncoder);
         memberRandomKeyService.saveRandomKey(member);
@@ -133,26 +125,19 @@ public class MemberController {
     @ResponseBody
     @Transactional(rollbackFor = Exception.class)
     public Long sendEmailToFindPassword(@RequestParam("memberEmail") String memberEmail){
-        log.info("@@@@@@@@@@@@@@@@@@@@@@@@@ sendEMail Controller @@@@@@@@@@@@@@@@@@@@@@@@@");
 
         Member member = memberService.getMemberEmail(memberEmail);
-        log.info(memberEmail);
-        log.info("member: " + member.toString());
 
         MemberRandomKey memberRandomKey = memberRandomKeyService.getLatestRandomKey(member.getId());
-//        log.info("randomKey controller: " + memberRandomKey.toString());
 
         String randomKeyString = memberRandomKey != null ? memberRandomKey.getMemberRandomKey() : memberRandomKeyService.saveRandomKey(member).getMemberRandomKey();
 
-        log.info("randomKeyString controller: " + randomKeyString);
 
         MailDTO mailDTO = new MailDTO();
         mailDTO.setAddress(memberEmail);
         mailDTO.setTitle("[Jar]새 비밀 번호 설정 링크 입니다.");
 
         String message = "비밀 번호 변경 링크 입니다.\n\n" + "링크: http://localhost:10000/member/change-password/" + memberEmail + "/" + randomKeyString;
-        log.info("@@@@@@@@@@@@ message @@@@@@@@@@@@@@@@@");
-        log.info(message);
         mailDTO.setMessage(message);
 
         memberService.sendMail(mailDTO);

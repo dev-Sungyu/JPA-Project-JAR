@@ -64,30 +64,36 @@ public class DiaryServiceImpl implements DiaryService {
     public void modifyDiary(DiaryDTO diaryDTO) {
         List<FileDTO> fileDTOS = diaryDTO.getFileDTOS();
 
+        diaryFileRepository.deleteByDiaryId(diaryDTO.getId());
+
         diaryRepository.findById(diaryDTO.getId()).ifPresent(
                 diary -> {
-                    diary.builder()
+                    Diary updateDiary = Diary.builder()
+                            .id(diary.getId())
                             .boardContent(diaryDTO.getBoardContent())
                             .boardTitle(diaryDTO.getBoardTitle())
                             .member(diary.getMember())
                             .diaryStatus(diaryDTO.getDiaryStatus())
+                            .createDate(diary.getCreatedDate())
+                            .diaryReplyCount(diary.getDiaryReplyCount())
+                            .diaryLikeCount(diary.getDiaryLikeCount())
                             .build();
-                    diaryRepository.save(diary);
+                    diaryRepository.save(updateDiary);
+
+                    if(fileDTOS != null){
+                        for (int i = 0; i < fileDTOS.size(); i++) {
+                            if(i == 0){
+                                fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                            }else {
+                                fileDTOS.get(i).setFileType(FileType.NORMAL);
+                            }
+                            fileDTOS.get(i).setDiary(updateDiary);
+                            diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
+                        }
+                    }
                 }
         );
-        diaryFileRepository.deleteByDiaryId(diaryDTO.getId());
 
-        if(fileDTOS != null){
-            for (int i = 0; i < fileDTOS.size(); i++) {
-                if(i == 0){
-                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
-                }else {
-                    fileDTOS.get(i).setFileType(FileType.NORMAL);
-                }
-                fileDTOS.get(i).setDiary(getCurrentSequence());
-                diaryFileRepository.save(toDiaryFileEntity(fileDTOS.get(i)));
-            }
-        }
     }
 
     @Override @Transactional

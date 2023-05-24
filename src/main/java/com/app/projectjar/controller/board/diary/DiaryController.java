@@ -55,7 +55,7 @@ public class DiaryController {
 
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("diaryDTO", diaryDTO);
-        return "/board/diary/detail";
+        return "board/diary/detail";
     }
 
     @GetMapping("modify/{diaryId}")
@@ -70,7 +70,7 @@ public class DiaryController {
         DiaryDTO diaryDTO = diaryService.getDiary(diaryId);
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("diaryDTO", diaryDTO);
-        return "/board/diary/modify";
+        return "board/diary/modify";
     }
 
     @PostMapping("modify")

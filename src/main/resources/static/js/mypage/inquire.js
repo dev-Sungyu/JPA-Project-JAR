@@ -82,7 +82,7 @@ function listText(list) {
         <div class="flex-between">
           <p class="date">${createdDate}</p>
           <div>
-            <button type="button" class="btn modify-btn" onclick="location.href='/board/inquire/modify/${inquireDTO.id}'">수정</button>
+<!--            <button type="button" class="btn modify-btn" onclick="location.href='/board/inquire/modify/${inquireDTO.id}'">수정</button>-->
             <button type="button" class="btn delete-btn" onclick="deleteInquire(${inquireDTO.id})">삭제</button>
           </div>
         </div>

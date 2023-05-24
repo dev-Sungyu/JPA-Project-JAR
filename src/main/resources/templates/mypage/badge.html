@@ -7,7 +7,7 @@
     <title>마이페이지-뱃지</title>
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
     <link rel="stylesheet" href="/css/mypage/user-header.css">
-    <link rel="stylesheet" href="/css/mypage/header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="icon" href="/image/logo/favicon.png">
@@ -104,14 +104,12 @@
     if (member) {
         memberId = member.id;
     }
-    console.log(badgeType);
 </script>
 <script>
     let badgeBox = $(".my-badge-image");
     badgeTypeCheck(badgeType);
 
     function badgeTypeCheck(badgeType) {
-        console.log(badgeType);
         let text = '';
         if(badgeType == 'ONE'){
             text +=`<img src="/image/mypage/trophy_1.png">`;

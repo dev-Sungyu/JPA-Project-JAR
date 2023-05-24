@@ -447,6 +447,7 @@ hr {
     padding: 24px;
     position: fixed;
     overflow-y: auto;
+    top: 13%;
     z-index: 5001;
     background: rgb(255, 255, 255);
     box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;

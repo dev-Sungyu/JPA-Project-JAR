@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/mypage/like-list.css">
     <link rel="stylesheet" href="/css/mypage/side-menu.css">
     <link rel="stylesheet" href="/css/mypage/user-header.css">
-    <link rel="stylesheet" href="/css/mypage/header.css">
+    <link rel="stylesheet" href="/css/main/header.css">
     <link rel="stylesheet" href="/css/main/footer.css">
     <link rel="stylesheet" href="/css/common.css">
     <link rel="icon" href="/image/logo/favicon.png">
@@ -81,9 +81,7 @@
     $ul.on("click","button.heart-layout",function(e){
         let boardId = e.currentTarget.id.replaceAll("heart","");
         let ul = $(e.currentTarget).parent().parent().parent().parent().parent().parent();
-        console.log(ul);
         let li = $(e.currentTarget).parent().parent().parent().parent().parent();
-        console.log(li);
         let i = ul.find("li").index(li);
 
         let likeDTO = new Object();
@@ -116,35 +114,6 @@
 
     });
 
-</script>
-<script>
-    // const $heartButton = $(".heart-layout");
-    // const $noHeart = $(".no-heart");
-    // const $heartUp = $(".heart-up");
-    //
-    // $heartButton.each((i, e) => {
-    //
-    //     $(e).click(() => {
-    //         if($($noHeart[i]).hasClass("heart-active")){
-    //             $($heartUp[i]).hide();
-    //             $($noHeart[i]).show();
-    //             $($noHeart[i]).removeClass("heart-active");
-    //         }else {
-    //             $($noHeart[i]).addClass("heart-active");
-    //             $($heartUp[i]).show();
-    //             $($noHeart[i]).hide();
-    //         }
-    //     });
-    // });
-
-    const $page = $(".paging-border-none");
-
-    $page.each((i, e) => {
-        $(e).click(() => {
-            $page.removeClass("paging-active");
-            $(e).addClass("paging-active");
-        });
-    });
 </script>
 <script src="/js/main/header.js"></script>
 </html>

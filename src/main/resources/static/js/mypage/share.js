@@ -80,7 +80,7 @@ function listText(list) {
 
     let text = '';
     $(diaryDTOS).each((i, diaryDTO) => {
-        var createDate = getDate(diaryDTO.createdDate);
+        var createDate = getDate(diaryDTO.createDate);
         text += `
                                         <div class="list-layout">
                                             <div class="flex-between">

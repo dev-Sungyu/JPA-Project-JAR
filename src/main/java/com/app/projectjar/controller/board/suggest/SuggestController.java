@@ -75,7 +75,7 @@ public class SuggestController {
 
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("suggestDTO", suggestDTO);
-        return "/board/suggest/detail";
+        return "board/suggest/detail";
     }
 
     @GetMapping("modify/{boardId}")
@@ -91,13 +91,12 @@ public class SuggestController {
 
         model.addAttribute("memberDTO", memberDTO);
         model.addAttribute("suggestDTO", suggestDTO);
-        return "/board/suggest/modify";
+        return "board/suggest/modify";
     }
 
     @PostMapping("modify")
     public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("suggestDTO") SuggestDTO suggestDTO) {
 
-        suggestDTO.getFileDTOS().stream().forEach(fileDTO -> log.info(fileDTO.toString()));
         suggestDTO.setId(boardId);
         suggestService.update(suggestDTO);
         return new RedirectView("/board/suggest/detail/" + boardId);

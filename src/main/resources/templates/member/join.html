@@ -15,9 +15,11 @@
         <header class="header">
             <div class="header_div">
                 <div class="class101_outside">
-                    <div class="class101_inside">
-                        <img style="width: 90px;" src="/image/logo/logo.png">
-                    </div>
+                    <a onclick="location.href='/main/'">
+                        <div class="class101_inside">
+                            <img style="width: 90px;" src="/image/logo/logo.png">
+                        </div>
+                    </a>
                 </div>
             </div>
         </header>
@@ -323,7 +325,6 @@
             nameErrorMsg.hide();
             nameFlag = true;
             if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                console.log("이름 플래그")
                 $(".next_btn").prop("disabled",false);
                 $(".next_btn").css("background-color", "rgb(255, 93, 0)");
             }else{
@@ -339,13 +340,11 @@
     let nicknameFlag = false;
 
     nicknameInput.on("blur", function() {
-        console.log(nicknameInput.val())
         $.ajax({
             url: "/member/check-nickname",
             type: "post",
             data: {"memberNickname": nicknameInput.val()},
             success: function (result) {
-                console.log(result)
                 if (result != 0) {
                     nicknameErrorMsg.text("중복된 닉네임입니다.").show();
                     nicknameInput.addClass("error-input");
@@ -367,7 +366,6 @@
                     nicknameFlag = true;
 
                     if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                        console.log("닉네임 플래그")
                         $(".next_btn").css("background-color", "rgb(255, 93, 0)");
                         $(".next_btn").prop("disabled",false);
                     }else{
@@ -414,7 +412,6 @@
                     emailInput.removeClass("error-input");
                     emailFlag = true;
                     if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                        console.log("이메일 플래그")
                         $(".next_btn").prop("disabled",false);
                         $(".next_btn").css("background-color", "rgb(255, 93, 0)");
                     }else{
@@ -461,8 +458,7 @@
             $("input[name='memberPassword']").css('border-color', 'rgba(0, 0, 0, 0.15)');
             passwordFlag = true;
             if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                console.log("비밀번호 플래그")
-                $(".next_btn").css("background-color", "rgb(255, 93, 0)"); 
+                $(".next_btn").css("background-color", "rgb(255, 93, 0)");
                 $(".next_btn").prop("disabled",false);
             }else{
                 $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
@@ -478,13 +474,11 @@
     confirmPasswordInput.on("input", function() {
         let password = passwordInput.val().trim();
         let confirmPassword = confirmPasswordInput.val().trim();
-        console.log(password.toString());
         if (passwordInput.val() === confirmPasswordInput.val()) {
             confirmPasswordErrorMsg.hide();
             confirmPasswordInput.removeClass("error-input");
             confirmPasswordFlag = true;
             if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                console.log("비밀번호 체크 플래그")
                 $(".next_btn").prop("disabled",false);
                 $(".next_btn").css("background-color", "rgb(255, 93, 0)");
             }else{
@@ -518,7 +512,6 @@
     $phoneInput.on("keyup", function(){
         var isPhoneNum = /([01]{2,})([01679]{1,})([0-9]{3,4})([0-9]{4})/;
         var $phoneInputVal = $phoneInput.val();
-        console.log(isPhoneNum.test($phoneInputVal));
         $.ajax({
             url:"/member/check-phone",
             type:"post",
@@ -534,7 +527,6 @@
                     $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
                     $(".next_btn").prop("disabled",true);
                     $buttonUp.prop("disabled",true);
-                    console.log("중복됨")
 
                 } else if (!isPhoneNum.test($phoneInputVal)){
                     $phoneErrorMsg.text("잘못된 형식입니다. 다시 입력해주세요.");
@@ -546,7 +538,6 @@
                     $buttonUp.prop("disabled",true);
                     $(".next_btn").css("background-color", "rgba(0, 0, 0, 0.1)");
                     $(".next_btn").prop("disabled",true);
-                    console.log("잘못된 형식");
 
                 } else {
                     $phoneErrorMsg.text("사용 가능한 핸드폰 번호입니다.").show();
@@ -556,9 +547,7 @@
                     $buttonUp.css({'cursor': 'pointer', 'backgroundColor': 'rgb(255, 93, 0)'});
                     $buttonUp.prop("disabled", false);
                     $buttonUp.prop("disabled",false);
-                    console.log("잘된 형식");
                     if (nameFlag && nicknameFlag && emailFlag && passwordFlag && confirmPasswordFlag && phoneFlag && confirmPhoneFlag) {
-                        console.log("핸드폰 플래그")
                         $(".next_btn").css("background-color", "rgb(255, 93, 0)");
                         $(".next_btn").prop("disabled",false);
                     }else{
@@ -595,11 +584,9 @@
 
             inputUp.addEventListener('keyup', function () {
                 if (inputUp.value) {
-                    console.log("기")
                     buttonUp.style.backgroundColor = "rgb(255, 93, 0)";
                     $buttonUp.prop("disabled", false);
                 } else {
-                    console.log("여")
                     buttonUp.style.backgroundColor = "rgba(0, 0, 0, 0.1)";
                     $buttonUp.prop("disabled", true);
                 }
@@ -624,12 +611,9 @@
     });
 
     function phoneSend() {
-        console.log("phonesend")
         if(phoneFlag) {
-            console.log("phoneFlag")
             // /* 해당 전화번호로 인증 번호 전송 */
             let phone = $('input[name=memberPhoneNumber]').val().replaceAll("-", "");
-            console.log(phone);
             $.ajax({
                 type: "POST",
                 url: "/member/sendCode",
@@ -646,12 +630,9 @@
     const $redConfirmPhone = $("#red_confirm_phone");
 
     $buttonDown.on("click",function(){
-        console.log("click")
 
 
         if(globalThis.code == $confirmPhoneInput.val()){
-            console.log("code: "+ globalThis.code);
-            console.log("$confirmPhoneInput: "+ $confirmPhoneInput.val())
             confirmPhoneFlag=true;
             $redConfirmPhone.text("인증번호가 확인되었습니다.");
             $redConfirmPhone.css("display","block");
@@ -664,8 +645,6 @@
                 $(".next_btn").prop("disabled",true);
             }
         }else{
-            console.log("code-false: "+ globalThis.code);
-            console.log("$confirmPhoneInput-false: "+ $confirmPhoneInput.val())
             confirmPhoneFlag=false;
             $redConfirmPhone.text("인증번호를 다시 입력해 주세요.");
             $redConfirmPhone.css("display","block");

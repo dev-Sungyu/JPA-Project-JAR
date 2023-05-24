@@ -52,7 +52,7 @@ public class ChallengeController {
         PersonalChallengeDTO personalChallengeDTO = personalChallengeService.getPersonalChallenge(personalChallengeId);
         model.addAttribute("memberDTO",memberDTO);
         model.addAttribute("personalChallengeDTO", personalChallengeDTO);
-        return "/board/challenge/personal/detail";
+        return "board/challenge/personal/detail";
     }
 
 }

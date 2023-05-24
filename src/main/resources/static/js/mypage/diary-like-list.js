@@ -1,4 +1,4 @@
-const $ul = $(".contnet-ul")
+const $ul = $(".list-box-ul");
 let page = 0;
 
 diaryService = (function () {
@@ -74,9 +74,9 @@ function listText(list) {
     $(diaryLikeDTOS).each((i, diaryLikeDTO) => {
         text += `
                                             <li class="content-li">
-                                                <a href="javascript:void(0)">
                                                     <div class="content-image">
                                                         <span class="content-image-span">
+                                                        <a href="/board/diary/detail/${diaryLikeDTO.diaryDTO.id}">
                                                             <picture class="picture-postion">
                                                             `;
                                                             <!-- 사진 -->
@@ -90,6 +90,7 @@ function listText(list) {
                                                                 }
                                                             }
                                                 text +=           `</picture>
+                                                            </a>
                                                             <div class="heart-box">
                                                                 <button class="heart-layout" id="heart${diaryLikeDTO.diaryDTO.id}">
                                                                       <span class="auto-flex no-heart" style="display:none;">
@@ -136,7 +137,6 @@ function listText(list) {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </a>
                                             </li>
         
                                                 `;
