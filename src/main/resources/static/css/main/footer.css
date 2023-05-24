@@ -206,11 +206,6 @@
 
 
 @media (max-width: 1023px){
-    #calendar {
-        font-size: 10px!important;
-        height: 300px;
-    }
-
     .footer-wrap {
         padding-bottom: 72px;
     }

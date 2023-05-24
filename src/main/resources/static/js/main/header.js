@@ -38,11 +38,11 @@ function profileImageCheck(memberFile){
     let text = '';
     if (memberFile == undefined || memberFile == null) {
         text = `
-                    <img style="width:100%; height: 100%" src="/image/logo/normal_profile.png">
+                    <img style="width:24px; height:24px;" src="/image/logo/normal_profile.png">
         `;
     }else {
         text = `
-                      <img style="width:100%; object-fit: cover; height: 100%" src="/file/display?fileName=${memberFile.filePath}/${memberFile.fileUuid}_${memberFile.fileOriginalName}">
+                      <img style="width:24px; object-fit: cover; height:24px; border-radius: 50%;" src="/file/display?fileName=${memberFile.filePath}/${memberFile.fileUuid}_${memberFile.fileOriginalName}">
                   `;
     }
     $(".profile").html(text);

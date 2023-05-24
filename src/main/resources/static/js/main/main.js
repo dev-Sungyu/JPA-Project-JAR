@@ -113,7 +113,7 @@ function touchEnd(e) {
 }
 
 function next() {
-  if (curPos1 < $firstContentAll.length -1) {
+  if (curPos1 < groupChallengeDTOS.length) {
     position1 += firstWidth;
     $firstContent.css("transition", "transform 0.3s");
     $firstContent.css("transform", `translate(-${position1}px)`);
@@ -152,7 +152,7 @@ function touchEnd2(e) {
 }
 
 function next2() {
-  if (curPos2 < $firstContentAll.length) {
+  if (curPos2 < globalThis.suggestLength - 2) {
     position2 += secondWidth;
     $secondContent.css("transition", "transform 0.3s");
     $secondContent.css("transform", `translate(-${position2}px)`);
