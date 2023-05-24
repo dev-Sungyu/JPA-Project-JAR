@@ -752,7 +752,125 @@ div.toastui-calendar-template-monthDayName {
     margin-top: 170px;
 }
 
+.main-info-modal {
+    position: absolute;
+    inset: 0px;
+    z-index: 10000;
+}
+
+.modal-back {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    inset: 0px;
+    display: block;
+    z-index: 5000;
+    animation: 0.25s ease 0s 1 normal none running openOverlay;
+    opacity: 1.1;
+}
+
+.main-info-modal-box {
+    padding: 24px;
+    position: fixed;
+    overflow-y: auto;
+    top: 30%;
+    z-index: 5001;
+    background: rgb(255, 255, 255);
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 3px 6px 0px, rgba(0, 0, 0, 0.12) 0px 8px 16px 0px;
+}
+
+.main-info-sub-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(102, 102, 102);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.main-info-sub-content {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(102, 102, 102);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    margin-bottom: 4px;
+}
+
+.main-info-reson-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 28px;
+    margin: 0px;
+}
+
+.main-info-reson-sub-title {
+    font-size: 14px;
+    font-weight: normal;
+    color: rgb(26, 26, 26);
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 8px 0px 4px;
+}
+
+.reson-textarea {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 20px;
+    letter-spacing: -0.15px;
+    margin: 0px;
+    color: rgb(26, 26, 26);
+    border-radius: 1px;
+    background-color: white;
+    border: 1px solid rgb(229, 229, 229);
+    width: 100%;
+    height: 104px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-top: 4px;
+    height: 153px;
+}
+
+.main-info-main-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 34px;
+    letter-spacing: -0.4px;
+    display: flex;
+    margin: 0px 0px 8px;
+}
+
+.exit-icon {
+    flex: 0 0 auto;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
+.check-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(26, 26, 26);
+    line-height: 24px;
+    letter-spacing: -0.3px;
+    margin: 0px;
+}
+
+.main-info-display {
+    display: none;
+}
+
+
 @media (max-width:1023px) {
+    #calendar {
+        font-size: 10px!important;
+        height: 300px;
+    }
+
     .suggest-wrap {
         margin-top: 0px;
     }
@@ -990,5 +1108,17 @@ div.toastui-calendar-template-monthDayName {
     .slide-sub-text {
         margin-top: 6px;
         max-width: 300px;
+    }
+}
+
+@media (min-width: 960px) {
+    .main-info-modal-box {
+        top: 50%;
+        left: 50%;
+        width: 480px;
+        transform: translate(-50%, -50%);
+        animation: 0.25s ease 0s 1 normal none running openModal;
+        max-height: 95%;
+        padding: 32px 24px;
     }
 }
