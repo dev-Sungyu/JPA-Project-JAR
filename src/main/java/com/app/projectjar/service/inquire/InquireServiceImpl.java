@@ -89,22 +89,5 @@ public class InquireServiceImpl implements InquireService {
         }
     }
 
-//    @Override @Transactional
-//    public void insertAnswer(AnswerDTO answerDTO) {
-//        memberRepository.findById(answerDTO.getId()).ifPresent(
-//                member ->
-//                        inquireRepository.findById(answerDTO.getId()).ifPresent(
-//                                inquire -> {
-//                                    Answer answer = Answer.builder()
-//                                            .answerContent(answerDTO.getAnswerContent())
-//                                            .inquire(getInquire(inquireId))
-//                                            .member(member)
-//                                            .build();
-//                                    answerRepository.save(answer);
-//                                    inquireRepository.save(inquire);
-//                                }
-//                        )
-//        );
-//    }
 
 }
