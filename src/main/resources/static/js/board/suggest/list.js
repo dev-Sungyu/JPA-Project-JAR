@@ -3,7 +3,7 @@ let page = 0;
 let boardType = "personal";
 
 
-suggestService = (function () {
+let suggestService = (function () {
     function list(page, callback) {
         $.ajax({
             url: '/board/suggest/list-content',
@@ -152,6 +152,26 @@ function getList(boardType, page){
         heartCheck(list);
     })
 }
+
+$(".paging-layout").on("click", "a", function(e) {
+    e.preventDefault();
+    $ul.empty();
+    const targetPage = $(this).text();
+
+    if ($(this).hasClass("arrow")) {
+        // 화살표 클릭 시 이전 페이지 또는 다음 페이지로 이동
+        if ($(this).attr("id") === "prev") {
+            page--;
+        } else if ($(this).attr("id") === "next") {
+            page++;
+        }
+    } else {
+        // 페이지 번호 클릭 시 해당 페이지로 이동
+        page = parseInt(targetPage) - 1;
+    }
+
+    getList(challengeStatus, page);
+});
 
 function displayPagination(totalPages) {
     const $pagination = $(".paging-layout");

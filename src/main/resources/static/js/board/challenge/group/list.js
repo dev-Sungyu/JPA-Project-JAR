@@ -2,7 +2,7 @@ const $ul = $(".challenge-wrapper-list");
 let page = 0;
 let boardStatus = "OPEN";
 
-groupChallengeService = (function () {
+let groupChallengeService = (function () {
     function list(page, callback) {
         $.ajax({
             url: '/board/challenge/group/content-list',
