@@ -148,10 +148,6 @@ div.info-table>div.board_info {
     border: none;
 }
 
-div.board_content {
-    min-height: 320px;
-}
-
 .board-info-box {
     width: 100%;
 }

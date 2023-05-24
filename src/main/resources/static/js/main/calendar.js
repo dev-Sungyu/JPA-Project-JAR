@@ -48,6 +48,7 @@ calendars: [
     id: 'cal2',
     name: '관리자',
     backgroundColor: '#36f',
+    color : '#fff',
   },
   {
     id: 'cal3',
@@ -62,27 +63,29 @@ calendars: [
   {
     id: 'cal5',
     name: '관리자',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#98EECC',
   },
   {
     id: 'cal6',
     name: '관리자',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#0AC9FF',
   },
   {
     id: 'cal7',
     name: '관리자',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: 'red',
+    color : '#fff',
   },
   {
     id: 'cal8',
     name: '관리자',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#8B4513',
+    color : '#fff',
   },
   {
     id: 'cal9',
     name: '관리자',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: '#FBFFDC',
   },
 ],
 };
@@ -92,72 +95,6 @@ const month = calendar.getDate().getMonth() + 1;
 const year = calendar.getDate().getFullYear();
 
 calendar.clearGridSelections();
-
-let datas = [
-    {
-    id: '1',
-    calendarId: 'cal2',
-    title: '축구',
-    start: '2023-04-09',
-    end: '2023-04-10',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '2',
-    calendarId: 'cal1',
-    title: '플러깅',
-    start: '2023-04-16',
-    end: '2023-04-17',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '3',
-    calendarId: 'cal3',
-    title: '봉사활동',
-    start: '2023-04-20',
-    end: '2023-04-21',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '4',
-    calendarId: 'cal4',
-    title: '먹고싶은 거 먹기',
-    start: '2023-04-28',
-    end: '2023-05-01',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '5',
-    calendarId: 'cal5',
-    title: '농구',
-    start: '2023-04-12',
-    end: '2023-04-13',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '6',
-    calendarId: 'cal3',
-    title: '남한산성 한 바퀴',
-    start: '2023-04-05',
-    end: '2023-04-08',
-    isAllday: true,
-    category: 'allday',
-    },
-    {
-    id: '6',
-    calendarId: 'cal3',
-    title: '남한산성 한 바퀴',
-    start: '2023-04-05',
-    end: '2023-04-08',
-    isAllday: true,
-    category: 'allday',
-    },
-];
 
 calendarDTOS.forEach((e, i) => {
   calendar.createEvents([

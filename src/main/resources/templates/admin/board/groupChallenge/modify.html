@@ -12,6 +12,12 @@
     <link rel="stylesheet" href="/css/board/proposal/write.css">
     <link rel="stylesheet" href="/css/admin/admin_board_proposal_modify.css">
     <link rel="icon" href="/image/logo/favicon.png">
+    <style>
+        ul.img_ul li {
+            width: 184px;
+            margin: 0px;
+        }
+    </style>
 </head>
 
 <body>
@@ -92,6 +98,7 @@
                                         <section class="img_wrapper_box">
                                             <div class="img_ul_wrapper">
                                                 <ul class="img_ul">
+
                                                 </ul>
                                             </div>
                                         </section>
@@ -118,16 +125,14 @@
     } else {
         fileDTOS = groupChallengeDTO.fileDTOS;
     }
-
 </script>
-<script src="/js/admin/modify.js"></script>
+<script src="/js/admin/write.js"></script>
 <script>
-
     $(".modify-button").click(() => {
-        const $files = fileDTOS;
         let text = "";
 
         FileList.prototype.forEach = Array.prototype.forEach;
+
         let count = 0;
         files.forEach((file, i) => {
             if(file.fileOriginalName == undefined && file.fileOriginalName == null){
@@ -153,8 +158,8 @@
     });
 
     imageText(groupChallengeDTO.fileDTOS);
-    function imageText($files){
-        $files.forEach((file, i) => {
+    function imageText(files){
+        files.forEach((file, i) => {
             let text = `
                         <li class="img_list" id="li${i}">
                             <div class="img_box_wrapper">
