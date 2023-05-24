@@ -55,12 +55,12 @@ public class MainController {
         }
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
         List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
-        MemberDTO member = null;
+        MemberDTO memberInfo = null;
         if(userDetail != null){
-            member = myPageService.getMemberDTO(userDetail.getId());
+            memberInfo = myPageService.getMemberDTO(userDetail.getId());
         }
 
-        model.addAttribute("memberDTO", member);
+        model.addAttribute("memberDTO", memberInfo);
         model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
         model.addAttribute("calendarDTOS", calendarDTOS);
     }
