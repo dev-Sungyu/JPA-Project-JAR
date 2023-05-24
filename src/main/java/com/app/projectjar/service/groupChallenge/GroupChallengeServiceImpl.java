@@ -132,6 +132,8 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
     public void update(GroupChallengeDTO groupChallengeDTO) {
         List<FileDTO> fileDTOS = groupChallengeDTO.getFileDTOS();
 
+        groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeDTO.getId());
+
         groupChallengeRepository.findById(groupChallengeDTO.getId()).ifPresent(groupChallenge -> {
                 GroupChallenge updatedGroupChallenge = groupChallenge.builder()
                             .boardContent(groupChallengeDTO.getBoardContent())
@@ -146,22 +148,21 @@ public class GroupChallengeServiceImpl implements GroupChallengeService {
                             .build();
 
                     groupChallengeRepository.save(updatedGroupChallenge);
+                    if(fileDTOS != null){
+                        for (int i = 0; i < fileDTOS.size(); i++) {
+                            if(i == 0){
+                                fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
+                            }else {
+                                fileDTOS.get(i).setFileType(FileType.NORMAL);
+                            }
+                            fileDTOS.get(i).setGroupChallenge(updatedGroupChallenge);
+                            groupChallengeFileRepository.save(toGroupChallengeFileEntity(fileDTOS.get(i)));
+                        }
+                    }
                 }
         );
 
-        groupChallengeFileRepository.deleteByGroupChallengeId(groupChallengeDTO.getId());
 
-        if(fileDTOS != null){
-            for (int i = 0; i < fileDTOS.size(); i++) {
-                if(i == 0){
-                    fileDTOS.get(i).setFileType(FileType.REPRESENTATIVE);
-                }else {
-                    fileDTOS.get(i).setFileType(FileType.NORMAL);
-                }
-                fileDTOS.get(i).setGroupChallenge(getCurrentSequence());
-                groupChallengeFileRepository.save(toGroupChallengeFileEntity(fileDTOS.get(i)));
-            }
-        }
     }
 
     @Override

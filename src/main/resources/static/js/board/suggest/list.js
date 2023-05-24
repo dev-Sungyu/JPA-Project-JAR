@@ -94,9 +94,11 @@ function listText(list) {
                                                                 ${suggestDTO.boardTitle}
                                                             </div>
                                                             <div class="content2">
-                                                                ${suggestDTO.boardContent}
-                                                            </div>
-                                                            <div class="liked-box">
+                                                            `;
+                                                text +=       contentPrint(suggestDTO.boardContent);
+                                                text +=            `
+                                                             </div>
+                                                                <div class="liked-box">
                                                                 <div class="flex">
                                                                     <div class="liked-layout">
                                                                         <div class="icon-box">
@@ -122,6 +124,19 @@ function listText(list) {
                                                 </div>
                                             </li>
     `;
+    });
+    return text;
+}
+
+function contentPrint(content) {
+    let test = content.replaceAll("\n", "<br/>").split("<br/>");
+    let text = "";
+
+    test.forEach((e, i) => {
+
+        text += `
+                        <p>${e}</p>
+            `;
     });
     return text;
 }
