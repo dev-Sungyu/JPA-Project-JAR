@@ -22,7 +22,7 @@ $("input[type=file]").on("change", function () {
         files.push(file);
     })
 
-    files.forEach((file, e) => {
+    $files.forEach((file, e) => {
         formData.append("file", file);
     })
 

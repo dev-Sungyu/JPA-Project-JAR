@@ -4,7 +4,7 @@ let page = 0;
 // 초기 status
 let challengeStatus= "OPEN";
 
-groupChallengeService = (function () {
+let groupChallengeService = (function () {
     // 리스트를 불러오는 함수
     function list(page, callback) {
         $.ajax({
