@@ -46,20 +46,25 @@ public class MainController {
 
     @GetMapping("")
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
-        if(session.getAttribute("member")==null){
-            if(userDetail != null){
-                Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
-                MemberDTO memberDTO = memberService.toMemberDTO(member);
-                session.setAttribute("member", memberDTO);
-            }
+        Long memberId = null;
+        if (session.getAttribute("member") == null) {
+            Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
+            MemberDTO memberDTO = memberService.toMemberDTO(member);
+            session.setAttribute("member", memberDTO);
+        } else {
+            memberId = ((MemberDTO)session.getAttribute("member")).getId();
+            MemberDTO memberDTO = memberService.getMember(memberId);
+            session.setAttribute("member", memberDTO);
         }
+
         List<GroupChallengeDTO> groupChallengeDTOS = groupChallengeService.getGroupChallengeList(PageRequest.of(0, 6)).getContent();
         List<GroupCalendarDTO> calendarDTOS = groupChallengeService.findAllCalendar();
         MemberDTO memberInfo = null;
-        if(userDetail != null){
+        if (userDetail != null) {
             memberInfo = myPageService.getMemberDTO(userDetail.getId());
+        } else {
+            memberInfo = myPageService.getMemberDTO(memberId);
         }
-
         model.addAttribute("memberDTO", memberInfo);
         model.addAttribute("groupChallengeDTOS", groupChallengeDTOS);
         model.addAttribute("calendarDTOS", calendarDTOS);
@@ -79,7 +84,7 @@ public class MainController {
         List<SuggestDTO> suggestSearch = suggestService.findSuggestWithSearch_QueryDSL(search);
         MemberDTO member = (MemberDTO) session.getAttribute("member");
         MemberDTO memberDTO = null;
-        if(member != null){
+        if (member != null) {
             Long memberId = member.getId();
             memberDTO = myPageService.getMemberDTO(memberId);
         }
@@ -91,20 +96,21 @@ public class MainController {
     }
 
     @GetMapping("service-introduction")
-    public void serviceIntroduce(Model model, HttpSession session){
+    public void serviceIntroduce(Model model, HttpSession session) {
         MemberDTO member = (MemberDTO) session.getAttribute("member");
         MemberDTO memberDTO = null;
-        if(member != null){
+        if (member != null) {
             Long memberId = member.getId();
             memberDTO = myPageService.getMemberDTO(memberId);
         }
         model.addAttribute("memberDTO", memberDTO);
     }
+
     @GetMapping("faq")
-    public void faq(Model model, HttpSession session){
+    public void faq(Model model, HttpSession session) {
         MemberDTO member = (MemberDTO) session.getAttribute("member");
         MemberDTO memberDTO = null;
-        if(member != null){
+        if (member != null) {
             Long memberId = member.getId();
             memberDTO = myPageService.getMemberDTO(memberId);
         }
@@ -112,10 +118,10 @@ public class MainController {
     }
 
     @GetMapping("terms")
-    public String goToTerms(Model model, HttpSession session){
+    public String goToTerms(Model model, HttpSession session) {
         MemberDTO member = (MemberDTO) session.getAttribute("member");
         MemberDTO memberDTO = null;
-        if(member != null){
+        if (member != null) {
             Long memberId = member.getId();
             memberDTO = myPageService.getMemberDTO(memberId);
         }
