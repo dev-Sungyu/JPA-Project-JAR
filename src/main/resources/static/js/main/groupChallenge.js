@@ -3,10 +3,10 @@ const $first_slide = $(".first-content-slide");
 groupListText(groupChallengeDTOS);
 function groupListText(list) {
     let groupChallengeDTOS = list;
-    let text =  '';
+
 
     $(groupChallengeDTOS).each((i, groupChallengeDTO) => {
-
+        let text =  '';
         text +=                                 `<div class="content-image-box first-content-box">
                                                      <a href="/board/challenge/group/detail/${groupChallengeDTO.id}">
                  
@@ -50,6 +50,7 @@ function groupListText(list) {
 
         `;
         $first_slide.append(text);
+        console.log(text);
     });
 
 }
