@@ -6,11 +6,11 @@ server:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-#    localhost
+    # localhost
     url: jdbc:oracle:thin:@localhost:1521:XE
-#    Jar
+    # Jar
 #    url: jdbc:oracle:thin:@52.78.49.21:1521:XE
-#    Jar-Server
+    # Jar-Server
 #    url: jdbc:oracle:thin:@52.78.97.5:1521:XE
     username: hr
     password: hr
@@ -26,6 +26,7 @@ spring:
       #        #create-drop: DROP 후 CREATE 후 DROP
       #        #update: Entity와 DB 스키마 비교 후 수정 사항 반영(컬럼 삭제는 불가능)
         #validate: Entity와 DB 스키마 비교(다르면 예외 발생)
+      # 배포할 때는 validate로 배포 할 것.
       ddl-auto: update
 
     #jpa format
