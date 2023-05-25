@@ -129,7 +129,7 @@ public class MainController {
         }
         model.addAttribute("memberDTO", memberDTO);
 
-        return "/terms/terms-of-service";
+        return "terms/terms-of-service";
     }
 
 }

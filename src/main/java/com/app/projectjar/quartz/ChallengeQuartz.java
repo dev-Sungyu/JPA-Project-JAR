@@ -55,7 +55,7 @@ public class ChallengeQuartz {
                 filterChallengeList.add(challengeList.get(i));
             }
         }
-        
+
         // 랜덤하게 요소를 랜덤화
         Collections.shuffle(filterChallengeList, random);
         for (int i = 0; i < COUNT; i++) {

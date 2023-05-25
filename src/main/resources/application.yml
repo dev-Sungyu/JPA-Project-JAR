@@ -40,7 +40,7 @@ spring:
       maxFileSize: 10MB
       maxRequestSize: 20MB
 
-      location: c:\\upload
+      location: /C:/upload
       enabled: true
 
   #mail

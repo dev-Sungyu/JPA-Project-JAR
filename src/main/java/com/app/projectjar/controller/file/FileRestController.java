@@ -24,7 +24,7 @@ public class FileRestController {
     @PostMapping("upload")
     public List<String> upload(@RequestParam("file") List<MultipartFile> multipartFiles) throws IOException {
         List<String> uuids = new ArrayList<>();
-        String path = "C:/upload/" + getPath();
+        String path = "/C:/upload/" + getPath();
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
 
@@ -33,7 +33,7 @@ public class FileRestController {
             uuids.add(UUID.randomUUID().toString());
             multipartFiles.get(i).transferTo(new File(path, uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
 
-            InputStream inputStream = new FileInputStream("C:\\upload\\" + getPath() + "\\" + uuids.get(i)+ "_" + multipartFiles.get(i).getOriginalFilename());
+            InputStream inputStream = new FileInputStream("/C:/upload/" + getPath() + "/" + uuids.get(i)+ "_" + multipartFiles.get(i).getOriginalFilename());
 
             if(multipartFiles.get(i).getContentType().startsWith("image")){
                 FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuids.get(i) + "_" + multipartFiles.get(i).getOriginalFilename()));
@@ -46,13 +46,13 @@ public class FileRestController {
 
     @PostMapping("upload-file")
     public String memberUpload(@RequestParam("file") MultipartFile multipartFile) throws IOException {
-        String path = "C:/upload/" + getPath();
+        String path = "/C:/upload/" + getPath();
         File file = new File(path);
         if(!file.exists()) {file.mkdirs();}
 
         String uuid = UUID.randomUUID().toString();
         multipartFile.transferTo(new File(path, uuid + "_" + multipartFile.getOriginalFilename()));
-        InputStream inputStream = new FileInputStream("C:\\upload\\" + getPath() + "\\" + uuid+ "_" + multipartFile.getOriginalFilename());
+        InputStream inputStream = new FileInputStream("/C:/upload/" + getPath() + "/" + uuid+ "_" + multipartFile.getOriginalFilename());
 
         if(multipartFile.getContentType().startsWith("image")){
             FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuid + "_" + multipartFile.getOriginalFilename()));
@@ -68,7 +68,7 @@ public class FileRestController {
     @GetMapping("display")
     public byte[] display(String fileName) throws Exception {
         try {
-            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("C:/upload", fileName));
+            return fileName.contentEquals("null") || fileName.isBlank() ? null : FileCopyUtils.copyToByteArray(new File("/C:/upload", fileName));
         } catch (IOException e) {
             e.printStackTrace();
         }
