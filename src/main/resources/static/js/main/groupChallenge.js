@@ -50,7 +50,6 @@ function groupListText(list) {
 
         `;
         $first_slide.append(text);
-        console.log(text);
     });
 
 }
