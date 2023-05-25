@@ -160,7 +160,7 @@ public class AdminController {
     }
     @GetMapping("member/modify/{id}")
     public String adminMemberModify(Model model, @PathVariable("id") Long memberId) {
-        MemberDTO memberModifyDTO = memberService.getMember(memberId);
+        MemberDTO memberModifyDTO = myPageService.getMemberDTO(memberId);
 
         model.addAttribute("memberDTO", memberModifyDTO);
         return "admin/member/modify";

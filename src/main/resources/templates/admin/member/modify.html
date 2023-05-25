@@ -58,7 +58,9 @@
 								<hr>
 								<div class="board-info-box">
 									<div class="member-img-box">
-									<div class="member-img"></div>
+										<div class="member-img">
+
+										</div>
 									</div>
 									<div class="member-info-box">
 										<div class="member-info-tag-box">
@@ -111,4 +113,22 @@
 <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
 <script src="/js/admin/modify-member.js"></script>
 <script src="/js/admin/sidemenu.js"></script>
+<script th:inline="javascript">
+	const memberDTO = [[${memberDTO}]];
+	let fileDTO = memberDTO.fileDTO;
+
+	if(fileDTO){
+		profileImage(fileDTO);
+	}
+function profileImage(fileDTO) {
+
+	$(".member-img").css("background-image", "none");
+	let text = `
+        <li class="img_div">
+            <img style='width: 100px; height: 100px; border-radius: 50%;' src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}" class="inserted_img">
+        </li>
+    `;
+	$(".member-img").append(text);
+}
+</script>
 </html>
