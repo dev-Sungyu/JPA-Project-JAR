@@ -78,7 +78,6 @@ public class DiaryController {
     @PostMapping("modify")
     public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
 
-        log.info("boardId : " + boardId);
         diaryDTO.setId(boardId);
         diaryService.modifyDiary(diaryDTO);
         if(diaryDTO.getDiaryStatus().equals("PRIVATE")){

@@ -1,4 +1,4 @@
-globalThis.uuids;
+globalThis.uuids = [];
 
 diaryService = (function(){
 
