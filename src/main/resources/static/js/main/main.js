@@ -19,7 +19,7 @@ $contentNext.click(() => {
     $firstContent.css("transform", `translate(-${firstWidth * checkCount++}px)`);
 
     $contentPrev.show();
-    if(checkCount == groupChallengeDTOS.length - 1) {
+    if(checkCount == groupChallengeDTOS.length) {
         $contentNext.hide();
     }
 });
