@@ -50,7 +50,7 @@ $(".popular").click(() => {
 // 스크롤 이벤트(무한 스크롤)
 $(window).scroll(
     function() {
-        if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+        if ($(window).scrollTop() >= $(document).height() - $(window).height()) {
             page++;
             list(page, sort);
         }

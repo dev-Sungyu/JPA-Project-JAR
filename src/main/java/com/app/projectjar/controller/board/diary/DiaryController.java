@@ -5,6 +5,7 @@ import com.app.projectjar.domain.member.MemberDTO;
 import com.app.projectjar.service.diary.DiaryService;
 import com.app.projectjar.service.mypage.MyPageService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.dom4j.rule.Mode;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Slice;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("/board/diary/*")
 @RequiredArgsConstructor
+@Slf4j
 public class DiaryController {
     private final DiaryService diaryService;
     private final MyPageService myPageService;
@@ -76,12 +78,13 @@ public class DiaryController {
     @PostMapping("modify")
     public RedirectView modify(@RequestParam("boardId") Long boardId, @ModelAttribute("diaryDTO") DiaryDTO diaryDTO) {
 
+        log.info("boardId : " + boardId);
         diaryDTO.setId(boardId);
         diaryService.modifyDiary(diaryDTO);
         if(diaryDTO.getDiaryStatus().equals("PRIVATE")){
             return new RedirectView("/board/diary/detail/" + boardId);
         }else {
-            return new RedirectView("/board/diary/list/");
+            return new RedirectView("/board/diary/list");
         }
     }
 }

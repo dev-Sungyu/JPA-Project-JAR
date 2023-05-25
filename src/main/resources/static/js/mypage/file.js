@@ -39,7 +39,9 @@ $("input[type=file]").on("change", function () {
         files.push(file);
     })
 
-    files.forEach((file, e) => {
+    console.log(files);
+
+    $files.forEach((file, e) => {
         formData.append("file", file);
     })
 
@@ -55,17 +57,31 @@ $("input[type=file]").on("change", function () {
             $files.forEach((file, i) => {
                 if (file.type.startsWith("image")) {
                     let text = `
-                            <li id="${i}">
-                                <div style="position:relative;">
-                                    <div class="image-cancel-box close-button">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
-                                            <path d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
-                                                fill="#cacaca"></path>
-                                        </svg>
+                            <li class="img_list" id="li${i}">
+                            <div class="img_box_wrapper">
+                                <header class="delete_button_wrapper">
+                                    <label class="close-button" id="button${i}">
+                                        <button icon-position="0" color="white" fill="false" type="button"
+                                            class="pasing-button-1 pasing-no-select">
+                                            <span class="pasing-button-span">
+                                                <svg xmlns="http://www.w3.org/2000/svg"
+                                                    width="24" height="24" fill="none"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M18.5 4L12 10.5 5.5 4 4 5.5l6.5 6.5L4 18.5 5.5 20l6.5-6.5 6.5 6.5 1.5-1.5-6.5-6.5L20 5.5 18.5 4z"
+                                                        fill="#cacaca"></path>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </label>
+                                </header>
+                                <article class="img_wrapper">
+                                    <div class="img_div">
+                                        <img src="/file/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
                                     </div>
-                                <img src="/file/display?fileName=${toStringByFormatting(new Date())}/t_${uuids[i]}_${file.name}" class="inserted_img">
-                                </div>
-                            </li>
+                                </article>
+                            </div>
+                        </li>
                            `;
                     $ul.append(text);
                 }
@@ -76,15 +92,16 @@ $("input[type=file]").on("change", function () {
 
 
 // 이미지 지울 때
+// 이미지 지울 때
 $ul.on("click",".close-button", function(e){
     const dataTransfer = new DataTransfer();
 
-    let target = $(e.currentTarget).parent().parent();
+    let target = $(e.currentTarget).parent().parent().parent();
     let fileArray = Array.from(files);
     let ul = target.parent();
     let i = ul.find("li").index(target);
     files = [];
-
+    globalThis.uuids.splice(i, 1);
     fileArray.splice(i, 1);
     fileArray.forEach(file => {
         if(file.fileOriginalName == null && file.fileOriginalName == undefined){
@@ -99,6 +116,7 @@ $ul.on("click",".close-button", function(e){
         files.push(file);
     });
 });
+
 
 $(".save-button").click(() => {
     const $files = $("input[type=file]")[0].files;
@@ -117,7 +135,6 @@ $(".save-button").click(() => {
         alertModal(alertMsg[2]);
         return false;
     }
-
 
     FileList.prototype.forEach = Array.prototype.forEach;
     let count = 0;
@@ -165,6 +182,7 @@ $(".attachment-layout").on("click", ".image-cancel-box", (e) => {
     const dataTransfer = new DataTransfer();
 
     let target = $(e.currentTarget).parent().parent().parent();
+    console.log(target);
     let fileArray = Array.from(files);
     let ul = target.parent();
     let i = ul.find("li").index(target);
