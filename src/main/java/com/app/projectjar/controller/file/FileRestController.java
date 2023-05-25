@@ -52,7 +52,7 @@ public class FileRestController {
 
         String uuid = UUID.randomUUID().toString();
         multipartFile.transferTo(new File(path, uuid + "_" + multipartFile.getOriginalFilename()));
-        InputStream inputStream = new FileInputStream("/C:/upload?" + getPath() + "/" + uuid+ "_" + multipartFile.getOriginalFilename());
+        InputStream inputStream = new FileInputStream("/C:/upload/" + getPath() + "/" + uuid+ "_" + multipartFile.getOriginalFilename());
 
         if(multipartFile.getContentType().startsWith("image")){
             FileOutputStream out = new FileOutputStream(new File(path, "t_" + uuid + "_" + multipartFile.getOriginalFilename()));
