@@ -34,7 +34,7 @@
                                             </div>
                                         </div>
                                         <p class="year_month_day"
-                                           th:text="${#temporals.format(inquireDTO.updatedDate, 'yyyy-MM-dd')}">2023. 4.
+                                           th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy-MM-dd')}">2023. 4.
                                             3.</p>
                                     </div>
                                     <div class="container-line"></div>
@@ -70,7 +70,7 @@
                                                 <div style="width: 6px;"></div>
                                             </div>
                                             <p class="year_month_day"
-                                               th:text="${#temporals.format(inquireDTO.createdDate, 'yyyy/MM/dd')}">
+                                               th:text="${#temporals.format(inquireDTO.answerDTO.registerDate, 'yyyy/MM/dd')}">
                                                 2023. 4. 3.</p>
                                         </div>
                                     </div>

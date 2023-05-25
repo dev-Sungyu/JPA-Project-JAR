@@ -74,6 +74,7 @@ public interface MyPageService {
                 .memberNickname(member.getMemberNickname())
                 .memberPhoneNumber(member.getMemberPhoneNumber())
                 .memberStatus(member.getMemberStatus())
+                .createdDate(member.getCreatedDate())
                 .badgeType(member.getBadgeType())
                 .fileDTO(toFileDTO(member.getMemberFile()))
                 .build();

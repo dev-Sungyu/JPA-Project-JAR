@@ -310,6 +310,7 @@
             width:100%; 
             margin-bottom : 10px;
             flex-wrap: wrap;
+            justify-content: space-between;
         }
 
         .attachment-layout li {
@@ -317,7 +318,9 @@
         }
 
         .sumnail-layout li {
-            width: 25%;
+            margin-top: 5px;
+            width: 216px;
+            height: 167px;
         }
 
         .attachment-layout li:last-child {
