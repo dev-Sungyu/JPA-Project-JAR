@@ -48,9 +48,11 @@ public class MainController {
     public void main(@AuthenticationPrincipal UserDetail userDetail, Model model) {
         Long memberId = null;
         if (session.getAttribute("member") == null) {
-            Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
-            MemberDTO memberDTO = memberService.toMemberDTO(member);
-            session.setAttribute("member", memberDTO);
+            if(userDetail != null){
+                Member member = memberService.getOptionalMember(userDetail.getId()).orElseGet(null);
+                MemberDTO memberDTO = memberService.toMemberDTO(member);
+                session.setAttribute("member", memberDTO);
+            }
         } else {
             memberId = ((MemberDTO)session.getAttribute("member")).getId();
             MemberDTO memberDTO = memberService.getMember(memberId);
@@ -62,7 +64,7 @@ public class MainController {
         MemberDTO memberInfo = null;
         if (userDetail != null) {
             memberInfo = myPageService.getMemberDTO(userDetail.getId());
-        } else {
+        } else if (memberId != null){
             memberInfo = myPageService.getMemberDTO(memberId);
         }
         model.addAttribute("memberDTO", memberInfo);
