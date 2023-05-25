@@ -6,7 +6,12 @@ server:
 spring:
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
+#    localhost
     url: jdbc:oracle:thin:@localhost:1521:XE
+#    Jar
+#    url: jdbc:oracle:thin:@52.78.49.21:1521:XE
+#    Jar-Server
+#    url: jdbc:oracle:thin:@52.78.97.5:1521:XE
     username: hr
     password: hr
 
