@@ -39,7 +39,17 @@ button.select-button-active {
 .main-wrapper {
     width: 100%;
     padding: 0px 32px;
-}}
+}
+    ul.challenge-wrapper-list {
+        margin: 0px -12px -32px;
+    }
+}
+
+@media (max-width: 960px) {
+    ul.challenge-wrapper-list {
+        margin: 0px 0px -32px;
+    }
+}
 
 .main-wrapper-section{
     width: 100%;
@@ -148,6 +158,8 @@ div.paging-active .page {
     max-width: 1176px;
     margin: auto;
 }}
+
+
 
 .main-top-wrap{
     display: flex;
@@ -258,7 +270,6 @@ div.paging-active .page {
 .challenge-wrapper-list{
     overflow: hidden;
     list-style: none;
-    margin: 0px -12px -32px;
     padding: 0px;
     display: flex;
     flex-wrap: wrap;

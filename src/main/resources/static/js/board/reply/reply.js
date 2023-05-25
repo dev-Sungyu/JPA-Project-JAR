@@ -112,6 +112,9 @@ $replyBox.on("click", "button.delete-button", function (e) {
             boardId: boardId
         }, function (replies) {
             $replyBox.html(repliesContent(replies));
+            if (replies.last) {
+                $(".the-bogi").hide();
+            }
         })
     });
 });
