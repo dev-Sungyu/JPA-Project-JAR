@@ -157,20 +157,23 @@
 <script src="/js/admin/sidemenu.js"></script>
 <script th:inline="javascript">
     const memberDTO = [[${memberDTO}]];
-
     const fileDTO = memberDTO.fileDTO;
-    let text = '';
+    profileImages(fileDTO);
 
-    if (fileDTO == undefined || fileDTO == null) {
-        text = `
+    function profileImages(fileDTO) {
+        let text = '';
+        if (fileDTO == undefined || fileDTO == null) {
+            text = `
                     <img style="width: 100%; object-fit: cover; height="100%;" src="/image/logo/normal_profile.png">
         `;
-    }else {
-        text = `
-                      <img style="width: 100%; object-fit: cover; height="100%;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}">
+        }else {
+            text = `
+                        <img style="width: 100%; object-fit: cover; height="100%;" src="/file/display?fileName=${fileDTO.filePath}/${fileDTO.fileUuid}_${fileDTO.fileOriginalName}">
                   `;
+        }
+        $(".member-img").append(text);
     }
-    $(".member-img").append(text);
+
 
 </script>
 </html>

@@ -17,6 +17,7 @@ import com.app.projectjar.service.groupChallenge.GroupChallengeService;
 import com.app.projectjar.service.inquire.AnswerService;
 import com.app.projectjar.service.inquire.InquireService;
 import com.app.projectjar.service.member.MemberService;
+import com.app.projectjar.service.mypage.MyPageService;
 import com.app.projectjar.service.notice.NoticeService;
 import com.app.projectjar.service.personalChallenge.PersonalChallengeService;
 import com.app.projectjar.service.suggest.SuggestService;
@@ -48,7 +49,7 @@ public class AdminController {
     private final PersonalChallengeService personalChallengeService;
     private final InquireService inquireService;
     private final AnswerService answerService;
-
+    private final MyPageService myPageService;
 
 
     @GetMapping("board/challenge/detail/{challengeId}")
@@ -193,7 +194,7 @@ public class AdminController {
     }
     @GetMapping("member/detail/{id}")
     public String adminMemberDetail(Model model, @PathVariable("id") Long memberId) {
-        MemberDTO memberDTO = memberService.getMember(memberId);
+        MemberDTO memberDTO = myPageService.getMemberDTO(memberId);
 
         Long personalAttendCount = memberService.findPersonalAttendCountByMemberId(memberId);
         Long groupAttendCount = memberService.findGroupAttendCountByMemberId(memberId);
